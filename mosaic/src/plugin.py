@@ -13,7 +13,7 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.ChannelSelection import BouquetSelector
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE, SCOPE_LANGUAGE, SCOPE_PLUGINS
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_LANGUAGE, SCOPE_PLUGINS
 from Tools.LoadPixmap import LoadPixmap
 import gettext
 
@@ -27,8 +27,8 @@ config_limits = (3, 30)
 config.plugins.Mosaic = ConfigSubsection()
 config.plugins.Mosaic.countdown = ConfigInteger(default=5, limits=config_limits)
 
-playingIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/ico_mp_play.png'))
-pausedIcon = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/ico_mp_pause.png'))
+playingIcon = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/ico_mp_play.png'))
+pausedIcon = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/ico_mp_pause.png'))
 
 ################################################
 

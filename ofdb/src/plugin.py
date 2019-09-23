@@ -14,8 +14,7 @@ from Components.AVSwitch import AVSwitch
 from Components.MenuList import MenuList
 from Components.Language import language
 from Components.ProgressBar import ProgressBar
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
-from os import environ as os_environ
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 import re
 import htmlentitydefs
 import urllib

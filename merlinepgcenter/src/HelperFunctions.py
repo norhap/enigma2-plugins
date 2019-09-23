@@ -32,7 +32,7 @@ import NavigationInstance
 from RecordTimer import RecordTimerEntry, AFTEREVENT
 from Screens.MessageBox import MessageBox
 import Screens.Standby
-from Tools.Directories import fileExists, resolveFilename, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, SCOPE_CURRENT_PLUGIN
+from Tools.Directories import fileExists, resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_CURRENT_PLUGIN
 from Tools.LoadPixmap import LoadPixmap
 
 # for localized messages
