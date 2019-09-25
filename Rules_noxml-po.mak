@@ -8,8 +8,8 @@ LANGPO = $(LANGS:=.po)
 $(PLUGIN)-py.pot: $(srcdir)/../src/*.py
 	$(XGETTEXT) --no-wrap -L python --from-code=UTF-8 --add-comments="TRANSLATORS:" -d $(PLUGIN) -s -o $@ $^
 
-$(PLUGIN).pot: $(PLUGIN).py.pot
-	sed --in-place $(PLUGIN).py.pot --expression=s/CHARSET/UTF-8/
+$(PLUGIN).pot: $(PLUGIN)-py.pot
+	sed --in-place $(PLUGIN)-py.pot --expression=s/CHARSET/UTF-8/
 	$(MSGUNIQ) --no-wrap --no-location $^ -o $@
 
 %.po: $(PLUGIN).pot
