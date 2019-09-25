@@ -5,25 +5,26 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ims\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-29 00:28+0100\n"
-"PO-Revision-Date: 2012-02-14 09:17+0100\n"
-"Last-Translator: ims\n"
-"Language-Team: PLi <martin@volyne.cz>\n"
-"Language: \n"
+"POT-Creation-Date: 2019-09-05 03:21+0430\n"
+"PO-Revision-Date: 2012-05-17 19:16+0100\n"
+"Last-Translator: jerry <ws79@centrum.cz>\n"
+"Language-Team: jerry\n"
+"Language: CZECH\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Czech\n"
-"X-Poedit-Country: CZECH REPUBLIC\n"
 
 msgid ""
 "A mount entry with this name already exists!\n"
 "Update existing entry and continue?\n"
 msgstr ""
-"Bod připojení tohoto jména již existuje!\n"
-"Aktualizovat existující údaje a pokračovat?\n"
+"Připojený záznam s tímto názvem již existuje!\n"
+"Aktualizovat existující a pokračovat?\n"
+
+msgid "AUTOFS (mount as needed)"
+msgstr ""
 
 msgid "Active"
 msgstr "Aktivní"
@@ -32,42 +33,48 @@ msgid ""
 "Active/\n"
 "Inactive"
 msgstr ""
-"aktivní/\n"
-"neaktivní"
+"Aktivní/\n"
+"Neaktivní"
 
 msgid "Add a new NFS or CIFS mount point to your Receiver."
-msgstr "Přidat nový NFS nebo CIFS připojovací bod."
+msgstr "Přidá nový NFS nebo CIFS přípojný bod do vašeho stb."
 
 msgid "Add new network mount point"
-msgstr "Přidat nový připojovací bod"
+msgstr "Přidat nový přípojný bod sítě"
+
+msgid "Adding schedule..."
+msgstr "Přidání plánu..."
+
+msgid "Are you sure you want to remove your network mount ?"
+msgstr ""
 
 msgid ""
 "Are you sure you want to save this network mount?\n"
 "\n"
 msgstr ""
-"Opravdu chcete uložit tento připojovací bod?\n"
+"Opravdu chcete tento síťový bod připojení uložit?\n"
 "\n"
 
 msgid "Attempt to mount shares again"
-msgstr "Pokus znovu připojit sdílení"
+msgstr "Pokus o znovu připojení"
 
 msgid "Attempt to recover lost mounts (in background)"
-msgstr "Pokus obnovit ztracené připojení (na pozadí)."
+msgstr "Pokus o obnovení ztracéného připojení (v pozadí)"
 
 msgid "Browse network neighbourhood"
-msgstr "Prohledání síťového okolí"
+msgstr "Procházení síťové okolí"
 
 msgid "CIFS share"
-msgstr "CIFS sdílení"
+msgstr "Sdílení CIFS"
 
 msgid "Cancel"
 msgstr "Zrušit"
 
 msgid "Change hostname"
-msgstr "Změna názvu v síti"
+msgstr "Změna hostname"
 
 msgid "Change the hostname of your Receiver."
-msgstr "Změna názvu přijímače v síti."
+msgstr "Změní hostname vašeho stb."
 
 msgid "Close"
 msgstr "Zavřít"
@@ -76,189 +83,243 @@ msgid "Delete"
 msgstr "Smazat"
 
 msgid "Delete mount"
-msgstr "Smazat"
+msgstr "Smazat bod"
 
 msgid "Dir:"
-msgstr "adr:"
+msgstr "Adr:"
 
-msgid "Do you want to enter a username and password for this host?\n"
-msgstr "Chcete zadat uživatelské jméno a heslo pro tento hostitelský počítač?\n"
+msgid "Do you want to enter a username and password for this host?"
+msgstr ""
+
+msgid "Enigma2 (mount using enigma2)"
+msgstr ""
+
+msgid "Enigma2 old format (mount using linux)"
+msgstr ""
 
 msgid "Enter IP to scan..."
-msgstr "Zadejte IP pro hledání..."
+msgstr "Vložte IP k prohledání..."
 
 msgid "Enter new hostname for your Receiver"
-msgstr "Zadejte síťový název Vašeho přijímače"
+msgstr "Vložte nové hostname vašeho stb"
+
+msgid "Enter options:"
+msgstr "Vložte volby:"
 
 msgid "Enter password:"
-msgstr "Zadejte heslo:"
+msgstr "Vložte heslo:"
+
+msgid "Enter share directory:"
+msgstr "Vložte sdílený adresář:"
+
+msgid "Enter share name:"
+msgstr "Vložte název sdílení:"
 
 msgid "Enter user and password for host: "
-msgstr "Zadání uživatele a hesla pro: "
+msgstr "Vložte jméno a heslo hosta: "
 
 msgid "Enter username:"
-msgstr "Zadejte uživatelské jméno:"
+msgstr "Vložte uživatele:"
 
 msgid "Expert"
-msgstr "Expert"
+msgstr "Expertní"
+
+#, fuzzy
+msgid "FSTAB (mount at boot)"
+msgstr "FSTAB (připojit přes linux)"
 
 msgid "Finished restarting your network"
-msgstr "Dokončen restart sítě"
-
-msgid "Host name"
-msgstr ""
-
-msgid "Host:"
-msgstr ""
+msgstr "Dokončení restartování sítě"
 
 msgid "IP Address"
 msgstr "IP adresa"
 
 msgid "IP:"
-msgstr "IP:"
-
-msgid "Local mountpoint"
 msgstr ""
 
+msgid "Local share name"
+msgstr "Místní název sdílení"
+
 msgid "Manage network shares"
-msgstr "Správa síťových sdílení"
+msgstr "Správa síťového sdílení"
 
 msgid "Manage your network shares..."
-msgstr "Správa Vašich síťových sdílení..."
+msgstr "Správa síťového sdílení..."
+
+msgid "Mount Again"
+msgstr "Připojit"
+
+msgid "Mount Manager"
+msgstr "Správce připojení"
+
+msgid "Mount Viewer"
+msgstr "Prohlížeč připojení"
 
 msgid "Mount again"
-msgstr "Znovu připojit"
+msgstr "Připojit znovu"
 
 msgid "Mount informations"
-msgstr "informace o připojení"
+msgstr "Info připojení"
+
+#, fuzzy
+msgid "Mount manager"
+msgstr "Správce připojení"
 
 msgid "Mount options"
-msgstr "Možnosti připojení"
+msgstr "Volby připojení"
 
 msgid "Mount type"
 msgstr "Typ připojení"
 
-#, fuzzy
-msgid "Mount view"
-msgstr "Typ připojení"
-
-msgid "MountManager"
-msgstr "Síťová připojení"
+msgid "Mount using"
+msgstr "Připojit přes"
 
 msgid ""
 "Mounted/\n"
 "Unmounted"
 msgstr ""
-"připojeno/\n"
-"odpojeno"
+"Připojeno/\n"
+"Odpojeno"
+
+msgid "Mounting network shares..."
+msgstr "Připojení síťového disku..."
 
 msgid "Mountpoints management"
-msgstr "Správa připojovacích bodů"
+msgstr "Správa bodů připojení"
 
 msgid "Mounts editor"
 msgstr "Editor připojení"
 
-msgid "Mounts management"
-msgstr "Správa připojení"
-
 msgid "NFS share"
-msgstr "NFS sdílení"
+msgstr "Disk NFS"
 
-msgid "NetworkBrowser"
-msgstr "Procházet síť"
+msgid "Network Browser"
+msgstr "Prohlížeč sítě"
 
 msgid "No network devices found!"
-msgstr "Nenalezeno žádné síťové zařízení!"
+msgstr "Žádné síťové zařízení!"
 
 msgid "Password"
 msgstr "Heslo"
 
 msgid "Please wait for activation of your network mount..."
-msgstr "Počkejte na aktivaci Vašeho síťového připojení..."
+msgstr "Počkejte na aktivaci síťového připojení..."
 
 msgid "Please wait while removing your network mount..."
-msgstr "Čekejte na odstranění Vašeho síťového připojení..."
+msgstr "Počkejte na odstranění síťového připojení..."
 
 msgid "Please wait while updating your network mount..."
-msgstr "Čekejte na dokončení aktualizace síťového připojení..."
+msgstr "Počkejte na aktualizaci síťového připojení..."
 
 msgid "Please wait while your network is restarting..."
-msgstr "Čekejte prosím, zatímco se síť restartuje..."
+msgstr "Počkejte na restart síťového připojení..."
 
 msgid "Press OK to activate the settings."
-msgstr "Stiskněte OK pro aktivaci nastavení."
+msgstr "OK aktivuje toto nastavení."
 
 msgid "Press OK to collapse this host"
-msgstr "Stiskněte OK pro sbalení tohoto hostitele"
+msgstr "OK sbalí tohoto hosta."
 
 msgid "Press OK to edit selected settings."
-msgstr "Stiskněte OK pro úpravu vybraného nastavení."
+msgstr "OK upraví vybrané nastavení."
 
 msgid "Press OK to edit the settings."
-msgstr "Stiskněte OK pro úpravu nastavení."
+msgstr "OK upraví toto nastavení."
 
 msgid "Press OK to expand this host"
-msgstr "Stiskněte OK pro rozbalení tohoto hostitele"
+msgstr "OK rozbalí tohoto hosta."
 
 msgid "Press OK to mount this share!"
-msgstr "Stiskněte OK pro připojení tohoto sdílení!"
+msgstr "OK připojí tento sdílený disk!"
 
 msgid "Press OK to mount!"
-msgstr "Stiskněte OK pro připojení!"
+msgstr "OK připojí!."
 
 msgid "Press OK to save settings."
-msgstr "Stiskněte OK pro uložení nastavení"
+msgstr "OK uloží toto nastavení."
 
 msgid "Press OK to select."
-msgstr "Stiskněte OK pro výběr. "
+msgstr "OK vybere."
+
+msgid "Re-mount network shares every (in hours)"
+msgstr "Připojovat síťové disky každé (hod)"
+
+msgid "Really close without saving settings?"
+msgstr "Opravdu zavřít bez uložení nastavení?"
 
 msgid "Rescan"
-msgstr "Znovu vyhledat"
+msgstr ""
+
+msgid "Save"
+msgstr "Ulož"
 
 msgid "Scan NFS share"
-msgstr "Hledat NFS sdílení"
+msgstr "Sken NFS disků"
 
 msgid "Scan range"
-msgstr "Rozsah hledání"
+msgstr "Rozsah skenu"
+
+msgid "Schedule MountAgain"
+msgstr "Plán znovu připojení"
+
+msgid "Schedule a auto remount of your network shares."
+msgstr "Naplánuje automatické znovupřipojení síťových disků."
 
 msgid "Search for network shares"
-msgstr "Vyhledat sdílení v síti"
+msgstr "Hledání síťových disků"
 
 msgid "Search for network shares..."
-msgstr "Vyhledat síťová sdílení..."
+msgstr "Hledání síťových disků..."
 
 msgid "Searching your network. Please wait..."
-msgstr "Prohledávám Vaši síť. Čekejte, prosím..."
+msgstr "Prohledání sítě. Čekejte prosím..."
 
 msgid "Server IP"
 msgstr "IP serveru"
 
 msgid "Server share"
-msgstr "Sdíleno serverem jako"
+msgstr "Sdílený server"
+
+msgid "Setup Mount Again"
+msgstr "Nastavit znovupřipojení"
+
+msgid "Use as HDD replacement"
+msgstr "použít jako náhradu HDD"
 
 msgid "User management"
-msgstr "Správa uživatele"
+msgstr "Správa uživatelů"
 
 msgid "Usermanager"
-msgstr "Správce uživatele"
+msgstr ""
 
 msgid "Username"
 msgstr "Uživatel"
 
 msgid "View, edit or delete mountpoints on your Receiver."
-msgstr "Prohlížet, upravit nebo smazat připojovací body Vašeho přijímače."
+msgstr "Prohlíží, edituje nebo maže přípojné body na vašem stb."
 
 msgid "View, edit or delete usernames and passwords for your network."
-msgstr "Prohlížet, upravit nebo smazat uživatele a hesla pro Vaši síť"
+msgstr "Prohlíží, edituje nebo maže uživatelská jména a hesla pro vaši síť."
+
+#, fuzzy
+msgid ""
+"You have changed the share name!\n"
+"Update existing entry and continue?\n"
+msgstr ""
+"Připojený záznam s tímto názvem již existuje!\n"
+"Aktualizovat existující a pokračovat?\n"
+
+#, python-format
+msgid ""
+"Your network interface %s is not properly configured, so a network scan cannot be done.\n"
+"Please configure the interface and try again."
+msgstr ""
 
 msgid "Your network mount has been activated."
-msgstr "Vaše síťové připojení bylo aktivováno."
+msgstr "Vaše síťové připojení byl aktivováno."
 
 msgid "Your network mount has been removed."
-msgstr "Vaše síťové připojení bylo odstraněno."
+msgstr "Vaše síťová připojení bylo odebráno."
 
 msgid "Your network mount has been updated."
-msgstr "Bod připojení byl zaktualizován."
-
-msgid "use as HDD replacement"
-msgstr "Použít jako náhradu HDD "
+msgstr "Vaše síťová připojení byl aktualizováno."
