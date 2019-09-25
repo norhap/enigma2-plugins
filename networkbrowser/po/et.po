@@ -1,32 +1,24 @@
-# Estonian translations for enigma2-plugins package.
-# Copyright (C) 2012 THE enigma2-plugins'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the enigma2-plugins package.
-# Automatically generated, 2012.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: enigma2-plugins 3.2.0\n"
+"Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-05 03:21+0430\n"
-"PO-Revision-Date: 2017-10-14 15:11+0300\n"
-"Last-Translator: rimas\n"
+"POT-Creation-Date: 2018-12-29 00:28+0100\n"
+"PO-Revision-Date: 2014-03-31 18:48+0200\n"
+"Last-Translator: \n"
 "Language-Team: none\n"
-"Language: et\n"
+"Language: et_EE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
 "A mount entry with this name already exists!\n"
 "Update existing entry and continue?\n"
 msgstr ""
-"Sellise nimega haakepunkt on juba olemas!\n"
-"Kas uuendada olemasolev ja jätkata?\n"
-
-msgid "AUTOFS (mount as needed)"
-msgstr "AUTOFS (haagi vajadusel)"
+"Sellise nimega ühenduspunkt on juba olemas!\n"
+"Muuda olemasolev ja jätka?\n"
 
 msgid "Active"
 msgstr "Aktiivne"
@@ -36,47 +28,41 @@ msgid ""
 "Inactive"
 msgstr ""
 "Aktiivne/\n"
-"Passiivne"
+"Välja lülitatud"
 
 msgid "Add a new NFS or CIFS mount point to your Receiver."
-msgstr "Lisa vastuvõtjale uus NFS või CIFS haakepunkt."
+msgstr "Lisa uus NFS või CIFS haakepunkt oma tuunerile.."
 
 msgid "Add new network mount point"
 msgstr "Lisa uus võrgu haakepunkt"
-
-msgid "Adding schedule..."
-msgstr "Ajakava lisamine..."
-
-msgid "Are you sure you want to remove your network mount ?"
-msgstr "Kas eemaldada võrgu haakepunkt?"
 
 msgid ""
 "Are you sure you want to save this network mount?\n"
 "\n"
 msgstr ""
-"Kas salvestada see võrgu haakepunkt?\n"
+"Soovid kindlasti salvestada selle võrgukoha?\n"
 "\n"
 
 msgid "Attempt to mount shares again"
-msgstr "Proovi võrgujaod uuesti haakida"
+msgstr "Proovi võrgukohad uuesti haakida"
 
 msgid "Attempt to recover lost mounts (in background)"
-msgstr "Proovi taastada kaotatud haakepunktid (taustal)"
+msgstr "Üritame taastada kaotatud haaked (taustal). "
 
 msgid "Browse network neighbourhood"
-msgstr "Sirvi võrgunaabrust"
+msgstr "Otsi võrgunaabreid"
 
 msgid "CIFS share"
-msgstr "CIFS võrgujagu"
+msgstr "CIFS võrgukoht"
 
 msgid "Cancel"
 msgstr "Tühista"
 
 msgid "Change hostname"
-msgstr "Muuda masinanime"
+msgstr "Muuda hosti nime"
 
 msgid "Change the hostname of your Receiver."
-msgstr "Muuda vastuvõtja masinanime."
+msgstr "Muuda oma vastuvõtja hosti nime."
 
 msgid "Close"
 msgstr "Sulge"
@@ -85,40 +71,25 @@ msgid "Delete"
 msgstr "Kustuta"
 
 msgid "Delete mount"
-msgstr "Kustuta haakepunkt"
+msgstr "Kustuta haage"
 
 msgid "Dir:"
-msgstr "Kat:"
+msgstr "Kaust:"
 
-msgid "Do you want to enter a username and password for this host?"
-msgstr "Kas määrata sellele masinale kasutajanimi ja parool?"
-
-msgid "Enigma2 (mount using enigma2)"
-msgstr "Enigma2 (haagi enigma2 abil)"
-
-msgid "Enigma2 old format (mount using linux)"
-msgstr "Enigma2 vana vorming (haagi linuksi abil)"
+msgid "Do you want to enter a username and password for this host?\n"
+msgstr "Kas soovid seada kasutajanime ja salasõna sellele seadmele?\n"
 
 msgid "Enter IP to scan..."
-msgstr "Sisesta otsimiseks IP"
+msgstr "Sisesta IP otsinguks ..."
 
 msgid "Enter new hostname for your Receiver"
-msgstr "Sisesta vastuvõtja masinanimi"
-
-msgid "Enter options:"
-msgstr "Sisesta valikud:"
+msgstr "Sisesta uus nimi oma vastuvõtjale"
 
 msgid "Enter password:"
-msgstr "Sisesta parool:"
-
-msgid "Enter share directory:"
-msgstr "Sisesta võrgujao kataloog:"
-
-msgid "Enter share name:"
-msgstr "Sisesta võrgujao nimi:"
+msgstr "Sisesta salasõna:"
 
 msgid "Enter user and password for host: "
-msgstr "Sisesta kasutajanimi ja parool masinale: "
+msgstr "Sisesta kasutajanimi ja salasõnal hostile: "
 
 msgid "Enter username:"
 msgstr "Sisesta kasutajanimi:"
@@ -126,11 +97,14 @@ msgstr "Sisesta kasutajanimi:"
 msgid "Expert"
 msgstr "Ekspert"
 
-msgid "FSTAB (mount at boot)"
-msgstr "FSTAB (haagi alglaadimisel)"
-
 msgid "Finished restarting your network"
-msgstr "Võrk taaskäivitatud"
+msgstr "Võrgu taaskäivitus on tehtud"
+
+msgid "Host name"
+msgstr ""
+
+msgid "Host:"
+msgstr ""
 
 msgid "IP Address"
 msgstr "IP aadress"
@@ -138,187 +112,148 @@ msgstr "IP aadress"
 msgid "IP:"
 msgstr "IP:"
 
-msgid "Local share name"
-msgstr "Kohaliku võrgujao nimi"
+msgid "Local mountpoint"
+msgstr ""
 
 msgid "Manage network shares"
-msgstr "Võrgujaod"
+msgstr "Halda võrgukohti"
 
 msgid "Manage your network shares..."
-msgstr "Võrgujaod..."
-
-msgid "Mount Again"
-msgstr "Haagi uuesti"
-
-msgid "Mount Manager"
-msgstr "Haakepunktid"
-
-msgid "Mount Viewer"
-msgstr "Haakepunktid"
+msgstr "Halda oma võrgukohti..."
 
 msgid "Mount again"
 msgstr "Haagi uuesti"
 
 msgid "Mount informations"
-msgstr "Haakepunkt"
-
-msgid "Mount manager"
-msgstr "Haakepunktid"
+msgstr "Haake info"
 
 msgid "Mount options"
-msgstr "Haakimise valikud"
+msgstr "Haake seaded"
 
 msgid "Mount type"
-msgstr "Haakimise tüüp"
+msgstr "Haake tüüp"
 
-msgid "Mount using"
-msgstr "Haagi kasutades"
+#, fuzzy
+msgid "Mount view"
+msgstr "Haake tüüp"
+
+msgid "MountManager"
+msgstr "Haakehaldur"
 
 msgid ""
 "Mounted/\n"
 "Unmounted"
 msgstr ""
 "Haagitud/\n"
-"Haakimata"
-
-msgid "Mounting network shares..."
-msgstr "Võrgujagude haakimine..."
+"Lahtihaagitud"
 
 msgid "Mountpoints management"
-msgstr "Haakepunktid"
+msgstr "Haakepunktide haldamine"
 
 msgid "Mounts editor"
-msgstr "Haakepunktid"
+msgstr "Haake muutja"
+
+msgid "Mounts management"
+msgstr "Haldur"
 
 msgid "NFS share"
-msgstr "NFS võrgujagu"
+msgstr "NFS võrgukoht"
 
-msgid "Network Browser"
-msgstr "Võrgu uurimine"
+msgid "NetworkBrowser"
+msgstr "Võrgulehitseja"
 
 msgid "No network devices found!"
-msgstr "Võrgukaarti ei leitud!"
+msgstr "Võrguseadmeid ei leitud!"
 
 msgid "Password"
-msgstr "Parool"
+msgstr "Salasõna"
 
 msgid "Please wait for activation of your network mount..."
-msgstr "Võrgu haakepunkti jõustamine..."
+msgstr "Palun oota oma võrguühenduse aktiveerimist..."
 
 msgid "Please wait while removing your network mount..."
-msgstr "Võrgu haakepunkti eemaldamine..."
+msgstr "Palun oota oma võrguühenduse kõrvaldamist..."
 
 msgid "Please wait while updating your network mount..."
-msgstr "Võrgu haakepunkti uuendamine..."
+msgstr "Palun oota oma võrguühenduse uuendamist..."
 
 msgid "Please wait while your network is restarting..."
-msgstr "Võrgu taaskäivitamine..."
+msgstr "Palun oota kuni võrk taaskäivitub ..."
 
 msgid "Press OK to activate the settings."
-msgstr "Sätete jõustamiseks vajuta OK."
+msgstr "Seadete aktiveerimiseks vajuta OK."
 
 msgid "Press OK to collapse this host"
-msgstr "Selle masina kitsendamiseks vajuta OK"
+msgstr "Selle serveri eemaldamiseks vajuta OK"
 
 msgid "Press OK to edit selected settings."
-msgstr "Valitud sätete muutmiseks vajuta OK."
+msgstr "Vajuta OK valitud seade muutmiseks."
 
 msgid "Press OK to edit the settings."
-msgstr "Sätete muutmiseks vajuta OK."
+msgstr "Seadete muutmiseks vajuta OK"
 
 msgid "Press OK to expand this host"
-msgstr "Selle masina laiendamiseks vajuta OK"
+msgstr "Selle serveri lisamiseks vajuta OK"
 
 msgid "Press OK to mount this share!"
-msgstr "Võrgujao haakimiseks vajuta OK!"
+msgstr "Vajuta OK võrgukoha haakimiseks!"
 
 msgid "Press OK to mount!"
-msgstr "Haakimiseks vajuta OK!"
+msgstr "Vajuta OK haakimiseks!"
 
 msgid "Press OK to save settings."
-msgstr "Sätete salvestamiseks vajuta OK."
+msgstr "Vajuta OK seadete salvestamiseks."
 
 msgid "Press OK to select."
-msgstr "Valimiseks vajuta OK."
-
-msgid "Re-mount network shares every (in hours)"
-msgstr "Haagi võrgujaod uuesti iga (tund)"
-
-msgid "Really close without saving settings?"
-msgstr "Kas väljuda seadeid salvestamata?"
+msgstr "Vajuta OK valikuks."
 
 msgid "Rescan"
-msgstr "Uus otsing"
-
-msgid "Save"
-msgstr "Salvesta"
+msgstr "Otsi uuesti"
 
 msgid "Scan NFS share"
-msgstr "Otsi NFS võrgujagu"
+msgstr "Otsi NFS võrgukohti"
 
 msgid "Scan range"
-msgstr "Otsingu vahemik"
-
-msgid "Schedule MountAgain"
-msgstr "Ajasta uuesti haakimine"
-
-msgid "Schedule a auto remount of your network shares."
-msgstr "Ajasta võrgujagude automaatne haakimine."
+msgstr "Otsi piirkonda"
 
 msgid "Search for network shares"
-msgstr "Otsi võrgujagusi"
+msgstr "Otsi võrgukohti"
 
 msgid "Search for network shares..."
-msgstr "Otsi võrgujagusi..."
+msgstr "Otsi võrgukohti..."
 
 msgid "Searching your network. Please wait..."
-msgstr "Võrguotsing. Oota..."
+msgstr "Otsin võrku. Palun oota ..."
 
 msgid "Server IP"
 msgstr "Serveri IP"
 
 msgid "Server share"
-msgstr "Serveri võrgujagu"
-
-msgid "Setup Mount Again"
-msgstr "Ajastatud haakimine"
-
-msgid "Use as HDD replacement"
-msgstr "Kasuta kõvaketta asendajana"
+msgstr "Serveri võrgukoht"
 
 msgid "User management"
-msgstr "Kasutajate haldamine"
+msgstr "Kasutaja haldamine"
 
 msgid "Usermanager"
-msgstr "Kasutajate haldamine"
+msgstr "Kasutajahaldur"
 
 msgid "Username"
-msgstr "Kasutajanimi"
+msgstr "Kasutajatunnus"
 
 msgid "View, edit or delete mountpoints on your Receiver."
-msgstr "Vaata, muuda või eemalda haakepunkte."
+msgstr "Vaata, muuda või kustuta vastuvõtja haakepunkte."
 
 msgid "View, edit or delete usernames and passwords for your network."
-msgstr "Vaata, muuda või eemalda võrgu kasutajanimesi ja paroole."
-
-msgid ""
-"You have changed the share name!\n"
-"Update existing entry and continue?\n"
-msgstr ""
-"Võrgujao nime muudeti!\n"
-"Kas uuendada olemasolevat ja jätkata?\n"
-
-#, python-format
-msgid ""
-"Your network interface %s is not properly configured, so a network scan cannot be done.\n"
-"Please configure the interface and try again."
-msgstr ""
+msgstr "Vaata, muuda või kustuta oma võrgu kasutajanimesid ja salasõnu."
 
 msgid "Your network mount has been activated."
-msgstr "Võrgu haakepunkt jõustati."
+msgstr "Sinu võrgu haage on aktiveeritud."
 
 msgid "Your network mount has been removed."
-msgstr "Võrgu haakepunkt eemaldati."
+msgstr "Sinu võrgu haage on kustutatud."
 
 msgid "Your network mount has been updated."
-msgstr "Võrgu haakepunkt uuendati."
+msgstr "Sinu võrgu haakepunkt on uuendatud."
+
+msgid "use as HDD replacement"
+msgstr "Kasuta HDD asenduseks"

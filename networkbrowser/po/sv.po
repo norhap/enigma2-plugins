@@ -7,18 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-05 03:21+0430\n"
-"PO-Revision-Date: 2013-03-19 22:24+0100\n"
-"Last-Translator: xxx\n"
+"POT-Creation-Date: 2018-12-29 00:28+0100\n"
+"PO-Revision-Date: 2012-12-16 12:05+0100\n"
+"Last-Translator: Magnus Nilsson <mag_nilsson@hotmail.com>\n"
 "Language-Team: WeeGull <weegull@hotmail.com>\n"
-"Language: \n"
+"Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: Swedish\n"
-"X-Poedit-Country: SWEDEN\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+"X-Generator: Poedit 1.5.4\n"
 
 msgid ""
 "A mount entry with this name already exists!\n"
@@ -26,9 +25,6 @@ msgid ""
 msgstr ""
 "En monteringspunkt med samma namn finns redan!\n"
 "Uppdatera befintligt monteringspunkt och forsätta?\n"
-
-msgid "AUTOFS (mount as needed)"
-msgstr ""
 
 msgid "Active"
 msgstr "Aktiv"
@@ -41,29 +37,23 @@ msgstr ""
 "Inaktiv"
 
 msgid "Add a new NFS or CIFS mount point to your Receiver."
-msgstr ""
+msgstr "Lägg till ny NFS eller CIFS monteringspunkt i din mottagare."
 
 msgid "Add new network mount point"
-msgstr "Lägg till ny monteringspunkt"
-
-msgid "Adding schedule..."
-msgstr "Lägger till schema..."
-
-msgid "Are you sure you want to remove your network mount ?"
-msgstr "Är du säker på att du vill radera din nätverksmontering?"
+msgstr "Lägg till ny nätverksmonteringspunkt"
 
 msgid ""
 "Are you sure you want to save this network mount?\n"
 "\n"
 msgstr ""
-"Är du säker p att du vill spara den här nätverksmonteringen?\n"
+"Är du säker på att du vill spara den här nätverksmonteringen?\n"
 "\n"
 
 msgid "Attempt to mount shares again"
-msgstr "Försök att montera delningar igen"
+msgstr "Försök att montera nätverksdelning igen"
 
 msgid "Attempt to recover lost mounts (in background)"
-msgstr "Försök att återanslutna till tappad montering (I bakgrunden)"
+msgstr "Försök att återfå förlorade monteringspunkter (i bakgrunden)"
 
 msgid "Browse network neighbourhood"
 msgstr "Bläddra i nätverket"
@@ -87,40 +77,25 @@ msgid "Delete"
 msgstr "Ta bort"
 
 msgid "Delete mount"
-msgstr "Radera montering"
+msgstr "Ta bort monteringspunkt"
 
 msgid "Dir:"
 msgstr "Dir:"
 
-msgid "Do you want to enter a username and password for this host?"
-msgstr "Vill du ange ett användarnamn och lösenord för den här hosten?"
-
-msgid "Enigma2 (mount using enigma2)"
-msgstr ""
-
-msgid "Enigma2 old format (mount using linux)"
-msgstr ""
+msgid "Do you want to enter a username and password for this host?\n"
+msgstr "Vill du ange ett användarnamn och lösenord för den här värden?\n"
 
 msgid "Enter IP to scan..."
-msgstr "Ange IP att söka..."
+msgstr "Ange IP att skanna..."
 
 msgid "Enter new hostname for your Receiver"
-msgstr "Skriv in nytt värdnamn för din mottagare"
-
-msgid "Enter options:"
-msgstr "Ange optioner:"
+msgstr "Ange nytt värdnamn för din mottagare"
 
 msgid "Enter password:"
 msgstr "Ange lösenord:"
 
-msgid "Enter share directory:"
-msgstr "Ange delat bibliotek:"
-
-msgid "Enter share name:"
-msgstr "Ange delningsnamn:"
-
 msgid "Enter user and password for host: "
-msgstr "Ange användare och lösenord för host: "
+msgstr "Ange användare och lösenord för värd: "
 
 msgid "Enter username:"
 msgstr "Ange användarnamn:"
@@ -128,35 +103,29 @@ msgstr "Ange användarnamn:"
 msgid "Expert"
 msgstr "Expert"
 
-msgid "FSTAB (mount at boot)"
-msgstr ""
-
 msgid "Finished restarting your network"
 msgstr "Klar med omstart av ditt nätverk"
 
+msgid "Host name"
+msgstr ""
+
+msgid "Host:"
+msgstr ""
+
 msgid "IP Address"
-msgstr "IP-adress"
+msgstr "IP Adress"
 
 msgid "IP:"
 msgstr "IP:"
 
-msgid "Local share name"
-msgstr "Lokalt delningsnamn"
+msgid "Local mountpoint"
+msgstr ""
 
 msgid "Manage network shares"
 msgstr "Hantera nätverksdelningar"
 
 msgid "Manage your network shares..."
-msgstr "Hantera dina nätverksdelningar"
-
-msgid "Mount Again"
-msgstr "Montera igen"
-
-msgid "Mount Manager"
-msgstr "Monteringshantering"
-
-msgid "Mount Viewer"
-msgstr "Monteringsvisare"
+msgstr "Hantera dina nätverksdelningar..."
 
 msgid "Mount again"
 msgstr "Montera igen"
@@ -164,18 +133,18 @@ msgstr "Montera igen"
 msgid "Mount informations"
 msgstr "Monteringsinformation"
 
-#, fuzzy
-msgid "Mount manager"
-msgstr "Monteringshantering"
-
 msgid "Mount options"
-msgstr "Monteringsalternativ"
+msgstr "Monteringsoptioner"
 
 msgid "Mount type"
 msgstr "Monteringstyp"
 
-msgid "Mount using"
-msgstr "Montera"
+#, fuzzy
+msgid "Mount view"
+msgstr "Monteringstyp"
+
+msgid "MountManager"
+msgstr "Monteringshanterare"
 
 msgid ""
 "Mounted/\n"
@@ -184,23 +153,23 @@ msgstr ""
 "Monterad/\n"
 "Omonterad"
 
-msgid "Mounting network shares..."
-msgstr "Monterar nätverksdelningar..."
-
 msgid "Mountpoints management"
-msgstr "Hantera monteringspunkter"
+msgstr "Monteringspunktshantering"
 
 msgid "Mounts editor"
 msgstr "Monteringseditor"
 
-msgid "NFS share"
-msgstr "NFS-delning"
+msgid "Mounts management"
+msgstr "Monteringshantering"
 
-msgid "Network Browser"
+msgid "NFS share"
+msgstr "NFS delning"
+
+msgid "NetworkBrowser"
 msgstr "Nätverksbläddring"
 
 msgid "No network devices found!"
-msgstr "Inget nätverkskort hittades!"
+msgstr "Inget nätverkskort funnet!"
 
 msgid "Password"
 msgstr "Lösenord"
@@ -209,19 +178,19 @@ msgid "Please wait for activation of your network mount..."
 msgstr "Vänligen vänta på aktivering av din nätverksmontering..."
 
 msgid "Please wait while removing your network mount..."
-msgstr "Vänligen vänta medan din nätverksmontering tas bort..."
+msgstr "Vänligen vänta medans din nätverksmontering tas bort..."
 
 msgid "Please wait while updating your network mount..."
-msgstr "Vänligen vänta medan din nätverksmontering uppdateras..."
+msgstr "Vänligen vänta medans din nätverksmontering uppdateras..."
 
 msgid "Please wait while your network is restarting..."
-msgstr "Vänligen vänta medan ditt nätverk startas om..."
+msgstr "Vänligen vänta medans ditt nätverk omstartas..."
 
 msgid "Press OK to activate the settings."
 msgstr "Tryck OK för att aktivera inställningarna."
 
 msgid "Press OK to collapse this host"
-msgstr "Tryck OK för att bryta denna värd"
+msgstr "Tryck OK för att stänga denna värd"
 
 msgid "Press OK to edit selected settings."
 msgstr "Tryck OK för att ändra vald inställning."
@@ -230,43 +199,28 @@ msgid "Press OK to edit the settings."
 msgstr "Tryck OK för att ändra inställning."
 
 msgid "Press OK to expand this host"
-msgstr "Tryck OK för att expandera denna värd."
+msgstr "Tryck OK för att expandera denna värd"
 
 msgid "Press OK to mount this share!"
-msgstr "Tryck OK för att montera denna delning."
+msgstr "Tryck OK för att montera denna nätverksdelning!"
 
 msgid "Press OK to mount!"
-msgstr "Tryck OK för att montera."
+msgstr "Tryck OK för att montera!"
 
 msgid "Press OK to save settings."
-msgstr "Tryck OK för att spara inställningar."
+msgstr "Tryck OK för att spara inställning."
 
 msgid "Press OK to select."
 msgstr "Tryck OK för att välja."
 
-msgid "Re-mount network shares every (in hours)"
-msgstr ""
-
-msgid "Really close without saving settings?"
-msgstr "Vill du verkligen stänga utan att spara inställningar?"
-
 msgid "Rescan"
-msgstr "Sök om"
-
-msgid "Save"
-msgstr "Spara"
+msgstr "Sök igenom igen"
 
 msgid "Scan NFS share"
-msgstr ""
+msgstr "Skanna NFS delning"
 
 msgid "Scan range"
-msgstr "Sökintervall"
-
-msgid "Schedule MountAgain"
-msgstr "Schemalägg montera igen"
-
-msgid "Schedule a auto remount of your network shares."
-msgstr "Schemalägg en automatisk montering av nätverksdelningar."
+msgstr "Skanna område"
 
 msgid "Search for network shares"
 msgstr "Söker efter nätverksutdelningar"
@@ -275,19 +229,13 @@ msgid "Search for network shares..."
 msgstr "Söker efter nätverksutdelningar..."
 
 msgid "Searching your network. Please wait..."
-msgstr "Söker ditt nätverk. Vänligen vänta..."
+msgstr "Söker ditt nätverk. Var god vänta ..."
 
 msgid "Server IP"
 msgstr "Server IP"
 
 msgid "Server share"
-msgstr "Server delning"
-
-msgid "Setup Mount Again"
-msgstr "Ställ in Montera igen"
-
-msgid "Use as HDD replacement"
-msgstr ""
+msgstr "Serverdelning"
 
 msgid "User management"
 msgstr "Användarhantering"
@@ -299,24 +247,10 @@ msgid "Username"
 msgstr "Användarnamn"
 
 msgid "View, edit or delete mountpoints on your Receiver."
-msgstr "Visa, redigera eller radera monteringspunkter i din Miraclebox"
+msgstr "Visa, ändra eller ta bort monteringspunkter på din mottagare."
 
 msgid "View, edit or delete usernames and passwords for your network."
 msgstr "Visa, ändra eller ta bort användarnamn och lösenord på ditt nätverk."
-
-#, fuzzy
-msgid ""
-"You have changed the share name!\n"
-"Update existing entry and continue?\n"
-msgstr ""
-"En monteringspunkt med samma namn finns redan!\n"
-"Uppdatera befintligt monteringspunkt och forsätta?\n"
-
-#, python-format
-msgid ""
-"Your network interface %s is not properly configured, so a network scan cannot be done.\n"
-"Please configure the interface and try again."
-msgstr ""
 
 msgid "Your network mount has been activated."
 msgstr "Din nätverksmontering har aktiverats."
@@ -326,3 +260,6 @@ msgstr "Din nätverksmontering har tagits bort."
 
 msgid "Your network mount has been updated."
 msgstr "Din nätverksmontering har uppdaterats."
+
+msgid "use as HDD replacement"
+msgstr "använd som HDD ersättning"

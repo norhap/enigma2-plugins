@@ -1,28 +1,28 @@
+# PL translations for tuxbox-enigma package.
+# Copyright (C) 2005 THE tuxbox-enigma'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the tuxbox-enigma package.
+# Automatically generated, 2005.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-05 03:21+0430\n"
-"PO-Revision-Date: 2014-04-23 18:25+0100\n"
-"Last-Translator: Mariusz1970 <Mariusz1970@onet.eu>\n"
-"Language-Team: none <Mariusz1970@onet.eu>\n"
-"Language: pl\n"
+"POT-Creation-Date: 2018-12-29 00:28+0100\n"
+"PO-Revision-Date: 2012-02-15 21:44+0100\n"
+"Last-Translator: blzr <blzr@o2.pl>\n"
+"Language-Team: none\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.6.4\n"
-"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid ""
 "A mount entry with this name already exists!\n"
 "Update existing entry and continue?\n"
 msgstr ""
-"Wpis montowania o tej nazwie już istnieje!\n"
+"Udział sieciowy o tej nazwie już istnieje!\n"
 "Zaktualizować istniejący wpis i kontynuować?\n"
-
-msgid "AUTOFS (mount as needed)"
-msgstr ""
 
 msgid "Active"
 msgstr "Aktywny"
@@ -35,44 +35,38 @@ msgstr ""
 "Niekatywny"
 
 msgid "Add a new NFS or CIFS mount point to your Receiver."
-msgstr "Dodaj nowy punkt montowania NFS lub CIFS w Dreambox`ie."
+msgstr "Dodaj nowy udział sieciowy NFS lub CIFS"
 
 msgid "Add new network mount point"
-msgstr "Dodaj nowy punkt montowania sieci"
-
-msgid "Adding schedule..."
-msgstr "Dodawanie harmonogramu..."
-
-msgid "Are you sure you want to remove your network mount ?"
-msgstr "Czy jesteś pewien,chcesz usunąć zamontowana sieć?"
+msgstr "Dodawanie udziałów sieciowych"
 
 msgid ""
 "Are you sure you want to save this network mount?\n"
 "\n"
 msgstr ""
-"Jesteś pewien że chcesz zapisać to montowanie sieci?\n"
+"Czy chcesz zapisać ten udział sieciowy?\n"
 "\n"
 
 msgid "Attempt to mount shares again"
-msgstr "Ponowna próba zamontowania"
+msgstr "Spróbuj podmontować udziały ponownie"
 
 msgid "Attempt to recover lost mounts (in background)"
-msgstr "Próbować odzyskać utracone montowania(w tle)"
+msgstr "Próbuje podmontować ponownie odłączone udziały sieciowe (w tle)."
 
 msgid "Browse network neighbourhood"
-msgstr "Przeglądaj sąsiedztwo sieci"
+msgstr "Przeglądaj otoczenie sieciowe"
 
 msgid "CIFS share"
-msgstr "Podział CIFS"
+msgstr "Udział CIFS"
 
 msgid "Cancel"
-msgstr "Kasować"
+msgstr "Anuluj"
 
 msgid "Change hostname"
 msgstr "Zmień nazwę hosta"
 
 msgid "Change the hostname of your Receiver."
-msgstr "Zmień nazwę hosta"
+msgstr "Zmień nazwę hosta dla STB."
 
 msgid "Close"
 msgstr "Zamknij"
@@ -81,40 +75,25 @@ msgid "Delete"
 msgstr "Usuń"
 
 msgid "Delete mount"
-msgstr "Usuń montowanie"
+msgstr "Usuń udział sieciowy"
 
 msgid "Dir:"
 msgstr "Katalog:"
 
-msgid "Do you want to enter a username and password for this host?"
-msgstr "Czy chcesz wpisać nazwę użytkownika i hasło dla tego hosta?"
-
-msgid "Enigma2 (mount using enigma2)"
-msgstr "Enigma2 (montowanie za pomocą enigma2)"
-
-msgid "Enigma2 old format (mount using linux)"
-msgstr "Enigma2 stary format (montowanie za pomocą linux)"
+msgid "Do you want to enter a username and password for this host?\n"
+msgstr "Czy chcesz wpisać nazwę użytkownika i hasło dla tego hosta?\n"
 
 msgid "Enter IP to scan..."
 msgstr "Wpisz IP do skanowania..."
 
 msgid "Enter new hostname for your Receiver"
-msgstr "Wpisz nową nazwę dla Twojego odbiornika"
-
-msgid "Enter options:"
-msgstr "Wprowadź opcje:"
+msgstr "Wpisz nową nazwę hosta dla STB"
 
 msgid "Enter password:"
-msgstr "Podaj hasło:"
-
-msgid "Enter share directory:"
-msgstr "Wpisz katalog udostępniony:"
-
-msgid "Enter share name:"
-msgstr "Wpisz nazwę udostępniania:"
+msgstr "Wpisz hasło:"
 
 msgid "Enter user and password for host: "
-msgstr "Wpisz użytkownika i hasło dla hosta: "
+msgstr "Wpisz nazwę użytkownika i hasło dla hosta: "
 
 msgid "Enter username:"
 msgstr "Wpisz nazwę użytkownika:"
@@ -122,73 +101,70 @@ msgstr "Wpisz nazwę użytkownika:"
 msgid "Expert"
 msgstr "Ekspert"
 
-msgid "FSTAB (mount at boot)"
-msgstr ""
-
 msgid "Finished restarting your network"
 msgstr "Zakończono restartowanie sieci"
+
+msgid "Host name"
+msgstr ""
+
+msgid "Host:"
+msgstr ""
 
 msgid "IP Address"
 msgstr "Adres IP"
 
 msgid "IP:"
-msgstr "IP:"
+msgstr "IP"
 
-msgid "Local share name"
-msgstr "Lokalna nazwa udziału"
+msgid "Local mountpoint"
+msgstr ""
 
 msgid "Manage network shares"
 msgstr "Zarządzaj udziałami sieciowymi"
 
 msgid "Manage your network shares..."
-msgstr "Zarządzaj swoimi udziałami sieciowymi..."
-
-msgid "Mount Again"
-msgstr "Ponów montowanie"
-
-msgid "Mount Manager"
-msgstr "Menadzer Montowania"
-
-msgid "Mount Viewer"
-msgstr "Odbiorca Montowania"
+msgstr "Zarządzaj udziałami sieciowymi..."
 
 msgid "Mount again"
-msgstr "Ponów montowanie"
+msgstr "Montuj ponownie"
 
 msgid "Mount informations"
-msgstr "Informacje montowania"
-
-msgid "Mount manager"
-msgstr "Menadżer montowania"
+msgstr "Informacje o udziale sieciowym"
 
 msgid "Mount options"
 msgstr "Opcje montowania"
 
 msgid "Mount type"
-msgstr "Typ montowania"
+msgstr "Typ udziału sieciowego"
 
-msgid "Mount using"
-msgstr "Montowanie za pomocą"
+#, fuzzy
+msgid "Mount view"
+msgstr "Typ udziału sieciowego"
+
+msgid "MountManager"
+msgstr "Menadżer montowania"
 
 msgid ""
 "Mounted/\n"
 "Unmounted"
 msgstr ""
-
-msgid "Mounting network shares..."
-msgstr "Montowanie udziałów sieciowych ..."
+"Zamontowany/\n"
+"Odmontowany"
 
 msgid "Mountpoints management"
-msgstr "Zarządzanie punktami montowania"
+msgstr "Zarządzanie udziałami sieciowymi"
 
 msgid "Mounts editor"
 msgstr "Edytor montowania"
 
+msgid "Mounts management"
+msgstr "Zarządzanie udziałami sieciowymi"
+
 msgid "NFS share"
 msgstr "Udział NFS"
 
-msgid "Network Browser"
-msgstr "Przeglądarka Sieci"
+msgid "NetworkBrowser"
+msgstr "Przeglądarka sieci"
 
 msgid "No network devices found!"
 msgstr "Nie znaleziono urządzeń sieciowych!"
@@ -197,31 +173,31 @@ msgid "Password"
 msgstr "Hasło"
 
 msgid "Please wait for activation of your network mount..."
-msgstr "Poczekaj na aktywację twojej konfiguracji sieci..."
+msgstr "Czekaj na aktywację twojego udziału sieciowego..."
 
 msgid "Please wait while removing your network mount..."
-msgstr "Poczekaj podczas usuwania montowania sieciowego..."
+msgstr "Czekaj, trwa usuwanie udziału sieciowego..."
 
 msgid "Please wait while updating your network mount..."
-msgstr "Poczekaj podczas aktualizacji montowania sieciowego..."
+msgstr "Czekaj, trwa aktualizacjia udziału sieciowego..."
 
 msgid "Please wait while your network is restarting..."
-msgstr "Poczekaj sieć jest ponowne uruchamiana ..."
+msgstr "Czekaj, trwa restart sieci..."
 
 msgid "Press OK to activate the settings."
 msgstr "Wciśnij OK, aby aktywować ustawienia"
 
 msgid "Press OK to collapse this host"
-msgstr "Wciśnij OK, aby zwinąć ten host"
+msgstr "Wciśnij OK, aby 'zwinąć' tego hosta"
 
 msgid "Press OK to edit selected settings."
-msgstr "Wciśnij OK, aby edytować wybrane ustawienia."
+msgstr "Wcisnij OK, aby edytować wybrane ustawienia."
 
 msgid "Press OK to edit the settings."
-msgstr "Wciśnij OK, aby edytować wybrane ustawienia."
+msgstr "Aby edytować ustawienia, wciśnij OK."
 
 msgid "Press OK to expand this host"
-msgstr "Wciśnij OK, aby rozszerzyć ten host"
+msgstr "Wciśnij OK, aby 'rozwinąć' tego hosta"
 
 msgid "Press OK to mount this share!"
 msgstr "Wciśnij OK, aby zamontować ten udział!"
@@ -233,31 +209,16 @@ msgid "Press OK to save settings."
 msgstr "Wciśnij OK, aby zapisać ustawienia."
 
 msgid "Press OK to select."
-msgstr "Wciśnij przycisk OK, aby wybrać."
-
-msgid "Re-mount network shares every (in hours)"
-msgstr "Ponownie zamontować każde udziały sieciowe (w godzi.)"
-
-msgid "Really close without saving settings?"
-msgstr "Naprawdę zamknać,bez zapisywania ustawień?"
+msgstr "Wciśnij OK, aby wybrać."
 
 msgid "Rescan"
-msgstr "Przeskanuj"
-
-msgid "Save"
-msgstr "Zapisz"
+msgstr "Skanuj ponownie"
 
 msgid "Scan NFS share"
-msgstr "Skanuj udziały NFS"
+msgstr "Przeszukaj udział NFS"
 
 msgid "Scan range"
-msgstr "Skanuj zakres"
-
-msgid "Schedule MountAgain"
-msgstr "Harmonogram Ponownego Montowania"
-
-msgid "Schedule a auto remount of your network shares."
-msgstr "Zaplanuj automatyczne ponowne podłączenia swoich udziałów sieciowych."
+msgstr "Zakres skanowania"
 
 msgid "Search for network shares"
 msgstr "Szukaj udziałów sieciowych"
@@ -272,48 +233,31 @@ msgid "Server IP"
 msgstr "IP serwera"
 
 msgid "Server share"
-msgstr "Udział serwera"
-
-msgid "Setup Mount Again"
-msgstr "Ustawienie Ponownego Montowania"
-
-msgid "Use as HDD replacement"
-msgstr "Użyj jako wymiany HDD"
+msgstr "Udostępniony udział serwera"
 
 msgid "User management"
-msgstr "Zarządzaj użytkownikiem"
+msgstr "Zarządznie użytkownikami"
 
 msgid "Usermanager"
-msgstr "Menadżer użytkownika"
+msgstr "Menadżer użytkowników"
 
 msgid "Username"
-msgstr "nazwa użytkownika"
+msgstr "Nazwa użytkownika"
 
 msgid "View, edit or delete mountpoints on your Receiver."
-msgstr "Pokaż, edytuj lub usuń punkty montowania Dreambox`a."
+msgstr "Zobacz, edytuj lub usuń udziały sieciowe."
 
 msgid "View, edit or delete usernames and passwords for your network."
-msgstr "Pokaż, edytuj lub usuń nazwy użytkowników i hasła twojej sieci."
-
-#, fuzzy
-msgid ""
-"You have changed the share name!\n"
-"Update existing entry and continue?\n"
-msgstr ""
-"Wpis montowania o tej nazwie już istnieje!\n"
-"Zaktualizować istniejący wpis i kontynuować?\n"
-
-#, python-format
-msgid ""
-"Your network interface %s is not properly configured, so a network scan cannot be done.\n"
-"Please configure the interface and try again."
-msgstr ""
+msgstr "Zobacz, edytuj lub usuń nazwy użytkowników i hasła twojej sieci."
 
 msgid "Your network mount has been activated."
-msgstr "Twoje montowanie sieci zostało aktywowane."
+msgstr "Udział sieciowy został aktywowany."
 
 msgid "Your network mount has been removed."
-msgstr "Twoje montowanie sieci zostało usunięte."
+msgstr "Udział sieciowy został usunięty."
 
 msgid "Your network mount has been updated."
-msgstr "Twoje montowanie sieci zostało zaktualizowane."
+msgstr "Udział sieciowy został zaktualizowany."
+
+msgid "use as HDD replacement"
+msgstr "Użyj jako HDD"
