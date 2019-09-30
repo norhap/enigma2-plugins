@@ -283,3 +283,6 @@ msgstr "Realmente quieres cerrar sin guardar la configuración?"
 
 msgid "Setup Mount Again"
 msgstr "Configurar Montar de Nuevo"
+
+msgid "Schedule a auto remount of your network shares."
+msgstr "Programe un remontaje automático de sus recursos compartidos de red."
