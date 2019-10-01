@@ -266,8 +266,8 @@ msgstr "Su montaje de red ha sido eliminado."
 msgid "Your network mount has been updated."
 msgstr "Su montaje de red ha sido actualizado."
 
-msgid "use as HDD replacement"
-msgstr "usar como reemplazo de HDD"
+msgid "Use as HDD replacement"
+msgstr "Usar como reemplazo de HDD"
 
 msgid "Schedule MountAgain"
 msgstr "Programar nuevo montaje"
@@ -286,3 +286,21 @@ msgstr "Configurar Montar de Nuevo"
 
 msgid "Schedule a auto remount of your network shares."
 msgstr "Programe un remontaje automático de sus recursos compartidos de red."
+
+msgid "Mount using"
+msgstr "Montaje usando"
+
+msgid "Local share name"
+msgstr "Nombre Directorio Local"
+
+msgid "Enigma2 (mount using enigma2)"
+msgstr "Enigma2 (montaje usando enigma2)"
+
+msgid "Enigma2 old format (mount using linux)"
+msgstr "Enigma2 formato antiguo (montaje usando linux)"
+
+msgid "AUTOFS (mount as needed)"
+msgstr "AUTOFS (montaje según sea necesario)"
+
+msgid "FSTAB (mount at boot)"
+msgstr "FSTAB (montar en el arranque)"
