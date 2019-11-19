@@ -390,7 +390,7 @@ class AutoMountEdit(Screen, ConfigListScreen):
 			data['sharename'] = re_sub("\W", "", self.sharenameConfigEntry.value)
 			# "\W" matches everything that is "not numbers, letters, or underscores",where the alphabet defaults to ASCII.
 			if self.sharedirConfigEntry.value.startswith("/"):
-				data['sharedir'] = self.sharedirConfigEntry.value[1]
+				data['sharedir'] = self.sharedirConfigEntry.value[1:]
 			else:
 				data['sharedir'] = self.sharedirConfigEntry.value
 			data['options'] =  self.optionsConfigEntry.value
