@@ -304,3 +304,6 @@ msgstr "AUTOFS (montaje según sea necesario)"
 
 msgid "FSTAB (mount at boot)"
 msgstr "FSTAB (montar en el arranque)"
+
+msgid "Are you sure you want to remove your network mount ?"
+msgstr "Estás seguro de que deseas eliminar este montaje de red?"
