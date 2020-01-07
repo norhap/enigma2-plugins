@@ -457,35 +457,35 @@ class AutoTimerEditor(Screen, ConfigListScreen, AutoTimerEditorBase):
 	"""Edit AutoTimer"""
 	if HD:
 		skin = """<screen name="AutoTimerEditor" title="Edit AutoTimer" position="center,center" size="700,572">
-			<ePixmap position="40,5" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />
-			<ePixmap position="200,5" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on" />
-			<ePixmap position="360,5" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on" />
-			<ePixmap position="520,5" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on" />
+			<ePixmap position="40,5" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+			<ePixmap position="200,5" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+			<ePixmap position="360,5" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+			<ePixmap position="520,5" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
 			<widget source="key_red" render="Label" position="40,5" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;18" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget source="key_green" render="Label" position="200,5" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;18" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget source="key_yellow" render="Label" position="360,5" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;18" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget source="key_blue" render="Label" position="520,5" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;18" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget name="config" position="5,50" size="690,350" scrollbarMode="showOnDemand" />
-			<ePixmap pixmap="div-h.png" position="0,405" zPosition="1" size="700,2" />
+			<ePixmap pixmap="skin_default/div-h.png" position="0,405" zPosition="1" size="700,2" />
 			<widget source="help" render="Label" position="5,410" size="690,157" font="Regular;20" />
-			<widget source="VKeyIcon" render="Pixmap" pixmap="buttons/key_text.png" position="5,534" zPosition="10" size="52,38" transparent="1" alphatest="on">
+			<widget source="VKeyIcon" render="Pixmap" pixmap="skin_default/buttons/key_text.png" position="5,534" zPosition="10" size="52,38" transparent="1" alphatest="on">
 				<convert type="ConditionalShowHide"/>
 			</widget>
 		</screen>"""
 	else:
 		skin = """<screen name="AutoTimerEditor" title="Edit AutoTimer" position="center,center" size="565,400">
-			<ePixmap position="0,5" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />
-			<ePixmap position="140,5" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on" />
-			<ePixmap position="280,5" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on" />
-			<ePixmap position="420,5" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on" />
+			<ePixmap position="0,5" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+			<ePixmap position="140,5" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+			<ePixmap position="280,5" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+			<ePixmap position="420,5" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,5" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget source="key_green" render="Label" position="140,5" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget source="key_yellow" render="Label" position="280,5" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget source="key_blue" render="Label" position="420,5" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget name="config" position="5,50" size="555,225" scrollbarMode="showOnDemand" />
-			<ePixmap pixmap="div-h.png" position="0,275" zPosition="1" size="565,2" />
+			<ePixmap pixmap="skin_default/div-h.png" position="0,275" zPosition="1" size="565,2" />
 			<widget source="help" render="Label" position="5,280" size="555,113" font="Regular;21" />
-			<widget source="VKeyIcon" render="Pixmap" pixmap="buttons/key_text.png" position="5,375" zPosition="10" size="35,25" transparent="1" alphatest="on">
+			<widget source="VKeyIcon" render="Pixmap" pixmap="skin_default/buttons/key_text.png" position="5,375" zPosition="10" size="35,25" transparent="1" alphatest="on">
 				<convert type="ConditionalShowHide"/>
 			</widget>
 		</screen>"""
@@ -583,7 +583,7 @@ class AutoTimerEditor(Screen, ConfigListScreen, AutoTimerEditorBase):
 			self.isActive_services_value = _("enabled")
 		else:
 			self.isActive_services_value = _("disabled")
-		if self.bouquets and not self.services:
+		if self.bouquets:
 			self.isActive_bouquets_value = _("enabled")
 		else:
 			self.isActive_bouquets_value = _("disabled")
@@ -651,8 +651,8 @@ class AutoTimerEditor(Screen, ConfigListScreen, AutoTimerEditorBase):
 			self.descShortEqualExt: _("When this option enabled, short description to equal extended description if short description is empty."),
 			self.descShortExtEmpty: _("When this option enabled and short description and extended description match is empty and timer title exist in match title, match is not a duplicate. Attention, this may result in double timers."),
 			self.ratioThresholdDuplicate: _("To cater for spelling mistakes and small deviations in the EPG information, you can make the matching algorithm fuzzy by setting the percentage both programmes must be equal for. Use 100% if you only want a match when both are completely identical. Recommended default ratio 80%."),
-			self.isActive_services: _("Use blue key to edit bouquets or services.") + _(" (if services are enabled, bouquets are ignored.)."),
-			self.isActive_bouquets: _("Use blue key to edit bouquets or services.") + _(" (if services are enabled, bouquets are ignored)."),
+			self.isActive_services: _("Use blue key to edit bouquets or services."),
+			self.isActive_bouquets: _("Use blue key to edit bouquets or services."),
 			self.isActive_dayofweek: _("Use yellow key to edit filters."),
 			self.isActive_otherfilters: _("Use yellow key to edit filters."),
 		}
@@ -1048,16 +1048,16 @@ class AutoTimerFilterEditor(Screen, ConfigListScreen):
 	"""Edit AutoTimer Filter"""
 
 	skin = """<screen name="AutoTimerFilterEditor" title="Edit AutoTimer Filters" position="center,center" size="565,280">
-		<ePixmap position="0,0" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />
-		<ePixmap position="140,0" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on" />
-		<ePixmap position="280,0" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on" />
-		<ePixmap position="420,0" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on" />
+		<ePixmap position="0,0" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+		<ePixmap position="140,0" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+		<ePixmap position="280,0" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+		<ePixmap position="420,0" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
 		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 		<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 		<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 		<widget name="config" position="5,45" size="555,225" scrollbarMode="showOnDemand" />
-		<widget source="VKeyIcon" render="Pixmap" pixmap="buttons/key_text.png" position="5,242" zPosition="10" size="52,38" transparent="1" alphatest="on">
+		<widget source="VKeyIcon" render="Pixmap" pixmap="skin_default/buttons/key_text.png" position="5,242" zPosition="10" size="52,38" transparent="1" alphatest="on">
 			<convert type="ConditionalShowHide"/>
 		</widget>
 	</screen>"""
@@ -1271,10 +1271,10 @@ class AutoTimerServiceEditor(Screen, ConfigListScreen):
 	"""Edit allowed Services of a AutoTimer"""
 
 	skin = """<screen name="AutoTimerServiceEditor" title="Edit AutoTimer Services" position="center,center" size="565,280">
-		<ePixmap position="0,0" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />
-		<ePixmap position="140,0" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on" />
-		<ePixmap position="280,0" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on" />
-		<ePixmap position="420,0" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on" />
+		<ePixmap position="0,0" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+		<ePixmap position="140,0" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+		<ePixmap position="280,0" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+		<ePixmap position="420,0" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
 		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 		<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />

@@ -2,9 +2,9 @@
 '''
 Update rev
 $Author: michael $
-$Revision: 1534 $
-$Date: 2018-08-17 14:16:52 +0200 (Fri, 17 Aug 2018) $
-$Id: plugin.py 1534 2018-08-17 12:16:52Z michael $
+$Revision: 1553 $
+$Date: 2019-04-25 09:36:05 +0200 (Thu, 25 Apr 2019) $
+$Id: plugin.py 1553 2019-04-25 07:36:05Z michael $
 '''
 
 # C0111 (Missing docstring)
@@ -32,7 +32,8 @@ from enigma import getDesktop
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
-from Screens.InputBox import InputBox
+# from Screens.InputBox import InputBox
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens import Standby
 from Screens.HelpMenu import HelpableScreen
 from Screens.LocationBox import LocationBox
@@ -65,7 +66,7 @@ from twisted.protocols.basic import LineReceiver  # @UnresolvedImport
 
 import FritzOutlookCSV, FritzLDIF
 from nrzuname import ReverseLookupAndNotifier
-from . import _  # @UnresolvedImport # pylint: disable=W0611,F0401
+from . import _, __  # @UnresolvedImport # pylint: disable=W0611,F0401
 
 # import codecs
 # encode = lambda x : codecs.encode(x, "rot13")
@@ -156,6 +157,7 @@ config.plugins.FritzCall.advancedSkin = ConfigYesNo(default = False)
 config.plugins.FritzCall.guestSSID = ConfigText(default = "FRITZ!Box Gastzugang", fixed_size = False)
 config.plugins.FritzCall.guestSecure = ConfigYesNo(default = True)
 config.plugins.FritzCall.guestPassword = ConfigPassword(default = encode("guestguest!!!"), fixed_size = False)
+config.plugins.FritzCall.useHttps = ConfigYesNo(default = False)
 
 guestWLANUptime = [(None, _('Not deactivating after time')), "15", "30", "45", "60", "90", "120", "180", "240", "300", "360", "480", "600", "720", "900", "1080", "1260"]
 config.plugins.FritzCall.guestUptime = ConfigSelection(choices = guestWLANUptime, default = "30")
@@ -367,8 +369,8 @@ class FritzAbout(Screen):
 		self["text"] = Label(
 							"FritzCall Plugin" + "\n\n" +
 							"$Author: michael $"[1:-2] + "\n" +
-							"$Revision: 1534 $"[1:-2] + "\n" +
-							"$Date: 2018-08-17 14:16:52 +0200 (Fri, 17 Aug 2018) $"[1:23] + "\n"
+							"$Revision: 1553 $"[1:-2] + "\n" +
+							"$Date: 2019-04-25 09:36:05 +0200 (Thu, 25 Apr 2019) $"[1:23] + "\n"
 							)
 		self["url"] = Label("http://wiki.blue-panel.com/index.php/FritzCall")
 		self.onLayoutFinish.append(self.setWindowTitle)
@@ -412,15 +414,15 @@ class FritzMenu(Screen, HelpableScreen):
 					<widget name="FBFMailbox" position="%d,%d" size="%d,%d" font="Regular;%d" />
 					<widget name="mailbox_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
 					<widget name="mailbox_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="blend" />
+					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="blend" />
 					<widget name="key_yellow" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 					""" % (
 							40, 5 + 2 * fontSize + 10 + varLinePos * fontSize + 10,  # position mailbox
 							width - 40 - 20, fontSize,  # size mailbox
 							fontSize - 2,
-							"buttons/button_green_off.png",
+							"skin_default/buttons/button_green_off.png",
 							20, 5 + 2 * fontSize + 10 + varLinePos * fontSize + 10 + (fontSize - 16) / 2,  # position button mailbox
-							"buttons/button_green.png",
+							"skin_default/buttons/button_green.png",
 							20, 5 + 2 * fontSize + 10 + varLinePos * fontSize + 10 + (fontSize - 16) / 2,  # position button mailbox
 							noButtons * buttonsGap + (noButtons - 1) * 140, buttonsVPos,
 							noButtons * buttonsGap + (noButtons - 1) * 140, buttonsVPos,
@@ -438,9 +440,9 @@ class FritzMenu(Screen, HelpableScreen):
 							40, 5 + 2 * fontSize + 10 + varLinePos * fontSize + 10,  # position dect
 							width - 40 - 20, fontSize,  # size dect
 							fontSize - 2,
-							"buttons/button_green_off.png",
+							"skin_default/buttons/button_green_off.png",
 							20, 5 + 2 * fontSize + 10 + varLinePos * fontSize + 10 + (fontSize - 16) / 2,  # position button dect
-							"buttons/button_green.png",
+							"skin_default/buttons/button_green.png",
 							20, 5 + 2 * fontSize + 10 + varLinePos * fontSize + 10 + (fontSize - 16) / 2,  # position button dect
 					)
 				varLinePos += 1
@@ -456,9 +458,9 @@ class FritzMenu(Screen, HelpableScreen):
 							40, 5 + 2 * fontSize + 10 + varLinePos * fontSize + 10,  # position dect
 							width - 40 - 20, fontSize,  # size dect
 							fontSize - 2,
-							"buttons/button_green_off.png",
+							"skin_default/buttons/button_green_off.png",
 							20, 5 + 2 * fontSize + 10 + varLinePos * fontSize + 10 + (fontSize - 16) / 2,  # position button dect
-							"buttons/button_green.png",
+							"skin_default/buttons/button_green.png",
 							20, 5 + 2 * fontSize + 10 + varLinePos * fontSize + 10 + (fontSize - 16) / 2,  # position button dect
 					)
 				varLinePos += 1
@@ -474,9 +476,9 @@ class FritzMenu(Screen, HelpableScreen):
 							40, 5 + 2 * fontSize + 10 + varLinePos * fontSize + 10,  # position dect
 							width - 40 - 20, fontSize,  # size dect
 							fontSize - 2,
-							"buttons/button_green_off.png",
+							"skin_default/buttons/button_green_off.png",
 							20, 5 + 2 * fontSize + 10 + varLinePos * fontSize + 10 + (fontSize - 16) / 2,  # position button dect
-							"buttons/button_green.png",
+							"skin_default/buttons/button_green.png",
 							20, 5 + 2 * fontSize + 10 + varLinePos * fontSize + 10 + (fontSize - 16) / 2,  # position button dect
 					)
 				varLinePos += 1
@@ -511,30 +513,30 @@ class FritzMenu(Screen, HelpableScreen):
 							40, 5 + 2 * fontSize + 10,  # position internet
 							width - 40, 2 * fontSize,  # size internet
 							fontSize - 2,
-							"buttons/button_green_off.png",
+							"skin_default/buttons/button_green_off.png",
 							20, 5 + 2 * fontSize + 10 + (fontSize - 16) / 2,  # position button internet
-							"buttons/button_green.png",
+							"skin_default/buttons/button_green.png",
 							20, 5 + 2 * fontSize + 10 + (fontSize - 16) / 2,  # position button internet
 							40, 5 + 2 * fontSize + 10 + 2 * fontSize + 10,  # position dsl
 							width - 40 - 20, fontSize,  # size dsl
 							fontSize - 2,
-							"buttons/button_green_off.png",
+							"skin_default/buttons/button_green_off.png",
 							20, 5 + 2 * fontSize + 10 + 2 * fontSize + 10 + (fontSize - 16) / 2,  # position button dsl
-							"buttons/button_green.png",
+							"skin_default/buttons/button_green.png",
 							20, 5 + 2 * fontSize + 10 + 2 * fontSize + 10 + (fontSize - 16) / 2,  # position button dsl
 							40, 5 + 2 * fontSize + 10 + 3 * fontSize + 10,  # position wlan
 							width - 40 - 20, fontSize,  # size wlan
 							fontSize - 2,
-							"buttons/button_green_off.png",
+							"skin_default/buttons/button_green_off.png",
 							20, 5 + 2 * fontSize + 10 + 3 * fontSize + 10 + (fontSize - 16) / 2,  # position button wlan
-							"buttons/button_green.png",
+							"skin_default/buttons/button_green.png",
 							20, 5 + 2 * fontSize + 10 + 3 * fontSize + 10 + (fontSize - 16) / 2,  # position button wlan
 							mailboxLine,
 							dectLine,
 							faxLine,
 							rufumlLine,
-							buttonsGap, buttonsVPos, "buttons/red.png", buttonsGap, buttonsVPos,
-							buttonsGap + 140 + buttonsGap, buttonsVPos, "buttons/green.png", buttonsGap + 140 + buttonsGap, buttonsVPos,
+							buttonsGap, buttonsVPos, "skin_default/buttons/red.png", buttonsGap, buttonsVPos,
+							buttonsGap + 140 + buttonsGap, buttonsVPos, "skin_default/buttons/green.png", buttonsGap + 140 + buttonsGap, buttonsVPos,
 							)
 
 			Screen.__init__(self, session)
@@ -682,54 +684,54 @@ class FritzMenu(Screen, HelpableScreen):
 								40, 5 + 2 * fontSize + 10,  # position internet
 								width - 40, 2 * fontSize,  # size internet
 								fontSize - 2,
-								"buttons/button_green_off.png",
+								"skin_default/buttons/button_green_off.png",
 								20, 5 + 2 * fontSize + 10 + (fontSize - 16) / 2,  # position button internet
-								"buttons/button_green.png",
+								"skin_default/buttons/button_green.png",
 								20, 5 + 2 * fontSize + 10 + (fontSize - 16) / 2,  # position button internet
 								40, 5 + 2 * fontSize + 10 + 2 * fontSize + 10,  # position dsl
 								width - 40 - 20, fontSize,  # size dsl
 								fontSize - 2,
-								"buttons/button_green_off.png",
+								"skin_default/buttons/button_green_off.png",
 								20, 5 + 2 * fontSize + 10 + 2 * fontSize + 10 + (fontSize - 16) / 2,  # position button dsl
-								"buttons/button_green.png",
+								"skin_default/buttons/button_green.png",
 								20, 5 + 2 * fontSize + 10 + 2 * fontSize + 10 + (fontSize - 16) / 2,  # position button dsl
 								40, 5 + 2 * fontSize + 10 + 3 * fontSize + 10,  # position wlan
 								width - 40 - 20, fontSize,  # size wlan
 								fontSize - 2,
-								"buttons/button_green_off.png",
+								"skin_default/buttons/button_green_off.png",
 								20, 5 + 2 * fontSize + 10 + 3 * fontSize + 10 + (fontSize - 16) / 2,  # position button wlan
-								"buttons/button_green.png",
+								"skin_default/buttons/button_green.png",
 								20, 5 + 2 * fontSize + 10 + 3 * fontSize + 10 + (fontSize - 16) / 2,  # position button wlan
 								40, 5 + 2 * fontSize + 10 + 4 * fontSize + 10,  # position dect
 								width - 40 - 20, fontSize,  # size dect
 								fontSize - 2,
-								"buttons/button_green_off.png",
+								"skin_default/buttons/button_green_off.png",
 								20, 5 + 2 * fontSize + 10 + 4 * fontSize + 10 + (fontSize - 16) / 2,  # position button dect
-								"buttons/button_green.png",
+								"skin_default/buttons/button_green.png",
 								20, 5 + 2 * fontSize + 10 + 4 * fontSize + 10 + (fontSize - 16) / 2,  # position button dect
 								40, 5 + 2 * fontSize + 10 + 5 * fontSize + 10,  # position fax
 								width - 40 - 20, fontSize,  # size fax
 								fontSize - 2,
-								"buttons/button_green_off.png",
+								"skin_default/buttons/button_green_off.png",
 								20, 5 + 2 * fontSize + 10 + 5 * fontSize + 10 + (fontSize - 16) / 2,  # position button fax
-								"buttons/button_green.png",
+								"skin_default/buttons/button_green.png",
 								20, 5 + 2 * fontSize + 10 + 5 * fontSize + 10 + (fontSize - 16) / 2,  # position button fax
 								40, 5 + 2 * fontSize + 10 + 6 * fontSize + 10,  # position rufuml
 								width - 40 - 20, fontSize,  # size rufuml
 								fontSize - 2,
-								"buttons/button_green_off.png",
+								"skin_default/buttons/button_green_off.png",
 								20, 5 + 2 * fontSize + 10 + 6 * fontSize + 10 + (fontSize - 16) / 2,  # position button rufuml
-								"buttons/button_green.png",
+								"skin_default/buttons/button_green.png",
 								20, 5 + 2 * fontSize + 10 + 6 * fontSize + 10 + (fontSize - 16) / 2,  # position button rufuml
 								40, 5 + 2 * fontSize + 10 + 7 * fontSize + 10,  # position gast
 								width - 40 - 20, fontSize,  # size gast
 								fontSize - 2,
-								"buttons/button_green_off.png",
+								"skin_default/buttons/button_green_off.png",
 								20, 5 + 2 * fontSize + 10 + 7 * fontSize + 10 + (fontSize - 16) / 2,  # position button gast
-								"buttons/button_green.png",
+								"skin_default/buttons/button_green.png",
 								20, 5 + 2 * fontSize + 10 + 7 * fontSize + 10 + (fontSize - 16) / 2,  # position button gast
-								buttonsGap, buttonsVPos, "buttons/green.png", buttonsGap, buttonsVPos,
-								2 * buttonsGap + 140, buttonsVPos, "buttons/yellow.png", 2 * buttonsGap + 140, buttonsVPos,
+								buttonsGap, buttonsVPos, "skin_default/buttons/green.png", buttonsGap, buttonsVPos,
+								2 * buttonsGap + 140, buttonsVPos, "skin_default/buttons/yellow.png", 2 * buttonsGap + 140, buttonsVPos,
 								)
 			else:
 				if DESKTOP_WIDTH <= 720:
@@ -1137,7 +1139,7 @@ class FritzMenu(Screen, HelpableScreen):
 
 	def _toggleGast(self):
 		self["FBFInfo"].setText(_("Setting...") + ' ' + _("Guest access"))
-		if fritzbox.information[FBF_wlanState][0] != '1':
+		if not self._wlanActive:
 			self["FBFInfo"].setText(_("WLAN not active"))
 			# self._toggleWlan(self._toggleGast)
 			return
@@ -1218,10 +1220,10 @@ class FritzDisplayCalls(Screen, HelpableScreen):
 							itemHeight,  # itemHeight
 							buttonV - 5,  # eLabel position vertical
 							self.width,  # eLabel width
-							buttonGap, buttonV, "buttons/red.png",  # widget red
-							2 * buttonGap + 140, buttonV, "buttons/green.png",  # widget green
-							3 * buttonGap + 2 * 140, buttonV, "buttons/yellow.png",  # widget yellow
-							4 * buttonGap + 3 * 140, buttonV, "buttons/blue.png",  # widget blue
+							buttonGap, buttonV, "skin_default/buttons/red.png",  # widget red
+							2 * buttonGap + 140, buttonV, "skin_default/buttons/green.png",  # widget green
+							3 * buttonGap + 2 * 140, buttonV, "skin_default/buttons/yellow.png",  # widget yellow
+							4 * buttonGap + 3 * 140, buttonV, "skin_default/buttons/blue.png",  # widget blue
 							buttonGap, buttonV, scaleV(22, 21),  # widget red
 							2 * buttonGap + 140, buttonV, scaleV(22, 21),  # widget green
 							3 * buttonGap + 2 * 140, buttonV, scaleV(22, 21),  # widget yellow
@@ -1494,9 +1496,9 @@ class FritzOfferAction(Screen):
 				</screen>""" % (
 								DESKTOP_WIDTH, DESKTOP_HEIGHT, scaleV(25, 22),  # set maximum size
 								DESKTOP_WIDTH, DESKTOP_HEIGHT,  # set maximum size
-								140, 40, "buttons/red.png",
-								140, 40, "buttons/green.png",
-								140, 40, "buttons/yellow.png",
+								140, 40, "skin_default/buttons/red.png",
+								140, 40, "skin_default/buttons/green.png",
+								140, 40, "skin_default/buttons/yellow.png",
 								140, 40, scaleV(21, 21),
 								140, 40, scaleV(21, 21),
 								140, 40, scaleV(21, 21),
@@ -2017,10 +2019,10 @@ class FritzCallPhonebook(object):
 							fontHeight,  # itemHeight
 							self.height - 40 - 5,  # eLabel position vertical
 							self.entriesWidth,  # eLabel width
-							buttonGap, self.height - 40, "buttons/red.png",  # ePixmap red
-							2 * buttonGap + 140, self.height - 40, "buttons/green.png",  # ePixmap green
-							3 * buttonGap + 2 * 140, self.height - 40, "buttons/yellow.png",  # ePixmap yellow
-							4 * buttonGap + 3 * 140, self.height - 40, "buttons/blue.png",  # ePixmap blue
+							buttonGap, self.height - 40, "skin_default/buttons/red.png",  # ePixmap red
+							2 * buttonGap + 140, self.height - 40, "skin_default/buttons/green.png",  # ePixmap green
+							3 * buttonGap + 2 * 140, self.height - 40, "skin_default/buttons/yellow.png",  # ePixmap yellow
+							4 * buttonGap + 3 * 140, self.height - 40, "skin_default/buttons/blue.png",  # ePixmap blue
 							buttonGap, self.height - 40, scaleV(22, 21),  # widget red
 							2 * buttonGap + 140, self.height - 40, scaleV(22, 21),  # widget green
 							3 * buttonGap + 2 * 140, self.height - 40, scaleV(22, 21),  # widget yellow
@@ -2147,7 +2149,7 @@ class FritzCallPhonebook(object):
 				"red": self.delete,
 				"green": self.add,
 				"yellow": self.edit,
-				"blue": self.search,
+				"blue": self.mySearch,
 				"cancel": self.exit,
 				"ok": self.showEntry, }, -2)
 
@@ -2273,8 +2275,8 @@ class FritzCallPhonebook(object):
 							</screen>""" % (
 											width, height,
 											width - 5 - 5, height - 5 - 40 - 5,
-											buttonsGap, buttonsVPos, "buttons/red.png",
-											buttonsGap + 140 + buttonsGap, buttonsVPos, "buttons/green.png",
+											buttonsGap, buttonsVPos, "skin_default/buttons/red.png",
+											buttonsGap + 140 + buttonsGap, buttonsVPos, "skin_default/buttons/green.png",
 											buttonsGap, buttonsVPos,
 											buttonsGap + 140 + buttonsGap, buttonsVPos,
 											)
@@ -2408,12 +2410,12 @@ class FritzCallPhonebook(object):
 			else:
 				self.add(self, cur[2], cur[0])
 
-		def search(self):
+		def mySearch(self):
 			debug("[FritzDisplayPhonebook]")
-			self.help_window = self.session.instantiateDialog(NumericalTextInputHelpDialog, self)
-			self.help_window.show()
+			# self.help_window = self.session.instantiateDialog(NumericalTextInputHelpDialog, self)
+			# self.help_window.show()
 			# VirtualKeyboard instead of InputBox?
-			self.session.openWithCallback(self.doSearch, InputBox, _("Enter Search Terms"), _("Search phonebook"))
+			self.session.openWithCallback(self.doSearch, VirtualKeyBoard, title = _("Search phonebook"))
 
 		def doSearch(self, searchTerms):
 			if not searchTerms:
@@ -2466,16 +2468,16 @@ class FritzCallSetup(Screen, ConfigListScreen, HelpableScreen):
 							scaleH(width - 80, width - 10), scaleV(453, 328),  # config size
 							scaleV(518, 390),  # eLabel position vertical
 							width,  # eLabel width
-							scaleH(20, 0), scaleV(525, 395), "buttons/red.png",  # pixmap red
-							scaleH(20 + 140 + 90, 140), scaleV(525, 395), "buttons/green.png",  # pixmap green
-							scaleH(20 + 2 * (140 + 90), 2 * 140), scaleV(525, 395), "buttons/yellow.png",  # pixmap yellow
-							scaleH(20 + 3 * (140 + 90), 3 * 140), scaleV(525, 395), "buttons/blue.png",  # pixmap blue
+							scaleH(20, 0), scaleV(525, 395), "skin_default/buttons/red.png",  # pixmap red
+							scaleH(20 + 140 + 90, 140), scaleV(525, 395), "skin_default/buttons/green.png",  # pixmap green
+							scaleH(20 + 2 * (140 + 90), 2 * 140), scaleV(525, 395), "skin_default/buttons/yellow.png",  # pixmap yellow
+							scaleH(20 + 3 * (140 + 90), 3 * 140), scaleV(525, 395), "skin_default/buttons/blue.png",  # pixmap blue
 							scaleH(20, 0), scaleV(525, 395), scaleV(21, 21),  # widget red
 							scaleH(20 + (140 + 90), 140), scaleV(525, 395), scaleV(21, 21),  # widget green
 							scaleH(20 + 2 * (140 + 90), 2 * 140), scaleV(525, 395), scaleV(21, 21),  # widget yellow
 							scaleH(20 + 3 * (140 + 90), 3 * 140), scaleV(525, 395), scaleV(21, 21),  # widget blue
-							scaleH(20 + 4 * (140 + 90), 4 * 140), scaleV(532, 402), "buttons/key_info.png",  # button information
-							scaleH(20 + 4 * (140 + 90) + (35 + 40), 4 * 140 + 35), scaleV(532, 402), "buttons/key_menu.png",  # button menu
+							scaleH(20 + 4 * (140 + 90), 4 * 140), scaleV(532, 402), "skin_default/buttons/key_info.png",  # button information
+							scaleH(20 + 4 * (140 + 90) + (35 + 40), 4 * 140 + 35), scaleV(532, 402), "skin_default/buttons/key_menu.png",  # button menu
 							)
 		else:
 			if DESKTOP_WIDTH <= 720:
@@ -2622,7 +2624,7 @@ class FritzCallSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def setWindowTitle(self):
 		# TRANSLATORS: this is a window title.
-		self.setTitle(_("FritzCall Setup") + " (" + "$Revision: 1534 $"[1:-1] + "$Date: 2018-08-17 14:16:52 +0200 (Fri, 17 Aug 2018) $"[7:23] + ")")
+		self.setTitle(_("FritzCall Setup") + " (" + "$Revision: 1553 $"[1:-1] + "$Date: 2019-04-25 09:36:05 +0200 (Thu, 25 Apr 2019) $"[7:23] + ")")
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
@@ -2702,6 +2704,7 @@ class FritzCallSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.list.append(getConfigListEntry(_("Ignore callers with no phone number"), config.plugins.FritzCall.ignoreUnknown))
 			self.list.append(getConfigListEntry(_("Log level"), config.plugins.FritzCall.debug))
 			self.list.append(getConfigListEntry(_("Make it more skin friendly"), config.plugins.FritzCall.advancedSkin))
+			self.list.append(getConfigListEntry(_("Use HTTPS to communicate with FRITZ!Box"), config.plugins.FritzCall.useHttps))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -2893,7 +2896,7 @@ def findFace(number, name):
 	facesFile = None
 
 	if not os.path.isdir(facesDir):
-		error("[FritzCall] findFace facesdir does not exist: %s", facesDir)
+		info("[FritzCall] findFace facesdir does not exist: %s", facesDir)
 	else:
 		files = os.listdir(facesDir)
 		# debug("[FritzCall] listdir: %s" %repr(files))
@@ -2942,7 +2945,7 @@ class MessageBoxPixmap(Screen):
 		</screen>
 			""" % (
 				# scaleH(350, 60), scaleV(175, 245),
-				scaleV(25, 22), resolveFilename(SCOPE_CURRENT_SKIN, "icons/input_info.png")
+				scaleV(25, 22), resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/input_info.png")
 				)
 			debug("[FritzCall] MessageBoxPixmap number: %s", number)
 		else:
@@ -3230,7 +3233,7 @@ class FritzReverseLookupAndNotifier(object):
 
 class FritzProtocol(LineReceiver):  # pylint: disable=W0223
 	def __init__(self):
-		info("[FritzProtocol] " + "$Revision: 1534 $"[1:-1] + "$Date: 2018-08-17 14:16:52 +0200 (Fri, 17 Aug 2018) $"[7:23] + " starting")
+		info("[FritzProtocol] " + "$Revision: 1553 $"[1:-1] + "$Date: 2019-04-25 09:36:05 +0200 (Thu, 25 Apr 2019) $"[7:23] + " starting")
 		global mutedOnConnID
 		mutedOnConnID = None
 		self.number = '0'
