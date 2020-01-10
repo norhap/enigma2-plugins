@@ -414,3 +414,15 @@ msgstr ""
 "Búqueda completa\n"
 "%d transpondedores encontrados en %d:%02d minutos.\n"
 "Detalles guardados en: %s"
+
+msgid "Start scan"
+msgstr "Iniciar Búsqueda"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Select all"
+msgstr "Seleccionar todo"
+
+msgid "Deselect all"
+msgstr "Deseleccionar todo"
