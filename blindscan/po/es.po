@@ -359,10 +359,10 @@ msgstr "buscar transpondedores"
 
 msgid ""
 "Select transponders and press green to scan.\n"
-"Press yellow to select all transponders and blue to deselect all.\""
+"Press yellow to select all transponders and blue to deselect all."
 msgstr ""
 "Seleccionar transpondedores y pulsar verde para buscar.\n"
-"Pulsa amarillo para seleccionar todos los transpondedores y azul para deseleccionarlos"
+"Pulsa amarillo para seleccionar todos los transpondedores y azul para deseleccionarlos."
 
 msgid "don't scan"
 msgstr "no buscar"
