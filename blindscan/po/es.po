@@ -91,10 +91,6 @@ msgstr ""
 "   Rango de frecuencias: %d - %d MHz\n"
 "   Veloc. de símbolo: %d - %d MHz"
 
-#, fuzzy
-msgid "DVB-S + DVB-S2"
-msgstr "DVB-S + DVB-S2"
-
 msgid "DVB-S only"
 msgstr "Sólo DVB-S"
 
@@ -187,7 +183,7 @@ msgstr ""
 
 #, python-format
 msgid "Not found blind scan utility '%s'!"
-msgstr ""
+msgstr "No se encontró la utilidad búsqueda ciega '%s'!"
 
 msgid ""
 "Nothing to scan!\n"
@@ -426,3 +422,6 @@ msgstr "Seleccionar todo"
 
 msgid "Deselect all"
 msgstr "Deseleccionar todo"
+
+msgid "Satellite blind scan"
+msgstr "Búsqueda ciega"
