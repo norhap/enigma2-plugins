@@ -128,8 +128,8 @@ msgstr "El hardware de búsqueda ciega no está soportado por este sintonizador 
 msgid "Horizontal"
 msgstr "Horizontal"
 
-msgid "If you select \"yes\" all channels on the satellite being search will be deleted before starting the current search."
-msgstr "Si selecciona \"Si\", todos los canales del satélite a escanear serán borrados antes de empezar la búsqueda ciega."
+msgid "If you select \"yes\" all channels on the satellite being search will be deleted before starting the current search, yes (keep feeds) means the same but hold all feed services/transponders."
+msgstr "Si selecciona \"Si\", todos los canales en el satélite que se está buscando se eliminarán antes de comenzar la búsqueda actual, sí (mantener feeds) significa lo mismo pero mantener todos los canales/transpondedores."
 
 msgid "If you select \"yes\" the scan will only save channels that are not encrypted; \"no\" will find encrypted and non-encrypted channels."
 msgstr "Si selecciona \"Si\", la búsqueda sólo guardará los canales no encriptados; elegir \"No\" buscará canales encriptados y no encriptados."
