@@ -416,7 +416,7 @@ msgstr ""
 "Detalles guardados en: %s"
 
 msgid "Start scan"
-msgstr "Iniciar Búsqueda"
+msgstr "Buscar"
 
 msgid "Cancel"
 msgstr "Cancelar"
