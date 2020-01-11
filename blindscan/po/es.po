@@ -310,10 +310,6 @@ msgstr "circular izda"
 msgid "circular right"
 msgstr "circular dcha"
 
-#, fuzzy
-msgid "circular right & circular left"
-msgstr "circular derecha & circular izquierda"
-
 msgid "circular right and circular left"
 msgstr "circular derecha y circular izquierda"
 
