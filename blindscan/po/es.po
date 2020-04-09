@@ -424,3 +424,7 @@ msgstr "Búsqueda ciega"
 
 msgid "Rotor: "
 msgstr "Motor: "
+
+msgid "It seems manufacturer does not support blind scan for this tuner."
+msgstr "Parece que el fabricante no admite la búsqueda ciega para este sintonizador."
+
