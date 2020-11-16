@@ -379,7 +379,7 @@ def parseEPGCallback(ret):
 		path_search_log = os.path.join(logpath, "autotimer_search.log")
 		if os.path.exists(path_search_log):
 			searchlog_txt = open(path_search_log).read()
-			#find last log in logfile 
+			#find last log in logfile
 			if "\n########## " in searchlog_txt:
 				searchlog_txt = searchlog_txt.split("\n########## ")
 				searchlog_txt = str(searchlog_txt[-1]).split("\n")[2:]
@@ -486,6 +486,7 @@ def Plugins(**kwargs):
 		PluginDescriptor(name=_("AutoTimer"), description = _("Edit Timers and scan for new Events"), where = PluginDescriptor.WHERE_PLUGINMENU, icon = "plugin.png", fnc = main, needsRestart = False),
 		PluginDescriptor(name=_("Add AutoTimer"), description= _("add AutoTimer"), where = PluginDescriptor.WHERE_MOVIELIST, fnc = movielist, needsRestart = False),
 		PluginDescriptor(name=_("add AutoTimer..."), where = PluginDescriptor.WHERE_EVENTINFO, fnc = eventinfo, needsRestart = False),
+		PluginDescriptor(name=_("Auto Timers"), description = _("Edit Timers and scan for new Events"), where=PluginDescriptor.WHERE_MENU, fnc=timermenu),
 	]
 	if hasSeriesPlugin:
 		l.append(PluginDescriptor(name = _("add to AutoTimer filterList"), description = _("add to AutoTimer filterList"), where = PluginDescriptor.WHERE_MOVIELIST, fnc = add_to_filterList, needsRestart = False))
@@ -496,3 +497,7 @@ def Plugins(**kwargs):
 		l.append(extDescriptor_scan)
 	return l
 
+def timermenu(menuid):
+	if menuid == "timermenu":
+		return [(_("AutoTimers"), main, "autotimer_setup", None)]
+	return []
