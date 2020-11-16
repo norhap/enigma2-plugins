@@ -459,6 +459,10 @@ vfdcontrol/meta/Makefile
 vfdcontrol/po/Makefile
 vfdcontrol/src/Makefile
 
+weathercomponenthandler/Makefile
+weathercomponenthandler/meta/Makefile
+weathercomponenthandler/src/Makefile
+
 weatherplugin/Makefile
 weatherplugin/meta/Makefile
 weatherplugin/po/Makefile

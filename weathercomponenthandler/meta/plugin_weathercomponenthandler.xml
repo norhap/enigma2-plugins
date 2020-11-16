@@ -1,0 +1,17 @@
+<default>
+	  <prerequisites>
+                    <tag type="Multimedia" />
+	  </prerequisites>
+          <info>
+                    <author>Dr.Best</author>
+                    <name>weathercomponenthandler</name>
+                    <packagename>enigma2-plugin-systemplugins-weathercomponenthandler</packagename>
+                    <shortdescription>Weatherforecast on your Receiver</shortdescription>
+                    <description>WeatherPlugin shows weatherforecasts on your Receiver.</description>
+                    <screenshot src="http://www.dreamboxupdate.com/preview/plugin_weatherplugin.jpg" />		    
+          </info>
+
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-weathercomponenthandler" />
+	  </files>
+</default>

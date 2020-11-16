@@ -77,6 +77,7 @@ SUBDIRS = \
 	vlcplayer \
 	vps \
 	vfdcontrol \
+	weathercomponenthandler \
 	weatherplugin \
 	webcamviewer \
 	werbezapper \
