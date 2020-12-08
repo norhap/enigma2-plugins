@@ -438,8 +438,8 @@ class MSNWeatherPluginSearchResultList(MenuList):
 					x1, y1, w1, h1 = skinparameter.get("WeatherPluginSearchlocation", (5, 0, 500, 20))
 					x2, y2, w2, h2 = skinparameter.get("WeatherPluginSearchresult", (5, 22, 500, 20))
 				else:
-					x1, y1, w1, h1 = skinparameter.get("WeatherPluginSearchlocation", (5, 0, 500, 30))
-					x2, y2, w2, h2 = skinparameter.get("WeatherPluginSearchresult", (5, 27, 500, 26))
+					x1, y1, w1, h1 = skinparameter.get("WeatherPluginSearchlocation", (5, 0, 500, 35))
+					x2, y2, w2, h2 = skinparameter.get("WeatherPluginSearchresult", (5, 27, 500, 35))
 					res = [
 						(weatherlocationcode, searchlocation),
 						(eListboxPythonMultiContent.TYPE_TEXT, x1, y1, w1, h1, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, searchlocation),
