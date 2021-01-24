@@ -474,6 +474,38 @@ def housekeepingExtensionsmenu(el):
 			plugins.removePlugin(extDescriptor_scan)
 		except ValueError as ve:
 			doLog("[AutoTimer] housekeepingExtensionsmenu got confused, tried to remove non-existant plugin entry... ignoring.")
+			
+def autotimerInit(self):    # add to Main Menu 521 and Add code lanSav 478:508
+		self.autotimerPoller = autopoller
+		self.autotimerTimer = autotimer
+		self.pollDelay = 3  # Poll delay in minutes.
+		try:
+			self.autotimerPollDelay = config.plugins.autotimer.delay.value
+		except AttributeError:
+			self.autotimerPollDelay = self.pollDelay
+		self.timer = eTimer()
+		self.timer.callback.append(self.autotimeQuery)
+		self.addCallback(self.autotimerCallback)
+	except ImportError:
+		self.autotimerPoller = None
+		self.autotimerTimer = None
+
+def autotimerCallback(self):
+	if config.plugins.autotimer.autopoll.value:
+		self.timer.stop()
+		print("[Timezones] Trying to stop main AutoTimer poller.")
+		if self.autotimerPoller is not None:
+			self.autotimerPoller.stop()
+		print("[Timezones] AutoTimer poller will be run in %d minutes." % self.pollDelay)
+		self.timer.startLongTimer(self.pollDelay * 60)
+
+def autotimeQuery(self):
+	print("[Timezones] AutoTimer poll is running.")
+	if self.autotimerTimer is not None:
+		print("[Timezones] AutoTimer is parsing the EPG.")
+		self.autotimerTimer.parseEPG(autoPoll=True)
+	if self.autotimerPoller is not None:
+		self.autotimerPoller.start()
 
 config.plugins.autotimer.show_in_extensionsmenu.addNotifier(housekeepingExtensionsmenu, initial_call = False, immediate_feedback = True)
 extDescriptor = PluginDescriptor(name=_("AutoTimer"), description = _("Edit Timers and scan for new Events"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = extensionsmenu, needsRestart = False)
