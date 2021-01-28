@@ -139,8 +139,8 @@ msgstr "Opciones Montaje"
 msgid "Mount type"
 msgstr "Tipo de montaje"
 
-msgid "Mount view"
-msgstr "Vista de Montaje"
+msgid "Mount Viewer"
+msgstr "Vista de Montajes"
 
 msgid "MountManager"
 msgstr "Administrar Montajes"
