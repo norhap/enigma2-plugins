@@ -38,7 +38,7 @@ from AutoTimer import AutoTimer
 autotimer = AutoTimer()
 autopoller = None
 
-AUTOTIMER_VERSION = "4.6.5"
+AUTOTIMER_VERSION = "4.6.6"
 
 try:
 	from Plugins.SystemPlugins.MPHelp import registerHelp, XMLHelpReader
@@ -292,17 +292,16 @@ def AutoTimerChannelContextMenu__init__(self, session, csel):
 	baseChannelContextMenu__init__(self, session, csel)
 	if csel.mode == MODE_TV:
 		current = csel.getCurrentSelection()
-		current_root = csel.getRoot()
-		current_sel_path = current.getPath()
-		current_sel_flags = current.flags
-		inBouquetRootList = current_root and current_root.getPath().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
-		inBouquet = csel.getMutableList() is not None
-		isPlayable = not (current_sel_flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
-		if csel.bouquet_mark_edit == OFF and not csel.movemode:
-			if isPlayable:
-				if config.plugins.autotimer.add_to_channelselection.value:
-					callFunction = self.addtoAutoTimer
-					self["menu"].list.insert(3, ChoiceEntryComponent(text = (_("create AutoTimer for current event"), boundFunction(callFunction,1)), key = "bullet"))
+		if current and current.valid():
+			current_root = csel.getRoot()
+			current_sel_path = current.getPath()
+			current_sel_flags = current.flags
+			inBouquetRootList = current_root and current_root.getPath().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
+			inBouquet = csel.getMutableList() is not None
+			isPlayable = not (current_sel_flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
+			if config.plugins.autotimer.add_to_channelselection.value and csel.bouquet_mark_edit == OFF and not csel.movemode and isPlayable:
+				callFunction = self.addtoAutoTimer
+				self["menu"].list.insert(3, ChoiceEntryComponent(text = (_("create AutoTimer for current event"), boundFunction(callFunction,1)), key = "bullet"))
 
 def addtoAutoTimer(self, add):
 	sref = self.csel.servicelist.getCurrent()
@@ -347,7 +346,7 @@ def handleAutoPoller():
 		if autopoller is None:
 			from AutoPoller import AutoPoller
 			autopoller = AutoPoller()
-		autopoller.start(initial = False)
+		autopoller.start(initial=False)
 	# Remove instance if not running in background
 	else:
 		autopoller = None
@@ -474,6 +473,17 @@ def housekeepingExtensionsmenu(el):
 			plugins.removePlugin(extDescriptor_scan)
 		except ValueError as ve:
 			doLog("[AutoTimer] housekeepingExtensionsmenu got confused, tried to remove non-existant plugin entry... ignoring.")
+
+def timezoneChanged(self):
+	if config.plugins.autotimer.autopoll.value and autopoller is not None:
+		autopoller.pause()
+		autopoller.start(initial=False)
+		doLog("[AutoTimer] Timezone change detected.")
+
+try:
+	config.timezone.val.addNotifier(timezoneChanged, initial_call=False, immediate_feedback=False)
+except AttributeError:
+	doLog("[AutoTimer] Failed to load timezone notifier.")
 
 config.plugins.autotimer.show_in_extensionsmenu.addNotifier(housekeepingExtensionsmenu, initial_call = False, immediate_feedback = True)
 extDescriptor = PluginDescriptor(name=_("AutoTimer"), description = _("Edit Timers and scan for new Events"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = extensionsmenu, needsRestart = False)
