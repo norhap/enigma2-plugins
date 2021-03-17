@@ -1,0 +1,117 @@
+# Turkish translations for Enigma2.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: enigma2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-23 13:30+0330\n"
+"PO-Revision-Date: 2016-05-07 13:29+0200\n"
+"Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
+"Language-Team: CÜNEYT OCAKLILAR <ocaklilar@gmail.com>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Bookmarks: 2450,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
+
+msgid "Always off"
+msgstr ""
+
+msgid "Blink Record Led"
+msgstr ""
+
+msgid "Blue"
+msgstr "Mavi"
+
+msgid "Brightness"
+msgstr ""
+
+msgid "Brightness Standby"
+msgstr ""
+
+#
+msgid "Cancel"
+msgstr "İptal"
+
+msgid "Channel number with leading zeros"
+msgstr ""
+
+msgid "Channelnumber in Standby Clock"
+msgstr ""
+
+msgid "Channelnumber in Standby off"
+msgstr ""
+
+msgid "Channelnumber/Clock in Standby Clock"
+msgstr ""
+
+msgid "Clock always"
+msgstr ""
+
+msgid "Display/LED"
+msgstr ""
+
+msgid "Enable led"
+msgstr "Led etkinleştir"
+
+msgid "GigaBlue Setup"
+msgstr ""
+
+msgid "LED"
+msgstr ""
+
+#, fuzzy
+msgid "Led Deep Standby"
+msgstr "Derin beklemede led durumu"
+
+msgid "Led state Deep Standby"
+msgstr "Derin beklemede led durumu"
+
+msgid "Led state HDD /dev/sda active"
+msgstr ""
+
+msgid "Led state HDD /dev/sdb active"
+msgstr ""
+
+msgid "Led state RUN"
+msgstr "ÇALIŞIRKEN led durumu"
+
+msgid "Led state Record"
+msgstr "Kayıtta led durumu"
+
+msgid "Led state Standby"
+msgstr "Beklemede led durumu"
+
+msgid "No"
+msgstr "Hayır"
+
+msgid "None"
+msgstr "Hiçbiri"
+
+msgid "Purple"
+msgstr "Mor"
+
+msgid "Red"
+msgstr "Kırmızı"
+
+#
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "Show clock in Deep Standby"
+msgstr "Derin beklemede saati göster"
+
+msgid "Show on VFD"
+msgstr ""
+
+msgid "Time mode"
+msgstr "Zaman kipi"
+
+msgid "Update Date/Time"
+msgstr "Tarih/Saat  güncelle"
+
+msgid "Yes"
+msgstr "Evet"

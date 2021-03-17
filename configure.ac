@@ -198,6 +198,11 @@ ftpbrowser/po/Makefile
 ftpbrowser/src/Makefile
 ftpbrowser/src/images/Makefile
 
+gigabluevfdcontrol/Makefile
+gigabluevfdcontrol/src/Makefile
+gigabluevfdcontrol/meta/Makefile
+gigabluevfdcontrol/po/Makefile
+
 growlee/Makefile
 growlee/meta/Makefile
 growlee/src/Makefile

@@ -1,0 +1,115 @@
+# Nederlands translations for Enigma2.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ViX\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-23 13:30+0330\n"
+"PO-Revision-Date: 2018-07-31 07:43+0200\n"
+"Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
+"Language-Team: Andy Blackburn, Rob van der Does\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: iso-8859-15\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 2.1.1\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+msgid "Always off"
+msgstr "Altijd uit"
+
+msgid "Blink Record Led"
+msgstr "Opname LED knippert"
+
+msgid "Blue"
+msgstr "Blauw"
+
+msgid "Brightness"
+msgstr "Helderheid"
+
+msgid "Brightness Standby"
+msgstr "Helderheid (stand-by)"
+
+msgid "Cancel"
+msgstr "Annuleer"
+
+msgid "Channel number with leading zeros"
+msgstr "Zendernummers met nullen beginnen"
+
+msgid "Channelnumber in Standby Clock"
+msgstr "Zendernummer in stand-by klok"
+
+msgid "Channelnumber in Standby off"
+msgstr "Zendernummer in stand-by uit"
+
+msgid "Channelnumber/Clock in Standby Clock"
+msgstr "Zendernummer/klok in stand-by klok"
+
+msgid "Clock always"
+msgstr "Klok altijd"
+
+msgid "Display/LED"
+msgstr "Display/LED"
+
+msgid "Enable led"
+msgstr "LED ingeschakeld"
+
+msgid "GigaBlue Setup"
+msgstr ""
+
+msgid "LED"
+msgstr "LED"
+
+msgid "Led Deep Standby"
+msgstr "Led deep stand-by"
+
+msgid "Led state Deep Standby"
+msgstr "LED in deep standby"
+
+msgid "Led state HDD /dev/sda active"
+msgstr "LED status HDD/dev/sda actief"
+
+msgid "Led state HDD /dev/sdb active"
+msgstr "LED status HDD/dev/sdb actief"
+
+msgid "Led state RUN"
+msgstr "LED status RUN"
+
+msgid "Led state Record"
+msgstr "LED status opname"
+
+msgid "Led state Standby"
+msgstr "LED status stand-by"
+
+msgid "No"
+msgstr "Nee"
+
+msgid "None"
+msgstr "Geen"
+
+msgid "Purple"
+msgstr "Paars"
+
+msgid "Red"
+msgstr "Rood"
+
+msgid "Save"
+msgstr "Sla op"
+
+msgid "Show clock in Deep Standby"
+msgstr "Toon klok in deep stand-by"
+
+msgid "Show on VFD"
+msgstr "Toon op VFD"
+
+msgid "Time mode"
+msgstr "Tijdmodus"
+
+msgid "Update Date/Time"
+msgstr "Update datum/tijd"
+
+msgid "Yes"
+msgstr "Ja"

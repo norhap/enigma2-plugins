@@ -1,0 +1,116 @@
+# Catalan translations for Enigma2.
+#
+# Oriol Pellicer i Sabrià <oriol@elsud.org>, 2006, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: enigma2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-23 13:30+0330\n"
+"PO-Revision-Date: 2016-05-07 13:26+0200\n"
+"Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+"X-Generator: Poedit 1.8.7\n"
+
+msgid "Always off"
+msgstr "Sempre apagat"
+
+msgid "Blink Record Led"
+msgstr "Led parpadejant durant gravació"
+
+msgid "Blue"
+msgstr "Blau"
+
+msgid "Brightness"
+msgstr "Brillantor"
+
+msgid "Brightness Standby"
+msgstr "Brillantor en repòs"
+
+#
+msgid "Cancel"
+msgstr "Cancel·lar"
+
+msgid "Channel number with leading zeros"
+msgstr "Número de canal amb zeros a l'esquerra"
+
+msgid "Channelnumber in Standby Clock"
+msgstr "Número de canal - Hora en repòs"
+
+msgid "Channelnumber in Standby off"
+msgstr "Número de canal - Apagat en repòs"
+
+msgid "Channelnumber/Clock in Standby Clock"
+msgstr "Número de canal/Hora - Hora en repòs"
+
+msgid "Clock always"
+msgstr "Sempre hora"
+
+msgid "Display/LED"
+msgstr ""
+
+msgid "Enable led"
+msgstr "Activar led"
+
+msgid "GigaBlue Setup"
+msgstr ""
+
+msgid "LED"
+msgstr ""
+
+msgid "Led Deep Standby"
+msgstr "Color led en repòs profund"
+
+msgid "Led state Deep Standby"
+msgstr "Color led en repòs profund"
+
+msgid "Led state HDD /dev/sda active"
+msgstr "Color led si està actiu el HDD /dev/sda"
+
+msgid "Led state HDD /dev/sdb active"
+msgstr "Color led si està actiu el HDD /dev/sdb"
+
+msgid "Led state RUN"
+msgstr "Color led en funcionament"
+
+msgid "Led state Record"
+msgstr "Color led gravant"
+
+msgid "Led state Standby"
+msgstr "Color led en repòs"
+
+msgid "No"
+msgstr ""
+
+msgid "None"
+msgstr "Cap"
+
+msgid "Purple"
+msgstr "Violeta"
+
+msgid "Red"
+msgstr "Vermell"
+
+#
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Show clock in Deep Standby"
+msgstr "Mostrar hora en repòs profund"
+
+msgid "Show on VFD"
+msgstr "Mostrar en VFD"
+
+msgid "Time mode"
+msgstr "Format horari"
+
+msgid "Update Date/Time"
+msgstr "Actualitzar Data/Hora"
+
+msgid "Yes"
+msgstr "Sí"

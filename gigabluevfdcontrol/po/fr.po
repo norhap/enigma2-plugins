@@ -1,0 +1,111 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: enigma2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-23 15:20+0200\n"
+"PO-Revision-Date: 2018-07-30 21:48+0200\n"
+"Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
+"Language-Team: french\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Poedit 2.1.1\n"
+"X-Poedit-SourceCharset: iso-8859-15\n"
+
+msgid "Always off"
+msgstr "Toujours éteinte"
+
+msgid "Blink Record Led"
+msgstr "LED d'enregistrement clignotante"
+
+msgid "Blue"
+msgstr "Bleu"
+
+msgid "Brightness"
+msgstr "Luminosité"
+
+msgid "Brightness Standby"
+msgstr "Luminosité En veille"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "Channel number with leading zeros"
+msgstr "Numéro de canal avec des zéros en tête"
+
+msgid "Channelnumber in Standby Clock"
+msgstr "Numéro de canal dans l'horloge de veille"
+
+msgid "Channelnumber in Standby off"
+msgstr "Numéro de canal en veille éteint"
+
+msgid "Channelnumber/Clock in Standby Clock"
+msgstr "Numéro de Canal/Horloge dans l’horloge de veille"
+
+msgid "Clock always"
+msgstr "Horloge toujours"
+
+msgid "Display/LED"
+msgstr "Afficheur/LED"
+
+msgid "Enable led"
+msgstr "Activer LED"
+
+msgid "GigaBlue Setup"
+msgstr ""
+
+msgid "LED"
+msgstr "LED"
+
+msgid "Led Deep Standby"
+msgstr "LED en veille profonde"
+
+msgid "Led state Deep Standby"
+msgstr "État LED en veille profonde"
+
+msgid "Led state HDD /dev/sda active"
+msgstr "Led état HDD /dev/sda actif"
+
+msgid "Led state HDD /dev/sdb active"
+msgstr "Led état HDD /dev/sdb actif"
+
+msgid "Led state RUN"
+msgstr "État LED en fonctionnement"
+
+msgid "Led state Record"
+msgstr "État LED en enregistrement"
+
+msgid "Led state Standby"
+msgstr "État LED en veille"
+
+msgid "No"
+msgstr "Non"
+
+msgid "None"
+msgstr "Aucun"
+
+msgid "Purple"
+msgstr "Pourpre"
+
+msgid "Red"
+msgstr "Rouge"
+
+msgid "Save"
+msgstr "Sauver"
+
+msgid "Show clock in Deep Standby"
+msgstr "Afficher l'horloge en veille profonde"
+
+msgid "Show on VFD"
+msgstr "Afficher sur VFD"
+
+msgid "Time mode"
+msgstr "Mode heure"
+
+msgid "Update Date/Time"
+msgstr "Mise-à-jour Date/Heure"
+
+msgid "Yes"
+msgstr "Oui"
