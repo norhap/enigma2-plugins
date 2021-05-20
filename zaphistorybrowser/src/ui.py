@@ -14,12 +14,13 @@ from enigma import eServiceCenter
 ################################################
 
 config.plugins.ZapHistoryConfigurator = ConfigSubsection()
-config.plugins.ZapHistoryConfigurator.enable_zap_history = ConfigSelection(choices = {"off": _("disabled"), "on": _("enabled"), "parental_lock": _("disabled at parental lock")}, default="on")
+config.plugins.ZapHistoryConfigurator.enable_zap_history = ConfigSelection(choices={"off": _("disabled"), "on": _("enabled"), "parental_lock": _("disabled at parental lock")}, default="on")
 config.plugins.ZapHistoryConfigurator.maxEntries_zap_history = ConfigInteger(default=20, limits=(1, 60))
-config.plugins.ZapHistoryConfigurator.history_tv = ConfigSet(choices = [])
-config.plugins.ZapHistoryConfigurator.history_radio = ConfigSet(choices = [])
+config.plugins.ZapHistoryConfigurator.history_tv = ConfigSet(choices=[])
+config.plugins.ZapHistoryConfigurator.history_radio = ConfigSet(choices=[])
 
 ################################################
+
 
 def addToHistory(instance, ref):
 	if config.plugins.ZapHistoryConfigurator.enable_zap_history.value == "off":
@@ -30,18 +31,22 @@ def addToHistory(instance, ref):
 	if instance.servicePath is not None:
 		tmp = instance.servicePath[:]
 		tmp.append(ref)
-		try: del instance.history[instance.history_pos+1:]
-		except Exception, e: pass
+		try:
+			del instance.history[instance.history_pos + 1:]
+		except Exception, e:
+			pass
 		instance.history.append(tmp)
 		hlen = len(instance.history)
 		if hlen > config.plugins.ZapHistoryConfigurator.maxEntries_zap_history.value:
 			del instance.history[0]
 			hlen -= 1
-		instance.history_pos = hlen-1
+		instance.history_pos = hlen - 1
+
 
 ChannelSelection.addToHistory = addToHistory
 
 ################################################
+
 
 class ZapHistoryConfigurator(ConfigListScreen, Screen):
 	skin = """
@@ -63,7 +68,7 @@ class ZapHistoryConfigurator(ConfigListScreen, Screen):
 		ConfigListScreen.__init__(self, [
 			getConfigListEntry(_("Enable zap history:"), config.plugins.ZapHistoryConfigurator.enable_zap_history),
 			getConfigListEntry(_("Maximum zap history entries:"), config.plugins.ZapHistoryConfigurator.maxEntries_zap_history)])
-		
+
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 			{
 				"ok": self.save,
@@ -85,6 +90,7 @@ class ZapHistoryConfigurator(ConfigListScreen, Screen):
 		self.close()
 
 ################################################
+
 
 class ZapHistoryBrowser(Screen, ProtectedScreen):
 	skin = """
@@ -139,7 +145,7 @@ class ZapHistoryBrowser(Screen, ProtectedScreen):
 				"yellow": self.zapAndClose,
 				"blue": self.config
 			}, prio=-1)
-		
+
 		self.onLayoutFinish.append(self.buildList)
 
 	def buildList(self):

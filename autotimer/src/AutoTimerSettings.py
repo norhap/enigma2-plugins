@@ -21,6 +21,8 @@ from Components.Pixmap import Pixmap
 HD = False
 if getDesktop(0).size().width() >= 1280:
 	HD = True
+
+
 class AutoTimerSettings(Screen, ConfigListScreen):
 	if HD:
 		skin = """<screen name="AutoTimerSettings" title="AutoTimer Settings" position="center,center" size="750,635">
@@ -104,7 +106,7 @@ class AutoTimerSettings(Screen, ConfigListScreen):
 		except:
 			pass
 
-		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changed)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changed)
 
 		def selectionChanged():
 			if self["config"].current:
@@ -160,4 +162,3 @@ class AutoTimerSettings(Screen, ConfigListScreen):
 
 	def createSummary(self):
 		return SetupSummary
-

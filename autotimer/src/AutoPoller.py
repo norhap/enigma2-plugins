@@ -27,8 +27,10 @@ from twisted.internet import reactor
 
 from Logger import doLog
 
+
 class AutoPollerThread(Thread):
 	"""Background thread where the EPG is parsed (unless initiated by the user)."""
+
 	def __init__(self):
 		Thread.__init__(self)
 		self.__semaphore = Semaphore(0)
@@ -68,15 +70,16 @@ class AutoPollerThread(Thread):
 				_("AutoTimer\n%d timer(s) were added.") % (ret[1]),
 				MessageBox.TYPE_INFO,
 				config.plugins.autotimer.popup_timeout.value,
-				TIMERNOTIFICATIONID 
+				TIMERNOTIFICATIONID
 			)
 
 	def start(self, initial=True):
 		if initial:
-			delay = config.plugins.autotimer.delay.value*60
+			delay = config.plugins.autotimer.delay.value * 60
 			if delay == 0:
 				delay = 30
-		else: delay = config.plugins.autotimer.interval.value*3600
+		else:
+			delay = config.plugins.autotimer.interval.value * 3600
 
 		self.__timer.startLongTimer(delay)
 		if not self.isAlive():
@@ -104,21 +107,22 @@ class AutoPollerThread(Thread):
 		while 1:
 			sem.acquire()
 			# NOTE: we have to check this here and not using the while to prevent the parser to be started on shutdown
-			if not self.running: break
+			if not self.running:
+				break
 
 			if config.plugins.autotimer.skip_during_records.value:
 				try:
 					import NavigationInstance
 					if NavigationInstance.instance.getRecordings():
 						doLog("[AutoTimer] Skip check during running records")
-						reactor.callFromThread(timer.startLongTimer, config.plugins.autotimer.interval.value*3600)
+						reactor.callFromThread(timer.startLongTimer, config.plugins.autotimer.interval.value * 3600)
 						continue
 				except:
 					pass
 			try:
 				if config.plugins.autotimer.onlyinstandby.value and Standby.inStandby is None:
 					doLog("[AutoTimer] Skip check during live tv")
-					reactor.callFromThread(timer.startLongTimer, config.plugins.autotimer.interval.value*3600)
+					reactor.callFromThread(timer.startLongTimer, config.plugins.autotimer.interval.value * 3600)
 					continue
 			except:
 				pass
@@ -127,7 +131,7 @@ class AutoPollerThread(Thread):
 					from Plugins.Extensions.EPGRefresh.EPGRefresh import epgrefresh
 					if epgrefresh.isrunning:
 						doLog("[AutoTimer] Skip check during EPGRefresh")
-						reactor.callFromThread(timer.startLongTimer, config.plugins.autotimer.interval.value*3600)
+						reactor.callFromThread(timer.startLongTimer, config.plugins.autotimer.interval.value * 3600)
 						continue
 				except:
 					pass
@@ -139,14 +143,16 @@ class AutoPollerThread(Thread):
 				pump.send(0)
 			except Exception:
 				# Dump error to stdout
-				import traceback, sys
+				import traceback
+				import sys
 				traceback.print_exc(file=sys.stdout)
 			#Keep that eTimer in the mainThread
-			reactor.callFromThread(timer.startLongTimer, config.plugins.autotimer.interval.value*3600)
+			reactor.callFromThread(timer.startLongTimer, config.plugins.autotimer.interval.value * 3600)
 
 	def clearMemory(self):
 		eConsoleAppContainer().execute("sync")
 		open("/proc/sys/vm/drop_caches", "w").write("3")
+
 
 class AutoPoller:
 	"""Manages actual thread which does the polling. Used for convenience."""

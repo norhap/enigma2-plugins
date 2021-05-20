@@ -7,13 +7,13 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
 from Components.AVSwitch import AVSwitch
-from Components.config import config, Config, ConfigSelection, ConfigSubsection, ConfigText, getConfigListEntry, ConfigYesNo, ConfigIP, ConfigNumber,ConfigLocations
+from Components.config import config, Config, ConfigSelection, ConfigSubsection, ConfigText, getConfigListEntry, ConfigYesNo, ConfigIP, ConfigNumber, ConfigLocations
 from Components.config import KEY_DELETE, KEY_BACKSPACE, KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT
 from Components.ConfigList import ConfigListScreen
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_HDD, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
-from enigma import eTimer, quitMainloop,eListbox,ePoint, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eServiceCenter, iServiceInformation, eServiceReference,iSeekableService,iServiceInformation, iPlayableService, iPlayableServicePtr
+from enigma import eTimer, quitMainloop, eListbox, ePoint, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eServiceCenter, iServiceInformation, eServiceReference, iSeekableService, iServiceInformation, iPlayableService, iPlayableServicePtr
 from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
 from twisted.web import client
 from twisted.internet import reactor
@@ -26,9 +26,9 @@ from MoviePlayer import dreamMediathekPlayer
 
 config.plugins.dreamMediathek = ConfigSubsection()
 config.plugins.dreamMediathek.general = ConfigSubsection()
-config.plugins.dreamMediathek.general.on_movie_stop = ConfigSelection(default = "ask", choices = [
-	("ask", _("Ask user")), ("quit", _("Return to movie list")), ("playnext", _("Play next video")), ("playagain", _("Play video again")) ])
-config.plugins.dreamMediathek.general.on_exit = ConfigSelection(default = "ask", choices = [
+config.plugins.dreamMediathek.general.on_movie_stop = ConfigSelection(default="ask", choices=[
+	("ask", _("Ask user")), ("quit", _("Return to movie list")), ("playnext", _("Play next video")), ("playagain", _("Play video again"))])
+config.plugins.dreamMediathek.general.on_exit = ConfigSelection(default="ask", choices=[
 	("ask", _("Ask user")), ("quit", _("Return to movie list"))])
 
 
@@ -62,8 +62,8 @@ class dreamMediathekStationsScreen(Screen):
 				</convert>
 			</widget>
 		</screen>"""
-		
-	def __init__(self, session, skin_path = None):
+
+	def __init__(self, session, skin_path=None):
 		Screen.__init__(self, session)
 		self.session = session
 		self.skin_path = skin_path
@@ -80,7 +80,7 @@ class dreamMediathekStationsScreen(Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = StaticText()
-		self["key_blue"] = StaticText()	
+		self["key_blue"] = StaticText()
 
 		self["FredMainActions"] = ActionMap(["ShortcutActions", "WizardActions"],
 		{
@@ -93,16 +93,16 @@ class dreamMediathekStationsScreen(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onShown.append(self.setWindowTitle)
 		self.onClose.append(self.__onClose)
-		
+
 	def __onClose(self):
 		self.Details = {}
 		self.session.nav.playService(self.lastservice)
-		
+
 	def layoutFinished(self):
 		self.currentList = "streamlist"
 		self.getStationsList()
 		#self["videoactions"].setEnabled(False)
-		
+
 	def setWindowTitle(self):
 		self.setTitle(_("dreamMediathek TV Stations"))
 
@@ -112,8 +112,8 @@ class dreamMediathekStationsScreen(Screen):
 			list = (
 				(_("Yes"), "quit"),
 				(_("No"), "continue")
-			)					
-			self.session.openWithCallback(self.leavePlayerConfirmed, ChoiceBox, title=_("Really quit dreamMediathek ?"), list = list)
+			)
+			self.session.openWithCallback(self.leavePlayerConfirmed, ChoiceBox, title=_("Really quit dreamMediathek ?"), list=list)
 		else:
 			self.leavePlayerConfirmed([True, how])
 
@@ -132,16 +132,16 @@ class dreamMediathekStationsScreen(Screen):
 		config.plugins.dreamMediathek.general.save()
 		config.plugins.dreamMediathek.save()
 		self.close()
-			
+
 	def keyOK(self):
-		print "self.currentList im KeyOK",self.currentList
+		print "self.currentList im KeyOK", self.currentList
 		if self.currentList == "streamlist":
 			current = self["streamlist"].getCurrent()
 			if current:
 				print current
 				url = current[2]
 				title = current[1]
-				myreference = eServiceReference(4097,0,url)
+				myreference = eServiceReference(4097, 0, url)
 				myreference.setName(title)
 				#self.session.open(dreamMediathekPlayer, myreference, self.lastservice, infoCallback = self.showVideoInfo, nextCallback = self.getNextEntry, prevCallback = self.getPrevEntry )
 				self.session.open(dreamMediathekPlayer, myreference, self.lastservice)
@@ -155,13 +155,13 @@ class dreamMediathekStationsScreen(Screen):
 		provider = None
 		title = None
 		streamurl = None
-		if iWebTVStations.webtv_stations[station].has_key("provider"):
+		if "provider" in iWebTVStations.webtv_stations[station]:
 			provider = iWebTVStations.webtv_stations[station]["provider"]
-		if iWebTVStations.webtv_stations[station].has_key("title"):
+		if "title" in iWebTVStations.webtv_stations[station]:
 			title = iWebTVStations.webtv_stations[station]["title"]
-		if iWebTVStations.webtv_stations[station].has_key("streamurl"):
-			streamurl = iWebTVStations.webtv_stations[station]["streamurl"]			
-		return((provider, title, streamurl ))	
+		if "streamurl" in iWebTVStations.webtv_stations[station]:
+			streamurl = iWebTVStations.webtv_stations[station]["streamurl"]
+		return((provider, title, streamurl))
 
 	def buildStationsList(self):
 		self.tvstations = None
@@ -169,11 +169,12 @@ class dreamMediathekStationsScreen(Screen):
 		if self.tvstations and len(self.tvstations):
 			self.streamlist = []
 			for station in self.tvstations:
-				print "GOT station:",station
+				print "GOT station:", station
 				self.streamlist.append(self.buildStationsComponent(station))
 			if len(self.streamlist):
 				self["streamlist"].setList(self.streamlist)
 				self["streamlist"].style = "default"
+
 
 def dreamMediathekMain(session, **kwargs):
 	session.open(dreamMediathekStationsScreen)
@@ -185,5 +186,5 @@ def Plugins(path, **kwargs):
 	return PluginDescriptor(
 		name=_("DreamMediathek"),
 		description=_("Play Web and ipTV streams"),
-		where = [ PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU ],
-		fnc = dreamMediathekMain)
+		where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU],
+		fnc=dreamMediathekMain)

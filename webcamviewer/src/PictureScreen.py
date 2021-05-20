@@ -11,11 +11,12 @@ from twisted.web.client import HTTPDownloader
 from twisted.internet import reactor
 from urlparse import urlparse, urlunparse
 
-def _parse(url, defaultPort = None):
+
+def _parse(url, defaultPort=None):
 	url = url.strip()
 	parsed = urlparse(url)
 	scheme = parsed[0]
-	path = urlunparse(('','')+parsed[2:])
+	path = urlunparse(('', '') + parsed[2:])
 
 	if defaultPort is None:
 		if scheme == 'https':
@@ -46,8 +47,8 @@ def _parse(url, defaultPort = None):
 
 	return scheme, host, port, path, username, password
 
-def download(url, file, contextFactory = None, *args, **kwargs):
 
+def download(url, file, contextFactory=None, *args, **kwargs):
 	"""Download a remote file from http(s) or ftp.
 
 	@param file: path to file on filesystem, or file-like object.
@@ -85,7 +86,7 @@ def download(url, file, contextFactory = None, *args, **kwargs):
 		authHeader = "Basic " + basicAuth.strip()
 		AuthHeaders = {"Authorization": authHeader}
 
-		if kwargs.has_key("headers"):
+		if "headers" in kwargs:
 			kwargs["headers"].update(AuthHeaders)
 		else:
 			kwargs["headers"] = AuthHeaders
@@ -101,12 +102,14 @@ def download(url, file, contextFactory = None, *args, **kwargs):
 
 	return factory.deferred
 
+
 class PictureScreen(Screen):
 	skin = ""
 	processing = False # if fetching or converting is active
 	autoreload = False
-	def __init__(self, session,title,filename, slideshowcallback = None,args=0):
-		self.slideshowcallback=slideshowcallback
+
+	def __init__(self, session, title, filename, slideshowcallback=None, args=0):
+		self.slideshowcallback = slideshowcallback
 		self.screentitle = title
 		self.filename = filename
 
@@ -115,7 +118,7 @@ class PictureScreen(Screen):
 		self.skin = """
 		<screen position="0,0" size="%i,%i" title="%s" flags=\"wfNoBorder\">
 			 <widget name="pixmap" position="0,0" size="%i,%i" backgroundColor=\"black\"/>
-		</screen>""" % (size_w,size_h,filename,size_w,size_h)
+		</screen>""" % (size_w, size_h, filename, size_w, size_h)
 		Screen.__init__(self, session)
 
 		self.picload = ePicLoad()
@@ -126,7 +129,7 @@ class PictureScreen(Screen):
 
 		self.paused = False
 
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions","ChannelSelectBaseActions","ShortcutActions"],
+		self["actions"] = ActionMap(["WizardActions", "DirectionActions", "ChannelSelectBaseActions", "ShortcutActions"],
 			{
 			 "ok": self.do,
 			 "back": self.exit,
@@ -178,11 +181,11 @@ class PictureScreen(Screen):
 		self.sourcefile = "/tmp/loadedfile"
 		download(url, self.sourcefile).addCallback(self.fetchFinished).addErrback(self.fetchFailed)
 
-	def fetchFailed(self,string):
+	def fetchFailed(self, string):
 		print "fetch failed", string
-		self.setTitle("fetch failed: "+string)
+		self.setTitle("fetch failed: " + string)
 
-	def fetchFinished(self,string):
+	def fetchFinished(self, string):
 		print "fetching finished"
 		self.setPicture(self.sourcefile)
 
@@ -193,7 +196,7 @@ class PictureScreen(Screen):
 			self.setTitle(_("pause") + ":" + self.screentitle)
 		self.picload.startDecode(string)
 
-	def setPictureCB(self, picInfo = None):
+	def setPictureCB(self, picInfo=None):
 		ptr = self.picload.getData()
 		if ptr is not None:
 			self["pixmap"].instance.setPixmap(ptr.__deref__())
@@ -230,7 +233,7 @@ class PictureScreen(Screen):
 		if not self.paused:
 			self.closetimer.stop()
 			self.paused = True
-		self.slideshowcallback(prev = True)
+		self.slideshowcallback(prev=True)
 
 	def next(self):
 		if not self.slideshowcallback:
@@ -239,4 +242,3 @@ class PictureScreen(Screen):
 			self.closetimer.stop()
 			self.paused = True
 		self.slideshowcallback()
-

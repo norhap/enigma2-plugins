@@ -25,6 +25,8 @@ import time
 HD = False
 if getDesktop(0).size().width() >= 1280:
 	HD = True
+
+
 class EPGSaveLoadConfiguration(Screen, ConfigListScreen):
 	if HD:
 		skin = """<screen name="EPGSaveLoadConfiguration" position="center,center" size="600,640">
@@ -75,7 +77,7 @@ class EPGSaveLoadConfiguration(Screen, ConfigListScreen):
 			getConfigListEntry(_("Show entry 'AutoZap' in extensions menu"), config.plugins.epgrefresh_extra.show_autozap, _("Enable automatic zapping of all services in the current services list.")),
 			getConfigListEntry(_("Duration to show each service (in seconds) for 'AutoZap'"), config.plugins.epgrefresh_extra.timeout_autozap, _("This is the duration each service will be shown in AutoZap mode.")),
 		]
-		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changed)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changed)
 
 		def selectionChanged():
 			if self["config"].current:
@@ -120,11 +122,11 @@ class EPGSaveLoadConfiguration(Screen, ConfigListScreen):
 
 	def Humanizer(self, size):
 		if (size < 1024):
-			humansize = str(size)+" B"
+			humansize = str(size) + " B"
 		elif (size < 1048576):
-			humansize = str(size/1024)+" KB"
+			humansize = str(size / 1024) + " KB"
 		else:
-			humansize = str(size/1048576)+" MB"
+			humansize = str(size / 1048576) + " MB"
 		return humansize
 
 	def updateHelp(self):
@@ -136,32 +138,32 @@ class EPGSaveLoadConfiguration(Screen, ConfigListScreen):
 		ConfigListScreen.keyOK(self)
 		sel = self["config"].getCurrent()[1]
 		if sel == config.plugins.epgrefresh_extra.manual_save:
-			self.session.openWithCallback(self.setEpgSave, MessageBox,_("Are you sure you want to save the EPG cache to:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.setEpgSave, MessageBox, _("Are you sure you want to save the EPG cache to:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
 		if sel == config.plugins.epgrefresh_extra.manual_load:
-			self.session.openWithCallback(self.setEpgLoad, MessageBox,_("Are you sure you want to load the EPG data from:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.setEpgLoad, MessageBox, _("Are you sure you want to load the EPG data from:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
 		if sel == config.plugins.epgrefresh_extra.manual_reload:
-			self.session.openWithCallback(self.setEpgReload, MessageBox,_("Are you sure you want to save and load the EPG data from:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.setEpgReload, MessageBox, _("Are you sure you want to save and load the EPG data from:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
 		if sel == config.plugins.epgrefresh_extra.restore_backup:
 			restore_backup = config.misc.epgcache_filename.value + ".backup"
 			if os.path.exists(restore_backup):
 				try:
-					os.system("cp -f %s %s" % (restore_backup, config.misc.epgcache_filename.value ))
+					os.system("cp -f %s %s" % (restore_backup, config.misc.epgcache_filename.value))
 					os.chmod("%s" % (config.misc.epgcache_filename.value), 0644)
 					self.setEpgLoad(True)
 					self.setEpgSave(True)
 					if os.path.exists(config.misc.epgcache_filename.value):
-						self.session.open(MessageBox, _("Backup file load!"), MessageBox.TYPE_INFO, timeout = 4)
+						self.session.open(MessageBox, _("Backup file load!"), MessageBox.TYPE_INFO, timeout=4)
 					else:
 						try:
 							os.system("rm -f %s" % (restore_backup))
-							self.session.open(MessageBox, _("Backup file is corrupt!\nBackup file will be deleted!"), MessageBox.TYPE_INFO, timeout = 4)
+							self.session.open(MessageBox, _("Backup file is corrupt!\nBackup file will be deleted!"), MessageBox.TYPE_INFO, timeout=4)
 						except:
 							pass
 					self.updateDestination()
 				except:
 					pass
 			else:
-				self.session.open(MessageBox, _("Backup file is not found!"), MessageBox.TYPE_INFO, timeout = 4)
+				self.session.open(MessageBox, _("Backup file is not found!"), MessageBox.TYPE_INFO, timeout=4)
 		if sel == config.plugins.epgrefresh_extra.epgcachepath:
 			self.setEPGCachePath()
 		if sel == config.plugins.epgrefresh_extra.delete_backup:
@@ -173,12 +175,14 @@ class EPGSaveLoadConfiguration(Screen, ConfigListScreen):
 		txt = _("Input EPG Cache path")
 		self.session.openWithCallback(self.setEPGCachePathBack, LocationBox, text=txt, currDir=config.plugins.epgrefresh_extra.epgcachepath.value,
 				bookmarks=config.plugins.epgrefresh_extra.bookmarks, autoAdd=False, editDir=True, minFree=20, inhibitDirs=inhibitDirs)
+
 	def setEPGCachePathBack(self, res):
 		if res is not None:
 			config.plugins.epgrefresh_extra.epgcachepath.value = res
 
 	def deleteEPG(self):
-		menu = [(_("Clear only in memory (RAM) EPG"), "ram"),(_("Clear only epg.dat and epg.dat.backup"), "dat"),(_("Clear all EPG"), "all")]
+		menu = [(_("Clear only in memory (RAM) EPG"), "ram"), (_("Clear only epg.dat and epg.dat.backup"), "dat"), (_("Clear all EPG"), "all")]
+
 		def removeEPGAction(choice):
 			if choice is not None:
 				try:
@@ -199,7 +203,7 @@ class EPGSaveLoadConfiguration(Screen, ConfigListScreen):
 					self.updateDestination()
 				except:
 					pass
-		self.session.openWithCallback(removeEPGAction, ChoiceBox, title= _("Select action:"), list=menu)
+		self.session.openWithCallback(removeEPGAction, ChoiceBox, title=_("Select action:"), list=menu)
 
 	def setEpgSave(self, answer):
 		if answer:
@@ -270,7 +274,7 @@ class EPGSaveLoadConfiguration(Screen, ConfigListScreen):
 			self.close()
 
 	def updateEpgCache(self):
-		config.misc.epgcache_filename.setValue(os.path.join(config.plugins.epgrefresh_extra.epgcachepath.value, config.plugins.epgrefresh_extra.epgcachefilename.value.replace(".dat","") + ".dat"))
+		config.misc.epgcache_filename.setValue(os.path.join(config.plugins.epgrefresh_extra.epgcachepath.value, config.plugins.epgrefresh_extra.epgcachefilename.value.replace(".dat", "") + ".dat"))
 		config.misc.epgcache_filename.save()
 		configfile.save()
 		if self.prev_lastepgcachepath != config.misc.epgcache_filename.value:
@@ -326,6 +330,7 @@ class EPGSaveLoadConfiguration(Screen, ConfigListScreen):
 					pass
 		self.close()
 
+
 class ManualEPGlist(Screen):
 	skin = """
 		<screen position="center,center" size="380,140" title="%s">
@@ -350,11 +355,11 @@ class ManualEPGlist(Screen):
 	def okClicked(self):
 		sel = self["list"].getCurrent()
 		if sel == _("Manually save EPG"):
-			self.session.openWithCallback(self.manualsetEpgSave, MessageBox,_("Are you sure you want to save the EPG cache to:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.manualsetEpgSave, MessageBox, _("Are you sure you want to save the EPG cache to:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
 		if sel == _("Manually load EPG"):
-			self.session.openWithCallback(self.manualsetEpgLoad, MessageBox,_("Are you sure you want to load the EPG data from:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.manualsetEpgLoad, MessageBox, _("Are you sure you want to load the EPG data from:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
 		if sel == _("Manually reload EPG"):
-			self.session.openWithCallback(self.manualsetEpgReload, MessageBox,_("Are you sure you want to save and load the EPG data from:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.manualsetEpgReload, MessageBox, _("Are you sure you want to save and load the EPG data from:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
 		if sel == _("Configuration..."):
 			self.session.open(EPGSaveLoadConfiguration)
 

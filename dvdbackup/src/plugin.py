@@ -22,22 +22,27 @@ from Screens.ChoiceBox import ChoiceBox
 from time import time
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileExists, resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
-import gettext, os, stat
+import gettext
+import os
+import stat
 import skin
 
 #################################################
 
 PluginLanguageDomain = "DVDBackup"
 PluginLanguagePath = "Extensions/DVDBackup/locale/"
- 
+
+
 def localeInit():
 	gettext.bindtextdomain(PluginLanguageDomain, resolveFilename(SCOPE_PLUGINS, PluginLanguagePath))
+
 
 def _(txt):
 	if gettext.dgettext(PluginLanguageDomain, txt):
 		return gettext.dgettext(PluginLanguageDomain, txt)
 	else:
 		return gettext.gettext(txt)
+
 
 language.addCallback(localeInit())
 
@@ -49,12 +54,13 @@ config.plugins.DVDBackup.directory = ConfigText(default="/media/hdd", fixed_size
 config.plugins.DVDBackup.name = NoSave(ConfigText(default=_("Name of DVD"), fixed_size=False))
 config.plugins.DVDBackup.log = ConfigYesNo(default=True)
 config.plugins.DVDBackup.show_message = ConfigYesNo(default=True)
-config.plugins.DVDBackup.create_iso = ConfigSelection(default = "no", choices = [("no", _("no")),("genisoimage", _("with genisoimage (slower)")),("dd", _("with dd (faster)"))])
+config.plugins.DVDBackup.create_iso = ConfigSelection(default="no", choices=[("no", _("no")), ("genisoimage", _("with genisoimage (slower)")), ("dd", _("with dd (faster)"))])
 cfg = config.plugins.DVDBackup
 
 #################################################
 
 SESSION = None
+
 
 def isCdromMount(file=None):
 	if file:
@@ -69,6 +75,7 @@ def isCdromMount(file=None):
 			pass
 	return False
 
+
 def isCDdevice():
 	cd = harddiskmanager.getCD()
 	if cd:
@@ -77,24 +84,27 @@ def isCDdevice():
 			return file_path
 	return ""
 
+
 def message(msg):
 	if SESSION and cfg.show_message:
 		SESSION.open(MessageBox, msg, type=MessageBox.TYPE_ERROR, timeout=10)
 
+
 def Humanizer(size):
 	try:
 		if (size < 1024):
-			humansize = str(size)+ _(" B")
+			humansize = str(size) + _(" B")
 		elif (size < 1048576):
-			humansize = str(size/1024) + _(" KB")
+			humansize = str(size / 1024) + _(" KB")
 		else:
-			humansize = str(size/1048576) + _(" MB")
+			humansize = str(size / 1048576) + _(" MB")
 		return humansize
 	except:
 		pass
 	return "--"
 
 #################################################
+
 
 class DVDBackupFile:
 	def __init__(self, name, size):
@@ -117,6 +127,7 @@ class DVDBackupFile:
 				self.progress = 0
 
 #################################################
+
 
 class DVDBackup:
 	def __init__(self):
@@ -170,34 +181,36 @@ class DVDBackup:
 		if size > 0:
 			self.files.append(DVDBackupFile("dd", int(size)))
 			self.pollTimer.start(10000, True)
-			self.console.ePopen("dd if=/dev/sr0 of=%s%s.iso bs=2048 conv=sync" % (cfg.directory.value,cfg.name.value), self.isoFinished)
+			self.console.ePopen("dd if=/dev/sr0 of=%s%s.iso bs=2048 conv=sync" % (cfg.directory.value, cfg.name.value), self.isoFinished)
 
 	def getDVDSize(self, result, retval, extra_args):
 		size = 0
-		firstPhrase = "File Structure DVD"; lastPhrase = "Main feature:"
+		firstPhrase = "File Structure DVD"
+		lastPhrase = "Main feature:"
 		if result and result.__contains__(firstPhrase) and result.__contains__(lastPhrase):
-			result = result[result.index(firstPhrase)+len(firstPhrase)+1: result.index(lastPhrase)]
-			print "[DVD Backup]",result
+			result = result[result.index(firstPhrase) + len(firstPhrase) + 1: result.index(lastPhrase)]
+			print "[DVD Backup]", result
 			lines = result.split("\n")
 			for line in lines:
 				tmp = line.split("\t")
 				if len(tmp) == 4:
 					if not tmp[1].__contains__("VTS_00_0."):
 						size += int(tmp[2])
-			print "[DVD Backup]",size, size / 2048
+			print "[DVD Backup]", size, size / 2048
 		else:
 			msg = _("Could not read the DVD informations!")
 			message(msg)
-			print "[DVD Backup]",result
+			print "[DVD Backup]", result
 			self.working = False
 			self.error = msg
 		return size
 
 	def gotInfo(self, result, retval, extra_args):
-		firstPhrase = "File Structure DVD"; lastPhrase = "Main feature:"
+		firstPhrase = "File Structure DVD"
+		lastPhrase = "Main feature:"
 		if result and result.__contains__(firstPhrase) and result.__contains__(lastPhrase):
-			result = result[result.index(firstPhrase)+len(firstPhrase)+1: result.index(lastPhrase)]
-			print "[DVD Backup]",result
+			result = result[result.index(firstPhrase) + len(firstPhrase) + 1: result.index(lastPhrase)]
+			print "[DVD Backup]", result
 			lines = result.split("\n")
 			folder = ""
 			for line in lines:
@@ -205,7 +218,7 @@ class DVDBackup:
 				if len(tmp) == 1:
 					folder = tmp[0]
 				elif len(tmp) == 4:
-					name = folder+tmp[1]
+					name = folder + tmp[1]
 					size = tmp[2]
 					if size.__contains__("."):
 						size = size[:size.index(".")]
@@ -226,7 +239,7 @@ class DVDBackup:
 		else:
 			msg = _("Could not read the DVD informations!")
 			message(msg)
-			print "[DVD Backup]",result
+			print "[DVD Backup]", result
 			self.working = False
 			self.error = msg
 
@@ -281,8 +294,10 @@ class DVDBackup:
 	def genisoimageCallback2(self, yesno):
 		if yesno:
 			cmd = ("rm -R '%s/%s'" % (cfg.directory.value, cfg.name.value)).replace("//", "/")
-			try: os.system(cmd)
-			except: pass
+			try:
+				os.system(cmd)
+			except:
+				pass
 		self.finished()
 
 	def finished(self):
@@ -312,9 +327,11 @@ class DVDBackup:
 		self.pollTimer.stop()
 		print "[DVD Backup] abort user"
 
+
 dvdbackup = DVDBackup()
 
 #################################################
+
 
 class DVDBackupList(MenuList):
 	def __init__(self):
@@ -325,16 +342,18 @@ class DVDBackupList(MenuList):
 
 #################################################
 
+
 def DVDBackupListEntry(file):
 	res = [(file)]
-	a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p = skin.parameters.get("DVDbackupList1",(0, 0, 180, 25, 200, 0, 120, 25, 340, 9, 100, 7, 460, 0, 60, 25))
-	res.append(MultiContentEntryText(pos = (a, b), size = (c, d), font = 0, text = file.name.split("/")[-1]))
-	res.append(MultiContentEntryText(pos = (e, f), size = (g, h), font = 0, text = "%s" % Humanizer(file.size), flags=RT_HALIGN_CENTER))
-	res.append(MultiContentEntryProgress(pos = (i, j), size = (k, l), percent = file.progress, borderWidth = 1))
-	res.append(MultiContentEntryText(pos = (m, n), size = (o, p), font = 0, text = "%d%s" % (file.progress, "%"), flags = RT_HALIGN_CENTER))
+	a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p = skin.parameters.get("DVDbackupList1", (0, 0, 180, 25, 200, 0, 120, 25, 340, 9, 100, 7, 460, 0, 60, 25))
+	res.append(MultiContentEntryText(pos=(a, b), size=(c, d), font=0, text=file.name.split("/")[-1]))
+	res.append(MultiContentEntryText(pos=(e, f), size=(g, h), font=0, text="%s" % Humanizer(file.size), flags=RT_HALIGN_CENTER))
+	res.append(MultiContentEntryProgress(pos=(i, j), size=(k, l), percent=file.progress, borderWidth=1))
+	res.append(MultiContentEntryText(pos=(m, n), size=(o, p), font=0, text="%d%s" % (file.progress, "%"), flags=RT_HALIGN_CENTER))
 	return res
 
 #################################################
+
 
 class DVDBackupProgress(Screen):
 	skin = """
@@ -357,14 +376,14 @@ class DVDBackupProgress(Screen):
 		self.working = False
 
 		self["key_red"] = Label(_("Exit"))
-		if  dvdbackup.working:
+		if dvdbackup.working:
 			self["key_green"] = Label(_("Abort"))
 		else:
 			self["key_green"] = Label()
 		self["text"] = Label()
 
 		self["list"] = DVDBackupList()
-		
+
 		self["actions"] = ActionMap(["ColorActions", "OkCancelActions"],
 			{
 				"cancel": self.exit,
@@ -416,12 +435,16 @@ class DVDBackupProgress(Screen):
 					tool = "dd"
 			self.console.ePopen("killall -9 %s" % tool, self.abortCallback)
 			if tool == "dd":
-				try: os.system("rm '%s'" % file.name)
-				except: pass
+				try:
+					os.system("rm '%s'" % file.name)
+				except:
+					pass
 			else:
 				cmd = ("rm -R '%s/%s'" % (cfg.directory.value, cfg.name.value)).replace("//", "/")
-				try: os.system(cmd)
-				except: pass
+				try:
+					os.system(cmd)
+				except:
+					pass
 
 	def abortCallback(self, result, retval, extra_args):
 		self.working = False
@@ -431,6 +454,7 @@ class DVDBackupProgress(Screen):
 		self["key_green"].setText("")
 
 #################################################
+
 
 class DVDBackupScreen(Screen, ConfigListScreen):
 	skin = """
@@ -474,7 +498,7 @@ class DVDBackupScreen(Screen, ConfigListScreen):
 			getConfigListEntry(_("Folder/iso name:"), cfg.name),
 			getConfigListEntry(_("Create log (tmp/dvdbackup.log):"), cfg.log),
 			getConfigListEntry(_("Show error message:"), cfg.show_message),
-			getConfigListEntry(_("Create iso:"), cfg.create_iso)], session = self.session)
+			getConfigListEntry(_("Create iso:"), cfg.create_iso)], session=self.session)
 
 		self["actions"] = ActionMap(["ColorActions", "OkCancelActions"],
 			{
@@ -506,6 +530,7 @@ class DVDBackupScreen(Screen, ConfigListScreen):
 			menu.append((_("Open menu progress"), "progress"))
 		if cfg.log.value and fileExists("/tmp/dvdbackup.log"):
 			menu.append((_("Show log"), "log"))
+
 		def extraAction(choice):
 			if choice is not None:
 				if choice[1] == "infoname":
@@ -605,7 +630,7 @@ class DVDBackupScreen(Screen, ConfigListScreen):
 		file = cfg.device.value
 		file_path = isCDdevice()
 		if file_path:
-			file ="/dev/sr0"
+			file = "/dev/sr0"
 			cfg.device.value = file_path
 		self.console.ePopen("dvdbackup --info -i %s" % file, self.gotInfo)
 
@@ -636,7 +661,7 @@ class DVDBackupScreen(Screen, ConfigListScreen):
 			for line in lines:
 				if line.startswith("DVD-Video information of the DVD with title "):
 					idx = line.index("title ")
-					name = line[idx+6:]
+					name = line[idx + 6:]
 					name = name.replace('&', '').replace('+', '').replace('*', '').replace('?', '').replace('<', '').replace('>', '').replace('|', '').replace(' ', '_')
 					name = name.replace('"', '').replace('.', '').replace('/', '').replace('\\', '').replace('[', '').replace(']', '').replace(':', '').replace(';', '').replace('=', '').replace(',', '')
 					if name:
@@ -646,6 +671,7 @@ class DVDBackupScreen(Screen, ConfigListScreen):
 		self.working = False
 
 #################################################
+
 
 def main(session, **kwargs):
 	if SESSION is None:
@@ -658,6 +684,7 @@ def main(session, **kwargs):
 			session.open(MessageBox, _("Could not install needed dvdbackup package!"), type=MessageBox.TYPE_INFO, timeout=10)
 		else:
 			session.open(DVDBackupScreen)
+
 
 def filescan_open(list, session, **kwargs):
 	if SESSION is None:
@@ -677,11 +704,13 @@ def filescan_open(list, session, **kwargs):
 				session.open(DVDBackupScreen, device=file_path, foldername=name)
 			return
 
+
 def filescan(**kwargs):
 	class LocalScanner(Scanner):
 		def checkFile(self, file):
 			return fileExists(file.path)
 	return [LocalScanner(mimetypes=["video/x-dvd"], paths_to_scan=[ScanPath(path="video_ts", with_subdirs=False), ScanPath(path="VIDEO_TS", with_subdirs=False)], name="DVD", description=_("DVD Backup"), openfnc=filescan_open)]
+
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(name=_("DVD Backup"), description=_("Backup your Video-DVD to your harddisk"), where=PluginDescriptor.WHERE_PLUGINMENU, icon="DVDBackup.png", fnc=main),

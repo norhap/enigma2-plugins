@@ -43,6 +43,8 @@ weekdays = [
 HD = False
 if getDesktop(0).size().width() >= 1280:
 	HD = True
+
+
 class EPGRefreshConfiguration(Screen, ConfigListScreen):
 	"""Configuration of EPGRefresh"""
 	if HD:
@@ -124,13 +126,13 @@ class EPGRefreshConfiguration(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Run AutoTimer after refresh"), config.plugins.epgrefresh.parse_autotimer, _("After a successful refresh the AutoTimer will automatically search for new matches if this is enabled.")))
 			try:
 				from Plugins.Extensions.SeriesPlugin.plugin import renameTimer
-				self.list.append(getConfigListEntry(_("Timeout shutdown after refresh for SeriesPlugin (min)"), config.plugins.epgrefresh.timeout_shutdown,  _("If \"Run AutoTimer after refresh\" and \"Shutdown after EPG refresh\" enabled and use \"Label series\" for match, set long timeout."))) 
+				self.list.append(getConfigListEntry(_("Timeout shutdown after refresh for SeriesPlugin (min)"), config.plugins.epgrefresh.timeout_shutdown, _("If \"Run AutoTimer after refresh\" and \"Shutdown after EPG refresh\" enabled and use \"Label series\" for match, set long timeout.")))
 			except ImportError as ie:
 				print("[EPGRefresh] SeriesPlugin Plugin not installed:", ie)
 		except ImportError as ie:
 			print("[EPGRefresh] AutoTimer Plugin not installed:", ie)
 
-		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changed)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changed)
 
 		def selectionChanged():
 			if self["config"].current:
@@ -196,12 +198,12 @@ class EPGRefreshConfiguration(Screen, ConfigListScreen):
 			(_("Return to TV viewing"), self.forceRefreshAfterNoShutdown),
 			(_("Shutdown after EPG refresh"), self.forceRefreshStandart),
 			]
-			dlg = self.session.openWithCallback(self.menuCallback,ChoiceBox,list = choicelist,title= _("Select action after refresh:"))
+			dlg = self.session.openWithCallback(self.menuCallback, ChoiceBox, list=choicelist, title=_("Select action after refresh:"))
 			dlg.setTitle(_("Shutdown after EPG refresh enabled in setup..."))
 		else:
 			self.forceRefreshStandart()
 
-	def menuCallback(self, ret = None):
+	def menuCallback(self, ret=None):
 		ret and ret[1]()
 
 	def forceRefreshStandart(self):
@@ -210,7 +212,7 @@ class EPGRefreshConfiguration(Screen, ConfigListScreen):
 
 	def forceRefreshAfterNoShutdown(self):
 		epgrefresh.services = (set(self.services[0]), set(self.services[1]))
-		epgrefresh.forceRefresh(self.session, dontshutdown = True)
+		epgrefresh.forceRefresh(self.session, dontshutdown=True)
 
 	def keyOK(self):
 		ConfigListScreen.keyOK(self)
@@ -301,17 +303,18 @@ class EPGRefreshConfiguration(Screen, ConfigListScreen):
 				x[1].save()
 			self.close(self.session)
 
-class EPGRefreshProfile(ConfigListScreen,Screen):
+
+class EPGRefreshProfile(ConfigListScreen, Screen):
 	skin = """
 			<screen position="center,center" size="400,230" title="EPGRefreshProfile" >
 			<widget name="config" position="0,0" size="400,180" scrollbarMode="showOnDemand" />
-			<widget name="key_red" position="0,190" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/> 
-			<widget name="key_green" position="140,190" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/> 
+			<widget name="key_red" position="0,190" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
+			<widget name="key_green" position="140,190" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
 			<ePixmap name="red"    position="0,190"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 			<ePixmap name="green"  position="140,190" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
 		</screen>"""
 
-	def __init__(self, session, args = 0):
+	def __init__(self, session, args=0):
 		self.session = session
 		Screen.__init__(self, session)
 
@@ -346,10 +349,9 @@ class EPGRefreshProfile(ConfigListScreen,Screen):
 				day = True
 				break
 		if not day:
-			self.session.open(MessageBox, _("You may not use this settings!\nAt least one day a week should be included!"), MessageBox.TYPE_INFO, timeout = 6)
+			self.session.open(MessageBox, _("You may not use this settings!\nAt least one day a week should be included!"), MessageBox.TYPE_INFO, timeout=6)
 			return
 		self.close()
-
 
 	def cancel(self):
 		for x in self["config"].list:

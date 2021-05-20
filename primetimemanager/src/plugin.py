@@ -8,15 +8,19 @@ from PrimeTimeSettings import PrimeTimeSettings
 
 baseTimerEditList__init__ = None
 
-def eventinfo(session,  servicelist, **kwargs):
+
+def eventinfo(session, servicelist, **kwargs):
 	session.open(PrimeTimeManager, servicelist)
+
 
 def main(session, **kwargs):
 	servicelist = kwargs.get('servicelist', None)
 	session.open(PrimeTimeManager, servicelist)
 
+
 def settings(session, **kwargs):
 	session.open(PrimeTimeSettings)
+
 
 def autostart(reason, **kwargs):
 	global baseTimerEditList__init__
@@ -31,10 +35,11 @@ def autostart(reason, **kwargs):
 		except:
 			pass
 
+
 def Plugins(**kwargs):
-	list = [PluginDescriptor(name = _("Prime Time Manager setup"), description = _("Settings of the plugin"), where = PluginDescriptor.WHERE_PLUGINMENU, icon = "plugin.png", fnc = settings)]
-	list.append(PluginDescriptor(name = _("Prime Time Manager"), description = _("Manage prime time events"), where = PluginDescriptor.WHERE_EVENTINFO, fnc = eventinfo))
-	list.append(PluginDescriptor(name = "Timer Edit key menu - show conflict timer", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = autostart))
+	list = [PluginDescriptor(name=_("Prime Time Manager setup"), description=_("Settings of the plugin"), where=PluginDescriptor.WHERE_PLUGINMENU, icon="plugin.png", fnc=settings)]
+	list.append(PluginDescriptor(name=_("Prime Time Manager"), description=_("Manage prime time events"), where=PluginDescriptor.WHERE_EVENTINFO, fnc=eventinfo))
+	list.append(PluginDescriptor(name="Timer Edit key menu - show conflict timer", where=PluginDescriptor.WHERE_SESSIONSTART, fnc=autostart))
 	if config.plugins.PrimeTimeManager.ExtMenu.value:
-		list.append(PluginDescriptor(name = _("Prime Time Manager "), description = _("Manage prime time events"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main))
+		list.append(PluginDescriptor(name=_("Prime Time Manager "), description=_("Manage prime time events"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main))
 	return list

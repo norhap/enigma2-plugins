@@ -10,8 +10,9 @@ import plugin
 
 plugin_version = "1.22"
 
+
 class RecInfobarSetupScreen(Screen, ConfigListScreen):
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.skinName = ["RecInfobarSetup", "Setup"]
 		self.setup_title = _("Record Infobar Setup")
@@ -77,7 +78,7 @@ class RecInfobarSetupScreen(Screen, ConfigListScreen):
 		self.cfg_tuner_recording_priority = getConfigListEntry(_("Preferred tuner for recording"), self.RIB.tuner_recording_priority)
 
 	def createSetup(self):
-		list = [ self.cfg_enable ]
+		list = [self.cfg_enable]
 		if config.usage.recinfobar.value:
 			list.append(self.cfg_anchor)
 			list.append(self.cfg_x)
@@ -142,9 +143,9 @@ class RecInfobarSetupScreen(Screen, ConfigListScreen):
 			self.RIB.set_position.value = False
 			self.RIB.rec_indicator.value = False
 			self.RIB.tuner_recording_priority.value = "-2"
-		if config.plugins.RecInfobar.always_zap.value != "1" and config.plugins.RecInfobar.always_message.value is True: 
+		if config.plugins.RecInfobar.always_zap.value != "1" and config.plugins.RecInfobar.always_message.value is True:
 			self.RIB.always_message.value = False
-		if not config.plugins.RecInfobar.check_wakeup.value: 
+		if not config.plugins.RecInfobar.check_wakeup.value:
 			self.RIB.after_event.value = "5"
 			self.RIB.standby_timeout.value = 10
 		if config.plugins.RecInfobar.always_zap.value == "2" and not config.recording.asktozap.value:

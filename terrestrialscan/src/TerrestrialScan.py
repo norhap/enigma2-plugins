@@ -23,7 +23,8 @@ try:
 except:
 	pass
 
-def setParams(frequency, system, bandwidth = 8): # freq is nine digits (474000000)
+
+def setParams(frequency, system, bandwidth=8): # freq is nine digits (474000000)
 	params = eDVBFrontendParametersTerrestrial()
 	params.frequency = frequency
 	params.bandwidth = bandwidth * 1000000
@@ -37,16 +38,19 @@ def setParams(frequency, system, bandwidth = 8): # freq is nine digits (47400000
 	params.hierarchy = eDVBFrontendParametersTerrestrial.Hierarchy_Auto
 	return params
 
+
 def setParamsFe(params):
 	params_fe = eDVBFrontendParameters()
 	params_fe.setDVBT(params)
 	return params_fe
 
-def channel2freq(channel, bandwidth = 8): # Europe channels
+
+def channel2freq(channel, bandwidth=8): # Europe channels
 	if 4 < channel < 13: # Band III
 		return (((177 + (bandwidth * (channel - 5))) * 1000000) + 500000)
 	elif 20 < channel < 70: # Bands IV,V
 		return ((474 + (bandwidth * (channel - 21))) * 1000000) # returns nine digits
+
 
 class TerrestrialScan(Screen, ConfigListScreen):
 	skin = """
@@ -57,7 +61,7 @@ class TerrestrialScan(Screen, ConfigListScreen):
 		<widget name="progress" position="65,55" size="520,5" borderWidth="1" backgroundColor="#11000000"/>
 	</screen>"""
 
-	def __init__(self, session, args = 0):
+	def __init__(self, session, args=0):
 		print "[TerrestrialScan][__init__] Starting..."
 		print "[TerrestrialScan][__init__] args", args
 		self.session = session
@@ -98,10 +102,10 @@ class TerrestrialScan(Screen, ConfigListScreen):
 		self.bandwidth = 8 # MHz
 		self.scanTransponders = []
 		if self.uhf_vhf == "uhf_vhf":
-			for a in range(5,13): # channel
+			for a in range(5, 13): # channel
 				for b in (eDVBFrontendParametersTerrestrial.System_DVB_T, eDVBFrontendParametersTerrestrial.System_DVB_T2): # system
 					self.scanTransponders.append({"channel": a, "system": b, "bandwidth": 7})
-		for a in range(21,70): # channel
+		for a in range(21, 70): # channel
 			for b in (eDVBFrontendParametersTerrestrial.System_DVB_T, eDVBFrontendParametersTerrestrial.System_DVB_T2): # system
 				self.scanTransponders.append({"channel": a, "system": b, "bandwidth": 8})
 		self.transponders_found = []
@@ -273,7 +277,7 @@ class TerrestrialScan(Screen, ConfigListScreen):
 					self.showError(_('Cannot get the NIM'))
 					return
 
-		print "[TerrestrialScan][getFrontend] Will wait up to %i seconds for tuner lock." % (self.lockTimeout/10)
+		print "[TerrestrialScan][getFrontend] Will wait up to %i seconds for tuner lock." % (self.lockTimeout / 10)
 
 		self.selectedNIM = current_slotid # Remember for next iteration
 
@@ -333,7 +337,7 @@ class TerrestrialScan(Screen, ConfigListScreen):
 			self.signalQualitytimer.start(100, 1)
 			return
 
-		self.tsidOnidCounter +=1
+		self.tsidOnidCounter += 1
 		if self.tsidOnidCounter > self.tsidOnidTimeout:
 			print "[TerrestrialScan][tsidOnidWait] tsid & onid wait failed"
 			self.search()
@@ -351,7 +355,7 @@ class TerrestrialScan(Screen, ConfigListScreen):
 			time.sleep(2) # allow extra time to get a stable reading
 			signalQuality = self.frontend.readFrontendData(iFrontendInformation.signalQuality)
 			if signalQuality > 0:
-				found = {"frequency": self.frequency, "tsid": self.tsid, "onid": self.onid, "system": self.system, "bandwidth": self.bandwidth,"signalQuality": signalQuality}
+				found = {"frequency": self.frequency, "tsid": self.tsid, "onid": self.onid, "system": self.system, "bandwidth": self.bandwidth, "signalQuality": signalQuality}
 				self.transponders_found.append(self.frequency)
 				tsidOnidKey = "%x:%x" % (self.tsid, self.onid)
 				if (tsidOnidKey not in self.transponders_unique or self.transponders_unique[tsidOnidKey]["signalQuality"] < signalQuality) and (self.networkid == 0 or self.networkid == self.onid):
@@ -360,7 +364,7 @@ class TerrestrialScan(Screen, ConfigListScreen):
 				self.search()
 				return
 
-		self.signalQualityCounter +=1
+		self.signalQualityCounter += 1
 		if self.signalQualityCounter > self.snrTimeout:
 			print "[TerrestrialScan][signalQualityWait] Failed to collect SNR"
 			self.search()

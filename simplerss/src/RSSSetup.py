@@ -9,12 +9,13 @@ from Components.Sources.StaticText import StaticText
 from Components.ActionMap import ActionMap
 from Screens.MessageBox import MessageBox
 
+
 class RSSFeedEdit(ConfigListScreen, Screen):
 	"""Edit an RSS-Feed"""
 
 	def __init__(self, session, id):
 		Screen.__init__(self, session)
-		self.skinName = [ "RSSFeedEdit", "Setup" ]
+		self.skinName = ["RSSFeedEdit", "Setup"]
 
 		s = config.plugins.simpleRSS.feed[id]
 		list = [
@@ -55,6 +56,7 @@ class RSSFeedEdit(ConfigListScreen, Screen):
 			x[1].cancel()
 		self.close()
 
+
 class RSSSetup(ConfigListScreen, Screen):
 	"""Setup for SimpleRSS, quick-edit for Feed-URIs and settings present."""
 	skin = """
@@ -70,7 +72,7 @@ class RSSSetup(ConfigListScreen, Screen):
 			<widget name="config" position="0,45" size="560,350" scrollbarMode="showOnDemand" />
 		</screen>"""
 
-	def __init__(self, session, rssPoller = None):
+	def __init__(self, session, rssPoller=None):
 		Screen.__init__(self, session)
 		self.rssPoller = rssPoller
 		self.list = []
@@ -185,7 +187,7 @@ class RSSSetup(ConfigListScreen, Screen):
 	def new(self):
 		l = config.plugins.simpleRSS.feed
 		s = ConfigSubsection()
-		s.uri = ConfigText(default="http://", fixed_size = False)
+		s.uri = ConfigText(default="http://", fixed_size=False)
 		s.autoupdate = ConfigYesNo(default=True)
 		id = len(l)
 		l.append(s)
@@ -193,14 +195,14 @@ class RSSSetup(ConfigListScreen, Screen):
 		self.session.openWithCallback(self.conditionalNew, RSSFeedEdit, id)
 
 	def conditionalNew(self):
-		id = len(config.plugins.simpleRSS.feed)-1
+		id = len(config.plugins.simpleRSS.feed) - 1
 		uri = config.plugins.simpleRSS.feed[id].uri
 
 		# Check if new feed differs from default
 		if uri.value == "http://":
 			del config.plugins.simpleRSS.feed[id]
 		else:
-			config.plugins.simpleRSS.feedcount.value = id+1
+			config.plugins.simpleRSS.feedcount.value = id + 1
 			self.createSetup()
 
 	def keySave(self):
@@ -224,12 +226,13 @@ class RSSSetup(ConfigListScreen, Screen):
 		simpleRSS.feedcount.value = len(simpleRSS.feed)
 		simpleRSS.feedcount.save()
 
-def addFeed(address, auto = False):
+
+def addFeed(address, auto=False):
 	l = config.plugins.simpleRSS.feed
 
 	# Create new Item
 	s = ConfigSubsection()
-	s.uri = ConfigText(default="http://", fixed_size = False)
+	s.uri = ConfigText(default="http://", fixed_size=False)
 	s.autoupdate = ConfigYesNo(default=True)
 
 	# Set values
@@ -241,4 +244,3 @@ def addFeed(address, auto = False):
 	l.save()
 	config.plugins.simpleRSS.feedcount.value = len(config.plugins.simpleRSS.feed)
 	config.plugins.simpleRSS.feedcount.save()
-

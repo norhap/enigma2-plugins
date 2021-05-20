@@ -21,7 +21,9 @@ from . import _
 
 import logging
 
-import os, sys, traceback
+import os
+import sys
+import traceback
 
 from Components.config import config
 
@@ -29,12 +31,13 @@ localLog = False
 log = ""
 logger = None
 
+
 def initLog():
 	global logger
 	logger = logger or logging.getLogger("AT")
 	logger.setLevel(logging.DEBUG)
 
-	logger.handlers = [] 
+	logger.handlers = []
 
 	if config.plugins.autotimer.log_shell.value:
 		shandler = logging.StreamHandler(sys.stdout)
@@ -45,7 +48,7 @@ def initLog():
 
 		logger.addHandler(shandler)
 		logger.setLevel(logging.DEBUG)
-		
+
 	if config.plugins.autotimer.log_write.value:
 		try:
 			try:
@@ -64,23 +67,27 @@ def initLog():
 		except:
 			logger = None
 
+
 def shutdownLog():
 	global logger
 	if logger:
 		logger.shutdown()
+
 
 def startLog():
 	global log, localLog
 	log = ""
 	localLog = True
 
+
 def getLog():
 	global log, localLog
 	localLog = False
 	return log
 
+
 def doDebug(*args):
-	strargs = " ".join( [ str(arg) for arg in args ] )
+	strargs = " ".join([str(arg) for arg in args])
 
 	global logger
 	if logger:
@@ -89,8 +96,9 @@ def doDebug(*args):
 	elif config.plugins.autotimer.log_shell.value:
 		print strargs
 
+
 def doLog(*args):
-	strargs = " ".join( [ str(arg) for arg in args ] )
+	strargs = " ".join([str(arg) for arg in args])
 
 	global log, localLog
 	if localLog:
@@ -102,5 +110,6 @@ def doLog(*args):
 
 	elif config.plugins.autotimer.log_shell.value:
 		print strargs
+
 
 initLog()

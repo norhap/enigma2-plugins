@@ -18,11 +18,12 @@ from Plugins.Plugin import PluginDescriptor
 from __init__ import _
 
 import string
-import sys 
+import sys
 import time
-from random import Random 
+from random import Random
 
-title =_("Change Root Password")
+title = _("Change Root Password")
+
 
 class ChangePasswdScreen(Screen):
 	skin = """
@@ -39,7 +40,7 @@ class ChangePasswdScreen(Screen):
 		<widget source="key_blue" render="Label" position="440,210" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 	</screen>""" % title
 
-	def __init__(self, session, args = 0):
+	def __init__(self, session, args=0):
 		Screen.__init__(self, session)
 		self.skin = ChangePasswdScreen.skin
 		self.user = "root"
@@ -65,13 +66,13 @@ class ChangePasswdScreen(Screen):
 	def buildList(self, password):
 		self.password = password
 		self.list = []
-		self.list.append(getConfigListEntry(_('Enter new Password'), ConfigText(default = self.password, fixed_size = False)))
+		self.list.append(getConfigListEntry(_('Enter new Password'), ConfigText(default=self.password, fixed_size=False)))
 		self["passwd"].setList(self.list)
 
-	def GeneratePassword(self): 
+	def GeneratePassword(self):
 		passwdChars = string.letters + string.digits
 		passwdLength = 8
-		return ''.join(Random().sample(passwdChars, passwdLength)) 
+		return ''.join(Random().sample(passwdChars, passwdLength))
 
 	def SetPasswd(self):
 		self.container = eConsoleAppContainer()
@@ -82,7 +83,7 @@ class ChangePasswdScreen(Screen):
 			message = _("Sucessfully changed password for root user to: ") + self.password
 		else:
 			message = _("Unable to change/reset password for root user")
-		self.session.open(MessageBox, message , MessageBox.TYPE_INFO)
+		self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
 
 	def DelPasswd(self):
 		self.container = eConsoleAppContainer()
@@ -93,32 +94,35 @@ class ChangePasswdScreen(Screen):
 			message = _("Password deleted sucessfully for root user")
 		else:
 			message = _("Unable to delete password for root user")
-		self.session.open(MessageBox, message , MessageBox.TYPE_INFO)
+		self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
 
 	def dataAvail(self, data):
 		if data.find('password'):
 			self.container.write("%s\n" % self.password)
 
-	def runFinished(self,retval):
+	def runFinished(self, retval):
 		del self.container.dataAvail[:]
 		del self.container.appClosed[:]
 		del self.container
 		self.close()
 
 	def bluePressed(self):
-		self.session.openWithCallback(self.VirtualKeyBoardTextEntry, VirtualKeyBoard, title = _("Enter your password here:"), text = self.password)
+		self.session.openWithCallback(self.VirtualKeyBoardTextEntry, VirtualKeyBoard, title=_("Enter your password here:"), text=self.password)
 
-	def VirtualKeyBoardTextEntry(self, callback = None):
+	def VirtualKeyBoardTextEntry(self, callback=None):
 		if callback is not None and len(callback):
 			self.buildList(callback)
 
+
 def startChange(menuid):
-	if menuid != "system": 
-		return [ ]
+	if menuid != "system":
+		return []
 	return [(title, main, "change_root_passwd", 50)]
+
 
 def main(session, **kwargs):
 	session.open(ChangePasswdScreen)
 
+
 def Plugins(**kwargs):
-	return PluginDescriptor(name=title, description=_("Change or reset the root password of your box"), where = [PluginDescriptor.WHERE_MENU], fnc = startChange)
+	return PluginDescriptor(name=title, description=_("Change or reset the root password of your box"), where=[PluginDescriptor.WHERE_MENU], fnc=startChange)

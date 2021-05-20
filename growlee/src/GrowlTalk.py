@@ -13,6 +13,7 @@ from . import NOTIFICATIONID
 
 GROWL_UDP_PORT = 9887
 
+
 class GrowlTalk(DatagramProtocol):
 	addr = None
 
@@ -102,12 +103,12 @@ class GrowlTalk(DatagramProtocol):
 			if digest != checksum.digest():
 				return
 
-			nlen, tlen, dlen, alen = unpack("!HHHH",str(data[4:12]))
-			notification, title, description = unpack("%ds%ds%ds" % (nlen, tlen, dlen), data[12:Len-alen-16])
+			nlen, tlen, dlen, alen = unpack("!HHHH", str(data[4:12]))
+			notification, title, description = unpack("%ds%ds%ds" % (nlen, tlen, dlen), data[12:Len - alen - 16])
 		# type == GROWL_TYPE_NOTIFICATION_NOAUTH
 		elif data[1] == '\x05':
-			nlen, tlen, dlen, alen = unpack("!HHHH",str(data[4:12]))
-			notification, title, description = unpack("%ds%ds%ds" % (nlen, tlen, dlen), data[12:Len-alen])
+			nlen, tlen, dlen, alen = unpack("!HHHH", str(data[4:12]))
+			notification, title, description = unpack("%ds%ds%ds" % (nlen, tlen, dlen), data[12:Len - alen])
 		else:
 			# don't handle any other packet yet
 			return
@@ -115,11 +116,12 @@ class GrowlTalk(DatagramProtocol):
 		Notifications.AddNotificationWithID(
 			NOTIFICATIONID,
 			MessageBox,
-			text = title + '\n' + description,
-			type = MessageBox.TYPE_INFO,
-			timeout = 5,
-			close_on_any_key = True,
+			text=title + '\n' + description,
+			type=MessageBox.TYPE_INFO,
+			timeout=5,
+			close_on_any_key=True,
 		)
+
 
 class GrowlTalkAbstraction:
 	def __init__(self, host):
@@ -141,4 +143,3 @@ class GrowlTalkAbstraction:
 
 	def stop(self):
 		return self.serverPort.stopListening()
-

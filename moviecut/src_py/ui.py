@@ -29,7 +29,7 @@ class MovieCut(ChoiceBox):
 			(_("Place the cut movie in a new file ending with \" cut\""), "CALLFUNC", self.confirmed2),
 			(_("Advanced cut specification..."), "CALLFUNC", self.confirmed3),
 		]
-		ChoiceBox.__init__(self, session, _("How would you like to cut \"%s\"?") % (self.name), list = tlist, selection = 0)
+		ChoiceBox.__init__(self, session, _("How would you like to cut \"%s\"?") % (self.name), list=tlist, selection=0)
 		self.skinName = "ChoiceBox"
 
 	def confirmed0(self, arg):
@@ -67,11 +67,12 @@ class MovieCut(ChoiceBox):
 			clist.append("-c")
 			clist += ret[5]
 		MovieCutSpawn(self.session, self, clist, self.name)
-		
+
+
 class AdvancedCutInput(Screen, ConfigListScreen):
 	def __init__(self, session, name, path, descr):
 		Screen.__init__(self, session)
-		self.skinName = [ "AdvancedCutInput", "Setup" ]
+		self.skinName = ["AdvancedCutInput", "Setup"]
 
 		self["key_green"] = StaticText(_("OK"))
 		self["key_red"] = StaticText(_("Cancel"))
@@ -82,17 +83,17 @@ class AdvancedCutInput(Screen, ConfigListScreen):
 			title = name
 		dir = self.dirName(path)
 		file = self.baseName(path) + " cut"
-		self.input_replace = ConfigSelection(choices = [("no", _("No")), ("yes", _("Yes"))], default = "no")
-		self.input_file = ConfigText(default = file, fixed_size = False, visible_width = 45)
-		self.input_title = ConfigText(default = title, fixed_size = False, visible_width = 45)
-		self.input_descr = ConfigText(default = descr, fixed_size = False, visible_width = 45)
+		self.input_replace = ConfigSelection(choices=[("no", _("No")), ("yes", _("Yes"))], default="no")
+		self.input_file = ConfigText(default=file, fixed_size=False, visible_width=45)
+		self.input_title = ConfigText(default=title, fixed_size=False, visible_width=45)
+		self.input_descr = ConfigText(default=descr, fixed_size=False, visible_width=45)
 		tmp = config.movielist.videodirs.value
 		if not dir in tmp:
 			tmp.append(dir)
-		self.input_dir = ConfigSelection(choices = tmp, default = dir)
-		self.input_manual = ConfigSelection(choices = [("no", _("Cutlist")), ("yes", _("Manual specification"))], default = "no")
+		self.input_dir = ConfigSelection(choices=tmp, default=dir)
+		self.input_manual = ConfigSelection(choices=[("no", _("Cutlist")), ("yes", _("Manual specification"))], default="no")
 		self.input_space = ConfigNothing()
-		self.input_manualcuts = ConfigText(default = "", fixed_size = False)
+		self.input_manualcuts = ConfigText(default="", fixed_size=False)
 		self.input_manualcuts.setUseableChars(" 0123456789:.")
 
 		self["actions"] = ActionMap(["SetupActions"],
@@ -204,6 +205,7 @@ class AdvancedCutInput(Screen, ConfigListScreen):
 		else:
 			return dir + name
 
+
 class MovieCutQueue:
 	def __init__(self):
 		self.container = eConsoleAppContainer()
@@ -232,22 +234,24 @@ class MovieCutQueue:
 		cb(retval)
 		self.runNext()
 
+
 global_mcut_errors = [_("The movie \"%s\" is successfully cut"),
-		      _("Cutting failed for movie \"%s\"")+":\n"+_("Bad arguments"),
-		      _("Cutting failed for movie \"%s\"")+":\n"+_("Couldn't open input .ts file"),
-		      _("Cutting failed for movie \"%s\"")+":\n"+_("Couldn't open input .cuts file"),
-		      _("Cutting failed for movie \"%s\"")+":\n"+_("Couldn't open input .ap file"),
-		      _("Cutting failed for movie \"%s\"")+":\n"+_("Couldn't open output .ts file"),
-		      _("Cutting failed for movie \"%s\"")+":\n"+_("Couldn't open output .cuts file"),
-		      _("Cutting failed for movie \"%s\"")+":\n"+_("Couldn't open output .ap file"),
-		      _("Cutting failed for movie \"%s\"")+":\n"+_("Empty .ap file"),
-		      _("Cutting failed for movie \"%s\"")+":\n"+_("No cuts specified"),
-		      _("Cutting failed for movie \"%s\"")+":\n"+_("Read/write error (disk full?)"),
+		      _("Cutting failed for movie \"%s\"") + ":\n" + _("Bad arguments"),
+		      _("Cutting failed for movie \"%s\"") + ":\n" + _("Couldn't open input .ts file"),
+		      _("Cutting failed for movie \"%s\"") + ":\n" + _("Couldn't open input .cuts file"),
+		      _("Cutting failed for movie \"%s\"") + ":\n" + _("Couldn't open input .ap file"),
+		      _("Cutting failed for movie \"%s\"") + ":\n" + _("Couldn't open output .ts file"),
+		      _("Cutting failed for movie \"%s\"") + ":\n" + _("Couldn't open output .cuts file"),
+		      _("Cutting failed for movie \"%s\"") + ":\n" + _("Couldn't open output .ap file"),
+		      _("Cutting failed for movie \"%s\"") + ":\n" + _("Empty .ap file"),
+		      _("Cutting failed for movie \"%s\"") + ":\n" + _("No cuts specified"),
+		      _("Cutting failed for movie \"%s\"") + ":\n" + _("Read/write error (disk full?)"),
 		      _("Cutting was aborted for movie \"%s\"")]
 
 global_mcut_queue = MovieCutQueue()
 
 global_mcut_block = False
+
 
 class MovieCutSpawn:
 	def __init__(self, session, parent, clist, name):
@@ -288,14 +292,14 @@ class MovieCutSpawn:
 			global_mcut_block = True
 			self.session.openWithCallback(self.endw, MessageBox, self.mess, MessageBox.TYPE_INFO, timeout=10, simple=True)
 
-	def endw(self, arg = 0):
+	def endw(self, arg=0):
 		global global_mcut_block
 		global_mcut_block = False
 		if self.session.current_dialog == self.dialog:
 			self.session.current_dialog.close(True)
 			self.endc(arg)
 
-	def endc(self, arg = 0):
+	def endc(self, arg=0):
 		global global_mcut_block
 		global_mcut_block = False
 		self.dialog = False

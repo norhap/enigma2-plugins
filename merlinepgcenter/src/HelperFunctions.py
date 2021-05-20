@@ -6,8 +6,8 @@
 #  Coded by Shaderman (c) 2011
 #  Support: www.dreambox-tools.info
 #
-#  This plugin is licensed under the Creative Commons 
-#  Attribution-NonCommercial-ShareAlike 3.0 Unported 
+#  This plugin is licensed under the Creative Commons
+#  Attribution-NonCommercial-ShareAlike 3.0 Unported
 #  License. To view a copy of this license, visit
 #  http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to Creative
 #  Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
@@ -16,7 +16,7 @@
 #  is licensed by Dream Multimedia GmbH.
 
 #  This plugin is NOT free software. It is open source, you are allowed to
-#  modify it (if you keep the license), but it may not be commercially 
+#  modify it (if you keep the license), but it may not be commercially
 #  distributed other than under the conditions noted above.
 #
 
@@ -44,32 +44,33 @@ LIST_TYPE_UPCOMING = 1
 
 
 class ResizeScrollLabel(ScrollLabel):
-	def __init__(self, text = ""):
+	def __init__(self, text=""):
 		ScrollLabel.__init__(self, text)
-		
+
 	def resize(self, s):
-		lineheight=fontRenderClass.getInstance().getLineHeight( self.long_text.getFont() )
+		lineheight = fontRenderClass.getInstance().getLineHeight(self.long_text.getFont())
 		if not lineheight:
 			lineheight = 30 # assume a random lineheight if nothing is visible
 		lines = (int)(s.height() / lineheight)
 		self.pageHeight = (int)(lines * lineheight)
-		self.instance.resize(eSize(s.width(), self.pageHeight+(int)(lineheight/6)))
-		self.scrollbar.move(ePoint(s.width()-20,0))
-		self.scrollbar.resize(eSize(20,self.pageHeight+(int)(lineheight/6)))
-		self.long_text.resize(eSize(s.width()-30, self.pageHeight*16))
+		self.instance.resize(eSize(s.width(), self.pageHeight + (int)(lineheight / 6)))
+		self.scrollbar.move(ePoint(s.width() - 20, 0))
+		self.scrollbar.resize(eSize(20, self.pageHeight + (int)(lineheight / 6)))
+		self.long_text.resize(eSize(s.width() - 30, self.pageHeight * 16))
 		self.setText(self.message)
+
 
 class PiconLoader():
 	def __init__(self):
-		self.nameCache = { }
-		config.plugins.merlinEpgCenter.epgPaths.addNotifier(self.piconPathChanged, initial_call = False)
-		
+		self.nameCache = {}
+		config.plugins.merlinEpgCenter.epgPaths.addNotifier(self.piconPathChanged, initial_call=False)
+
 	def getPiconFilename(self, sRef):
 		pngname = ""
 		# strip all after last :
 		pos = sRef.rfind(':')
 		if pos != -1:
-			sRef = sRef[:pos].rstrip(':').replace(':','_')
+			sRef = sRef[:pos].rstrip(':').replace(':', '_')
 		pngname = self.nameCache.get(sRef, "")
 		if pngname == "":
 			pngname = self.findPicon(sRef)
@@ -83,48 +84,51 @@ class PiconLoader():
 						pngname = resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/PiconMissing_small.png")
 					self.nameCache["default"] = pngname
 		return pngname
-		
+
 	def getPicon(self, pngname):
-		return LoadPixmap(cached = True, path = self.getPiconFilename(pngname))
-		
+		return LoadPixmap(cached=True, path=self.getPiconFilename(pngname))
+
 	def findPicon(self, sRef):
 		pngname = config.plugins.merlinEpgCenter.epgPaths.value + sRef + ".png"
 		if not fileExists(pngname):
 			pngname = resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/PiconMissing_small.png")
 		return pngname
-		
-	def piconPathChanged(self, configElement = None):
+
+	def piconPathChanged(self, configElement=None):
 		self.nameCache.clear()
-		
+
 	def removeNotifier(self):
 		config.plugins.merlinEpgCenter.epgPaths.notifiers.remove(self.piconPathChanged)
-		
+
+
 def findDefaultPicon(serviceName):
 	searchPaths = (eEnv.resolve('${datadir}/enigma2/%s/'), '/media/cf/%s/', '/media/usb/%s/')
-	
+
 	pos = serviceName.rfind(':')
 	if pos != -1:
-		serviceName = serviceName[:pos].rstrip(':').replace(':','_')
-	
+		serviceName = serviceName[:pos].rstrip(':').replace(':', '_')
+
 	for path in searchPaths:
 		pngname = (path % "picon") + serviceName + ".png"
 		if fileExists(pngname):
 			return pngname
 	return resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/PiconMissing.png")
-	
+
 # derived from Tools.FuzzyDate
+
+
 def getFuzzyDay(t):
 	d = localtime(t)
 	nt = time()
 	n = localtime()
-	
+
 	if d[:3] == n[:3]:
 		# same day
 		date = _("Today")
-	elif dt_date.fromtimestamp(t) == dt_date.today() + dt_timedelta(days = 1):
+	elif dt_date.fromtimestamp(t) == dt_date.today() + dt_timedelta(days=1):
 		# next day
 		date = _("Tomorrow")
-	elif ((t - nt) < 7*86400) and (nt < t):
+	elif ((t - nt) < 7 * 86400) and (nt < t):
 		# same week
 		date = (_("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday"), _("Friday"), _("Saturday"), _("Sunday"))[d[6]]
 	elif d[0] == n[0]:
@@ -132,10 +136,12 @@ def getFuzzyDay(t):
 		date = "%d.%d.%d" % (d[2], d[1], d[0])
 	else:
 		date = _("Unknown date")
-		
+
 	return date
-	
+
 # used to let timer pixmaps blink in our lists
+
+
 class BlinkTimer():
 	def __init__(self, session):
 		self.session = session
@@ -149,7 +155,7 @@ class BlinkTimer():
 		self.timer.callback.append(self.changeBlinkState)
 		self.session.nav.record_event.append(self.gotRecordEvent)
 		self.callbacks = []
-		
+
 	def gotRecordEvent(self, service, event):
 		if event in (iRecordableService.evEnd, iRecordableService.evStart, None):
 			numRecs = len(self.session.nav.getRecordings())
@@ -161,56 +167,56 @@ class BlinkTimer():
 					x()
 			elif not numRecs and self.timerRunning and not self.stopping:
 				self.stopping = True
-				
+
 	def shutdown(self):
 		self.session.nav.record_event.remove(self.gotRecordEvent)
 		self.timer.callback.remove(self.changeBlinkState)
-			
+
 	def appendList(self, l):
 		self.lists.append(l)
-		
+
 	def changeBlinkState(self):
 		self.state = not self.state
-		
+
 		i = 0
 		while i < 2:
 			for idx in self.listSets[i]:
 				self.lists[i].l.invalidateEntry(idx)
 			i += 1
-			
+
 		if self.stopping:
 			self.delayStop()
-			
+
 	def getBlinkState(self):
 		return self.state
-		
+
 	def getIsRunning(self):
 		return self.timerRunning
-		
+
 	def getIsStopping(self):
 		return self.stopping
-		
+
 	def getIsInList(self, idx):
 		return idx in self.listSets[LIST_TYPE_EPG]
-		
+
 	def gotListElements(self):
 		if len(self.listSets[LIST_TYPE_EPG]) or len(self.listSets[LIST_TYPE_UPCOMING]):
 			return True
 		else:
 			return False
-			
+
 	# make one more tick befor stopping the timer to show the picon again
 	def delayStop(self):
 		self.stopping = True
 		self.delay += 1
-		
+
 		if self.delay > 1:
 			self.timer.stop()
 			self.delay = 0
 			self.stopping = False
 			self.state = False
 			self.timerRunning = False
-			
+
 	def updateEntry(self, listType, idx, isRunning):
 		if idx in self.listSets[listType]:
 			if not isRunning:
@@ -220,19 +226,20 @@ class BlinkTimer():
 			if not self.timerRunning and self.gotListElements():
 				self.delay = 0
 				self.stopping = False
-				
+
 	def reset(self):
 		if not self.timerRunning:
 			return
-			
+
 		self.listSets[LIST_TYPE_EPG].clear()
 		self.listSets[LIST_TYPE_UPCOMING].clear()
-		
+
+
 class RecTimerEntry(RecordTimerEntry):
-	def __init__(self, session, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None):
+	def __init__(self, session, serviceref, begin, end, name, description, eit, disabled=False, justplay=False, afterEvent=AFTEREVENT.AUTO, checkOldTimers=False, dirname=None, tags=None):
 		self.session = session
-		RecordTimerEntry.__init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None)
-		
+		RecordTimerEntry.__init__(self, serviceref, begin, end, name, description, eit, disabled=False, justplay=False, afterEvent=AFTEREVENT.AUTO, checkOldTimers=False, dirname=None, tags=None)
+
 	def activate(self):
 		next_state = self.state + 1
 		self.log(5, "activating state %d" % next_state)
@@ -245,7 +252,7 @@ class RecTimerEntry(RecordTimerEntry):
 				# i.e. cable / sat.. then the second recording needs an own extension... when we create the file
 				# here than calculateFilename is happy
 				if not self.justplay:
-					open(self.Filename + ".ts", "w").close() 
+					open(self.Filename + ".ts", "w").close()
 				# fine. it worked, resources are allocated.
 				self.next_activation = self.begin
 				self.backoff = 0
@@ -289,7 +296,7 @@ class RecTimerEntry(RecordTimerEntry):
 			else:
 				self.log(11, "start recording")
 				record_res = self.record_service.start()
-				
+
 				if record_res:
 					self.log(13, "start record returned %d" % record_res)
 					self.do_backoff()
@@ -301,7 +308,7 @@ class RecTimerEntry(RecordTimerEntry):
 		elif next_state == self.StateEnded:
 			old_end = self.end
 			if self.setAutoincreaseEnd():
-				self.log(12, "autoincrase recording %d minute(s)" % int((self.end - old_end)/60))
+				self.log(12, "autoincrase recording %d minute(s)" % int((self.end - old_end) / 60))
 				self.state -= 1
 				return True
 			self.log(12, "stop recording")
@@ -310,12 +317,11 @@ class RecTimerEntry(RecordTimerEntry):
 				self.record_service = None
 			if self.afterEvent == AFTEREVENT.STANDBY:
 				if not Screens.Standby.inStandby and config.plugins.merlinEpgCenter.showTimerMessages.value: # not already in standby
-					self.session.openWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nDreambox to standby. Do that now?"), timeout = 20)
+					self.session.openWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nDreambox to standby. Do that now?"), timeout=20)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
 						RecordTimerEntry.TryQuitMainloop() # start shutdown handling without screen
 					elif config.plugins.merlinEpgCenter.showTimerMessages.value:
-						self.session.openWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour Dreambox. Shutdown now?"), timeout = 20)
+						self.session.openWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour Dreambox. Shutdown now?"), timeout=20)
 			return True
-			

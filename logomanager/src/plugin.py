@@ -16,32 +16,34 @@ import os
 ###############################################################################
 
 config.plugins.logomanager = ConfigSubsection()
-config.plugins.logomanager.path = ConfigSelection([("none",_("None")), ("/media/cf/bootlogos/",_("CF Drive")), ("/media/hdd/bootlogos/",_("Harddisk")), ("/media/usb/bootlogos/",_("USB Drive")),], default = "none")
+config.plugins.logomanager.path = ConfigSelection([("none", _("None")), ("/media/cf/bootlogos/", _("CF Drive")), ("/media/hdd/bootlogos/", _("Harddisk")), ("/media/usb/bootlogos/", _("USB Drive")), ], default="none")
 
 from mimetypes import add_type
 add_type("image/mvi", ".mvi")
 
 #########
 
+
 def filescan_open(list, session, **kwargs):
 	print "[Logo Manager] filescan_open", list, kwargs
-	session.open(LogoManagerScreen,file=list[0].path)
+	session.open(LogoManagerScreen, file=list[0].path)
+
 
 def start_from_filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
 	print "[Logo Manager] start_from_filescan", kwargs
 	return \
 		Scanner(mimetypes=["image/mvi"],
-			paths_to_scan =
-				[
-					ScanPath(path = "", with_subdirs = False),
+			paths_to_scan=[
+					ScanPath(path="", with_subdirs=False),
 				],
-			name = _("Logo Manager"),
-			description = _("view bootlogo/mvi"),
-			openfnc = filescan_open,
+			name=_("Logo Manager"),
+			description=_("view bootlogo/mvi"),
+			openfnc=filescan_open,
 		)
 
 ###############################################################################
+
 
 class LogoManagerScreen(Screen):
 	skin = """
@@ -49,21 +51,21 @@ class LogoManagerScreen(Screen):
 			<widget name="filelist" position="0,0" size="600,30"  />
 		</screen>"""
 	targets = [
-				( _("bootlogo"), "/etc/enigma2/bootlogo.mvi"),
-				( _("backdrop"), "/etc/enigma2/backdrop.mvi"),
-				( _("radio"), "/usr/share/enigma2/radio.mvi"), 
-				( _("switch off"), "/etc/enigma2/switchoff.mvi"),
-				( _("reboot"), "/etc/enigma2/reboot.mvi")
+				(_("bootlogo"), "/etc/enigma2/bootlogo.mvi"),
+				(_("backdrop"), "/etc/enigma2/backdrop.mvi"),
+				(_("radio"), "/usr/share/enigma2/radio.mvi"),
+				(_("switch off"), "/etc/enigma2/switchoff.mvi"),
+				(_("reboot"), "/etc/enigma2/reboot.mvi")
 				]
 
-	def __init__(self, session, file = None):
+	def __init__(self, session, file=None):
 		self.session = session
 		self.skin = LogoManagerScreen.skin
 		Screen.__init__(self, session)
 		self.setTitle(_("Logo Manager"))
 		self["filelist"] = MenuList([], enableWrapAround=True)
 		self["filelist"].onSelectionChanged.append(self.showSelected)
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions","MenuActions","ShortcutActions","GlobalActions"],
+		self["actions"] = ActionMap(["WizardActions", "DirectionActions", "MenuActions", "ShortcutActions", "GlobalActions"],
 		{
 		"ok": self.showSelected,
 		"back": self.Exit,
@@ -204,7 +206,7 @@ class LogoManagerScreen(Screen):
 		self.session.openWithCallback(self.selectedMenu, ChoiceBox, _("Please select a option:"), menu)
 
 	def removeCurrentLogo(self):
-		self.session.openWithCallback(self.confirmRemove, MessageBox,_("Really remove current logo of %s?") % config.plugins.logomanager.path.value, MessageBox.TYPE_YESNO)
+		self.session.openWithCallback(self.confirmRemove, MessageBox, _("Really remove current logo of %s?") % config.plugins.logomanager.path.value, MessageBox.TYPE_YESNO)
 
 	def confirmRemove(self, answer):
 		if answer:
@@ -221,14 +223,14 @@ class LogoManagerScreen(Screen):
 	def openConfig(self):
 		self.session.open(LogoManagerConfigScreen)
 
-	def selectedMenu(self,choice):
+	def selectedMenu(self, choice):
 		if choice is not None:
 			choice[1]()
 
 	def setlist_to_current(self):
 		""" fills the list with the target MVIs"""
 		global plugin_path
-		filelist =[]
+		filelist = []
 		for i in self.targets:
 			if fileExists(i[1]):
 				filelist.append(i[1])
@@ -240,7 +242,7 @@ class LogoManagerScreen(Screen):
 
 	def setlist_to_avaiable(self):
 		""" fills the list with all found new MVIs"""
-		filelist =[]
+		filelist = []
 		for i in os.listdir(config.plugins.logomanager.path.value):
 			if i.endswith(".mvi"):
 				filelist.append(config.plugins.logomanager.path.value + i)
@@ -265,12 +267,12 @@ class LogoManagerScreen(Screen):
 
 	def showMVI(self, mvifile):
 		""" shows a mvi """
-		print "[Logo Manager] playing MVI",mvifile
+		print "[Logo Manager] playing MVI", mvifile
 		os.system("/usr/bin/showiframe '%s'" % mvifile)
 
 	def installMVI(self, target, sourcefile):
 		""" installs a mvi by overwriting the target with a source mvi """
-		print "[Logo Manager] installing %s as %s on %s" %(sourcefile, target[0], target[1])
+		print "[Logo Manager] installing %s as %s on %s" % (sourcefile, target[0], target[1])
 		if target[0] == _("radio") and not fileExists("/usr/share/enigma2/radio.mvi-orig"):
 			os.system("mv /usr/share/enigma2/radio.mvi /usr/share/enigma2/radio.mvi-orig")
 		if fileExists(target[1]):
@@ -288,7 +290,8 @@ class LogoManagerScreen(Screen):
 				os.system(cmd)
 				if fileExists("/etc/rc6.d/K01bootlogo-reboot"):
 					os.chmod("/etc/rc6.d/K01bootlogo-reboot", 0755)
-		os.system("cp '%s' '%s'"%(sourcefile, target[1]))
+		os.system("cp '%s' '%s'" % (sourcefile, target[1]))
+
 
 class LogoManagerConfigScreen(ConfigListScreen, Screen):
 	skin = """
@@ -297,7 +300,8 @@ class LogoManagerConfigScreen(ConfigListScreen, Screen):
 			<widget name="buttonred" position="10,160" size="100,40" backgroundColor="red" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
 			<widget name="buttongreen" position="120,160" size="100,40" backgroundColor="green" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
 		</screen>"""
-	def __init__(self, session, args = 0):
+
+	def __init__(self, session, args=0):
 		self.session = session
 		Screen.__init__(self, session)
 		self.setTitle(_("Logo manager setup"))
@@ -336,16 +340,18 @@ class LogoManagerConfigScreen(ConfigListScreen, Screen):
 		config.plugins.logomanager.path.cancel()
 		self.close()
 
+
 def main(session, **kwargs):
 	if config.plugins.logomanager.path.value == "none" or os.path.isdir(config.plugins.logomanager.path.value) is not True:
 		session.open(LogoManagerConfigScreen)
 	else:
 		session.open(LogoManagerScreen)
 
+
 def Plugins(path, **kwargs):
     global plugin_path
     plugin_path = path
     return [
-			PluginDescriptor(name = _("Logo Manager"), description = _("manage logos to display at boottime"), where = PluginDescriptor.WHERE_PLUGINMENU, icon="plugin.png", fnc = main),
-			PluginDescriptor(name = _("Logo Manager"), where = PluginDescriptor.WHERE_FILESCAN, fnc = start_from_filescan)
+			PluginDescriptor(name=_("Logo Manager"), description=_("manage logos to display at boottime"), where=PluginDescriptor.WHERE_PLUGINMENU, icon="plugin.png", fnc=main),
+			PluginDescriptor(name=_("Logo Manager"), where=PluginDescriptor.WHERE_FILESCAN, fnc=start_from_filescan)
 			]

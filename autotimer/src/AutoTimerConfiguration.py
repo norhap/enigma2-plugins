@@ -26,6 +26,7 @@ of the version attribue.
 """
 CURRENT_CONFIG_VERSION = "8"
 
+
 def getValue(definitions, default):
 	# Initialize Output
 	ret = ""
@@ -33,14 +34,15 @@ def getValue(definitions, default):
 	# How many definitions are present
 	if isinstance(definitions, list):
 		Len = len(definitions)
-		ret = definitions[Len-1].text if Len else ""
+		ret = definitions[Len - 1].text if Len else ""
 	else:
 		ret = definitions.text
 
 	# Return stripped output or (if empty) default
 	return ret.strip() or default
 
-def parseConfig(configuration, list, version = None, uniqueTimerId = 0, defaultTimer = None):
+
+def parseConfig(configuration, list, version=None, uniqueTimerId=0, defaultTimer=None):
 	try:
 		intVersion = int(version)
 	except ValueError:
@@ -68,7 +70,8 @@ def parseConfig(configuration, list, version = None, uniqueTimerId = 0, defaultT
 		if parseEntry(timer, baseTimer):
 			list.append(baseTimer)
 
-def parseEntry(element, baseTimer, defaults = False):
+
+def parseEntry(element, baseTimer, defaults=False):
 	if not defaults:
 		# Read out match
 		baseTimer.match = element.get("match", "").encode("UTF-8")
@@ -89,7 +92,7 @@ def parseEntry(element, baseTimer, defaults = False):
 		elif enabled == "yes":
 			baseTimer.enabled = True
 		else:
-			doLog('[AutoTimer] Erroneous config contains invalid value for "enabled":', enabled,', disabling')
+			doLog('[AutoTimer] Erroneous config contains invalid value for "enabled":', enabled, ', disabling')
 			baseTimer.enabled = False
 
 		# Read timeframe
@@ -144,7 +147,7 @@ def parseEntry(element, baseTimer, defaults = False):
 	# Read out max length
 	maxduration = element.get("maxduration")
 	if maxduration:
-		baseTimer.maxduration = int(maxduration)*60
+		baseTimer.maxduration = int(maxduration) * 60
 
 	# Read out recording path
 	default = baseTimer.destination or ""
@@ -201,9 +204,9 @@ def parseEntry(element, baseTimer, defaults = False):
 					# strip all after last :
 					pos = value.rfind(':')
 					if pos != -1:
-						if value[pos-1] == ':':
+						if value[pos - 1] == ':':
 							pos -= 1
-						value = value[:pos+1]
+						value = value[:pos + 1]
 
 				servicelist.append(value)
 		baseTimer.services = servicelist
@@ -235,7 +238,7 @@ def parseEntry(element, baseTimer, defaults = False):
 			if value in idx:
 				value = idx[value]
 			else:
-				doLog('[AutoTimer] Erroneous config contains invalid value for "afterevent":', afterevent,', ignoring definition')
+				doLog('[AutoTimer] Erroneous config contains invalid value for "afterevent":', afterevent, ', ignoring definition')
 				continue
 
 			start = afterevent.get("from")
@@ -278,7 +281,7 @@ def parseEntry(element, baseTimer, defaults = False):
 		baseTimer.include = includes
 
 	# Read out recording tags
-	l =  element.findall("tag")
+	l = element.findall("tag")
 	if l:
 		tags = []
 		for tag in l:
@@ -291,7 +294,8 @@ def parseEntry(element, baseTimer, defaults = False):
 
 	return True
 
-def parseConfigOld(configuration, list, uniqueTimerId = 0):
+
+def parseConfigOld(configuration, list, uniqueTimerId=0):
 	doLog("[AutoTimer] Trying to parse old config")
 
 	# Iterate Timers
@@ -325,7 +329,6 @@ def parseConfigOld(configuration, list, uniqueTimerId = 0):
 			# Setting match to name
 			match = name
 
-
 		# See if Timer is ensabled (V2+)
 		enabled = timer.get("enabled")
 		if enabled:
@@ -334,7 +337,7 @@ def parseConfigOld(configuration, list, uniqueTimerId = 0):
 			elif enabled == "yes":
 				enabled = True
 			else:
-				doLog('[AutoTimer] Erroneous config contains invalid value for "enabled":', enabled,', skipping entry')
+				doLog('[AutoTimer] Erroneous config contains invalid value for "enabled":', enabled, ', skipping entry')
 				enabled = False
 		# V1
 		else:
@@ -360,8 +363,8 @@ def parseConfigOld(configuration, list, uniqueTimerId = 0):
 			Len = len(elements)
 			if Len:
 				# Read out last definition
-				start = elements[Len-1].get("from")
-				end = elements[Len-1].get("to")
+				start = elements[Len - 1].get("from")
+				end = elements[Len - 1].get("to")
 				if start and end:
 					start = [int(x) for x in start.split(':')]
 					end = [int(x) for x in end.split(':')]
@@ -384,9 +387,9 @@ def parseConfigOld(configuration, list, uniqueTimerId = 0):
 						# strip all after last :
 						pos = value.rfind(':')
 						if pos != -1:
-							if value[pos-1] == ':':
+							if value[pos - 1] == ':':
 								pos -= 1
-							value = value[:pos+1]
+							value = value[:pos + 1]
 
 					servicelist.append(value)
 		else:
@@ -414,10 +417,10 @@ def parseConfigOld(configuration, list, uniqueTimerId = 0):
 			elements = timer.findall("offset")
 			Len = len(elements)
 			if Len:
-				value = elements[Len-1].get("both")
+				value = elements[Len - 1].get("both")
 				if value == '':
-					before = int(elements[Len-1].get("before", 0)) * 60
-					after = int(elements[Len-1].get("after", 0)) * 60
+					before = int(elements[Len - 1].get("before", 0)) * 60
+					after = int(elements[Len - 1].get("after", 0)) * 60
 				else:
 					before = after = int(value) * 60
 				offset = (before, after)
@@ -456,7 +459,7 @@ def parseConfigOld(configuration, list, uniqueTimerId = 0):
 			if value in idx:
 				value = idx[value]
 			else:
-				doLog('[AutoTimer] Erroneous config contains invalid value for "afterevent":', afterevent,', ignoring definition')
+				doLog('[AutoTimer] Erroneous config contains invalid value for "afterevent":', afterevent, ', ignoring definition')
 				continue
 
 			start = element.get("from")
@@ -494,14 +497,14 @@ def parseConfigOld(configuration, list, uniqueTimerId = 0):
 		# Read out max length (V4+)
 		maxlen = timer.get("maxduration")
 		if maxlen:
-			maxlen = int(maxlen)*60
+			maxlen = int(maxlen) * 60
 		# V3-
 		else:
 			elements = timer.findall("maxduration")
 			if elements:
 				maxlen = getValue(elements, None)
 				if maxlen is not None:
-					maxlen = int(maxlen)*60
+					maxlen = int(maxlen) * 60
 			else:
 				maxlen = None
 
@@ -523,28 +526,29 @@ def parseConfigOld(configuration, list, uniqueTimerId = 0):
 				name,
 				match,
 				enabled,
-				timespan = timetuple,
-				services = servicelist,
-				offset = offset,
-				afterevent = afterevent,
-				exclude = excludes,
-				include = includes,
-				maxduration = maxlen,
-				destination = destination,
-				matchCount = counter,
-				matchLeft = counterLeft,
-				matchLimit = counterLimit,
-				matchFormatString = counterFormat,
-				lastBegin = lastBegin,
-				justplay = justplay,
-				setEndtime = setEndtime,
-				avoidDuplicateDescription = avoidDuplicateDescription,
-				searchForDuplicateDescription = searchForDuplicateDescription,
-				bouquets = bouquets,
-				tags = tags
+				timespan=timetuple,
+				services=servicelist,
+				offset=offset,
+				afterevent=afterevent,
+				exclude=excludes,
+				include=includes,
+				maxduration=maxlen,
+				destination=destination,
+				matchCount=counter,
+				matchLeft=counterLeft,
+				matchLimit=counterLimit,
+				matchFormatString=counterFormat,
+				lastBegin=lastBegin,
+				justplay=justplay,
+				setEndtime=setEndtime,
+				avoidDuplicateDescription=avoidDuplicateDescription,
+				searchForDuplicateDescription=searchForDuplicateDescription,
+				bouquets=bouquets,
+				tags=tags
 		))
 
-def buildConfig(defaultTimer, timers, webif = False):
+
+def buildConfig(defaultTimer, timers, webif=False):
 	# Generate List in RAM
 	list = ['<?xml version="1.0" ?>\n<autotimer version="', CURRENT_CONFIG_VERSION, '">\n\n']
 	append = list.append
@@ -554,7 +558,7 @@ def buildConfig(defaultTimer, timers, webif = False):
 	# This gets deleted afterwards if we do not have set any defaults
 	append(' <defaults')
 	if webif:
-		extend((' id="', str(defaultTimer.getId()),'"'))
+		extend((' id="', str(defaultTimer.getId()), '"'))
 
 	# Timespan
 	if defaultTimer.hasTimespan():
@@ -701,6 +705,8 @@ def buildConfig(defaultTimer, timers, webif = False):
 	# Tags
 	if webif and defaultTimer.tags:
 		extend(('  <e2tags>', stringToXML(' '.join(defaultTimer.tags)), '</e2tags>\n'))
+		for tag in defaultTimer.tags:
+			extend(('  <e2tag>', stringToXML(tag), '</e2tag>\n'))
 	else:
 		for tag in defaultTimer.tags:
 			extend(('  <tag>', stringToXML(tag), '</tag>\n'))
@@ -717,7 +723,7 @@ def buildConfig(defaultTimer, timers, webif = False):
 		# Common attributes (match, enabled)
 		extend((' <timer name="', stringToXML(timer.name), '" match="', stringToXML(timer.match), '" enabled="', timer.getEnabled(), '"'))
 		if webif:
-			extend((' id="', str(timer.getId()),'"'))
+			extend((' id="', str(timer.getId()), '"'))
 
 		# Timespan
 		if timer.hasTimespan():
@@ -744,7 +750,7 @@ def buildConfig(defaultTimer, timers, webif = False):
 
 		# Counter
 		if timer.hasCounter():
-			extend((' lastBegin="', str(timer.getLastBegin()), '" counter="', str(timer.getCounter()), '" left="', str(timer.getCounterLeft()) ,'"'))
+			extend((' lastBegin="', str(timer.getLastBegin()), '" counter="', str(timer.getCounter()), '" left="', str(timer.getCounterLeft()), '"'))
 			if timer.hasCounterFormatString():
 				extend((' lastActivation="', str(timer.getCounterLimit()), '"'))
 				extend((' counterFormat="', str(timer.getCounterFormatString()), '"'))
@@ -871,6 +877,8 @@ def buildConfig(defaultTimer, timers, webif = False):
 		# Tags
 		if webif and timer.tags:
 			extend(('  <e2tags>', stringToXML(' '.join(timer.tags)), '</e2tags>\n'))
+			for tag in timer.tags:
+				extend(('  <e2tag>', stringToXML(tag), '</e2tag>\n'))
 		else:
 			for tag in timer.tags:
 				extend(('  <tag>', stringToXML(tag), '</tag>\n'))
@@ -882,4 +890,3 @@ def buildConfig(defaultTimer, timers, webif = False):
 	append('</autotimer>\n')
 
 	return list
-

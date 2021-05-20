@@ -32,14 +32,17 @@ HEIGHT = size.height()
 
 ##################################################
 
+
 def localeInit():
 	gettext.bindtextdomain("PornCenter", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "Extensions/PornCenter/locale/"))
+
 
 def _(txt):
 	t = gettext.dgettext("PornCenter", txt)
 	if t == txt:
 		t = gettext.gettext(txt)
 	return t
+
 
 localeInit()
 language.addCallback(localeInit)
@@ -54,6 +57,7 @@ config.plugins.PornCenter.bufferDevice = ConfigText(default="/media/hdd/", fixed
 config.plugins.PornCenter.keepStored = ConfigSelection(choices={"delete": _("delete"), "keep": _("keep on device"), "ask": _("ask me")}, default="delete")
 
 ##################################################
+
 
 class BufferThread():
 	def __init__(self):
@@ -92,9 +96,11 @@ class BufferThread():
 		self.error = ""
 		self.download.stop()
 
+
 bufferThread = BufferThread()
 
 ##################################################
+
 
 class PornCenterBuffer(Screen):
 	skin = """
@@ -146,6 +152,7 @@ class PornCenterBuffer(Screen):
 
 ##################################################
 
+
 class ChangedMoviePlayer(MoviePlayer):
 	def __init__(self, session, service):
 		MoviePlayer.__init__(self, session, service)
@@ -173,6 +180,7 @@ class ChangedMoviePlayer(MoviePlayer):
 
 ##################################################
 
+
 class PornCenterLocationSelection(Screen):
 	skin = """
 	<screen position="center,center" size="560,300" title="%s">
@@ -189,8 +197,10 @@ class PornCenterLocationSelection(Screen):
 
 		self["key_green"] = Label(_("Select"))
 
-		try: self["filelist"] = FileList(dir, showDirectories=True, showFiles=False)
-		except: self["filelist"] = FileList("/", showDirectories, showFiles)
+		try:
+			self["filelist"] = FileList(dir, showDirectories=True, showFiles=False)
+		except:
+			self["filelist"] = FileList("/", showDirectories, showFiles)
 
 		self["actions"] = ActionMap(["ColorActions", "OkCancelActions"],
 			{
@@ -225,6 +235,7 @@ class PornCenterLocationSelection(Screen):
 			self.instance.setTitle("?")
 
 ##################################################
+
 
 class PornCenterConfig(ConfigListScreen, Screen):
 	skin = """
@@ -282,6 +293,7 @@ class PornCenterConfig(ConfigListScreen, Screen):
 
 ##################################################
 
+
 class PinChecker:
 	def __init__(self):
 		self.pin_entered = False
@@ -290,13 +302,16 @@ class PinChecker:
 
 	def pinEntered(self):
 		self.pin_entered = True
-		self.timer.start(60000*10, 1)
+		self.timer.start(60000 * 10, 1)
 
 	def lock(self):
 		self.pin_entered = False
+
+
 pinchecker = PinChecker()
 
 ##################################################
+
 
 class PornCenterList(MenuList):
 	def __init__(self):
@@ -316,12 +331,13 @@ class PornCenterList(MenuList):
 			if entry.thumb:
 				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 0), size=(150, 75), png=entry.thumb))
 			else:
-				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 0), size=(150, 75), png=LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS)+"/Extensions/PornCenter/nopreview.png")))
-			res.append(MultiContentEntryText(pos=(155, self.center_up), size=(WIDTH-270, 45), font=0, text=entry.name))
+				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 0), size=(150, 75), png=LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS) + "/Extensions/PornCenter/nopreview.png")))
+			res.append(MultiContentEntryText(pos=(155, self.center_up), size=(WIDTH - 270, 45), font=0, text=entry.name))
 			list.append(res)
 		self.setList(list)
 
 ##################################################
+
 
 class PornCenterSub(Screen, ProtectedScreen):
 	def __init__(self, session, plugin=None):
@@ -369,7 +385,7 @@ class PornCenterSub(Screen, ProtectedScreen):
 						file = url
 						while file.__contains__("/"):
 							idx = file.index("/")
-							file = file[idx+1:]
+							file = file[idx + 1:]
 						self.file = "%s%s" % (config.plugins.PornCenter.bufferDevice.value, file)
 						self.session.openWithCallback(self.bufferCallback, PornCenterBuffer, url, self.file)
 					else:
@@ -426,6 +442,7 @@ class PornCenterSub(Screen, ProtectedScreen):
 
 ##################################################
 
+
 class PornCenterMain(PornCenterSub):
 	if HEIGHT == 576:
 		LISTHEIGHT = 450
@@ -443,14 +460,17 @@ class PornCenterMain(PornCenterSub):
 
 ##################################################
 
+
 def main_closed(callback=None):
 	cache.session.nav.playService(cache.oldService)
+
 
 def main(session, **kwargs):
 	cache.session = session
 	cache.oldService = session.nav.getCurrentlyPlayingServiceReference()
 	session.nav.stopService()
 	session.openWithCallback(main_closed, PornCenterMain)
+
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name=config.plugins.PornCenter.name.value, description=config.plugins.PornCenter.description.value, where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU], fnc=main, icon="plugin.png")

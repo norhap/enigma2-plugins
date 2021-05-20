@@ -12,12 +12,13 @@ from time import localtime, mktime, time, strftime
 # Config
 from Components.config import config
 
+
 def checkTimespan(begin, end):
 	# Get current time
 	time = localtime()
 	if not config.plugins.epgrefresh_extra.day_refresh[time.tm_wday].value:
 		return False
-	# Check if we span a day 
+	# Check if we span a day
 	if begin[0] > end[0] or (begin[0] == end[0] and begin[1] >= end[1]):
 		# Check if begin of event is later than our timespan starts
 		if time.tm_hour > begin[0] or (time.tm_hour == begin[0] and time.tm_min >= begin[1]):
@@ -39,9 +40,11 @@ def checkTimespan(begin, end):
 			return False
 		return True
 
+
 class EPGRefreshTimerEntry(timer.TimerEntry):
 	"""TimerEntry ..."""
-	def __init__(self, begin, tocall, nocheck = False):
+
+	def __init__(self, begin, tocall, nocheck=False):
 		timer.TimerEntry.__init__(self, int(begin), int(begin))
 
 		self.function = tocall
@@ -51,7 +54,7 @@ class EPGRefreshTimerEntry(timer.TimerEntry):
 
 	def getNextActivation(self):
 		# We delay our activation so we won't rush into reprocessing a repeating one
-		return self.begin+1
+		return self.begin + 1
 
 	def activate(self):
 		if self.state == self.StateWaiting:
@@ -66,7 +69,7 @@ class EPGRefreshTimerEntry(timer.TimerEntry):
 					print("[EPGRefresh] Box still in use, rescheduling")
 
 					# Recheck later
-					self.begin = time() + config.plugins.epgrefresh.delay_standby.value*60
+					self.begin = time() + config.plugins.epgrefresh.delay_standby.value * 60
 					return False
 			else:
 				print("[EPGRefresh] Not in timespan, ending timer")
@@ -99,6 +102,7 @@ class EPGRefreshTimerEntry(timer.TimerEntry):
 				)),
 				")>"
 			))
+
 
 class EPGRefreshTimer(timer.Timer):
 	def __init__(self):
@@ -139,7 +143,7 @@ class EPGRefreshTimer(timer.Timer):
 		if config.plugins.epgrefresh.lastscan.value < begin and begin < time():
 			tocall()
 
-		refreshTimer = EPGRefreshTimerEntry(begin, tocall, nocheck = True)
+		refreshTimer = EPGRefreshTimerEntry(begin, tocall, nocheck=True)
 
 		i = 0
 		while i < 7:
@@ -160,5 +164,6 @@ class EPGRefreshTimer(timer.Timer):
 
 	def isActive(self):
 		return len(self.timer_list) > 0
+
 
 epgrefreshtimer = EPGRefreshTimer()

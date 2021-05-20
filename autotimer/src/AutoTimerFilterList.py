@@ -21,11 +21,12 @@ from skin import parseColor, parseFont
 import time
 import datetime
 
+
 class AutoTimerFilterList(MenuList):
 	"""Defines a simple Component to show Timer name"""
 
 	def __init__(self, entries):
-		MenuList.__init__(self, entries, False, content = eListboxPythonMultiContent)
+		MenuList.__init__(self, entries, False, content=eListboxPythonMultiContent)
 
 		self.l.setFont(0, gFont("Regular", 22))
 		self.l.setBuildFunc(self.buildListboxEntry)
@@ -33,11 +34,11 @@ class AutoTimerFilterList(MenuList):
 		self.colorDisabled = 12368828
 
 	def applySkin(self, desktop, parent):
-		attribs = [ ] 
+		attribs = []
 		if self.skinAttributes is not None:
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "font":
-					self.l.setFont(0, parseFont(value, ((1,1),(1,1))))
+					self.l.setFont(0, parseFont(value, ((1, 1), (1, 1))))
 				elif attrib == "itemHeight":
 					self.l.setItemHeight(int(value))
 				elif attrib == "colorDisabled":
@@ -71,6 +72,7 @@ class AutoTimerFilterList(MenuList):
 				self.instance.moveSelectionTo(idx)
 				break
 			idx += 1
+
 
 class AutoTimerFilterListOverview(Screen):
 
@@ -107,9 +109,9 @@ class AutoTimerFilterListOverview(Screen):
 			self.FilterList = []
 			for count, filter in enumerate(filter_txt):
 				filter1 = filter.split(' - "')
-				if len(filter1)>1:
+				if len(filter1) > 1:
 					time1 = time.mktime(datetime.datetime.strptime(filter1[0], "%d.%m.%Y, %H:%M").timetuple())
-					Filter = ([count,filter1[1][:-1],time1],)
+					Filter = ([count, filter1[1][:-1], time1],)
 					self.FilterList.append(Filter)
 			self.FilterList.sort(key=lambda x: x[0][1].lower())
 			self.sorted = 1
@@ -118,11 +120,11 @@ class AutoTimerFilterListOverview(Screen):
 			self["config"].onSelectionChanged.append(self.updateFilterDate)
 			self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "InfobarActions", "MenuActions"],
 				{
-					"ok": self.ok, 
+					"ok": self.ok,
 					"cancel": self.cancel,
 					"red": self.cancel,
-					"green": self.save, 
-					"yellow": self.remove, 
+					"green": self.save,
+					"yellow": self.remove,
 					"blue": self.add,
 					"showTv": self.sortList,
 					"menu": self.add_copy,
@@ -178,17 +180,17 @@ class AutoTimerFilterListOverview(Screen):
 
 	def add_edit_Callback(self, ret, add_edit):
 		if ret:
-			date1  = ret[0][1].value
-			time1  = ret[1][1].value
+			date1 = ret[0][1].value
+			time1 = ret[1][1].value
 			filtertext = ret[2][1].value.strip().replace('"', "")
 			for filter in self.FilterList:
 				if filter[0][1] == filtertext:
-					self.session.open(MessageBox,_("The filterEntry '%s' already exist!\nThe change was canceled.") % filtertext, MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, _("The filterEntry '%s' already exist!\nThe change was canceled.") % filtertext, MessageBox.TYPE_INFO)
 					return
 			date1 = datetime.datetime.fromtimestamp(date1)
 			datetime1 = datetime.datetime(date1.year, date1.month, date1.day, time1[0], time1[1])
 			filtertime = time.mktime(datetime1.timetuple())
-			Filter = ([len(self.FilterList),filtertext,filtertime],)
+			Filter = ([len(self.FilterList), filtertext, filtertime],)
 			if add_edit == "add":
 				self.FilterList.append(Filter)
 			elif add_edit == "edit":
@@ -201,7 +203,7 @@ class AutoTimerFilterListOverview(Screen):
 	def remove(self):
 		current = self["config"].getCurrent()
 		if current is not None:
-			self.session.openWithCallback(self.removeCallback, MessageBox, _("Do you really want to delete %s?") % (_("FilterEntry") +" '"+str(current[1])+"'"), )
+			self.session.openWithCallback(self.removeCallback, MessageBox, _("Do you really want to delete %s?") % (_("FilterEntry") + " '" + str(current[1]) + "'"), )
 
 	def removeCallback(self, ret):
 		cur = self["config"].getCurrentIndex()
@@ -217,7 +219,7 @@ class AutoTimerFilterListOverview(Screen):
 		if self.changed:
 			self.FilterList.sort(key=lambda x: x[0][0])
 			path_filter_txt = "/etc/enigma2/autotimer_filter.txt"
-			filter_txt=""
+			filter_txt = ""
 			file_search_log = open(path_filter_txt, "w")
 			for filter in self.FilterList:
 				timertime = datetime.datetime.fromtimestamp(filter[0][2]).strftime("%d.%m.%Y, %H:%M")
@@ -225,6 +227,7 @@ class AutoTimerFilterListOverview(Screen):
 			file_search_log.write(filter_txt)
 			file_search_log.close()
 		self.close()
+
 
 class AutoTimerFilterListEditor(Screen, ConfigListScreen):
 	"""Edit AutoTimer Filter"""
@@ -246,19 +249,19 @@ class AutoTimerFilterListEditor(Screen, ConfigListScreen):
 			self.onChangedEntry = []
 			self.add_edit = add_edit
 			if filterEntry is not None:
-				self.EntryDate  = NoSave(ConfigDateTime(filterEntry[2], _("%d.%B %Y"), increment = 86400))
-				self.EntryTime  = NoSave(ConfigClock(default = filterEntry[2]))
-				self.EntryTitle = NoSave(ConfigText(default = filterEntry[1], fixed_size = False))
+				self.EntryDate = NoSave(ConfigDateTime(filterEntry[2], _("%d.%B %Y"), increment=86400))
+				self.EntryTime = NoSave(ConfigClock(default=filterEntry[2]))
+				self.EntryTitle = NoSave(ConfigText(default=filterEntry[1], fixed_size=False))
 			else:
-				self.EntryDate  = NoSave(ConfigDateTime(time.time(), _("%d.%B %Y"), increment = 86400))
-				self.EntryTime  = NoSave(ConfigClock(default = time.time()))
-				self.EntryTitle = NoSave(ConfigText(default = "", fixed_size = False))
+				self.EntryDate = NoSave(ConfigDateTime(time.time(), _("%d.%B %Y"), increment=86400))
+				self.EntryTime = NoSave(ConfigClock(default=time.time()))
+				self.EntryTitle = NoSave(ConfigText(default="", fixed_size=False))
 			self.list = [
 				getConfigListEntry(_("Date"), self.EntryDate),
 				getConfigListEntry(_("Time"), self.EntryTime),
 				getConfigListEntry(_("Title"), self.EntryTitle),
 			]
-			ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changed)
+			ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changed)
 			self["key_red"] = StaticText(_("Cancel"))
 			self["key_green"] = StaticText(_("Save"))
 			self["actions"] = ActionMap(["SetupActions", "ColorActions"],
@@ -297,7 +300,7 @@ class AutoTimerFilterListEditor(Screen, ConfigListScreen):
 
 	def save(self):
 		if not self.list[2][1].value.strip():
-			self.session.open( MessageBox, _("The title attribute is mandatory."), type = MessageBox.TYPE_ERROR, timeout = 5 )
+			self.session.open(MessageBox, _("The title attribute is mandatory."), type=MessageBox.TYPE_ERROR, timeout=5)
 		else:
 			if self["config"].isChanged():
 				self.close(self.list, self.add_edit)

@@ -17,12 +17,13 @@ from enigma import eComponentScan
 from TerrestrialScan import TerrestrialScan, setParams
 
 config.plugins.TerrestrialScan = ConfigSubsection()
-config.plugins.TerrestrialScan.networkid = ConfigInteger(default = 0, limits = (0, 65535))
-config.plugins.TerrestrialScan.clearallservices = ConfigYesNo(default = False)
-config.plugins.TerrestrialScan.onlyfree = ConfigYesNo(default = False)
-config.plugins.TerrestrialScan.uhf_vhf = ConfigSelection(default = 'uhf', choices = [
+config.plugins.TerrestrialScan.networkid = ConfigInteger(default=0, limits=(0, 65535))
+config.plugins.TerrestrialScan.clearallservices = ConfigYesNo(default=False)
+config.plugins.TerrestrialScan.onlyfree = ConfigYesNo(default=False)
+config.plugins.TerrestrialScan.uhf_vhf = ConfigSelection(default='uhf', choices=[
 			('uhf', _("UHF Europe")),
 			('uhf_vhf', _("UHF/VHF Europe"))])
+
 
 class TerrestrialScanScreen(ConfigListScreen, Screen):
 	def __init__(self, session):
@@ -32,9 +33,9 @@ class TerrestrialScanScreen(ConfigListScreen, Screen):
 		self.skinName = ["TerrestrialScanScreen", "Setup"]
 		self.onChangedEntry = []
 		self.session = session
-		ConfigListScreen.__init__(self, [], session = session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, [], session=session, on_change=self.changedEntry)
 
-		self["actions"] = ActionMap(["SetupActions","ColorActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 			"ok": self.keyGo,
 			"cancel": self.keyCancel,
@@ -56,12 +57,12 @@ class TerrestrialScanScreen(ConfigListScreen, Screen):
 			if nim.config_mode != "nothing":
 				if nim.isCompatible("DVB-T") or (nim.isCompatible("DVB-S") and nim.canBeCompatible("DVB-T")):
 					dvbt_capable_nims.append(nim.slot)
-		
+
 		nim_list = []
 		nim_list.append((-1, _("Automatic")))
 		for x in dvbt_capable_nims:
 			nim_list.append((nimmanager.nim_slots[x].slot, nimmanager.nim_slots[x].friendly_full_description))
-		self.scan_nims = ConfigSelection(choices = nim_list)
+		self.scan_nims = ConfigSelection(choices=nim_list)
 
 		self.createSetup()
 
@@ -71,11 +72,11 @@ class TerrestrialScanScreen(ConfigListScreen, Screen):
 
 	def createSetup(self):
 		setup_list = [
-			getConfigListEntry(_("Tuner"), self.scan_nims,_('Select a tuner that is configured for terrestrial scans. "Automatic" will pick the highest spec available tuner.')),
-			getConfigListEntry(_("Band"), config.plugins.TerrestrialScan.uhf_vhf,_('Most transmitters in European countries only have TV channels in the UHF band.')),
-			getConfigListEntry(_('Network ID'), config.plugins.TerrestrialScan.networkid,_('Select "0" to search all networks, or enter the network ID of the provider you wish to search.')),
-			getConfigListEntry(_("Clear before scan"), config.plugins.TerrestrialScan.clearallservices,_('If you select "yes" all stored terrestrial channels will be deleted before starting the current search.')),
-			getConfigListEntry(_("Only free scan"), config.plugins.TerrestrialScan.onlyfree,_('If you select "yes" the scan will only save channels that are not encrypted; "no" will find encrypted and non-encrypted channels.'))
+			getConfigListEntry(_("Tuner"), self.scan_nims, _('Select a tuner that is configured for terrestrial scans. "Automatic" will pick the highest spec available tuner.')),
+			getConfigListEntry(_("Band"), config.plugins.TerrestrialScan.uhf_vhf, _('Most transmitters in European countries only have TV channels in the UHF band.')),
+			getConfigListEntry(_('Network ID'), config.plugins.TerrestrialScan.networkid, _('Select "0" to search all networks, or enter the network ID of the provider you wish to search.')),
+			getConfigListEntry(_("Clear before scan"), config.plugins.TerrestrialScan.clearallservices, _('If you select "yes" all stored terrestrial channels will be deleted before starting the current search.')),
+			getConfigListEntry(_("Only free scan"), config.plugins.TerrestrialScan.onlyfree, _('If you select "yes" the scan will only save channels that are not encrypted; "no" will find encrypted and non-encrypted channels.'))
 		]
 		self["config"].list = setup_list
 		self["config"].l.setList(setup_list)
@@ -148,16 +149,19 @@ class TerrestrialScanScreen(ConfigListScreen, Screen):
 		if answer:
 			self.close(True)
 
+
 def TerrestrialScanStart(menuid, **kwargs):
 	if menuid == "scan":
 		return [(_("Terrestrial Scan"), TerrestrialScanMain, "TerrestrialScanScreen", 75)]
 	return []
 
+
 def TerrestrialScanMain(session, **kwargs):
 	session.open(TerrestrialScanScreen)
+
 
 def Plugins(**kwargs):
 	pList = []
 	if nimmanager.hasNimType("DVB-T"):
-		pList.append( PluginDescriptor(name=_("Terrestrial Scan"), description="For scanning terrestrial tv", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=TerrestrialScanStart) )
+		pList.append(PluginDescriptor(name=_("Terrestrial Scan"), description="For scanning terrestrial tv", where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=TerrestrialScanStart))
 	return pList

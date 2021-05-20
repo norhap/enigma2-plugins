@@ -16,6 +16,7 @@ from Vps_setup import VPS_show_info
 
 vps_already_registered = False
 
+
 def new_RecordTimer_saveTimer(self):
 	self._saveTimer_old_rn_vps()
 
@@ -58,6 +59,7 @@ def new_RecordTimer_saveTimer(self):
 	 pass
 	# added by VPS-Plugin
 
+
 def new_RecordTimer_loadTimer(self):
 	# added by VPS-Plugin
 	xmlroot = None
@@ -73,7 +75,7 @@ def new_RecordTimer_loadTimer(self):
 
 	# added by VPS-Plugin
 	try:
-		vps_timers = { }
+		vps_timers = {}
 
 		if xmlroot is not None:
 			for xml in xmlroot.findall("timer"):
@@ -81,7 +83,7 @@ def new_RecordTimer_loadTimer(self):
 				end = xml.get("end")
 				serviceref = xml.get("serviceref").encode("utf-8")
 
-				vps_timers[serviceref + begin + end] = { }
+				vps_timers[serviceref + begin + end] = {}
 				vps_overwrite = xml.get("vps_overwrite")
 				if vps_overwrite and vps_overwrite == "1":
 					vps_timers[serviceref + begin + end]["overwrite"] = True
@@ -111,12 +113,13 @@ def new_RecordTimer_loadTimer(self):
 		pass
 	# added by VPS-Plugin
 
+
 def new_TimerEntry_createConfig(self):
 	#self._createConfig_old_rn_vps()
 
 	# added by VPS-Plugin
 	try:
-		self.timerentry_vpsplugin_dontcheck_pdc =  not config.plugins.vps.do_PDC_check.getValue()
+		self.timerentry_vpsplugin_dontcheck_pdc = not config.plugins.vps.do_PDC_check.getValue()
 		default_value = "no"
 
 		if self.timer.vpsplugin_enabled is not None:
@@ -134,17 +137,18 @@ def new_TimerEntry_createConfig(self):
 				self.timerentry_vpsplugin_dontcheck_pdc = True
 				default_value = config.plugins.vps.vps_default.value
 
-		self.timerentry_vpsplugin_enabled = ConfigSelection(choices = [("no", _("No")), ("yes_safe", _("Yes (safe mode)")), ("yes", _("Yes"))], default = default_value)
+		self.timerentry_vpsplugin_enabled = ConfigSelection(choices=[("no", _("No")), ("yes_safe", _("Yes (safe mode)")), ("yes", _("Yes"))], default=default_value)
 
 		if self.timer.vpsplugin_time is not None:
-			self.timerentry_vpsplugin_time_date = ConfigDateTime(default = self.timer.vpsplugin_time, formatstring = _("%d.%B %Y"), increment = 86400)
-			self.timerentry_vpsplugin_time_clock = ConfigClock(default = self.timer.vpsplugin_time)
+			self.timerentry_vpsplugin_time_date = ConfigDateTime(default=self.timer.vpsplugin_time, formatstring=_("%d.%B %Y"), increment=86400)
+			self.timerentry_vpsplugin_time_clock = ConfigClock(default=self.timer.vpsplugin_time)
 		else:
-			self.timerentry_vpsplugin_time_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
-			self.timerentry_vpsplugin_time_clock = ConfigClock(default = self.timer.begin)
+			self.timerentry_vpsplugin_time_date = ConfigDateTime(default=self.timer.begin, formatstring=_("%d.%B %Y"), increment=86400)
+			self.timerentry_vpsplugin_time_clock = ConfigClock(default=self.timer.begin)
 	except:
 		pass
 	# added by VPS-Plugin
+
 
 def new_TimerEntry_createSetup(self, widget):
 	if not hasattr(self, "timerentry_vpsplugin_enabled"):
@@ -191,6 +195,7 @@ def new_TimerEntry_createSetup(self, widget):
 	self[widget].list = self.list
 	self[widget].l.setList(self.list)
 
+
 def new_TimerEntry_newConfig(self):
 	self._newConfig_old_rn_vps()
 
@@ -202,6 +207,7 @@ def new_TimerEntry_newConfig(self):
 		self.createSetup("config")
 		self["config"].setCurrentIndex(self["config"].getCurrentIndex() + 1)
 	# added by VPS-Plugin
+
 
 def new_TimerEntry_keyGo(self):
 	# added by VPS-Plugin
@@ -225,6 +231,7 @@ def new_TimerEntry_keyGo(self):
 
 	self._keyGo_old_rn_vps()
 
+
 def new_TimerEntry_finishedChannelSelection(self, *args):
 	self._finishedChannelSelection_old_rn_vps(*args)
 
@@ -235,11 +242,12 @@ def new_TimerEntry_finishedChannelSelection(self, *args):
 	except:
 		pass
 
+
 def new_InfoBarInstantRecord_recordQuestionCallback(self, answer):
 	self._recordQuestionCallback_old_rn_vps(answer)
 
 	try:
-		entry = len(self.recording)-1
+		entry = len(self.recording) - 1
 		if answer is not None and answer[1] == "event" and config.plugins.vps.instanttimer.value != "no" and entry is not None and entry >= 0:
 			# If we aren't checking PDC, just put the values in directly
 			if not config.plugins.vps.do_PDC_check.getValue():
@@ -260,6 +268,7 @@ def new_InfoBarInstantRecord_recordQuestionCallback(self, answer):
 				self.session.open(VPS_check_on_instanttimer, rec_ref, self.recording[entry])
 	except:
 		pass
+
 
 def register_vps():
 	global vps_already_registered

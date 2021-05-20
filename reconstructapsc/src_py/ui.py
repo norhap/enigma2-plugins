@@ -6,6 +6,7 @@ from Components import Task
 from Tools.Directories import fileExists
 from Screens.MovieSelection import playlist
 
+
 class ReconstructApSc(ChoiceBox):
 	def __init__(self, session, service):
 		self.serviceHandler = eServiceCenter.getInstance()
@@ -14,9 +15,9 @@ class ReconstructApSc(ChoiceBox):
 		name = self.getName(service, path)
 
 		if offline is None:
-			tlist = [(_("Cannot reconstruct this item"),  "CALLFUNC", self.confirmed0),]
+			tlist = [(_("Cannot reconstruct this item"), "CALLFUNC", self.confirmed0), ]
 		else:
-			tlist = [(_("Don't reconstruct"), "CALLFUNC", self.confirmed0),]
+			tlist = [(_("Don't reconstruct"), "CALLFUNC", self.confirmed0), ]
 			tnext = [
 				(_("Reconstruct missing .ap and .sc files in this directory"), "CALLFUNC", self.confirmed2),
 				(_("Reconstruct all .ap and .sc files in this directory"), "CALLFUNC", self.confirmed3),
@@ -28,7 +29,7 @@ class ReconstructApSc(ChoiceBox):
 				tlist.append((_("Reconstruct the .ap and .sc files of the selected movie"), "CALLFUNC", self.confirmed1, service, path))
 				tlist += tnext
 
-		ChoiceBox.__init__(self, session, _("What would you like to reconstruct?  (\"%s\")") % (name), list = tlist, selection = 0)
+		ChoiceBox.__init__(self, session, _("What would you like to reconstruct?  (\"%s\")") % (name), list=tlist, selection=0)
 		self.skinName = "ChoiceBox"
 
 	def confirmed0(self, arg):
@@ -42,7 +43,7 @@ class ReconstructApSc(ChoiceBox):
 		for service in playlist:
 			path = service.getPath()
 			if path.endswith('.ts'):
-				if arg == "reconstructallfiles" or not fileExists(path+'.ap') or not fileExists(path+'.sc'):
+				if arg == "reconstructallfiles" or not fileExists(path + '.ap') or not fileExists(path + '.sc'):
 					self.addToTask(service, path)
 		self.close()
 

@@ -2,6 +2,7 @@ from Plugins.Plugin import PluginDescriptor
 from __init__ import _
 import os
 
+
 def main(session, service, **kwargs):
 	import ui
 	# Hack to make sure it is executable
@@ -9,5 +10,6 @@ def main(session, service, **kwargs):
 		os.chmod(ui.mcut_path, 493)
 	session.open(ui.MovieCut, service, **kwargs)
 
+
 def Plugins(**kwargs):
-	return PluginDescriptor(name="MovieCut", description=_("Execute cuts..."), where = PluginDescriptor.WHERE_MOVIELIST, fnc=main)
+	return PluginDescriptor(name="MovieCut", description=_("Execute cuts..."), where=PluginDescriptor.WHERE_MOVIELIST, fnc=main)

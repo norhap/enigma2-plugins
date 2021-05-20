@@ -25,14 +25,18 @@ if not os.path.exists('/usr/lib/enigma2/python/Components/Renderer/PermanentCloc
 	os.system('cp /usr/lib/enigma2/python/Plugins/Extensions/PermanentClock/PermanentClockWatches.py /usr/lib/enigma2/python/Components/Renderer/PermanentClockWatches.py')
 
 _session = None
+
+
 def localeInit():
 	gettext.bindtextdomain("PermanentClock", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "Extensions/PermanentClock/locale/"))
+
 
 def _(txt):
 	t = gettext.dgettext("PermanentClock", txt)
 	if t == txt:
 		t = gettext.gettext(txt)
 	return t
+
 
 localeInit()
 language.addCallback(localeInit)
@@ -43,8 +47,8 @@ config.plugins.PermanentClock.position_x = ConfigInteger(default=500)
 config.plugins.PermanentClock.position_y = ConfigInteger(default=35)
 config.plugins.PermanentClock.analog = ConfigYesNo(default=False)
 config.plugins.PermanentClock.show_hide = ConfigYesNo(default=False)
-config.plugins.PermanentClock.color_analog = ConfigSelection([("1", _("black-yellow")),("2", _("black-blue")),("3", _("blue")),("4", _("black-white")),("5", _("white")),("6", _("transparent")),("7", _("PLi-transparent"))], default="1")
-config.plugins.PermanentClock.color_digital = ConfigSelection([("0", _("yellow")),("1", _("white")), ("2", _("large yellow")), ("3", _("large white")), ("4", _("cyan")), ("5", _("large cyan"))], default="1")
+config.plugins.PermanentClock.color_analog = ConfigSelection([("1", _("black-yellow")), ("2", _("black-blue")), ("3", _("blue")), ("4", _("black-white")), ("5", _("white")), ("6", _("transparent")), ("7", _("PLi-transparent"))], default="1")
+config.plugins.PermanentClock.color_digital = ConfigSelection([("0", _("yellow")), ("1", _("white")), ("2", _("large yellow")), ("3", _("large white")), ("4", _("cyan")), ("5", _("large cyan"))], default="1")
 
 ##############################################################################
 SKIN1 = """
@@ -188,6 +192,7 @@ SKIN0L1 = """
 	</screen>"""
 ##############################################################################
 
+
 class PermanentClockNewScreen(Screen):
 	def __init__(self, session):
 		if config.plugins.PermanentClock.analog.value:
@@ -224,6 +229,7 @@ class PermanentClockNewScreen(Screen):
 	def movePosition(self):
 		if self.instance:
 			self.instance.move(ePoint(config.plugins.PermanentClock.position_x.value, config.plugins.PermanentClock.position_y.value))
+
 
 class PermanentClock():
 	def __init__(self):
@@ -298,7 +304,9 @@ class PermanentClock():
 		else:
 			self.dialog.hide()
 
+
 pClock = PermanentClock()
+
 
 class PermanentClockPositioner(Screen):
 	def __init__(self, session):
@@ -380,11 +388,12 @@ class PermanentClockPositioner(Screen):
 		self.movePosition()
 
 	def ok(self):
-		menu = [(_("Save"), "save"),(_("Set slider"), "slider")]
+		menu = [(_("Save"), "save"), (_("Set slider"), "slider")]
+
 		def extraAction(choice):
 			if choice is not None:
 				if choice[1] == "slider":
-					self.session.openWithCallback(self.setSliderStep, InputBox, title=_("Set slider step (1 - 30):"), text=str(self.slider), type = Input.NUMBER)
+					self.session.openWithCallback(self.setSliderStep, InputBox, title=_("Set slider step (1 - 30):"), text=str(self.slider), type=Input.NUMBER)
 				elif choice[1] == "save":
 					self.Save()
 		self.session.openWithCallback(extraAction, ChoiceBox, list=menu)
@@ -408,7 +417,7 @@ class PermanentClockMenu(Screen):
 	skin = """
 		<screen position="center,center" size="400,145" title="Permanent Clock Setup">
 			<widget name="list" position="10,10" size="390,135" />
-		</screen>""" 
+		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -503,11 +512,11 @@ class PermanentClockMenu(Screen):
 		self.session.openWithCallback(
 			self.menuCallback,
 			ChoiceBox,
-			title= _("Choice color clock:"),
-			list = list,
+			title=_("Choice color clock:"),
+			list=list,
 		)
 
-	def menuCallback(self, ret = None):
+	def menuCallback(self, ret=None):
 		ret and ret[1]()
 
 	def positionerCallback(self, callback=None):
@@ -565,6 +574,7 @@ class PermanentClockMenu(Screen):
 		config.plugins.PermanentClock.color_analog.value = "7"
 		self.newConfig()
 
+
 def sessionstart(reason, **kwargs):
 	global _session
 	if reason == 0 and _session is None:
@@ -572,13 +582,16 @@ def sessionstart(reason, **kwargs):
 		if _session:
 			pClock.gotSession(_session)
 
+
 def startConfig(session, **kwargs):
 	session.open(PermanentClockMenu)
 
+
 def main(menuid):
-	if menuid != "system": 
-		return [ ]
+	if menuid != "system":
+		return []
 	return [(_("Permanent Clock"), startConfig, "permanent_clock", None)]
+
 
 def Plugins(**kwargs):
 	return [

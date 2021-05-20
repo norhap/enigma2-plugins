@@ -14,6 +14,7 @@ except ImportError:
 		pass
 	no_comments = True
 
+
 class parseXML(ContentHandler, LexicalHandler):
 	def __init__(self, attrlist):
 		self.isPointsElement, self.isReboundsElement = 0, 0
@@ -35,6 +36,7 @@ class parseXML(ContentHandler, LexicalHandler):
 					self.last_comment = None
 			except KeyError:
 				pass
+
 
 parser = make_parser()
 
@@ -59,10 +61,10 @@ for arg in sys.argv[1:]:
 	attrlist = list(attrlist)
 	attrlist.sort(key=lambda a: a[0])
 
-	for (k,c) in attrlist:
+	for (k, c) in attrlist:
 		print('')
 		print('#: ' + arg)
-		k = k.replace('\"','\\"')
+		k = k.replace('\"', '\\"')
 		k = string.replace(k, '\n', '\x5c\x6e')
 		if c:
 			for l in c.split('\n'):

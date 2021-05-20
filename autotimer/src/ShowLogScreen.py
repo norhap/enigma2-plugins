@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
 from . import _
-import os, sys, traceback
+import os
+import sys
+import traceback
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from enigma import ePoint
 from Screens.Screen import Screen
 from Tools.Directories import fileExists
 
+
 class ShowLogScreen(Screen):
-	def __init__(self, session, logFile, titleText,firstLineText, lastLineText):
+	def __init__(self, session, logFile, titleText, firstLineText, lastLineText):
 		Screen.__init__(self, session)
 		self.skinName = ["TestBox", "Console"]
 		title = ""
@@ -18,7 +21,7 @@ class ShowLogScreen(Screen):
 		self.firstLineText = firstLineText
 		self.lastLineText = lastLineText
 		self["text"] = ScrollLabel("")
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions", "ChannelSelectBaseActions"], 
+		self["actions"] = ActionMap(["WizardActions", "DirectionActions", "ChannelSelectBaseActions"],
 		{
 			"ok": self.cancel,
 			"back": self.cancel,
@@ -41,7 +44,7 @@ class ShowLogScreen(Screen):
 		Screen.close(self)
 
 	def firstPage(self):
-		self["text"].long_text.move(ePoint(0,0))
+		self["text"].long_text.move(ePoint(0, 0))
 		self["text"].updateScrollbar()
 
 	def readLog(self):

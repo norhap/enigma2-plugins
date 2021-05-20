@@ -17,14 +17,15 @@ if HardwareInfo().get_device_model() in ("formuler3", "formuler4", "s1", "h3", "
 	use_oled = True
 
 config.plugins.VFD_ini = ConfigSubsection()
-config.plugins.VFD_ini.showClock = ConfigSelection(default = "True_Switch", choices = [("False",_("Channelnumber in Standby off")),("True",_("Channelnumber in Standby Clock")), ("True_Switch",_("Channelnumber/Clock in Standby Clock")),("True_All",_("Clock always")),("Off",_("Always off"))])
-config.plugins.VFD_ini.timeMode = ConfigSelection(default = "24h", choices = [("12h",_("12h")),("24h",_("24h"))])
-config.plugins.VFD_ini.recDisplay = ConfigSelection(default = "False", choices = [("True",_("yes")),("False",_("no"))])
-config.plugins.VFD_ini.recClockBlink = ConfigSelection(default = "off", choices = [("off",_("Off")),("on_off",_("On/Off")),("brightness",_("Brightness level"))])
+config.plugins.VFD_ini.showClock = ConfigSelection(default="True_Switch", choices=[("False", _("Channelnumber in Standby off")), ("True", _("Channelnumber in Standby Clock")), ("True_Switch", _("Channelnumber/Clock in Standby Clock")), ("True_All", _("Clock always")), ("Off", _("Always off"))])
+config.plugins.VFD_ini.timeMode = ConfigSelection(default="24h", choices=[("12h", _("12h")), ("24h", _("24h"))])
+config.plugins.VFD_ini.recDisplay = ConfigSelection(default="False", choices=[("True", _("yes")), ("False", _("no"))])
+config.plugins.VFD_ini.recClockBlink = ConfigSelection(default="off", choices=[("off", _("Off")), ("on_off", _("On/Off")), ("brightness", _("Brightness level"))])
 config.plugins.VFD_ini.ClockLevel1 = ConfigSlider(default=1, limits=(0, 10))
 config.plugins.VFD_ini.ClockLevel2 = ConfigSlider(default=4, limits=(1, 10))
 
 MyRecLed = False
+
 
 def vfd_write(text):
 	if use_oled:
@@ -37,6 +38,7 @@ def vfd_write(text):
 			open("/dev/dbox/lcd0", "w").write(text)
 		except:
 			pass
+
 
 class Channelnumber:
 
@@ -53,10 +55,9 @@ class Channelnumber:
 		self.zaPrik = eTimer()
 		self.zaPrik.timeout.get().append(self.vrime)
 		self.zaPrik.start(1000, 1)
-		self.onClose = [ ]
+		self.onClose = []
 
-		self.__event_tracker = ServiceEventTracker(screen=self,eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged,
 				iPlayableService.evEnd: self.__evEnd
 			})
@@ -195,11 +196,14 @@ class Channelnumber:
 				eDBoxLCD.getInstance().setLCDBrightness(config.lcd.bright.value * 255 / 10)
 				self.blink = False
 
+
 ChannelnumberInstance = None
+
 
 def leaveStandby():
 	if config.plugins.VFD_ini.showClock.value == 'Off':
 		vfd_write("....")
+
 
 def standbyCounterChanged(configElement):
 	from Screens.Standby import inStandby
@@ -208,12 +212,14 @@ def standbyCounterChanged(configElement):
 	if config.plugins.VFD_ini.showClock.value == 'Off':
 		vfd_write("....")
 
+
 def initVFD():
 	if config.plugins.VFD_ini.showClock.value == 'Off':
 		vfd_write("....")
 
+
 class VFD_INISetup(ConfigListScreen, Screen):
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 
 		self.skin = """
 			<screen position="center,center" size="500,210" title="VFD Display Setup" >
@@ -230,10 +236,10 @@ class VFD_INISetup(ConfigListScreen, Screen):
 		self.setTitle(_("Control 7 segment VFD display"))
 		self.onClose.append(self.abort)
 
-		self.onChangedEntry = [ ]
-			
+		self.onChangedEntry = []
+
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 
 		self.createSetup()
 
@@ -241,7 +247,7 @@ class VFD_INISetup(ConfigListScreen, Screen):
 		self["key_green"] = Button(_("Save"))
 		self["key_yellow"] = Button(_("Update Date/Time"))
 
-		self["setupActions"] = ActionMap(["SetupActions","ColorActions"],
+		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 			"save": self.save,
 			"cancel": self.cancel,
@@ -298,10 +304,11 @@ class VFD_INISetup(ConfigListScreen, Screen):
 		self.createSetup()
 		initVFD()
 
+
 class VFD_INI:
 	def __init__(self, session):
 		self.session = session
-		self.onClose = [ ]
+		self.onClose = []
 		initVFD()
 
 		global ChannelnumberInstance
@@ -312,19 +319,23 @@ class VFD_INI:
 		self.abort()
 
 	def abort(self):
-		config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call = False)
+		config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call=False)
+
 
 def main(menuid):
 	if menuid != "system":
-		return [ ]
+		return []
 	return [(_("VFD Display Setup"), startVFD, "vfd_ini", None)]
+
 
 def startVFD(session, **kwargs):
 	session.open(VFD_INISetup)
 
+
 iniVfd = None
 gReason = -1
 mySession = None
+
 
 def controliniVfd():
 	global iniVfd
@@ -336,20 +347,22 @@ def controliniVfd():
 	elif gReason == 1 and iniVfd is not None:
 		iniVfd = None
 
+
 def sessionstart(reason, **kwargs):
 	global iniVfd
 	global gReason
 	global mySession
 
-	if kwargs.has_key("session"):
+	if "session" in kwargs:
 		mySession = kwargs["session"]
 	else:
 		gReason = reason
 	controliniVfd()
 
+
 def Plugins(**kwargs):
 	from Components.SystemInfo import SystemInfo
 	if SystemInfo["FrontpanelDisplay"]:
-		return [ PluginDescriptor(where=[PluginDescriptor.WHERE_AUTOSTART, PluginDescriptor.WHERE_SESSIONSTART], fnc=sessionstart),
-			PluginDescriptor(name="VFD Display Setup", description=_("Change VFD display settings"),where = PluginDescriptor.WHERE_MENU, fnc = main) ]
+		return [PluginDescriptor(where=[PluginDescriptor.WHERE_AUTOSTART, PluginDescriptor.WHERE_SESSIONSTART], fnc=sessionstart),
+			PluginDescriptor(name="VFD Display Setup", description=_("Change VFD display settings"), where=PluginDescriptor.WHERE_MENU, fnc=main)]
 	return []

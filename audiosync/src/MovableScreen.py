@@ -3,6 +3,7 @@ from Components.config import config
 from __init__ import _
 from enigma import ePoint, eTimer, getDesktop
 
+
 class MovableScreen():
 	def __init__(self, configRoot, disableKeymaps, screenSize_x, screenSize_y, moveMinMargin=30, moveStepSize=10):
 		self.configRoot = configRoot
@@ -14,24 +15,24 @@ class MovableScreen():
 
 		self["MovableScreenActions"] = HelpableNumberActionMap(self, "MovableScreenActions",
 		{
-			"ok":       (self.moveKeyOk,                _("Save values and close screen")),
-			"cancel":   (self.moveKeyCancel,            _("Discard changes and close screen")),
-			"left":     (self.moveKeyLeft,              _("Move screen to the left")),
-			"right":    (self.moveKeyRight,             _("Move screen to the right")),
-			"up":       (self.moveKeyUp,                _("Move screen up")),
-			"down":     (self.moveKeyDown,              _("Move screen down")),
-			"red":      (self.moveKeyCancel,            _("Discard changes and close screen")),
-			"green":    (self.moveKeyOk,                _("Save values and close screen")),
-			"1":        (self.moveKeyNumber,            _("Move screen to the upper left corner")),
-			"2":        (self.moveKeyNumber,            _("Center screen at the upper border")),
-			"3":        (self.moveKeyNumber,            _("Move screen to the upper right corner")),
-			"4":        (self.moveKeyNumber,            _("Move screen to the middle of the left border")),
-			"5":        (self.moveKeyNumber,            _("Move screen to the center of your TV")),
-			"6":        (self.moveKeyNumber,            _("Move screen to the middle of the right border")),
-			"7":        (self.moveKeyNumber,            _("Move screen to the lower left corner")),
-			"8":        (self.moveKeyNumber,            _("Center screen at the lower border")),
-			"9":        (self.moveKeyNumber,            _("Move screen to the lower right corner")),
-			"0":        (self.moveKeyNumber,            _("Reset saved position"))
+			"ok": (self.moveKeyOk, _("Save values and close screen")),
+			"cancel": (self.moveKeyCancel, _("Discard changes and close screen")),
+			"left": (self.moveKeyLeft, _("Move screen to the left")),
+			"right": (self.moveKeyRight, _("Move screen to the right")),
+			"up": (self.moveKeyUp, _("Move screen up")),
+			"down": (self.moveKeyDown, _("Move screen down")),
+			"red": (self.moveKeyCancel, _("Discard changes and close screen")),
+			"green": (self.moveKeyOk, _("Save values and close screen")),
+			"1": (self.moveKeyNumber, _("Move screen to the upper left corner")),
+			"2": (self.moveKeyNumber, _("Center screen at the upper border")),
+			"3": (self.moveKeyNumber, _("Move screen to the upper right corner")),
+			"4": (self.moveKeyNumber, _("Move screen to the middle of the left border")),
+			"5": (self.moveKeyNumber, _("Move screen to the center of your TV")),
+			"6": (self.moveKeyNumber, _("Move screen to the middle of the right border")),
+			"7": (self.moveKeyNumber, _("Move screen to the lower left corner")),
+			"8": (self.moveKeyNumber, _("Center screen at the lower border")),
+			"9": (self.moveKeyNumber, _("Move screen to the lower right corner")),
+			"0": (self.moveKeyNumber, _("Reset saved position"))
 		}, -1)
 
 		self["MovableScreenActions"].setEnabled(False)
@@ -39,7 +40,6 @@ class MovableScreen():
 		desktop = getDesktop(0)
 		self.desktopWidth = desktop.size().width()
 		self.desktopHeight = desktop.size().height()
-
 
 	def startMoving(self):
 		self.setEnableMoveKeymap(True)
@@ -119,7 +119,7 @@ class MovableScreen():
 		self.configRoot.position_y.cancel()
 		self.setEnableMoveKeymap(False)
 
-	def setEnableMoveKeymap(self,enabled):
+	def setEnableMoveKeymap(self, enabled):
 		self["MovableScreenActions"].setEnabled(enabled)
 		for keymap in self.disableKeymaps:
 			keymap.setEnabled(not(enabled))

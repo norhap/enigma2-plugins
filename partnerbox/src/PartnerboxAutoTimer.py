@@ -32,8 +32,10 @@ from xml.etree.cElementTree import fromstring as cet_fromstring
 from ServiceReference import ServiceReference
 from enigma import eServiceReference
 
+
 class PartnerboxAutoTimer(object):
 	instance = None
+
 	def __init__(self, session):
 		self.session = session
 		assert not PartnerboxAutoTimer.instance, "only one PartnerboxAutoTimer instance is allowed!"
@@ -49,27 +51,27 @@ class PartnerboxAutoTimer(object):
 			else:
 				self.session.openWithCallback(self.partnerboxplugin, PartnerboxEntriesListConfigScreen, parameter)
 
-	def partnerboxplugin(self, unUsed, parameter, partnerboxentry = None):
+	def partnerboxplugin(self, unUsed, parameter, partnerboxentry=None):
 		if partnerboxentry is None:
 			return
 		ip = "%d.%d.%d.%d" % tuple(partnerboxentry.ip.value)
 		port = partnerboxentry.port.value
 		username = "root"
 		password = partnerboxentry.password.value
-		sCommand = "http://%s:%d/autotimer/add_xmltimer" % (ip,port)
+		sCommand = "http://%s:%d/autotimer/add_xmltimer" % (ip, port)
 		sendPartnerBoxWebCommand(sCommand, None, 10, username, password, parameter=parameter).addCallback(self.downloadCallback).addErrback(self.downloadError)
 
-	def downloadCallback(self, result = None):
+	def downloadCallback(self, result=None):
 		if result:
 			root = cet_fromstring(result)
 			statetext = root.findtext("e2statetext")
 			if statetext:
-				text =  statetext.encode("utf-8", 'ignore')
-				self.session.open(MessageBox,text,MessageBox.TYPE_INFO, timeout = 10)
+				text = statetext.encode("utf-8", 'ignore')
+				self.session.open(MessageBox, text, MessageBox.TYPE_INFO, timeout=10)
 
-	def downloadError(self, error = None):
+	def downloadError(self, error=None):
 		if error is not None:
-			self.session.open(MessageBox,str(error.getErrorMessage()),  MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, str(error.getErrorMessage()), MessageBox.TYPE_INFO)
 
 	def autotimerImporterCallback(self, ret):
 		if ret:
@@ -83,14 +85,14 @@ class PartnerboxAutoTimer(object):
 		else:
 			self.session.openWithCallback(self.getPartnerboxAutoTimerList, PartnerboxEntriesListConfigScreen, 1)
 
-	def getPartnerboxAutoTimerList(self, unUsed1, unUsed2, partnerboxentry = None):
+	def getPartnerboxAutoTimerList(self, unUsed1, unUsed2, partnerboxentry=None):
 		if partnerboxentry is None:
 			return
 		ip = "%d.%d.%d.%d" % tuple(partnerboxentry.ip.value)
 		port = partnerboxentry.port.value
 		username = "root"
 		password = partnerboxentry.password.value
-		sCommand = "http://%s:%d/autotimer?webif=false" % (ip,port)
+		sCommand = "http://%s:%d/autotimer?webif=false" % (ip, port)
 		print sCommand
 		sendPartnerBoxWebCommand(sCommand, None, 10, username, password).addCallback(self.getPartnerboxAutoTimerListCallback, partnerboxentry).addErrback(self.downloadError)
 
@@ -108,8 +110,9 @@ class PartnerboxAutoTimer(object):
 			port = partnerboxentry.port.value
 			username = "root"
 			password = partnerboxentry.password.value
-			sCommand = "http://%s:%d/autotimer/upload_xmlconfiguration" % (ip,port)
+			sCommand = "http://%s:%d/autotimer/upload_xmlconfiguration" % (ip, port)
 			sendPartnerBoxWebCommand(sCommand, None, 10, username, password, parameter=parameter).addCallback(self.downloadCallback).addErrback(self.downloadError)
+
 
 class PartnerboxAutoTimerEPGSelection(AutoTimerEPGSelection):
 	def __init__(self, *args):
@@ -130,7 +133,8 @@ class PartnerboxAutoTimerEPGSelection(AutoTimerEPGSelection):
 			ref_split[1] = "0"
 			sref = ServiceReference(":".join(ref_split))
 
-		addAutotimerFromEvent(self.session, evt = evt, service = sref, importer_Callback = PartnerboxAutoTimer.instance.autotimerImporterCallback)
+		addAutotimerFromEvent(self.session, evt=evt, service=sref, importer_Callback=PartnerboxAutoTimer.instance.autotimerImporterCallback)
+
 
 class PartnerboxAutoTimerOverview(AutoTimerOverview):
 	def __init__(self, session, autotimer, partnerbox):
@@ -153,7 +157,7 @@ class PartnerboxAutoTimerOverview(AutoTimerOverview):
 
 	def cancel(self):
 		if self.changed:
-			self.session.openWithCallback(self.cancelConfirm, ChoiceBox, title=_('Really close without saving settings?\nWhat do you want to do?') , list=[(_('Close without saving'), 'close'), (_('Close and save'), 'close_save')])
+			self.session.openWithCallback(self.cancelConfirm, ChoiceBox, title=_('Really close without saving settings?\nWhat do you want to do?'), list=[(_('Close without saving'), 'close'), (_('Close and save'), 'close_save')])
 		else:
 			self.close(None)
 

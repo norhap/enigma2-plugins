@@ -14,6 +14,7 @@ from Plugins.Plugin import PluginDescriptor
 from Tools import Notifications
 from Plugins.SystemPlugins.Videomode.VideoHardware import video_hw # depends on Videomode Plugin
 
+
 def readAvailableModes():
 	try:
 		f = open("/proc/stb/video/videomode_choices")
@@ -22,6 +23,7 @@ def readAvailableModes():
 		return modes.split(' ')
 	except:
 		return []
+
 
 modes_available = readAvailableModes()
 
@@ -65,38 +67,38 @@ if have_2160p:
 	)
 
 config.plugins.autoresolution = ConfigSubsection()
-config.plugins.autoresolution.enable = ConfigYesNo(default = False)
-config.plugins.autoresolution.showinfo = ConfigYesNo(default = True)
-config.plugins.autoresolution.testmode = ConfigYesNo(default = False)
-config.plugins.autoresolution.deinterlacer = ConfigSelection(default = "auto", choices =
-		[("off", _("off")), ("auto", _("auto")), ("on", _("on"))])
-config.plugins.autoresolution.deinterlacer_progressive = ConfigSelection(default = "auto", choices =
-		[("off", _("off")), ("auto", _("auto")), ("on", _("on"))])
-config.plugins.autoresolution.delay_switch_mode = ConfigSelection(default = "1000", choices = [
-		("0", "0 " + _("seconds")),("50", "0.05 " + _("seconds")), ("500", "0.5 " + _("seconds")),
+config.plugins.autoresolution.enable = ConfigYesNo(default=False)
+config.plugins.autoresolution.showinfo = ConfigYesNo(default=True)
+config.plugins.autoresolution.testmode = ConfigYesNo(default=False)
+config.plugins.autoresolution.deinterlacer = ConfigSelection(default="auto", choices=[("off", _("off")), ("auto", _("auto")), ("on", _("on"))])
+config.plugins.autoresolution.deinterlacer_progressive = ConfigSelection(default="auto", choices=[("off", _("off")), ("auto", _("auto")), ("on", _("on"))])
+config.plugins.autoresolution.delay_switch_mode = ConfigSelection(default="1000", choices=[
+		("0", "0 " + _("seconds")), ("50", "0.05 " + _("seconds")), ("500", "0.5 " + _("seconds")),
 		("1000", "1 " + _("second")), ("2000", "2 " + _("seconds")), ("3000", "3 " + _("seconds")),
 		("4000", "4 " + _("seconds")), ("5000", "5 " + _("seconds")), ("6000", "6 " + _("seconds")), ("7000", "7 " + _("seconds")),
-		("8000", "8 " + _("seconds")), ("9000", "9 " + _("seconds")), ("10000", "10 " + _("seconds")),("60000", "60 " + _("seconds"))])
-config.plugins.autoresolution.mode = ConfigSelection(default = "manual", choices = [("manual", _("Manual")), ("auto", _("Auto frame rate (refresh need 'multi/auto')"))])
-config.plugins.autoresolution.lock_timeout = ConfigSelection(default = "60", choices = [("30", "30 " + _("seconds")), ("60", "60 " + _("seconds"))])
-config.plugins.autoresolution.ask_apply_mode = ConfigYesNo(default = False)
-config.plugins.autoresolution.auto_30_60 = ConfigYesNo(default = True)
-config.plugins.autoresolution.auto_24_30_alternative = ConfigYesNo(default = True)
-config.plugins.autoresolution.ask_timeout = ConfigSelection(default = "20", choices = [("5", "5 " + _("seconds")), ("10", "10 " + _("seconds")), ("15", "15 " + _("seconds")), ("20", "20 " + _("seconds"))])
-config.plugins.autoresolution.manual_resolution_ext_menu = ConfigYesNo(default = False)
-config.plugins.autoresolution.manual_resolution_ask = ConfigYesNo(default = True)
-config.plugins.autoresolution.force_progressive_mode = ConfigYesNo(default = False)
+		("8000", "8 " + _("seconds")), ("9000", "9 " + _("seconds")), ("10000", "10 " + _("seconds")), ("60000", "60 " + _("seconds"))])
+config.plugins.autoresolution.mode = ConfigSelection(default="manual", choices=[("manual", _("Manual")), ("auto", _("Auto frame rate (refresh need 'multi/auto')"))])
+config.plugins.autoresolution.lock_timeout = ConfigSelection(default="60", choices=[("30", "30 " + _("seconds")), ("60", "60 " + _("seconds"))])
+config.plugins.autoresolution.ask_apply_mode = ConfigYesNo(default=False)
+config.plugins.autoresolution.auto_30_60 = ConfigYesNo(default=True)
+config.plugins.autoresolution.auto_24_30_alternative = ConfigYesNo(default=True)
+config.plugins.autoresolution.ask_timeout = ConfigSelection(default="20", choices=[("5", "5 " + _("seconds")), ("10", "10 " + _("seconds")), ("15", "15 " + _("seconds")), ("20", "20 " + _("seconds"))])
+config.plugins.autoresolution.manual_resolution_ext_menu = ConfigYesNo(default=False)
+config.plugins.autoresolution.manual_resolution_ask = ConfigYesNo(default=True)
+config.plugins.autoresolution.force_progressive_mode = ConfigYesNo(default=False)
+
 
 def setDeinterlacer(mode):
 	try:
-		f = open('/proc/stb/vmpeg/deinterlace' , "w")
+		f = open('/proc/stb/vmpeg/deinterlace', "w")
 		f.write("%s\n" % mode)
 		f.close()
 		print "[AutoRes] switch deinterlacer mode to %s" % mode
 	except:
 		print "[AutoRes] failed switch deinterlacer mode to %s" % mode
 
-frqdic = { 23000: '24',
+
+frqdic = {23000: '24',
 		23976: '24',
 		24000: '24',
 		25000: '25',
@@ -132,12 +134,12 @@ codec_data = {
 	21: "SPARK",
 }
 
+
 class AutoRes(Screen):
 	def __init__(self, session):
 		global port, modes_available
 		Screen.__init__(self, session)
-		self.__event_tracker = ServiceEventTracker(screen = self, eventmap =
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evVideoSizeChanged: self.__evVideoSizeChanged,
 				iPlayableService.evVideoProgressiveChanged: self.__evVideoProgressiveChanged,
 				iPlayableService.evVideoFramerateChanged: self.__evVideoFramerateChanged,
@@ -154,21 +156,21 @@ class AutoRes(Screen):
 		if config.av.videoport.value in config.av.videomode:
 			self.lastmode = config.av.videomode[config.av.videoport.value].value
 		config.av.videoport.addNotifier(self.defaultModeChanged)
-		config.plugins.autoresolution.enable.addNotifier(self.enableChanged, initial_call = False)
-		config.plugins.autoresolution.deinterlacer.addNotifier(self.enableChanged, initial_call = False)
-		config.plugins.autoresolution.deinterlacer_progressive.addNotifier(self.enableChanged, initial_call = False)
+		config.plugins.autoresolution.enable.addNotifier(self.enableChanged, initial_call=False)
+		config.plugins.autoresolution.deinterlacer.addNotifier(self.enableChanged, initial_call=False)
+		config.plugins.autoresolution.deinterlacer_progressive.addNotifier(self.enableChanged, initial_call=False)
 		if default:
 			self.setMode(default[0], False)
 		self.after_switch_delay = False
 		self.newService = False
 		if "720p" in config.av.videorate:
-			config.av.videorate["720p"].addNotifier(self.__videorate_720p_changed, initial_call = False, immediate_feedback = False)
+			config.av.videorate["720p"].addNotifier(self.__videorate_720p_changed, initial_call=False, immediate_feedback=False)
 		if "1080i" in config.av.videorate:
-			config.av.videorate["1080i"].addNotifier(self.__videorate_1080i_changed, initial_call = False, immediate_feedback = False)
+			config.av.videorate["1080i"].addNotifier(self.__videorate_1080i_changed, initial_call=False, immediate_feedback=False)
 		if "1080p" in config.av.videorate:
-			config.av.videorate["1080p"].addNotifier(self.__videorate_1080p_changed, initial_call = False, immediate_feedback = False)
+			config.av.videorate["1080p"].addNotifier(self.__videorate_1080p_changed, initial_call=False, immediate_feedback=False)
 		if "2160p" in config.av.videorate:
-			config.av.videorate["2160p"].addNotifier(self.__videorate_2160p_changed, initial_call = False, immediate_feedback = False)
+			config.av.videorate["2160p"].addNotifier(self.__videorate_2160p_changed, initial_call=False, immediate_feedback=False)
 
 	def __videorate_720p_changed(self, configEntry):
 		if self.lastmode == "720p":
@@ -258,8 +260,8 @@ class AutoRes(Screen):
 						choices = ['720p50', '1080p25'] + preferedmodes
 					else:
 						choices = preferedmodes
-				config.plugins.autoresolution.videoresolution[mode[0]] = ConfigSelection(default = default[0], choices = choices)
-				config.plugins.autoresolution.videoresolution[mode[0]].addNotifier(self.modeConfigChanged, initial_call = False, immediate_feedback = False)
+				config.plugins.autoresolution.videoresolution[mode[0]] = ConfigSelection(default=default[0], choices=choices)
+				config.plugins.autoresolution.videoresolution[mode[0]].addNotifier(self.modeConfigChanged, initial_call=False, immediate_feedback=False)
 				videoresolution_dictionary[mode[0]] = (config.plugins.autoresolution.videoresolution[mode[0]])
 
 	def modeConfigChanged(self, configElement):
@@ -310,7 +312,7 @@ class AutoRes(Screen):
 			if info and height != -1 and width != -1 and framerate != -1:
 				videocodec = codec_data.get(info.getInfo(iServiceInformation.sVideoType), "N/A")
 				frate = str(framerate)[:2] #fallback?
-				if frqdic.has_key(framerate):
+				if framerate in frqdic:
 					frate = frqdic[framerate]
 
 				prog = ("i", "p", "")[info.getInfo(iServiceInformation.sProgressive)]
@@ -352,9 +354,9 @@ class AutoRes(Screen):
 				else:
 					setDeinterlacer("auto")
 
-				print "[AutoRes] new content is %sx%s%s%s" %(width, height, prog, frate)
+				print "[AutoRes] new content is %sx%s%s%s" % (width, height, prog, frate)
 
-				if videoresolution_dictionary.has_key(new_mode):
+				if new_mode in videoresolution_dictionary:
 					new_mode = videoresolution_dictionary[new_mode].value
 					print '[AutoRes] determined videomode', new_mode
 					old = resolutionlabel["content"].getText()
@@ -373,7 +375,7 @@ class AutoRes(Screen):
 			mode = self.lastmode
 			if "p24" in mode or "p25" in mode or "p30" in mode or (self.extra_mode1080p50 and "1080p50" in mode) or (self.extra_mode1080p60 and "1080p60" in mode) or (self.extra_mode720p60 and "720p60" in mode) or (self.extra_mode2160p50 and "2160p50" in mode) or "720p50" in mode:
 				try:
-					v = open('/proc/stb/video/videomode' , "w")
+					v = open('/proc/stb/video/videomode', "w")
 					v.write("%s\n" % mode)
 					v.close()
 					print "[AutoRes] switching to", mode
@@ -391,8 +393,8 @@ class AutoRes(Screen):
 					MessageBox,
 					_("Autoresolution Plugin Testmode:\nIs %s OK?") % (resolutionlabeltxt),
 					MessageBox.TYPE_YESNO,
-					timeout = 15,
-					default = False
+					timeout=15,
+					default=False
 				)
 		else:
 			setDeinterlacer("auto")
@@ -419,6 +421,7 @@ class AutoRes(Screen):
 				print "[AutoRes] Videomode: failed switching to", mode
 				return
 		self.lastmode = mode
+
 
 class ResolutionLabel(Screen):
 	height = getDesktop(0).size().height()
@@ -459,12 +462,12 @@ class ResolutionLabel(Screen):
 class AutoResSetupMenu(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skinName = [ "AutoResSetupMenu", "Setup" ]
+		self.skinName = ["AutoResSetupMenu", "Setup"]
 		self.setup_title = _("Autoresolution videomode setup")
 		self.setTitle(self.setup_title)
-		self.onChangedEntry = [ ]
-		self.list = [ ]
-		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
+		self.onChangedEntry = []
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 		self.prev_manual_resolution_ext_menu = config.plugins.autoresolution.manual_resolution_ext_menu.value
 		self["actions"] = ActionMap(["SetupActions"],
 			{
@@ -486,13 +489,13 @@ class AutoResSetupMenu(Screen, ConfigListScreen):
 					for mode, label in resolutions:
 						self.list.append(getConfigListEntry(label, videoresolution_dictionary[mode]))
 					if "720p" in config.av.videorate:
-						self.list.append(getConfigListEntry(_("Refresh Rate")+" 720p", config.av.videorate["720p"]))
+						self.list.append(getConfigListEntry(_("Refresh Rate") + " 720p", config.av.videorate["720p"]))
 					if "1080i" in config.av.videorate:
-						self.list.append(getConfigListEntry(_("Refresh Rate")+" 1080i", config.av.videorate["1080i"]))
+						self.list.append(getConfigListEntry(_("Refresh Rate") + " 1080i", config.av.videorate["1080i"]))
 					if "1080p" in config.av.videorate:
-						self.list.append(getConfigListEntry(_("Refresh Rate")+" 1080p", config.av.videorate["1080p"]))
+						self.list.append(getConfigListEntry(_("Refresh Rate") + " 1080p", config.av.videorate["1080p"]))
 					if "2160p" in config.av.videorate:
-						self.list.append(getConfigListEntry(_("Refresh Rate")+" 2160p", config.av.videorate["2160p"]))
+						self.list.append(getConfigListEntry(_("Refresh Rate") + " 2160p", config.av.videorate["2160p"]))
 					self.list.extend((
 						getConfigListEntry(_("Show info screen"), config.plugins.autoresolution.showinfo),
 						getConfigListEntry(_("Delay x seconds after service started"), config.plugins.autoresolution.delay_switch_mode),
@@ -528,13 +531,13 @@ class AutoResSetupMenu(Screen, ConfigListScreen):
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
 		if self["config"].getCurrent() and len(self["config"].getCurrent()) > 0:
-			if self["config"].getCurrent()[1] in (config.plugins.autoresolution.enable, config.plugins.autoresolution.mode, config.plugins.autoresolution.ask_apply_mode,  config.plugins.autoresolution.manual_resolution_ext_menu):
+			if self["config"].getCurrent()[1] in (config.plugins.autoresolution.enable, config.plugins.autoresolution.mode, config.plugins.autoresolution.ask_apply_mode, config.plugins.autoresolution.manual_resolution_ext_menu):
 				self.createSetup()
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
 		if self["config"].getCurrent() and len(self["config"].getCurrent()) > 0:
-			if self["config"].getCurrent()[1] in (config.plugins.autoresolution.enable, config.plugins.autoresolution.mode, config.plugins.autoresolution.ask_apply_mode,  config.plugins.autoresolution.manual_resolution_ext_menu):
+			if self["config"].getCurrent()[1] in (config.plugins.autoresolution.enable, config.plugins.autoresolution.mode, config.plugins.autoresolution.ask_apply_mode, config.plugins.autoresolution.manual_resolution_ext_menu):
 				self.createSetup()
 
 	def changedEntry(self):
@@ -558,6 +561,7 @@ class AutoResSetupMenu(Screen, ConfigListScreen):
 		plugins.clearPluginList()
 		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
+
 class AutoFrameRate(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -565,7 +569,7 @@ class AutoFrameRate(Screen):
 		self.lockTimer.callback.append(self.unlockFramerateChange)
 		self.framerate_change_is_locked = False
 		self.lastService = None
-		self.__event_tracker = ServiceEventTracker(screen = self, eventmap = {iPlayableService.evVideoFramerateChanged: self.AutoVideoFramerateChanged})
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={iPlayableService.evVideoFramerateChanged: self.AutoVideoFramerateChanged})
 		self.init = False
 
 	def AutoVideoFramerateChanged(self):
@@ -575,7 +579,8 @@ class AutoFrameRate(Screen):
 				if config.av.videomode[config.av.videoport.value].value in config.av.videorate:
 					service = self.session.nav.getCurrentService()
 					ref = self.session.nav.getCurrentlyPlayingServiceReference()
-					if not ref or not service: return
+					if not ref or not service:
+						return
 					cur_service_str = ref.toString()
 					if not (cur_service_str and self.lastService):
 						self.lastService = cur_service_str
@@ -637,7 +642,7 @@ class AutoFrameRate(Screen):
 				self.framerate_change_is_locked = True
 				self.lockTimer.startLongTimer(int(config.plugins.autoresolution.lock_timeout.value))
 				if config.plugins.autoresolution.ask_apply_mode.value and self.init:
-					Notifications.AddNotificationWithCallback(self.changeFramerateCallback, MessageBox, _("Changing framerate for current service?\nCurrent framerate: %s\nNew framerate: %s\n") % (videomode, multi_videomode), MessageBox.TYPE_YESNO, timeout = int(config.plugins.autoresolution.ask_timeout.value))
+					Notifications.AddNotificationWithCallback(self.changeFramerateCallback, MessageBox, _("Changing framerate for current service?\nCurrent framerate: %s\nNew framerate: %s\n") % (videomode, multi_videomode), MessageBox.TYPE_YESNO, timeout=int(config.plugins.autoresolution.ask_timeout.value))
 				else:
 					self.changeFramerateCallback(True)
 			if not self.init:
@@ -675,6 +680,7 @@ class AutoFrameRate(Screen):
 		if seekable is None:
 			return
  		seekable.seekRelative(pts < 0 and -1 or 1, abs(pts))
+
 
 class ManualResolution(Screen):
 	def __init__(self, session):
@@ -715,13 +721,13 @@ class ManualResolution(Screen):
 			yres = int(yresString, 16)
 			fps = int(fpsString)
 			fpsFloat = float(fps)
-			fpsFloat = fpsFloat/1000
+			fpsFloat = fpsFloat / 1000
 		except:
 			print "[ManualResolution] Error reading current mode!Stop!"
 			return
 		selection = 0
 		tlist = []
-		tlist.append((_("Exit"), "exit")) 
+		tlist.append((_("Exit"), "exit"))
 		tlist.append((_("Video: ") + str(xres) + "x" + str(yres) + "@" + str(fpsFloat) + "hz", ""))
 		tlist.append(("--", ""))
 		for x in self.choices:
@@ -737,7 +743,7 @@ class ManualResolution(Screen):
 			for x in range(len(tlist)):
 				if tlist[x][1] == self.old_mode:
 					selection = x
-		self.session.openWithCallback(self.resolutionSelected, ChoiceBox, title=_("Please select a resolution..."), list=tlist, selection=selection, keys=keys, windowTitle= _("Manual resolution"))
+		self.session.openWithCallback(self.resolutionSelected, ChoiceBox, title=_("Please select a resolution..."), list=tlist, selection=selection, keys=keys, windowTitle=_("Manual resolution"))
 
 	def resolutionSelected(self, res):
 		res = res and res[1]
@@ -760,6 +766,7 @@ class ManualResolution(Screen):
 		except:
 			print "[ManualResolution] Error write /proc/stb/video/videomode"
 
+
 def openManualResolution(session, **kwargs):
 	if config.av.videoport.value not in ('DVI-PC', 'Scart'):
 		global manualResolution
@@ -771,6 +778,7 @@ def openManualResolution(session, **kwargs):
 		config.plugins.autoresolution.manual_resolution_ext_menu.save()
 		session.open(MessageBox, _("Manual resolution is not working in Scart/DVI-PC mode!"), MessageBox.TYPE_INFO, timeout=6)
 
+
 def autostart(reason, **kwargs):
 	global resolutionlabel
 	if reason == 0 and "session" in kwargs and resolutionlabel is None:
@@ -780,18 +788,21 @@ def autostart(reason, **kwargs):
 			AutoFrameRate(session)
 			AutoRes(session)
 
+
 def startSetup(menuid):
 	if menuid != "video":
-		return [ ]
+		return []
 	return [(_("Autoresolution"), autoresSetup, "autores_setup", None)]
+
 
 def autoresSetup(session, **kwargs):
 	autostart(reason=0, session=session)
 	session.open(AutoResSetupMenu)
 
+
 def Plugins(path, **kwargs):
 	lst = [PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART], fnc=autostart),
 		PluginDescriptor(name="Autoresolution", description=_("Autoresolution Switch"), where=PluginDescriptor.WHERE_MENU, fnc=startSetup)]
 	if not config.plugins.autoresolution.enable.value and config.plugins.autoresolution.manual_resolution_ext_menu.value:
-		lst.append(PluginDescriptor(name = _("Manual resolution"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart=False, fnc=openManualResolution))
+		lst.append(PluginDescriptor(name=_("Manual resolution"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart=False, fnc=openManualResolution))
 	return lst

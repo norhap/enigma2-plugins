@@ -30,8 +30,10 @@ import copy
 
 from Components.config import config, ConfigSubList, ConfigSelection, ConfigElement
 
+
 def isEmpty(x):
 		return len(x) == 0
+
 
 def getVtunerList():
 	data = []
@@ -40,6 +42,7 @@ def getVtunerList():
 		data.append(x)
 	data.sort()
 	return data
+
 
 VTUNER_IDX_LIST = getVtunerList()
 
@@ -50,8 +53,9 @@ MX = 2
 ST = "urn:ses-com:device:SatIPServer:1"
 MS = 'M-SEARCH * HTTP/1.1\r\nHOST: %s:%d\r\nMAN: "%s"\r\nMX: %d\r\nST: %s\r\n\r\n' % (SSDP_ADDR, SSDP_PORT, MAN, MX, ST)
 
+
 class SSDPServerDiscovery(DatagramProtocol):
-	def __init__(self, callback, iface = None):
+	def __init__(self, callback, iface=None):
 		self.callback = callback
 		self.port = None
 
@@ -76,9 +80,10 @@ class SSDPServerDiscovery(DatagramProtocol):
 	def stop(self):
 		pass
 
+
 SATIPSERVERDATA = {}
 
-DEVICE_ATTR = [ 
+DEVICE_ATTR = [
 'friendlyName',
 'manufacturer',
 'manufacturerURL',
@@ -90,7 +95,8 @@ DEVICE_ATTR = [
 'presentationURL'
 ]
 
-discoveryTimeoutMS = 5000;
+discoveryTimeoutMS = 5000
+
 
 class SATIPDiscovery:
 	def __init__(self):
@@ -107,18 +113,18 @@ class SATIPDiscovery:
 		if not address:
 			return None
 
-		return "%d.%d.%d.%d"%(address[0],address[1],address[2],address[3])
+		return "%d.%d.%d.%d" % (address[0], address[1], address[2], address[3])
 
 	def getEthernetAddr(self):
-		return self.formatAddr(iNetwork.getAdapterAttribute("eth0", "ip") )
+		return self.formatAddr(iNetwork.getAdapterAttribute("eth0", "ip"))
 
 	def DiscoveryTimerStart(self):
 		self.discoveryStartTimer.start(10, True)
 
-	def DiscoveryStart(self, stop_timeout = discoveryTimeoutMS):
+	def DiscoveryStart(self, stop_timeout=discoveryTimeoutMS):
 		self.discoveryStopTimer.stop()
 		self.ssdp.stop_msearch()
-		
+
 #		print "Discovery Start!"
 		self.ssdp.send_msearch(self.getEthernetAddr())
 		self.discoveryStopTimer.start(stop_timeout, True)
@@ -134,7 +140,7 @@ class SATIPDiscovery:
 #		print "dataReceive:\n", data
 #		print "\n"
 		serverData = self.dataParse(data)
-		if serverData.has_key('LOCATION'):
+		if 'LOCATION' in serverData:
 			self.xmlParse(serverData['LOCATION'])
 
 	def dataParse(self, data):
@@ -144,7 +150,7 @@ class SATIPDiscovery:
 			if line.find(':') != -1:
 				(attr, value) = line.split(':', 1)
 				attr = attr.strip().upper()
-				if not serverData.has_key(attr):
+				if attr not in serverData:
 					serverData[attr] = value.strip()
 
 #		for (key, value) in serverData.items():
@@ -168,7 +174,7 @@ class SATIPDiscovery:
 
 			return None
 
-		def getAttrN2(root, parent, tag, namespace_1 , namespace_2):
+		def getAttrN2(root, parent, tag, namespace_1, namespace_2):
 			try:
 				pElem = findChild(root, parent, namespace_1)
 				if pElem is not None:
@@ -206,12 +212,12 @@ class SATIPDiscovery:
 			AAA = location.find(':')
 			BBB = location.find('/')
 			if AAA == -1:
-				address = location[AAA+1 : BBB]
+				address = location[AAA + 1: BBB]
 				port = "80"
 				request = location[BBB:]
 			else:
 				address = location[:AAA]
-				port = location[AAA+1 : BBB]
+				port = location[AAA + 1: BBB]
 				request = location[BBB:]
 
 			#print "address2 : ", address
@@ -225,7 +231,7 @@ class SATIPDiscovery:
 			print "http request error %s" % ErrMsg
 			return -1
 
-		if res.status != 200 or res.reason !="OK":
+		if res.status != 200 or res.reason != "OK":
 			print "response error"
 			return -1
 
@@ -240,7 +246,7 @@ class SATIPDiscovery:
 
 		udn = getAttr(root, 'device', 'UDN', xmlns_dev)
 		if udn is None:
-			return -1;
+			return -1
 
 		uuid = udn.strip('uuid:')
 		SATIPSERVERDATA[uuid] = {}
@@ -297,11 +303,13 @@ class SATIPDiscovery:
 				return uuid
 		return None
 
+
 satipdiscovery = SATIPDiscovery()
 SATIP_CONF_CHANGED = False
 
+
 class SATIPTuner(Screen, ConfigListScreen):
-	skin =  """
+	skin = """
 		<screen position="center,center" size="590,370">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="40,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="230,0" size="140,40" alphatest="on" />
@@ -314,6 +322,7 @@ class SATIPTuner(Screen, ConfigListScreen):
 			<widget source="choices" render="Label" position="20,120" size="550,40" font="Regular;18" halign="left" valign="center" />
 		</screen>
 	"""
+
 	def __init__(self, session, vtuner_idx, vtuner_uuid, vtuner_type, current_satipConfig):
 		Screen.__init__(self, session)
 		self.setTitle(_("SAT>IP Client Tuner Setup"))
@@ -336,11 +345,11 @@ class SATIPTuner(Screen, ConfigListScreen):
 			"cancel": self.keyCancel,
 			"red": self.keyCancel,
 			"green": self.keySave,
-			"yellow" : self.DiscoveryStart,
+			"yellow": self.DiscoveryStart,
 		}, -2)
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session)
+		ConfigListScreen.__init__(self, self.list, session=self.session)
 		self.satipconfig = ConfigSubsection()
 		self.satipconfig.server = None
 
@@ -385,14 +394,14 @@ class SATIPTuner(Screen, ConfigListScreen):
 		server_default = None
 		for uuid in satipdiscovery.getServerKeys():
 			description = satipdiscovery.getServerInfo(uuid, "modelName")
-			server_choices.append( (uuid, description) )
+			server_choices.append((uuid, description))
 			if self.vtuner_uuid == uuid:
 				server_default = uuid
 
 		if server_default is None:
 			server_default = server_choices[0][0]
 
-		self.satipconfig.server = ConfigSelection(default = server_default, choices = server_choices )
+		self.satipconfig.server = ConfigSelection(default=server_default, choices=server_choices)
 
 	def createSetup(self):
 		if self.satipconfig.server is None:
@@ -400,11 +409,11 @@ class SATIPTuner(Screen, ConfigListScreen):
 
 		self.list = []
 		self.server_entry = getConfigListEntry(_("SAT>IP Server : "), self.satipconfig.server)
-		self.list.append( self.server_entry )
+		self.list.append(self.server_entry)
 
 		self.createTypeConfig(self.satipconfig.server.value)
 		self.type_entry = getConfigListEntry(_("SAT>IP Tuner Type : "), self.satipconfig.tunertype)
-		self.list.append( self.type_entry )
+		self.list.append(self.type_entry)
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -422,14 +431,14 @@ class SATIPTuner(Screen, ConfigListScreen):
 
 		for (t, n) in capability.items():
 			if n != 0:
-				type_choices.append( (t, _(t)) )
+				type_choices.append((t, _(t)))
 				if self.vtuner_type == t:
 					type_default = t
 
 		if isEmpty(type_choices):
-			type_choices = [ ("DVB-S", _("DVB-S")) ]
+			type_choices = [("DVB-S", _("DVB-S"))]
 
-		self.satipconfig.tunertype = ConfigSelection(default = type_default, choices = type_choices )
+		self.satipconfig.tunertype = ConfigSelection(default=type_default, choices=type_choices)
 
 	def selectionChanged(self):
 		if self.satipconfig.server is None:
@@ -456,12 +465,12 @@ class SATIPTuner(Screen, ConfigListScreen):
 
 		description = ""
 		description += _("Description") + " : %s\n" % modelDescription
-		description += _("Manufacturer") + " : %s\n" % manufacturer 
+		description += _("Manufacturer") + " : %s\n" % manufacturer
 		description += _("Model URL") + " : %s\n" % modelURL
-		description += _("Presentation URL") +" : %s\n" % presentationURL
+		description += _("Presentation URL") + " : %s\n" % presentationURL
 		description += "UUID : %s\n" % uuid
 		description += _("SAT>IP Capability") + " : %s" % satipcap
-		
+
 		self["description"].setText(description)
 
 	def showChoices(self):
@@ -477,7 +486,7 @@ class SATIPTuner(Screen, ConfigListScreen):
 		self["choices"].setText(text)
 
 	def getCapability(self, uuid):
-		capability = { 'DVB-S' : 0, 'DVB-C' : 0, 'DVB-T' : 0}
+		capability = {'DVB-S': 0, 'DVB-C': 0, 'DVB-T': 0}
 		data = satipdiscovery.getServerInfo(uuid, "X_SATIPCAP")
 		if data is not None:
 			for x in data.split(','):
@@ -488,7 +497,7 @@ class SATIPTuner(Screen, ConfigListScreen):
 				elif x.upper().find("DVBT") != -1:
 					capability['DVB-T'] = int(x.split('-')[1])
 		else:
-			capability = { 'DVB-S' : 1, 'DVB-C' : 0, 'DVB-T' : 0}
+			capability = {'DVB-S': 1, 'DVB-C': 0, 'DVB-T': 0}
 
 		return capability
 
@@ -541,7 +550,7 @@ class SATIPTuner(Screen, ConfigListScreen):
 		else:
 			data = {}
 			data['idx'] = self.vtuner_idx
-			data['ip'] = satipdiscovery.getServerInfo(uuid, 'ipaddress');
+			data['ip'] = satipdiscovery.getServerInfo(uuid, 'ipaddress')
 			data['desc'] = satipdiscovery.getServerInfo(uuid, "modelName")
 			data['tuner_type'] = tunertype
 			data['uuid'] = uuid
@@ -551,7 +560,10 @@ class SATIPTuner(Screen, ConfigListScreen):
 	def keyCancel(self):
 		self.close()
 
+
 SATIP_CONFFILE = "/etc/vtuner.conf"
+
+
 class SATIPClient(Screen):
 	skin = """
 		<screen position="center,center" size="590,370">
@@ -584,6 +596,7 @@ class SATIPClient(Screen):
 			<widget source="description" render="Label" position="0,340" size="590,30" font="Regular;20" halign="center" valign="center" />
 		</screen>
 	"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.setTitle(_("SAT>IP Client Setup"))
@@ -618,7 +631,7 @@ class SATIPClient(Screen):
 
 	def checkVTuner(self):
 		if not VTUNER_IDX_LIST:
-			self.session.open(MessageBox, _("No vtuner found."), MessageBox.TYPE_ERROR, close_on_any_key = True)
+			self.session.open(MessageBox, _("No vtuner found."), MessageBox.TYPE_ERROR, close_on_any_key=True)
 			self.close()
 
 	def isChanged(self):
@@ -672,7 +685,7 @@ class SATIPClient(Screen):
 			if vtuner['vtuner_type'] == "satip_client":
 				entry = (
 				_("VIRTUAL TUNER %s") % vtuner_idx,
-				_("TYPE : %s") % vtuner['vtuner_type'].replace('_',' ').upper(),
+				_("TYPE : %s") % vtuner['vtuner_type'].replace('_', ' ').upper(),
 				_("IP : %s") % vtuner['ipaddr'],
 				_("TUNER TYPE : %s") % vtuner['tuner_type'],
 				_("SAT>IP SERVER : %s") % vtuner['desc'],
@@ -684,7 +697,7 @@ class SATIPClient(Screen):
 			else:
 				entry = (
 				_("VIRTUAL TUNER %s") % vtuner_idx,
-				_("TYPE : %s") % vtuner['vtuner_type'].replace('_',' ').upper(),
+				_("TYPE : %s") % vtuner['vtuner_type'].replace('_', ' ').upper(),
 				"",
 				"",
 				"",
@@ -702,7 +715,7 @@ class SATIPClient(Screen):
 
 		self.vtunerConfig[int(idx)] = copy.deepcopy(self.old_vtunerConfig[int(idx)])
 		if self.vtunerConfig[int(idx)] and self.vtunerConfig[int(idx)]['vtuner_type'] == "satip_client":
-			self.vtunerConfig[int(idx)] = {'vtuner_type':"usb_tuner"}
+			self.vtunerConfig[int(idx)] = {'vtuner_type': "usb_tuner"}
 
 		self.sortVtunerConfig()
 		self.createSetup()
@@ -713,7 +726,7 @@ class SATIPClient(Screen):
 		vtuner_uuid = self["vtunerList"].getCurrent()[7]
 		self.session.openWithCallback(self.SATIPTunerCB, SATIPTuner, vtuner_idx, vtuner_uuid, vtuner_type, self.vtunerConfig)
 
-	def SATIPTunerCB(self, data = None):
+	def SATIPTunerCB(self, data=None):
 		if data is not None:
 			self.setConfig(data)
 
@@ -748,7 +761,7 @@ class SATIPClient(Screen):
 			for k in sorted(conf):
 				attr.append("%s:%s" % (k, conf[k]))
 
-			data += idx + '=' + ",".join(attr)+"\n"
+			data += idx + '=' + ",".join(attr) + "\n"
 
 		if data:
 			fd = open(SATIP_CONFFILE, 'w')
@@ -759,7 +772,7 @@ class SATIPClient(Screen):
 		vtunerConfig = []
 
 		for idx in self.vtunerIndex:
-			vtunerConfig.append({'vtuner_type':"usb_tuner"})
+			vtunerConfig.append({'vtuner_type': "usb_tuner"})
 
 		if os.access(SATIP_CONFFILE, os.R_OK):
 			fd = open(SATIP_CONFFILE)
@@ -770,7 +783,6 @@ class SATIPClient(Screen):
 				for line in confData.splitlines():
 					if len(line) == 0 or line[0] == '#':
 						continue
-
 
 					data = line.split('=')
 					if len(data) != 2:
@@ -797,15 +809,18 @@ class SATIPClient(Screen):
 
 		return vtunerConfig
 
+
 def main(session, **kwargs):
 	session.open(SATIPClient)
+
 
 def menu(menuid, **kwargs):
 	if menuid == "scan":
 		return [(_("SAT>IP Client"), main, "sat_ip_client", 55)]
 	return []
 
+
 def Plugins(**kwargs):
 	pList = []
-	pList.append( PluginDescriptor(name=_("SAT>IP Client"), description=_("SAT>IP Client attached to vtuner."), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=menu) )
+	pList.append(PluginDescriptor(name=_("SAT>IP Client"), description=_("SAT>IP Client attached to vtuner."), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu))
 	return pList

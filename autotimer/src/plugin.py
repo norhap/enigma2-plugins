@@ -46,8 +46,9 @@ try:
 	reader = XMLHelpReader(resolveFilename(SCOPE_PLUGINS, "Extensions/AutoTimer/mphelp.xml"), translate=_)
 	autotimerHelp = registerHelp(*reader)
 except Exception as e:
-	doLog("[AutoTimer] Unable to initialize MPHelp:", e,"- Help not available!")
+	doLog("[AutoTimer] Unable to initialize MPHelp:", e, "- Help not available!")
 	autotimerHelp = None
+
 
 def isOriginalWebifInstalled():
 	try:
@@ -58,6 +59,7 @@ def isOriginalWebifInstalled():
 	if fileExists(pluginpath) or fileExists(pluginpath + "o") or fileExists(pluginpath + "c"):
 		return True
 	return False
+
 
 def isOpenWebifInstalled():
 	try:
@@ -70,6 +72,8 @@ def isOpenWebifInstalled():
 	return False
 
 # Autostart
+
+
 def autostart(reason, **kwargs):
 	global autopoller
 
@@ -99,6 +103,7 @@ def autostart(reason, **kwargs):
 			pass
 		else:
 			autotimer.writeXml()
+
 
 def sessionstart(reason, **kwargs):
 	if reason == 0 and "session" in kwargs:
@@ -144,15 +149,15 @@ def sessionstart(reason, **kwargs):
 				root.putChild('set', AutoTimerChangeSettingsResource())
 				root.putChild('simulate', AutoTimerSimulateResource())
 				root.putChild('test', AutoTimerTestResource())
-				addExternalChild( ("autotimer", root , "AutoTimer-Plugin", API_VERSION, False) )
+				addExternalChild(("autotimer", root, "AutoTimer-Plugin", API_VERSION, False))
 
 				# webgui
 				session = kwargs["session"]
 				root = File(util.sibpath(__file__, "web-data"))
-				root.putChild("web", ScreenPage(session, util.sibpath(__file__, "web"), True) )
+				root.putChild("web", ScreenPage(session, util.sibpath(__file__, "web"), True))
 				root.putChild('tmp', File('/tmp'))
 				root.putChild("uploadfile", UploadResource(session))
-				addExternalChild( ("autotimereditor", root, "AutoTimer", "1", True) )
+				addExternalChild(("autotimereditor", root, "AutoTimer", "1", True))
 				doLog("[AutoTimer] Use WebInterface")
 		else:
 			if isOpenWebifInstalled():
@@ -176,12 +181,15 @@ def sessionstart(reason, **kwargs):
 					root.putChild('set', AutoTimerChangeSettingsResource())
 					root.putChild('simulate', AutoTimerSimulateResource())
 					root.putChild('test', AutoTimerTestResource())
-					addExternalChild(("autotimer", root , "AutoTimer-Plugin", API_VERSION))
+					addExternalChild(("autotimer", root, "AutoTimer-Plugin", API_VERSION))
 					doLog("[AutoTimer] Use OpenWebif")
+
 
 base_furtherOptions = None
 baseEPGSelection__init__ = None
 mepg_config_initialized = False
+
+
 def AutoTimerEPGSelectionInit():
 	global baseEPGSelection__init__, base_furtherOptions
 	try:
@@ -195,8 +203,10 @@ def AutoTimerEPGSelectionInit():
 	except:
 		pass
 
+
 def AutoTimerEPGSelection__init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None, parent=None):
 	baseEPGSelection__init__(self, session, service, zapFunc, eventid, bouquetChangeCB, serviceChangeCB, parent)
+
 
 def furtherOptions(self):
 	if self.type == EPG_TYPE_SINGLE:
@@ -208,7 +218,7 @@ def furtherOptions(self):
 				(_("Open plugin"), "openplugin"),
 				(_("Timers list"), "timerlist"),
 			]
-			dlg = self.session.openWithCallback(self.menuCallbackAutoTimer,ChoiceBox,title= _("Select action for AutoTimer:"), list = list)
+			dlg = self.session.openWithCallback(self.menuCallbackAutoTimer, ChoiceBox, title=_("Select action for AutoTimer:"), list=list)
 			dlg.setTitle(_("Choice list AutoTimer"))
 		else:
 			base_furtherOptions(self)
@@ -222,12 +232,13 @@ def furtherOptions(self):
 				(_("Open plugin"), "openplugin"),
 				(_("Timers list"), "timerlist"),
 			]
-			dlg = self.session.openWithCallback(self.menuCallbackAutoTimer,ChoiceBox,title= _("Select action for AutoTimer or input date/time:"), list = list)
+			dlg = self.session.openWithCallback(self.menuCallbackAutoTimer, ChoiceBox, title=_("Select action for AutoTimer or input date/time:"), list=list)
 			dlg.setTitle(_("Choice list AutoTimer"))
 		else:
 			base_furtherOptions(self)
 	else:
 		base_furtherOptions(self)
+
 
 def menuCallbackAutoTimer(self, ret):
 	ret = ret and ret[1]
@@ -271,13 +282,16 @@ def menuCallbackAutoTimer(self, ret):
 				from time import time as my_time
 				global mepg_config_initialized
 				if not mepg_config_initialized:
-					config.misc.prev_mepg_time=ConfigClock(default = my_time())
+					config.misc.prev_mepg_time = ConfigClock(default=my_time())
 					mepg_config_initialized = True
 				self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.misc.prev_mepg_time)
 			except:
 				pass
 
+
 baseChannelContextMenu__init__ = None
+
+
 def AutoTimerChannelContextMenuInit():
 	try:
 		global baseChannelContextMenu__init__
@@ -287,6 +301,7 @@ def AutoTimerChannelContextMenuInit():
 			ChannelContextMenu.addtoAutoTimer = addtoAutoTimer
 	except:
 		pass
+
 
 def AutoTimerChannelContextMenu__init__(self, session, csel):
 	baseChannelContextMenu__init__(self, session, csel)
@@ -298,10 +313,11 @@ def AutoTimerChannelContextMenu__init__(self, session, csel):
 			current_sel_flags = current.flags
 			inBouquetRootList = current_root and current_root.getPath().find('FROM BOUQUET "bouquets.') != -1 #FIXME HACK
 			inBouquet = csel.getMutableList() is not None
-			isPlayable = not (current_sel_flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
+			isPlayable = not (current_sel_flags & (eServiceReference.isMarker | eServiceReference.isDirectory))
 			if config.plugins.autotimer.add_to_channelselection.value and csel.bouquet_mark_edit == OFF and not csel.movemode and isPlayable:
 				callFunction = self.addtoAutoTimer
-				self["menu"].list.insert(3, ChoiceEntryComponent(text = (_("create AutoTimer for current event"), boundFunction(callFunction,1)), key = "bullet"))
+				self["menu"].list.insert(3, ChoiceEntryComponent(text=(_("create AutoTimer for current event"), boundFunction(callFunction, 1)), key="bullet"))
+
 
 def addtoAutoTimer(self, add):
 	sref = self.csel.servicelist.getCurrent()
@@ -313,18 +329,20 @@ def addtoAutoTimer(self, add):
 		sref = sref.toString()
 		from AutoTimerEditor import addAutotimerFromEvent
 		try:
-			addAutotimerFromEvent(self.session, evt = event, service = sref)
+			addAutotimerFromEvent(self.session, evt=event, service=sref)
 		except:
 			pass
 
 # Mainfunction
+
+
 def main(session, **kwargs):
 	global autopoller
 
 	try:
 		autotimer.readXml()
 	except SyntaxError as se:
-		session.open(MessageBox, _("Your config file is not well-formed:\n%s") % (str(se)), type = MessageBox.TYPE_ERROR, timeout = 10)
+		session.open(MessageBox, _("Your config file is not well-formed:\n%s") % (str(se)), type=MessageBox.TYPE_ERROR, timeout=10)
 		return
 
 	# Do not run in background while editing, this might screw things up
@@ -337,6 +355,7 @@ def main(session, **kwargs):
 		AutoTimerOverview,
 		autotimer
 	)
+
 
 def handleAutoPoller():
 	global autopoller
@@ -351,7 +370,9 @@ def handleAutoPoller():
 	else:
 		autopoller = None
 
+
 editTimer = eTimer()
+
 
 def editCallback(session):
 	# Don't parse EPG if editing was canceled
@@ -363,11 +384,14 @@ def editCallback(session):
 	else:
 		handleAutoPoller()
 
+
 def parseEPGstart():
 	if autotimer:
 		autotimer.parseEPGAsync().addCallback(parseEPGCallback)#.addErrback(parseEPGErrback)
 
+
 editTimer.callback.append(parseEPGstart)
+
 
 def parseEPGCallback(ret):
 	searchlog_txt = ""
@@ -389,10 +413,10 @@ def parseEPGCallback(ret):
 				searchlog_txt = searchlog_txt[:maxlistcount]
 				for i, entry in enumerate(searchlog_txt):
 					if len(entry) > maxtextlength:
-						searchlog_txt[i] = entry[:maxtextlength-3] + "..."
+						searchlog_txt[i] = entry[:maxtextlength - 3] + "..."
 				searchlog_txt = "\n".join(searchlog_txt)
-				if listcount > maxlistcount+1:
-					searchlog_txt += "\n" + "and %d searchlog-entries more ..." % (listcount-maxlistcount)
+				if listcount > maxlistcount + 1:
+					searchlog_txt += "\n" + "and %d searchlog-entries more ..." % (listcount - maxlistcount)
 
 	AddPopup(
 		_("Found a total of %d matching Events.\n%d Timer were added and\n%d modified,\n%d conflicts encountered,\n%d similars added.") % (ret[0], ret[1], ret[2], len(ret[4]), len(ret[5])) + "\n\n" + searchlog_txt,
@@ -407,11 +431,15 @@ def parseEPGCallback(ret):
 	handleAutoPoller()
 
 # Movielist
+
+
 def movielist(session, service, **kwargs):
 	from AutoTimerEditor import addAutotimerFromService
 	addAutotimerFromService(session, service)
 
 # EPG Further Options
+
+
 def epgfurther(session, selectedevent, **kwargs):
 	from AutoTimerEditor import addAutotimerFromEvent
 	try:
@@ -420,6 +448,8 @@ def epgfurther(session, selectedevent, **kwargs):
 		pass
 
 # Event Info and EventView Context Menu
+
+
 def eventinfo(session, service=None, event=None, eventName="", **kwargs):
 	if eventName != "":
 		if service is not None and event is not None:
@@ -438,19 +468,25 @@ def eventinfo(session, service=None, event=None, eventName="", **kwargs):
 			session.open(AutoTimerEPGSelection, ref)
 
 # Extensions menu
+
+
 def extensionsmenu(session, **kwargs):
 	main(session, **kwargs)
 
 # Extensions menu - only scan Autotimer
+
+
 def extensionsmenu_scan(session, **kwargs):
 	try:
 		autotimer.readXml()
 	except SyntaxError as se:
-		session.open( MessageBox, _("Your config file is not well-formed:\n%s") % (str(se)), type = MessageBox.TYPE_ERROR, timeout=10)
+		session.open(MessageBox, _("Your config file is not well-formed:\n%s") % (str(se)), type=MessageBox.TYPE_ERROR, timeout=10)
 		return
 	editCallback(session)
 
 # Movielist menu add to filterList
+
+
 def add_to_filterList(session, service, services=None, *args, **kwargs):
 	try:
 		if services:
@@ -460,8 +496,9 @@ def add_to_filterList(session, service, services=None, *args, **kwargs):
 			services = [service]
 		autotimer.addToFilterList(session, services)
 	except Exception as e:
-		print ("[AutoTimer] Unable to add Recordtitle to FilterList:", e)
+		print("[AutoTimer] Unable to add Recordtitle to FilterList:", e)
 		doLog("[AutoTimer] Unable to add Recordtitle to FilterList:", e)
+
 
 def housekeepingExtensionsmenu(el):
 	if el.value:
@@ -474,34 +511,37 @@ def housekeepingExtensionsmenu(el):
 		except ValueError as ve:
 			doLog("[AutoTimer] housekeepingExtensionsmenu got confused, tried to remove non-existant plugin entry... ignoring.")
 
+
 def timezoneChanged(self):
 	if config.plugins.autotimer.autopoll.value and autopoller is not None:
 		autopoller.pause()
 		autopoller.start(initial=False)
 		doLog("[AutoTimer] Timezone change detected.")
 
+
 try:
 	config.timezone.val.addNotifier(timezoneChanged, initial_call=False, immediate_feedback=False)
 except AttributeError:
 	doLog("[AutoTimer] Failed to load timezone notifier.")
 
-config.plugins.autotimer.show_in_extensionsmenu.addNotifier(housekeepingExtensionsmenu, initial_call = False, immediate_feedback = True)
-extDescriptor = PluginDescriptor(name=_("AutoTimer"), description = _("Edit Timers and scan for new Events"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = extensionsmenu, needsRestart = False)
-extDescriptor_scan = PluginDescriptor(name=_("AutoTimer scan"), description = _("scan for new Events"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = extensionsmenu_scan, needsRestart = False)
+config.plugins.autotimer.show_in_extensionsmenu.addNotifier(housekeepingExtensionsmenu, initial_call=False, immediate_feedback=True)
+extDescriptor = PluginDescriptor(name=_("AutoTimer"), description=_("Edit Timers and scan for new Events"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=extensionsmenu, needsRestart=False)
+extDescriptor_scan = PluginDescriptor(name=_("AutoTimer scan"), description=_("scan for new Events"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=extensionsmenu_scan, needsRestart=False)
+
 
 def Plugins(**kwargs):
 	l = [
 		PluginDescriptor(where=PluginDescriptor.WHERE_AUTOSTART, fnc=autostart, needsRestart=False),
 		PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, fnc=sessionstart, needsRestart=False),
-		PluginDescriptor(name=_("AutoTimer"), description = _("Edit Timers and scan for new Events"), where = PluginDescriptor.WHERE_PLUGINMENU, icon = "plugin.png", fnc = main, needsRestart = False),
-		PluginDescriptor(name=_("Add AutoTimer"), description= _("add AutoTimer"), where = PluginDescriptor.WHERE_MOVIELIST, fnc = movielist, needsRestart = False),
-		PluginDescriptor(name=_("add AutoTimer..."), where = PluginDescriptor.WHERE_EVENTINFO, fnc = eventinfo, needsRestart = False),
-		PluginDescriptor(name=_("Auto Timers"), description = _("Edit Timers and scan for new Events"), where=PluginDescriptor.WHERE_MENU, fnc=timermenu),
+		PluginDescriptor(name=_("AutoTimer"), description=_("Edit Timers and scan for new Events"), where=PluginDescriptor.WHERE_PLUGINMENU, icon="plugin.png", fnc=main, needsRestart=False),
+		PluginDescriptor(name=_("Add AutoTimer"), description=_("add AutoTimer"), where=PluginDescriptor.WHERE_MOVIELIST, fnc=movielist, needsRestart=False),
+		PluginDescriptor(name=_("add AutoTimer..."), where=PluginDescriptor.WHERE_EVENTINFO, fnc=eventinfo, needsRestart=False),
+		PluginDescriptor(name=_("Auto Timers"), description= _("Edit Timers and scan for new Events"), where=PluginDescriptor.WHERE_MENU, fnc=timermenu),
 	]
 	if hasSeriesPlugin:
-		l.append(PluginDescriptor(name = _("add to AutoTimer filterList"), description = _("add to AutoTimer filterList"), where = PluginDescriptor.WHERE_MOVIELIST, fnc = add_to_filterList, needsRestart = False))
+		l.append(PluginDescriptor(name=_("add to AutoTimer filterList"), description=_("add to AutoTimer filterList"), where=PluginDescriptor.WHERE_MOVIELIST, fnc=add_to_filterList, needsRestart=False))
 	if config.plugins.autotimer.show_in_furtheroptionsmenu.value:
-		l.append(PluginDescriptor(name=_("Create AutoTimer"), where = PluginDescriptor.WHERE_EVENTINFO, fnc = epgfurther, needsRestart = False))
+		l.append(PluginDescriptor(name=_("Create AutoTimer"), where=PluginDescriptor.WHERE_EVENTINFO, fnc=epgfurther, needsRestart=False))
 	if config.plugins.autotimer.show_in_extensionsmenu.value:
 		l.append(extDescriptor)
 		l.append(extDescriptor_scan)

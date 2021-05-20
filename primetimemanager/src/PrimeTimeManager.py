@@ -89,20 +89,21 @@ service_types_tv_hd = '1:7:1:0:0:0:0:0:0:0:(type == 17) || (type == 25) || (type
 
 #############################################################################################
 
-PRIMETIME	= 0
-FAVORITE	= 1
-PT_AND_FAV	= 2
+PRIMETIME = 0
+FAVORITE = 1
+PT_AND_FAV = 2
 
-EVENTID		= 0
-SERVICEREF	= 1
-BEGIN		= 2
-DURATION	= 3
-TITLE		= 4
-SHORTDESC	= 5
-EXTDESC		= 6
-SERVICENAME	= 7
+EVENTID = 0
+SERVICEREF = 1
+BEGIN = 2
+DURATION = 3
+TITLE = 4
+SHORTDESC = 5
+EXTDESC = 6
+SERVICENAME = 7
 
 #############################################################################################
+
 
 class PrimeTimeManager(Screen, HelpableScreen):
 	skin = """<screen name="PrimeTimeManager" title="Prime Time Manager" position="center,center" size="650,545">
@@ -143,7 +144,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 		</widget>
 		</screen>"""
 
-	def __init__(self, session, servicelist = None):
+	def __init__(self, session, servicelist=None):
 		self.servicelist = servicelist
 		Screen.__init__(self, session)
 		self.session = session
@@ -172,55 +173,55 @@ class PrimeTimeManager(Screen, HelpableScreen):
 		HelpableScreen.__init__(self)
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 		{
-			"cancel":	(self.buttonCancel,	_("Exit plugin")),
-			"ok":		(self.buttonOk,		_("Add/remove event to or from favourites")),
+			"cancel": (self.buttonCancel, _("Exit plugin")),
+			"ok": (self.buttonOk, _("Add/remove event to or from favourites")),
 		}, -1)
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 		{
-			"red":		(self.buttonRed,	_("Exit plugin or open Multi EPG")),
-			"green":	(self.showTimerEntry,	_("Set or remove a timer")),
-			"yellow":	(self.showResultScreen,	_("Try to solve conflicts and show result")),
-			"blue":		(self.openTimerlist,	_("Open timers list")),
+			"red": (self.buttonRed, _("Exit plugin or open Multi EPG")),
+			"green": (self.showTimerEntry, _("Set or remove a timer")),
+			"yellow": (self.showResultScreen, _("Try to solve conflicts and show result")),
+			"blue": (self.openTimerlist, _("Open timers list")),
 		}, -1)
 
 		self["DirectionActions"] = HelpableActionMap(self, "DirectionActions",
 		{
-			"up":		(self.changeActiveList, _("Switch betw. favourite/prime time list")),
-			"down":		(self.changeActiveList, _("Switch betw. favourite/prime time list")),
-			"left":		(self.buttonLeft,	_("Scroll selected list to the left")),
-			"leftRepeated":	(self.buttonLeft,	_("Scroll selected list to the left")),
-			"right":	(self.buttonRight,	_("Scroll selected list to the right")),
-			"rightRepeated":(self.buttonRight,	_("Scroll selected list to the right")),
+			"up": (self.changeActiveList, _("Switch betw. favourite/prime time list")),
+			"down": (self.changeActiveList, _("Switch betw. favourite/prime time list")),
+			"left": (self.buttonLeft, _("Scroll selected list to the left")),
+			"leftRepeated": (self.buttonLeft, _("Scroll selected list to the left")),
+			"right": (self.buttonRight, _("Scroll selected list to the right")),
+			"rightRepeated": (self.buttonRight, _("Scroll selected list to the right")),
 		}, -1)
 
 		self["ChannelSelectBaseActions"] = HelpableActionMap(self, "ChannelSelectBaseActions",
 		{
-			"nextMarker":	(boundFunction(self.changeDay, True),	_("Switch to the next day")),
-			"prevMarker":	(boundFunction(self.changeDay, False),	_("Switch to the previous day")),
-			"nextBouquet":	(self.nextBouquet,			_("Switch to the next bouquet")),
-			"prevBouquet":	(self.prevBouquet,			_("Switch to the previous bouquet")),
+			"nextMarker": (boundFunction(self.changeDay, True), _("Switch to the next day")),
+			"prevMarker": (boundFunction(self.changeDay, False), _("Switch to the previous day")),
+			"nextBouquet": (self.nextBouquet, _("Switch to the next bouquet")),
+			"prevBouquet": (self.prevBouquet, _("Switch to the previous bouquet")),
 		}, -1)
 
 		self["ChannelSelectEPGActions"] = HelpableActionMap(self, "ChannelSelectEPGActions",
 		{
-			"showEPGList":	(self.showEventView,	_("Show event information")),
+			"showEPGList": (self.showEventView, _("Show event information")),
 		}, -1)
 
 		self["ChannelSelectEditActions"] = HelpableActionMap(self, "ChannelSelectEditActions",
 		{
-			"contextMenu":	(self.showSettings,	_("Open the settings screen")),
+			"contextMenu": (self.showSettings, _("Open the settings screen")),
 		}, -1)
 
 		self["NumberActions"] = HelpableActionMap(self, "NumberActions",
 		{
-			"0":		(self.toggleViewLive,	_('Toggle marker for a "view live" event')),
-			"1":		(self.toggleViewLiveType,	_('Toggle "view live" type')),
+			"0": (self.toggleViewLive, _('Toggle marker for a "view live" event')),
+			"1": (self.toggleViewLiveType, _('Toggle "view live" type')),
 		}, -1)
 
 		self["InfobarActions"] = HelpableActionMap(self, "InfobarActions",
 		{
-			"showMovies":	(self.togglePrimeTime,	_("Toggle primary/secondary prime time")),
+			"showMovies": (self.togglePrimeTime, _("Toggle primary/secondary prime time")),
 		}, -1)
 
 		# initialize the skin sub lists
@@ -280,7 +281,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 		self.overlappingTimers = []
 
 		self.notrecordingTimers = []
-		
+
 		# a list of service references for view live events (there can be only one event for each day)
 		self.viewLiveServices = []
 
@@ -317,7 +318,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 		self.bouquet_root = eServiceReference(self.bouquet_rootstr)
 
 		# a dict of serviceRefs as key and the bouquet name as value
-		self.serviceBouquet = { }
+		self.serviceBouquet = {}
 
 		# get a list of all bouquets
 		self.bouquets = self.getBouquetList()
@@ -332,7 +333,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 
 		# find timers where begin < primeTime and end + margin > primeTime
 		self.getOverlappingTimers()
-		
+
 		# add existing timers to the favorites
 		self.getTimerEvents()
 
@@ -348,7 +349,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 		self.updateLists()
 
 		self.setScrollPixmaps(self.primeTimeEvents[self.currentBouquet])
-		
+
 		# HD service refs will be stored here
 		self.serviceRefsHD = None
 
@@ -521,7 +522,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 		else:
 			# add new transponder object to the conflict list
 			serviceList = self.getTransponderServices(sRef)
-			conflictObject = ConflictObject(transponderServices = serviceList, knownServices = [sRef])
+			conflictObject = ConflictObject(transponderServices=serviceList, knownServices=[sRef])
 			self.conflictList[self.dayOffset].append(conflictObject)
 			#if self.numTuners > 1 and self.getAvailableTunerCount(sRef) == 1:
 			if self.getAvailableTunerCount(sRef) == 1:
@@ -585,11 +586,11 @@ class PrimeTimeManager(Screen, HelpableScreen):
 		if cur_ref:
 			self.service_types = service_types_tv
 			pos = self.service_types.rfind(':')
-			refstr = '%s (channelID == %08x%04x%04x) && %s ORDER BY name' % (self.service_types[:pos+1],
+			refstr = '%s (channelID == %08x%04x%04x) && %s ORDER BY name' % (self.service_types[:pos + 1],
 				cur_ref.getUnsignedData(4), # NAMESPACE
 				cur_ref.getUnsignedData(2), # TSID
 				cur_ref.getUnsignedData(3), # ONID
-				self.service_types[pos+1:])
+				self.service_types[pos + 1:])
 			ref = eServiceReference(refstr)
 
 			returnList = []
@@ -629,7 +630,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 						if AUTOTIMER and config.plugins.PrimeTimeManager.UseAutotimer.value:
 							try:
 								event = self.epgcache.lookupEventId(ServiceReference(favorite[SERVICEREF]).ref, favorite[EVENTID])
-								addAutotimerFromEvent(self.session, evt = event, service = sRef)
+								addAutotimerFromEvent(self.session, evt=event, service=sRef)
 								print "[PrimeTimeManager] Add auto timer %s" % ServiceReference(sRef).getServiceName()
 							except:
 								pass
@@ -946,7 +947,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 		# build a basic list of results
 		for favorite in self.favoriteEvents[self.dayOffset].services:
 			numConflicts = self.conflictCounts[self.dayOffset][favorite[SERVICEREF]]
-			
+
 			if (favorite[SERVICEREF], favorite[EVENTID]) in self.overlappingTimers[self.dayOffset]:
 				isTimer = 1
 			elif (favorite[SERVICEREF], favorite[EVENTID]) in self.notrecordingTimers[self.dayOffset]:
@@ -1328,7 +1329,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 
 			self.favoriteEvents[self.dayOffset].services.append(event)
 			self.favoriteEvents[self.dayOffset].size += 1
-			
+
 			self.addToConflicts(event[SERVICEREF], add=timerEntry)
 			self.postFavoriteAdd()
 		else:
@@ -1339,9 +1340,9 @@ class PrimeTimeManager(Screen, HelpableScreen):
 		i = 1
 		while i < 4:
 			if (listType is PRIMETIME) or (listType is PT_AND_FAV):
-				self["ptList" + str(i)].setList([ (x,) for x in self.primeTimeEvents[self.currentBouquet].services], self.conflictCounts[self.dayOffset], self.serviceBouquet, self.timerServices[self.dayOffset], self.overlappingTimers[self.dayOffset], self.viewLiveServices[self.dayOffset], self.conflictSat[self.dayOffset], self.notrecordingTimers[self.dayOffset])
+				self["ptList" + str(i)].setList([(x,) for x in self.primeTimeEvents[self.currentBouquet].services], self.conflictCounts[self.dayOffset], self.serviceBouquet, self.timerServices[self.dayOffset], self.overlappingTimers[self.dayOffset], self.viewLiveServices[self.dayOffset], self.conflictSat[self.dayOffset], self.notrecordingTimers[self.dayOffset])
 			if (listType is FAVORITE) or (listType is PT_AND_FAV):
-				self["favList" + str(i)].setList([ (x,) for x in self.favoriteEvents[self.dayOffset].services], self.conflictCounts[self.dayOffset], self.serviceBouquet, self.timerServices[self.dayOffset], self.overlappingTimers[self.dayOffset], self.viewLiveServices[self.dayOffset], self.conflictSat[self.dayOffset], self.notrecordingTimers[self.dayOffset])
+				self["favList" + str(i)].setList([(x,) for x in self.favoriteEvents[self.dayOffset].services], self.conflictCounts[self.dayOffset], self.serviceBouquet, self.timerServices[self.dayOffset], self.overlappingTimers[self.dayOffset], self.viewLiveServices[self.dayOffset], self.conflictSat[self.dayOffset], self.notrecordingTimers[self.dayOffset])
 			i += 1
 
 	# update the list indices
@@ -1349,9 +1350,9 @@ class PrimeTimeManager(Screen, HelpableScreen):
 		i = 1
 		while i < 4:
 			if (listType is PRIMETIME) or (listType is PT_AND_FAV):
-				self["ptList" + str(i)].moveToIndex(self.primeTimeEvents[self.currentBouquet].offset +i -1)
+				self["ptList" + str(i)].moveToIndex(self.primeTimeEvents[self.currentBouquet].offset + i - 1)
 			if (listType is FAVORITE) or (listType is PT_AND_FAV):
-				self["favList" + str(i)].moveToIndex(self.favoriteEvents[self.dayOffset].offset +i -1)
+				self["favList" + str(i)].moveToIndex(self.favoriteEvents[self.dayOffset].offset + i - 1)
 			i += 1
 
 	# update the channel marker (list and position)
@@ -1453,7 +1454,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 		if config.plugins.PrimeTimeManager.ViewLiveType.value == "zap":
 			type = _("Zap + Record")
 		else:
-			type = _("Zap") 
+			type = _("Zap")
 		text = _("Set 'view live' type '%s'?") % type
 		self.session.openWithCallback(self.toggleViewLiveTypeAnswer, MessageBox, text)
 
@@ -1635,7 +1636,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 						total = _("\nTotal number of conflicts: %s") % (len(simulTimerList) - 1)
 					except:
 						pass
-				AddPopup(_("Sorri!\nConflict timers in timers.xml detected!\nPlease recheck it!") + total, type = MessageBox.TYPE_ERROR, timeout = 0, id = "TimerLoadFailed")
+				AddPopup(_("Sorri!\nConflict timers in timers.xml detected!\nPlease recheck it!") + total, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 		self.close()
 
 	# previous bouquet selected
@@ -1647,7 +1648,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 		if self.currentBouquet > 0:
 			self.currentBouquet -= 1
 		else:
-			self.currentBouquet = self.bouquetCount -1
+			self.currentBouquet = self.bouquetCount - 1
 
 		self.setPrimeTimeTitleString()
 		print '[PrimeTimeManager] Selected next bouquet'
@@ -1662,7 +1663,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 		if self.bouquetCount == 1:
 			return
 
-		if self.currentBouquet < self.bouquetCount -1:
+		if self.currentBouquet < self.bouquetCount - 1:
 			self.currentBouquet += 1
 		else:
 			self.currentBouquet = 0
@@ -1865,7 +1866,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 
 		while i <= counter:
 			if i:
-				refstr ='%s FROM SATELLITES' % (service_types_tv_hd)
+				refstr = '%s FROM SATELLITES' % (service_types_tv_hd)
 				ref = eServiceReference(refstr)
 
 			servicelist = self.serviceHandler.list(ref)
@@ -1882,7 +1883,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 								s = list.getNext()
 								if not s.valid():
 									break
-									
+
 								self.serviceRefsHD.append(s.toString())
 			i += 1
 
@@ -1967,7 +1968,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 		else:
 			# user deleted an existing timer or aborted the creation of a new timer
 			print "[PrimeTimeManager] user aborted timer creation from Timer Entry."
-			
+
 		self.setSetDayButton()
 
 	# remove timer repetitions from the favorites
@@ -2161,7 +2162,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 
 			# TODO wird das auch nicht mehrmals ausgefuehrt?
 			for service in services:
-				self.serviceBouquet.update({service[SERVICEREF] : bouquet[0]})
+				self.serviceBouquet.update({service[SERVICEREF]: bouquet[0]})
 
 			# TODO was war noch gleich der sinn hiervon?
 			if len(self.primeTimeEvents) != len(self.bouquets):
@@ -2224,6 +2225,7 @@ class PrimeTimeManager(Screen, HelpableScreen):
 
 #############################################################################################
 
+
 class PreviewList(MenuList):
 	def __init__(self, list, listType):
 		MenuList.__init__(self, list)
@@ -2236,21 +2238,21 @@ class PreviewList(MenuList):
 		else:
 			self.l.setItemHeight(115)
 
-		self.favoritePixmap = LoadPixmap(cached = True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, 'Extensions/PrimeTimeManager/images/favorite.png'), desktop = getDesktop(0))
-		self.clockPixmap = LoadPixmap(cached = True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, 'Extensions/PrimeTimeManager/images/epgclock.png'), desktop = getDesktop(0))
-		self.clockOverlap = LoadPixmap(cached = True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, 'Extensions/PrimeTimeManager/images/clockOverlap.png'), desktop = getDesktop(0))
-		self.clockNotrecord = LoadPixmap(cached = True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, 'Extensions/PrimeTimeManager/images/clockNotrecord.png'), desktop = getDesktop(0))
-		
+		self.favoritePixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, 'Extensions/PrimeTimeManager/images/favorite.png'), desktop=getDesktop(0))
+		self.clockPixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, 'Extensions/PrimeTimeManager/images/epgclock.png'), desktop=getDesktop(0))
+		self.clockOverlap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, 'Extensions/PrimeTimeManager/images/clockOverlap.png'), desktop=getDesktop(0))
+		self.clockNotrecord = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, 'Extensions/PrimeTimeManager/images/clockNotrecord.png'), desktop=getDesktop(0))
+
 		self.digitList = []
 		i = 0
 		while i <= 10:
 			name = 'Extensions/PrimeTimeManager/images/digit_' + str(i) + '.png'
-			digitPixmap = LoadPixmap(cached = True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, name), desktop = getDesktop(0))
+			digitPixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, name), desktop=getDesktop(0))
 			self.digitList.append(digitPixmap)
 			i += 1
 
 	# build the list entry
-	def buildEventEntry(self, data = None):
+	def buildEventEntry(self, data=None):
 		(eventId, serviceRef, beginTime, durationTime, title, shortDescription, extendedDescription, shortServiceName) = data
 
 		width = self.l.getItemSize().width()
@@ -2270,29 +2272,29 @@ class PreviewList(MenuList):
 			offsetY = 0
 			conflictColor = None
 
-		res = [ None ]
+		res = [None]
 
 		if eventId is None:
 			title = _("No EPG data")
 		else:
 			begin = strftime("%H:%M", localtime(beginTime))
 
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 75 + offsetY, width / 2, 18, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _("Begin time") + ":"))
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, width / 2, 75 + offsetY, width / 2, 18, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, "%s" % begin))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 75 + offsetY, width / 2, 18, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, _("Begin time") + ":"))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, width / 2, 75 + offsetY, width / 2, 18, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, "%s" % begin))
 
 			if config.plugins.PrimeTimeManager.DurationOrEndTime.value == "duration":
 				#duration = _("%dh:%02dmin") % (durationTime / 3600, (durationTime / 60) - ((durationTime / 3600) * 60))
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 95 + offsetY, width / 2, 18, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _("Duration") + ":"))
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, width / 2, 95 + offsetY, width / 2, 18, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _("%d min") % (durationTime / 60)))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 95 + offsetY, width / 2, 18, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, _("Duration") + ":"))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, width / 2, 95 + offsetY, width / 2, 18, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, _("%d min") % (durationTime / 60)))
 			else:
 				end = strftime("%H:%M", localtime(beginTime + durationTime))
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 95 + offsetY, width / 2, 18, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _("End time") + ":"))
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, width / 2, 95 + offsetY, width / 2, 18, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, "%s" % end))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 95 + offsetY, width / 2, 18, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, _("End time") + ":"))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, width / 2, 95 + offsetY, width / 2, 18, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, "%s" % end))
 
 			if self.listType is FAVORITE:
 				bouquet = self.serviceBouquet[serviceRef]
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 75, width, 18, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _("Bouquet:")))
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, width / 2, 75, width / 2, 18, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, bouquet))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 75, width, 18, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, _("Bouquet:")))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, width / 2, 75, width / 2, 18, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, bouquet))
 
 				if numConflicts > 9:
 					numConflicts = 10
@@ -2308,8 +2310,8 @@ class PreviewList(MenuList):
 			elif serviceRef in self.viewLiveServices:
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, width - 21, 0, 21, 21, self.favoritePixmap))
 
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, width - 23, 23, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, shortServiceName))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 30, width, 44, 0, RT_HALIGN_LEFT|RT_VALIGN_TOP|RT_WRAP, title))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, width - 23, 23, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, shortServiceName))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 30, width, 44, 0, RT_HALIGN_LEFT | RT_VALIGN_TOP | RT_WRAP, title))
 
 		return res
 
@@ -2343,6 +2345,8 @@ class PreviewList(MenuList):
 #############################################################################################
 
 # used to store the prime time and favorite lists with additional information
+
+
 class ListObject:
 	def __init__(self, name, bouquetName, services, size):
 		self.name = name		# the name of the gui list
@@ -2355,8 +2359,10 @@ class ListObject:
 #############################################################################################
 
 # used to store a transponders list of service refs and favorite services using it
+
+
 class ConflictObject:
-	def __init__(self, transponderServices = [], knownServices = []):
+	def __init__(self, transponderServices=[], knownServices=[]):
 		self.transponderServices = transponderServices	# a list holding servicesrefs of a transponder
 		self.knownServices = knownServices		# a list holding known services
 		self.knownServicesSize = len(knownServices)	# the list size of known services list
@@ -2365,6 +2371,8 @@ class ConflictObject:
 #############################################################################################
 
 # used to store similar event information
+
+
 class SimilarObject:
 	def __init__(self, sRef):
 		self.sRef = sRef		# the service ref we're storing similar events for
@@ -2375,6 +2383,8 @@ class SimilarObject:
 
 # used to show the event description and to check if the whole description can be displayed or the info icons should be shown
 # TODO write own class because this one is ugly!
+
+
 class NoScrollBarLabel(ScrollLabel):
 	def __init__(self, text=""):
 		GUIComponent.__init__(self)
@@ -2388,36 +2398,36 @@ class NoScrollBarLabel(ScrollLabel):
 		ret = False
 		if self.skinAttributes is not None:
 			skin.applyAllAttributes(self.long_text, desktop, self.skinAttributes, parent.scale)
-			widget_attribs = [ ]
+			widget_attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if attrib.find("transparent") != -1 or attrib.find("backgroundColor") != -1:
-					widget_attribs.append((attrib,value))
+					widget_attribs.append((attrib, value))
 			skin.applyAllAttributes(self.instance, desktop, widget_attribs, parent.scale)
 			ret = True
 		s = self.long_text.size()
 		self.instance.move(self.long_text.position())
-		lineheight=fontRenderClass.getInstance().getLineHeight( self.long_text.getFont() )
+		lineheight = fontRenderClass.getInstance().getLineHeight(self.long_text.getFont())
 		if not lineheight:
 			lineheight = 30 # assume a random lineheight if nothing is visible
 		lines = (int)(s.height() / lineheight)
 		self.pageHeight = (int)(lines * lineheight)
-		self.instance.resize(eSize(s.width(), self.pageHeight+(int)(lineheight/6)))
-		self.long_text.move(ePoint(0,0))
-		self.long_text.resize(eSize(s.width()-30, self.pageHeight*16))
+		self.instance.resize(eSize(s.width(), self.pageHeight + (int)(lineheight / 6)))
+		self.long_text.move(ePoint(0, 0))
+		self.long_text.resize(eSize(s.width() - 30, self.pageHeight * 16))
 		self.setText(self.message)
 		return ret
-		
+
 	def setText(self, text):
 		self.message = text
 		if self.long_text is not None and self.pageHeight:
-			self.long_text.move(ePoint(0,0))
+			self.long_text.move(ePoint(0, 0))
 			self.long_text.setText(self.message)
-			text_height=self.long_text.calculateSize().height()
-			total=self.pageHeight
-			pages=1
+			text_height = self.long_text.calculateSize().height()
+			total = self.pageHeight
+			pages = 1
 			while total < text_height:
-				total=total+self.pageHeight
-				pages=pages+1
+				total = total + self.pageHeight
+				pages = pages + 1
 			if pages > 1:
 				self.total = total
 				self.pages = pages
@@ -2436,6 +2446,8 @@ class NoScrollBarLabel(ScrollLabel):
 #############################################################################################
 
 # show the "unhandled key" pixmap
+
+
 class KeyNotHandled:
 	def __init__(self, session, init=False):
 		self.session = session
@@ -2452,6 +2464,8 @@ class KeyNotHandled:
 #############################################################################################
 
 # this is shown when the info key was pressed
+
+
 class EventViewSuperSimple(Screen, EventViewBase):
 	def __init__(self, session, Event, Ref, callback=None, similarEPGCB=None, showTimerEntry=None, getIsTimer=None):
 		Screen.__init__(self, session)
@@ -2532,7 +2546,7 @@ class EventViewSuperSimple(Screen, EventViewBase):
 				name2 = cur.getEventName()
 				name3 = name2.split("(")[0].strip()
 				eventname = name3.replace('"', '').replace('Х/Ф', '').replace('М/Ф', '').replace('Х/ф', '').replace('.', '')
-				eventname = eventname.replace('0+', '').replace('(0+)', '').replace('6+', '').replace('(6+)', '').replace('7+', '').replace('(7+)', '').replace('12+', '').replace('(12+)', '').replace('16+', '').replace('(16+)', '').replace('18+', '').replace('(18+)', '')				
+				eventname = eventname.replace('0+', '').replace('(0+)', '').replace('6+', '').replace('(6+)', '').replace('7+', '').replace('(7+)', '').replace('12+', '').replace('(12+)', '').replace('16+', '').replace('(16+)', '').replace('18+', '').replace('(18+)', '')
 				try:
 					tmbdsearch = config.plugins.tmbd.profile.value
 				except:
@@ -2583,10 +2597,13 @@ class EventViewSuperSimple(Screen, EventViewBase):
 				except:
 					pass
 
+
 from enigma import getDesktop
 HD = False
 if getDesktop(0).size().width() >= 1280:
 	HD = True
+
+
 class PrimeTimeSelection(EPGSelection):
 	if HD:
 		skin = """<screen name="PrimeTimeSelection" position="90,100" size="1100, 576" title="Prime Time EPG Selection Multi">
@@ -2671,7 +2688,7 @@ class PrimeTimeSelection(EPGSelection):
 
 	def text_green(self):
 		self["key_green"].setText("OK")
-		if not self.green.isActive(): 
+		if not self.green.isActive():
 			self.green.start(300)
 
 	def onCreate(self):
@@ -2699,6 +2716,7 @@ class PrimeTimeSelection(EPGSelection):
 	def timerAdd(self):
 		self.eventSelected()
 
+
 class PrimeTimeSingleSelection(EPGSelection):
 	def __init__(self, session, ref, event_id=None):
 		self.event_id = event_id
@@ -2711,7 +2729,7 @@ class PrimeTimeSingleSelection(EPGSelection):
 	def text_green(self):
 		if self.key_green_choice != self.EMPTY:
 			self["key_green"].setText("")
-		if not self.green_key.isActive(): 
+		if not self.green_key.isActive():
 			self.green_key.start(300)
 
 	def timerAdd(self):
@@ -2727,6 +2745,7 @@ class PrimeTimeSingleSelection(EPGSelection):
 
 	def eventSelected(self):
 		pass
+
 
 class PTMtimerSanityConflict(TimerSanityConflict):
 	def __init__(self, session, timer):
@@ -2761,9 +2780,11 @@ def funcRefStr(service=None):
 		return ':'.join(service.split(':')[:11])
 	return ""
 
+
 def getAlternativeChannels(service):
 	alternativeServices = eServiceCenter.getInstance().list(eServiceReference(service))
 	return alternativeServices and alternativeServices.getContent("S", True)
+
 
 def GetWithAlternative(service):
 	if service.startswith('1:134:'):
