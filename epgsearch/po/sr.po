@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 - Plugin epgsearch\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-11 10:58+0200\n"
+"POT-Creation-Date: 2021-07-10 15:41+0200\n"
 "PO-Revision-Date: 2014-11-22 20:47+0100\n"
 "Last-Translator: maja <jovanovic@gmx.ch>\n"
 "Language-Team: veselin & majevica CRNABERZA <jovanovic@gmx.ch>\n"
@@ -85,7 +85,15 @@ msgid "EPGSearch"
 msgstr "EPG pretraga"
 
 #, fuzzy
+msgid "EPGSearch - History"
+msgstr "EPG pretraga"
+
+#, fuzzy
 msgid "EPGSearch Setup"
+msgstr "EPG pretraga"
+
+#, fuzzy
+msgid "Edit & search"
 msgstr "EPG pretraga"
 
 #, fuzzy
@@ -132,6 +140,9 @@ msgid "List of history is cleared !"
 msgstr ""
 
 msgid "Lookup in TMBD"
+msgstr ""
+
+msgid "Modify searched text"
 msgstr ""
 
 msgid "New Search"
@@ -188,13 +199,16 @@ msgstr ""
 msgid "Select channel"
 msgstr ""
 
+msgid "Select item for search and press 'OK' or edit item with yellow button."
+msgstr ""
+
 msgid "Select text to search for"
 msgstr "Izaberi tekst za pretragu"
 
 msgid "Select type for filter search. Press button P +/- for show/hide filter in description after search."
 msgstr ""
 
-msgid "Select type for search, \"partial match\" for the most extensive search."
+msgid "Select type for search, \"partial match\" for the most extensive search, \"partial description\" for the most description search."
 msgstr ""
 
 msgid "Select type: 'Search and Select channel' or 'Search'."
@@ -233,6 +247,9 @@ msgstr ""
 #, fuzzy
 msgid "only Search"
 msgstr "Traženje"
+
+msgid "partial description"
+msgstr ""
 
 msgid "partial match"
 msgstr ""
