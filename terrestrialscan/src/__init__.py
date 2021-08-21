@@ -19,4 +19,5 @@ def _(txt):
 	return t
 
 
-language.addCallback(localeInit())
+localeInit()
+language.addCallback(localeInit)
