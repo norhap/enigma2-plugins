@@ -3,7 +3,7 @@
 from __future__ import print_function
 # for localized messages
 from . import _
-from enigma import eComponentScan, eConsoleAppContainer, eDVBFrontendParametersSatellite, eDVBResourceManager, eTimer
+from enigma import eComponentScan, eConsoleAppContainer, eDVBFrontendParametersSatellite, eDVBResourceManager, eDVBSatelliteEquipmentControl, eTimer
 from Components.ActionMap import ActionMap
 from Components.config import config, ConfigBoolean, ConfigInteger, getConfigListEntry, ConfigNothing, ConfigSelection, ConfigSubsection, ConfigYesNo
 from Components.ConfigList import ConfigListScreen
@@ -29,6 +29,11 @@ model = getBoxType()
 BinaryBlindscan = getBlindscanBin()
 
 # root2gold based on https://github.com/DigitalDevices/dddvb/blob/master/apps/pls.c
+
+try:
+	Lastrotorposition = config.misc.lastrotorposition
+except:
+	Lastrotorposition = None
 
 
 def root2gold(root):
@@ -216,6 +221,7 @@ class Blindscan(ConfigListScreen, Screen):
 		self.session.postScanService = self.session.nav.getCurrentlyPlayingServiceReference()
 
 		self["description"] = Label("")
+		self["rotorstatus"] = Label("")
 
 		# update sat list
 		self.satList = []
@@ -524,7 +530,12 @@ class Blindscan(ConfigListScreen, Screen):
 		self.scan_satselection = []
 		for slot in nimmanager.nim_slots:
 			if slot.canBeCompatible("DVB-S"):
-				self.scan_satselection.append(getConfigSatlist(defaultSat["orbpos"], self.satList[slot.slot]))
+				default_sat_pos = defaultSat["orbpos"]
+				self.getCurrentTuner = None
+				if self.getCurrentTuner is not None and slot.slot != self.getCurrentTuner:
+					if len(nimmanager.getRotorSatListForNim(slot.slot)) and Lastrotorposition is not None and config.misc.lastrotorposition.value != 9999:
+						default_sat_pos = config.misc.lastrotorposition.value
+				self.scan_satselection.append(getConfigSatlist(default_sat_pos, self.satList[slot.slot]))
 
 	def getSelectedSatIndex(self, v):
 		index = 0
@@ -1655,7 +1666,9 @@ class Blindscan(ConfigListScreen, Screen):
 			self.close(True)
 
 	def startDishMovingIfRotorSat(self):
+		self["rotorstatus"].setText("")
 		orb_pos = self.getOrbPos()
+		self.orb_pos = 0
 		self.feid = int(self.scan_nims.value)
 		rotorSatsForNim = nimmanager.getRotorSatListForNim(self.feid)
 		if len(rotorSatsForNim) < 1:
@@ -1674,11 +1687,48 @@ class Blindscan(ConfigListScreen, Screen):
 			return False
 		# freq, sr, pol, fec, inv, orb, sys, mod, roll, pilot [, MIS, pls_mode, pls_code, t2mi]
 		transponder = (tps[0][1] / 1000, tps[0][2] / 1000, tps[0][3], tps[0][4], 2, orb_pos, tps[0][5], tps[0][6], tps[0][8], tps[0][9])
+		if Lastrotorposition is not None and config.misc.lastrotorposition.value != 9999:
+			text = _("Rotor: ") + self.OrbToStr(config.misc.lastrotorposition.value)
+			self["rotorstatus"].setText(text)
 		if not self.prepareFrontend():
 			print("[Blindscan][startDishMovingIfRotorSat] self.prepareFrontend() failed")
 			return False
 		self.tuner.tune(transponder)
 		return True
+		if Lastrotorposition is not None and config.misc.lastrotorposition.value != 9999:
+			text = _("Rotor: ") + self.OrbToStr(config.misc.lastrotorposition.value)
+			self["rotorstatus"].setText(text)
+		# freq, sr, pol, fec, inv, orb, sys, mod, roll, pilot, MIS, pls_mode, pls_code, t2mi
+		transponder = (tps[0][1] / 1000, tps[0][2] / 1000, tps[0][3], tps[0][4], 2, orb_pos, tps[0][5], tps[0][6], tps[0][8], tps[0][9], eDVBFrontendParametersSatellite.No_Stream_Id_Filter, eDVBFrontendParametersSatellite.PLS_Gold, eDVBFrontendParametersSatellite.PLS_Default_Gold_Code, eDVBFrontendParametersSatellite.No_T2MI_PLP_Id, eDVBFrontendParametersSatellite.T2MI_Default_Pid)
+		if not self.prepareFrontend():
+			print("[Blindscan][startDishMovingIfRotorSat] self.prepareFrontend() failed")
+			return False
+		self.tuner.tune(transponder)
+		self.orb_pos = orb_pos
+		if Lastrotorposition is not None and config.misc.lastrotorposition.value != 9999:
+			self.statusTimer.stop()
+			self.startStatusTimer()
+		return True
+
+	def OrbToStr(self, orbpos):
+		if orbpos > 1800:
+			orbpos = 3600 - orbpos
+			return "%d.%d\xc2\xb0 W" % (orbpos / 10, orbpos % 10)
+		return "%d.%d\xc2\xb0 E" % (orbpos / 10, orbpos % 10)
+
+	def setDishOrbosValue(self):
+		if self.getRotorMovingState():
+			if self.orb_pos != 0 and self.orb_pos != config.misc.lastrotorposition.value:
+				config.misc.lastrotorposition.value = self.orb_pos
+				config.misc.lastrotorposition.save()
+			text = _("Moving to ") + self.OrbToStr(self.orb_pos)
+			self.startStatusTimer()
+		else:
+			text = _("Rotor: ") + self.OrbToStr(config.misc.lastrotorposition.value)
+		self["rotorstatus"].setText(text)
+
+	def getRotorMovingState(self):
+		return eDVBSatelliteEquipmentControl.getInstance().isRotorMoving()
 
 	def releaseFrontend(self):
 		if hasattr(self, 'frontend'):
