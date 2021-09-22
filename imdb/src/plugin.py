@@ -306,14 +306,34 @@ class IMDB(Screen, HelpableScreen):
 			'(?:.*?<h4>(?P<g_goofs>Pannen|Goofs)</h4>\s*(?P<goofs>.+?)(?:Mehr|See more</a>|</div>))*'
 			'(?:.*?<h4>(?P<g_quotes>Dialogzitate|Quotes)</h4>\s*(?P<quotes>.+?)(?:Mehr|See more</a>|</div>))?'
 			'(?:.*?<h4>(?P<g_connections>Bez\S*?ge zu anderen Titeln|Connections)</h4>\s*(?P<connections>.+?)(?:Mehr|See more</a>|</div>))?'
-			'(?:.*?<h2>(?P<g_comments>Nutzerkommentare|User Reviews)</h2>.*?<strong>(?P<commenttitle>.*?)</strong>.*?<div class="comment-meta">(?P<commenter>.+?)</span></a>.*?<p.*?>(?P<comment>.+?)</p>)?', re.DOTALL)
+			'(?:.*?<h2>(?P<g_comments>Nutzerkommentare|User Reviews)</h2>.*?<strong>(?P<commenttitle>.*?)</strong>.*?<div class="comment-meta">(?P<commenter>.+?)</span></a>.*?<p.*?>(?P<comment>.+?)</p>)?', re.DOTALL),
+			re.compile(
+			'(?:.*?<div.*?class="GenresAndPlot__TextContainerBreakpointXL.*?>(?P<outline>.+?)</div>)?'
+			'(?:.*?<section.*?<div.*?<div.*?<hgroup.*?<h3.*?>(?P<g_synopsis>Storyline)</h3>.*?<div.*?<div.*?<div.*?<div.*?>(?P<synopsis>.+?)<span)?'
+			'(?:.*?<div.*?Keywords__PlotKeywords.*?>(?P<keywords>.+?)</div>)?'
+			'(?:.*?<a.*?>(?P<g_tagline>Werbezeile|Tagliness?)</a>.*?<div.*?<ul.*?<li.*?<span.*?>(?P<tagline>.*?)</span>)?'
+			'(?:.*?<a.*?>(?P<g_cert>Altersfreigabe|Certificate|Motion Picture Rating \(MPAA\))</a>.*?<div.*?<ul.*?<li.*?<span.*?>(?P<cert>.*?)</span>)?'
+			'(?:.*?<a.*?>(?P<g_trivia>Dies und das|Trivia)</a><div.*?<div.*?<div.*?<div.*?>(?P<trivia>.+?)</div>)?'
+			'(?:.*?<a.*?>(?P<g_goofs>Pannen|Goofs)</a><div.*?<div.*?<div.*?<div.*?>(?P<goofs>.+?)</div>)?'
+			'(?:.*?<a.*?>(?P<g_quotes>Dialogzitate|Quotes)</a><div.*?<div.*?<div.*?<div.*?>(?P<quotes>.+?)</div>)?'
+			'(?:.*?<a.*?>(?P<g_connections>Bez\S*?ge zu anderen Titeln|Connections)</a><div.*?<div.*?<div.*?<div.*?>(?P<connections>.+?)</div>)?'
+			'(?:.*?<h3.*?>(?P<g_comments>Nutzerkommentare|User reviews).*?</h3>.*?(?:.*?</svg>(?P<g_rating>[0-9]+?)<span class="ipc-rating-star--maxRating">/<!-- -->(?P<g_maxrating>[0-9]+?)</span>.*?)?<div.*?UserReviewSummary__SummaryContainer.*?><span.*?UserReviewSummary__Summary.*?>(?P<commenttitle>.*?)</span></div><div.*?><div.*?><div>(?P<comment>.+?)</div>.*?<div.*?UserReviewAuthor__AuthorContainer.*?><ul.*?><li.*?>(?P<commenter>.+?)</li>)?'
+			'(?:.*?<span.*?>(?P<g_language>Sprachen?|Languages?)</span>.*?<div.*?<ul.*?>(?P<language>.*?)</ul>)?'
+			'(?:.*?<a.*?>(?P<g_locations>Drehorte?|Filming locations?)</a>.*?<div.*?<ul.*?>(?P<locations>.*?)</ul>)?'
+			'(?:.*?<a.*?>(?P<g_company>Firm\S*?|Production compan.*?)</a>.*?<div.*?<ul.*?>(?P<company>.*?)</ul>)?'
+			'(?:.*?<span.*?>(?P<g_runtime>L\S*?nge|Runtime)</span>.*?<div.*?<ul.*?>(?P<runtime>.*?)</ul>)?'
+			'(?:.*?<span.*?>(?P<g_color>Farbe|Color)</span>.*?<div.*?<ul.*?>(?P<color>.*?)</ul>)?'
+			'(?:.*?<span.*?>(?P<g_sound>Tonverfahren|Sound mix)</span>.*?<div.*?<ul.*?>(?P<sound>.*?)</ul>)?'
+			'(?:.*?<span.*?>(?P<g_aspect>Seitenverh\S*?ltnis|Aspect ratio)</span>.*?<div.*?<ul.*?<li.*?<span.*?>(?P<aspect>.*?)</span>)?', re.DOTALL)]
 
-			self.genreblockmask = re.compile('<h4 class="inline">Genres?:</h4>\s*?(.*?)\s+?(?:Mehr|See more|</p|<a class|</div>)', re.DOTALL)
-			#self.ratingmask = re.compile('<div class="ratingValue">.*?<span>(?P<rating>.*?)</span>', re.DOTALL)
-			self.ratingmask = re.compile('<div class="ratingValue">.*?<span itemprop="ratingValue">(?P<rating>.*?)</span>', re.DOTALL)
-			self.castmask = re.compile('<td>\s*<a href=.*?>(?P<actor>.*?)\s*</a>\s*</td>.*?<td class="character">(?P<character>.*?)(?:<a href="#"\s+class="toggle-episodes".*?>(?P<episodes>.*?)</a>.*?)?</td>', re.DOTALL)
-			#self.postermask = re.compile('<td .*?id="img_primary">.*?<img .*?src=\"(http.*?)\"', re.DOTALL)
-			self.postermask = re.compile('<div class="poster">.*?<img .*?src=\"(http.*?)\"', re.DOTALL)
+			self.genreblockmask = [re.compile('<h4 class="inline">Genres?:</h4>\s*?(.*?)\s+?(?:Mehr|See more|</p|<a class|</div>)', re.DOTALL),
+			re.compile('<li.*?storyline-genres.*?><span.*?>Genres?</span>.*?<div.*?><ul.*?>(.*?)</ul>', re.DOTALL)]
+			self.ratingmask = [re.compile('<div class="ratingValue">.*?<span itemprop="ratingValue">(?P<rating>.*?)</span>', re.DOTALL),
+			re.compile('<span.*?AggregateRatingButton__RatingScore.*?>(?P<rating>.*?)</span>', re.DOTALL)]
+			self.castmask = [re.compile('<td>\s*<a href=.*?>(?P<actor>.*?)\s*</a>\s*</td>.*?<td class="character">(?P<character>.*?)(?:<a href="#"\s+class="toggle-episodes".*?>(?P<episodes>.*?)</a>.*?)?</td>', re.DOTALL),
+			re.compile('<a.*?StyledComponents__ActorName.*?>(?P<actor>.*?)</a>.*?<div.*?<ul.*?>(?P<character>.*?)</span>(?:.*?<span><span.*?>(?P<episodes>.*?)</span></span>)?', re.DOTALL)]
+			self.postermask = [re.compile('<div class="poster">.*?<img .*?src=\"(http.*?)\"', re.DOTALL),
+			re.compile('<div.*?ipc-media--poster.*?<img.*?ipc-image.*?src="(http.*?)"', re.DOTALL)]
 
 		self.htmltags = re.compile('<.*?>', re.DOTALL)
 
@@ -768,9 +788,21 @@ class IMDB(Screen, HelpableScreen):
 					self.callbackGenre = genres
 
 			for category in ("director", "creator", "writer", "seasons"):
-				if self.generalinfos.group(category):
-					Detailstext += addnewline + self.generalinfos.group('g_' + category) + ": " + ' '.join(self.htmltags.sub('', self.generalinfos.group(category)).replace("\n", ' ').replace(self.NBSP, ' ').replace(self.RAQUO, '').replace(self.HELLIP + ' See all', '...').split())
-					addnewline = "\n"
+				try:
+					if self.generalinfos.group(category):
+						if self.re_index == 1:
+							if category == 'seasons':
+								txt = ' '.join(self.htmltags.sub(' ', self.generalinfos.group(category)).replace("\n", ' ').replace(self.NBSP, ' ').replace(self.RAQUO, '').replace('See all', '...').split())
+							elif category == 'creator':
+								txt = ', '.join(re.split('\|+', self.htmltags.sub('|', self.generalinfos.group(category).replace('</a><span class="ipc-metadata-list-item__list-content-item--subText">', ' ')).strip('|').replace("\n", ' ').replace(self.NBSP, ' ').replace(self.RAQUO, '').replace(self.HELLIP + 'See all', '...')))
+							else:
+								txt = ', '.join(re.split('\|+', self.htmltags.sub('|', self.generalinfos.group(category)).strip('|').replace("\n", ' ').replace(self.NBSP, ' ').replace(self.RAQUO, '').replace(self.HELLIP + 'See all', '...')))
+						else:
+							txt = ' '.join(self.htmltags.sub('', self.generalinfos.group(category)).replace("\n", ' ').replace(self.NBSP, ' ').replace(self.RAQUO, '').replace(self.HELLIP + ' See all', '...').split())
+						Detailstext += addnewline + self.generalinfos.group('g_' + category) + ": " + txt
+						addnewline = "\n"
+				except IndexError:
+					pass
 
 			for category in ("premiere", "country", "alternativ"):
 				if self.generalinfos.group(category):
@@ -821,7 +853,7 @@ class IMDB(Screen, HelpableScreen):
 			if awardsresult:
 				awardslist = [' '.join(x.group('awards').split()) for x in awardsresult]
 				if awardslist:
-					Extratext = _("Extra Info") + "\n\n" + ' | '.join(awardslist) + "\n"
+					Extratext = _("Extra Info") + "\n\n" + self.allhtmltags.sub(' | ', ''.join(awardslist).replace('<b>', '').strip()) + "\n"
 
 			extrainfos = self.extrainfomask.search(self.inhtml)
 
@@ -829,27 +861,46 @@ class IMDB(Screen, HelpableScreen):
 				if not Extratext:
 					Extratext = _("Extra Info") + "\n"
 
-				addspace = {"outline", "synopsis", "tagline", "runtime", "locations", "trivia", "goofs", "quotes", "connections"}
-				extraspace = ''
+				addspace = {"outline", "synopsis", "tagline", "cert", "locations", "trivia", "goofs", "quotes", "connections"}
 
-				for category in ("outline", "synopsis", "tagline", "keywords", "cert", "runtime", "language", "color", "aspect", "sound", "locations", "company", "trivia", "goofs", "quotes", "connections"):
-					if category in addspace:
-						extraspace = "\n"
-					if extrainfos.group(category):
-						sep = ":\n" if category in ("outline", "synopsis") else ": "
-						Extratext += extraspace
-						if category == "outline":
-							if "Add a Plot" in extrainfos.group(category):
-								continue
-							Extratext += _("Plot Outline")
-						elif extrainfos.group('g_' + category):
-							Extratext += extrainfos.group('g_' + category)
-						else:
-							Extratext += _("Unknown category")
-						Extratext += sep + ' '.join(self.htmltags.sub('', extrainfos.group(category).replace("\n", ' ').replace("<br>", '\n').replace("<br />", '\n')).replace(' |' + self.NBSP, '').replace(self.NBSP, ' ').split()) + "\n"
-						extraspace = ''
-				if extrainfos.group("g_comments"):
-					Extratext += "\n" + extrainfos.group("g_comments") + ":\n" + extrainfos.group("commenttitle") + " [" + ' '.join(self.htmltags.sub('', extrainfos.group("commenter")).split()) + "]: " + self.htmltags.sub('', extrainfos.group("comment").replace("\n", ' ').replace(self.NBSP, ' ').replace("<br>", '\n').replace("<br/>", '\n').replace("<br />", '\n')) + "\n"
+				categories = ("outline", "synopsis", "tagline", "keywords", "cert", "runtime", "language", "color", "aspect", "sound", "locations", "company", "trivia", "goofs", "quotes", "connections")
+				for category in categories:
+					extraspace = "\n" if category in addspace else ''
+					try:
+						if extrainfos.group(category):
+							sep = ":\n" if category in ("outline", "synopsis") else ": "
+							Extratext += extraspace
+							if category == "outline":
+								if "Add a Plot" in extrainfos.group(category):
+									continue
+								Extratext += _("Plot Outline")
+							elif extrainfos.group('g_' + category):
+								Extratext += extrainfos.group('g_' + category)
+							else:
+								Extratext += _("Unknown category")
+							if self.re_index == 1:
+								if category == "trivia" or category == "quotes" or category == "connections":
+									txt = ' '.join(self.htmltags.sub(' ', extrainfos.group(category).replace("\n", ' ').replace("<br>", '\n').replace("<br />", '\n')).replace(' |' + self.NBSP, '').replace(self.NBSP, ' ').split())
+								elif category == "keywords":
+									txt = ' | '.join(re.split('\|+', self.htmltags.sub('|', extrainfos.group(category).replace("\n", ' ').replace("<br>", '\n').replace("<br />", '\n')).strip('|').replace(' |' + self.NBSP, '').replace(self.NBSP, ' ')))
+								else:
+									txt = ', '.join(re.split('\|+', self.htmltags.sub('|', extrainfos.group(category).replace("\n", ' ').replace("<br>", '\n').replace("<br />", '\n')).strip('|').replace(' |' + self.NBSP, '').replace(self.NBSP, ' ')))
+							else:
+								txt = ' '.join(self.htmltags.sub('', extrainfos.group(category).replace("\n", ' ').replace("<br>", '\n').replace("<br />", '\n')).replace(' |' + self.NBSP, '').replace(self.NBSP, ' ').split())
+							Extratext += sep + txt + "\n"
+					except IndexError:
+						pass
+				try:
+					if extrainfos.group("g_comments"):
+						g_rating = ""
+						try:
+							if extrainfos.group("g_rating") and extrainfos.group("g_maxrating"):
+								g_rating = " [" + extrainfos.group("g_rating") + "/" + extrainfos.group("g_maxrating") + "]"
+						except IndexError:
+							pass
+						Extratext += "\n" + extrainfos.group("g_comments") + ":\n" + extrainfos.group("commenttitle") + " [" + ' '.join(self.htmltags.sub('', extrainfos.group("commenter")).split()) + "]" + g_rating + ":\n\n" + self.htmltags.sub('', extrainfos.group("comment").replace("\n", ' ').replace(self.NBSP, ' ').replace("<br>", '\n').replace("<br/>", '\n').replace("<br />", '\n')) + "\n"
+				except IndexError:
+					pass
 
 			if Extratext:
 				self["extralabel"].setText(Extratext)
