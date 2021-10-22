@@ -29,7 +29,7 @@ from twisted.web.client import getPage, downloadPage
 from enigma import eEnv
 from os import path as os_path, mkdir as os_mkdir, remove as os_remove, listdir as os_listdir
 from Components.config import config
-from Tools.Directories import resolveFilename, SCOPE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_SKINS
 from six.moves.urllib.parse import quote as urllib_quote
 import six
 
@@ -72,7 +72,7 @@ class MSNWeather:
 		path = "/etc/enigma2/weather_icons/"
 		extension = self.checkIconExtension(path)
 		if extension is None:
-			path = os_path.dirname(resolveFilename(SCOPE_SKIN, config.skin.primary_skin.value)) + "/weather_icons/"
+			path = os_path.dirname(resolveFilename(SCOPE_SKINS, config.skin.primary_skin.value)) + "/weather_icons/"
 			extension = self.checkIconExtension(path)
 		if extension is None:
 			path = eEnv.resolve("${libdir}/enigma2/python/Plugins/Extensions/WeatherPlugin/icons/")

@@ -23,7 +23,7 @@
 # ENIGMA IMPORTS
 from Components.config import config, ConfigSubsection, getConfigListEntry, ConfigSet, ConfigClock, ConfigYesNo, ConfigInteger, ConfigSelection, ConfigText, NoSave, ConfigSelectionNumber
 from enigma import eEnv
-from Tools.Directories import SCOPE_CURRENT_PLUGIN, resolveFilename
+from Tools.Directories import SCOPE_PLUGIN, resolveFilename
 
 # OWN IMPORTS
 from MerlinEPGCenter import STYLE_SINGLE_LINE, STYLE_SHORT_DESCRIPTION
@@ -40,11 +40,11 @@ STYLE_MULTI_PIXMAP = "2"
 SKINDIR = "Extensions/MerlinEPGCenter/skins/"
 
 SKINLIST = [ # order is important (HD_BORDER, XD_BORDER, SD, HD, XD)!
-		(resolveFilename(SCOPE_CURRENT_PLUGIN, ''.join([SKINDIR, "HD_border.xml"])), "HD_border.xml"),
-		(resolveFilename(SCOPE_CURRENT_PLUGIN, ''.join([SKINDIR, "XD_border.xml"])), "XD_border.xml"),
-		(resolveFilename(SCOPE_CURRENT_PLUGIN, ''.join([SKINDIR, "SD_default.xml"])), "SD_default.xml"),
-		(resolveFilename(SCOPE_CURRENT_PLUGIN, ''.join([SKINDIR, "HD_default.xml"])), "HD_default.xml"),
-		(resolveFilename(SCOPE_CURRENT_PLUGIN, ''.join([SKINDIR, "XD_default.xml"])), "XD_default.xml")
+		(resolveFilename(SCOPE_PLUGIN, ''.join([SKINDIR, "HD_border.xml"])), "HD_border.xml"),
+		(resolveFilename(SCOPE_PLUGIN, ''.join([SKINDIR, "XD_border.xml"])), "XD_border.xml"),
+		(resolveFilename(SCOPE_PLUGIN, ''.join([SKINDIR, "SD_default.xml"])), "SD_default.xml"),
+		(resolveFilename(SCOPE_PLUGIN, ''.join([SKINDIR, "HD_default.xml"])), "HD_default.xml"),
+		(resolveFilename(SCOPE_PLUGIN, ''.join([SKINDIR, "XD_default.xml"])), "XD_default.xml")
 		]
 
 config.plugins.merlinEpgCenter = ConfigSubsection()

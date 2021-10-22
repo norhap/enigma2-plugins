@@ -3,9 +3,9 @@ from re import compile as re_compile
 from os import path as os_path, symlink, listdir, unlink, readlink, remove
 
 from xml.etree.cElementTree import parse as cet_parse
-from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_HDD, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN
+from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_HDD, SCOPE_PLUGIN, SCOPE_GUISKIN
 #WEBTV_STATIONS = "/etc/enigma2/webtv_stations.xml"
-WEBTV_STATIONS = resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/dreamMediathek/webtv_stations.xml")
+WEBTV_STATIONS = resolveFilename(SCOPE_PLUGIN, "Extensions/dreamMediathek/webtv_stations.xml")
 
 
 class WebTVStations():

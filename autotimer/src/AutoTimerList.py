@@ -10,7 +10,7 @@ from ServiceReference import ServiceReference
 from Components.config import config
 from Tools.FuzzyDate import FuzzyTime
 from time import localtime, time, strftime, mktime
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from skin import parseColor, parseFont
 import skin
 
@@ -48,10 +48,10 @@ class AutoTimerList(MenuList):
 			self.l.setItemHeight(int(font[2]))
 
 			(iconEnabled, iconDisabled, iconRecording, iconZapped) = skin.parameters.get("AutotimerListIcons", ("icons/lock_on.png", "icons/lock_off.png", "icons/timer_rec.png", "icons/timer_zap.png"))
-			self.iconEnabled = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, iconEnabled))
-			self.iconDisabled = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, iconDisabled))
-			self.iconRecording = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, iconRecording))
-			self.iconZapped = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, iconZapped))
+			self.iconEnabled = LoadPixmap(resolveFilename(SCOPE_GUISKIN, iconEnabled))
+			self.iconDisabled = LoadPixmap(resolveFilename(SCOPE_GUISKIN, iconDisabled))
+			self.iconRecording = LoadPixmap(resolveFilename(SCOPE_GUISKIN, iconRecording))
+			self.iconZapped = LoadPixmap(resolveFilename(SCOPE_GUISKIN, iconZapped))
 			self.colorDisabled = 12368828
 
 	def applySkin(self, desktop, parent):
@@ -173,7 +173,7 @@ class AutoTimerList(MenuList):
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, nx, ny, nw, nh, icon))
 			nx, ny, nw, nh = skin.parameters.get("AutotimerListRectypeicon", (28, 5, 24, 25))
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, nx, ny, nw, nh, rectypeicon))
-			devide = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "div-h.png"))
+			devide = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "div-h.png"))
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, height - 2, width, 1, devide))
 			return res
 

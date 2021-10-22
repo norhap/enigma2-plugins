@@ -16,7 +16,7 @@ from Screens.Standby import TryQuitMainloop
 from Components.Network import iNetwork
 
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_GUISKIN
 
 import xml.etree.cElementTree
 from twisted.internet import reactor, task

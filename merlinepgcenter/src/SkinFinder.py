@@ -26,7 +26,7 @@ from os.path import basename as path_basename
 
 # ENIGMA IMPORTS
 from enigma import getDesktop
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
+from Tools.Directories import resolveFilename, SCOPE_PLUGIN
 
 # DESCRIPTION:
 """
@@ -54,9 +54,9 @@ ConfigSelection choices when plugin settings are shown.
 SKINDIR = "Extensions/YourPlugin/skins/"
 
 SKINLIST =	[ # order is important (HD, XD, SD)!
-		(resolveFilename(SCOPE_CURRENT_PLUGIN, ''.join([SKINDIR, "HD_default.xml"])), "HD_default.xml"),
-		(resolveFilename(SCOPE_CURRENT_PLUGIN, ''.join([SKINDIR, "XD_default.xml"])), "XD_default.xml"),
-		(resolveFilename(SCOPE_CURRENT_PLUGIN, ''.join([SKINDIR, "SD_default.xml"])), "SD_default.xml")
+		(resolveFilename(SCOPE_PLUGIN, ''.join([SKINDIR, "HD_default.xml"])), "HD_default.xml"),
+		(resolveFilename(SCOPE_PLUGIN, ''.join([SKINDIR, "XD_default.xml"])), "XD_default.xml"),
+		(resolveFilename(SCOPE_PLUGIN, ''.join([SKINDIR, "SD_default.xml"])), "SD_default.xml")
 		]
 
 class YourClass():
@@ -88,7 +88,7 @@ class SkinFinder(object):
 		skinListFiles = [x[0] for x in SkinFinder.skinList]
 
 		# try to find additional skins and add them to our list
-		path = resolveFilename(SCOPE_CURRENT_PLUGIN, ''.join([skinDir, "*.xml"]))
+		path = resolveFilename(SCOPE_PLUGIN, ''.join([skinDir, "*.xml"]))
 		for fileName in iglob(path):
 			if not fileName in skinListFiles:
 				baseName = path_basename(fileName)
@@ -120,11 +120,11 @@ class SkinFinder(object):
 	def getDefaultSkinEntry():
 		desktopSize = getDesktop(0).size()
 		if desktopSize.width() == 1280:
-			fileName = resolveFilename(SCOPE_CURRENT_PLUGIN, ''.join([SkinFinder.skinDir, SkinFinder.skinList[0][1]]))
+			fileName = resolveFilename(SCOPE_PLUGIN, ''.join([SkinFinder.skinDir, SkinFinder.skinList[0][1]]))
 		elif desktopSize.width() == 1024:
-			fileName = resolveFilename(SCOPE_CURRENT_PLUGIN, ''.join([SkinFinder.skinDir, SkinFinder.skinList[1][1]]))
+			fileName = resolveFilename(SCOPE_PLUGIN, ''.join([SkinFinder.skinDir, SkinFinder.skinList[1][1]]))
 		elif desktopSize.width() == 720:
-			fileName = resolveFilename(SCOPE_CURRENT_PLUGIN, ''.join([SkinFinder.skinDir, SkinFinder.skinList[2][1]]))
+			fileName = resolveFilename(SCOPE_PLUGIN, ''.join([SkinFinder.skinDir, SkinFinder.skinList[2][1]]))
 		else:
 			fileName = None
 

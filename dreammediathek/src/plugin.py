@@ -11,7 +11,7 @@ from Components.config import config, Config, ConfigSelection, ConfigSubsection,
 from Components.config import KEY_DELETE, KEY_BACKSPACE, KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT
 from Components.ConfigList import ConfigListScreen
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
-from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_HDD, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN
+from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_HDD, SCOPE_PLUGIN, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
 from enigma import eTimer, quitMainloop, eListbox, ePoint, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eServiceCenter, iServiceInformation, eServiceReference, iSeekableService, iServiceInformation, iPlayableService, iPlayableServicePtr
 from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
@@ -68,7 +68,7 @@ class dreamMediathekStationsScreen(Screen):
 		self.session = session
 		self.skin_path = skin_path
 		if self.skin_path is None:
-			self.skin_path = resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/dreamMediathek")
+			self.skin_path = resolveFilename(SCOPE_PLUGIN, "Extensions/dreamMediathek")
 
 		self.lastservice = session.nav.getCurrentlyPlayingServiceReference()
 		self.streamlist = []

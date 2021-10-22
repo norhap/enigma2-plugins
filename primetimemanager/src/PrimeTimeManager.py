@@ -71,7 +71,7 @@ from ServiceReference import ServiceReference
 import skin
 from Tools.BoundFunction import boundFunction
 from Tools.Notifications import AddPopup
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_CURRENT_PLUGIN, fileExists
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN, SCOPE_PLUGIN, fileExists
 from Tools.HardwareInfo import HardwareInfo
 from Tools.LoadPixmap import LoadPixmap
 import NavigationInstance
@@ -245,10 +245,10 @@ class PrimeTimeManager(Screen, HelpableScreen):
 	# initialize the lists for the first time
 	def initialize(self):
 		self["infoPixmap"].hide()
-		self["infoPixmap"].instance.setPixmapFromFile(resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/buttons/key_info.png'))
+		self["infoPixmap"].instance.setPixmapFromFile(resolveFilename(SCOPE_GUISKIN, 'skin_default/buttons/key_info.png'))
 
-		scrollLeftPixmap = resolveFilename(SCOPE_CURRENT_PLUGIN, 'Extensions/PrimeTimeManager/images/scrollLeft.png')
-		scrollRightPixmap = resolveFilename(SCOPE_CURRENT_PLUGIN, 'Extensions/PrimeTimeManager/images/scrollRight.png')
+		scrollLeftPixmap = resolveFilename(SCOPE_PLUGIN, 'Extensions/PrimeTimeManager/images/scrollLeft.png')
+		scrollRightPixmap = resolveFilename(SCOPE_PLUGIN, 'Extensions/PrimeTimeManager/images/scrollRight.png')
 
 		self["ptListScrollLeft"].instance.setPixmapFromFile(scrollLeftPixmap)
 		self["ptListScrollLeft"].hide()
@@ -2238,16 +2238,16 @@ class PreviewList(MenuList):
 		else:
 			self.l.setItemHeight(115)
 
-		self.favoritePixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, 'Extensions/PrimeTimeManager/images/favorite.png'), desktop=getDesktop(0))
-		self.clockPixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, 'Extensions/PrimeTimeManager/images/epgclock.png'), desktop=getDesktop(0))
-		self.clockOverlap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, 'Extensions/PrimeTimeManager/images/clockOverlap.png'), desktop=getDesktop(0))
-		self.clockNotrecord = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, 'Extensions/PrimeTimeManager/images/clockNotrecord.png'), desktop=getDesktop(0))
+		self.favoritePixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, 'Extensions/PrimeTimeManager/images/favorite.png'), desktop=getDesktop(0))
+		self.clockPixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, 'Extensions/PrimeTimeManager/images/epgclock.png'), desktop=getDesktop(0))
+		self.clockOverlap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, 'Extensions/PrimeTimeManager/images/clockOverlap.png'), desktop=getDesktop(0))
+		self.clockNotrecord = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, 'Extensions/PrimeTimeManager/images/clockNotrecord.png'), desktop=getDesktop(0))
 
 		self.digitList = []
 		i = 0
 		while i <= 10:
 			name = 'Extensions/PrimeTimeManager/images/digit_' + str(i) + '.png'
-			digitPixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, name), desktop=getDesktop(0))
+			digitPixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, name), desktop=getDesktop(0))
 			self.digitList.append(digitPixmap)
 			i += 1
 

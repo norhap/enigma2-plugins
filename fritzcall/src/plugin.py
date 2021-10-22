@@ -59,8 +59,8 @@ from Components.config import config, ConfigSubsection, ConfigSelection, ConfigD
 from Plugins.Plugin import PluginDescriptor
 from Tools import Notifications
 from Tools.NumericalTextInput import NumericalTextInput
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CONFIG, SCOPE_CURRENT_SKIN, \
-	SCOPE_CURRENT_PLUGIN
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CONFIG, SCOPE_GUISKIN, \
+	SCOPE_PLUGIN
 from Tools.LoadPixmap import LoadPixmap
 from GlobalActions import globalActionMap  # for muting
 
@@ -341,9 +341,9 @@ class FritzAbout(Screen):
 								textFieldWidth,
 								scaleV(150, 130),  # text height
 								scaleV(24, 21),  # text font size
-								resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/FritzCall/images/fritz.png"),  # 150x110
+								resolveFilename(SCOPE_PLUGIN, "Extensions/FritzCall/images/fritz.png"),  # 150x110
 								5 + 150 + 5 + textFieldWidth + 5,  # qr code horizontal offset
-								resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/FritzCall/images/website.png"),  # 175x175
+								resolveFilename(SCOPE_PLUGIN, "Extensions/FritzCall/images/website.png"),  # 175x175
 								width - 40,  # url width
 								scaleV(24, 21)  # url font size
 								)
@@ -1448,10 +1448,10 @@ class FritzDisplayCalls(Screen, HelpableScreen):
 		if config.plugins.FritzCall.advancedSkin.value:
 			callPngPath = callPngPath + "/MODERN"
 		debug("[FritzDisplayCalls] callPngPath: %s", callPngPath)
-		directout = LoadPixmap(resolveFilename(SCOPE_CURRENT_PLUGIN, callPngPath + "/callout.png"))
-		directin = LoadPixmap(resolveFilename(SCOPE_CURRENT_PLUGIN, callPngPath + "/callin.png"))
-		directfailed = LoadPixmap(resolveFilename(SCOPE_CURRENT_PLUGIN, callPngPath + "/callinfailed.png"))
-		directrejected = LoadPixmap(resolveFilename(SCOPE_CURRENT_PLUGIN, callPngPath + "/callrejected.png"))
+		directout = LoadPixmap(resolveFilename(SCOPE_PLUGIN, callPngPath + "/callout.png"))
+		directin = LoadPixmap(resolveFilename(SCOPE_PLUGIN, callPngPath + "/callin.png"))
+		directfailed = LoadPixmap(resolveFilename(SCOPE_PLUGIN, callPngPath + "/callinfailed.png"))
+		directrejected = LoadPixmap(resolveFilename(SCOPE_PLUGIN, callPngPath + "/callrejected.png"))
 
 		def pixDir(param):
 			if param == FBF_OUT_CALLS:
@@ -1637,13 +1637,13 @@ class FritzOfferAction(Screen):
 		if not picPixmap:  # that means most probably, that the picture is not 8 bit...
 			Notifications.AddNotification(MessageBox, _("Found picture\n\n%s\n\nBut did not load. Probably not PNG, 8-bit") % faceFile, type=MessageBox.TYPE_ERROR)
 			if DESKTOP_WIDTH <= 720:
-				picPixmap = LoadPixmap(resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/FritzCall/images/no-face-error-sd.png"))
+				picPixmap = LoadPixmap(resolveFilename(SCOPE_PLUGIN, "Extensions/FritzCall/images/no-face-error-sd.png"))
 			elif DESKTOP_WIDTH <= 1280:
-				picPixmap = LoadPixmap(resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/FritzCall/images/no-face-error-hd.png"))
+				picPixmap = LoadPixmap(resolveFilename(SCOPE_PLUGIN, "Extensions/FritzCall/images/no-face-error-hd.png"))
 			elif DESKTOP_WIDTH <= 1920:
-				picPixmap = LoadPixmap(resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/FritzCall/images/no-face-error-fhd.png"))
+				picPixmap = LoadPixmap(resolveFilename(SCOPE_PLUGIN, "Extensions/FritzCall/images/no-face-error-fhd.png"))
 			else:
-				picPixmap = LoadPixmap(resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/FritzCall/images/no-face-error-uhd.png"))
+				picPixmap = LoadPixmap(resolveFilename(SCOPE_PLUGIN, "Extensions/FritzCall/images/no-face-error-uhd.png"))
 
 		picSize = picPixmap.size()
 		self["FacePixmap"].instance.setPixmap(picPixmap)
@@ -2962,13 +2962,13 @@ def findFace(number, name):
 
 	if not facesFile:
 		if DESKTOP_WIDTH <= 720:
-			facesFile = resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/FritzCall/images/no-face-sd.png")
+			facesFile = resolveFilename(SCOPE_PLUGIN, "Extensions/FritzCall/images/no-face-sd.png")
 		elif DESKTOP_WIDTH <= 1280:
-			facesFile = resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/FritzCall/images/no-face-hd.png")
+			facesFile = resolveFilename(SCOPE_PLUGIN, "Extensions/FritzCall/images/no-face-hd.png")
 		elif DESKTOP_WIDTH <= 1920:
-			facesFile = resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/FritzCall/images/no-face-fhd.png")
+			facesFile = resolveFilename(SCOPE_PLUGIN, "Extensions/FritzCall/images/no-face-fhd.png")
 		else:
-			facesFile = resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/FritzCall/images/no-face-uhd.png")
+			facesFile = resolveFilename(SCOPE_PLUGIN, "Extensions/FritzCall/images/no-face-uhd.png")
 
 	info("[FritzCall] result: %s", __(facesFile))
 	return facesFile
@@ -2984,7 +2984,7 @@ class MessageBoxPixmap(Screen):
 		</screen>
 			""" % (
 				# scaleH(350, 60), scaleV(175, 245),
-				scaleV(25, 22), resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/input_info.png")
+				scaleV(25, 22), resolveFilename(SCOPE_GUISKIN, "skin_default/icons/input_info.png")
 				)
 			debug("[FritzCall] MessageBoxPixmap number: %s", number)
 		else:
@@ -3049,13 +3049,13 @@ class MessageBoxPixmap(Screen):
 		if not picPixmap:  # that means most probably, that the picture is not 8 bit...
 			Notifications.AddNotification(MessageBox, _("Found picture\n\n%s\n\nBut did not load. Probably not PNG, 8-bit") % faceFile, type=MessageBox.TYPE_ERROR)
 			if DESKTOP_WIDTH <= 720:
-				picPixmap = LoadPixmap(resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/FritzCall/images/no-face-error-sd.png"))
+				picPixmap = LoadPixmap(resolveFilename(SCOPE_PLUGIN, "Extensions/FritzCall/images/no-face-error-sd.png"))
 			elif DESKTOP_WIDTH <= 1280:
-				picPixmap = LoadPixmap(resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/FritzCall/images/no-face-error-hd.png"))
+				picPixmap = LoadPixmap(resolveFilename(SCOPE_PLUGIN, "Extensions/FritzCall/images/no-face-error-hd.png"))
 			elif DESKTOP_WIDTH <= 1920:
-				picPixmap = LoadPixmap(resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/FritzCall/images/no-face-error-fhd.png"))
+				picPixmap = LoadPixmap(resolveFilename(SCOPE_PLUGIN, "Extensions/FritzCall/images/no-face-error-fhd.png"))
 			else:
-				picPixmap = LoadPixmap(resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/FritzCall/images/no-face-error-uhd.png"))
+				picPixmap = LoadPixmap(resolveFilename(SCOPE_PLUGIN, "Extensions/FritzCall/images/no-face-error-uhd.png"))
 		picSize = picPixmap.size()
 		self["InfoPixmap"].instance.setPixmap(picPixmap)
 		if config.plugins.FritzCall.advancedSkin.value:

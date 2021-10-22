@@ -54,7 +54,7 @@ from Screens.TimerEdit import TimerEditList, TimerSanityConflict
 from Screens.TimerEntry import TimerEntry
 from ServiceReference import ServiceReference
 from skin import parseColor, loadSkin
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
+from Tools.Directories import resolveFilename, SCOPE_PLUGIN
 from Tools.LoadPixmap import LoadPixmap
 
 # OWN IMPORTS
@@ -325,7 +325,7 @@ class MerlinEPGCenter(TimerEditList, MerlinEPGActions):
 		elif config.plugins.merlinEpgCenter.listProgressStyle.value == STYLE_PIXMAP_BAR:
 			self["eventProgressImage"].hide()
 			if self.progressPixmap is None:
-				pixmapPath = resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/EventProgress.png")
+				pixmapPath = resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/EventProgress.png")
 				self.progressPixmap = LoadPixmap(cached=False, path=pixmapPath)
 			self["eventProgress"].instance.setPixmap(self.progressPixmap)
 			self["eventProgress"].show()

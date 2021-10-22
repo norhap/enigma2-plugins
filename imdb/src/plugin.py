@@ -22,7 +22,7 @@ from Components.Language import language
 from Components.ProgressBar import ProgressBar
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Boolean import Boolean
-from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
+from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_SKINS
 import os
 import re
 

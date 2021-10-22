@@ -23,7 +23,7 @@ from enigma import eListboxPythonMultiContent, \
 from Components.config import config
 from time import localtime, strftime, ctime, time
 
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
 import PartnerboxFunctions as partnerboxfunctions
 from PartnerboxFunctions import getServiceRef
@@ -60,7 +60,7 @@ def Partnerbox_EPGList__init__(self, type=0, selChangedCB=None, timer=None):
 	baseEPGList__init__(self, type, selChangedCB, timer)
 
 	def loadPixmap(name):
-		pixmap = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/%s" % name))
+		pixmap = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/%s" % name))
 		if pixmap is None:
 			pixmap = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Partnerbox/icons/%s" % name)
 		return pixmap

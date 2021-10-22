@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from Components.Language import language
-from Tools.Directories import resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE #@UnresolvedImport
+from Tools.Directories import resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS, SCOPE_SKINS #@UnresolvedImport
 import gettext
 import os
 import re

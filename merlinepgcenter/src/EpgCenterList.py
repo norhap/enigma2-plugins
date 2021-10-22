@@ -34,7 +34,7 @@ import NavigationInstance
 from ServiceReference import ServiceReference
 from skin import parseColor
 from timer import TimerEntry
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
+from Tools.Directories import resolveFilename, SCOPE_PLUGIN
 from Tools.LoadPixmap import LoadPixmap
 
 # OWN IMPORTS
@@ -125,28 +125,28 @@ class EpgCenterList(GUIComponent):
 			EpgCenterList.initialised = True
 
 		# zap timer pixmaps
-		self.zap_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/zap.png"))
-		self.zap_pre_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/zap_pre.png"))
-		self.zap_post_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/zap_post.png"))
-		self.zap_event_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/zap_event.png"))
-		self.zap_repeated_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/zap_repeated.png"))
-		self.zap_add_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/zap_add.png"))
+		self.zap_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/zap.png"))
+		self.zap_pre_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/zap_pre.png"))
+		self.zap_post_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/zap_post.png"))
+		self.zap_event_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/zap_event.png"))
+		self.zap_repeated_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/zap_repeated.png"))
+		self.zap_add_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/zap_add.png"))
 
 		# record timer pixmaps
-		self.timer_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/timer.png"))
-		self.timer_pre_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/timer_pre.png"))
-		self.timer_post_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/timer_post.png"))
-		self.timer_event_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/timer_event.png"))
-		self.timer_repeated_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/timer_repeated.png"))
-		self.timer_add_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/timer_add.png"))
+		self.timer_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/timer.png"))
+		self.timer_pre_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/timer_pre.png"))
+		self.timer_post_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/timer_post.png"))
+		self.timer_event_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/timer_event.png"))
+		self.timer_repeated_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/timer_repeated.png"))
+		self.timer_add_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/timer_add.png"))
 
 		# progress pixmaps
-		self.progressPixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/Progress.png"))
-		self.progressPixmap_0 = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/Progress_0.png"))
-		self.progressPixmap_1 = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/Progress_1.png"))
-		self.progressPixmap_2 = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/Progress_2.png"))
-		self.progressPixmap_3 = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/Progress_3.png"))
-		self.progressPixmap_4 = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/MerlinEPGCenter/images/Progress_4.png"))
+		self.progressPixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/Progress.png"))
+		self.progressPixmap_0 = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/Progress_0.png"))
+		self.progressPixmap_1 = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/Progress_1.png"))
+		self.progressPixmap_2 = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/Progress_2.png"))
+		self.progressPixmap_3 = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/Progress_3.png"))
+		self.progressPixmap_4 = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGIN, "Extensions/MerlinEPGCenter/images/Progress_4.png"))
 
 		self.epgcache = eEPGCache.getInstance()
 

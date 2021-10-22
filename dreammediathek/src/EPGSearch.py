@@ -3,7 +3,7 @@
 from . import _
 from enigma import eEPGCache, eServiceReference, eServiceCenter, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eRect, getDesktop, \
 		RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eListboxPythonMultiContent, gFont, ePicLoad
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_SKIN_IMAGE, fileExists
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN, SCOPE_SKINS, fileExists
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Alternatives import GetWithAlternative
 from ServiceReference import ServiceReference
@@ -100,7 +100,7 @@ class EPGSearchList(EPGList):
 		self.pboxDistance = 80
 
 		def loadPixmap(name):
-			pixmap = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/%s" % name))
+			pixmap = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/%s" % name))
 			if pixmap is None:
 				pixmap = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/EPGSearch/icons/%s" % name)
 			return pixmap
