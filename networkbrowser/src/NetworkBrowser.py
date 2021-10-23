@@ -14,7 +14,7 @@ from Components.Input import Input
 from Components.config import getConfigListEntry, NoSave, config, ConfigIP
 from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.Console import Console
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKINS, SCOPE_ACTIVE_SKIN, fileExists
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKINS, SCOPE_GUISKIN, fileExists
 from Tools.LoadPixmap import LoadPixmap
 from cPickle import dump, load
 from os import path as os_path, stat, mkdir, remove
@@ -221,8 +221,8 @@ class NetworkBrowser(Screen):
 		if status:
 			self.statuslist = []
 			if status == 'update':
-				if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/update.png")):
-					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/update.png"))
+				if os_path.exists(resolveFilename(SCOPE_GUISKIN, "networkbrowser/update.png")):
+					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "networkbrowser/update.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkBrowser/icons/update.png"))
 				self.statuslist.append((['info'], statuspng, _("Searching your network. Please wait..."), None, None, None, None))
@@ -230,8 +230,8 @@ class NetworkBrowser(Screen):
 				name = _("Searching your network. Please wait...")
 				desc = name
 			elif status == 'error':
-				if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/error.png")):
-					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/error.png"))
+				if os_path.exists(resolveFilename(SCOPE_GUISKIN, "networkbrowser/error.png")):
+					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "networkbrowser/error.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkBrowser/icons/error.png"))
 				self.statuslist.append((['info'], statuspng, _("No network devices found!"), None, None, None, None))
@@ -364,8 +364,8 @@ class NetworkBrowser(Screen):
 		for x in self.network.keys():
 			hostentry = self.network[x][0][1]
 			name = hostentry[2] + " ( " + hostentry[1].strip() + " )"
-			if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/host.png")):
-				expandableIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/host.png"))
+			if os_path.exists(resolveFilename(SCOPE_GUISKIN, "networkbrowser/host.png")):
+				expandableIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "networkbrowser/host.png"))
 			else:
 				expandableIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkBrowser/icons/host.png"))
 			self.list.append((hostentry, expandableIcon, name, None, None, None, None, None))
@@ -397,8 +397,8 @@ class NetworkBrowser(Screen):
 				networkshares = self.getNetworkShares(x, self.network[x][0][1][1].strip(), self.device)
 				hostentry = self.network[x][0][1]
 				name = hostentry[2] + " ( " + hostentry[1].strip() + " )"
-				if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/host.png")):
-					expandedIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/host.png"))
+				if os_path.exists(resolveFilename(SCOPE_GUISKIN, "networkbrowser/host.png")):
+					expandedIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "networkbrowser/host.png"))
 				else:
 					expandedIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkBrowser/icons/host.png"))
 				self.list.append((hostentry, expandedIcon, name, None, None, None, None, None))
@@ -407,8 +407,8 @@ class NetworkBrowser(Screen):
 			else: # HOSTLIST - VIEW
 				hostentry = self.network[x][0][1]
 				name = hostentry[2] + " ( " + hostentry[1].strip() + " )"
-				if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/host.png")):
-					expandableIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/host.png"))
+				if os_path.exists(resolveFilename(SCOPE_GUISKIN, "networkbrowser/host.png")):
+					expandableIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "networkbrowser/host.png"))
 				else:
 					expandableIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkBrowser/icons/host.png"))
 				self.list.append((hostentry, expandableIcon, name, None, None, None, None, None))
@@ -422,8 +422,8 @@ class NetworkBrowser(Screen):
 		self["list"].setIndex(self.listindex)
 
 	def BuildNetworkShareEntry(self, share):
-		if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/verticalLine.png")):
-			verticallineIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/verticalLine.png"))
+		if os_path.exists(resolveFilename(SCOPE_GUISKIN, "networkbrowser/verticalLine.png")):
+			verticallineIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "networkbrowser/verticalLine.png"))
 		else:
 			verticallineIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkBrowser/icons/verticalLine.png"))
 		sharetype = share[0]
@@ -438,13 +438,13 @@ class NetworkBrowser(Screen):
 			sharedescription = share[3]
 
 		if sharetype == 'nfsShare':
-			if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/i-nfs.png")):
-				newpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/i-nfs.png"))
+			if os_path.exists(resolveFilename(SCOPE_GUISKIN, "networkbrowser/i-nfs.png")):
+				newpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "networkbrowser/i-nfs.png"))
 			else:
 				newpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkBrowser/icons/i-nfs.png"))
 		else:
-			if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/i-smb.png")):
-				newpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/i-smb.png"))
+			if os_path.exists(resolveFilename(SCOPE_GUISKIN, "networkbrowser/i-smb.png")):
+				newpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "networkbrowser/i-smb.png"))
 			else:
 				newpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkBrowser/icons/i-smb.png"))
 
@@ -461,13 +461,13 @@ class NetworkBrowser(Screen):
 						if sharedata["isMounted"] is True:
 							self.isMounted = True
 		if self.isMounted is True:
-			if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/ok.png")):
-				isMountedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/ok.png"))
+			if os_path.exists(resolveFilename(SCOPE_GUISKIN, "networkbrowser/ok.png")):
+				isMountedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "networkbrowser/ok.png"))
 			else:
 				isMountedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkBrowser/icons/ok.png"))
 		else:
-			if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/cancel.png")):
-				isMountedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "networkbrowser/cancel.png"))
+			if os_path.exists(resolveFilename(SCOPE_GUISKIN, "networkbrowser/cancel.png")):
+				isMountedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "networkbrowser/cancel.png"))
 			else:
 				isMountedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkBrowser/icons/cancel.png"))
 
