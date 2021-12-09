@@ -142,6 +142,7 @@ class AutoTimerImporter(Screen):
 
 		entries = []
 		append = entries.append
+		self["list"] = SelectionList()
 
 		if disabled is not None:
 			append(
