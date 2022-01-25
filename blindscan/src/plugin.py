@@ -351,7 +351,8 @@ class Blindscan(ConfigListScreen, Screen):
 						sName = splitLines[3][4:-1]
 				except:
 					sName = ""
-			if sNo >= 0 and sName != "":
+			print("sNo, sName, sI2C", sNo, sName, sI2C)
+			if sNo != -1 and sName != "":
 				if sName.startswith('BCM'):
 					sI2C = sNo
 				if sI2C != -1:
@@ -532,7 +533,7 @@ class Blindscan(ConfigListScreen, Screen):
 			if slot.canBeCompatible("DVB-S"):
 				default_sat_pos = defaultSat["orbpos"]
 				self.getCurrentTuner = None
-				if self.getCurrentTuner is not None and slot.slot != self.getCurrentTuner:
+				if hasattr(self, "getCurrentTuner") and self.getCurrentTuner != None and slot.slot != self.getCurrentTuner:
 					if len(nimmanager.getRotorSatListForNim(slot.slot)) and Lastrotorposition is not None and config.misc.lastrotorposition.value != 9999:
 						default_sat_pos = config.misc.lastrotorposition.value
 				self.scan_satselection.append(getConfigSatlist(default_sat_pos, self.satList[slot.slot]))
@@ -1163,6 +1164,7 @@ class Blindscan(ConfigListScreen, Screen):
 
 	def blindscanContainerAvail(self, str):
 		print("[Blindscan][blindscanContainerAvail]", str)
+		str = str.decode()
 		self.full_data = self.full_data + str # TODO: is this the cause of the duplicates in blindscanContainerClose?
 		if self.blindscan_session:
 			if self.SundtekScan:
