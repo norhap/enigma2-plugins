@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # for localized messages
 from __future__ import print_function
-from __init__ import _
+from . import _
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -13,7 +13,8 @@ from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.ActionMap import ActionMap, NumberActionMap
 from enigma import ePoint
-from cPickle import dump, load
+import six
+from six.moves.cPickle import dump, load
 from os import path as os_path, unlink, stat, mkdir
 from time import time
 from stat import ST_MTIME

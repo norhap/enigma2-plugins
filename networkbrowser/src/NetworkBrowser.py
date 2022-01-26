@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # for localized messages
 from __future__ import print_function
-from __init__ import _
+from . import _
 from enigma import eTimer, getDesktop
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -16,19 +16,20 @@ from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.Console import Console
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKINS, SCOPE_GUISKIN, fileExists
 from Tools.LoadPixmap import LoadPixmap
-from cPickle import dump, load
+import six
+from six.moves.cPickle import dump, load
 from os import path as os_path, stat, mkdir, remove
 from time import time
 from stat import ST_MTIME
 
 import subprocess
 
-import netscan
-import ipscan
-from MountManager import AutoMountManager
-from AutoMount import iAutoMount
-from MountEdit import AutoMountEdit
-from UserDialog import UserDialog
+from . import netscan
+from . import ipscan
+from .MountManager import AutoMountManager
+from .AutoMount import iAutoMount
+from .MountEdit import AutoMountEdit
+from .UserDialog import UserDialog
 
 
 def formatIp(ip):
@@ -44,7 +45,7 @@ def write_cache(cache_file, cache_data):
 			mkdir(os_path.dirname(cache_file))
 		except OSError:
 			print(os_path.dirname(cache_file), '[Networkbrowser] is a file')
-	fd = open(cache_file, 'w')
+	fd = open(cache_file, 'wb')
 	dump(cache_data, fd, -1)
 	fd.close()
 
@@ -387,7 +388,7 @@ class NetworkBrowser(Screen):
 			if x[2] not in self.network:
 				self.network[x[2]] = []
 			self.network[x[2]].append((NetworkDescriptor(name=x[1], description=x[2]), x))
-		self.network.keys().sort()
+		self.network.keys()
 		for x in self.network.keys():
 			if self.network[x][0][1][3] == '00:00:00:00:00:00':
 				self.device = 'unix'

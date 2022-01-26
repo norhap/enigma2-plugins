@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # for localized messages
-#from __init__ import _
+#from . import _
 from __future__ import print_function
 import os
 

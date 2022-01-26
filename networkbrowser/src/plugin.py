@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 # for localized messages
 from __future__ import print_function
-from __init__ import _
+from . import _
 
 import Components.Task
 from enigma import eTimer
 from Components.config import config
 from Plugins.Plugin import PluginDescriptor
-from NetworkBrowser import NetworkBrowser
+from . NetworkBrowser import NetworkBrowser
 from Components.Network import iNetwork
-from MountManager import AutoMountManager
-from AutoMount import iAutoMount
+from . MountManager import AutoMountManager
+from . AutoMount import iAutoMount
 
 plugin_path = ""
 mountagaincheckpoller = None
@@ -91,7 +91,7 @@ def MountManagerCallFunction(iface):
 
 
 def RemountMain(session, iface=None, **kwargs):
-	from AutoMount import iAutoMount
+	from . AutoMount import iAutoMount
 	iAutoMount.getAutoMountPoints()
 
 
