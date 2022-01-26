@@ -73,8 +73,14 @@ config.plugins.autoresolution.showinfo = ConfigYesNo(default=True)
 config.plugins.autoresolution.testmode = ConfigYesNo(default=False)
 config.plugins.autoresolution.hdmihdrtype = ConfigYesNo(default=False)
 config.plugins.autoresolution.hdmicolorimetry = ConfigSelection(default="no", choices=[("no", _("no")), ("bt2020ncl", "BT 2020 NCL"), ("bt2020cl", "BT 2020 CL")])
-config.plugins.autoresolution.deinterlacer = ConfigSelection(default="auto", choices=[("off", _("off")), ("auto", _("auto")), ("on", _("on"))])
-config.plugins.autoresolution.deinterlacer_progressive = ConfigSelection(default="auto", choices=[("off", _("off")), ("auto", _("auto")), ("on", _("on"))])
+deinterlacer_choices = {"off": "off", "auto": "auto", "on": "on"}
+try:
+	if "bob" in open("/proc/stb/vmpeg/deinterlace_choices").read():
+		deinterlacer_choices.update({"bob": "bob"})
+except:
+	pass
+config.plugins.autoresolution.deinterlacer = ConfigSelection(default="auto", choices=deinterlacer_choices)
+config.plugins.autoresolution.deinterlacer_progressive = ConfigSelection(default="auto", choices=deinterlacer_choices)
 config.plugins.autoresolution.delay_switch_mode = ConfigSelection(default="1000", choices=[
 		("0", "0 " + _("seconds")), ("50", "0.05 " + _("seconds")), ("500", "0.5 " + _("seconds")),
 		("1000", "1 " + _("second")), ("2000", "2 " + _("seconds")), ("3000", "3 " + _("seconds")),
@@ -166,6 +172,7 @@ codec_data = {
 	19: "N/A 19",
 	20: "N/A 20",
 	21: "SPARK",
+	40: "AVS2",
 }
 
 
@@ -198,6 +205,7 @@ class AutoRes(Screen):
 			self.setMode(default[0], False)
 		self.after_switch_delay = False
 		self.newService = False
+		self.video_stream_service = False
 		if "720p" in config.av.videorate:
 			config.av.videorate["720p"].addNotifier(self.__videorate_720p_changed, initial_call=False, immediate_feedback=False)
 		if "1080i" in config.av.videorate:
@@ -228,6 +236,7 @@ class AutoRes(Screen):
 
 	def __evEnd(self):
 		self.newService = False
+		self.video_stream_service = False
 
 	def __evUpdatedInfo(self):
 		if self.newService and config.plugins.autoresolution.mode.value == "manual":
@@ -342,27 +351,54 @@ class AutoRes(Screen):
 			print "[AutoRes] determineContent"
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
-			height = info and info.getInfo(iServiceInformation.sVideoHeight)
-			width = info and info.getInfo(iServiceInformation.sVideoWidth)
-			framerate = info and info.getInfo(iServiceInformation.sFrameRate)
-			if not framerate:
+			if not info:
+				return
+			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			refstr = ref and ref.toString() or ""
+			self.video_stream_service = refstr and ("%3a//" in refstr or refstr.rsplit(":", 1)[1].startswith("/"))
+			height = info.getInfo(iServiceInformation.sVideoHeight)
+			if self.video_stream_service and (not height or height == -1):
+				try:
+					f = open("/proc/stb/vmpeg/0/yres", "r")
+					height = int(f.read(), 16)
+					f.close()
+				except:
+					pass
+			width = info.getInfo(iServiceInformation.sVideoWidth)
+			if self.video_stream_service and (not width or width == -1):
+				try:
+					f = open("/proc/stb/vmpeg/0/xres", "r")
+					width = int(f.read(), 16)
+					f.close()
+				except:
+					pass
+			framerate = info.getInfo(iServiceInformation.sFrameRate)
+			if self.video_stream_service and (not framerate or framerate == -1):
 				try:
 					framerate = int(open("/proc/stb/vmpeg/0/framerate", "r").read())
 				except:
 					pass
-			if info and height != -1 and width != -1 and framerate != -1:
+			if height != -1 and width != -1 and framerate != -1:
 				videocodec = codec_data.get(info.getInfo(iServiceInformation.sVideoType), "N/A")
 				frate = str(framerate)[:2] #fallback?
 				if framerate in frqdic:
 					frate = frqdic[framerate]
 
 				prog = ("i", "p", "")[info.getInfo(iServiceInformation.sProgressive)]
+				if self.video_stream_service and not prog:
+					try:
+						f = open("/proc/stb/vmpeg/0/progressive", "r")
+						progstr = f.read()
+						f.close()
+						if "0" in progstr or "i" in progstr:
+							prog = "i"
+						elif "1" in progstr or "p" in progstr:
+							prog = "p"
+					except:
+						pass
 
-				if config.plugins.autoresolution.force_progressive_mode.value:
-					service = self.session.nav.getCurrentlyPlayingServiceReference()
-					str_service = service and service.toString() or ""
-					if ("%3a//" in str_service or str_service.rsplit(":", 1)[1].startswith("/")) and prog != "p":
-						prog = "p"
+				if config.plugins.autoresolution.force_progressive_mode.value and self.video_stream_service and prog != "p":
+					prog = "p"
 
 				if have_2160p and (height >= 2100 or width >= 3200): # 2160 content
 					if frate in ('24', '25', '30') and prog == 'p':
@@ -436,6 +472,8 @@ class AutoRes(Screen):
 					v.write("%s\n" % mode)
 					v.close()
 					print "[AutoRes] switching to", mode
+					if self.video_stream_service:
+						self.doSeekRelative(2 * 9000)
 				except:
 					print "[AutoRes] failed switching to", mode
 				resolutionlabel["restxt"].setText(_("Videomode: %s") % mode)
@@ -474,11 +512,27 @@ class AutoRes(Screen):
 				resolutionlabel.show()
 			try:
 				video_hw.setMode(port, mode, rate)
+				if self.video_stream_service:
+					self.doSeekRelative(2 * 9000)
 			except:
 				print "[AutoRes] Videomode: failed switching to", mode
 				return
 		self.lastmode = mode
 
+	def getSeek(self):
+		service = self.session.nav.getCurrentService()
+		if service is None:
+			return None
+		seek = service.seek()
+		if seek is None or not seek.isCurrentlySeekable():
+			return None
+		return seek
+
+	def doSeekRelative(self, pts):
+		seekable = self.getSeek()
+		if seekable is None:
+			return
+ 		seekable.seekRelative(pts < 0 and -1 or 1, abs(pts))
 
 class ResolutionLabel(Screen):
 	height = getDesktop(0).size().height()
@@ -569,15 +623,16 @@ class AutoResSetupMenu(Screen, ConfigListScreen):
 					self.list.append(getConfigListEntry(_("Lock timeout"), config.plugins.autoresolution.lock_timeout))
 					self.list.append(getConfigListEntry(_("Ask before changing videomode"), config.plugins.autoresolution.ask_apply_mode))
 					if config.plugins.autoresolution.ask_apply_mode.value:
-						self.list.append(getConfigListEntry(_("Message timeout"), config.plugins.autoresolution.ask_timeout))
+						self.list.append(getConfigListEntry("  " + _("Message timeout"), config.plugins.autoresolution.ask_timeout))
 					self.list.append(getConfigListEntry(_("Use 60HZ instead 30HZ"), config.plugins.autoresolution.auto_30_60))
 					self.list.append(getConfigListEntry(_("Alternative resolution when native not supported"), config.plugins.autoresolution.auto_24_30_alternative))
 			else:
 				self.list.append(getConfigListEntry(_("Autoresolution is not working in Scart/DVI-PC Mode"), ConfigNothing()))
-		elif config.av.videoport.value not in ('DVI-PC', 'Scart'):
-				self.list.append(getConfigListEntry(_("Show 'Manual resolution' in extensions menu"), config.plugins.autoresolution.manual_resolution_ext_menu))
-				if config.plugins.autoresolution.manual_resolution_ext_menu.value:
-					self.list.append(getConfigListEntry(_("Return back without confirmation after 10 sec."), config.plugins.autoresolution.ask_apply_mode))
+		if config.av.videoport.value not in ('DVI-PC', 'Scart'):
+			self.list.append(getConfigListEntry("---------------------------", ConfigNothing()))
+			self.list.append(getConfigListEntry(_("Show 'Manual resolution' in extensions menu"), config.plugins.autoresolution.manual_resolution_ext_menu))
+			if config.plugins.autoresolution.manual_resolution_ext_menu.value:
+				self.list.append(getConfigListEntry("  " + _("Return back without confirmation after 10 sec."), config.plugins.autoresolution.ask_apply_mode))
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 
@@ -651,7 +706,7 @@ class AutoFrameRate(Screen):
 						self.framerate_change_is_locked = False
 					info = service and service.info()
 					framerate = info and info.getInfo(iServiceInformation.sFrameRate)
-					if not framerate:
+					if not framerate or framerate == -1:
 						try:
 							framerate = int(open("/proc/stb/vmpeg/0/framerate", "r").read())
 						except:
@@ -771,25 +826,35 @@ class ManualResolution(Screen):
 			f = open("/proc/stb/vmpeg/0/yres", "r")
 			yresString = f.read()
 			f.close()
+			prog = "?"
+			try:
+				f = open("/proc/stb/vmpeg/0/progressive", "r")
+				progstr = f.read()
+				f.close()
+				if "0" in progstr or "i" in progstr:
+					prog = "i"
+				elif "1" in progstr or "p" in progstr:
+					prog = "p"
+			except:
+				print "[ManualResolution] Error open /proc/stb/vmpeg/0/progressive"
 			try:
 				f = open("/proc/stb/vmpeg/0/framerate", "r")
-				fpsString = f.read()
+				fpsString = int(f.read())
 				f.close()
+				fpsFloat = float(fpsString) / 1000
+				text_fps =  str(fpsFloat)
 			except:
 				print "[ManualResolution] Error open /proc/stb/vmpeg/0/framerate"
-				fpsString = '50000'
+				text_fps = "?"
 			xres = int(xresString, 16)
 			yres = int(yresString, 16)
-			fps = int(fpsString)
-			fpsFloat = float(fps)
-			fpsFloat = fpsFloat / 1000
 		except:
 			print "[ManualResolution] Error reading current mode!Stop!"
 			return
 		selection = 0
 		tlist = []
 		tlist.append((_("Exit"), "exit"))
-		tlist.append((_("Video: ") + str(xres) + "x" + str(yres) + "@" + str(fpsFloat) + "hz", ""))
+		tlist.append((_("Video: ") + str(xres) + "x" + str(yres) + prog + "@" + text_fps + "hz", ""))
 		tlist.append(("--", ""))
 		for x in self.choices:
 			tlist.append(x)
@@ -864,6 +929,6 @@ def autoresSetup(session, **kwargs):
 def Plugins(path, **kwargs):
 	lst = [PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART], fnc=autostart),
 		PluginDescriptor(name="Autoresolution", description=_("Autoresolution Switch"), where=PluginDescriptor.WHERE_MENU, fnc=startSetup)]
-	if not config.plugins.autoresolution.enable.value and config.plugins.autoresolution.manual_resolution_ext_menu.value:
+	if config.plugins.autoresolution.manual_resolution_ext_menu.value:
 		lst.append(PluginDescriptor(name=_("Manual resolution"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart=False, fnc=openManualResolution))
 	return lst
