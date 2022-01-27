@@ -25,7 +25,7 @@ from collections import deque
 
 from twisted.internet import reactor
 
-from Logger import doLog
+from . Logger import doLog
 
 
 class AutoPollerThread(Thread):
@@ -82,7 +82,7 @@ class AutoPollerThread(Thread):
 			delay = config.plugins.autotimer.interval.value * 3600
 
 		self.__timer.startLongTimer(delay)
-		if not self.isAlive():
+		if hasattr(self, "isAlive") and not self.isAlive():
 			Thread.start(self)
 
 	def pause(self):

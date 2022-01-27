@@ -3,8 +3,8 @@ from __future__ import print_function
 # Plugins Config
 from xml.etree.cElementTree import parse as cet_parse, fromstring as cet_fromstring
 import os
-from AutoTimerConfiguration import parseConfig, buildConfig
-from Logger import doLog, startLog, getLog, doDebug
+from . AutoTimerConfiguration import parseConfig, buildConfig
+from . Logger import doLog, startLog, getLog, doDebug
 
 # Navigation (RecordTimer)
 import NavigationInstance
@@ -30,17 +30,21 @@ from enigma import eEPGCache, eServiceReference, eServiceCenter, iServiceInforma
 from twisted.internet import reactor, defer
 from twisted.python import failure
 from threading import currentThread
-import Queue
+from six import PY2, PY3
+if PY2:
+	import Queue as queue
+else:
+	import queue as queue
 
 # AutoTimer Component
-from AutoTimerComponent import preferredAutoTimerComponent
+from . AutoTimerComponent import preferredAutoTimerComponent
 
 from itertools import chain
 from collections import defaultdict
 from difflib import SequenceMatcher
 from operator import itemgetter
 
-from SimpleThread import SimpleThread
+from . SimpleThread import SimpleThread
 
 try:
 	from Plugins.Extensions.SeriesPlugin.plugin import getSeasonEpisode4 as sp_getSeasonEpisode
@@ -110,28 +114,44 @@ def blockingCallFromMainThread(f, *a, **kw):
 	  to reliably detect from the outside if twisted is currently shutting
 	  down.
 	"""
-	queue = Queue.Queue()
 
 	def _callFromThread():
-		result = defer.maybeDeferred(f, *a, **kw)
-		result.addBoth(queue.put)
-	reactor.callFromThread(_callFromThread)
+		if PY2:
+			queue = queue.Queue()
+			result = defer.maybeDeferred(f, *a, **kw)
+			result.addBoth(queue.put)
+		reactor.callFromThread(_callFromThread)
 
-	result = None
-	while True:
-		try:
-			result = queue.get(True, config.plugins.autotimer.timeout.value * 60)
-		except Queue.Empty as qe:
-			if True: #not reactor.running: # reactor.running is only False AFTER shutdown, we are during.
-				doLog("[AutoTimer] Reactor no longer active, aborting.")
-		else:
-			break
+		if PY3:
+			queue = queue.queue()
+			result = defer.maybeDeferred(f, *a, **kw)
+			result.addBoth(queue.put)
+		reactor.callFromThread(_callFromThread)
 
-	if isinstance(result, failure.Failure):
-		print("[AutoTimer]", result.getTraceback())
-		doLog(result.getTraceback())
-		result.raiseException()
-	return result
+		result = None
+		while True:
+			try:
+				if PY2:
+					result = queue.get(True, config.plugins.autotimer.timeout.value * 60)
+			except Queue.Empty as qe:
+				if True: #not reactor.running: # reactor.running is only False AFTER shutdown, we are during.
+					doLog("[AutoTimer] Reactor no longer active, aborting.")
+			else:
+				break
+			try:
+				if PY3:
+					result = queue.get(True, config.plugins.autotimer.timeout.value * 60)
+			except queue.Empty as qe:
+				if True: #not reactor.running: # reactor.running is only False AFTER shutdown, we are during.
+					doLog("[AutoTimer] Reactor no longer active, aborting.")
+			else:
+				break
+
+		if isinstance(result, failure.Failure):
+			print("[AutoTimer]", result.getTraceback())
+			doLog(result.getTraceback())
+			result.raiseException()
+		return result
 
 
 typeMap = {
@@ -864,7 +884,7 @@ class AutoTimer:
 
 	def parseEPG(self, simulateOnly=False, uniqueId=None, callback=None):
 
-		from plugin import AUTOTIMER_VERSION
+		from . plugin import AUTOTIMER_VERSION
 		doLog("AutoTimer Version: " + AUTOTIMER_VERSION)
 
 		if NavigationInstance.instance is None:
@@ -925,7 +945,7 @@ class AutoTimer:
 					del conflicting[:]
 					del similars[:]
 					del skipped[:]
-				else:
+				if callback != None:
 					new += tup[0]
 					modified += tup[1]
 

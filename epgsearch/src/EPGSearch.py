@@ -7,7 +7,7 @@ from Tools.Directories import resolveFilename, SCOPE_GUISKIN, fileExists
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Alternatives import GetWithAlternative
 from ServiceReference import ServiceReference
-from EPGSearchSetup import EPGSearchSetup
+from . EPGSearchSetup import EPGSearchSetup
 from Screens.ChannelSelection import SimpleChannelSelection
 from Screens.ChoiceBox import ChoiceBox
 from Screens.EpgSelection import EPGSelection
@@ -211,7 +211,7 @@ class EPGSearchList(EPGList):
 						bt = localtime(begin)
 						bday = bt.tm_wday
 						begin2 = 1440 + bt.tm_hour * 60 + bt.tm_min
-						end2 = begin2 + duration / 60
+						end2 = begin2 + duration // 60
 					xbt = localtime(x.begin)
 					xet = localtime(timer_end)
 					offset_day = False
@@ -222,7 +222,7 @@ class EPGSearchList(EPGList):
 							oday = 6
 						offset_day = x.repeated & (1 << oday)
 					xbegin = 1440 + xbt.tm_hour * 60 + xbt.tm_min
-					xend = xbegin + ((timer_end - x.begin) / 60)
+					xend = xbegin + ((timer_end - x.begin) // 60)
 					if xend < xbegin:
 						xend += 1440
 					if x.repeated & (1 << bday) and checking_time:
@@ -332,10 +332,10 @@ class EPGSearchList(EPGList):
 		remaining = ""
 		if beginTime is not None:
 			if nowTime < beginTime:
-				remaining = _(" (%d min)") % (duration / 60)
+				remaining = _(" (%d min)") % (duration // 60)
 			else:
 				prefix = "+"
-				total = ((beginTime + duration) - nowTime) / 60
+				total = ((beginTime + duration) - nowTime) // 60
 				if total <= 0:
 					prefix = ""
 				remaining = _(" (%s%d min)") % (prefix, total)
@@ -459,9 +459,9 @@ class EPGSearchList(EPGList):
 				x += self.col[1]
 				self.descr_rect = Rect(x, 0, width - x, height)
 			else:
-				self.weekday_rect = Rect(0, 0, width / 20 * 2 - 10, height)
-				self.datetime_rect = Rect(width / 20 * 2, 0, width / 20 * 5 - 15, height)
-				self.descr_rect = Rect(width / 20 * 7, 0, width / 20 * 13, height)
+				self.weekday_rect = Rect(0, 0, width // 20 * 2 - 10, height)
+				self.datetime_rect = Rect(width // 20 * 2, 0, width // 20 * 5 - 15, height)
+				self.descr_rect = Rect(width // 20 * 7, 0, width // 20 * 13, height)
 		elif self.type == EPG_TYPE_MULTI:
 			if self.skinColumns:
 				x = 0
@@ -473,14 +473,14 @@ class EPGSearchList(EPGList):
 				self.descr_rect = Rect(x, 0, width - x, height)
 			else:
 				xpos = 0
-				w = width / 10 * 3
+				w = width // 10 * 3
 				self.service_rect = Rect(xpos, 0, w - 10, height)
 				xpos += w
-				w = width / 10 * 2
+				w = width // 10 * 2
 				self.start_end_rect = Rect(xpos, 0, w - 10, height)
 				self.progress_rect = Rect(xpos, 4, w - 10, height - 8)
 				xpos += w
-				w = width / 10 * 5
+				w = width // 10 * 5
 				self.descr_rect = Rect(xpos, 0, width, height)
 		else: # EPG_TYPE_SIMILAR
 			if self.skinColumns:
@@ -491,9 +491,9 @@ class EPGSearchList(EPGList):
 				x += self.col[1]
 				self.descr_rect = Rect(x, 0, width - x, height)
 			else:
-				self.weekday_rect = Rect(0, 0, width / 20 * 2 - 10, height)
-				self.datetime_rect = Rect(width / 20 * 2, 0, width / 20 * 5 - 15, height)
-				self.service_rect = Rect(width / 20 * 7, 0, width / 20 * 13, height)
+				self.weekday_rect = Rect(0, 0, width // 20 * 2 - 10, height)
+				self.datetime_rect = Rect(width // 20 * 2, 0, width // 20 * 5 - 15, height)
+				self.service_rect = Rect(width // 20 * 7, 0, width // 20 * 13, height)
 
 	def findPicon(self, service=None):
 		if service is not None:
@@ -509,7 +509,7 @@ class EPGSearchList(EPGList):
 
 	def applySkin(self, desktop, parent):
 		def warningWrongSkinParameter(string):
-			print "[EPGList] wrong '%s' skin parameters" % string
+			print("[EPGList] wrong '%s' skin parameters") % string
 
 		def setEventItemFont(value):
 			self.eventItemFont = parseFont(value, ((1, 1), (1, 1)))

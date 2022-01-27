@@ -4,14 +4,14 @@ from __future__ import print_function
 # for localized messages
 from . import _
 
-from AutoTimerComponent import preferredAutoTimerComponent, getDefaultEncoding
+from . AutoTimerComponent import preferredAutoTimerComponent, getDefaultEncoding
 from RecordTimer import AFTEREVENT
 from Tools.XMLTools import stringToXML
 from ServiceReference import ServiceReference
 
 from enigma import eServiceReference
 
-from Logger import doLog
+from . Logger import doLog
 
 """
 Configuration Version.
@@ -74,13 +74,13 @@ def parseConfig(configuration, list, version=None, uniqueTimerId=0, defaultTimer
 def parseEntry(element, baseTimer, defaults=False):
 	if not defaults:
 		# Read out match
-		baseTimer.match = element.get("match", "").encode("UTF-8")
+		baseTimer.match = str(element.get("match", ""))
 		if not baseTimer.match:
 			doLog('[AutoTimer] Erroneous config is missing attribute "match", skipping entry')
 			return False
 
 		# Read out name
-		baseTimer.name = element.get("name", "").encode("UTF-8")
+		baseTimer.name = str(element.get("name", ""))
 		if not baseTimer.name:
 			doLog('[AutoTimer] Timer is missing attribute "name", defaulting to match')
 			baseTimer.name = baseTimer.match
@@ -151,7 +151,7 @@ def parseEntry(element, baseTimer, defaults=False):
 
 	# Read out recording path
 	default = baseTimer.destination or ""
-	baseTimer.destination = element.get("location", default).encode("UTF-8") or None
+	baseTimer.destination = str(element.get("location", default)) or None
 
 	# Read out offset
 	offset = element.get("offset")
@@ -263,7 +263,7 @@ def parseEntry(element, baseTimer, defaults=False):
 				continue
 
 			if where in idx:
-				excludes[idx[where]].append(value.encode("UTF-8"))
+				excludes[idx[where]].append(str(value))
 		baseTimer.exclude = excludes
 
 	# Read out includes (use same idx)
@@ -277,7 +277,7 @@ def parseEntry(element, baseTimer, defaults=False):
 				continue
 
 			if where in idx:
-				includes[idx[where]].append(value.encode("UTF-8"))
+				includes[idx[where]].append(str(value.encode))
 		baseTimer.include = includes
 
 	# Read out recording tags
@@ -289,7 +289,7 @@ def parseEntry(element, baseTimer, defaults=False):
 			if not value:
 				continue
 
-			tags.append(value.encode("UTF-8"))
+			tags.append(str(value))
 		baseTimer.tags = tags
 
 	return True
@@ -306,11 +306,11 @@ def parseConfigOld(configuration, list, uniqueTimerId=0):
 		# Get name (V2+)
 		name = timer.get("name")
 		if name:
-			name = name.encode("UTF-8")
+			name = str(name)
 		# Get name (= match) (V1)
 		else:
 			# Read out name
-			name = getValue(timer.findall("name"), "").encode("UTF-8")
+			name = getValue(str(timer.findall("name"), ""))
 
 		if not name:
 			doLog('[AutoTimer] Erroneous config is missing attribute "name", skipping entry')
@@ -320,7 +320,7 @@ def parseConfigOld(configuration, list, uniqueTimerId=0):
 		match = timer.get("match")
 		if match:
 			# Read out match
-			match = match.encode("UTF-8")
+			match = str(match)
 			if not match:
 				doLog('[AutoTimer] Erroneous config contains empty attribute "match", skipping entry')
 				continue
@@ -481,7 +481,7 @@ def parseConfigOld(configuration, list, uniqueTimerId=0):
 				continue
 
 			if where in idx:
-				excludes[idx[where]].append(value.encode("UTF-8"))
+				excludes[idx[where]].append(str(value))
 
 		# Read out includes (use same idx) (V4+ feature, should not harm V3-)
 		includes = ([], [], [], [])
@@ -492,7 +492,7 @@ def parseConfigOld(configuration, list, uniqueTimerId=0):
 				continue
 
 			if where in idx:
-				includes[idx[where]].append(value.encode("UTF-8"))
+				includes[idx[where]].append(str(value))
 
 		# Read out max length (V4+)
 		maxlen = timer.get("maxduration")
@@ -509,7 +509,7 @@ def parseConfigOld(configuration, list, uniqueTimerId=0):
 				maxlen = None
 
 		# Read out recording path
-		destination = timer.get("destination", "").encode("UTF-8") or None
+		destination = timer.get(str("destination", "")) or None
 
 		# Read out recording tags
 		tags = []
@@ -518,7 +518,7 @@ def parseConfigOld(configuration, list, uniqueTimerId=0):
 			if not value:
 				continue
 
-			tags.append(value.encode("UTF-8"))
+			tags.append(str(value.encode))
 
 		# Finally append timer
 		list.append(preferredAutoTimerComponent(
