@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from Components.Language import language
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_LANGUAGE
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from os import environ as os_environ
 import gettext
+import six
 
 # Config
 from Components.config import config, ConfigSubsection, ConfigOnOff, \
@@ -20,6 +21,12 @@ def _(txt):
 	if t == txt:
 		t = gettext.gettext(txt)
 	return t
+	
+def removeBad(val):
+	if six.PY3:
+		return val.replace('\x86', '').replace('\x87', '')
+	else:
+		return val.replace('\xc2\x86', '').replace('\xc2\x87', '')
 
 
 localeInit()
@@ -119,8 +126,8 @@ config.plugins.autotimer.clear_memory = ConfigYesNo(default=False)
 
 try:
 	xrange = xrange
-	iteritems = lambda d: d.iteritems()
-	itervalues = lambda d: d.itervalues()
+	iteritems = lambda d: six.iteritems(d)
+	itervalues = lambda d: six.itervalues(d)
 except NameError:
 	xrange = range
 	iteritems = lambda d: d.items()

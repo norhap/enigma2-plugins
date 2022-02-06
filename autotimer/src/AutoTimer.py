@@ -32,9 +32,9 @@ from twisted.python import failure
 from threading import currentThread
 from six import PY2, PY3
 if PY2:
-	import Queue as queue
+	import Queue
 else:
-	import queue as queue
+	import queue as Queue
 
 # AutoTimer Component
 from . AutoTimerComponent import preferredAutoTimerComponent
@@ -114,44 +114,28 @@ def blockingCallFromMainThread(f, *a, **kw):
 	  to reliably detect from the outside if twisted is currently shutting
 	  down.
 	"""
+	queue = Queue.Queue()
 
 	def _callFromThread():
-		if PY2:
-			queue = queue.Queue()
-			result = defer.maybeDeferred(f, *a, **kw)
-			result.addBoth(queue.put)
-		reactor.callFromThread(_callFromThread)
+		result = defer.maybeDeferred(f, *a, **kw)
+		result.addBoth(queue.put)
+	reactor.callFromThread(_callFromThread)
 
-		if PY3:
-			queue = queue.queue()
-			result = defer.maybeDeferred(f, *a, **kw)
-			result.addBoth(queue.put)
-		reactor.callFromThread(_callFromThread)
+	result = None
+	while True:
+		try:
+			result = queue.get(True, config.plugins.autotimer.timeout.value * 60)
+		except Queue.Empty as qe:
+			if True: #not reactor.running: # reactor.running is only False AFTER shutdown, we are during.
+				doLog("[AutoTimer] Reactor no longer active, aborting.")
+		else:
+			break
 
-		result = None
-		while True:
-			try:
-				if PY2:
-					result = queue.get(True, config.plugins.autotimer.timeout.value * 60)
-			except Queue.Empty as qe:
-				if True: #not reactor.running: # reactor.running is only False AFTER shutdown, we are during.
-					doLog("[AutoTimer] Reactor no longer active, aborting.")
-			else:
-				break
-			try:
-				if PY3:
-					result = queue.get(True, config.plugins.autotimer.timeout.value * 60)
-			except queue.Empty as qe:
-				if True: #not reactor.running: # reactor.running is only False AFTER shutdown, we are during.
-					doLog("[AutoTimer] Reactor no longer active, aborting.")
-			else:
-				break
-
-		if isinstance(result, failure.Failure):
-			print("[AutoTimer]", result.getTraceback())
-			doLog(result.getTraceback())
-			result.raiseException()
-		return result
+	if isinstance(result, failure.Failure):
+		print("[AutoTimer]", result.getTraceback())
+		doLog(result.getTraceback())
+		result.raiseException()
+	return result
 
 
 typeMap = {

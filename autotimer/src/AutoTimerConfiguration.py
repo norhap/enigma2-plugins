@@ -2,7 +2,7 @@
 from __future__ import print_function
 
 # for localized messages
-from . import _
+from . import _, removeBad
 
 from . AutoTimerComponent import preferredAutoTimerComponent, getDefaultEncoding
 from RecordTimer import AFTEREVENT
@@ -518,7 +518,7 @@ def parseConfigOld(configuration, list, uniqueTimerId=0):
 			if not value:
 				continue
 
-			tags.append(str(value.encode))
+			tags.append(str(value))
 
 		# Finally append timer
 		list.append(preferredAutoTimerComponent(
@@ -651,7 +651,7 @@ def buildConfig(defaultTimer, timers, webif=False):
 			extend((
 				'  <e2service>\n',
 				'   <e2servicereference>', stringToXML(str(serviceref)), '</e2servicereference>\n',
-				'   <e2servicename>', stringToXML(ref.getServiceName().replace('\xc2\x86', '').replace('\xc2\x87', '').replace('^', '')), '</e2servicename>\n',
+				'   <e2servicename>', stringToXML(removeBad(ref.getServiceName())), '</e2servicename>\n',
 				'  </e2service>\n',
 			))
 	else:
@@ -823,7 +823,7 @@ def buildConfig(defaultTimer, timers, webif=False):
 				extend((
 					'  <e2service>\n',
 					'   <e2servicereference>', stringToXML(str(serviceref)), '</e2servicereference>\n',
-					'   <e2servicename>', stringToXML(ref.getServiceName().replace('\xc2\x86', '').replace('\xc2\x87', '').replace('^', '')), '</e2servicename>\n',
+					'   <e2servicename>', stringToXML(removeBad(ref.getServiceName())), '</e2servicename>\n',
 					'  </e2service>\n',
 				))
 		else:

@@ -5,6 +5,7 @@ from RecordTimer import AFTEREVENT
 from twisted.internet import reactor
 from twisted.web import http, resource, server
 import threading
+import six
 try:
 	from urllib import unquote
 except ImportError as ie:
@@ -24,11 +25,11 @@ class AutoTimerBaseResource(resource.Resource):
 		req.setHeader('Content-type', 'application/xhtml+xml')
 		req.setHeader('charset', 'UTF-8')
 
-		return """<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
+		return six.ensure_binary("""<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
 <e2simplexmlresult>
 	<e2state>%s</e2state>
 	<e2statetext>%s</e2statetext>
-</e2simplexmlresult>\n""" % ('True' if state else 'False', statetext)
+</e2simplexmlresult>\n""" % ('True' if state else 'False', statetext))
 
 
 class AutoTimerBackgroundThread(threading.Thread):
@@ -244,14 +245,14 @@ class AutoTimerListAutoTimerResource(AutoTimerBaseResource):
 		except Exception as e:
 			return self.returnResult(req, False, _("Couldn't load config file!") + '\n' + str(e))
 		webif = True
-		p = req.args.get('webif')
+		p = req.args.get(b'webif')
 		if p:
-			webif = not(p[0] == "false")
+			webif = not(p[0] == b"false")
 		# show xml
 		req.setResponseCode(http.OK)
 		req.setHeader('Content-type', 'application/xhtml+xml')
 		req.setHeader('charset', 'UTF-8')
-		return ''.join(autotimer.getXml(webif))
+		return six.ensure_binary(''.join(autotimer.getXml(webif)))
 
 
 class AutoTimerTestResource(AutoTimerBaseResource):
@@ -262,7 +263,7 @@ class AutoTimerTestResource(AutoTimerBaseResource):
 
 class AutoTimerRemoveAutoTimerResource(AutoTimerBaseResource):
 	def render(self, req):
-		id = req.args.get("id")
+		id = req.args.get(b"id")
 		if id:
 			autotimer.remove(int(id[0]))
 			if config.plugins.autotimer.always_write_config.value:
@@ -281,7 +282,7 @@ class AutoTimerAddXMLAutoTimerResource(AutoTimerBaseResource):
 		xml = req.args.get("xml")
 		if xml:
 			autotimer.readXml() # read current timers to ensure autotimer.timers is populated with current autotimers
-			autotimer.readXmlTimer(xml[0])
+			autotimer.readXmlTimer(six.ensure_str(req.args[b'xml'][0]))
 			if config.plugins.autotimer.always_write_config.value:
 				autotimer.writeXml()
 			return self.returnResult(req, True, _("AutoTimer was added successfully"))
@@ -297,7 +298,7 @@ class AutoTimerUploadXMLConfigurationAutoTimerResource(AutoTimerBaseResource):
 		req.setHeader('charset', 'UTF-8')
 		xml = req.args.get("xml")
 		if xml:
-			autotimer.readXml(xml_string=xml[0])
+			autotimer.readXml(xml_string=six.ensure_str([b'xml'][0]))
 			if config.plugins.autotimer.always_write_config.value:
 				autotimer.writeXml()
 			return self.returnResult(req, True, _("AutoTimers were changed successfully"))
@@ -310,8 +311,14 @@ class AutoTimerAddOrEditAutoTimerResource(AutoTimerBaseResource):
 	# TODO: allow to edit defaults?
 	def render(self, req):
 		def get(name, default=None):
+			name = six.ensure_binary(name)
 			ret = req.args.get(name)
-			return ret[0] if ret else default
+			return six.ensure_str(ret[0]) if ret else default
+			
+		def getA(name, default=None):
+			name = six.ensure_binary(name)
+			ret = req.args.get(name)
+			return [six.ensure_str(x) for x in ret] if ret else default
 
 		id = get("id")
 		timer = None
@@ -462,10 +469,10 @@ class AutoTimerAddOrEditAutoTimerResource(AutoTimerBaseResource):
 			timer.maxduration = None
 
 		# Includes
-		title = req.args.get("title")
-		shortdescription = req.args.get("shortdescription")
-		description = req.args.get("description")
-		dayofweek = req.args.get("dayofweek")
+		title = getA("title")
+		shortdescription = getA("shortdescription")
+		description = getA("description")
+		dayofweek = getA("dayofweek")
 		if title or shortdescription or description or dayofweek:
 			includes = timer.include
 			title = [unquote(x) for x in title] if title else includes[0]
@@ -483,10 +490,10 @@ class AutoTimerAddOrEditAutoTimerResource(AutoTimerBaseResource):
 			timer.include = (title, shortdescription, description, dayofweek)
 
 		# Excludes
-		title = req.args.get("!title")
-		shortdescription = req.args.get("!shortdescription")
-		description = req.args.get("!description")
-		dayofweek = req.args.get("!dayofweek")
+		title = getA("!title")
+		shortdescription = getA("!shortdescription")
+		description = getA("!description")
+		dayofweek = getA("!dayofweek")
 		if title or shortdescription or description or dayofweek:
 			excludes = timer.exclude
 			title = [unquote(x) for x in title] if title else excludes[0]
@@ -503,7 +510,7 @@ class AutoTimerAddOrEditAutoTimerResource(AutoTimerBaseResource):
 				dayofweek.remove('')
 			timer.exclude = (title, shortdescription, description, dayofweek)
 
-		tags = req.args.get("tag")
+		tags = getA("tag")
 		if tags:
 			while '' in tags:
 				tags.remove('')
@@ -604,8 +611,11 @@ class AutoTimerAddOrEditAutoTimerResource(AutoTimerBaseResource):
 
 class AutoTimerChangeSettingsResource(AutoTimerBaseResource):
 	def render(self, req):
-		for key, value in iteritems(req.args):
-			value = value[0]
+		for key, value in six.iteritems(req.args):
+			key = six.ensure_str(key)
+			if value:
+				value = value[0]
+				value = six.ensure_str(value)
 			if key == "autopoll":
 				config.plugins.autotimer.autopoll.value = True if value == "true" else False
 			elif key == "interval":
@@ -696,7 +706,7 @@ class AutoTimerSettingsResource(resource.Resource):
 		else:
 			hasSeriesPlugin = True
 
-		return """<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
+		return six.ensure_binary("""<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
 <e2settings>
 	<e2setting>
 		<e2settingname>config.plugins.autotimer.autopoll</e2settingname>
@@ -834,7 +844,7 @@ class AutoTimerSettingsResource(resource.Resource):
 		<e2settingname>autotimer_version</e2settingname>
 		<e2settingvalue>%s</e2settingvalue>
 	</e2setting>
-</e2settings>""" % (
+</e2settings>""") % (
 				config.plugins.autotimer.autopoll.value,
 				config.plugins.autotimer.interval.value,
 				config.plugins.autotimer.refresh.value,
