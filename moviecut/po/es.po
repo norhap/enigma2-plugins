@@ -1,0 +1,146 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-13 18:34+0200\n"
+"PO-Revision-Date: 2022-02-20 23:14+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0.1\n"
+
+msgid "Advanced cut specification..."
+msgstr "Especificación de corte avanzado..."
+
+#, python-format
+msgid ""
+"Another movie is currently cut."
+"\n"
+"The movie \"%s\" will be cut in the background after it."
+msgstr ""
+"Actualmente se corta otra película."
+"\n"
+"El archivo \"%s\" se cortará en segundo plano después de que acabe el archivo no finalizado."
+
+msgid "Bad arguments"
+msgstr "Malos argumentos"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Choose target folder"
+msgstr "Elija la carpeta de destino"
+
+msgid "Couldn't open input .ap file"
+msgstr "No se pudo abrir la entrada del archivo .ap"
+
+#, fuzzy
+msgid "Couldn't open input .cuts file"
+msgstr "No se pudo abrir la entrada del archivo .cuts"
+
+#, fuzzy
+msgid "Couldn't open input .ts file"
+msgstr "No se pudo abrir la entrada del archivo .ts"
+
+#, fuzzy
+msgid "Couldn't open output .ap file"
+msgstr "No se pudo abrir la salida del archivo .ap"
+
+#, fuzzy
+msgid "Couldn't open output .cuts file"
+msgstr "No se pudo abrir la salida del archivo .cuts"
+
+#, fuzzy
+msgid "Couldn't open output .ts file"
+msgstr "No se pudo abrir la entrada del archivo .ts"
+
+msgid "Cut Parameter Input"
+msgstr "Cortar entrada de parámetros"
+
+msgid "Cut source:"
+msgstr "Fuente de corte:"
+
+msgid "Cutlist"
+msgstr "Lista de corte"
+
+msgid "Cuts (an IN OUT IN OUT ... sequence of hour:min:sec)"
+msgstr "Cortes (una ENTRADA HACIA FUERA...secuencia de la hora:min:seg)"
+
+#, fuzzy, python-format
+msgid "Cutting failed for movie \"%s\""
+msgstr "Corte fallido para película\"%s\""
+
+#, python-format
+msgid "Cutting was aborted for movie \"%s\""
+msgstr "Corte abortado para película \"%s\""
+
+msgid "Don't cut"
+msgstr "No cortar"
+
+#, fuzzy
+msgid "Empty .ap file"
+msgstr "Archivo .ap vacío"
+
+msgid "Execute cuts..."
+msgstr "Ejecutar cortes..."
+
+#, python-format
+msgid "How would you like to cut \"%s\"?"
+msgstr "¿Cómo te gustaría cortar \"%s\"?"
+
+msgid "Manual specification"
+msgstr "Manual de especificación"
+
+msgid "New description:"
+msgstr "Nueva descripción:"
+
+msgid "New filename:"
+msgstr "Nuevo nombre de archivo:"
+
+msgid "New location:"
+msgstr "Nueva localización:"
+
+msgid "New title:"
+msgstr "Nuevo título:"
+
+msgid "No"
+msgstr ""
+
+msgid "No cuts specified"
+msgstr "Corte No especificado"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Place the cut movie in a new file ending with \" cut\""
+msgstr "Coloque la película cortada en nuevo archivo que termine con \"cortar\""
+
+#, fuzzy
+msgid "Read/write error (disk full?)"
+msgstr "Error de lectura/escritura ¿El disco está lleno?"
+
+
+msgid "Replace original:"
+msgstr "Reemplazar original:"
+
+msgid "Replace the original movie with the cut movie"
+msgstr "Reemplace la película original con la película cortada"
+
+#, python-format
+msgid "The movie \"%s\" is cut in the background."
+msgstr "El archivo \"%s\" se corta en segundo plano."
+
+#, python-format
+msgid "The movie \"%s\" is successfully cut"
+msgstr "El archivo \"%s\" fue cortado con éxito"
+
+msgid "Yes"
+msgstr "Sí"
