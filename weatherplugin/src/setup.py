@@ -1,4 +1,6 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 #
 # WeatherPlugin E2
 #
@@ -21,27 +23,26 @@
 #
 
 # for localized messages
-from __future__ import print_function
 from . import _
 
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, \
-	RT_VALIGN_CENTER
+from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_VALIGN_CENTER, getDesktop
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.MenuList import MenuList
 from Components.Sources.StaticText import StaticText
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigList, ConfigListScreen
-from Components.config import ConfigSubsection, ConfigText, ConfigSelection, \
-	getConfigListEntry, config, configfile
+from Components.config import ConfigSubsection, ConfigText, ConfigSelection, getConfigListEntry, config, configfile
 from xml.etree.cElementTree import fromstring as cet_fromstring
 from twisted.web.client import getPage
-from six.moves.urllib.parse import quote as urllib_quote
 import six
+from six.moves.urllib.parse import quote as urllib_quote
 
 from enigma import RT_HALIGN_RIGHT
 from skin import parameters as skinparameter
 from Screens.VirtualKeyBoard import VirtualKeyBoard
+
+skinwidth = getDesktop(0).size().width()
 
 
 def initWeatherPluginEntryConfig():
@@ -63,7 +64,8 @@ def initConfig():
 
 
 class MSNWeatherPluginEntriesListConfigScreen(Screen):
-	skin = """
+	if skinwidth == 1280:
+	   skin = """
 		<screen name="MSNWeatherPluginEntriesListConfigScreen" position="center,center" size="550,400">
 			<widget render="Label" source="city" position="5,60" size="400,50" font="Regular;20" halign="left"/>
 			<widget render="Label" source="degreetype" position="410,60" size="130,50" font="Regular;20" halign="left"/>
@@ -72,10 +74,25 @@ class MSNWeatherPluginEntriesListConfigScreen(Screen):
 			<widget render="Label" source="key_green" position="140,10" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="green" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget render="Label" source="key_yellow" position="280,10" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="yellow" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget render="Label" source="key_blue" position="420,10" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap position="0,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-			<ePixmap position="140,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-			<ePixmap position="280,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-			<ePixmap position="420,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
+			<ePixmap position="0,10" zPosition="4" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />
+			<ePixmap position="140,10" zPosition="4" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on" />
+			<ePixmap position="280,10" zPosition="4" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on" />
+			<ePixmap position="420,10" zPosition="4" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on" />
+		</screen>"""
+	else:
+	   skin = """
+		<screen name="MSNWeatherPluginEntriesListConfigScreen" position="center,center" size="811,508">
+			<widget render="Label" source="city" position="5,70" size="400,50" font="Regular;35"/>
+			<widget render="Label" source="degreetype" position="405,70" size="360,50" font="Regular;35"/>
+			<widget name="entrylist" position="center,130" size="801,480" scrollbarMode="showOnDemand"/>
+			<widget render="Label" source="key_red" position="5,5" size="200,60" zPosition="5" valign="center" halign="center" backgroundColor="red" font="Regular;30" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
+			<widget render="Label" source="key_green" position="205,5" size="200,60" zPosition="5" valign="center" halign="center" backgroundColor="green" font="Regular;30" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
+			<widget render="Label" source="key_yellow" position="405,5" size="200,60" zPosition="5" valign="center" halign="center" backgroundColor="yellow" font="Regular;30" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
+			<widget render="Label" source="key_blue" position="605,5" zPosition="5" size="200,60" valign="center" halign="center" font="Regular;30" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
+			<ePixmap position="30,10" zPosition="4" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on"/>
+			<ePixmap position="230,10" zPosition="4" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on"/>
+			<ePixmap position="430,10" zPosition="4" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on"/>
+			<ePixmap position="635,10" zPosition="4" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on"/>
 		</screen>"""
 
 	def __init__(self, session):
@@ -149,15 +166,23 @@ class MSNWeatherPluginEntriesListConfigScreen(Screen):
 class WeatherPluginEntryList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-
-		font1, size1 = skinparameter.get("WeatherPluginEntryListFont1", ('Regular', 20))
-		font2, size2 = skinparameter.get("WeatherPluginEntryListFont2", ('Regular', 18))
-		self.l.setFont(0, gFont(font1, size1))
-		self.l.setFont(1, gFont(font2, size2))
+		if skinwidth == 1280:
+			font1, size1 = skinparameter.get("WeatherPluginEntryListFont1", ('Regular', 20))
+			font2, size2 = skinparameter.get("WeatherPluginEntryListFont2", ('Regular', 18))
+			self.l.setFont(0, gFont(font1, size1))
+			self.l.setFont(1, gFont(font2, size2))
+		else:
+			font1, size1 = skinparameter.get("WeatherPluginEntryListFont1", ('Regular', 28))
+			font2, size2 = skinparameter.get("WeatherPluginEntryListFont2", ('Regular', 26))
+			self.l.setFont(0, gFont(font1, size1))
+			self.l.setFont(1, gFont(font2, size2))
 
 	def postWidgetCreate(self, instance):
 		MenuList.postWidgetCreate(self, instance)
-		instance.setItemHeight(20)
+		if skinwidth == 1280:
+		     instance.setItemHeight(25)
+		else:
+		     instance.setItemHeight(32)
 
 	def getCurrentIndex(self):
 		return self.instance.getCurrentIndex()
@@ -165,15 +190,17 @@ class WeatherPluginEntryList(MenuList):
 	def buildList(self):
 		list = []
 		for c in config.plugins.WeatherPlugin.Entry:
-
-			x1, y1, w1, h1 = skinparameter.get("WeatherPluginCity", (5, 0, 400, 20))
-			x2, y2, w2, h2 = skinparameter.get("WeatherPluginDegreetype", (410, 0, 80, 20))
+			if skinwidth == 1280:
+				x1, y1, w1, h1 = skinparameter.get("WeatherPluginCity", (5, 0, 400, 20))
+				x2, y2, w2, h2 = skinparameter.get("WeatherPluginDegreetype", (410, 0, 80, 20))
+			else:
+				x1, y1, w1, h1 = skinparameter.get("WeatherPluginCity", (5, 0, 400, 32))
+				x2, y2, w2, h2 = skinparameter.get("WeatherPluginDegreetype", (410, 0, 80, 32))
 			res = [
 				c,
 				(eListboxPythonMultiContent.TYPE_TEXT, x1, y1, w1, h1, 1, RT_HALIGN_LEFT | RT_VALIGN_CENTER, str(c.city.value)),
 				(eListboxPythonMultiContent.TYPE_TEXT, x2, y2, w2, h2, 1, RT_HALIGN_LEFT | RT_VALIGN_CENTER, str(c.degreetype .value)),
 			]
-
 			list.append(res)
 		self.list = list
 		self.l.setList(list)
@@ -181,24 +208,38 @@ class WeatherPluginEntryList(MenuList):
 
 
 class MSNWeatherPluginEntryConfigScreen(ConfigListScreen, Screen):
-	skin = """
+	if skinwidth == 1280:
+	   skin = """
 		<screen name="MSNWeatherPluginEntryConfigScreen" position="center,center" size="550,400">
 			<widget name="config" position="20,60" size="520,300" scrollbarMode="showOnDemand" />
-			<ePixmap position="0,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-			<ePixmap position="140,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-			<ePixmap position="420,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-			<ePixmap position="280,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+			<ePixmap position="0,10" zPosition="4" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />
+			<ePixmap position="140,10" zPosition="4" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on" />
+			<ePixmap position="420,10" zPosition="4" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on" />
+			<ePixmap position="280,10" zPosition="4" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,10" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget source="key_green" render="Label" position="140,10" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget render="Label" source="key_yellow" position="280,10" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="yellow" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget source="key_blue" render="Label" position="420,10" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
+	else:
+	   skin = """
+		<screen name="MSNWeatherPluginEntryConfigScreen" position="center,center" size="811,534">
+			<widget name="config" position="8,75" size="794,450" scrollbarMode="showOnDemand"/>
+			<ePixmap position="30,10" zPosition="4" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on"/>
+			<ePixmap position="230,10" zPosition="4" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on"/>
+			<ePixmap position="635,10" zPosition="4" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on"/>
+			<ePixmap position="430,10" zPosition="4" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on"/>
+			<widget source="key_red" render="Label" position="5,5" zPosition="5" size="200,60" valign="center" halign="center" font="Regular;30" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
+			<widget source="key_green" render="Label" position="205,5" zPosition="5" size="200,60" valign="center" halign="center" font="Regular;30" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
+			<widget render="Label" source="key_yellow" position="405,5" size="200,60" zPosition="5" valign="center" halign="center" backgroundColor="yellow" font="Regular;30" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
+			<widget source="key_blue" render="Label" position="605,5" zPosition="5" size="200,60" valign="center" halign="center" font="Regular;30" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
+		</screen>"""
 
 	def __init__(self, session, entry):
 		Screen.__init__(self, session)
 		self.title = _("WeatherPlugin: Edit Entry")
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 			"green": self.keySave,
 			"red": self.keyCancel,
@@ -303,7 +344,7 @@ class MSNWeatherPluginEntryConfigScreen(ConfigListScreen, Screen):
 			root = cet_fromstring(xmlstring)
 			for childs in root:
 				if childs.tag == "weather" and "errormessage" in childs.attrib:
-					errormessage = six.ensure_str(childs.attrib.get("errormessage"), errors='ignore')
+					errormessage = childs.attrib.get("errormessage").encode("utf-8", 'ignore')
 					break
 			if len(errormessage) != 0:
 				self.session.open(MessageBox, errormessage, MessageBox.TYPE_ERROR)
@@ -321,15 +362,27 @@ class MSNWeatherPluginEntryConfigScreen(ConfigListScreen, Screen):
 
 
 class MSNWeatherPluginSearch(Screen):
-	skin = """
+	if skinwidth == 1280:
+	   skin = """
 		<screen name="MSNWeatherPluginSearch" position="center,center" size="550,400">
 			<widget name="entrylist" position="0,60" size="550,200" scrollbarMode="showOnDemand"/>
 			<widget render="Label" source="key_red" position="0,10" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget render="Label" source="key_green" position="140,10" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="green" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap position="0,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-			<ePixmap position="140,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-			<ePixmap position="280,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-			<ePixmap position="420,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
+			<ePixmap position="0,10" zPosition="4" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />
+			<ePixmap position="140,10" zPosition="4" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on" />
+			<ePixmap position="280,10" zPosition="4" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on" />
+			<ePixmap position="420,10" zPosition="4" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on" />
+		</screen>"""
+	else:
+	   skin = """
+		<screen name="MSNWeatherPluginSearch" position="center,center" size="811,534">
+			<widget name="entrylist" position="center,70" size="800,457" scrollbarMode="showOnDemand"/>
+			<widget render="Label" source="key_red" position="5,5" size="200,60" zPosition="5" valign="center" halign="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
+			<widget render="Label" source="key_green" position="205,5" size="200,60" zPosition="5" valign="center" halign="center" backgroundColor="green" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
+			<ePixmap position="30,10" zPosition="4" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on"/>
+			<ePixmap position="230,10" zPosition="4" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on"/>
+			<ePixmap position="430,10" zPosition="4" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on"/>
+			<ePixmap position="635,10" zPosition="4" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on"/>
 		</screen>"""
 
 	def __init__(self, session, xmlstring):
@@ -339,12 +392,12 @@ class MSNWeatherPluginSearch(Screen):
 		self["key_green"] = StaticText(_("OK"))
 		self["entrylist"] = MSNWeatherPluginSearchResultList([])
 		self["actions"] = ActionMap(["WizardActions", "MenuActions", "ShortcutActions"],
-			{
-			 "ok": self.keyOK,
-			 "green": self.keyOK,
-			 "back": self.keyClose,
-			 "red": self.keyClose,
-			 }, -1)
+		{
+			"ok": self.keyOK,
+			"green": self.keyOK,
+			"back": self.keyClose,
+			"red": self.keyClose,
+		}, -1)
 		self.updateList(xmlstring)
 
 	def updateList(self, xmlstring):
@@ -365,15 +418,23 @@ class MSNWeatherPluginSearch(Screen):
 class MSNWeatherPluginSearchResultList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-
-		font1, size1 = skinparameter.get("WeatherPluginSearchResultListFont1", ('Regular', 20))
-		font2, size2 = skinparameter.get("WeatherPluginSearchResultListFont2", ('Regular', 18))
-		self.l.setFont(0, gFont(font1, size1))
-		self.l.setFont(1, gFont(font2, size2))
+		if skinwidth == 1280:
+			font1, size1 = skinparameter.get("WeatherPluginSearchResultListFont1", ('Regular', 20))
+			font2, size2 = skinparameter.get("WeatherPluginSearchResultListFont2", ('Regular', 18))
+			self.l.setFont(0, gFont(font1, size1))
+			self.l.setFont(1, gFont(font2, size2))
+		else:
+			font1, size1 = skinparameter.get("WeatherPluginSearchResultListFont1", ('Regular', 28))
+			font2, size2 = skinparameter.get("WeatherPluginSearchResultListFont2", ('Regular', 26))
+			self.l.setFont(0, gFont(font1, size1))
+			self.l.setFont(1, gFont(font2, size2))
 
 	def postWidgetCreate(self, instance):
 		MenuList.postWidgetCreate(self, instance)
-		instance.setItemHeight(44)
+		if skinwidth == 1280:
+		     instance.setItemHeight(44)
+		else:
+		     instance.setItemHeight(55)
 
 	def getCurrentIndex(self):
 		return self.instance.getCurrentIndex()
@@ -386,19 +447,22 @@ class MSNWeatherPluginSearchResultList(MenuList):
 		list = []
 		for childs in root:
 			if childs.tag == "weather":
-				searchlocation = six.ensure_str(childs.attrib.get("weatherlocationname"), errors='ignore')
-				searchresult = six.ensure_str(childs.attrib.get("weatherfullname"), errors='ignore')
-				weatherlocationcode = six.ensure_str(childs.attrib.get("weatherlocationcode"), errors='ignore')
+				searchlocation = childs.attrib.get("weatherlocationname").encode("utf-8", 'ignore')
+				searchresult = childs.attrib.get("weatherfullname").encode("utf-8", 'ignore')
+				weatherlocationcode = childs.attrib.get("weatherlocationcode").encode("utf-8", 'ignore')
+				if skinwidth == 1280:
+					x1, y1, w1, h1 = skinparameter.get("WeatherPluginSearchlocation", (5, 0, 500, 20))
+					x2, y2, w2, h2 = skinparameter.get("WeatherPluginSearchresult", (5, 22, 500, 20))
+				else:
+					x1, y1, w1, h1 = skinparameter.get("WeatherPluginSearchlocation", (5, 0, 500, 35))
+					x2, y2, w2, h2 = skinparameter.get("WeatherPluginSearchresult", (5, 27, 500, 35))
+					res = [
+						(weatherlocationcode, searchlocation),
+						(eListboxPythonMultiContent.TYPE_TEXT, x1, y1, w1, h1, 1, RT_HALIGN_LEFT | RT_VALIGN_CENTER, searchlocation),
+						(eListboxPythonMultiContent.TYPE_TEXT, x2, y2, w2, h2, 1, RT_HALIGN_LEFT | RT_VALIGN_CENTER, searchresult),
+					]
 
-				x1, y1, w1, h1 = skinparameter.get("WeatherPluginSearchlocation", (5, 0, 500, 20))
-				x2, y2, w2, h2 = skinparameter.get("WeatherPluginSearchresult", (5, 22, 500, 20))
-				res = [
-					(weatherlocationcode, searchlocation),
-					(eListboxPythonMultiContent.TYPE_TEXT, x1, y1, w1, h1, 1, RT_HALIGN_LEFT | RT_VALIGN_CENTER, searchlocation),
-					(eListboxPythonMultiContent.TYPE_TEXT, x2, y2, w2, h2, 1, RT_HALIGN_LEFT | RT_VALIGN_CENTER, searchresult),
-				]
-
-				list.append(res)
+					list.append(res)
 		self.list = list
 		self.l.setList(list)
 		self.moveToIndex(0)
