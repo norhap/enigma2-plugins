@@ -64,8 +64,7 @@ def initConfig():
 
 
 class MSNWeatherPluginEntriesListConfigScreen(Screen):
-	if skinwidth == 1280:
-	   skin = """
+	skin = """
 		<screen name="MSNWeatherPluginEntriesListConfigScreen" position="center,center" size="550,400">
 			<widget render="Label" source="city" position="5,60" size="400,50" font="Regular;20" halign="left"/>
 			<widget render="Label" source="degreetype" position="410,60" size="130,50" font="Regular;20" halign="left"/>
@@ -74,25 +73,10 @@ class MSNWeatherPluginEntriesListConfigScreen(Screen):
 			<widget render="Label" source="key_green" position="140,10" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="green" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget render="Label" source="key_yellow" position="280,10" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="yellow" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget render="Label" source="key_blue" position="420,10" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap position="0,10" zPosition="4" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />
-			<ePixmap position="140,10" zPosition="4" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on" />
-			<ePixmap position="280,10" zPosition="4" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on" />
-			<ePixmap position="420,10" zPosition="4" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on" />
-		</screen>"""
-	else:
-	   skin = """
-		<screen name="MSNWeatherPluginEntriesListConfigScreen" position="center,center" size="811,508">
-			<widget render="Label" source="city" position="5,70" size="400,50" font="Regular;35"/>
-			<widget render="Label" source="degreetype" position="405,70" size="360,50" font="Regular;35"/>
-			<widget name="entrylist" position="center,130" size="801,480" scrollbarMode="showOnDemand"/>
-			<widget render="Label" source="key_red" position="5,5" size="200,60" zPosition="5" valign="center" halign="center" backgroundColor="red" font="Regular;30" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
-			<widget render="Label" source="key_green" position="205,5" size="200,60" zPosition="5" valign="center" halign="center" backgroundColor="green" font="Regular;30" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
-			<widget render="Label" source="key_yellow" position="405,5" size="200,60" zPosition="5" valign="center" halign="center" backgroundColor="yellow" font="Regular;30" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
-			<widget render="Label" source="key_blue" position="605,5" zPosition="5" size="200,60" valign="center" halign="center" font="Regular;30" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
-			<ePixmap position="30,10" zPosition="4" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on"/>
-			<ePixmap position="230,10" zPosition="4" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on"/>
-			<ePixmap position="430,10" zPosition="4" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on"/>
-			<ePixmap position="635,10" zPosition="4" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on"/>
+			<ePixmap position="0,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+			<ePixmap position="140,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+			<ePixmap position="280,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+			<ePixmap position="420,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
 		</screen>"""
 
 	def __init__(self, session):
@@ -221,19 +205,6 @@ class MSNWeatherPluginEntryConfigScreen(ConfigListScreen, Screen):
 			<widget render="Label" source="key_yellow" position="280,10" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="yellow" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget source="key_blue" render="Label" position="420,10" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
-	else:
-	   skin = """
-		<screen name="MSNWeatherPluginEntryConfigScreen" position="center,center" size="811,534">
-			<widget name="config" position="8,75" size="794,450" scrollbarMode="showOnDemand"/>
-			<ePixmap position="30,10" zPosition="4" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on"/>
-			<ePixmap position="230,10" zPosition="4" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on"/>
-			<ePixmap position="635,10" zPosition="4" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on"/>
-			<ePixmap position="430,10" zPosition="4" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on"/>
-			<widget source="key_red" render="Label" position="5,5" zPosition="5" size="200,60" valign="center" halign="center" font="Regular;30" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
-			<widget source="key_green" render="Label" position="205,5" zPosition="5" size="200,60" valign="center" halign="center" font="Regular;30" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
-			<widget render="Label" source="key_yellow" position="405,5" size="200,60" zPosition="5" valign="center" halign="center" backgroundColor="yellow" font="Regular;30" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
-			<widget source="key_blue" render="Label" position="605,5" zPosition="5" size="200,60" valign="center" halign="center" font="Regular;30" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1"/>
-		</screen>"""
 
 	def __init__(self, session, entry):
 		Screen.__init__(self, session)
@@ -344,7 +315,7 @@ class MSNWeatherPluginEntryConfigScreen(ConfigListScreen, Screen):
 			root = cet_fromstring(xmlstring)
 			for childs in root:
 				if childs.tag == "weather" and "errormessage" in childs.attrib:
-					errormessage = childs.attrib.get("errormessage").encode("utf-8", 'ignore')
+					errormessage = six.ensure_str(childs.attrib.get("errormessage"), errors='ignore')
 					break
 			if len(errormessage) != 0:
 				self.session.open(MessageBox, errormessage, MessageBox.TYPE_ERROR)
