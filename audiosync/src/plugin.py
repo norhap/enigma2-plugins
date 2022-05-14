@@ -1,16 +1,15 @@
-# for localized messages
-from __init__ import _
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSubList, ConfigSelection
-from Plugins.Plugin import PluginDescriptor
-from enigma import iPlayableService, eTimer
-from Screens import Standby
-from Screens.Screen import Screen
+import NavigationInstance
+from Components.config import ConfigInteger, ConfigSelection, ConfigSubsection, config
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import SystemInfo
-from AC3utils import AC3, PCM, AC3GLOB, PCMGLOB, AC3PCM
-import NavigationInstance
-import AC3setup
-import os
+from enigma import eTimer, iPlayableService
+from Plugins.Plugin import PluginDescriptor
+from Screens import Standby
+from Screens.Screen import Screen
+from Tools.Directories import pathExists
+
+from . import _
+from .AC3utils import AC3, PCM
 
 config.plugins.AC3LipSync = ConfigSubsection()
 config.plugins.AC3LipSync.outerBounds = ConfigInteger(default=1000, limits=(-10000, 10000))
@@ -37,7 +36,7 @@ CONFIG_FILE = '/etc/enigma2/audiosync.conf'
 
 def getServiceDict():
 	filename = {}
-	if os.path.exists(CONFIG_FILE):
+	if pathExists(CONFIG_FILE):
 		try:
 			cfg = open(CONFIG_FILE, 'r')
 		except:
@@ -81,7 +80,7 @@ class AudioRestart():
 
 	def startTimer(self):
 		self.intDelay = config.plugins.AC3LipSync.restartDelay.value * 1000
-		print "[AudioSync] audio restart in ", self.intDelay
+		print("[AudioSync] audio restart in ", self.intDelay)
 		self.activateTimer.start(self.intDelay, True)
 
 	def restartAudio(self):
@@ -91,7 +90,7 @@ class AudioRestart():
 			config.av.downmix_ac3.save()
 			config.av.downmix_ac3.value = False
 			config.av.downmix_ac3.save()
-			print "[AudioSync] audio restarted"
+			print("[AudioSync] audio restarted")
 
 	def audioIsAC3(self):
 		service = NavigationInstance.instance and NavigationInstance.instance.getCurrentService()
@@ -135,6 +134,7 @@ class audioDelay(Screen):
 			if isStreamService:
 				delay_service = self.ServiceDelay.get(iServiceReference.toCompareString(), None)
 				setvalue = False
+				delay_value = 0
 				if delay_service:
 					delay_value = int(delay_service[1])
 					setvalue = True
@@ -142,17 +142,17 @@ class audioDelay(Screen):
 					delay_value = 0
 					setvalue = True
 				if setvalue:
-					from AC3delay import AC3delay
-					AC3delay = AC3delay()
-					sAudio = AC3delay.whichAudio
+					from .AC3delay import AC3delay
+					delay = AC3delay()
+					sAudio = delay.whichAudio
 					if sAudio == AC3 or sAudio == PCM:
-						AC3delay.setSystemDelay(sAudio, delay_value, True)
+						delay.setSystemDelay(sAudio, delay_value, True)
 						if delay_service and delay_value != 0:
 							self.updateDelay = True
-							print "[AudioSync] set stream service audio delay %s" % delay_value
+							print("[AudioSync] set stream service audio delay %s" % delay_value)
 						else:
 							self.updateDelay = False
-							print "[AudioSync] return default stream service audio delay %s" % delay_value
+							print("[AudioSync] return default stream service audio delay %s" % delay_value)
 
 	def updateServiceDelay(self):
 		self.ServiceDelay = getServiceDict()
@@ -174,17 +174,18 @@ def autostart(reason, **kwargs):
 
 
 def main(session, **kwargs):
-	import AC3main
-	session.open(AC3main.AC3LipSync, plugin_path)
+	from .AC3main import AC3LipSync
+	session.open(AC3LipSync, plugin_path)
 
 
 def setup(session, **kwargs):
-	session.open(AC3setup.AC3LipSyncSetup, plugin_path)
+	from .AC3setup import AC3LipSyncSetup
+	session.open(AC3LipSyncSetup, plugin_path)
 
 
 def audioMenu(session, **kwargs):
-	import AC3main
-	session.open(AC3main.AC3LipSync, plugin_path)
+	from .AC3main import AC3LipSync
+	session.open(AC3LipSync, plugin_path)
 
 
 def Plugins(path, **kwargs):
