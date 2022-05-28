@@ -264,8 +264,8 @@ class AutoTimerEditorBase:
 			begin = 5
 			end = 5
 		self.offset = NoSave(ConfigEnableDisable(default=default))
-		self.offsetbegin = NoSave(ConfigNumber(default=begin))
-		self.offsetend = NoSave(ConfigNumber(default=end))
+		self.offsetbegin = NoSave(ConfigNumber(default=int(begin)))
+		self.offsetend = NoSave(ConfigNumber(default=int(end)))
 
 		# AfterEvent
 		if timer.hasAfterEvent():
@@ -316,15 +316,15 @@ class AutoTimerEditorBase:
 			default = False
 			duration = 70
 		self.duration = NoSave(ConfigEnableDisable(default=default))
-		self.durationlength = NoSave(ConfigNumber(default=duration))
+		self.durationlength = NoSave(ConfigNumber(default=int(duration)))
 
 		# Counter
 		if timer.hasCounter():
 			default = timer.matchCount
 		else:
 			default = 0
-		self.counter = NoSave(ConfigNumber(default=default))
-		self.counterLeft = NoSave(ConfigNumber(default=timer.matchLeft))
+		self.counter = NoSave(ConfigNumber(default=int(default)))
+		self.counterLeft = NoSave(ConfigNumber(default=int(timer.matchLeft)))
 		default = timer.getCounterFormatString()
 		selection = [("", _("Never")), ("%m", _("Monthly")), ("%U", _("Weekly (Sunday)")), ("%W", _("Weekly (Monday)"))]
 		if default not in ('', '%m', '%U', '%W'):
