@@ -84,8 +84,8 @@ class AutomaticVolumeAdjustmentConfigScreen(ConfigListScreen, Screen):
 				self.list.append(getConfigListEntry(_("Max. volume for mpeg audio"), self.configVA.config.mpeg_max_volume))
 				self["key_blue"].text = _("Services")
 			else:
-			self.list.append(getConfigListEntry(_("Show volumebar when volume-value was changed"), self.configVA.config.show_volumebar))
-			self.list.append(getConfigListEntry(_("Show on/off plugin only for session in Audio menu"), config.misc.AV_audio_menu))
+				self.list.append(getConfigListEntry(_("Show volumebar when volume-value was changed"), self.configVA.config.show_volumebar))
+				self.list.append(getConfigListEntry(_("Show on/off plugin only for session in Audio menu"), config.misc.AV_audio_menu))
 		else:
 			self.config_modus = None
 		self[widget].list = self.list
