@@ -84,7 +84,7 @@ class MPHelp(Screen):
 			text = "You managed to jump to an invalid page. Stop it :-)"
 			newPage = self.curPage
 		self["title"].text = title.encode('utf-8', 'ignore')
-		self["detailtext"].setText(text.encode('utf-8', 'ignore'))
+		self["detailtext"].setText(str(text))
 		self.curPage = newPage
 
 	def pageUp(self):
