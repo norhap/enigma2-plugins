@@ -11,7 +11,7 @@
 
 
 #from enigma import *
-from __init__ import _
+from .__init__ import _
 
 from Screens.InfoBarGenerics import *
 # from RecordTimer import *
@@ -48,7 +48,7 @@ from Components.config import configfile, getConfigListEntry, ConfigEnableDisabl
 # Startup/shutdown notification
 from Tools import Notifications
 
-import ping
+from . import ping
 import os
 # Timer, etc
 

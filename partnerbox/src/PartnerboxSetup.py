@@ -28,10 +28,10 @@ from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Screens.HelpMenu import HelpableScreen
 from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.config import ConfigSubsection, ConfigSubList, ConfigIP, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, getConfigListEntry, configfile
-from PartnerboxFunctions import sendPartnerBoxWebCommand
+from .PartnerboxFunctions import sendPartnerBoxWebCommand
 import skin
 import os
-from plugin import autoTimerAvailable
+from .plugin import autoTimerAvailable
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -260,7 +260,7 @@ class PartnerboxEntriesListConfigScreen(Screen, HelpableScreen):
 			sel = None
 		nr = int(config.plugins.Partnerbox.entriescount.value)
 		if nr > 1 and self.what == 2 or nr >= 1 and self.what is None:
-				from plugin import RemoteTimer
+				from .plugin import RemoteTimer
 				self.session.open(RemoteTimer, sel)
 		else:
 			self.close(self.session, self.what, sel)

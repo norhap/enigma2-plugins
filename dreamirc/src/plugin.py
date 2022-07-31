@@ -23,13 +23,13 @@ from twisted.internet import protocol
 from twisted.python import log
 from twisted.internet.defer import *
 
-from e2chat import *
-from e2account import *
-from e2support import *
-from dreamIRCTools import *
-from dreamIRCSetup import *
-from protocols import irc
-import ircsupport
+from .e2chat import *
+from .e2account import *
+from .e2support import *
+from .dreamIRCTools import *
+from .dreamIRCSetup import *
+from .protocols import irc
+from Plugins.Extensions.dreamIRC import ircsupport
 
 import os
 import string

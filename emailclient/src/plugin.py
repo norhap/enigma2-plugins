@@ -19,7 +19,7 @@ from Screens.Screen import Screen
 from Tools import Notifications
 from enigma import eListboxPythonMultiContent, gFont, eTimer #@UnresolvedImport # pylint: disable-msg=E0611
 from twisted.mail import imap4 #@UnresolvedImport
-from zope.interface import implements
+from zope.interface import implementer
 import email
 import re
 import os
@@ -27,12 +27,13 @@ from email.header import decode_header
 import time
 import Screens.Standby
 import Screens.InfoBar
-from TagStrip import strip_readable
-from protocol import createFactory
+from .TagStrip import strip_readable
+from .protocol import createFactory
 
 from . import _, initLog, debug, scaleH, scaleV, DESKTOP_WIDTH, DESKTOP_HEIGHT #@UnresolvedImport # pylint: disable-msg=F0401
 mailAccounts = [] # contains all EmailAccount objects
-from EmailConfig import EmailConfigOptions, EmailConfigAccount
+
+from .EmailConfig import EmailConfigOptions, EmailConfigAccount
 
 NOTIFICATIONID = 'EmailClientNotificationId'
 
@@ -650,11 +651,11 @@ class MessageHeader(object):
 		return "<MessageHeader uid=" + str(self.uid) + ", subject=" + self.getSubject() + ">"
 
 
+@implementer(imap4.IMailboxListener)
 class EmailAccount():
 	'''
 	Principal class to hold an account.
 	'''
-	implements(imap4.IMailboxListener)
 
 	def __init__(self, params, afterInit=None):
 		'''
@@ -1023,7 +1024,7 @@ class EmailAccountList(Screen):
 			if not acc.isConnected():
 				acc.forceRetry(self._layoutFinish)
 		self["accounts"] = MenuList([], content=eListboxPythonMultiContent)
-		self["accounts"].l.setItemHeight(scaleV(20, 18) + 5)
+		self["accounts"].l.setItemHeight(int(scaleV(20, 18) + 5))
 		self["accounts"].l.setFont(0, gFont("Regular", scaleV(20, 18)))
 		self.onLayoutFinish.append(self._layoutFinish)
 

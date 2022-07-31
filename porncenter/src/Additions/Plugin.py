@@ -6,7 +6,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 from twisted.web.client import downloadPage, getPage
-import urllib2
+import urllib
 
 ##################################################
 
@@ -47,8 +47,8 @@ class Movie:
 		self.thumb = None
 		if thumb:
 			try:
-				req = urllib2.Request(thumb)
-				url_handle = urllib2.urlopen(req)
+				req = urllib.request.Request(thumb)
+				url_handle = urllib.request.urlopen(req)
 				headers = url_handle.info()
 				contentType = headers.getheader("content-type")
 			except:
@@ -63,7 +63,7 @@ class Movie:
 			else:
 				self.thumbnailFile = None
 			if self.thumbnailFile:
-				downloadPage(thumb, self.thumbnailFile).addCallback(self.decodeThumbnail).addErrback(self.error)
+				downloadPage(thumb.encode('utf-8'), self.thumbnailFile).addCallback(self.decodeThumbnail).addErrback(self.error)
 
 	def error(self, error=None):
 		if error:
@@ -106,7 +106,7 @@ class Plugin:
 		pass
 
 	def getPage(self, url):
-		getPage(url).addCallback(self.getPageCallback).addErrback(self.getPageError)
+		getPage(url.encode('utf-8')).addCallback(self.getPageCallback).addErrback(self.getPageError)
 
 	def getPageCallback(self, page):
 		pass

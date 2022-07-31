@@ -16,8 +16,8 @@ from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 from Tools.LoadPixmap import LoadPixmap
 from twisted.web.client import downloadPage, getPage
+from urllib.request import urlopen
 import re
-import urllib2
 
 ##########################################################
 
@@ -143,7 +143,7 @@ class ORFMain(Screen):
 
 	def getVideoUrl(self, url):
 		try:
-			f = urllib2.urlopen(url)
+			f = urlopen(url)
 			txt = f.read()
 			f.close()
 		except:
@@ -260,7 +260,7 @@ class ORFMain(Screen):
 
 	def downloadList(self):
 		self.working = True
-		getPage(self.mainUrl).addCallback(self.downloadListCallback).addErrback(self.downloadListError)
+		getPage(self.mainUrl.encode('utf-8')).addCallback(self.downloadListCallback).addErrback(self.downloadListError)
 
 	def downloadListError(self, error=""):
 		print("[ORF.at] Fehler beim Verbindungsversuch:", str(error))

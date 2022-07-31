@@ -7,7 +7,7 @@ from Tools.Directories import resolveFilename, SCOPE_GUISKIN, fileExists
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Alternatives import GetWithAlternative
 from ServiceReference import ServiceReference
-from . EPGSearchSetup import EPGSearchSetup
+from .EPGSearchSetup import EPGSearchSetup
 from Screens.ChannelSelection import SimpleChannelSelection
 from Screens.ChoiceBox import ChoiceBox
 from Screens.EpgSelection import EPGSelection
@@ -527,14 +527,14 @@ class EPGSearchList(EPGList):
 			self.tw = int(value)
 
 		def setColWidths(value):
-			self.col = map(int, value.split(','))
+			self.col = list(map(int, value.split(',')))
 			if len(self.col) == 2:
 				self.skinColumns = True
 			else:
 				warningWrongSkinParameter(attrib)
 
 		def setPiconSize(value):
-			self.piconSize = map(int, value.split(','))
+			self.piconSize = list(map(int, value.split(',')))
 			if len(self.piconSize) == 2:
 				self.skinColumns = True
 			else:

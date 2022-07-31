@@ -4,7 +4,6 @@ from . import _, removeBad
 
 # GUI (Screens)
 from Screens.Screen import Screen
-from six import PY2
 # GUI (Components)
 from Components.ActionMap import ActionMap
 from Components.Sources.List import List
@@ -73,16 +72,12 @@ class AutoTimerPreview(Screen):
 		self.sort_type = 0
 
 		# name, begin, end, serviceref, timername -> name, begin, timername, sname, timestr
-		self.timers = []
-		for x in timers:
-			serviceref = removeBad(ServiceReference(x[3]).getServiceName())
-			if PY2:
-				serviceref = serviceref.encode('utf-8', 'ignore')
-			self.timers.append(
-				(x[0], x[1], x[4],
-				serviceref,
-				(("%s, %s ... %s (%d " + _("mins") + ")") % (FuzzyTime(x[1]) + FuzzyTime(x[2])[1:] + ((x[2] - x[1]) / 60,))))
-				)
+		self.timers = [
+			(x[0], x[1], x[4],
+			ServiceReference(x[3]).getServiceName().replace('\xc2\x86', '').replace('\xc2\x87', ''),
+			(("%s, %s ... %s (%d " + _("mins") + ")") % (FuzzyTime(x[1]) + FuzzyTime(x[2])[1:] + ((x[2] - x[1]) / 60,))))
+			for x in timers
+		]
 
 		self["timerlist"] = List(self.timers)
 

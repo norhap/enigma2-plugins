@@ -25,7 +25,7 @@ from collections import deque
 
 from twisted.internet import reactor
 
-from . Logger import doLog
+from .Logger import doLog
 
 
 class AutoPollerThread(Thread):
@@ -136,7 +136,7 @@ class AutoPollerThread(Thread):
 				except:
 					pass
 
-			from plugin import autotimer
+			from .plugin import autotimer
 			# Ignore any program errors
 			try:
 				queue.append(autotimer.parseEPG())

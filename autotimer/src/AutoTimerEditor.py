@@ -82,7 +82,7 @@ def importerCallback(ret):
 
 def editorCallback(ret):
 	if ret:
-		from . plugin import autotimer
+		from .plugin import autotimer
 		autotimer.add(ret)
 
 		# Save modified xml
@@ -1450,9 +1450,9 @@ class AutoTimerServiceEditor(Screen, ConfigListScreen):
 
 
 def addAutotimerFromSearchString(session, match, importer_Callback=importerCallback):
-	from . AutoTimerComponent import preferredAutoTimerComponent
-	from . AutoTimerImporter import AutoTimerImporter
-	from . plugin import autotimer
+	from .AutoTimerComponent import preferredAutoTimerComponent
+	from .AutoTimerImporter import AutoTimerImporter
+	from .plugin import autotimer
 
 	autotimer.readXml()
 
@@ -1479,9 +1479,9 @@ def addAutotimerFromSearchString(session, match, importer_Callback=importerCallb
 
 
 def addAutotimerFromEvent(session, evt=None, service=None, importer_Callback=importerCallback):
-	from . AutoTimerComponent import preferredAutoTimerComponent
-	from . AutoTimerImporter import AutoTimerImporter
-	from . plugin import autotimer
+	from .AutoTimerComponent import preferredAutoTimerComponent
+	from .AutoTimerImporter import AutoTimerImporter
+	from .plugin import autotimer
 
 	autotimer.readXml()
 
@@ -1533,9 +1533,9 @@ def addAutotimerFromEvent(session, evt=None, service=None, importer_Callback=imp
 
 
 def addAutotimerFromService(session, service=None, importer_Callback=importerCallback):
-	from . AutoTimerComponent import preferredAutoTimerComponent
-	from . AutoTimerImporter import AutoTimerImporter
-	from . plugin import autotimer
+	from .AutoTimerComponent import preferredAutoTimerComponent
+	from .AutoTimerImporter import AutoTimerImporter
+	from .plugin import autotimer
 
 	autotimer.readXml()
 

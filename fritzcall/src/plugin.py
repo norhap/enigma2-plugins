@@ -25,12 +25,12 @@ import time
 import os
 import traceback
 import json
-from itertools import cycle, izip
 import base64
 from logging import NOTSET, DEBUG, INFO, WARNING, ERROR, CRITICAL
 import logging
 from xml.dom.minidom import parse
 import binascii
+from itertools import cycle
 
 from enigma import getDesktop
 from Screens.Screen import Screen
@@ -68,9 +68,9 @@ from twisted.internet import reactor  # @UnresolvedImport
 from twisted.internet.protocol import ReconnectingClientFactory  # @UnresolvedImport
 from twisted.protocols.basic import LineReceiver  # @UnresolvedImport
 
-import FritzOutlookCSV
-import FritzLDIF
-from nrzuname import ReverseLookupAndNotifier
+from . import FritzOutlookCSV
+from . import FritzLDIF
+from .nrzuname import ReverseLookupAndNotifier
 from . import _, __  # @UnresolvedImport # pylint: disable=W0611,F0401
 
 # import codecs
@@ -81,11 +81,11 @@ from . import _, __  # @UnresolvedImport # pylint: disable=W0611,F0401
 
 
 def encode(x):
-	return base64.encodestring(''.join(chr(ord(c) ^ ord(k)) for c, k in izip(x, cycle('secret key')))).strip()
+	return base64.encodebytes(bytes(''.join(chr(ord(c) ^ ord(k)) for c, k in zip(x, cycle('secret key'))), 'utf-8')).decode().strip()
 
 
 def decode(x):
-	return ''.join(chr(ord(c) ^ ord(k)) for c, k in izip(base64.decodestring(x), cycle('secret key')))
+	return ''.join(chr(ord(c) ^ ord(k)) for c, k in zip(base64.decodebytes(bytes(x, 'utf-8')).decode(), cycle('secret key')))
 
 
 DESKTOP_WIDTH = getDesktop(0).size().width()
@@ -319,7 +319,7 @@ def stripCbCPrefix(number, countrycode):
 	return number
 
 
-import FritzCallFBF  # wrong-import-position # pylint: disable=
+from . import FritzCallFBF  # wrong-import-position # pylint: disable=
 
 
 class FritzAbout(Screen):
@@ -409,7 +409,7 @@ class FritzAbout(Screen):
 		self.close()
 
 
-from FritzCallFBF import FBF_dectActive, FBF_faxActive, FBF_rufumlActive, FBF_tamActive, FBF_wlanState  # wrong-import-position # pylint: disable=
+from .FritzCallFBF import FBF_dectActive, FBF_faxActive, FBF_rufumlActive, FBF_tamActive, FBF_wlanState  # wrong-import-position # pylint: disable=
 
 
 class FritzMenu(Screen, HelpableScreen):

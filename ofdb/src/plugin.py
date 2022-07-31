@@ -16,7 +16,7 @@ from Components.Language import language
 from Components.ProgressBar import ProgressBar
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 import re
-import htmlentitydefs
+from html.entities import name2codepoint
 import urllib
 import gettext
 
@@ -307,13 +307,13 @@ class OFDB(Screen):
 
 			self["statusbar"].setText(_("Query OFDb: %s...") % (self.eventName))
 			try:
-				self.eventName = urllib.quote(self.eventName)
+				self.eventName = urllib.parse.quote(self.eventName)
 			except:
-				self.eventName = urllib.quote(self.eventName.decode('utf8').encode('ascii', 'ignore'))
+				self.eventName = urllib.parse.quote(self.eventName.decode('utf8').encode('ascii', 'ignore'))
 			localfile = "/tmp/ofdbquery.html"
 			fetchurl = "http://www.ofdb.de/view.php?page=suchergebnis&Kat=DTitel&SText=" + self.eventName
 			print("[OFDb] Downloading Query " + fetchurl + " to " + localfile)
-			downloadPage(fetchurl, localfile).addCallback(self.OFDBquery).addErrback(self.fetchFailed)
+			downloadPage(fetchurl.encode('utf-8'), localfile).addCallback(self.OFDBquery).addErrback(self.fetchFailed)
 		else:
 			self["statusbar"].setText(_("Could't get Eventname"))
 
@@ -332,7 +332,7 @@ class OFDB(Screen):
 			entitydict[x.group(1)] = x.group(2)
 
 		for key, name in entitydict.items():
-			entitydict[key] = htmlentitydefs.name2codepoint[name]
+			entitydict[key] = name2codepoint[name]
 
 		entities = htmlentitynumbermask.finditer(in_html)
 

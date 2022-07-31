@@ -24,9 +24,9 @@ from timer import TimerEntry
 from twisted.internet import reactor
 from twisted.web import client
 from twisted.web.client import HTTPClientFactory, getPage
-from base64 import encodestring
+from base64 import encodebytes
 import xml.etree.cElementTree
-from urllib import unquote
+from urllib.parse import unquote, urlparse, urlunparse
 
 CurrentIP = None
 remote_timer_list = None
@@ -364,7 +364,6 @@ class myHTTPClientFactory(HTTPClientFactory):
 
 
 def url_parse(url, defaultPort=None):
-	from urlparse import urlparse, urlunparse
 	parsed = urlparse(url)
 	scheme = parsed[0]
 	path = urlunparse(('', '') + parsed[2:])
@@ -395,12 +394,11 @@ def sendPartnerBoxWebCommand(url, contextFactory=None, timeout=60, username="roo
 		run.addErrback(returnError)
 		return run
 	else:
-		from urlparse import urlparse
 		parsed = urlparse(url)
 		scheme = parsed.scheme
 		host = parsed.hostname
 		port = parsed.port or (443 if scheme == 'https' else 80)
-		basicAuth = encodestring(("%s:%s") % (username, password))
+		basicAuth = encodebytes(bytes("%s:%s" % (username, password))).decode()
 		authHeader = "Basic " + basicAuth.strip()
 		AuthHeaders = {"Authorization": authHeader}
 		if "headers" in kwargs:
@@ -423,7 +421,7 @@ def runCommand(path, username="", password="", host="", port=80, sessionid="0", 
 	postdata = {"user": username, "password": password, "sessionid": sessionid}
 	if parameter:
 		postdata.update(parameter)
-	send = getPage('%s' % (command), method='POST', headers=headers, postdata=urllib.urlencode(postdata))
+	send = getPage('%s' % (command), method='POST', headers=headers, postdata=urllib.parse.urlencode(postdata))
 
 	def readData(data):
 		return data
@@ -490,7 +488,7 @@ def SetPartnerboxTimerlist(partnerboxentry=None, sreference=None):
 		else:
 			sCommand = "http://%s:%s@%s:%d/xml/timers" % (username, password, ip, port)
 		print("[RemoteEPGList] Getting timerlist data from %s..." % ip)
-		f = urllib.urlopen(sCommand)
+		f = urllib.request.urlopen(sCommand)
 		sxml = f.read()
 		if int(partnerboxentry.enigma.value) == 0:
 			remote_timer_list = FillE2TimerList(sxml, sreference)

@@ -3,8 +3,8 @@ from __future__ import print_function
 # Plugins Config
 from xml.etree.cElementTree import parse as cet_parse, fromstring as cet_fromstring
 import os
-from . AutoTimerConfiguration import parseConfig, buildConfig
-from . Logger import doLog, startLog, getLog, doDebug
+from .AutoTimerConfiguration import parseConfig, buildConfig
+from .Logger import doLog, startLog, getLog, doDebug
 
 # Navigation (RecordTimer)
 import NavigationInstance
@@ -30,21 +30,17 @@ from enigma import eEPGCache, eServiceReference, eServiceCenter, iServiceInforma
 from twisted.internet import reactor, defer
 from twisted.python import failure
 from threading import currentThread
-from six import PY2, PY3
-if PY2:
-	import Queue
-else:
-	import queue as Queue
+import queue as Queue
 
 # AutoTimer Component
-from . AutoTimerComponent import preferredAutoTimerComponent
+from .AutoTimerComponent import preferredAutoTimerComponent
 
 from itertools import chain
 from collections import defaultdict
 from difflib import SequenceMatcher
 from operator import itemgetter
 
-from . SimpleThread import SimpleThread
+from .SimpleThread import SimpleThread
 
 try:
 	from Plugins.Extensions.SeriesPlugin.plugin import getSeasonEpisode4 as sp_getSeasonEpisode
@@ -904,7 +900,7 @@ class AutoTimer:
 
 	def parseEPG(self, simulateOnly=False, uniqueId=None, callback=None):
 
-		from . plugin import AUTOTIMER_VERSION
+		from .plugin import AUTOTIMER_VERSION
 		doLog("AutoTimer Version: " + AUTOTIMER_VERSION)
 
 		if NavigationInstance.instance is None:
