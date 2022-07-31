@@ -19,7 +19,7 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
-from Tools.Downloader import downloadWithProgress
+from Tools.Downloader import DownloadWithProgress
 from Tools.LoadPixmap import LoadPixmap
 import gettext
 
@@ -70,7 +70,7 @@ class BufferThread():
 		self.progress = 0
 		self.downloading = True
 		self.error = ""
-		self.download = downloadWithProgress(url, file)
+		self.download = DownloadWithProgress(url, file)
 		self.download.addProgress(self.httpProgress)
 		self.download.start().addCallback(self.httpFinished).addErrback(self.httpFailed)
 
