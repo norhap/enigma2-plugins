@@ -163,8 +163,8 @@ msgstr ""
 msgid "Save search as AutoTimer"
 msgstr ""
 
-msgid "Search"
-msgstr "Buscar"
+msgid "Search event"
+msgstr "Buscar evento"
 
 msgid "Search EPG by title event"
 msgstr ""

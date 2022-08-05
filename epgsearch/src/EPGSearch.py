@@ -3,7 +3,7 @@
 from . import _
 from enigma import eEPGCache, eServiceReference, eServiceCenter, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eRect, getDesktop, \
 		RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eListboxPythonMultiContent, gFont, ePicLoad
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN, fileExists
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN, fileExists, isPluginInstalled
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Alternatives import GetWithAlternative
 from ServiceReference import ServiceReference
@@ -612,7 +612,7 @@ class EPGSearch(EPGSelection):
 		self.select = False
 		self.do_filter = None
 		self.eventid = None
-		self.isTMBD = fileExists("/usr/lib/enigma2/python/Plugins/Extensions/TMBD/plugin.py")
+		self.isTMBD = isPluginInstalled("TMBD")
 		# Partnerbox
 		if PartnerBoxIconsEnabled:
 			EPGSelection.PartnerboxInit(self, False)
@@ -760,7 +760,7 @@ class EPGSearch(EPGSelection):
 				pass
 
 	def runTMBD(self):
-		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/TMBD/plugin.py"):
+		if isPluginInstalled("TMBD"):
 			from Plugins.Extensions.TMBD.plugin import TMBD
 			cur = self["list"].getCurrent()
 			if cur[0] is not None:
