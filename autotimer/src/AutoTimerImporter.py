@@ -182,13 +182,13 @@ class AutoTimerImporter(Screen):
 					2,
 					True
 			))
-			append(
-				SelectionEntryComponent(
-					_("Only on Weekday: %s") % (weekdays[self.begin.tm_wday][1],), # XXX: the lookup is dirty but works :P
-					str(self.begin.tm_wday),
-					9,
-					True
-			))
+			# append(
+				# SelectionEntryComponent(
+					# _("Only on Weekday: %s") % (weekdays[self.begin.tm_wday][1],), # XXX: the lookup is dirty but works :P
+					# str(self.begin.tm_wday),
+					# 9,
+					# True
+			# ))
 
 		if sref:
 			append(
@@ -260,13 +260,13 @@ class AutoTimerImporter(Screen):
 			entrylist.list[idx] = SelectionEntryComponent(item[0], item[1], item[2], val)
 			if self.update_weekdays and item[2] == 2:
 				next_idx = idx + 1
-				try:
-					next_item = entrylist.list[next_idx][0]
-					if next_item[2] == 9:
-						entry_val = val and self.begin.tm_wday or self.start.tm_wday
-						entrylist.list[next_idx] = SelectionEntryComponent(_("Only on Weekday: %s") % (weekdays[entry_val][1]), str(entry_val), next_item[2], next_item[3])
-				except:
-					pass
+				# try:
+					# next_item = entrylist.list[next_idx][0]
+					# if next_item[2] == 9:
+						# entry_val = val and self.begin.tm_wday or self.start.tm_wday
+						# entrylist.list[next_idx] = SelectionEntryComponent(_("Only on Weekday: %s") % (weekdays[entry_val][1]), str(entry_val), next_item[2], next_item[3])
+				# except:
+					# pass
 			entrylist.setList(entrylist.list)
 
 	def cancel(self):
@@ -341,14 +341,14 @@ class AutoTimerImporter(Screen):
 			elif item[2] == 8: # Exact match
 				autotimer.searchType = "exact"
 				autotimer.searchCase = "sensitive"
-			elif item[2] == 9: # Weekday
-				includes = [
-						autotimer.getIncludedTitle(),
-						autotimer.getIncludedShort(),
-						autotimer.getIncludedDescription(),
-						[item[1]],
-				]
-				autotimer.include = includes
+			# elif item[2] == 9: # Weekday
+				# includes = [
+						# autotimer.getIncludedTitle(),
+						# autotimer.getIncludedShort(),
+						# autotimer.getIncludedDescription(),
+						# [item[1]],
+				# ]
+				# autotimer.include = includes
 
 		if autotimer.match == "":
 			self.session.openWithCallback(
