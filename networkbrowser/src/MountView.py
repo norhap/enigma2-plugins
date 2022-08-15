@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # for localized messages
 from __future__ import print_function
 from . import _

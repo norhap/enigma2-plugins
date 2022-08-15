@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # for localized messages
 from __future__ import print_function
 from . import _
@@ -388,8 +387,8 @@ class NetworkBrowser(Screen):
 			if x[2] not in self.network:
 				self.network[x[2]] = []
 			self.network[x[2]].append((NetworkDescriptor(name=x[1], description=x[2]), x))
-		self.network.keys()
-		for x in self.network.keys():
+		self.network = {k: self.network[k] for k in sorted(self.network)}
+		for x in self.network:
 			if self.network[x][0][1][3] == '00:00:00:00:00:00':
 				self.device = 'unix'
 			else:

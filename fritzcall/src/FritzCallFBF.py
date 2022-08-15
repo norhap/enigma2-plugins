@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 '''
 Created on 30.09.2012
 $Author: michael $
@@ -19,8 +18,8 @@ $Id: FritzCallFBF.py 1552 2019-04-23 07:40:35Z michael $
 # C0302 too-many-lines
 # C0410 multiple-imports
 # E0611 No name %r in module %r
-# pylint: disable=C0111,C0103,C0301,W0603,W0403,C0302,W0611,F0401,E0611
-
+# W1201 logging-not-lazy
+# pylint: disable=C0111,C0103,C0301,W0603,C0302,W0611,F0401,E0611,W1201
 import re
 import time
 import hashlib

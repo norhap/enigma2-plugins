@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # for localized messages
 from . import _
 from Screens.Screen import Screen

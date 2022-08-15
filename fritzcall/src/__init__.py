@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 '''
 general functions for FritzCall plugin
 
@@ -7,6 +6,11 @@ $Author: michael $
 $Revision: 1296 $
 $Date: 2016-05-02 15:52:11 +0200 (Mon, 02 May 2016) $
 '''
+
+import gettext
+import os
+from logging import NOTSET
+from six.moves import range
 
 from Components.config import config #@UnresolvedImport
 from Components.Language import language

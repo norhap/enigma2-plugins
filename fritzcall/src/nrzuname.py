@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: UTF-8 -*-
 '''
 $Id: nrzuname.py 1451 2017-06-08 16:35:18Z michael $
 $Author: michael $
