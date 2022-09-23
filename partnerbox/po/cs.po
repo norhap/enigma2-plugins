@@ -2,20 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Partnerbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-15 10:30+0200\n"
+"POT-Creation-Date: 2022-09-17 15:15+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: ims <ims21@users.sourceforge.net>\n"
+"Last-Translator: IMS <ims@openpli.org>\n"
 "Language-Team: PLi <ims21@users.sourceforge.net>\n"
 "Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #, python-format
 msgid " (Partnerbox %s - Version: %s)"
-msgstr "(Partnerbox %s - verze: %s)"
+msgstr " (Partnerbox %s - verze: %s)"
 
 #, python-format
 msgid "%d min"
@@ -73,6 +73,10 @@ msgstr "AutoTimer přehled"
 
 msgid "Bouquet List"
 msgstr "Přehled"
+
+#, python-format
+msgid "Box '%s' is standby or is not running."
+msgstr "Přijímač '%s' je v pohotovostním režimu nebo není zapnutý."
 
 msgid "Cancel"
 msgstr "Zrušit"
@@ -167,6 +171,9 @@ msgstr "Upravit vzdálený časovač"
 
 msgid "Enable Partnerbox-AutoTimer function"
 msgstr "Povolit Partnerbox-Autotimer"
+
+msgid "Enable Partnerbox-AutoTimer in E-Menu"
+msgstr "Povolit Partnerbox-Autotimer v E-menu"
 
 msgid "Enable Partnerbox-Function in Channel Selector"
 msgstr "Povolit Partnerbox v přehledu programů"
@@ -272,10 +279,10 @@ msgstr "Umístění"
 msgid "MAC"
 msgstr "MAC"
 
-msgid "Manage autotimer for other dreamboxes in network"
+msgid "Manage autotimer for other boxes in network"
 msgstr "Spravovat autotimer pro ostatní přijímače v síti"
 
-msgid "Manage timer for other dreamboxes in network"
+msgid "Manage timer for other boxes in network"
 msgstr "Správa časovačů ostatních přijímačů v síti"
 
 msgid "Menu PiP"
@@ -429,6 +436,9 @@ msgstr "Zvolte operaci pro partnerbox"
 
 msgid "Send Wake-on-LAN"
 msgstr "Poslat Wake-on-LAN"
+
+msgid "Service type"
+msgstr ""
 
 msgid "Servicelists/EPG"
 msgstr "Seznam programů/EPG"
@@ -588,7 +598,7 @@ msgid "Zap/"
 msgstr "Přepnout/"
 
 msgid "Zapping to "
-msgstr "Přepíná se na"
+msgstr "Přepíná se na "
 
 msgid "about to start"
 msgstr "začít okamžitě"

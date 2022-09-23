@@ -34,6 +34,7 @@ SUBDIRS = \
 	httpproxy \
 	imdb \
 	kiddytimer \
+	lcd4linux \
 	letterbox \
 	logomanager \
 	mediadownloader \

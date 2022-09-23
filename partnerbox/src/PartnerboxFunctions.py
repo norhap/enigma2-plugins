@@ -251,7 +251,8 @@ def FillE2TimerList(xmlstring, sreference=None):
 			disabled = int(timer.findtext("e2disabled", 0))
 		except:
 			disabled = 0
-		servicereference = str(timer.findtext("e2servicereference", '').decode("utf-8").encode("utf-8", 'ignore'))
+		servicereference = str(timer.findtext("e2servicereference", ''))
+
 		if sreference is None:
 			go = True
 		else:
@@ -302,8 +303,8 @@ def FillE2TimerList(xmlstring, sreference=None):
 				eventId = -1
 			E2TimerList.append(E2Timer(
 				servicereference=servicereference,
-				servicename=unquote(str(timer.findtext("e2servicename", 'n/a').decode("utf-8").encode("utf-8", 'ignore'))),
-				name=str(timer.findtext("e2name", '').decode("utf-8").encode("utf-8", 'ignore')),
+				servicename=unquote(str(timer.findtext("e2servicename", 'n/a'))),
+				name=str(timer.findtext("e2name", '')),
 				disabled=disabled,
 				timebegin=timebegin,
 				timeend=timeend,
@@ -314,8 +315,8 @@ def FillE2TimerList(xmlstring, sreference=None):
 				justplay=justplay,
 				eventId=eventId,
 				afterevent=afterevent,
-				dirname=str(timer.findtext("e2location", '').decode("utf-8").encode("utf-8", 'ignore')),
-				description=unquote(str(timer.findtext("e2description", '').decode("utf-8").encode("utf-8", 'ignore'))),
+				dirname=str(timer.findtext("e2location", '')),
+				description=unquote(str(timer.findtext("e2description", ''))),
 				type=0))
 	return E2TimerList
 
@@ -359,8 +360,8 @@ class myHTTPClientFactory(HTTPClientFactory):
 	def __init__(self, url, method='GET', postdata=None, headers=None,
 	agent="Twisted Remotetimer", timeout=0, cookies=None,
 	followRedirect=1, lastModified=None, etag=None):
-		HTTPClientFactory.__init__(self, url, method=method, postdata=postdata,
-		headers=headers, agent=agent, timeout=timeout, cookies=cookies, followRedirect=followRedirect)
+		HTTPClientFactory.__init__(self, url, method=method.encode('utf-8'), postdata=postdata,
+		headers=headers, agent=agent.encode('utf-8'), timeout=timeout, cookies=cookies, followRedirect=followRedirect)
 
 
 def url_parse(url, defaultPort=None):
@@ -394,34 +395,34 @@ def sendPartnerBoxWebCommand(url, contextFactory=None, timeout=60, username="roo
 		run.addErrback(returnError)
 		return run
 	else:
-		parsed = urlparse(url)
+		parsed = urlparse(url.encode('utf-8'))
 		scheme = parsed.scheme
 		host = parsed.hostname
 		port = parsed.port or (443 if scheme == 'https' else 80)
-		basicAuth = encodebytes(bytes("%s:%s" % (username, password))).decode()
-		authHeader = "Basic " + basicAuth.strip()
-		AuthHeaders = {"Authorization": authHeader}
+		basicAuth = encodebytes((("%s:%s") % (username, password)).encode('utf-8'))
+		authHeader = "Basic " + basicAuth.decode().strip()
+		AuthHeaders = {b"Authorization": authHeader}
 		if "headers" in kwargs:
 			kwargs["headers"].update(AuthHeaders)
 		else:
 			kwargs["headers"] = AuthHeaders
-		factory = myHTTPClientFactory(url, *args, **kwargs)
+		factory = myHTTPClientFactory(url.encode('utf-8'), *args, **kwargs)
 		reactor.connectTCP(host, port, factory, timeout=timeout)
 		return factory.deferred
 
 
 def runCommand(path, username="", password="", host="", port=80, sessionid="0", parameter=None):
 	command = "http://%s:%d%s" % (host, port, path)
-	basicAuth = encodestring(("%s:%s") % (username, password))
-	authHeader = "Basic " + basicAuth.strip()
+	basicAuth = encodebytes((("%s:%s") % (username, password)).encode('utf-8'))
+	authHeader = "Basic " + basicAuth.decode().strip()
 	headers = {
-		"Authorization": authHeader,
-		'content-type': 'application/x-www-form-urlencoded',
+		b"Authorization": authHeader,
+		b'content-type': 'application/x-www-form-urlencoded',
 	}
 	postdata = {"user": username, "password": password, "sessionid": sessionid}
 	if parameter:
 		postdata.update(parameter)
-	send = getPage('%s' % (command), method='POST', headers=headers, postdata=urllib.parse.urlencode(postdata))
+	send = getPage(command.encode('utf-8'), method=b'POST', headers=headers, postdata=urllib.parse.urlencode(postdata).encode('utf-8'))
 
 	def readData(data):
 		return data
