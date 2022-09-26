@@ -272,6 +272,7 @@ class AutoTimerOverview(Screen, HelpableScreen):
 				list=list,
 				selection=0
 			)
+			self.close(self.session)
 
 	def removeCallback(self, answer):
 		cur = self["entries"].getCurrent()
