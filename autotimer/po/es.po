@@ -8,197 +8,189 @@ msgstr ""
 "Project-Id-Version: enigma2-plugins 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-16 16:27+0430\n"
-"PO-Revision-Date: 2012-02-17 14:58+0100\n"
+"PO-Revision-Date: 2022-09-27 19:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
 
-#, fuzzy
 msgid ""
 "\n"
 "\n"
 "Cancel?"
-msgstr "Cancelar"
+msgstr ""
+"\n"
+"\n"
+"¿Cancelar?"
 
 msgid " (only services from bouquets when use \"favorites description match\")."
-msgstr ""
+msgstr " (solo se usa canales desde bouquets \"descripción de favoritos coinciden\")."
 
-#, fuzzy
 msgid " - AutoTimer "
-msgstr "Añadir AutoProgramación"
+msgstr " - Temporizador Automático "
 
 msgid " - Version: "
-msgstr ""
+msgstr " - Version: "
 
 msgid " 0 - timers will not be added."
-msgstr ""
+msgstr " 0 - no se agregarán temporizadores."
 
 msgid " == attention: global option 'Save/check filterlist is still active!! =="
-msgstr ""
+msgstr " == atención: la opción global '¡Guardar/comprobar lista de filtros aún está activa! =="
 
-#, fuzzy
 msgid " add AutoTimer"
-msgstr "Añadir AutoProgramación"
+msgstr " agregar Temporizador Automático"
 
-#, python-format
 msgid ""
 "%d conflict(s) encountered when trying to add new timers:\n"
 "%s"
 msgstr ""
+"%d conflicto(s) encontrado(s) al intentar agregar nuevos temporizadores:\n"
+"%s"
 
-#, python-format
 msgid ""
 "%d conflict(s) solved with similar timer(s):\n"
 "%s"
 msgstr ""
+"%d conflicto(s) resuelto(s) con temporizador(s) similar(es):\n"
+"%s"
 
 msgid "%d.%B %Y"
-msgstr ""
+msgstr "%d.%B %Y"
 
-#, python-format
 msgid "%s: %s at %s"
-msgstr ""
+msgstr "%s: %s at %s"
 
 msgid "/etc/enigma2"
-msgstr ""
+msgstr "/etc/enigma2"
 
 msgid "/tmp"
-msgstr ""
+msgstr "/tmp"
 
 msgid "A new and empty config was created. A backup of the config can be found here (/etc/enigma2/autotimer.xml_old)."
-msgstr ""
+msgstr "Se creó una configuración nueva y vacía. Se puede encontrar una copia de la configuración aquí (/etc/enigma2/autotimer.xml_old)."
 
 msgid "Abort this Wizard."
-msgstr ""
+msgstr "Abortar este asistente."
 
 msgid "Activate VPS"
-msgstr ""
+msgstr "Activar VPS"
 
 msgid "Add"
 msgstr "Añadir"
 
 msgid "Add \"Choice list AutoTimer\" menu button to multi-EPG"
-msgstr ""
+msgstr "Agregue 'Elección lista Temporizador Automático'  botón  Menú Multi-EPG"
 
 msgid "Add \"Choice list AutoTimer\" menu button to single-EPG"
-msgstr ""
+msgstr "Agregue  'Elección lista Temporizador Automático' botón Menú EPG simple"
 
-#, fuzzy
 msgid "Add AutoTimer"
-msgstr "Añadir AutoProgramación"
+msgstr "Agregar Temporizador Automático"
 
 msgid "Add new AutoTimer"
-msgstr "Añadir nueva AutoProgramación"
+msgstr "Añadir nueva Temporizador Automático"
 
-#, fuzzy
 msgid "Add services"
-msgstr "Añadir Canales"
+msgstr "Agregar Canales"
 
 msgid "Add similar timer on conflict"
-msgstr ""
+msgstr "Agregar Temporizador similar en conflicto"
 
 msgid "Add timer as disabled on conflict"
 msgstr "Añadir programación como desactivar en conflicto"
 
 msgid "Advanced"
-msgstr ""
+msgstr "Avanzado"
 
 msgid "Advanced (2000 events)"
-msgstr ""
+msgstr "Advanzado (2000 eventos)"
 
 msgid "After event"
 msgstr "Después del evento"
 
-#, fuzzy
 msgid "All channels"
-msgstr "Canales"
+msgstr "Todos los Canales"
 
 msgid "All non-repeating timers"
 msgstr "Todas programaciones no-repetidas"
 
 msgid "Allow double timer for different services"
-msgstr ""
+msgstr "Permitir temporizador doble para diferentes canales"
 
 msgid "Always write config"
-msgstr ""
+msgstr "Siempre escriba configuración"
 
 msgid "Amount of recordings left"
-msgstr ""
+msgstr "Cantidad de grabaciones restantes"
 
 msgid "Any service/recording"
-msgstr ""
+msgstr "Cualquier canal/grabación"
 
 msgid "Any time"
-msgstr ""
+msgstr "Cualquier momento"
 
-#, fuzzy
 msgid "AutoTimer"
-msgstr "Añadir AutoProgramación"
+msgstr "Temporizador Automático"
 
-#, python-format
 msgid ""
 "AutoTimer\n"
 "%d timer(s) were added."
 msgstr ""
+"Temporizador Automático\n"
+"%d temporizador(s) fueron agregados."
 
-#, fuzzy
 msgid "AutoTimer "
-msgstr "Añadir AutoProgramación"
+msgstr "Temporizador Automático "
 
-#, fuzzy, python-format
 msgid "AutoTimer %s FilterListEntry"
-msgstr "Filtros de AutoProgramación"
+msgstr "Temporizador Automático %s Filtro entrada de la Lista"
 
-#, fuzzy
 msgid "AutoTimer Context Menu"
-msgstr "Abrir Menú Contextual"
+msgstr "Menú de contexto del temporizador automático"
 
 msgid "AutoTimer Editor"
-msgstr "Editor de AutoProgramación"
+msgstr "Editor de Temporizador Automático"
 
-#, fuzzy
 msgid "AutoTimer FAQ"
-msgstr "Filtros de AutoProgramación"
+msgstr "Preguntas frecuentes sobre Temporizador Automático"
 
 msgid "AutoTimer Filters"
-msgstr "Filtros de AutoProgramación"
+msgstr "Filtros de Temporizador Automático"
 
-#, fuzzy
 msgid "AutoTimer Help"
-msgstr "Añadir AutoProgramación"
+msgstr "Ayuda Temporizador Automático"
 
 msgid "AutoTimer Services"
-msgstr "Canales AutoProgramación"
+msgstr "Canales Temporizador Automático"
 
 msgid "AutoTimer Settings"
-msgstr "Configuración AutoProgramación"
+msgstr "Configuración Temporizador Automático"
 
-#, fuzzy, python-format
 msgid "AutoTimer failed with error %s"
-msgstr "Filtros de AutoProgramación"
+msgstr "Temporizador Automático falló con error %s"
 
 msgid "AutoTimer overview"
-msgstr "Vista previa de AutoProgramación"
+msgstr "Vista previa de Temporizador Automático"
 
-#, fuzzy
 msgid "AutoTimer scan"
-msgstr "Filtros de AutoProgramación"
+msgstr "Temporizador Automático escanear"
 
 msgid "AutoTimer was added successfully"
-msgstr ""
+msgstr "Temporizador Automático fue agregado exitosamente"
 
 msgid "AutoTimer was changed successfully"
-msgstr ""
+msgstr "Temporizador Automático fue cambiado exitosamente"
 
 msgid "AutoTimer was removed"
-msgstr ""
+msgstr "Temporizador Automático fue eliminado"
 
 msgid "AutoTimers were changed successfully"
-msgstr ""
+msgstr "Temporizador Automático fueron cambiados exitosamente"
 
 msgid "Begin of \"after event\" timespan"
 msgstr "Comienzo de Tiempo después del Evento"
@@ -210,22 +202,22 @@ msgid "Bouquets"
 msgstr "Listas"
 
 msgid "By enabling this events will not be matched if they don't occur on certain dates."
-msgstr ""
+msgstr "Al habilitar estos eventos, no se combinarán si no ocurren en ciertas fechas."
 
 msgid "By enabling this you will be notified about similar timers added during automated polling. There is no intelligence involved, so it might bother you about the same conflict over and over."
-msgstr ""
+msgstr "Al habilitar esto, se le notificará sobre temporizadores similares agregados durante el sondeo automático. No hay inteligencia involucrada, por lo que puede molestarlo sobre el mismo conflicto una y otra vez."
 
 msgid "By enabling this you will be notified about timer conflicts found during automated polling. There is no intelligence involved, so it might bother you about the same conflict over and over."
-msgstr ""
+msgstr "Al habilitar esto, se le notificará acerca de los conflictos de temporizador encontrados durante el sondeo automático. No hay inteligencia involucrada, por lo que puede molestarlo sobre el mismo conflicto una y otra vez."
 
 msgid "By enabling this you will be notified about timer(s) added during automated polling. Just not in standby mode."
-msgstr ""
+msgstr "Al habilitar esto, se le notificará sobre el temporizador agregado durante el sondeo automático. Simplemente no en modo de espera."
 
 msgid "Cancel"
 msgstr "Cancelar"
 
 msgid "Change default recording offset?"
-msgstr ""
+msgstr "¿Cambiar la compensación de grabación predeterminada?"
 
 msgid "Channel Selection"
 msgstr "Seleccionar canal"
@@ -234,14 +226,13 @@ msgid "Channels"
 msgstr "Canales"
 
 msgid "Check for uniqueness in"
-msgstr ""
+msgstr "Compruebe la exclusividad en"
 
 msgid "Check the event id (eit) and remove the timer if there is no corresponding EPG event. Due to compatibility issues with SerienRecorder and IPRec, only timer created by AutoTimer are affected."
-msgstr ""
+msgstr "Verifique la identificación del evento (eit) y elimine el temporizador si no hay un evento EPG correspondiente. Debido a problemas de compatibilidad con SerienRecorder e IPRec, solo el temporizador creado por AutoTimer se ve afectado."
 
-#, fuzzy
 msgid "Choice list AutoTimer"
-msgstr "Editar AutoProgramación"
+msgstr "Lista de opciones Temporizador Automático"
 
 msgid "Choose target folder"
 msgstr "Elija carpeta destino"
@@ -249,50 +240,44 @@ msgstr "Elija carpeta destino"
 msgid "Classic"
 msgstr "Clásico"
 
-msgid "Clear memory before auto run"
-msgstr ""
+msgid "Clear memory before AutoTimer run"
+msgstr "Borrar la memoria antes de ejecutar Temporizador Automático"
 
-#, fuzzy
 msgid "Clone selected timer"
-msgstr "Borrar la AutoProgramación seleccionada"
+msgstr "Clona el temporizador seleccionado"
 
 msgid "Close"
-msgstr ""
+msgstr "Cerrar"
 
 msgid "Close and forget changes"
 msgstr "Cerrar y olvidar cambios"
 
-#, fuzzy
 msgid "Close and save"
-msgstr "Cerrar y guardar cambios"
+msgstr "Cerrar y guardar"
 
-#, fuzzy
 msgid "Close without saving"
-msgstr "¿Seguro que quiere cerrar sin guardar los cambios?"
+msgstr "Cerrar sin guardar"
 
-#, fuzzy
 msgid "Close, save changes and search now"
-msgstr "Cerrar y guardar cambios"
+msgstr "Cerrar, guardar cambios y buscar ahora"
 
 msgid "Configure AutoTimer behavior"
-msgstr "Configurar comportamiento de AutoProgramación"
+msgstr "Configurar comportamiento de Temporizador Automático"
 
 msgid "Congratulations"
-msgstr ""
+msgstr "Enhorabuena"
 
 msgid "Control recording completely by service"
-msgstr ""
+msgstr "Controle la grabación completamente por canal"
 
 msgid "Couldn't load config file!"
-msgstr ""
+msgstr "No se pudo cargar el archivo de configuración!"
 
-#, fuzzy
 msgid "Create AutoTimer"
-msgstr "Ordenar AutoProgramación"
+msgstr "Crear Temporizador Automático"
 
-#, fuzzy
 msgid "Create a new AutoTimer."
-msgstr "Añadir nueva AutoProgramación"
+msgstr "Crea un nuevo Temporizador Automático."
 
 msgid "Create a new timer using the classic editor"
 msgstr "Crear un nueva programación usando un editor clásico"
@@ -301,12 +286,12 @@ msgid "Create a new timer using the wizard"
 msgstr "Crear una nueva programación usando el asistente"
 
 msgid "Create debug log file"
-msgstr ""
+msgstr "Crear archivo de registro de depuración"
 
 msgid "Create searchlog file"
-msgstr ""
+msgstr "Crear archivo log de búsqueda"
 
-#, python-format
+
 msgid "Custom (%s)"
 msgstr "Personalizado (%s)"
 
@@ -317,14 +302,13 @@ msgid "Custom offset"
 msgstr "Compensación Personalizada"
 
 msgid "Date"
-msgstr ""
+msgstr "Fecha"
 
 msgid "Defines where to search for duplicates (only title, short description or even extended description)"
-msgstr ""
+msgstr "Define dónde buscar duplicados (solo título, descripción breve o incluso descripción extendida)"
 
-#, fuzzy
 msgid "Delay after editing (in sec)"
-msgstr "Tiempo después de grabar (en m)"
+msgstr "Retraso después de la edición (en segundos)"
 
 msgid "Delete"
 msgstr "Borrar"
@@ -333,12 +317,11 @@ msgid "Description"
 msgstr "Descripción"
 
 msgid "Description - short equal extended for match"
-msgstr ""
+msgstr "Descripción - corto igual extendido para coincidir"
 
 msgid "Do not skip match when not description"
-msgstr ""
+msgstr "No se salte la coincidencia cuando no se describa"
 
-#, python-format
 msgid "Do you really want to delete %s?"
 msgstr "¿Seguro que quiere borrar %s?"
 
@@ -346,13 +329,13 @@ msgid "EPG encoding"
 msgstr "Codificación EPG"
 
 msgid "Edit AutoTimer"
-msgstr "Editar AutoProgramación"
+msgstr "Editar Temporizador Automático"
 
 msgid "Edit AutoTimer filters"
-msgstr "Editar Filtros de AutoProgramación"
+msgstr "Editar Filtros de Temporizador Automático"
 
 msgid "Edit AutoTimer services"
-msgstr "Editar Canales de AutoProgramación"
+msgstr "Editar Canales de Temporizador Automático"
 
 msgid "Edit Timers and scan for new Events"
 msgstr "Editar Programaciones y buscar nuevos Eventos"
@@ -361,9 +344,8 @@ msgid "Edit new timer defaults"
 msgstr "Editar el por defecto de nueva programación"
 
 msgid "Edit selected AutoTimer"
-msgstr "Editar la AutoProgramación seleccionada"
+msgstr "Editar la Temporizador Automático seleccionada"
 
-#, fuzzy
 msgid "Edit services"
 msgstr "Editar Canales"
 
@@ -380,23 +362,22 @@ msgid "Enable Service Restriction"
 msgstr "Activar Restricción de Canales"
 
 msgid "Enable this to add item for create the AutoTimer into event menu (needs restart GUI)."
-msgstr ""
+msgstr "Habilítelo para agregar un elemento para crear el Temporizador Automático en el menú de eventos (necesita reiniciar la GUI)."
 
 msgid "Enable this to be able to access the AutoTimer Overview from within the extension menu."
-msgstr ""
+msgstr "Habilítelo para poder acceder a la Descripción general del temporizador automático desde el menú de extensión."
 
 msgid "Enable this to be able to access the add to AutoTimer from the channel selection context menu."
-msgstr ""
+msgstr "Habilítelo para poder acceder al agregar al Temporizador Automático desde el menú contextual de selección de canal."
 
-#, fuzzy
 msgid "Enable timer conflict detection"
-msgstr "Activar Restricción de Canales"
+msgstr "Activar la detección de conflictos de temporizador"
 
 msgid "Enabled"
 msgstr "Activado"
 
 msgid "Encoding the channel uses for it's EPG data. You only need to change this if you're searching for special characters like the german umlauts."
-msgstr ""
+msgstr "Codificando los usos del canal para sus datos EPG. Solo necesita cambiar esto si está buscando caracteres especiales como las diéresis alemanas."
 
 msgid "End of \"after event\" timespan"
 msgstr "Fin de Tiempo después del Evento"
@@ -404,18 +385,17 @@ msgstr "Fin de Tiempo después del Evento"
 msgid "End of timespan"
 msgstr "Fin de Tiempo"
 
-#, fuzzy
 msgid "Enter or edit description"
-msgstr "en Descripción Corta"
+msgstr "Ingrese o edite la descripción"
 
 msgid "Enter or edit match title"
-msgstr ""
+msgstr "Ingresa o edita el título del evento"
 
 msgid "Enter or edit text"
-msgstr ""
+msgstr "Ingrese o edite texto"
 
 msgid "Everyday"
-msgstr ""
+msgstr "Todos los días"
 
 msgid "Exact match"
 msgstr "Coincidencia exacta"
@@ -427,36 +407,38 @@ msgid "Execute \"after event\" during timespan"
 msgstr "Ejectuar el después del Evento durante el Tiempo"
 
 msgid "FAQ"
-msgstr ""
+msgstr "Preguntas más frecuentes"
 
 msgid "Filter"
 msgstr "Filtro"
 
-#, fuzzy
 msgid "FilterEntry"
-msgstr "Filtro"
+msgstr "Entrar Filtro"
 
-#, fuzzy
 msgid "Filterlist"
-msgstr "Filtro"
+msgstr "Lista de Filtros"
 
 msgid ""
 "Filters are another powerful tool when matching events. An AutoTimer can be restricted to certain Weekdays or only match an event with a text inside eg it's Description.\n"
 "Press BLUE to add a new restriction and YELLOW to remove the selected one."
 msgstr ""
+"Los filtros son otra herramienta poderosa cuando se combinan eventos. Un Temporizador Automático puede restringirse a ciertos días de la semana o solo coincidir con un evento con un texto dentro, por ejemplo, es Descripción.\n"
+"Presione AZUL para agregar una nueva restricción y AMARILLO para eliminar la seleccionada."
 
-#, python-format
 msgid ""
 "Finished add to filterList with %s event(s):\n"
 "\n"
 " %s event(s) added \n"
 " %s event(s) skipped"
 msgstr ""
+"Finalizado agregar a filterList con %s evento(s):\n"
+"\n"
+" %s evento(s) agregados \n"
+" %s evento(s) saltados"
 
 msgid "First day to match events. No event that begins before this date will be matched."
-msgstr ""
+msgstr "Primer día para unir eventos. Ningún evento que comience antes de esta fecha se igualará."
 
-#, python-format
 msgid ""
 "Found a total of %d matching Events.\n"
 "%d Timer were added and\n"
@@ -464,96 +446,98 @@ msgid ""
 "%d conflicts encountered,\n"
 "%d similars added."
 msgstr ""
+"Encontrado un total de %d Eventos coincidentes.\n"
+"%d Se agrego temporizador y\n"
+"%d modificado,\n"
+"%d conflictos encontrados,\n"
+"%d similares agregados."
 
 msgid "Frequently asked questions"
-msgstr ""
+msgstr "Preguntas frecuentes"
 
 msgid "Frequently asked questions about the AutoTimer"
-msgstr ""
+msgstr "Preguntas frecuentes sobre el temporizador automático"
 
-#, fuzzy
 msgid "Fri"
-msgstr "Viernes"
+msgstr "Vie"
 
 msgid "Friday"
 msgstr "Viernes"
 
 msgid "Full (3000 events)"
-msgstr ""
+msgstr "Completo (3000 eventos)"
 
 msgid "Generic setup"
-msgstr ""
+msgstr "Configuración genérica"
 
 msgid "Guess existing timer based on begin/end"
 msgstr "Las programaciones existentes están basadas en Inicio/Fin"
 
 msgid "Help"
-msgstr ""
+msgstr "Ayuda"
 
 msgid "Here you can specify whether simultaneous timers of the same program can be created. This allows simultaneous recording of a program with different resolutions. (e.g. SD service and HD service)."
-msgstr ""
+msgstr "Aquí puede especificar si se pueden crear temporizadores simultáneos del mismo programa. Esto permite la grabación simultánea de un programa con diferentes resoluciones. (por ejemplo, canal SD y canal HD)."
 
 msgid "If 0, the popup will remain open."
-msgstr ""
+msgstr "Si es 0, la ventana emergente permanecerá abierta."
 
 msgid "If a timer conflict occurs, AutoTimer will search outside the timespan for a similar event and add it."
-msgstr ""
+msgstr "Si ocurre un conflicto de temporizador, AutoTimer buscará fuera del intervalo de tiempo un evento similar y lo agregará."
 
 msgid "If enabled, the polling will be skipped if EPGRefresh is currently running."
-msgstr ""
+msgstr "Si está habilitado, el sondeo se omitirá si EPGRefresh se está ejecutando actualmente."
 
 msgid "If enabled, the polling will be skipped if a recording is in progress."
-msgstr ""
+msgstr "Si está habilitado, el sondeo se omitirá si hay una grabación en curso."
 
 msgid "If specified bouquets"
-msgstr ""
+msgstr "Si se especifican bouquets"
 
-#, fuzzy
 msgid "If specified services"
-msgstr "En el mismo canal"
+msgstr "Si los canales especificados"
 
 msgid "If specified services or bouquets"
-msgstr ""
+msgstr "Si se especifican canales o bouquets"
 
 msgid "If the style is advanced, you will see more information about each auto timer. This change will not take effect until the plugin has started again."
-msgstr ""
+msgstr "Si el estilo es avanzado, verá más información sobre cada temporizador automático. Este cambio no tendrá efecto hasta que el plugin se haya iniciado nuevamente."
 
 msgid "If this enabled, debug Autotimer write in log file."
-msgstr ""
+msgstr "Si esto está habilitado, depure el Temporizador Automático escribe un archivo log."
 
 msgid "If this enabled, debug log print in console mode start enigma2."
-msgstr ""
+msgstr "Si esto está habilitado, imprimir el registro de depuración en el modo de consola, inicie enigma2."
 
 msgid "If this enabled, search log write in autotimer_search.log."
-msgstr ""
+msgstr "Si esto está habilitado, depure el Temporizador Automático escribe un archivo log."
 
 msgid "If this enabled, will check the list of timers, conflicting autotimers are disabled, the duplicate autotimers will be deleted."
-msgstr ""
+msgstr "Si esto está habilitado, verificará la lista de temporizadores, los temporizadores en conflicto estarán deshabilitados, los temporizadores duplicados serán eliminados."
 
-#, python-format
 msgid "If this is enabled an existing timer will also be considered recording an event if it records at least 80% of the it."
-msgstr ""
+msgstr "Si esto está habilitado, un temporizador existente también se considerará registrar un evento si registra al menos el 80% del mismo."
 
 msgid "If this is enabled, up on the MENU button in the multi-EPG will list of choices for AutoTimer."
-msgstr ""
+msgstr "Si esto está habilitado, al presionar el botón MENÚ en el EPG múltiple aparecerá una lista de opciones para el Temporizador automático."
 
 msgid "If this is enabled, up on the Menu button in the standard single-EPG will list of choices for AutoTimer."
-msgstr ""
+msgstr "Si esto está habilitado, hacia arriba en el botón Menú en el EPG único estándar aparecerá una lista de opciones para el Temporizador automático."
 
 msgid "If this is selected, the name of the respective AutoTimer will be added as a tag to timers created by this plugin."
-msgstr ""
+msgstr "Si se selecciona esto, el nombre del AutoTimer respectivo se agregará como una etiqueta a los temporizadores creados por este plugin."
 
 msgid "If this is selected, the tag \"AutoTimer\" will be given to timers created by this plugin."
-msgstr ""
+msgstr "Si se selecciona esta opción, la etiqueta \"Temporizador Automático\" se asignará a los temporizadores creados por este plugin."
 
 msgid "If your receiver has a small amount of memory, clear memory before poll AutoTimer run."
-msgstr ""
+msgstr "Si su receptor tiene una pequeña cantidad de memoria, borre la memoria antes de ejecutar el AutoTemporizador."
 
 msgid "If your receiver has a small amount of memory, use mode 'Standard (1000 events)' or 'Advanced (2000 events)'."
-msgstr ""
+msgstr "Si su receptor tiene poca memoria, utilice el modo 'Estándar (1000 eventos)' o 'Avanzado (2000 eventos)'."
 
 msgid "Import AutoTimer"
-msgstr "Importar AutoProgramación"
+msgstr "Importar Temporizador Automático"
 
 msgid "Import existing Timer"
 msgstr "Importar Programación existente"
@@ -564,74 +548,72 @@ msgstr "Importar desde el EPG"
 msgid "Include"
 msgstr "Incluir"
 
-#, fuzzy
 msgid "Include \"AutoTimer\" in tags"
-msgstr "Configuración AutoProgramación"
+msgstr "Incluir 'Temporizador Automático' en las etiquetas"
 
-#, fuzzy
 msgid "Include AutoTimer name in tags"
-msgstr "Configuración AutoProgramación"
+msgstr "Incluir el nombre del Temporizador Automático en las etiquetas"
 
 msgid ""
 "It's possible to restrict an AutoTimer to certain Services or Bouquets or to deny specific ones.\n"
 "An Event will only match this AutoTimer if it's on a specific and not denied Service (inside a Bouquet).\n"
 "Press BLUE to add a new restriction and YELLOW to remove the selected one."
 msgstr ""
+"Es posible restringir un Temporizador Automático a ciertos Canales o Bouquets o denegar algunos específicos.\n"
+"Un Evento solo coincidirá con este Temporizador Automático si se trata de un canal específico y no denegado (dentro de un Bouquet).\n"
+"Pulse AZUL para agregar una nueva restricción y AMARILLO para eliminar la seleccionada."
 
 msgid "Label Timers with season, episode and title, according to the SeriesPlugin settings."
-msgstr ""
+msgstr "Etiquete los temporizadores con la temporada, el episodio y el título, de acuerdo con la configuración de SeriesPlugin."
 
-#, fuzzy
 msgid "Label series"
-msgstr "Añadir Canales"
+msgstr "Serie de etiquetas"
 
 msgid "Last day to match events. Events have to begin before this date to be matched."
-msgstr ""
+msgstr "Último día para unir eventos. Los eventos deben comenzar antes de esta fecha para coincidir."
 
 msgid "Location"
 msgstr "Localización"
 
 msgid "Lower bound of timespan."
-msgstr ""
+msgstr "Límite inferior del período de tiempo."
 
 msgid "Lower bound of timespan. Nothing before this time will be matched. Offsets are not taken into account!"
-msgstr ""
+msgstr "Límite inferior del período de tiempo. Nada antes de este tiempo será igualado. ¡Las compensaciones no se tienen en cuenta!"
 
-#, python-format
 msgid "Match Timespan: %02d:%02d - %02d:%02d"
 msgstr "Coincide Tiempo: %02d:%02d - %02d:%02d"
 
 msgid "Match title"
 msgstr "Coincide Título"
 
-#, python-format
 msgid "Match title: %s"
 msgstr "Coincide Título: %s"
 
 msgid "Max. count for saved searchlog"
-msgstr ""
+msgstr "Contar Máximo para el registro de búsqueda guardado"
 
 msgid "Max. match search events"
-msgstr ""
+msgstr "Máx. eventos de búsqueda de coincidencias"
 
 msgid "Maximum duration (in m)"
 msgstr "Máxima Duración (en m)"
 
 msgid "Maximum event duration to match. If an event is longer than this amount of time (without offset) it won't be matched."
-msgstr ""
+msgstr "Duración máxima del evento para que coincida. Si un evento es más largo que este período de tiempo (sin compensación), no se combinará."
 
-#, fuzzy, python-format
 msgid ""
 "Message\n"
 "Do you really want to delete %s?"
-msgstr "¿Seguro que quiere borrar %s?"
+msgstr ""
+"Mensaje\n"
+"¿De verdad quieres borrar %s?"
 
 msgid "Modify existing timers"
 msgstr "Modificar Programaciones existentes"
 
-#, fuzzy
 msgid "Mon"
-msgstr "Lunes"
+msgstr "Lun"
 
 msgid "Monday"
 msgstr "Lunes"
@@ -649,31 +631,34 @@ msgid "No"
 msgstr "No"
 
 msgid "No log file found"
-msgstr ""
+msgstr "No se encontró ningún archivo de registro"
 
 msgid ""
 "No searchLog found!\n"
 "\n"
 "So you have no new or modified timer at last autotimer-search."
 msgstr ""
+"No hay búsqueda de Log encontrado!\n"
+"\n"
+"Por lo tanto, no tiene temporizador nuevo o modificado en la última búsqueda del autotemporizador."
 
 msgid "No, remove them."
-msgstr ""
+msgstr "No, eliminarlos."
 
 msgid "None"
 msgstr "Ninguno"
 
 msgid "Not after"
-msgstr ""
+msgstr "No después"
 
 msgid "Not before"
-msgstr ""
+msgstr "No antes"
 
 msgid "Not found xml config file!"
-msgstr ""
+msgstr "No se encontró el archivo de configuración xml!"
 
 msgid "Number of scheduled recordings left."
-msgstr ""
+msgstr "Cantidad de grabaciones programadas dejadas."
 
 msgid "OK"
 msgstr "OK"
@@ -694,49 +679,46 @@ msgid "Only AutoTimers created during this session"
 msgstr "Solo AutoGrabaciones creadas en esta Sesión"
 
 msgid "Only add timer for next x days"
-msgstr ""
+msgstr "Solo agregue temporizador para los siguientes x días"
 
 msgid "Only match during timespan"
 msgstr "Solo coincidir durante el Tiempo"
 
-#, python-format
 msgid "Only on Service: %s"
 msgstr "Sólo en el Canal: %s"
 
-#, fuzzy, python-format
 msgid "Only on Weekday: %s"
-msgstr "Sólo en el Canal: %s"
+msgstr "Solo en Día laborable: %s"
 
 msgid "Only poll while in standby"
-msgstr ""
+msgstr "Solo encuesta mientras está en modo de espera"
 
 msgid "Open Context Menu"
 msgstr "Abrir Menú Contextual"
 
 msgid "Open Timers list"
-msgstr ""
+msgstr "Abrir lista de Temporizadores"
 
 msgid "Open plugin"
-msgstr ""
+msgstr "Abrir plugin"
 
-#, fuzzy
 msgid "Open select location"
-msgstr "Usar una localización concreta"
+msgstr "Abrir seleccionar ubicación"
 
 msgid "Open select location as timer name"
-msgstr ""
+msgstr "Abrir la ubicación de selección como nombre del temporizador"
 
 msgid "Other filters (edit in filter menu)"
-msgstr ""
+msgstr "Otros filtros (editar en el menú de filtro)"
 
 msgid "Override found with alternative service"
-msgstr ""
+msgstr "Anular encontrado con canal alternativo"
 
 msgid "Path debug log"
-msgstr ""
+msgstr "Ruta de registro de depuración"
 
 msgid "Percentage ratio for duplicates matches"
-msgstr ""
+msgstr "Porcentaje de duplicados"
 
 msgid "Please provide a Text to match"
 msgstr "Introduzca un texto a coincidir"
@@ -748,23 +730,22 @@ msgid "Poll automatically"
 msgstr "Refresco automático"
 
 msgid "Popup timeout in seconds"
-msgstr ""
+msgstr "Tiempo de espera emergente en segundos"
 
 msgid "Power state to change to after recordings. Select \"standard\" to not change the default behavior of enigma2 or values changed by yourself."
-msgstr ""
+msgstr "Estado de energía para cambiar a después de las grabaciones. Seleccione \"estándar\" para no cambiar el comportamiento predeterminado de enigma2 o valores modificados por usted mismo."
 
 msgid "Preview"
 msgstr "Previsualizar"
 
 msgid "Preview AutoTimer"
-msgstr "Previsualizar AutoProgramación"
+msgstr "Previsualizar Temporizador Automático"
 
-#, fuzzy
 msgid "Preview for your AutoTimers"
-msgstr "Previsualizar AutoProgramación"
+msgstr "Vista previa para sus Temporizadores Automáticos"
 
 msgid "Print shell log"
-msgstr ""
+msgstr "Imprimir registro de shell"
 
 msgid ""
 "Question: I found a problem with the AutoTimer, can you fix it? \n"
@@ -774,6 +755,12 @@ msgid ""
 "Q: The plugin only adds timers when leaving the configuration, not automatically. What can I do? \n"
 "A: From the Overview press MENU and enter the \"Setup\". In this screen enable \"Poll automatically\" and you should be good to go."
 msgstr ""
+"Pregunta: Encontré un problema con el Temporizador Automático, ¿puedes arreglarlo?\n"
+"Respuesta: Primero pruebe la versión del Temporizador Automático en una imagen reciente (experimental) para ver si el problema fue resuelto. Luego lea de nuevo la Ayuda y las próximas preguntas frecuentes para asegurarse de que esto sea realmente un problema y no un comportamiento esperado.\n"
+"Si todavía crees que hay algún problema con el Temporizador Automático, visita http://www.dream-multimedia-tv.de/board y publica tu problema allí.\n"
+"\n"
+"Q: El plugin solo agrega temporizadores al salir de la configuración, no automáticamente. ¿Que puedo hacer?\n"
+"A: Desde la Vista general, presione MENÚ e ingrese la \"Configuración\". En esta pantalla, habilite \"Encuesta automáticamente\" y debería estar listo para continuar."
 
 msgid ""
 "Question: My AutoTimer for \"Nachrichten\" does not record the \"Spätnachrichten\". \n"
@@ -785,14 +772,24 @@ msgid ""
 "Q: I seem to be unable to record two subsequent events. There is only a single timer created that spans (part of) both events. \n"
 "A: From the Overview press MENU and enter the \"Setup\". In this screen disable \"Guess existing timer based on begin/end\"."
 msgstr ""
+"Pregunta: Mi Temporizador automático para \"Noticias\" no registra las \"Noticias de última hora\". \n"
+"Respuesta: marque \"Tipo de búsqueda\" y \"Estrictez de búsqueda\" para el Temporizador Automático dado. \n"
+"\n"
+"Q: El programa que estoy tratando de grabar contiene diéresis en su título. AutoTimer no lo encuentra. \n"
+"A: Verifique la \"codificación EPG\" para el Temporizador Automático dado. Para estaciones alemanas, se debe seleccionar \"ISO8859-15\". \n"
+"\n"
+"Q: Parece que no puedo registrar dos eventos posteriores. Solo se ha creado un temporizador que abarca (parte de) ambos eventos. \n"
+"A: Desde la Vista general, presione MENÚ e ingrese a \"Configuración\". En esta pantalla, deshabilite \"Adivinar el temporizador existente según el inicio/finalización\"."
 
 msgid ""
 "Question: You keep talking about help being provided for each parameter. I'm unable to read it (in part or in full). \n"
 "Answer: Try using the default skin and if it works ask the creator of your regular skin. If it still does not work your image might not provide the actual default skin so contact the creator of your image."
 msgstr ""
+"Pregunta: Sigues hablando de que se proporciona ayuda para cada parámetro. No puedo leerlo (en parte o en su totalidad). \n"
+"Respuesta: intente usar la máscara predeterminada y, si funciona, pregúntele al creador de su máscara normal. Si aún no funciona, es posible que su imagen no proporcione la máscara predeterminada real, así que comuníquese con el creador de su imagen."
 
 msgid "Reading file...\n"
-msgstr ""
+msgstr "Leyendo archivo...\n"
 
 msgid "Really close without saving settings?"
 msgstr "¿Seguro que quiere cerrar sin guardar los cambios?"
@@ -804,20 +801,22 @@ msgid "Record on"
 msgstr "Guardar en"
 
 msgid "Reload timers list after search events"
-msgstr ""
+msgstr "Cargar temporizadores después de búsqueda de eventos"
 
-#, python-format
 msgid ""
 "Reload timers list.\n"
 "%d autotimer(s) disabled because conflict.\n"
 "%d double autotimer(s) removed.\n"
 msgstr ""
+"Recargar la lista de temporizadores.\n"
+"%d Temporizador Automático(s) deshabilitado porque el conflicto.\n"
+"%d doble Temporizdor Automático(s) reserva.\n"
 
 msgid "Remove not existing events"
-msgstr ""
+msgstr "Eliminar eventos no existentes"
 
 msgid "Remove selected AutoTimer"
-msgstr "Borrar la AutoProgramación seleccionada"
+msgstr "Borrar la Temporizador Automático seleccionada"
 
 msgid "Require description to be unique"
 msgstr "Obligar a que la Descripción sea única"
@@ -826,22 +825,22 @@ msgid "Reset count"
 msgstr "Borrar Contador"
 
 msgid "Restrict \"after event\" to a certain timespan?"
-msgstr ""
+msgstr "¿Restringir \"después del evento\" a un cierto intervalo de tiempo?"
 
 msgid "Restrict to events on certain dates"
-msgstr ""
+msgstr "Restringir eventos en ciertas fechas"
 
 msgid "Restriction to certain bouquets (edit in services menu)"
-msgstr ""
+msgstr "Restricción a ciertos bouquets (editar en el menú de bouquets)"
 
 msgid "Restriction to certain days of week (edit in filter menu)"
-msgstr ""
+msgstr "Restricción a ciertos días de la semana (editar en el menú de filtro)"
 
 msgid "Restriction to certain services (edit in services menu)"
-msgstr ""
+msgstr "Restricción a ciertos canales (editar en el menú de canales)"
 
 msgid "Sat"
-msgstr ""
+msgstr "Sáb"
 
 msgid "Saturday"
 msgstr "Sábado"
@@ -850,16 +849,16 @@ msgid "Save"
 msgstr "Guardar"
 
 msgid "Save and search now"
-msgstr ""
+msgstr "Guarde y busque ahora"
 
 msgid "Save the by SeriesPlugin generated timer-name in a filterlist to filter at later timer-searches (only with SeriesPlugin)"
-msgstr ""
+msgstr "Guarde el nombre del temporizador generado por SeriesPlugin en una lista de filtros para filtrar las búsquedas de temporizador posteriores (solo con SeriesPlugin)"
 
 msgid "Save/check labeled series in filterlist (SeriesPlugin)"
-msgstr ""
+msgstr "Guarde/marque series etiquetadas en lista de filtro (SeriesPlugin)"
 
 msgid "Search new events matching for your AutoTimers"
-msgstr ""
+msgstr "Buscar eventos que coincidan con Temporizadores Automáticos"
 
 msgid "Search strictness"
 msgstr "Búsqueda extricta"
@@ -868,21 +867,19 @@ msgid "Search type"
 msgstr "Tipo de Búsqueda"
 
 msgid "Select \"exact match\" to enforce \"Match title\" to match exactly, \"partial match\" if you only want to search for a part of the event title or \"description match\" if you only want to search for a part of the event description"
-msgstr ""
+msgstr "Seleccione \"coincidencia exacta\" para imponer \"título de coincidencia\" para que coincida exactamente, \"coincidencia parcial\" si solo desea buscar una parte del título del evento o \"descripción de coincidencia\" si solo desea buscar una parte de la descripción del evento"
 
 msgid "Select a timer to import"
 msgstr "Seleccionar una Programación a Importar"
 
-#, fuzzy
 msgid "Select action"
-msgstr "Seleccionar canal"
+msgstr "Seleccionar acción"
 
 msgid "Select action for AutoTimer or input date/time:"
-msgstr ""
+msgstr "Seleccione acción para Temporizador automático o ingrese fecha/hora:"
 
-#, fuzzy
 msgid "Select action for AutoTimer:"
-msgstr "Seleccionar una Programación a Importar"
+msgstr "Seleccionar acción para el Temporizador Automático:"
 
 msgid "Select bouquet to record on"
 msgstr "Seleccionar lista a grabar"
@@ -891,138 +888,134 @@ msgid "Select channel to record on"
 msgstr "Seleccionar canal a grabar"
 
 msgid "Select the count of the last saved searchlogs (min=5 max=20)"
-msgstr ""
+msgstr "Seleccione el recuento de los últimos registros de búsqueda guardados (mínimo=5 máximo=20)"
 
 msgid "Select the location to save the recording to."
-msgstr ""
+msgstr "Seleccione la ubicación para guardar la grabación."
 
 msgid "Select the path for autotimer_search.log"
-msgstr ""
+msgstr "Seleccione la ruta de autotimer_search.log"
 
 msgid "Select the path where the autotimer_search.log should be saved"
-msgstr ""
+msgstr "Seleccione la ruta donde se guardará autotimer_search.log"
 
 msgid "Select type of Filter"
 msgstr "Seleccionar tipo de Filtro"
 
 msgid "Select whether or not you want to enforce case correctness."
-msgstr ""
+msgstr "Seleccione si desea o no aplicar la corrección."
 
-#, fuzzy
 msgid "Set End Time"
-msgstr "Ordenar por Hora"
+msgstr "Establecer hora de finalización"
 
 msgid "Set an end time for the timer. If you do, the timespan of the event might be blocked for recordings."
-msgstr ""
+msgstr "Establezca una hora de finalización para el temporizador. Si lo hace, el intervalo de tiempo del evento podría estar bloqueado para las grabaciones."
 
 msgid "Set maximum duration"
 msgstr "Máxima Duración"
 
 msgid "Set this NO to disable this AutoTimer."
-msgstr ""
+msgstr "Establezca este NO para deshabilitar este Temporizador Automático."
 
 msgid "Set timer type: zap, simple record, zap+record (always zap to service before start record)."
-msgstr ""
+msgstr "Establezca el tipo de temporizador: zap, registro simple, zap + registro (siempre vuelva al canal antes de comenzar el registro)"
 
 msgid "Set wakeup receiver type. This works only for zap timers."
-msgstr ""
+msgstr "Establecer el tipo de receptor de despertador. Esto funciona solo para temporizadores zap."
 
 msgid "Setup"
 msgstr "Configurar"
 
 msgid "Should this AutoTimer be restricted to a timespan?"
-msgstr ""
+msgstr "¿Debería este Temporizador Automático restringirse a un intervalo de tiempo?"
 
 msgid "Should this AutoTimer only match up to a certain event duration?"
-msgstr ""
+msgstr "¿Este Temporizador Automático solo debe coincidir con una determinada duración del evento?"
 
 msgid "Should timers created by this AutoTimer be recorded to a custom location?"
-msgstr ""
+msgstr "¿Deberían los temporizadores creados por este Temporizador Automático registrarse en una ubicación personalizada?"
 
 msgid "Show \"add to AutoTimer\" in channel selection menu"
-msgstr ""
+msgstr "Mostrar 'Agregar al Temporizador Automático' en Menú selección de canal"
 
-#, fuzzy
 msgid "Show AutoTimer FilterTxt"
-msgstr "Filtros de AutoProgramación"
+msgstr "Mostrar Temporizador Automático FiltroTxt"
 
 msgid "Show Log file"
-msgstr ""
+msgstr "Mostrar archivo de registro"
 
 msgid "Show in event menu"
-msgstr ""
+msgstr "Mostrar en el menú del evento"
 
 msgid "Show in extension menu"
-msgstr ""
+msgstr "Mostrar en el menú de extensión"
 
 msgid "Show last SearchLog"
-msgstr ""
+msgstr "Mostrar la última búsqueda"
 
 msgid "Show notification on added timers"
-msgstr ""
+msgstr "Mostrar notificación sobre los temporizadores adicionales"
 
 msgid "Show notification on conflicts"
-msgstr ""
+msgstr "Mostrar notificación sobre conflictos"
 
 msgid "Show notification on similars"
-msgstr ""
+msgstr "Mostrar notificación sobre similares"
 
 msgid "Skip poll during epg refresh"
-msgstr ""
+msgstr "Omitir encuesta durante la actualización de EPG"
 
 msgid "Skip poll during records"
-msgstr ""
+msgstr "Omitir encuesta durante los registros"
 
 msgid "Sort AutoTimer"
-msgstr "Ordenar AutoProgramación"
+msgstr "Ordenar Temporizador Automático"
 
 msgid "Sort Time"
 msgstr "Ordenar por Hora"
 
 msgid "Specify the name and location for the log."
-msgstr ""
+msgstr "Especifique el nombre y la ubicación del registro."
 
-#, fuzzy
 msgid "Standard"
-msgstr "estándar"
+msgstr "Estándar"
 
 msgid "Standard (1000 events)"
-msgstr ""
+msgstr "Estándar (1000 eventos)"
 
 msgid "Standard input date/time"
-msgstr ""
+msgstr "Fecha/hora de entrada estándar"
 
 msgid "Startup delay (in min)"
-msgstr ""
+msgstr "Demora de inicio (en minutos)"
 
-#, fuzzy
 msgid "Style auto timers list"
-msgstr "Seleccionar una Programación a Importar"
+msgstr "Lista de temporizadores automáticos de estilo"
 
-#, fuzzy
 msgid "Sun"
-msgstr "Domingo"
+msgstr "Dom"
 
 msgid "Sunday"
 msgstr "Domingo"
 
 msgid "Support \"Fast Scan\"?"
-msgstr ""
+msgstr "Soporte 'Búsqueda rápida'?"
 
 msgid "Tags"
 msgstr "Etiquetas"
 
 msgid "Tags the Timer/Recording will have."
-msgstr ""
+msgstr "Etiquetas que tendrá el temporizador/grabación."
 
 msgid ""
 "Thank you for using the wizard. Your new AutoTimer has been added to the List.\n"
 "Please press OK to continue."
 msgstr ""
+"Gracias por usar el asistente. Su nuevo Temporizador Automático ha sido agregado a la lista.\n"
+"Por favor, presione OK para continuar."
 
-#, fuzzy
 msgid "The \"Overview\""
-msgstr "Vista previa de AutoProgramación"
+msgstr "Descripción Temporizador Automático"
 
 msgid ""
 "The AutoTimer overview is the standard entry point to this plugin.\n"
@@ -1032,17 +1025,25 @@ msgid ""
 "\n"
 "When leaving the plugin using the GREEN button it will search the EPG for matching events ONCE. To configure a regular search interval of the plugin to search for events open the control menu and enter the plugin setup."
 msgstr ""
+"La descripción general de AutoTemporizador es el punto de entrada estándar a este plugin.\n"
+"\n"
+"Si los temporizadores automáticos están configurados, puede elegirlos de una lista para cambiarlos (botón Aceptar en su eliminación) o eliminarlos (botón AMARILLO en su mando).\n"
+"Se pueden agregar nuevos temporizadores presionando el botón AZUL y se puede abrir el menú de control usando el botón MENÚ.\n"
+"\n"
+"Al salir del plugin con el botón VERDE, buscará eventos coincidentes en la EPG UNA VEZ. Para configurar un intervalo de búsqueda regular del plugin para buscar eventos, abra el menú de control e ingrese a la configuración del plugin."
 
 msgid ""
 "The Timer will not be added to the List.\n"
 "Please press OK to close this Wizard."
 msgstr ""
+"El temporizador no se agregará a la lista.\n"
+"Pulse OK para cerrar este asistente."
 
 msgid "The Timespan of an AutoTimer is the first 'advanced' attribute. If a timespan is specified an event will only match this AutoTimer if it lies inside of this timespan."
-msgstr ""
+msgstr "El intervalo de tiempo de un Temporizador Automático es el primer atributo 'avanzado'. Si se especifica un intervalo de tiempo, un evento solo coincidirá con este Temporizador Automático si se encuentra dentro de este intervalo de tiempo."
 
 msgid "The autotimer file (/etc/enigma2/autotimer.xml) is corrupt and could not be loaded."
-msgstr ""
+msgstr "El archivo del Temporizador Automático (/etc/enigma2/autotimer.xml) está corrupto y no se pudo cargar."
 
 msgid ""
 "The control menu hides less frequently used options of the plugin, including the configuration and default settings for new AutoTimers.\n"
@@ -1063,31 +1064,51 @@ msgid ""
 " - Create a new timer using the wizard/classic editor:\n"
 "   Use the non-default editor to create a new AutoTimer."
 msgstr ""
+"El menú de control oculta las opciones del plugin que se usan con menos frecuencia, incluida la configuración y los ajustes predeterminados para los nuevos temporizadores automáticos.\n"
+"\n"
+"Si bien puedes abrir el menú y echar un vistazo por ti mismo, repasemos las opciones disponibles:\n"
+" - Ayuda:\n"
+"   Lo que estás mirando ahora mismo\n"
+" - Vista preliminar:\n"
+"   Simule la búsqueda de EPG, ayuda a encontrar errores en su configuración.\n"
+" - Importar temporizador existente:\n"
+"   Cree un nuevo temporizador automático basado en un temporizador regular existente.\n"
+" - Importar desde EPG:\n"
+"   Cree un Temporizador Automático basado en un evento EPG.\n"
+" - Configuración:\n"
+"   Configuración general en el plugin.\n"
+" - Editar nuevo temporizador por defecto:\n"
+"   Configure los valores predeterminados para los nuevos temporizadores automáticos.\n"
+" - Cree un nuevo temporizador usando el asistente/editor clásico:\n"
+"   Utilice el editor no predeterminado para crear un nuevo Temporizador Automático."
 
 msgid "The counter can automatically be reset to the limit at certain intervals."
-msgstr ""
+msgstr "El contador puede restablecerse automáticamente al límite en ciertos intervalos."
 
 msgid "The editor to be used for new AutoTimers. This can either be the Wizard or the classic editor."
-msgstr ""
+msgstr "El editor que se utilizará para los nuevos Temporizador Automático. Este puede ser el asistente o el editor clásico."
 
-#, python-format
 msgid ""
 "The filterEntry '%s' already exist!\n"
 "The change was canceled."
 msgstr ""
+"El filtro de Entrada '%s' ya existe!\n"
+"El cambio fue cancelado."
 
 msgid "The match attribute is mandatory."
 msgstr "El atributo a coincidir es obligatorio."
 
-#, fuzzy
 msgid "The title attribute is mandatory."
-msgstr "El atributo a coincidir es obligatorio."
+msgstr "El atributo de título es obligatorio."
 
 msgid ""
 "This FAQ is supposed to help everyone unwilling to help themselves by reading all the provided help available, and those who did not find a solution to their problems within the provided documentation. \n"
 "\n"
 "To make these hints a little easier to read, they are split up on multiple pages. You can go to the next page using the BLUE button on your remote control and back using the YELLOW one. Pressing the RED button or EXIT will close the FAQ."
 msgstr ""
+"Se supone que estas preguntas frecuentes ayudarán a todos los que no estén dispuestos a ayudarse a sí mismos leyendo toda la ayuda proporcionada disponible, y aquellos que no encontraron una solución a sus problemas dentro de la documentación proporcionada. \n"
+"\n"
+"Para que estas sugerencias sean un poco más fáciles de leer, están divididas en varias páginas. Puede pasar a la página siguiente con el botón AZUL de su control remoto y regresar con el botón AMARILLO. Presionando el botón ROJO o SALIR cerrará las FAQ."
 
 msgid ""
 "This help screen is supposed to give you a quick look at everything the AutoTimer has to offer.\n"
@@ -1096,9 +1117,14 @@ msgid ""
 "\n"
 "But you really should consider to take the few minutes it takes to read these help pages."
 msgstr ""
+"Se supone que esta pantalla de ayuda le dará un vistazo rápido a todo lo que AutoTimer tiene para ofrecer.\n"
+"Puede cancelarlo en cualquier momento presionando el botón ROJO o SALIR en su control remoto o abrirlo en un momento posterior seleccionándolo desde el menú de control usando el botón MENÚ desde el punto de entrada normal del plugin (más sobre eso luego).\n"
+"\n"
+"\n"
+"Pero realmente debería considerar tomarse unos minutos para leer estas páginas de ayuda."
 
 msgid "This is a name you can give the AutoTimer. It will be shown in the Overview and the Preview."
-msgstr ""
+msgstr "Este es un nombre que puede darle al Temporizador Automático. Se mostrará en la Descripción y la Vista previa."
 
 msgid ""
 "This is mostly a matter of taste.\n"
@@ -1106,113 +1132,112 @@ msgid ""
 "\n"
 "You can check out the \"classic\" editor by opening an existing timer from the overview and if you prefer this view over the wizard you can change the default editor in the setup dialog."
 msgstr ""
+"Esto es principalmente una cuestión de gusto.\n"
+"El Asistente le proporciona un conjunto reducido de opciones y las presenta en conjuntos más pequeños a la vez. Está dirigido principalmente a usuarios que no tienen mucha experiencia con este plugin o con las funciones de nivel \"experto\" de enigma2.\n"
+"\n"
+"Puede consultar el editor \"clásico\" abriendo un temporizador existente desde la vista general y, si prefiere esta vista sobre el asistente, puede cambiar el editor predeterminado en el cuadro de diálogo de configuración."
 
 msgid "This is the delay in hours that the AutoTimer will wait after a search to search the EPG again."
-msgstr ""
+msgstr "Esta es la demora en horas que el temporizador Automático esperará después de una búsqueda para buscar nuevamente la EPG."
 
 msgid "This is the delay in minutes that the AutoTimer will wait on initial launch to not delay enigma2 startup time."
-msgstr ""
+msgstr "Esta es la demora en minutos que el Temporizador Automático esperará en el inicio inicial para no retrasar el tiempo de inicio de enigma2."
 
 msgid "This is the delay in seconds that the AutoTimer will wait after editing the AutoTimers."
-msgstr ""
+msgstr "Esta es la demora en segundos que esperará el Temporizador Automático después de editar los Temporizadores Automáticos."
 
 msgid "This is the duration in minutes that the AutoTimer is allowed to run."
-msgstr ""
+msgstr "Esta es la duración en minutos que se permite ejecutar el Temporizador Automático."
 
 msgid "This is what will be looked for in event titles. Note that looking for e.g. german umlauts can be tricky as you have to know the encoding the channel uses."
-msgstr ""
+msgstr "Esto es lo que se buscará en los títulos de los eventos. Tenga en cuenta que, por ejemplo, las diéresis alemanas pueden ser complicadas ya que debes conocer la codificación que usa el canal."
 
 msgid "This option allows you to turn off the timer confict detection. This option is for advanced users."
-msgstr ""
+msgstr "Esta opción le permite desactivar la detección de confictos del temporizador. Esta opción es para usuarios avanzados."
 
 msgid ""
 "This screen should be pretty straight-forward. If the option name does not give its meaning away there should be an explanation for each of them when you select them. If there is no visible explanation this is most likely a skin issue and please try if the default skin fixes the issue.\n"
 "\n"
 "A lot of effort has been put in making the parameters as easy to understand as possible, so give reading them a try ;-)."
 msgstr ""
+"Esta pantalla debería ser bastante sencilla. Si el nombre de la opción no revela su significado, debe haber una explicación para cada uno de ellos cuando los seleccione. Si no hay una explicación visible, lo más probable es que se trate de un problema de máscara e intente si la máscara predeterminada soluciona el problema.\n"
+"\n"
+"Se ha puesto mucho esfuerzo en hacer que los parámetros sean lo más fáciles de entender posible, así que intente leerlos."
 
 msgid "This setting controls the behavior when a timer matches a found event."
-msgstr ""
+msgstr "Esta configuración controla el comportamiento cuando un temporizador coincide con un evento encontrado."
 
 msgid "This toggles the behavior on timer conflicts. If an AutoTimer matches an event that conflicts with an existing timer it will not ignore this event but add it disabled."
-msgstr ""
+msgstr "Esto alterna el comportamiento en conflictos de temporizador. Si un AutoTimer coincide con un evento que entra en conflicto con un temporizador existente, no ignorará este evento sino que lo agregará deshabilitado."
 
-#, fuzzy
 msgid "Thur"
 msgstr "Jueves"
 
 msgid "Thursday"
 msgstr "Jueves"
 
-#, fuzzy
 msgid "Time"
-msgstr "Ordenar por Hora"
+msgstr "Horario"
 
 msgid "Time in minutes to append to recording."
-msgstr ""
+msgstr "Tiempo en minutos para agregar a la grabación."
 
 msgid "Time in minutes to prepend to recording."
-msgstr ""
+msgstr "Tiempo en minutos para anteponer a la grabación."
 
 msgid "Timeout (in min)"
-msgstr ""
+msgstr "Tiempo de espera (en minutos)"
 
 msgid "Timer from:\n"
-msgstr ""
+msgstr "Temporizador de:\n"
 
 msgid "Timer type"
 msgstr "Tipo de Programación"
 
-#, fuzzy
 msgid "Timers list"
-msgstr "Tipo de Programación"
+msgstr "Lista de temporizadores"
 
-#, fuzzy
 msgid "Title"
-msgstr "en Título"
+msgstr "Título"
 
-#, fuzzy
 msgid "Title and Short description"
-msgstr "en Descripción Corta"
+msgstr "Título y breve descripción"
 
-#, fuzzy
 msgid "Title and all descriptions"
-msgstr "en Descripción"
+msgstr "Título y todas las descripciones"
 
 msgid "To cater for spelling mistakes and small deviations in the EPG information, you can make the matching algorithm fuzzy by setting the percentage both programmes must be equal for. Use 100% if you only want a match when both are completely identical. Recommended default ratio 80%."
-msgstr ""
+msgstr "Para atender errores ortográficos y pequeñas desviaciones en la información EPG, puede difuminar el algoritmo de coincidencia estableciendo el porcentaje para el que ambos programas deben ser iguales. Use 100% si solo quiere una coincidencia cuando ambos son completamente idénticos. Relación predeterminada recomendada 80%."
 
-#, fuzzy
 msgid "Tue"
-msgstr "Martes"
+msgstr "Mar"
 
 msgid "Tuesday"
 msgstr "Martes"
 
 msgid "Unless this is enabled AutoTimer will NOT automatically look for events matching your AutoTimers but only when you leave the GUI with the green button."
-msgstr ""
+msgstr "A menos que esto esté habilitado, el Temporizador Automático NO buscará automáticamente eventos que coincidan con sus Temporizadores Automáticos, sino solo cuando salga de la GUI con el botón verde."
 
 msgid "Upper bound of timespan."
-msgstr ""
+msgstr "Límite superior del período de tiempo."
 
 msgid "Upper bound of timespan. Nothing after this time will be matched. Offsets are not taken into account!"
-msgstr ""
+msgstr "Límite superior del período de tiempo. Nada después de este tiempo será igualado. ¡Las compensaciones no se tienen en cuenta!"
 
 msgid "Use a custom location"
 msgstr "Usar una localización concreta"
 
 msgid "Use blue key to edit bouquets or services."
-msgstr ""
+msgstr "Use la tecla azul para editar bouquets o canales."
 
 msgid "Use yellow key to edit filters."
-msgstr ""
+msgstr "Use la tecla amarilla para editar los filtros."
 
 msgid "Wakeup receiver for start timer"
-msgstr ""
+msgstr "Despertar receptor para comenzar temporizador"
 
-#, fuzzy
 msgid "Wed"
-msgstr "Entre semana"
+msgstr "Mié"
 
 msgid "Wednesday"
 msgstr "Miércoles"
@@ -1230,76 +1255,82 @@ msgid "Weekly (Sunday)"
 msgstr "Semanalmente (Domingo)"
 
 msgid "Welcome to the AutoTimer-Plugin"
-msgstr ""
+msgstr "Bienvenido al plugin Temporizador Automático"
 
 msgid ""
 "Welcome.\n"
 "\n"
 "This Wizard will help you to create a new AutoTimer by providing descriptions for common settings."
 msgstr ""
+"Bienvenido.\n"
+"\n"
+"Este asistente le ayudará a crear un nuevo temporizador automático al proporcionar descripciones para la configuración común."
 
 msgid "What is this \"control menu\" you keep talking about?"
-msgstr ""
+msgstr "¿Qué es ese \"menú de control\" del que sigues hablando?"
 
 msgid "When supporting \"Fast Scan\" the service type is ignored. You don't need to enable this unless your Image supports \"Fast Scan\" and you are using it."
-msgstr ""
+msgstr "Al admitir \"Exploración rápida\", se ignora el tipo de canal. No necesita habilitar esto a menos que su Imagen sea compatible con \"Exploración rápida\" y lo esté usando."
 
 msgid "When this is enabled AutoTimer will ONLY check for new events whilst in stanadby."
-msgstr ""
+msgstr "Cuando esto está habilitado, el Temporizador Automático SOLAMENTE verificará si hay nuevos eventos mientras está en modo reposo."
 
 msgid "When this option enabled and short description and extended description match is empty and timer title exist in match title, match is not a duplicate. Attention, this may result in double timers."
-msgstr ""
+msgstr "Cuando esta opción está habilitada y la descripción breve y la coincidencia de la descripción extendida están vacías y el título del temporizador existe en el título del partido, la coincidencia no es un duplicado. Atención, esto puede dar como resultado tiempos dobles."
 
 msgid "When this option enabled, short description to equal extended description if short description is empty."
-msgstr ""
+msgstr "Cuando esta opción está habilitada, la descripción breve equivale a la descripción extendida si la breve descripción está vacía."
 
 msgid "When this option is enabled the AutoTimer won't match events where another timer with the same description already exists in the timer list."
-msgstr ""
+msgstr "Cuando esta opción está activada, el AutoTimer no coincidirá con los eventos en los que ya existe otro temporizador con la misma descripción en la lista de temporizadores."
 
 msgid "With this option enabled the channel to record on can be changed to a alternative service it is restricted to."
-msgstr ""
+msgstr "Con esta opción habilitada, el canal para grabar puede cambiarse a un canal alternativo al que está restringido."
 
 msgid "With this option you can restrict the AutoTimer to a certain amount of scheduled recordings. Set this to 0 to disable this functionality."
-msgstr ""
+msgstr "Con esta opción, puede restringir el AutoTimer a una cierta cantidad de grabaciones programadas. Establezca esto en 0 para deshabilitar esta funcionalidad."
 
 msgid "Wizard"
 msgstr "Asistente"
 
 msgid "Wizard or Classic Editor?"
-msgstr ""
+msgstr "¿Asistente o editor clásico?"
 
 msgid "Write the config file after every change which the user quits by saving."
-msgstr ""
+msgstr "Escriba el archivo de configuración después de cada cambio que el usuario cierra guardando."
 
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 msgid "Yes and show notify"
-msgstr ""
+msgstr "Sí y mostrar notificación"
 
 msgid "Yes, and delete all timers generated by this autotimer"
-msgstr ""
+msgstr "Sí, además eliminar los temporizadores generados"
 
 msgid "Yes, but keep timers generated by this autotimer"
-msgstr ""
+msgstr "Sí, pero mantenga los temporizadores generados"
 
 msgid "Yes, keep them."
-msgstr ""
+msgstr "Si, guárdalos."
 
 msgid "You can control for how many days in the future timers are added. Set this to 0 to disable this feature."
-msgstr ""
+msgstr "Puede controlar cuántos días en el futuro se agregarán temporizadores. Establezca esto en 0 para deshabilitar esta característica."
 
 msgid ""
 "You can set the basic properties of an AutoTimer here.\n"
 "While 'Name' is just a human-readable name displayed in the Overview, 'Match in title' is what is looked for in the EPG."
 msgstr ""
+"Puede establecer las propiedades básicas de un temporizador automático aquí.\n"
+"Mientras que 'Nombre' es solo un nombre legible por humanos que se muestra en la Descripción general, 'Coincidencia en título' es lo que se busca en la EPG."
 
 msgid ""
 "You did not provide a valid 'Match in title' Attribute for your new AutoTimer.\n"
 "As this is a mandatory Attribute you cannot continue without doing so."
 msgstr ""
+"No proporcionó un atributo válido de \"Coincidir en el título\" para su nuevo Temporizador Automático.\n"
+"Como este es un Atributo obligatorio, no puede continuar sin hacerlo."
 
-#, python-format
 msgid ""
 "You entered \"%s\" as Text to match.\n"
 "Do you want to remove trailing whitespaces?"
@@ -1312,59 +1343,65 @@ msgid ""
 "\n"
 "As a final hint I can't stress how important it is to take a look at the help texts that are shown in the setup dialogs as they cover the most frequently asked questions. Surprisingly even after the hints were added ;-)."
 msgstr ""
+"Ahora sabe casi todo lo que hay que saber sobre el AutoTimer-Plugin.\n"
+"\n"
+"Como sugerencia final, no puedo enfatizar lo importante que es echar un vistazo a los textos de ayuda que se muestran en los cuadros de diálogo de configuración, ya que cubren las preguntas más frecuentes. Sorprendentemente, incluso después de que se agregaron las pistas."
 
 msgid ""
 "You successfully configured a new AutoTimer. Do you want to add it to the list?\n"
 "\n"
 "You can go back a step by pressing EXIT on your remote."
 msgstr ""
+"Usted configuró exitosamente un nuevo Temporizador Automático. ¿Quieres agregarlo a la lista??\n"
+"\n"
+"Puede retroceder un paso presionando EXIT en su mando a distancia."
 
 msgid ""
 "Your 'Match in title' Attribute ends with a Whitespace.\n"
 "Please confirm if this was intentional, if not they will be removed."
 msgstr ""
+"Su atributo 'Coincidir en el título' termina con un espacio en blanco.\n"
+"Por favor, confirme si esto fue intencional, de lo contrario serán eliminados."
 
-#, python-format
 msgid ""
 "Your config file is not well-formed:\n"
 "%s"
 msgstr ""
-"Su fichero de configuración no es correcto:\n"
+"Su archivo de configuración no es correcto:\n"
 "%s"
 
 msgid "[B]  "
-msgstr ""
+msgstr "[B]  "
 
 msgid "[S]  "
-msgstr ""
+msgstr "[S]  "
 
 msgid "add AutoTimer"
-msgstr "Añadir AutoProgramación"
+msgstr "añadir Temporizador Automático"
 
 msgid "add AutoTimer..."
-msgstr "Añadir AutoProgramación..."
+msgstr "añadir Temporizador Automático..."
 
 msgid "Auto Timers"
 msgstr "AutoTemporizadores"
 
 msgid "add filters"
-msgstr "Añadir Filtros"
+msgstr "añadir Filtros"
 
-#, fuzzy
 msgid "add to AutoTimer filterList"
-msgstr "Editar Filtros de AutoProgramación"
+msgstr "agregar lista de filtros al temporizador automático"
 
 msgid "always"
-msgstr ""
+msgstr "siempre"
 
 msgid "auto"
 msgstr "auto"
 
 msgid "autotimers need a match attribute"
-msgstr ""
+msgstr "los Temporizadores Automáticos necesitan un atributo de coincidencia"
 
 msgid "begin searchLog from"
-msgstr ""
+msgstr "comenzar búsqueda Log desde"
 
 msgid "case-insensitive search"
 msgstr "búsqueda sin-may/min"
@@ -1373,44 +1410,40 @@ msgid "case-sensitive search"
 msgstr "búsqueda may/min"
 
 msgid "config changed."
-msgstr ""
+msgstr "configuración modificada."
 
 msgid "create AutoTimer for current event"
-msgstr ""
+msgstr "crear Temporizador Automático para el evento actual"
 
 msgid "delete"
 msgstr "borrar"
 
-#, fuzzy
 msgid "description match"
-msgstr "Descripción"
+msgstr "descripción del evento"
 
 msgid "disable"
 msgstr "desactivar"
 
-#, fuzzy
 msgid "disabled"
-msgstr "desactivar"
+msgstr "deshabilitado"
 
 msgid "do nothing"
 msgstr "no hacer nada"
 
 msgid "edit filters"
-msgstr "Editar Filtros"
+msgstr "editar Filtros"
 
 msgid "enable"
 msgstr "activar"
 
-#, fuzzy
 msgid "enabled"
-msgstr "activar"
+msgstr "activado"
 
 msgid "exact match"
 msgstr "coindencia exacta"
 
-#, fuzzy
 msgid "favorites description match"
-msgstr "en Descripción Corta"
+msgstr "coincidencia de descripción de favoritos"
 
 msgid "go to deep standby"
 msgstr "ir a reposo profundo"
@@ -1428,31 +1461,28 @@ msgid "in Title"
 msgstr "en Título"
 
 msgid "like autotimer.log"
-msgstr ""
+msgstr "como autotimer.log"
 
 msgid "mins"
 msgstr "mins"
 
 msgid "missing parameter \"id\""
-msgstr ""
+msgstr "parámetro faltante \"id\""
 
 msgid "missing parameter \"xml\""
-msgstr ""
+msgstr "parámetro faltante \"xml\""
 
-#, fuzzy
 msgid "never"
-msgstr "Nunca"
+msgstr "nunca"
 
 msgid "on Weekday"
 msgstr "en entre semana"
 
-#, fuzzy
 msgid "only from deep standby"
-msgstr "ir a reposo profundo"
+msgstr "solo desde el modo de reposo profundo"
 
-#, fuzzy
 msgid "only from standby"
-msgstr "ir a reposo"
+msgstr "solo desde el modo de reposo"
 
 msgid "partial match"
 msgstr "coincidencia parcial"
@@ -1460,32 +1490,29 @@ msgstr "coincidencia parcial"
 msgid "record"
 msgstr "grabar"
 
-#, fuzzy
 msgid "scan for new Events"
-msgstr "Editar Programaciones y buscar nuevos Eventos"
+msgstr "buscar nuevos eventos"
 
 msgid "searchLog"
-msgstr ""
+msgstr "buscarLog"
 
 msgid "standard"
 msgstr "estándar"
 
 msgid "title ends with"
-msgstr ""
+msgstr "el título termina con"
 
 msgid "title starts with"
-msgstr ""
+msgstr "el título comienza con"
 
-#, python-format
 msgid "unable to find timer with id %i"
-msgstr ""
+msgstr "no se puede encontrar el temporizador con id %i"
 
 msgid "unknown"
-msgstr ""
+msgstr "desconocido"
 
 msgid "zap"
 msgstr "zapear"
 
-#, fuzzy
 msgid "zap and record"
-msgstr "grabar"
+msgstr "zapear y grabar"
