@@ -547,5 +547,5 @@ def Plugins(**kwargs):
 
 def timermenu(menuid):
 	if menuid == "timermenu":
-		return [(_("AutoTemporizadores"), main, "autotimer_setup", None)]
+		return [(_("Auto Timers"), main, "autotimer_setup", None)]
 	return []

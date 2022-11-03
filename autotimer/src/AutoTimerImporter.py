@@ -169,7 +169,7 @@ class AutoTimerImporter(Screen):
 			))
 
 		self.update_weekdays = False
-		if begin and end:
+		if begin and end and sref.getServiceName():
 			self.start = localtime(begin + bmargin)
 			self.begin = localtime(begin)
 			self.update_weekdays = self.start.tm_wday != self.begin.tm_wday
@@ -189,7 +189,7 @@ class AutoTimerImporter(Screen):
 					# True
 			# ))
 
-		if sref:
+		if sref.getServiceName():
 			append(
 				SelectionEntryComponent(
 					_("Only on Service: %s") % (sref.getServiceName().replace('\xc2\x86', '').replace('\xc2\x87', '')),
