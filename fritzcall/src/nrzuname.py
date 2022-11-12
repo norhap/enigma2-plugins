@@ -43,9 +43,9 @@ except ValueError:
 
 	def debug(message):
 		if debugVal:
-			print message
+			print(message)
 
-import htmlentitydefs
+import html.entities
 
 from twisted.web.client import getPage  # @UnresolvedImport
 from twisted.internet import reactor  # @UnresolvedImport
@@ -83,7 +83,7 @@ def html2unicode(in_html):
 		entitydict[x.group(1)] = x.group(2)
 	for key, name in entitydict.items():
 		try:
-			entitydict[key] = htmlentitydefs.name2codepoint[str(name)]
+			entitydict[key] = html.entities.name2codepoint[str(name)]
 		except KeyError:
 			warn("KeyError " + key + "/" + name)
 
@@ -97,7 +97,7 @@ def html2unicode(in_html):
 			uml = unichr(int(codepoint))
 			debug("replace %s with %s in %s", repr(key), repr(uml), repr(in_html[0:20] + '...'))
 			in_html = in_html.replace(key, uml)
-		except ValueError, e:
+		except ValueError as e:
 			warn("html2utf8: ValueError " + repr(key) + ":" + repr(codepoint) + " (" + str(e) + ")")
 	return in_html
 
@@ -143,11 +143,11 @@ def out(number, caller):
 	elif ort:
 		name += ort
 
-	print name
+	print(name)
 
 
 def simpleout(number, caller):  # @UnusedVariable # pylint: disable=W0613
-	print caller
+	print(caller)
 
 
 try:

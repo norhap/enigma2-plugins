@@ -35,7 +35,7 @@ __version__ = '0.6'
 
 import logging
 import re
-import md5
+import hashlib
 
 import xml.etree.ElementTree as ET
 from Components.config import config
@@ -191,10 +191,10 @@ class FritzAction(object):
 		if root.find(".//Nonce") != None and root.find(".//Realm") != None:
 			nonce = root.find(".//Nonce").text
 			realm = root.find(".//Realm").text
-			secret = md5.new(config.plugins.FritzCall.username.value + ":" +
+			secret = hashlib.new(config.plugins.FritzCall.username.value + ":" +
 						realm + ":" +
 						self.password).hexdigest()
-			response = md5.new(secret + ":" + nonce).hexdigest()
+			response = hashlib.new(secret + ":" + nonce).hexdigest()
 			# self.debug("user %s, passwort %s", config.plugins.FritzCall.username.value, self.password)
 			header_clientauth = self.header_clientauth_template % (
 																nonce,

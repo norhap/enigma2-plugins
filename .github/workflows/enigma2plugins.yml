@@ -1,0 +1,27 @@
+name: enigma2plugins
+
+on:
+  push:
+    branches: [ python3 ]
+  pull_request:
+    branches: [ python3 ]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: install prerequisites
+      run: |
+        sudo apt-get -q update
+        sudo apt-get install automake
+        sudo apt-get install git
+        sudo apt-get install build-essential
+        sudo apt-get install gettext
+        sudo apt-get install python3-dev.
+    - name: compile python3
+      run: |
+        python3 -m compileall .
+    - name: compile po files
+      run: |
+        find . -type f -name "*.po" -exec msgfmt {} -o {}.mo \;
+        echo done!
