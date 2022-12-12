@@ -60,6 +60,11 @@ antiscrollbar/Makefile
 antiscrollbar/meta/Makefile
 antiscrollbar/src/Makefile
 
+ardmediathek/Makefile
+ardmediathek/meta/Makefile
+ardmediathek/src/Makefile
+ardmediathek/src/img/Makefile
+
 audiosync/Makefile
 audiosync/img/Makefile
 audiosync/meta/Makefile
@@ -322,6 +327,10 @@ networkbrowser/src/Makefile
 networkbrowser/src/icons/Makefile
 networkbrowser/src/lib/Makefile
 
+netzkino/Makefile
+netzkino/meta/Makefile
+netzkino/src/Makefile
+
 ncidclient/Makefile
 ncidclient/meta/Makefile
 ncidclient/po/Makefile
@@ -512,6 +521,7 @@ zapstatistic/src/Makefile
 zdfmediathek/Makefile
 zdfmediathek/meta/Makefile
 zdfmediathek/src/Makefile
+zdfmediathek/src/img/Makefile
 
 ])
 AC_OUTPUT

@@ -450,13 +450,14 @@ class PartnerboxEntriesListConfigScreen(Screen, HelpableScreen):
 				max_possible *= 2
 			else:
 				break
-		namestr = names.tostring()
+		namestr = str(''.join(chr(x) for x in names))
 		ifaces = []
 		for i in range(0, outbytes, struct_size):
-			iface_name = bytes.decode(namestr[i:i + 16]).split('\0', 1)[0].encode('ascii')
+			iface_name = namestr[i:i + 16].split('\0', 1)[0]
 			if iface_name != 'lo':
-				iface_addr = socket.inet_ntoa(namestr[i + 20:i + 24])
+				iface_addr = "%s.%s.%s.%s" % (ord(namestr[i + 20]), ord(namestr[i + 21]), ord(namestr[i + 22]), ord(namestr[i + 23]))
 				ifaces.append((iface_name, iface_addr))
+
 		return ifaces
 
 	def sendWOL(self, mac):
@@ -541,7 +542,7 @@ class PartnerboxEntryConfigScreen(ConfigListScreen, Screen):
 			"green": self.keySave,
 			"red": self.keyCancel,
 			"yellow": self.getMAC,
-			"blue": self.keyDelete,
+			"blue": self.deleteItem,
 			"cancel": self.keyCancel
 		}, -2)
 
@@ -607,7 +608,7 @@ class PartnerboxEntryConfigScreen(ConfigListScreen, Screen):
 			config.plugins.Partnerbox.Entries.remove(self.current)
 		ConfigListScreen.cancelConfirm(self, True)
 
-	def keyDelete(self):
+	def deleteItem(self):
 		if self.newmode == 1:
 			self.keyCancel()
 		else:
