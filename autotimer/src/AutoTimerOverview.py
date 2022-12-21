@@ -132,7 +132,9 @@ class AutoTimerOverview(Screen, HelpableScreen):
 
 		self["EPGSelectActions"] = HelpableActionMap(self, "EPGSelectActions",
 			{
-				"info": (self.showSearchLog, _("Show last SearchLog")),
+				"timerAdd": self.save,
+				"yellow": self.remove,
+				"info": (self.showSearchLog, _("Show last SearchLog"))
 			}
 		)
 
