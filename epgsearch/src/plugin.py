@@ -44,9 +44,26 @@ def EPGSearchSelection__init__(self, session, service, zapFunc=None, eventid=Non
 				]
 				dlg = self.session.openWithCallback(self.CallbackChoiceAction, ChoiceBox, title=_("Select action:"), list=list)
 				dlg.setTitle(_("Choice list EPGSearch"))
+
+		def goToTmbd():
+			EPGSelection.goToTmbd(self)
+
+		def timerAdd():
+			EPGSelection.timerAdd(self)
+
+		def yellowButtonPressed():
+			EPGSelection.yellowButtonPressed(self)
+
+		def infoKeyPressed():
+			EPGSelection.infoKeyPressed(self)
+
 		self["epgsearch_actions"] = ActionMap(["EPGSelectActions"],
 				{
+					"red": goToTmbd,
+					"timerAdd": timerAdd,
 					"blue": bluePressed,
+					"yellow": yellowButtonPressed,
+					"info": infoKeyPressed
 				}, -1)
 		if config.plugins.epgsearch.type_button_blue.value == "0":
 			self["key_blue"].text = _("Search event")
