@@ -57,14 +57,17 @@ def EPGSearchSelection__init__(self, session, service, zapFunc=None, eventid=Non
 		def infoKeyPressed():
 			EPGSelection.infoKeyPressed(self)
 
-		self["epgsearch_actions"] = ActionMap(["EPGSelectActions"],
-				{
-					"red": goToTmbd,
-					"timerAdd": timerAdd,
-					"blue": bluePressed,
-					"yellow": yellowButtonPressed,
-					"info": infoKeyPressed
-				}, -1)
+		def furtherOptions():
+			EPGSelection.furtherOptions(self)
+
+		self["epgsearch_actions"] = ActionMap(["EPGSelectActions"], {
+			"red": goToTmbd,
+			"timerAdd": timerAdd,
+			"blue": bluePressed,
+			"yellow": yellowButtonPressed,
+			"info": infoKeyPressed,
+			"menu": furtherOptions
+		}, -1)
 		if config.plugins.epgsearch.type_button_blue.value == "0":
 			self["key_blue"].text = _("Search event")
 		elif config.plugins.epgsearch.type_button_blue.value == "1":
