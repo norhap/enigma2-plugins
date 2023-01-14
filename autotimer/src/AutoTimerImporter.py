@@ -189,14 +189,15 @@ class AutoTimerImporter(Screen):
 					# True
 			# ))
 
-		if sref.getServiceName():
-			append(
-				SelectionEntryComponent(
-					_("Only on Service: %s") % (sref.getServiceName().replace('\xc2\x86', '').replace('\xc2\x87', '')),
-					str(sref),
-					3,
-					True
-			))
+		if hasattr(sref, "getServiceName"):
+			if sref.getServiceName():
+				append(
+					SelectionEntryComponent(
+						_("Only on Service: %s") % (sref.getServiceName().replace('\xc2\x86', '').replace('\xc2\x87', '')),
+						str(sref),
+						3,
+						True
+				))
 
 		if afterEvent is not None:
 			append(
