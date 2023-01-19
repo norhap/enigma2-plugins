@@ -545,6 +545,9 @@ msgstr "Importar Programación existente"
 msgid "Import from EPG"
 msgstr "Importar desde el EPG"
 
+msgid "Importer event"
+msgstr "Importar evento"
+
 msgid "Include"
 msgstr "Incluir"
 
@@ -848,8 +851,8 @@ msgstr "Sábado"
 msgid "Save"
 msgstr "Guardar"
 
-msgid "Save and search now"
-msgstr "Guarde y busque ahora"
+msgid "Save and search"
+msgstr "Guardar y buscar"
 
 msgid "Save the by SeriesPlugin generated timer-name in a filterlist to filter at later timer-searches (only with SeriesPlugin)"
 msgstr "Guarde el nombre del temporizador generado por SeriesPlugin en una lista de filtros para filtrar las búsquedas de temporizador posteriores (solo con SeriesPlugin)"

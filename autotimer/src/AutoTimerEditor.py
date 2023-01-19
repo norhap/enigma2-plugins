@@ -535,7 +535,7 @@ class AutoTimerEditor(Screen, ConfigListScreen, AutoTimerEditorBase):
 
 		# Initialize Buttons
 		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
+		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
 

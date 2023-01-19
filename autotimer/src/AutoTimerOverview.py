@@ -105,7 +105,7 @@ class AutoTimerOverview(Screen, HelpableScreen):
 
 		# Button Labels
 		self["key_red"] = StaticText(_("Timers list"))
-		self["key_green"] = StaticText(_("Save and search now"))
+		self["key_green"] = StaticText(_("Save and search"))
 		self["key_yellow"] = StaticText(_("Delete"))
 		self["key_blue"] = StaticText(_("Add"))
 

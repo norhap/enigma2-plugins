@@ -135,7 +135,7 @@ class AutoTimerImporter(Screen):
 
 		# Initialize Buttons
 		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
+		self["key_green"] = StaticText(_("Importer event"))
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
 
