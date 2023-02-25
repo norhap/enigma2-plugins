@@ -49,11 +49,14 @@ class AutoMountManager(Screen):
 		self.restartLanRef = None
 		Screen.__init__(self, session)
 		self.onChangedEntry = []
-		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
+		self["actions"] = ActionMap(["OkCancelActions"],
 		{
 			"ok": self.keyOK,
-			"back": self.exit,
 			"cancel": self.exit,
+
+		})
+		self["shortcuts"] = ActionMap(["ShortcutActions"],
+		{
 			"red": self.exit,
 		})
 		self["key_red"] = StaticText(_("Close"))
@@ -198,12 +201,13 @@ class MountManagerMenu(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.createSetup()
 
-		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
+		self["actions"] = ActionMap(["ColorActions", "OkCancelActions", "ConfigListActions"],
 		{
-		    "green": self.keySave,
-		    "red": self.keyCancel,
-		    "cancel": self.keyCancel,
-		    "ok": self.keySave,
+			"red": self.keyCancel,
+			"cancel": self.keyCancel,
+			"green": self.keySave,
+			"ok": self.keySave,
+			"menu": self.keyMenu,
 		}, -2)
 
 	def createSetup(self):
@@ -250,6 +254,9 @@ class MountManagerMenu(Screen, ConfigListScreen):
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
 		else:
 			self.close()
+
+	def keyMenu(self):
+		ConfigListScreen.keyMenu(self)
 
 	def createSummary(self):
 		from Screens.Setup import SetupSummary

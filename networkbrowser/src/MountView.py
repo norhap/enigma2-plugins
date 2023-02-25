@@ -50,13 +50,16 @@ class AutoMountView(Screen):
 		Screen.setTitle(self, _("Mount Viewer"))
 		self.mounts = None
 		self.applyConfigRef = None
-		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
+		self["actions"] = ActionMap(["OkCancelActions"],
 		{
-				"ok": self.keyOK,
-				"back": self.exit,
-				"cancel": self.exit,
-				"red": self.exit,
-				"yellow": self.delete,
+			"ok": self.keyOK,
+			"cancel": self.exit,
+
+		})
+		self["shortcuts"] = ActionMap(["ShortcutActions"],
+		{
+			"red": self.exit,
+			"yellow": self.delete,
 		})
 		self["legend1"] = StaticText(_("Mounted/\nUnmounted"))
 		self["legend2"] = StaticText(_("Mount informations"))

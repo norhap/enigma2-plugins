@@ -627,9 +627,8 @@ class ScanIP(Screen, ConfigListScreen):
 		self["key_yellow"] = StaticText(_("Scan range"))
 		self["summary_description"] = StaticText("")
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+		self["actions"] = ActionMap(["ColorActions", "OkCancelActions"],
 		{
-			"back": self.exit,
 			"red": self.exit,
 			"cancel": self.exit,
 			"green": self.goNfs,
