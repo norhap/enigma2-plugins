@@ -48,7 +48,7 @@ class EPGRefresh:
 	def isServiceProtected(self, service):
 		if not service:
 			return True
-		if not config.ParentalControl.servicepinactive.value:
+		if  not config.ParentalControl.servicepin[0].value or not config.ParentalControl.servicepinactive.value:
 			return False
 		refstr = ':'.join(str(service).split(':')[:11])
 		return parentalControl.getProtectionLevel(refstr) != -1
@@ -129,8 +129,7 @@ class EPGRefresh:
 				self.session = session
 			else:
 				return False
-		if dontshutdown:
-			self.DontShutdown = True
+		self.DontShutdown = dontshutdown
 		self.forcedScan = True
 		self.prepareRefresh()
 		return True
@@ -282,18 +281,17 @@ class EPGRefresh:
 		if config.plugins.epgrefresh.parse_autotimer.value:
 			try:
 				from Plugins.Extensions.AutoTimer.plugin import autotimer
-
 				if autotimer is None:
 					from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 					autotimer = AutoTimer()
 				autotimer.readXml()
 				autotimer.parseEPGAsync(simulateOnly=False)
 				if not self.autotimer_pause.isActive():
-					if config.plugins.epgrefresh.afterevent.value and not self.DontShutdown:
+					if config.plugins.epgrefresh.afterevent.value != "never" and not self.DontShutdown:
 						try:
-							from Plugins.Extensions.SeriesPlugin.plugin import renameTimer
+							from Plugins.Extensions.SeriesPlugin.plugin import getSeasonEpisode4
 						except:
-							self.autotimer_pause.startLongTimer(120)
+							self.autotimer_pause.startLongTimer(180)
 						else:
 							self.autotimer_pause.startLongTimer(int(config.plugins.epgrefresh.timeout_shutdown.value) * 60)
 					else:
@@ -335,20 +333,28 @@ class EPGRefresh:
 		else:
 			return
 		self.isrunning = False
-		if config.plugins.epgrefresh.afterevent.value and self.DontShutdown:
+		if config.plugins.epgrefresh.afterevent.value == "always" and self.DontShutdown:
 			self.DontShutdown = False
 			self.forcedScan = False
 			print("[EPGRefresh] Return to TV viewing...")
 			return
-		if not self.forcedScan and config.plugins.epgrefresh.afterevent.value and not Screens.Standby.inTryQuitMainloop:
-			self.forcedScan = False
-			print("[EPGRefresh] Shutdown after EPG refresh...")
-			self.session.open(
-				Screens.Standby.TryQuitMainloop,
-				1
-			)
+		force_auto_shutdown = self.session.nav.wasTimerWakeup() and \
+				config.plugins.epgrefresh.afterevent.value == "auto" and \
+				Screens.Standby.inStandby and config.misc.standbyCounter.value == 1 and \
+				config.plugins.epgrefresh.enigma_wakeup_time.value == config.plugins.epgrefresh.wakeup_time.value
+		if not self.forcedScan and (force_auto_shutdown or config.plugins.epgrefresh.afterevent.value == "always") and not Screens.Standby.inTryQuitMainloop:
+			if Screens.Standby.inStandby:
+				self.doPowerOffAnswer(True)
+			else:
+				self.session.openWithCallback(self.doPowerOffAnswer, MessageBox, _("EPG refresh finished.") + "\n" + _("Really shutdown now?"), type=MessageBox.TYPE_YESNO, timeout=60)
 		self.forcedScan = False
 		self.DontShutdown = False
+
+	def doPowerOffAnswer(self, answer):
+		if answer:
+			if not Screens.Standby.inTryQuitMainloop:
+				print("[EPGRefresh] Shutdown after EPG refresh...")
+				self.session.open(Screens.Standby.TryQuitMainloop, 1)
 
 	def refresh(self):
 		if self.wait.isActive():
@@ -467,6 +473,8 @@ class EPGRefresh:
 	def msgClosed(self, ret=False):
 		if ret:
 			self.stop()
+			config.plugins.epgrefresh.lastscan.value = int(time())
+			config.plugins.epgrefresh.lastscan.save()
 			if config.plugins.epgrefresh.enabled.value:
 				self.start()
 
