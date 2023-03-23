@@ -352,20 +352,20 @@ class EPGSearchList(EPGList):
 				res = [
 					None, # no private data needed
 					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r1.left(), r1.top() + dy, self.piconSize[0], self.piconSize[1], png),
-					(eListboxPythonMultiContent.TYPE_TEXT, r1.left() + dx, r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT, self.days[t[6]]),
-					(eListboxPythonMultiContent.TYPE_TEXT, r2.left() + dx, r2.top(), r2.width(), r1.height(), 1, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, "%02d.%02d, %02d:%02d" % (t[2], t[1], t[3], t[4]))
+					(eListboxPythonMultiContent.TYPE_TEXT, r1.left() + dx, r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, self.days[t[6]]),
+					(eListboxPythonMultiContent.TYPE_TEXT, r2.left() + dx, r2.top(), r2.width(), r1.height(), 1, RT_HALIGN_LEFT | RT_VALIGN_CENTER, "%02d.%02d, %02d:%02d" % (t[2], t[1], t[3], t[4]))
 				]
 			else:
 				res = [
 					None, # no private data needed
-					(eListboxPythonMultiContent.TYPE_TEXT, r1.left() + dx, r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT, self.days[t[6]]),
-					(eListboxPythonMultiContent.TYPE_TEXT, r2.left() + dx, r2.top(), r2.width(), r1.height(), 1, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, "%02d.%02d, %02d:%02d" % (t[2], t[1], t[3], t[4]))
+					(eListboxPythonMultiContent.TYPE_TEXT, r1.left() + dx, r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, self.days[t[6]]),
+					(eListboxPythonMultiContent.TYPE_TEXT, r2.left() + dx, r2.top(), r2.width(), r1.height(), 1, RT_HALIGN_LEFT | RT_VALIGN_CENTER, "%02d.%02d, %02d:%02d" % (t[2], t[1], t[3], t[4]))
 				]
 		else:
 			res = [
 				None, # no private data needed
-				(eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT, self.days[t[6]]),
-				(eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r1.height(), 1, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, "%02d.%02d, %02d:%02d" % (t[2], t[1], t[3], t[4]))
+				(eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, self.days[t[6]]),
+				(eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r1.height(), 1, RT_HALIGN_LEFT | RT_VALIGN_CENTER, "%02d.%02d, %02d:%02d" % (t[2], t[1], t[3], t[4]))
 			]
 		if config.plugins.epgsearch.picons.value:
 			if rec1 or rec2:
