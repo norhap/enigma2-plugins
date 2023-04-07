@@ -4,6 +4,7 @@ from __future__ import print_function
 # for localized messages
 from . import _
 from enigma import eComponentScan, eConsoleAppContainer, eDVBFrontendParametersSatellite, eDVBResourceManager, eDVBSatelliteEquipmentControl, eTimer
+from boxbranding import getBlindscanBin
 from Components.ActionMap import ActionMap
 from Components.config import config, ConfigBoolean, ConfigInteger, getConfigListEntry, ConfigNothing, ConfigSelection, ConfigSubsection, ConfigYesNo
 from Components.ConfigList import ConfigListScreen
@@ -11,6 +12,7 @@ from Components.Label import Label
 from Components.NimManager import getConfigSatlist, nimmanager
 from Components.Sources.FrontendStatus import FrontendStatus
 from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import BRAND, MODEL
 from Components.TuneTest import Tuner
 from Plugins.Plugin import PluginDescriptor
 from Screens.Console import Console
@@ -18,14 +20,10 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.ServiceScan import ServiceScan
 from Tools.BoundFunction import boundFunction
-from Tools.HardwareInfo import getBrand
 import os
 #used for the XML file
 from time import strftime, time
-from boxbranding import getBoxType, getBlindscanBin
 
-brand = getBrand()
-model = getBoxType()
 BinaryBlindscan = getBlindscanBin()
 
 # root2gold based on https://github.com/DigitalDevices/dddvb/blob/master/apps/pls.c
@@ -380,9 +378,9 @@ class Blindscan(ConfigListScreen, Screen):
 			return
 
 		if nimname == "AVL6222":
-			if model == "vuuno":
+			if MODEL == "vuuno":
 				self.i2c_mapping_table = {0: 3, 1: 3, 2: 1, 3: 0}
-			elif model == "vuduo2":
+			elif MODEL == "vuduo2":
 				nimdata = self.nimSockets['0']
 				try:
 					if nimdata[0] == "AVL6222":
@@ -569,7 +567,7 @@ class Blindscan(ConfigListScreen, Screen):
 		nimname = nim.friendly_full_description
 
 		self.SundtekScan = "Sundtek DVB-S/S2" in nimname
-		if brand == "vuplus" and "AVL6222" in nimname:
+		if BRAND == "vuplus" and "AVL6222" in nimname:
 			warning_text = _("\nThe second slot of this dual tuner may not support blind scan.")
 		elif self.SundtekScan:
 			warning_text = _("\nYou must use the power adapter.")
@@ -746,7 +744,7 @@ class Blindscan(ConfigListScreen, Screen):
 			except:
 				pass
 			return "vuplus_blindscan", ""
-		if brand == "vuplus" and not self.SundtekScan:
+		if BRAND == "vuplus" and not self.SundtekScan:
 			self.binName, nimName = GetCommand(self.scan_nims.value)
 
 			self.makeNimSocket(nimName)
@@ -925,26 +923,26 @@ class Blindscan(ConfigListScreen, Screen):
 			else:
 				self.session.open(MessageBox, _("Blindscan executable not found '%s'!") % exe_path, MessageBox.TYPE_ERROR)
 				return
-		elif brand in ("azbox", "amiko", "ceryon", "dinobot", "GigaBlue", "ini", "octagon", "uclan", "vuplus", "xtrend"):
-			if brand == "vuplus":
+		elif BRAND in ("azbox", "amiko", "ceryon", "dinobot", "GigaBlue", "ini", "octagon", "uclan", "vuplus", "xtrend"):
+			if BRAND == "vuplus":
 				exe_filename = self.binName
 			else:
 				exe_filename = BinaryBlindscan
 			exe_path = "/usr/bin/%s" % exe_filename
 			if os.path.exists(exe_path):
 				cmd = "%s %d %d %d %d %d %d %d %d" % (exe_filename, temp_start_int_freq, temp_end_int_freq, config.blindscan.start_symbol.value, config.blindscan.stop_symbol.value, tab_pol[pol], tab_hilow[band], self.feid, self.getNimSocket(self.feid))
-				if brand in ("ceryon", "dinobot", "uclan", "octagon", "amiko", "GigaBlue"):
+				if BRAND in ("ceryon", "dinobot", "uclan", "octagon", "amiko", "GigaBlue"):
 					cmd += " %d" % self.is_c_band_scan
-				if brand in ("dinobot", "uclan", "octagon", "amiko", "GigaBlue"):
+				if BRAND in ("dinobot", "uclan", "octagon", "amiko", "GigaBlue"):
 					cmd += " %d" % orb[0]
-				if brand == "azbox":
+				if BRAND == "azbox":
 					self.polsave = tab_pol[pol] # Data returned by the binary is not good we must save polarisation
-				if brand in ("uclan", "octagon", "amiko", "GigaBlue"):
+				if BRAND in ("uclan", "octagon", "amiko", "GigaBlue"):
 					self.adjust_freq = False
 			else:
 				self.session.open(MessageBox, _("Blindscan executable not found '%s'!") % exe_path, MessageBox.TYPE_ERROR)
 				return
-		elif brand == "odin":
+		elif BRAND == "odin":
 			exe_filename = BinaryBlindscan
 			exe_path = "/usr/bin/%s" % exe_filename
 			if os.path.exists(exe_path):
@@ -952,7 +950,7 @@ class Blindscan(ConfigListScreen, Screen):
 			else:
 				self.session.open(MessageBox, _("Blindscan executable not found '%s'!") % exe_path, MessageBox.TYPE_ERROR)
 				return
-		elif brand in ("xcore", "Edision"):
+		elif BRAND in ("xcore", "Edision"):
 			exe_filename = "blindscan"
 			exe_path = "/usr/bin/%s" % exe_filename
 			if os.path.exists(exe_path):
@@ -1139,7 +1137,7 @@ class Blindscan(ConfigListScreen, Screen):
 						"CIRCULARLEFT": parm.Polarisation_CircularLeft,
 						"VERTICAL": parm.Polarisation_Vertical}
 					parm.orbital_position = self.orb_position
-					if brand == "azbox":
+					if BRAND == "azbox":
 						parm.polarisation = self.polsave
 					else:
 						parm.polarisation = pol[data[1]]
@@ -1513,7 +1511,7 @@ class Blindscan(ConfigListScreen, Screen):
 		xml = ['<?xml version="1.0" encoding="iso-8859-1"?>\n\n']
 		xml.append('<!--\n')
 		xml.append('	File created on %s\n' % (strftime("%A, %d of %B %Y, %H:%M:%S")))
-		xml.append('	using %s receiver running Enigma2 image,\n' % (model))
+		xml.append('	using %s receiver running Enigma2 image,\n' % (MODEL))
 		xml.append('	with the blindscan plugin \n\n')
 		xml.append('	Search parameters:\n')
 		xml.append('		%s\n' % (tuner))
