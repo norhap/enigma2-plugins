@@ -132,6 +132,12 @@ msgstr "Importar desde el EPG"
 msgid "Import from Timer"
 msgstr "Importar desde la Programación"
 
+msgid "Include IPTV services"
+msgstr "Incluir canales IPTV"
+
+msgid "Include IPTV services in search, in some cases slows down the searching."
+msgstr "Incluir canales IPTV en la búsqueda, en algunos casos ralentiza la búsqueda."
+
 msgid "Length of History"
 msgstr ""
 
