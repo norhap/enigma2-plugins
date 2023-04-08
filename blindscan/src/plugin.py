@@ -247,6 +247,7 @@ class Blindscan(ConfigListScreen, Screen):
 
 		self.list = []
 		self.status = ""
+		self.onChangedEntry = []
 		self.blindscan_session = None
 		self.tmpstr = ""
 		self.Sundtek_pol = ""

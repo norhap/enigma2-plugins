@@ -332,10 +332,10 @@ class AutoTimer:
 			if not casesensitive:
 				match = match.lower()
 
-			test = []
+			servicesList = []
 			if timer.services or timer.bouquets:
 				if timer.services:
-					test = [(service, 0, -1, -1) for service in timer.services]
+					servicesList = [service for service in timer.services]
 				if timer.bouquets:
 					for bouquet in timer.bouquets:
 						services = serviceHandler.list(eServiceReference(bouquet))
@@ -346,7 +346,9 @@ class AutoTimer:
 									break
 								playable = not (service.flags & (eServiceReference.isMarker | eServiceReference.isDirectory | eServiceReference.isNumberedMarker))
 								if playable:
-									test.append((service.toString(), 0, -1, -1))
+									sref = service.toString()
+									if sref not in servicesList:
+										servicesList.append(sref)
 			else: # Get all bouquets
 				bouquetlist = []
 				if config.usage.multibouquet.value:
@@ -382,13 +384,22 @@ class AutoTimer:
 										break
 									playable = not (service.flags & (eServiceReference.isMarker | eServiceReference.isDirectory | eServiceReference.isNumberedMarker))
 									if playable:
-										test.append((service.toString(), 0, -1, -1))
+										sref = service.toString()
+										if sref not in servicesList:
+											servicesList.append(sref)
 
-			if test:
+			if servicesList:
 				# Get all events
 				#  eEPGCache.lookupEvent( [ format of the returned tuples, ( service, 0 = event intersects given start_time, start_time -1 for now_time), ] )
-				test.insert(0, 'RITBDSE')
-				allevents = epgcache.lookupEvent(test) or []
+				allevents = []
+				for sref in servicesList:
+					lookup = ["RITBDSE", (sref, 0, -1, -1)]
+					try:
+						event = epgcache.lookupEvent(lookup) or []
+					except Exception as e:
+						print("[AutoTimer] wrong event", e)
+					else:
+						allevents += event
 
 				# Filter events
 				for serviceref, eit, name, begin, duration, shortdesc, extdesc in allevents:
@@ -452,6 +463,11 @@ class AutoTimer:
 			#	i = evt.getLinkageService(eserviceref, n-1)
 			#	serviceref = i.toString()
 			#	doLog("[AutoTimer] Serviceref2 %s" % serviceref)
+
+			if end < time():
+				doLog("[AutoTimer] Skipping expired timer")
+				skipped.append((name, begin, end, serviceref, timer.name, getLog()))
+				continue
 
 			# If event starts in less than 60 seconds skip it
 			if begin < time() + 60:
@@ -653,7 +669,7 @@ class AutoTimer:
 					if not rtimer.disabled:
 						if self.checkDoubleTimers(timer, name, rtimer.name, begin, rtimer.begin, end, rtimer.end, serviceref, rtimer.service_ref.ref.toString(), enable_multiple_timer):
 							oldExists = True
-							print("[AutoTimer] We found a timer with same start time, skipping event")
+							doLog("[AutoTimer] We found a timer with same start time, skipping event")
 							break
 						if timer.avoidDuplicateDescription >= 2:
 							if self.checkSimilarity(timer, name, rtimer.name, shortdesc, rtimer.description, extdesc, rtimer.extdesc):
