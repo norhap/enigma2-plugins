@@ -250,7 +250,7 @@ msgid "Enable this to show an informational message at the start and completion 
 msgstr "Questa funzione determina se debba essere mostrato un messaggio all'avvio e al termine di un aggiornamento."
 
 #, fuzzy
-msgid "Enable this to show the EPGRefresh configuration menu in the extension menu."
+msgid "Enable this to show the EPG Refresh configuration menu in the extension menu."
 msgstr "Abilitando questa opzione, sarà possibile accedere alla configurazione di EPGRefresh dal menu estensioni."
 
 msgid "Extend the list of services to refresh by those your AutoTimers use?"
@@ -278,10 +278,10 @@ msgstr ""
 msgid "If \"Run AutoTimer after refresh\" and \"Shutdown after EPG refresh\" enabled and use \"Label series\" for match, set long timeout."
 msgstr ""
 
-msgid "If enabled, show 'EPGRefresh now' in main menu when currently no EPGRefresh is running."
+msgid "If enabled, show 'EPGRefresh now' in the epg menu when currently no EPGRefresh is running."
 msgstr ""
 
-msgid "If enabled, show 'Stop running EPGRefresh' in main menu when EPGPRefresh is running."
+msgid "If enabled, show 'Stop running EPGRefresh' in the epg menu when EPGPRefresh is running."
 msgstr ""
 
 #, fuzzy
@@ -379,7 +379,7 @@ msgstr "Agg. ora"
 msgid "Refresh-EPG / AutoZap"
 msgstr "Aggiornare automaticamente EPG"
 
-msgid "Refreshing"
+msgid "Refresh using"
 msgstr "Aggiornamento in corso"
 
 msgid "Reload EPG"
@@ -466,17 +466,17 @@ msgstr ""
 msgid "Show \"add to EPGRefresh\" in"
 msgstr "aggiungere a EPGRefresh"
 
-msgid "Show 'EPGRefresh now' in main menu"
+msgid "Show 'EPGRefresh now' in the extension menu"
 msgstr ""
 
-msgid "Show 'Stop running EPGRefresh' in main menu"
+msgid "Show 'Stop running EPG Refresh' in the extension menu"
 msgstr ""
 
 #, fuzzy
 msgid "Show entry 'AutoZap' in extensions menu"
 msgstr "Mostrare nel menu estensioni"
 
-msgid "Show entry 'Manually change EPG' in main menu"
+msgid "Show entry 'Manually change EPG' in epg menu"
 msgstr ""
 
 #, fuzzy

@@ -241,7 +241,7 @@ msgstr ""
 msgid "Enable this to show an informational message at the start and completion of the refresh."
 msgstr ""
 
-msgid "Enable this to show the EPGRefresh configuration menu in the extension menu."
+msgid "Enable this to show the EPG Refresh configuration menu in the extension menu."
 msgstr ""
 
 msgid "Extend the list of services to refresh by those your AutoTimers use?"
@@ -270,10 +270,10 @@ msgstr ""
 msgid "If \"Run AutoTimer after refresh\" and \"Shutdown after EPG refresh\" enabled and use \"Label series\" for match, set long timeout."
 msgstr ""
 
-msgid "If enabled, show 'EPGRefresh now' in main menu when currently no EPGRefresh is running."
+msgid "If enabled, show 'EPGRefresh now' in the epg menu when currently no EPGRefresh is running."
 msgstr ""
 
-msgid "If enabled, show 'Stop running EPGRefresh' in main menu when EPGPRefresh is running."
+msgid "If enabled, show 'Stop running EPGRefresh' in the epg menu when EPGPRefresh is running."
 msgstr ""
 
 msgid "If you want to refresh the EPG in background, you can choose the method which best suits your needs here, e.g. hidden, fake recording or regular Picture in Picture."
@@ -371,7 +371,7 @@ msgstr "Osveži sada"
 msgid "Refresh-EPG / AutoZap"
 msgstr "Osveži EPG posle"
 
-msgid "Refreshing"
+msgid "Refresh using"
 msgstr "Osvežavanje"
 
 msgid "Reload EPG"
@@ -459,16 +459,16 @@ msgstr ""
 msgid "Show \"add to EPGRefresh\" in"
 msgstr "Dodaj u  EPG osvežavanje"
 
-msgid "Show 'EPGRefresh now' in main menu"
+msgid "Show 'EPGRefresh now' in the extension menu"
 msgstr ""
 
-msgid "Show 'Stop running EPGRefresh' in main menu"
+msgid "Show 'Stop running EPG Refresh' in the extension menu"
 msgstr ""
 
 msgid "Show entry 'AutoZap' in extensions menu"
 msgstr ""
 
-msgid "Show entry 'Manually change EPG' in main menu"
+msgid "Show entry 'Manually change EPG' in epg menu"
 msgstr ""
 
 msgid "Show in extensions menu"
