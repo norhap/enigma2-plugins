@@ -20,7 +20,7 @@
 
 from __future__ import print_function, absolute_import, division
 Version = "V5.0-r14"
-from . import _
+from .__init__ import _
 from calendar import Calendar, mdays, weekday, month_name, weekheader
 from codecs import decode
 from colorsys import rgb_to_hls, hls_to_rgb
