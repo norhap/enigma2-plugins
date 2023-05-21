@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-13 18:34+0200\n"
+"POT-Creation-Date: 2023-05-13 18:17+0200\n"
 "PO-Revision-Date: 2015-01-20 16:12+0200\n"
 "Last-Translator: Dima73 <Dima-73@inbox.lv>\n"
 "Language-Team: openli.org\n"
@@ -18,8 +18,8 @@ msgstr "   (Авто переключение)"
 #, python-format
 msgid "%d:%02d min"
 msgid_plural "%d:%02d mins"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d:%02d мин."
+msgstr[1] "%d:%02d мин."
 
 #, python-format
 msgid "... %d more service"
@@ -130,9 +130,6 @@ msgstr "Этот параметр не рекомендуется использ
 msgid "Configure EPG save interval, if enabled."
 msgstr "Каждое сохранение затормаживает работу ресивера на несколько секунд. Не выбирайте слишком маленький период времени."
 
-msgid "Congratulations"
-msgstr "Поздравляю"
-
 msgid "Create a backup cache file, after manually or automatically saving EPG."
 msgstr "Создавать файл бекапа кеша данных, после ручного или автоматического сохранения EPG."
 
@@ -157,6 +154,9 @@ msgstr "Таймаут (в секундах) для 'Авто переключе
 msgid "EPG Cache Check"
 msgstr "Проверка кеша EPG"
 
+msgid "EPG Refresh"
+msgstr "Обновление EPG"
+
 msgid "EPG cache file filename"
 msgstr "Название файла данных EPG"
 
@@ -172,23 +172,17 @@ msgstr "Начало авто-старта обновления EPG  не поз
 msgid "EPG refresh finished."
 msgstr "Обновление EPG закончено."
 
+msgid "EPG refresh now"
+msgstr "Обновить EPG сейчас"
+
 msgid "EPG refresh started in background."
 msgstr "Обновление EPG началось в фоновом режиме."
 
 msgid "EPG refresh starts scanning channels."
 msgstr "Обновление EPG начинает сканирование каналов."
 
-msgid "EPG-refresh now"
-msgstr "Обновить EPG сейчас"
-
-msgid "EPGRefresh"
-msgstr "Обновление EPG"
-
 msgid "EPGRefresh Configuration"
 msgstr "Конфигурация обновления EPG"
-
-msgid "EPGRefresh Help"
-msgstr "EPGRefresh - помощь"
 
 msgid "EPGRefresh Services"
 msgstr "Сервисы обновления EPG"
@@ -211,9 +205,6 @@ msgstr "Редактировать сервисы для обновления"
 msgid "Editing"
 msgstr "Редактировать"
 
-msgid "Editing the service list"
-msgstr "Редактировать список сервисов"
-
 msgid "Enable automatic EPG save interval."
 msgstr "Автоматическое сохранение EPG в текущий файл кеша, через заданное время. Может быть полезно при внезапных отключениях электричества."
 
@@ -229,7 +220,7 @@ msgstr "Если эта опция включена, обновление EPG б
 msgid "Enable this to show an informational message at the start and completion of the refresh."
 msgstr "Этот параметр определяет, будет ли показано информационное сообщение при начале и завершении обновления."
 
-msgid "Enable this to show the EPG Refresh configuration menu in the extension menu."
+msgid "Enable this to show the EPG Refresh configuration menu in the extensions menu."
 msgstr "Если включено, то плагин обновления EPG будет показан в меню дополнений."
 
 msgid "Extend the list of services to refresh by those your AutoTimers use?"
@@ -256,11 +247,11 @@ msgstr "Пятница"
 msgid "If \"Run AutoTimer after refresh\" and \"Shutdown after EPG refresh\" enabled and use \"Label series\" for match, set long timeout."
 msgstr "Если \"Запустить Автотаймер после обновления\" и \"Глубокое ожидание после обновления EPG\" включены и используются \"Ярлыки сериалов\" для совпадений, установите большой таймаут."
 
-msgid "If enabled, show 'EPGRefresh now' in the epg menu when currently no EPGRefresh is running."
-msgstr "Если включено, то 'Обновить EPG сейчас' будет показано в главном меню, если в это время обновление не запущено."
+msgid "If enabled, show 'EPGRefresh now' in the extensions menu when currently no EPG Refresh is running."
+msgstr "Если включено, то 'Обновить EPG сейчас' будет показано в меню дополнений, если в это время обновление не запущено."
 
-msgid "If enabled, show 'Stop running EPGRefresh' in the epg menu when EPGPRefresh is running."
-msgstr "Если включено, то 'Остановить обновление EPG' будет показано в главном меню, если в это время обновление запущено."
+msgid "If enabled, show 'Stop running EPGRefresh' in the extensions menu when EPG Refresh is running."
+msgstr "Если включено, то 'Остановить обновление EPG' будет показано в меню дополнений, если в это время обновление запущено."
 
 msgid "If you want to refresh the EPG in background, you can choose the method which best suits your needs here, e.g. hidden, fake recording or regular Picture in Picture."
 msgstr "Если вы хотите обновлять EPG в фоновом режиме, вы можете выбрать метод, который наилучшим образом соответствует вашим потребностям. Варианты - в режиме ожидания, имитация записи, скрытая или стандартная функция PiP."
@@ -284,8 +275,8 @@ msgstr "Автоматическое восстановление  из бека
 msgid "Main Picture"
 msgstr "основной экран"
 
-msgid "Manual EPG"
-msgstr "Ручное EPG"
+msgid "Manual EPG refresh"
+msgstr "Ручное обновление EPG"
 
 msgid "Manually clear EPG (choose method)."
 msgstr "Варианты ручной очистки текущего кеша данных EPG."
@@ -341,6 +332,12 @@ msgstr "Нажмите кнопку OK, если вы хотите открыт�
 msgid "Really close without saving settings?"
 msgstr "Действительно выйти, не сохраняя настройки?"
 
+msgid "Really shutdown now?"
+msgstr "Выключить сейчас?"
+
+msgid "Refresh EPG / AutoZap"
+msgstr "Обновление-EPG / Авто переключение"
+
 msgid "Refresh EPG automatically"
 msgstr "Автоматическое обновление EPG"
 
@@ -349,9 +346,6 @@ msgstr "Вариант обновления EPG"
 
 msgid "Refresh now"
 msgstr "Обновить сейчас"
-
-msgid "Refresh-EPG / AutoZap"
-msgstr "Обновление-EPG / Авто переключение"
 
 msgid "Refresh using"
 msgstr "Обновлять"
@@ -437,19 +431,19 @@ msgstr "Настройки сохранения / загрузки EPG"
 msgid "Show \"add to EPGRefresh\" in"
 msgstr "Показать \"добавить к обновлению EPG\" в"
 
-msgid "Show 'EPGRefresh now' in the extension menu"
-msgstr "Показать 'Обновить EPG сейчас' в главном меню"
+msgid "Show 'EPGRefresh now' in the extensions menu"
+msgstr "Показать 'Обновить EPG сейчас' в меню дополнений"
 
-msgid "Show 'Stop running EPG Refresh' in the extension menu"
-msgstr "Показать 'Остановить обновление EPG' в главном меню"
+msgid "Show 'Stop running EPG Refresh' in the extensions menu"
+msgstr "Показать 'Остановить обновление EPG' в меню дополнений"
 
-msgid "Show entry 'AutoZap' in extensions menu"
+msgid "Show entry 'AutoZap' in the extensions menu"
 msgstr "Показать 'Авто переключение' в меню дополнений"
 
-msgid "Show entry 'Manually change EPG' in epg menu"
-msgstr "Показать 'Ручные изменения EPG' в главном меню"
+msgid "Show entry 'Manually change EPG' in the extensions menu"
+msgstr "Показать 'Ручные изменения EPG' в меню дополнений"
 
-msgid "Show in extensions menu"
+msgid "Show in the extensions menu"
 msgstr "Показать обновление EPG в меню дополнений"
 
 msgid "Show popup when refresh starts or ends"
@@ -467,17 +461,20 @@ msgstr "Объем: "
 msgid "Skip protected Services"
 msgstr "Пропускать защищенные сервисы"
 
-msgid "Stop Running EPG-refresh"
+msgid "Start EPG refresh"
+msgstr "Старт обновления EPG"
+
+msgid "Stop EPG refresh"
 msgstr "Остановить обновление EPG"
 
+msgid "Stop Running EPG refresh"
+msgstr "Остановить запущенное обновление EPG"
+
 msgid "Stop Running EPG-refresh?\n"
-msgstr "Остановить обновление EPG?\n"
+msgstr "Остановить запущенное обновление EPG?\n"
 
 msgid "Sunday"
 msgstr "Воскресенье"
-
-msgid "The configuration menu"
-msgstr "Меню конфигурации"
 
 msgid "The duration that will be waited for the receiver to go into standby."
 msgstr "Если ресивер не находится в режиме ожидания, это продолжительность времени, по окончании которого обновление EPG попробует повторить попытку обновления."
@@ -488,27 +485,11 @@ msgstr "Такие же функции используются в Меню -> �
 msgid "The same functions are used in plugin EPGD!!"
 msgstr "Такие же функции используются в плагине EPGD!"
 
-msgid ""
-"This help screen is supposed to give you a quick look at everything EPGRefresh has to offer.\n"
-"You can abort it at any time by pressing the RED or EXIT button on your remote control or bring it up at a later point by pressing the HELP button from the configuration menu (more on that later).\n"
-"\n"
-"\n"
-"But you really should consider to take the few minutes it takes to read these help pages."
-msgstr ""
-
 msgid "This is the duration each service will be shown in AutoZap mode."
 msgstr "Это продолжительность для каждого сервиса в режиме AutoZap."
 
 msgid "This is the duration each service/channel will be tuned to during a refresh."
 msgstr "Продолжительность времени нахождения на канале до переключения на следующий, во время обновления."
-
-msgid ""
-"This is the entry point of EPGRefresh. From this menu you can configure every aspect of the plugin and start a manual refresh of the EPG.\n"
-"The configuration options each have an explaination which is supposed to help you to understand their effects better. Please give reading them a try, they can save you a lot of time.\n"
-"\n"
-"Using the YELLOW button you can start a refresh manually and the INFO button brings up the date the last refresh was completed successfully.\n"
-"The BLUE key opens the service editor (next page)."
-msgstr ""
 
 msgid ""
 "This might have been an automated bootup to refresh the EPG. For this to happen it is recommended to put the receiver to Standby.\n"
@@ -538,20 +519,8 @@ msgstr "Включать из глубокого ожидания для обн�
 msgid "Wednesday"
 msgstr "Среда"
 
-msgid "Welcome to EPGRefresh"
-msgstr "Добро пожаловать в EPGRefresh"
-
 msgid "Whether the receiver should go into deep standby after refresh is completed."
 msgstr "Этот параметр определяет, будет ли ресивер переведен в режим глубокого ожидания, когда обновление будет завершено."
-
-msgid ""
-"While the screen does not immediately show it, it does have a lot to offer. The topmost line allows you to choose between the editor for channels and bouquets and the following lines contain the channels/bouquets you chose to refresh.\n"
-"\n"
-"You can use the BLUE button to add a new entry to the list or the YELLOW button to remove an existing one.\n"
-"\n"
-"\n"
-"For most people it should be sufficient to add the \"Favourites\" bouquet by selecting \"Bouquets\" in the first line and by adding it using the BLUE button."
-msgstr ""
 
 msgid ""
 "You may not use this settings!\n"
@@ -560,14 +529,7 @@ msgstr ""
 "Вы не можете использовать эти настройки!\n"
 "Хотя бы один день должен быть активирован!"
 
-msgid ""
-"You now know how to do your first steps in EPGRefresh.\n"
-"\n"
-"As a final note I want to hint you at the fact that this plugin will not do anything on its own without YOU telling it to. So if you want the refresh to happen automatically in the background you need to configure the plugin to do so.\n"
-"This was not done to cause you any inconvenience but rather to give you the freedom of choice."
-msgstr ""
-
-msgid "add service to EPGRefresh"
+msgid "add service to EPG Refresh"
 msgstr "добавить сервис к обновлению EPG"
 
 msgid "add to EPGRefresh"
@@ -588,9 +550,6 @@ msgstr "меню событий"
 msgid "event info / channel selection"
 msgstr "меню событий / селектор каналов"
 
-msgid "manual save/load EPG"
-msgstr "Ручная перезагрузка EPG"
-
 msgid "never"
 msgstr "никогда"
 
@@ -599,6 +558,3 @@ msgstr "нигде"
 
 msgid "only 'epgrefresh' wakeup"
 msgstr "только при включении от 'epgrefresh'"
-
-msgid "Really shutdown now?"
-msgstr "Выключить сейчас?"

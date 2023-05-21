@@ -71,8 +71,8 @@ class EPGSaveLoadConfiguration(Screen, ConfigListScreen):
 			getConfigListEntry(_("EPG cache file filename"), config.plugins.epgrefresh_extra.epgcachefilename, _("Select the file name for the EPG cache file.")),
 			getConfigListEntry(_("Create backup when saving EPG"), config.plugins.epgrefresh_extra.save_backup, _("Create a backup cache file, after manually or automatically saving EPG.")),
 			getConfigListEntry(_("Automatically restore EPG backup on boot"), config.plugins.epgrefresh_extra.autorestore_backup, _("Load EPG from backup cache file when booting.")),
-			getConfigListEntry(_("Show entry 'Manually change EPG' in epg menu"), config.plugins.epgrefresh_extra.main_menu, _("Restart enigma2 to effectuate.")),
-			getConfigListEntry(_("Show entry 'AutoZap' in extensions menu"), config.plugins.epgrefresh_extra.show_autozap, _("Enable automatic zapping of all services in the current services list.")),
+			getConfigListEntry(_("Show entry 'Manually change EPG' in the extensions menu"), config.plugins.epgrefresh_extra.main_menu, _("Restart enigma2 to effectuate.")),
+			getConfigListEntry(_("Show entry 'AutoZap' in the extensions menu"), config.plugins.epgrefresh_extra.show_autozap, _("Enable automatic zapping of all services in the current services list.")),
 			getConfigListEntry(_("Duration to show each service (in seconds) for 'AutoZap'"), config.plugins.epgrefresh_extra.timeout_autozap, _("This is the duration each service will be shown in AutoZap mode.")),
 		]
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changed)
@@ -331,13 +331,14 @@ class EPGSaveLoadConfiguration(Screen, ConfigListScreen):
 
 class ManualEPGlist(Screen):
 	skin = """
-		<screen position="center,center" size="380,140" title="%s">
+		<screen position="center,center" size="380,140" title="Select options">
 			<widget name="list" position="5,5" size="370,130" />
-		</screen>""" % _("Select options")
+		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
+		self.setTitle(_("Select options"))
 		self["list"] = MenuList([])
 		self["actions"] = ActionMap(["OkCancelActions"], {"ok": self.okClicked, "cancel": self.close}, -1)
 		self.onLayoutFinish.append(self.showMenu)

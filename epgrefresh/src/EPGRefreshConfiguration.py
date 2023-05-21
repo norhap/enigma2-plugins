@@ -24,6 +24,9 @@ from Components.NimManager import nimmanager
 from enigma import getDesktop
 from Screens.MessageBox import MessageBox
 
+# Plugins
+from Components.PluginComponent import plugins
+
 
 VERSION = "1.9"
 
@@ -155,9 +158,9 @@ class EPGRefreshConfiguration(Screen, ConfigListScreen):
 		self.list.append((_("Show popup when refresh starts or ends"), config.plugins.epgrefresh.enablemessage, _("Enable this to show an informational message at the start and completion of the refresh.")))
 		if config.ParentalControl.servicepin[0].value and config.ParentalControl.servicepinactive.value:
 			self.list.append((_("Skip protected Services"), config.plugins.epgrefresh.skipProtectedServices, _("Select mode the refresh for services/bouquets parental control.")))
-		self.list.append((_("Show 'EPGRefresh now' in the extension menu"), config.plugins.epgrefresh.start_on_mainmenu, _("If enabled, show 'EPGRefresh now' in the extensions menu when currently no EPG Refresh is running.")))
-		self.list.append((_("Show 'Stop running EPG Refresh' in the extension menu"), config.plugins.epgrefresh.stop_on_mainmenu, _("If enabled, show 'Stop running EPGRefresh' in the extensions menu when EPG Refresh is running.")))
-		self.list.append((_("Show in extensions menu"), config.plugins.epgrefresh.show_in_extensionsmenu, _("Enable this to show the EPG Refresh configuration menu in the extension menu.")))
+		self.list.append((_("Show 'EPGRefresh now' in the extensions menu"), config.plugins.epgrefresh.start_on_mainmenu, _("If enabled, show 'EPGRefresh now' in the extensions menu when currently no EPG Refresh is running.")))
+		self.list.append((_("Show 'Stop running EPG Refresh' in the extensions menu"), config.plugins.epgrefresh.stop_on_mainmenu, _("If enabled, show 'Stop running EPGRefresh' in the extensions menu when EPG Refresh is running.")))
+		self.list.append((_("Show in the extensions menu"), config.plugins.epgrefresh.show_in_extensionsmenu, _("Enable this to show the EPG Refresh configuration menu in the extensions menu.")))
 		self.list.append((_("Show \"add to EPGRefresh\" in"), config.plugins.epgrefresh.add_to_refresh, _("Select this item to add services to the EPGRefresh.")))
 		try:
 			# try to import autotimer module to check for its existence
@@ -298,6 +301,7 @@ class EPGRefreshConfiguration(Screen, ConfigListScreen):
 		epgrefresh.services = (set(self.services[0]), set(self.services[1]))
 		epgrefresh.saveConfiguration()
 		config.plugins.epgrefresh.save()
+		plugins.reloadPlugins()
 		self.close(self.session)
 
 	def checkAnswer(self, answer):
