@@ -8,6 +8,6 @@
 <widget source="movielist" render="Listbox" position="3,3" size="1100,520" scrollbarMode="showOnDemand">
 <convert type="TemplatedMultiContent">{"template": [ MultiContentEntryText(pos=(10,0), size=(945,60), font=0, text=0, flags=RT_HALIGN_LEFT | RT_HALIGN_CENTER), MultiContentEntryText(pos=(970,0), size=(120,60), font=0, text=4, flags=RT_HALIGN_LEFT | RT_HALIGN_CENTER) ], "fonts": [gFont("Regular",30)], "itemHeight": 40 }</convert>
 </widget>
-<widget name="handlung" position="3,528" size="1100,300" font="Regular; 30" halign="center"/>
-<widget name="cover" position="1107,5" size="615,820" alphatest="blend"/>
+<widget name="handlung" position="3,528" size="1100,300" font="Regular; 30" horizontalAlignment="center"/>
+<widget name="cover" position="1107,5" size="615,820" alphaTest="blend"/>
 </screen>

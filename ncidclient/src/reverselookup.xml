@@ -510,7 +510,7 @@
 	<country code="+30">
 		<website name="whitepages.gr" url="http://www.whitepages.gr/en/results.aspx" prefix="" post="x_tel=$NUMBER">
 			<entry>
-				<name>&lt;td\sclass=&quot;text-black&quot;\sheight=&quot;46&quot;\svalign=&quot;top&quot;\salign=&quot;left&quot;\s?&gt;&lt;b&gt;([^&lt;]*)&lt;</name>
+				<name>&lt;td\sclass=&quot;text-black&quot;\sheight=&quot;46&quot;\sverticalAlignment=&quot;top&quot;\salign=&quot;left&quot;\s?&gt;&lt;b&gt;([^&lt;]*)&lt;</name>
 				<street>reslist_ctl01_straddr[^&gt;]*&gt;([^&lt;]*)&lt;</street>
 				<city>reslist_ctl01_district[^&gt;]*&gt;([^&lt;]*)&lt;</city>
 				<zipcode>reslist_ctl01_postal[^&gt;]*&gt;([^&lt;]*)&lt;</zipcode>
@@ -704,9 +704,9 @@
 		<website name="business-ua.com" url="http://business-ua.com/advsearch.phtml?aphone=$NUMBER&amp;adv_sr=10" prefix="">
 			<entry>
 				<name>&lt;p\sclass=pt1>&lt;b&gt;([^&lt;]*)&lt;/b&gt;[^\(]*\(0$AREACODE\)\s$NUMBER&lt;/p&gt;</name>
-				<street>&lt;p class=small&gt;\d*,\s[^,]*,([^&lt;]*)&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\svalign=center&gt;&lt;p\sclass=small&gt;\(0$AREACODE\)\s$NUMBER&lt;/p&gt;</street>
-				<city>&lt;p class=small&gt;\d*,\s([^,]*),[^&lt;]*&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\svalign=center&gt;&lt;p\sclass=small&gt;\(0$AREACODE\)\s$NUMBER&lt;/p&gt;</city>
-				<zipcode>&lt;p class=small&gt;(\d*),[^&lt;]*&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\svalign=center&gt;&lt;p\sclass=small&gt;\(0$AREACODE\)\s$NUMBER&lt;/p&gt;</zipcode>
+				<street>&lt;p class=small&gt;\d*,\s[^,]*,([^&lt;]*)&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\sverticalAlignment=center&gt;&lt;p\sclass=small&gt;\(0$AREACODE\)\s$NUMBER&lt;/p&gt;</street>
+				<city>&lt;p class=small&gt;\d*,\s([^,]*),[^&lt;]*&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\sverticalAlignment=center&gt;&lt;p\sclass=small&gt;\(0$AREACODE\)\s$NUMBER&lt;/p&gt;</city>
+				<zipcode>&lt;p class=small&gt;(\d*),[^&lt;]*&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\sverticalAlignment=center&gt;&lt;p\sclass=small&gt;\(0$AREACODE\)\s$NUMBER&lt;/p&gt;</zipcode>
 			</entry>
 		</website>
 	</country>
@@ -714,9 +714,9 @@
 		<website name="telekom.yu" url="http://www.telekom.yu/WhitePages/SearchPage.asp" prefix="" nexturl="http://www.telekom.yu/WhitePages/ResultPage.asp" post="Telefon=3444169&amp;Ulica=&amp;MG=011&amp;Ime=&amp;Broj=&amp;Mesto=&amp;Prezime=&amp;submit.x=38&amp;submit.y=12" hidden="(wrzlgrmpf)" cookie="\[([^;]*);">
 			<entry>
 				<name>&lt;p\sclass=pt1>&lt;b&gt;([^&lt;]*)&lt;/b&gt;[^\(]*\(0$AREACODE\)\s$NUMBER&lt;/p&gt;</name>
-				<street>&lt;p class=small&gt;\d*,\s[^,]*,([^&lt;]*)&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\svalign=center&gt;&lt;p\sclass=small&gt;\(0$AREACODE\)\s$NUMBER&lt;/p&gt;</street>
-				<city>&lt;p class=small&gt;\d*,\s([^,]*),[^&lt;]*&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\svalign=center&gt;&lt;p\sclass=small&gt;\(0$AREACODE\)\s$NUMBER&lt;/p&gt;</city>
-				<zipcode>&lt;p class=small&gt;(\d*),[^&lt;]*&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\svalign=center&gt;&lt;p\sclass=small&gt;\(0$AREACODE\)\s$NUMBER&lt;/p&gt;</zipcode>
+				<street>&lt;p class=small&gt;\d*,\s[^,]*,([^&lt;]*)&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\sverticalAlignment=center&gt;&lt;p\sclass=small&gt;\(0$AREACODE\)\s$NUMBER&lt;/p&gt;</street>
+				<city>&lt;p class=small&gt;\d*,\s([^,]*),[^&lt;]*&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\sverticalAlignment=center&gt;&lt;p\sclass=small&gt;\(0$AREACODE\)\s$NUMBER&lt;/p&gt;</city>
+				<zipcode>&lt;p class=small&gt;(\d*),[^&lt;]*&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\sverticalAlignment=center&gt;&lt;p\sclass=small&gt;\(0$AREACODE\)\s$NUMBER&lt;/p&gt;</zipcode>
 			</entry>
 		</website>
 	</country>
@@ -744,9 +744,9 @@
 		<website name="bhtelecom.ba" url="http://www.bhtelecom.ba/telefon_imenik.html" prefix="" hidden="id=&quot;_uqid&quot;\svalue=&quot;([^&quot;]*)&quot;$id=&quot;_cdt&quot;\svalue=&quot;([^&quot;]*)&quot;$" post="di=033&amp;br=215277&amp;btnSearch=Trazi&amp;_uqid=$HIDDEN1&amp;_cdt=$HIDDEN2&amp;_hsh=%23%23%23HSH%23%23%23" nexturl="http://www.bhtelecom.ba/index.php?id=536&amp;a=search" cookie="\[([^]]*)\]">
 			<entry>
 				<name>&lt;p\sclass=pt1>&lt;b&gt;([^&lt;]*)&lt;/b&gt;[^\(]*\($AREACODE\)\s$NUMBER&lt;/p&gt;</name>
-				<street>&lt;p class=small&gt;\d*,\s[^,]*,([^&lt;]*)&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\svalign=center&gt;&lt;p\sclass=small&gt;\($AREACODE\)\s$NUMBER&lt;/p&gt;</street>
-				<city>&lt;p class=small&gt;\d*,\s([^,]*),[^&lt;]*&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\svalign=center&gt;&lt;p\sclass=small&gt;\($AREACODE\)\s$NUMBER&lt;/p&gt;</city>
-				<zipcode>&lt;p class=small&gt;(\d*),[^&lt;]*&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\svalign=center&gt;&lt;p\sclass=small&gt;\($AREACODE\)\s$NUMBER&lt;/p&gt;</zipcode>
+				<street>&lt;p class=small&gt;\d*,\s[^,]*,([^&lt;]*)&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\sverticalAlignment=center&gt;&lt;p\sclass=small&gt;\($AREACODE\)\s$NUMBER&lt;/p&gt;</street>
+				<city>&lt;p class=small&gt;\d*,\s([^,]*),[^&lt;]*&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\sverticalAlignment=center&gt;&lt;p\sclass=small&gt;\($AREACODE\)\s$NUMBER&lt;/p&gt;</city>
+				<zipcode>&lt;p class=small&gt;(\d*),[^&lt;]*&lt;/p&gt;&lt;/td&gt;&lt;td colspan=5\swidth=90\salign=left\sverticalAlignment=center&gt;&lt;p\sclass=small&gt;\($AREACODE\)\s$NUMBER&lt;/p&gt;</zipcode>
 			</entry>
 		</website>
 	</country>

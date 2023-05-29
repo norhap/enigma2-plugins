@@ -1,6 +1,6 @@
 <skin>
 	<screen name="SummaryTemplate">
-		<widget source="global.CurrentTime" render="PixmapLcd4linux" position="fill" size="$w$,$h$" alphatest="blend" />
+		<widget source="global.CurrentTime" render="PixmapLcd4linux" position="fill" size="$w$,$h$" alphaTest="blend" />
 	</screen>
 
 <!--L4L01 On-->

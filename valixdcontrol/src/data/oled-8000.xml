@@ -20,53 +20,53 @@
 
 	<!-- ########## Summarys ##########  -->
 	<screen name="InfoBarSummary" position="0,0" size="132,64">
-		<widget font="OLED;15" halign="center" position="1,0" render="Label" size="130,38" source="session.CurrentService">
+		<widget font="OLED;15" horizontalAlignment="center" position="1,0" render="Label" size="130,38" source="session.CurrentService">
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget borderWidth="1" position="3,36" render="Progress" size="126,4" source="session.Event_Now">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget font="Regular;20" halign="left" position="26,40" render="Label" size="106,24" source="global.CurrentTime">
+		<widget font="Regular;20" horizontalAlignment="left" position="26,40" render="Label" size="106,24" source="global.CurrentTime">
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
 	</screen>
 	
 	<screen name="ChannelSelection_summary" position="0,0" size="132,64">
-		<widget font="OLED;15" halign="center" position="1,0" render="Label" size="130,38" source="parent.ServiceEvent">
+		<widget font="OLED;15" horizontalAlignment="center" position="1,0" render="Label" size="130,38" source="parent.ServiceEvent">
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget borderWidth="1" position="3,36" render="Progress" size="126,4" source="parent.ServiceEvent">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget font="Regular;20" halign="left" position="26,40" render="Label" size="106,24" source="global.CurrentTime">
+		<widget font="Regular;20" horizontalAlignment="left" position="26,40" render="Label" size="106,24" source="global.CurrentTime">
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
 	</screen>
 	
 	<screen name="MenuSummary" position="0,0" size="132,64">
-		<widget font="Regular;16" halign="center" position="6,0" render="Label" size="120,32" source="parent.title" valign="center"/>
-		<widget font="Regular;16" halign="center" position="6,32" render="Label" size="120,32" source="parent.menu" valign="center">
+		<widget font="Regular;16" horizontalAlignment="center" position="6,0" render="Label" size="120,32" source="parent.title" verticalAlignment="center"/>
+		<widget font="Regular;16" horizontalAlignment="center" position="6,32" render="Label" size="120,32" source="parent.menu" verticalAlignment="center">
 			<convert type="StringListSelection"/>
 		</widget>
 	</screen>
 	
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="132,64">
-		<widget font="OLED;14" halign="center" position="1,0" render="Label" size="130,38" source="session.CurrentService">
+		<widget font="OLED;14" horizontalAlignment="center" position="1,0" render="Label" size="130,38" source="session.CurrentService">
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget borderWidth="1" position="3,36" render="Progress" size="126,4" source="session.CurrentService">
 			<convert type="ServicePosition">Position</convert>
 		</widget>
-		<widget font="Regular;20" halign="left" position="26,40" render="Label" size="106,20" source="global.CurrentTime">
+		<widget font="Regular;20" horizontalAlignment="left" position="26,40" render="Label" size="106,20" source="global.CurrentTime">
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
 	</screen>
 	
 	<screen name="StandbySummary" position="0,0" size="132,64">
-		<widget font="Regular;26" halign="center" position="0,0" render="Label" size="132,40" source="global.CurrentTime" valign="center">
+		<widget font="Regular;26" horizontalAlignment="center" position="0,0" render="Label" size="132,40" source="global.CurrentTime" verticalAlignment="center">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<widget font="Regular;16" halign="center" position="0,41" render="Label" size="132,23" source="global.CurrentTime">
+		<widget font="Regular;16" horizontalAlignment="center" position="0,41" render="Label" size="132,23" source="global.CurrentTime">
 			<convert type="vConvClockToText">LocaleKurz:%w %d %m</convert>
 		</widget>
 	</screen>
