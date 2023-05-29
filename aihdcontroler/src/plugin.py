@@ -70,8 +70,8 @@ def Plugins(**kwargs):
 class AIHDsetup(ConfigListScreen, Screen):
 	skin = """
 		<screen name="AIHDsetup" position="center,center" size="600,340" title="Ai.HD Controler">
-			<eLabel font="Regular;20" foregroundColor="#00ff4A3C" halign="center" position="20,308" size="120,26" text="Cancel"/>
-			<eLabel font="Regular;20" foregroundColor="#0056C856" halign="center" position="165,308" size="120,26" text="Save"/>
+			<eLabel font="Regular;20" foregroundColor="#00ff4A3C" horizontalAlignment="center" position="20,308" size="120,26" text="Cancel"/>
+			<eLabel font="Regular;20" foregroundColor="#0056C856" horizontalAlignment="center" position="165,308" size="120,26" text="Save"/>
 			<widget name="config" position="5,5" scrollbarMode="showOnDemand" size="590,300"/>
 		</screen>"""
 

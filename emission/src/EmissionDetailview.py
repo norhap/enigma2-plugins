@@ -17,18 +17,18 @@ from . import EmissionBandwidth
 
 class EmissionDetailview(Screen, HelpableScreen):
 	skin = """<screen name="EmissionDetailview" title="Torrent View" position="75,75" size="565,450">
-		<ePixmap position="0,0" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-		<ePixmap position="140,0" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-		<ePixmap position="280,0" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-		<ePixmap position="420,0" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<ePixmap position="0,0" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on" />
+		<ePixmap position="140,0" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on" />
+		<ePixmap position="280,0" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphaTest="on" />
+		<ePixmap position="420,0" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphaTest="on" />
+		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 		<eLabel position="450,45" text="DL: " size="30,20" font="Regular;18" />
-		<widget source="downspeed" render="Label" position="480,45" size="85,20" halign="right" font="Regular;18" />
+		<widget source="downspeed" render="Label" position="480,45" size="85,20" horizontalAlignment="right" font="Regular;18" />
 		<eLabel position="450,67" text="UL: " size="30,20" font="Regular;18" transparent="1" />
-		<widget source="upspeed" render="Label" position="480,67" size="85,20" halign="right" font="Regular;18" />
+		<widget source="upspeed" render="Label" position="480,67" size="85,20" horizontalAlignment="right" font="Regular;18" />
 		<widget source="name" render="Label" position="5,45" size="445,20" font="Regular;18" />
 		<widget source="peers" render="Label" position="5,67" size="445,20" font="Regular;18" />
 		<!-- XXX: the actual uri might end up in the next line, this sucks :-) -->
@@ -36,7 +36,7 @@ class EmissionDetailview(Screen, HelpableScreen):
 		<widget source="private" render="Label" position="5,113" size="555,20" font="Regular;18" />
 		<widget source="eta" render="Label" position="5,170" size="555,20" font="Regular;18" />
 		<widget source="progress_text" render="Label" position="5,195" size="400,20" font="Regular;18" />
-		<widget source="ratio" render="Label" position="410,195" size="150,20" font="Regular;18" halign="right" />
+		<widget source="ratio" render="Label" position="410,195" size="150,20" font="Regular;18" horizontalAlignment="right" />
 		<widget source="progress" render="Progress" position="5,220" size="555,6" />
 		<widget source="files_text" render="Label" position="5,230" size="100,20" font="Regular;18" />
 		<widget source="files" render="Listbox" position="0,255" size="566,185" scrollbarMode="showAlways">

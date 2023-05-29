@@ -27,22 +27,22 @@ sz_w = getDesktop(0).size().width()
 
 WerbeZapperIcon = """
 		<screen name="WerbeZapperIndicator" title="WerbeZapper Icon" flags="wfNoBorder" position="550,50" size="150,30" zPosition="%s" backgroundColor="#31000000" >
-			<widget name="icon_text" font="Regular;20" position="0,0" zPosition="1" valign="center" halign="center" size="150,30" backgroundColor="#31000000" transparent="1" />
+			<widget name="icon_text" font="Regular;20" position="0,0" zPosition="1" verticalAlignment="center" horizontalAlignment="center" size="150,30" backgroundColor="#31000000" transparent="1" />
 		</screen>""" % (config.werbezapper.z.value)
 
 WerbeZapperIcon1 = """
 		<screen name="WerbeZapperIndicator" title="WerbeZapper Icon" flags="wfNoBorder" position="550,50" size="210,40" zPosition="%s" backgroundColor="#31000000" >
-			<widget name="icon_text" font="Regular;17" position="0,0" zPosition="1" valign="center" halign="center" size="210,40" backgroundColor="#31000000" transparent="1" />
+			<widget name="icon_text" font="Regular;17" position="0,0" zPosition="1" verticalAlignment="center" horizontalAlignment="center" size="210,40" backgroundColor="#31000000" transparent="1" />
 		</screen>""" % (config.werbezapper.z.value)
 
 WerbeZapperIconFullHD = """
 		<screen name="WerbeZapperIndicator" title="WerbeZapper Icon" flags="wfNoBorder" position="550,50" size="300,60" zPosition="%s" backgroundColor="#31000000" >
-			<widget name="icon_text" font="Regular;40" position="0,0" zPosition="1" valign="center" halign="center" size="300,60" backgroundColor="#31000000" transparent="1" />
+			<widget name="icon_text" font="Regular;40" position="0,0" zPosition="1" verticalAlignment="center" horizontalAlignment="center" size="300,60" backgroundColor="#31000000" transparent="1" />
 		</screen>""" % (config.werbezapper.z.value)
 
 WerbeZapperIconFullHD1 = """
 		<screen name="WerbeZapperIndicator" title="WerbeZapper Icon" flags="wfNoBorder" position="550,50" size="420,80" zPosition="%s" backgroundColor="#31000000" >
-			<widget name="icon_text" font="Regular;34" position="0,0" zPosition="1" valign="center" halign="center" size="420,80" backgroundColor="#31000000" transparent="1" />
+			<widget name="icon_text" font="Regular;34" position="0,0" zPosition="1" verticalAlignment="center" horizontalAlignment="center" size="420,80" backgroundColor="#31000000" transparent="1" />
 		</screen>""" % (config.werbezapper.z.value)
 
 
@@ -553,10 +553,10 @@ class WerbeZapper(Screen):
 class WerbezapperSettings(Screen, ConfigListScreen):
 	skin = """<screen position="center,center" size="610,350" title="WerbezapperSettings" backgroundColor="#31000000" >
 		<widget name="config" position="10,10" size="595,300" zPosition="1" transparent="0" backgroundColor="#31000000" scrollbarMode="showOnDemand" />
-		<widget name="key_red" position="10,325" zPosition="2" size="235,25" halign="center" font="Regular;22" transparent="1" foregroundColor="red"  />
-		<widget name="key_green" position="355,325" zPosition="2" size="235,25" halign="center" font="Regular;22" transparent="1" foregroundColor="green" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/red.png" position="10,320" size="235,44" zPosition="1" alphatest="on" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/green.png" position="355,320" size="235,44" zPosition="1" alphatest="on" />
+		<widget name="key_red" position="10,325" zPosition="2" size="235,25" horizontalAlignment="center" font="Regular;22" transparent="1" foregroundColor="red"  />
+		<widget name="key_green" position="355,325" zPosition="2" size="235,25" horizontalAlignment="center" font="Regular;22" transparent="1" foregroundColor="green" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/red.png" position="10,320" size="235,44" zPosition="1" alphaTest="on" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/green.png" position="355,320" size="235,44" zPosition="1" alphaTest="on" />
 	</screen>"""
 
 	def __init__(self, session, args=None):

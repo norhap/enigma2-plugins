@@ -13,26 +13,26 @@ VERSION = "1.8"
 class VPS_Setup(Screen, ConfigListScreen):
 	if getDesktop(0).size().width() <= 1280:
 		skin = """<screen name="vpsConfiguration" title="VPS-Plugin" position="center,center" size="600,370">
-			<ePixmap position="5,5" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-			<ePixmap position="155,5" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-			<ePixmap position="305,5" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-			<ePixmap position="455,5" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-			<widget source="key_red" render="Label" position="5,5" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;20" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget source="key_green" render="Label" position="155,5" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;20" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget source="key_blue" render="Label" position="455,5" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;20" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap position="5,5" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on" />
+			<ePixmap position="155,5" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on" />
+			<ePixmap position="305,5" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphaTest="on" />
+			<ePixmap position="455,5" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphaTest="on" />
+			<widget source="key_red" render="Label" position="5,5" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;20" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget source="key_green" render="Label" position="155,5" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;20" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget source="key_blue" render="Label" position="455,5" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;20" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget name="config" position="5,50" size="590,205" scrollbarMode="showOnDemand" />
 			<ePixmap pixmap="skin_default/div-h.png" position="0,255" zPosition="1" size="600,2" />
 			<widget source="help" render="Label" position="5,265" size="590,105" font="Regular;21" />
 		</screen>"""
 	else:
 		skin = """<screen name="vpsConfiguration" title="VPS-Plugin" position="center,center" size="990,590">
-			<ePixmap position="5,5" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-			<ePixmap position="285,5" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-			<ePixmap position="565,5" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-			<ePixmap position="845,5" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-			<widget source="key_red" render="Label" position="5,5" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;22" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget source="key_green" render="Label" position="285,5" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;22" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget source="key_blue" render="Label" position="845,5" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;22" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap position="5,5" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on" />
+			<ePixmap position="285,5" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on" />
+			<ePixmap position="565,5" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphaTest="on" />
+			<ePixmap position="845,5" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphaTest="on" />
+			<widget source="key_red" render="Label" position="5,5" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;22" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget source="key_green" render="Label" position="285,5" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;22" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget source="key_blue" render="Label" position="845,5" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;22" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			<widget name="config" position="5,60" size="980,275" scrollbarMode="showOnDemand" font="Regular;32" itemHeight="34" />
 			<ePixmap pixmap="skin_default/div-h.png" position="center,497" zPosition="1" size="600,2" />
 			<widget source="help" render="Label" position="5,512" size="980,210" font="Regular;33" />

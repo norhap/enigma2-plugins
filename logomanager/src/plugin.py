@@ -297,8 +297,8 @@ class LogoManagerConfigScreen(ConfigListScreen, Screen):
 	skin = """
 		<screen position="center,center" size="530,200" title="LogoManager Setup" >
 			<widget name="config" position="0,0" size="520,160" scrollbarMode="showOnDemand" />
-			<widget name="buttonred" position="10,160" size="100,40" backgroundColor="red" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-			<widget name="buttongreen" position="120,160" size="100,40" backgroundColor="green" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
+			<widget name="buttonred" position="10,160" size="100,40" backgroundColor="red" verticalAlignment="center" horizontalAlignment="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
+			<widget name="buttongreen" position="120,160" size="100,40" backgroundColor="green" verticalAlignment="center" horizontalAlignment="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
 		</screen>"""
 
 	def __init__(self, session, args=0):

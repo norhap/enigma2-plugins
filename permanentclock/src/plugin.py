@@ -53,140 +53,140 @@ config.plugins.PermanentClock.color_digital = ConfigSelection([("0", _("yellow")
 ##############################################################################
 SKIN1 = """
 	<screen position="0,0" size="70,70" zPosition="-1" backgroundColor="#ff000000" title="Permanent Clock" flags="wfNoBorder">
-		<ePixmap position="1,1" zPosition="1" size="70,70" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PermanentClock/trad/trad1.png" alphatest="on" />
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="7,7" size="58,58" zPosition="4" alphatest="on" foregroundColor="#00f23d21">
+		<ePixmap position="1,1" zPosition="1" size="70,70" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PermanentClock/trad/trad1.png" alphaTest="on" />
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="7,7" size="58,58" zPosition="4" alphaTest="on" foregroundColor="#00f23d21">
 			<convert type="PermanentClockTime">secHand</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="12,13" size="47,47" zPosition="3"  foregroundColor="#00ffffff" alphatest="on">
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="12,13" size="47,47" zPosition="3"  foregroundColor="#00ffffff" alphaTest="on">
 			<convert type="PermanentClockTime">minHand</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="20,21" size="31,31" zPosition="2"  foregroundColor="#00ffffff" alphatest="on">
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="20,21" size="31,31" zPosition="2"  foregroundColor="#00ffffff" alphaTest="on">
 			<convert type="PermanentClockTime">hourHand</convert>
 		</widget>
 	</screen>"""
 ##############################################################################
 SKIN2 = """
 	<screen position="0,0" size="70,70" zPosition="-1" backgroundColor="#ff000000" title="Permanent Clock" flags="wfNoBorder">
-		<ePixmap position="1,1" zPosition="1" size="70,70" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PermanentClock/trad/trad2.png" alphatest="on" />
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="7,7" size="58,58" zPosition="4" alphatest="on" foregroundColor="#00f23d21">
+		<ePixmap position="1,1" zPosition="1" size="70,70" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PermanentClock/trad/trad2.png" alphaTest="on" />
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="7,7" size="58,58" zPosition="4" alphaTest="on" foregroundColor="#00f23d21">
 			<convert type="PermanentClockTime">secHand</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="12,13" size="47,47" zPosition="3"  foregroundColor="#00ffffff" alphatest="on">
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="12,13" size="47,47" zPosition="3"  foregroundColor="#00ffffff" alphaTest="on">
 			<convert type="PermanentClockTime">minHand</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="20,21" size="31,31" zPosition="2"  foregroundColor="#00ffffff" alphatest="on">
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="20,21" size="31,31" zPosition="2"  foregroundColor="#00ffffff" alphaTest="on">
 			<convert type="PermanentClockTime">hourHand</convert>
 		</widget>
 	</screen>"""
 ##############################################################################
 SKIN3 = """
 	<screen position="0,0" size="70,70" zPosition="-1" backgroundColor="#ff000000" title="Permanent Clock" flags="wfNoBorder">
-		<ePixmap position="1,1" zPosition="1" size="70,70" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PermanentClock/trad/trad3.png" alphatest="on" />
-			<widget source="global.CurrentTime" render="PermanentClockWatches" position="7,7" size="58,58" zPosition="4" alphatest="on" foregroundColor="#00f23d21">
+		<ePixmap position="1,1" zPosition="1" size="70,70" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PermanentClock/trad/trad3.png" alphaTest="on" />
+			<widget source="global.CurrentTime" render="PermanentClockWatches" position="7,7" size="58,58" zPosition="4" alphaTest="on" foregroundColor="#00f23d21">
 				<convert type="PermanentClockTime">secHand</convert>
 			</widget>
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="12,13" size="47,47" zPosition="3"  foregroundColor="#00ffffff" alphatest="on">
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="12,13" size="47,47" zPosition="3"  foregroundColor="#00ffffff" alphaTest="on">
 			<convert type="PermanentClockTime">minHand</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="20,21" size="31,31" zPosition="2"  foregroundColor="#00ffffff" alphatest="on">
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="20,21" size="31,31" zPosition="2"  foregroundColor="#00ffffff" alphaTest="on">
 			<convert type="PermanentClockTime">hourHand</convert>
 		</widget>
 	</screen>"""
 ##############################################################################
 SKIN4 = """
 	<screen position="0,0" size="70,70" zPosition="-1" backgroundColor="#ff000000" title="Permanent Clock" flags="wfNoBorder">
-		<ePixmap position="1,1" zPosition="1" size="70,70" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PermanentClock/trad/trad4.png" alphatest="on" />
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="7,7" size="58,58" zPosition="4" alphatest="on" foregroundColor="#00f23d21">
+		<ePixmap position="1,1" zPosition="1" size="70,70" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PermanentClock/trad/trad4.png" alphaTest="on" />
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="7,7" size="58,58" zPosition="4" alphaTest="on" foregroundColor="#00f23d21">
 			<convert type="PermanentClockTime">secHand</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="12,13" size="47,47" zPosition="3"  foregroundColor="#00ffffff" alphatest="on">
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="12,13" size="47,47" zPosition="3"  foregroundColor="#00ffffff" alphaTest="on">
 			<convert type="PermanentClockTime">minHand</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="20,21" size="31,31" zPosition="2"  foregroundColor="#00ffffff" alphatest="on">
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="20,21" size="31,31" zPosition="2"  foregroundColor="#00ffffff" alphaTest="on">
 			<convert type="PermanentClockTime">hourHand</convert>
 		</widget>
 	</screen>"""
 ##############################################################################
 SKIN5 = """
 	<screen position="0,0" size="70,70" zPosition="-1" backgroundColor="#ff000000" title="Permanent Clock" flags="wfNoBorder">
-		<ePixmap position="1,1" zPosition="1" size="70,70" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PermanentClock/trad/trad5.png" alphatest="on" />
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="7,7" size="58,58" zPosition="4" alphatest="on" foregroundColor="#00f23d21">
+		<ePixmap position="1,1" zPosition="1" size="70,70" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PermanentClock/trad/trad5.png" alphaTest="on" />
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="7,7" size="58,58" zPosition="4" alphaTest="on" foregroundColor="#00f23d21">
 			<convert type="PermanentClockTime">secHand</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="PermanentClockPermanentClockWatches" position="12,13" size="47,47" zPosition="3"  foregroundColor="green"  alphatest="on">
+		<widget source="global.CurrentTime" render="PermanentClockPermanentClockWatches" position="12,13" size="47,47" zPosition="3"  foregroundColor="green"  alphaTest="on">
 			<convert type="PermanentClockTime">minHand</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="20,21" size="31,31" zPosition="2"  foregroundColor="green"  alphatest="on">
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="20,21" size="31,31" zPosition="2"  foregroundColor="green"  alphaTest="on">
 			<convert type="PermanentClockTime">hourHand</convert>
 		</widget>
 	</screen>"""
 ##############################################################################
 SKIN6 = """
 	<screen position="0,0" size="70,70" zPosition="-1" backgroundColor="#ff000000" title="Permanent Clock" flags="wfNoBorder">
-		<ePixmap position="1,1" zPosition="1" size="70,70" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PermanentClock/trad/trad6.png" alphatest="on" />
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="7,7" size="58,58" zPosition="4" alphatest="on" foregroundColor="#00f23d21">
+		<ePixmap position="1,1" zPosition="1" size="70,70" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PermanentClock/trad/trad6.png" alphaTest="on" />
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="7,7" size="58,58" zPosition="4" alphaTest="on" foregroundColor="#00f23d21">
 			<convert type="PermanentClockTime">secHand</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="12,13" size="47,47" zPosition="3"  foregroundColor="green"  alphatest="on">
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="12,13" size="47,47" zPosition="3"  foregroundColor="green"  alphaTest="on">
 			<convert type="PermanentClockTime">minHand</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="20,21" size="31,31" zPosition="2"  foregroundColor="green"  alphatest="on">
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="20,21" size="31,31" zPosition="2"  foregroundColor="green"  alphaTest="on">
 			<convert type="PermanentClockTime">hourHand</convert>
 		</widget>
 	</screen>"""
 ##############################################################################
 SKIN7 = """
 	<screen position="0,0" size="70,70" zPosition="-1" backgroundColor="#ff000000" title="Permanent Clock" flags="wfNoBorder">
-		<ePixmap position="1,1" zPosition="1" size="70,70" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PermanentClock/trad/trad7.png" alphatest="on" />
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="7,7" size="58,58" zPosition="4" alphatest="on" foregroundColor="#00f23d21">
+		<ePixmap position="1,1" zPosition="1" size="70,70" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PermanentClock/trad/trad7.png" alphaTest="on" />
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="7,7" size="58,58" zPosition="4" alphaTest="on" foregroundColor="#00f23d21">
 			<convert type="PermanentClockTime">secHand</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="12,13" size="47,47" zPosition="3"  foregroundColor="#00f0f0f0"  alphatest="on">
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="12,13" size="47,47" zPosition="3"  foregroundColor="#00f0f0f0"  alphaTest="on">
 			<convert type="PermanentClockTime">minHand</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="PermanentClockWatches" position="20,21" size="31,31" zPosition="2"  foregroundColor="#00f0f0f0"  alphatest="on">
+		<widget source="global.CurrentTime" render="PermanentClockWatches" position="20,21" size="31,31" zPosition="2"  foregroundColor="#00f0f0f0"  alphaTest="on">
 			<convert type="PermanentClockTime">hourHand</convert>
 		</widget>
 	</screen>"""
 ##############################################################################
 SKIN = """
 	<screen position="0,0" size="120,30" zPosition="-1" backgroundColor="#ff000000" title="Permanent Clock" flags="wfNoBorder">
-		<widget source="global.CurrentTime" render="Label" position="1,1" size="120,30" backgroundColor="#ff000000" transparent="1" zPosition="0" foregroundColor="#00f0f0f0" borderWidth="2" font="Regular;26" borderColor="#00000000" valign="center" halign="center">
+		<widget source="global.CurrentTime" render="Label" position="1,1" size="120,30" backgroundColor="#ff000000" transparent="1" zPosition="0" foregroundColor="#00f0f0f0" borderWidth="2" font="Regular;26" borderColor="#00000000" verticalAlignment="center" horizontalAlignment="center">
 			<convert type="ClockToText">Default</convert>
 		</widget>
 	</screen>"""
 ##############################################################################
 SKIN0 = """
 	<screen position="0,0" size="120,30" zPosition="-1" backgroundColor="#ff000000" title="Permanent Clock" flags="wfNoBorder">
-		<widget source="global.CurrentTime" render="Label" position="1,1" size="120,30" backgroundColor="#ff000000" transparent="1" zPosition="0" foregroundColor="#00ffc000" borderWidth="2" font="Regular;26" borderColor="#00000000" valign="center" halign="center">
+		<widget source="global.CurrentTime" render="Label" position="1,1" size="120,30" backgroundColor="#ff000000" transparent="1" zPosition="0" foregroundColor="#00ffc000" borderWidth="2" font="Regular;26" borderColor="#00000000" verticalAlignment="center" horizontalAlignment="center">
 			<convert type="ClockToText">Default</convert>
 		</widget>
 	</screen>"""
 ##############################################################################
 SKIN01 = """
 	<screen position="0,0" size="120,30" zPosition="-1" backgroundColor="#ff000000" title="Permanent Clock" flags="wfNoBorder">
-		<widget source="global.CurrentTime" render="Label" position="1,1" size="120,30" backgroundColor="#ff000000" transparent="1" zPosition="0" foregroundColor="#7fffff" borderWidth="2" font="Regular;26" borderColor="#00000000" valign="center" halign="center">
+		<widget source="global.CurrentTime" render="Label" position="1,1" size="120,30" backgroundColor="#ff000000" transparent="1" zPosition="0" foregroundColor="#7fffff" borderWidth="2" font="Regular;26" borderColor="#00000000" verticalAlignment="center" horizontalAlignment="center">
 			<convert type="ClockToText">Default</convert>
 		</widget>
 	</screen>"""
 ##############################################################################
 SKINL = """
 	<screen position="0,0" size="180,45" zPosition="-1" backgroundColor="#ff000000" title="Permanent Clock" flags="wfNoBorder">
-		<widget source="global.CurrentTime" render="Label" position="1,1" size="180,45" backgroundColor="#ff000000" transparent="1" zPosition="0" foregroundColor="#00f0f0f0" borderWidth="2" font="Regular;39" borderColor="#00000000" valign="center" halign="center">
+		<widget source="global.CurrentTime" render="Label" position="1,1" size="180,45" backgroundColor="#ff000000" transparent="1" zPosition="0" foregroundColor="#00f0f0f0" borderWidth="2" font="Regular;39" borderColor="#00000000" verticalAlignment="center" horizontalAlignment="center">
 			<convert type="ClockToText">Default</convert>
 		</widget>
 	</screen>"""
 ##############################################################################
 SKIN0L = """
 	<screen position="0,0" size="180,45" zPosition="-1" backgroundColor="#ff000000" title="Permanent Clock" flags="wfNoBorder">
-		<widget source="global.CurrentTime" render="Label" position="1,1" size="180,45" backgroundColor="#ff000000" transparent="1" zPosition="0" foregroundColor="#00ffc000" borderWidth="2" font="Regular;39" borderColor="#00000000" valign="center" halign="center">
+		<widget source="global.CurrentTime" render="Label" position="1,1" size="180,45" backgroundColor="#ff000000" transparent="1" zPosition="0" foregroundColor="#00ffc000" borderWidth="2" font="Regular;39" borderColor="#00000000" verticalAlignment="center" horizontalAlignment="center">
 			<convert type="ClockToText">Default</convert>
 		</widget>
 	</screen>"""
 ##############################################################################
 SKIN0L1 = """
 	<screen position="0,0" size="180,45" zPosition="-1" backgroundColor="#ff000000" title="Permanent Clock" flags="wfNoBorder">
-		<widget source="global.CurrentTime" render="Label" position="1,1" size="180,45" backgroundColor="#ff000000" transparent="1" zPosition="0" foregroundColor="#7fffff" borderWidth="2" font="Regular;39" borderColor="#00000000" valign="center" halign="center">
+		<widget source="global.CurrentTime" render="Label" position="1,1" size="180,45" backgroundColor="#ff000000" transparent="1" zPosition="0" foregroundColor="#7fffff" borderWidth="2" font="Regular;39" borderColor="#00000000" verticalAlignment="center" horizontalAlignment="center">
 			<convert type="ClockToText">Default</convert>
 		</widget>
 	</screen>"""

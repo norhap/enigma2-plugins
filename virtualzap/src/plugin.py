@@ -145,31 +145,31 @@ class ExtendedVirtualZap(Screen, HelpableScreen):
 				pos4 = 105
 			skin = """
 				<screen backgroundColor="#101214" flags="wfNoBorder" name="ExtendedVirtualZap" position="0,820" size="1920,350" zPosition="0" title="Extended Virtual Zap">
-					<ePixmap alphatest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/fullhd.png" zPosition="0" position="0,0" size="1920,350"/>
-					<widget backgroundColor="#101214" foregroundColor="#f23d21" font="Regular;25" halign="left" name="errorPiP" position="30,1" size="330,27" transparent="1" zPosition="2"/>
+					<ePixmap alphaTest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/fullhd.png" zPosition="0" position="0,0" size="1920,350"/>
+					<widget backgroundColor="#101214" foregroundColor="#f23d21" font="Regular;25" horizontalAlignment="left" name="errorPiP" position="30,1" size="330,27" transparent="1" zPosition="2"/>
 					<widget name="video" backgroundColor="transparent" position="50,50" zPosition="1" size="284,190"/>
-					<widget backgroundColor="#101214" font="Regular;36" halign="left" name="NowNum" position="395,60" size="100,40" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" font="Regular;39" halign="left" name="NowChannel" position="465,60" size="787,42" transparent="1" zPosition="1"/>
+					<widget backgroundColor="#101214" font="Regular;36" horizontalAlignment="left" name="NowNum" position="395,60" size="100,40" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" font="Regular;39" horizontalAlignment="left" name="NowChannel" position="465,60" size="787,42" transparent="1" zPosition="1"/>
 					<widget foregroundColor="#0058bcff" name="nowProgress" position="365,40" size="900,15" borderWidth="2" borderColor="#cccccc" transparent="1" zPosition="2"/>
 					<widget backgroundColor="#101214" name="nowPercent" position="1300,36" size="70,27" font="Regular;25" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" font="Regular;30" halign="right" name="NowTuner" foregroundColor="#00999999" position="1500,60" size="300,32" transparent="1" zPosition="1"/>
-					<widget backgroundColor="#101214" font="Regular;36" foregroundColor="#fcc000" halign="left" name="NowEPG" position="405,105" size="800,38" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" font="Regular;36" halign="left" name="NextEPG" position="405,140" size="800,38" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" font="Regular;36" foregroundColor="#fcc000" halign="right" name="NowTime" position="%d,105" size="250,38" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" font="Regular;36" halign="right" name="NextTime" position="%d,140" size="250,38" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="200,120" alphatest="on" zPosition="2"/>
+					<widget backgroundColor="#101214" font="Regular;30" horizontalAlignment="right" name="NowTuner" foregroundColor="#00999999" position="1500,60" size="300,32" transparent="1" zPosition="1"/>
+					<widget backgroundColor="#101214" font="Regular;36" foregroundColor="#fcc000" horizontalAlignment="left" name="NowEPG" position="405,105" size="800,38" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" font="Regular;36" horizontalAlignment="left" name="NextEPG" position="405,140" size="800,38" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" font="Regular;36" foregroundColor="#fcc000" horizontalAlignment="right" name="NowTime" position="%d,105" size="250,38" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" font="Regular;36" horizontalAlignment="right" name="NextTime" position="%d,140" size="250,38" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="200,120" alphaTest="on" zPosition="2"/>
 					<widget source="Frontend" render="Progress" position="610,195" size="600,30" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/bar_big.png" zPosition="2" borderWidth="2" borderColor="#cccccc">
 						<convert type="FrontendInfo">SNR</convert>
 					</widget>
-					<eLabel text="SNR:" position="400,195" size="70,30" font="Regular;27" backgroundColor="#101214" halign="left" transparent="1" zPosition="2"/>
-					<widget source="Frontend" render="Label" position="475,195" size="100,30" font="Regular;27" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+					<eLabel text="SNR:" position="400,195" size="70,30" font="Regular;27" backgroundColor="#101214" horizontalAlignment="left" transparent="1" zPosition="2"/>
+					<widget source="Frontend" render="Label" position="475,195" size="100,30" font="Regular;27" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 						<convert type="FrontendInfo">SNR</convert>
 					</widget>
-					<widget source="Frontend" render="Label" position="1230,195" size="150,230" font="Regular;27" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+					<widget source="Frontend" render="Label" position="1230,195" size="150,230" font="Regular;27" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 						<convert type="FrontendInfo">SNRdB</convert>
 					</widget>
-					<eLabel text="AGC:" position="1400,195" size="70,30" font="Regular;27" backgroundColor="#101214" halign="left" transparent="1" zPosition="2"/>
-					<widget source="Frontend" render="Label" position="1475,195" size="150,30" font="Regular;27" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+					<eLabel text="AGC:" position="1400,195" size="70,30" font="Regular;27" backgroundColor="#101214" horizontalAlignment="left" transparent="1" zPosition="2"/>
+					<widget source="Frontend" render="Label" position="1475,195" size="150,30" font="Regular;27" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 						<convert type="FrontendInfo">AGC</convert>
 					</widget>
 				</screen>""" % (pos1, pos2, pos3, pos4)
@@ -185,31 +185,31 @@ class ExtendedVirtualZap(Screen, HelpableScreen):
 				pos4 = 105
 			skin = """
 				<screen backgroundColor="#101214" flags="wfNoBorder" name="ExtendedVirtualZap" position="0,490" size="1280,220" zPosition="0" title="Extended Virtual Zap">
-					<ePixmap alphatest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/hd.png" zPosition="0" position="0,0" size="1280,220"/>
-					<widget backgroundColor="#101214" foregroundColor="#f23d21" font="Regular;16" halign="left" name="errorPiP" position="20,1" size="250,18" transparent="1" zPosition="2"/>
+					<ePixmap alphaTest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/hd.png" zPosition="0" position="0,0" size="1280,220"/>
+					<widget backgroundColor="#101214" foregroundColor="#f23d21" font="Regular;16" horizontalAlignment="left" name="errorPiP" position="20,1" size="250,18" transparent="1" zPosition="2"/>
 					<widget name="video" backgroundColor="transparent" position="20,50" zPosition="1" size="254,160"/>
-					<widget backgroundColor="#101214" font="Regular;24" halign="left" name="NowNum" position="295,60" size="60,28" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" font="Regular;26" halign="left" name="NowChannel" position="365,60" size="687,32" transparent="1" zPosition="1"/>
+					<widget backgroundColor="#101214" font="Regular;24" horizontalAlignment="left" name="NowNum" position="295,60" size="60,28" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" font="Regular;26" horizontalAlignment="left" name="NowChannel" position="365,60" size="687,32" transparent="1" zPosition="1"/>
 					<widget foregroundColor="#0058bcff" name="nowProgress" position="365,40" size="700,10" borderWidth="2" borderColor="#cccccc" transparent="1" zPosition="2"/>
 					<widget backgroundColor="#101214" name="nowPercent" position="1100,36" size="50,20" font="Regular;18" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" font="Regular;20" halign="right" name="NowTuner" foregroundColor="#00999999" position="1000,60" size="200,22" transparent="1" zPosition="1"/>
-					<widget backgroundColor="#101214" font="Regular;24" foregroundColor="#fcc000" halign="left" name="NowEPG" position="305,105" size="600,28" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" font="Regular;24" halign="left" name="NextEPG" position="305,140" size="600,28" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" font="Regular;24" foregroundColor="#fcc000" halign="right" name="NowTime" position="%d,105" size="124,28" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" font="Regular;24" halign="right" name="NextTime" position="%d,140" size="124,28" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="100,60" alphatest="on" zPosition="2"/>
+					<widget backgroundColor="#101214" font="Regular;20" horizontalAlignment="right" name="NowTuner" foregroundColor="#00999999" position="1000,60" size="200,22" transparent="1" zPosition="1"/>
+					<widget backgroundColor="#101214" font="Regular;24" foregroundColor="#fcc000" horizontalAlignment="left" name="NowEPG" position="305,105" size="600,28" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" font="Regular;24" horizontalAlignment="left" name="NextEPG" position="305,140" size="600,28" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" font="Regular;24" foregroundColor="#fcc000" horizontalAlignment="right" name="NowTime" position="%d,105" size="124,28" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" font="Regular;24" horizontalAlignment="right" name="NextTime" position="%d,140" size="124,28" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="100,60" alphaTest="on" zPosition="2"/>
 					<widget source="Frontend" render="Progress" position="440,190" size="300,20" pixmap="skin_default/bar_snr.png" zPosition="2" borderWidth="2" borderColor="#cccccc">
 						<convert type="FrontendInfo">SNR</convert>
 					</widget>
-					<eLabel text="SNR:" position="300,190" size="53,22" font="Regular;18" backgroundColor="#101214" halign="left" transparent="1" zPosition="2"/>
-					<widget source="Frontend" render="Label" position="355,190" size="70,22" font="Regular;18" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+					<eLabel text="SNR:" position="300,190" size="53,22" font="Regular;18" backgroundColor="#101214" horizontalAlignment="left" transparent="1" zPosition="2"/>
+					<widget source="Frontend" render="Label" position="355,190" size="70,22" font="Regular;18" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 						<convert type="FrontendInfo">SNR</convert>
 					</widget>
-					<widget source="Frontend" render="Label" position="750,190" size="100,22" font="Regular;18" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+					<widget source="Frontend" render="Label" position="750,190" size="100,22" font="Regular;18" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 						<convert type="FrontendInfo">SNRdB</convert>
 					</widget>
-					<eLabel text="AGC:" position="870,190" size="53,22" font="Regular;18" backgroundColor="#101214" halign="left" transparent="1" zPosition="2"/>
-					<widget source="Frontend" render="Label" position="925,190" size="100,22" font="Regular;18" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+					<eLabel text="AGC:" position="870,190" size="53,22" font="Regular;18" backgroundColor="#101214" horizontalAlignment="left" transparent="1" zPosition="2"/>
+					<widget source="Frontend" render="Label" position="925,190" size="100,22" font="Regular;18" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 						<convert type="FrontendInfo">AGC</convert>
 					</widget>
 				</screen>""" % (pos1, pos2, pos3, pos4)
@@ -225,31 +225,31 @@ class ExtendedVirtualZap(Screen, HelpableScreen):
 				pos4 = 55
 			skin = """
 				<screen backgroundColor="#101214" flags="wfNoBorder" name="ExtendedVirtualZap" position="0,390" size="720,176" title="Extended Virtual Zap">
-					<ePixmap alphatest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/sd.png" position="0,0" size="720,176" zPosition="0"/>
+					<ePixmap alphaTest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/sd.png" position="0,0" size="720,176" zPosition="0"/>
 					<widget backgroundColor="transparent" name="video" position="20,30" size="140,110" zPosition="1"/>
-					<widget backgroundColor="#101214" foregroundColor="#f23d21" font="Regular;16" halign="left" name="errorPiP" position="20,1" size="220,18" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" font="Regular;20" halign="left" name="NowNum" position="190,25" size="50,24" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" font="Regular;22" halign="left" name="NowChannel" position="250,25" size="300,25" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" foregroundColor="#f23d21" font="Regular;16" horizontalAlignment="left" name="errorPiP" position="20,1" size="220,18" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" font="Regular;20" horizontalAlignment="left" name="NowNum" position="190,25" size="50,24" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" font="Regular;22" horizontalAlignment="left" name="NowChannel" position="250,25" size="300,25" transparent="1" zPosition="2"/>
 					<widget foregroundColor="#0058bcff" name="nowProgress" position="250,5" size="300,10" borderWidth="2" borderColor="#cccccc" transparent="1" zPosition="2"/>
 					<widget backgroundColor="#101214" name="nowPercent" position="560,1" size="50,20" font="Regular;18" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" font="Regular;18" halign="right" name="NowTuner" foregroundColor="#00999999" position="550,25" size="150,20" transparent="1" zPosition="1"/>
-					<widget backgroundColor="#101214" font="Regular;18" foregroundColor="#fcc000" halign="left" name="NowEPG" position="190,55" size="300,20" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" font="Regular;18" halign="left" name="NextEPG" position="190,80" size="300,20" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" font="Regular;20" foregroundColor="#fcc000" halign="right" name="NowTime" position="%d,55" size="120,25" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" font="Regular;20" halign="right" name="NextTime" position="%d,80" size="120,25" transparent="1" zPosition="2"/>
-					<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="70,53" alphatest="on" zPosition="2"/>
+					<widget backgroundColor="#101214" font="Regular;18" horizontalAlignment="right" name="NowTuner" foregroundColor="#00999999" position="550,25" size="150,20" transparent="1" zPosition="1"/>
+					<widget backgroundColor="#101214" font="Regular;18" foregroundColor="#fcc000" horizontalAlignment="left" name="NowEPG" position="190,55" size="300,20" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" font="Regular;18" horizontalAlignment="left" name="NextEPG" position="190,80" size="300,20" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" font="Regular;20" foregroundColor="#fcc000" horizontalAlignment="right" name="NowTime" position="%d,55" size="120,25" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" font="Regular;20" horizontalAlignment="right" name="NextTime" position="%d,80" size="120,25" transparent="1" zPosition="2"/>
+					<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="70,53" alphaTest="on" zPosition="2"/>
 					<widget source="Frontend" render="Progress" position="320,130" size="150,20" pixmap="skin_default/bar_snr.png" zPosition="2" borderWidth="2" borderColor="#cccccc">
 						<convert type="FrontendInfo">SNR</convert>
 					</widget>
-					<eLabel text="SNR:" position="190,130" size="53,22" font="Regular;18" backgroundColor="#101214" halign="left" transparent="1" zPosition="2"/>
-					<widget source="Frontend" render="Label" position="245,130" size="70,22" font="Regular;18" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+					<eLabel text="SNR:" position="190,130" size="53,22" font="Regular;18" backgroundColor="#101214" horizontalAlignment="left" transparent="1" zPosition="2"/>
+					<widget source="Frontend" render="Label" position="245,130" size="70,22" font="Regular;18" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 						<convert type="FrontendInfo">SNR</convert>
 					</widget>
-					<widget source="Frontend" render="Label" position="480,130" size="100,22" font="Regular;18" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+					<widget source="Frontend" render="Label" position="480,130" size="100,22" font="Regular;18" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 						<convert type="FrontendInfo">SNRdB</convert>
 					</widget>
-					<eLabel text="AGC:" position="600,130" size="53,22" font="Regular;18" backgroundColor="#101214" halign="left" transparent="1" zPosition="2"/>
-					<widget source="Frontend" render="Label" position="655,130" size="70,22" font="Regular;18" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+					<eLabel text="AGC:" position="600,130" size="53,22" font="Regular;18" backgroundColor="#101214" horizontalAlignment="left" transparent="1" zPosition="2"/>
+					<widget source="Frontend" render="Label" position="655,130" size="70,22" font="Regular;18" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 						<convert type="FrontendInfo">AGC</convert>
 					</widget>
 				</screen>""" % (pos1, pos2, pos3, pos4)
@@ -279,30 +279,30 @@ class ExtendedVirtualZap(Screen, HelpableScreen):
 				skin = """
 					<screen backgroundColor="transparent" flags="wfNoBorder" name="ExtendedVirtualZapNoPiP" position="0,0" size="1920,1080" title="Extended Virtual Zap">
 						<widget backgroundColor="transparent" name="video" position="%d,%d" size="%d,%d" zPosition="1"/>
-						<ePixmap alphatest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/fullhd.png" zPosition="0" position="0,820" size="1920,350"/>
-						<widget backgroundColor="#101214" foregroundColor="#f23d21" font="Regular;25" halign="left" name="errorPiP" position="30,821" size="330,27" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;36" halign="left" name="NowNum" position="395,880" size="100,40" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;39" halign="left" name="NowChannel" position="465,880" size="787,42" transparent="1" zPosition="1"/>
+						<ePixmap alphaTest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/fullhd.png" zPosition="0" position="0,820" size="1920,350"/>
+						<widget backgroundColor="#101214" foregroundColor="#f23d21" font="Regular;25" horizontalAlignment="left" name="errorPiP" position="30,821" size="330,27" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;36" horizontalAlignment="left" name="NowNum" position="395,880" size="100,40" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;39" horizontalAlignment="left" name="NowChannel" position="465,880" size="787,42" transparent="1" zPosition="1"/>
 						<widget foregroundColor="#0058bcff" name="nowProgress" position="365,860" size="900,15" borderWidth="2" borderColor="#cccccc" transparent="1" zPosition="2"/>
 						<widget backgroundColor="#101214" name="nowPercent" position="1300,856" size="70,27" font="Regular;25" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;30" halign="right" name="NowTuner" foregroundColor="#00999999" position="1500,880" size="300,32" transparent="1" zPosition="1"/>
-						<widget backgroundColor="#101214" font="Regular;36" foregroundColor="#fcc000" halign="left" name="NowEPG" position="405,925" size="800,38" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;36" halign="left" name="NextEPG" position="405,960" size="800,38" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;36" foregroundColor="#fcc000" halign="right" name="NowTime" position="%d,925" size="250,38" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;36" halign="right" name="NextTime" position="%d,960" size="250,38" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="200,120" alphatest="on" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;30" horizontalAlignment="right" name="NowTuner" foregroundColor="#00999999" position="1500,880" size="300,32" transparent="1" zPosition="1"/>
+						<widget backgroundColor="#101214" font="Regular;36" foregroundColor="#fcc000" horizontalAlignment="left" name="NowEPG" position="405,925" size="800,38" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;36" horizontalAlignment="left" name="NextEPG" position="405,960" size="800,38" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;36" foregroundColor="#fcc000" horizontalAlignment="right" name="NowTime" position="%d,925" size="250,38" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;36" horizontalAlignment="right" name="NextTime" position="%d,960" size="250,38" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="200,120" alphaTest="on" zPosition="2"/>
 						<widget source="Frontend" render="Progress" position="610,1015" size="600,30" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/bar_big.png" zPosition="2" borderWidth="2" borderColor="#cccccc">
 							<convert type="FrontendInfo">SNR</convert>
 						</widget>
-						<eLabel text="SNR:" position="400,1015" size="70,30" font="Regular;27" backgroundColor="#101214" halign="left" transparent="1" zPosition="2"/>
-						<widget source="Frontend" render="Label" position="475,1015" size="100,30" font="Regular;27" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+						<eLabel text="SNR:" position="400,1015" size="70,30" font="Regular;27" backgroundColor="#101214" horizontalAlignment="left" transparent="1" zPosition="2"/>
+						<widget source="Frontend" render="Label" position="475,1015" size="100,30" font="Regular;27" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 							<convert type="FrontendInfo">SNR</convert>
 						</widget>
-						<widget source="Frontend" render="Label" position="1230,1015" size="150,230" font="Regular;27" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+						<widget source="Frontend" render="Label" position="1230,1015" size="150,230" font="Regular;27" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 							<convert type="FrontendInfo">SNRdB</convert>
 						</widget>
-						<eLabel text="AGC:" position="1400,1015" size="70,30" font="Regular;27" backgroundColor="#101214" halign="left" transparent="1" zPosition="2"/>
-						<widget source="Frontend" render="Label" position="1475,1015" size="150,30" font="Regular;27" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+						<eLabel text="AGC:" position="1400,1015" size="70,30" font="Regular;27" backgroundColor="#101214" horizontalAlignment="left" transparent="1" zPosition="2"/>
+						<widget source="Frontend" render="Label" position="1475,1015" size="150,30" font="Regular;27" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 							<convert type="FrontendInfo">AGC</convert>
 						</widget>
 					</screen>""" % (x, y, w, h, pos1, pos2, pos3, pos4)
@@ -319,30 +319,30 @@ class ExtendedVirtualZap(Screen, HelpableScreen):
 				skin = """
 					<screen backgroundColor="transparent" flags="wfNoBorder" name="ExtendedVirtualZapNoPiP" position="0,0" size="1280,720" title="Extended Virtual Zap">
 						<widget backgroundColor="transparent" name="video" position="%d,%d" size="%d,%d" zPosition="1"/>
-						<ePixmap alphatest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/hd.png" position="0,485" size="1280,220" zPosition="0"/>
-						<widget backgroundColor="#101214" foregroundColor="#f23d21" font="Regular;16" halign="left" name="errorPiP" position="20,505" size="250,18" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;24" halign="left" name="NowNum" position="70,545" size="60,28" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;26" halign="left" name="NowChannel" position="140,545" size="700,30" transparent="1" zPosition="2"/>
+						<ePixmap alphaTest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/hd.png" position="0,485" size="1280,220" zPosition="0"/>
+						<widget backgroundColor="#101214" foregroundColor="#f23d21" font="Regular;16" horizontalAlignment="left" name="errorPiP" position="20,505" size="250,18" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;24" horizontalAlignment="left" name="NowNum" position="70,545" size="60,28" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;26" horizontalAlignment="left" name="NowChannel" position="140,545" size="700,30" transparent="1" zPosition="2"/>
 						<widget foregroundColor="#0058bcff" name="nowProgress" position="140,525" size="700,10" borderWidth="2" borderColor="#cccccc" transparent="1" zPosition="2"/>
 						<widget backgroundColor="#101214" name="nowPercent" position="875,521" size="50,20" font="Regular;18" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;20" halign="right" name="NowTuner" foregroundColor="#00999999" position="1000,545" size="200,22" transparent="1" zPosition="1"/>
-						<widget backgroundColor="#101214" font="Regular;24" foregroundColor="#fcc000" halign="left" name="NowEPG" position="140,590" size="760,28" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;24" halign="left" name="NextEPG" position="140,625" size="760,28" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;24" foregroundColor="#fcc000" halign="right" name="NowTime" position="%d,590" size="124,28" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;24" halign="right" name="NextTime" position="%d,625" size="124,28" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="100,60" alphatest="on" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;20" horizontalAlignment="right" name="NowTuner" foregroundColor="#00999999" position="1000,545" size="200,22" transparent="1" zPosition="1"/>
+						<widget backgroundColor="#101214" font="Regular;24" foregroundColor="#fcc000" horizontalAlignment="left" name="NowEPG" position="140,590" size="760,28" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;24" horizontalAlignment="left" name="NextEPG" position="140,625" size="760,28" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;24" foregroundColor="#fcc000" horizontalAlignment="right" name="NowTime" position="%d,590" size="124,28" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;24" horizontalAlignment="right" name="NextTime" position="%d,625" size="124,28" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="100,60" alphaTest="on" zPosition="2"/>
 						<widget source="Frontend" render="Progress" position="275,670" size="300,20" pixmap="skin_default/bar_snr.png" zPosition="2" borderWidth="2" borderColor="#cccccc">
 							<convert type="FrontendInfo">SNR</convert>
 						</widget>
-						<eLabel text="SNR:" position="140,670" size="53,22" font="Regular;18" backgroundColor="#101214" halign="left" transparent="1" zPosition="2"/>
-						<widget source="Frontend" render="Label" position="195,670" size="70,22" font="Regular;18" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+						<eLabel text="SNR:" position="140,670" size="53,22" font="Regular;18" backgroundColor="#101214" horizontalAlignment="left" transparent="1" zPosition="2"/>
+						<widget source="Frontend" render="Label" position="195,670" size="70,22" font="Regular;18" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 							<convert type="FrontendInfo">SNR</convert>
 						</widget>
-						<widget source="Frontend" render="Label" position="585,670" size="100,22" font="Regular;18" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+						<widget source="Frontend" render="Label" position="585,670" size="100,22" font="Regular;18" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 							<convert type="FrontendInfo">SNRdB</convert>
 						</widget>
-						<eLabel text="AGC:" position="700,670" size="53,22" font="Regular;18" backgroundColor="#101214" halign="left" transparent="1" zPosition="2"/>
-						<widget source="Frontend" render="Label" position="755,670" size="100,22" font="Regular;18" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+						<eLabel text="AGC:" position="700,670" size="53,22" font="Regular;18" backgroundColor="#101214" horizontalAlignment="left" transparent="1" zPosition="2"/>
+						<widget source="Frontend" render="Label" position="755,670" size="100,22" font="Regular;18" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 							<convert type="FrontendInfo">AGC</convert>
 						</widget>
 					</screen>""" % (x, y, w, h, pos1, pos2, pos3, pos4)
@@ -359,30 +359,30 @@ class ExtendedVirtualZap(Screen, HelpableScreen):
 				skin = """
 					<screen backgroundColor="transparent" flags="wfNoBorder" name="ExtendedVirtualZapNoPiP" position="0,0" size="720,576" title="Extended Virtual Zap">
 						<widget backgroundColor="transparent" name="video" position="%d,%d" size="%d,%d" zPosition="1"/>
-						<ePixmap alphatest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/sd.png" position="0,420" size="720,176" zPosition="0"/>
-						<widget backgroundColor="#101214" foregroundColor="#f23d21" font="Regular;16" halign="left" name="errorPiP" position="20,405" size="250,18" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;20" halign="left" name="NowNum" position="5,445" size="45,28" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;22" halign="left" name="NowChannel" position="60,445" size="320,30" transparent="1" zPosition="2"/>
+						<ePixmap alphaTest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/sd.png" position="0,420" size="720,176" zPosition="0"/>
+						<widget backgroundColor="#101214" foregroundColor="#f23d21" font="Regular;16" horizontalAlignment="left" name="errorPiP" position="20,405" size="250,18" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;20" horizontalAlignment="left" name="NowNum" position="5,445" size="45,28" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;22" horizontalAlignment="left" name="NowChannel" position="60,445" size="320,30" transparent="1" zPosition="2"/>
 						<widget foregroundColor="#0058bcff" name="nowProgress" position="60,425" size="300,10" borderWidth="2" borderColor="#cccccc" transparent="1" zPosition="2"/>
 						<widget backgroundColor="#101214" name="nowPercent" position="380,421" size="50,20" font="Regular;18" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;18" halign="right" name="NowTuner" foregroundColor="#00999999" position="550,445" size="150,20" transparent="1" zPosition="1"/>
-						<widget backgroundColor="#101214" font="Regular;18" foregroundColor="#fcc000" halign="left" name="NowEPG" position="50,475" size="450,20" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;18" halign="left" name="NextEPG" position="50,500" size="450,20" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;20" foregroundColor="#fcc000" halign="right" name="NowTime" position="%d,475" size="120,22" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;20" halign="right" name="NextTime" position="%d,500" size="120,22" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="70,53" alphatest="on" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;18" horizontalAlignment="right" name="NowTuner" foregroundColor="#00999999" position="550,445" size="150,20" transparent="1" zPosition="1"/>
+						<widget backgroundColor="#101214" font="Regular;18" foregroundColor="#fcc000" horizontalAlignment="left" name="NowEPG" position="50,475" size="450,20" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;18" horizontalAlignment="left" name="NextEPG" position="50,500" size="450,20" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;20" foregroundColor="#fcc000" horizontalAlignment="right" name="NowTime" position="%d,475" size="120,22" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;20" horizontalAlignment="right" name="NextTime" position="%d,500" size="120,22" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="70,53" alphaTest="on" zPosition="2"/>
 						<widget source="Frontend" render="Progress" position="180,540" size="150,20" pixmap="skin_default/bar_snr.png" zPosition="2" borderWidth="2" borderColor="#cccccc">
 							<convert type="FrontendInfo">SNR</convert>
 						</widget>
-						<eLabel text="SNR:" position="50,540" size="53,22" font="Regular;18" backgroundColor="#101214" halign="left" transparent="1" zPosition="2"/>
-						<widget source="Frontend" render="Label" position="105,540" size="70,22" font="Regular;18" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+						<eLabel text="SNR:" position="50,540" size="53,22" font="Regular;18" backgroundColor="#101214" horizontalAlignment="left" transparent="1" zPosition="2"/>
+						<widget source="Frontend" render="Label" position="105,540" size="70,22" font="Regular;18" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 							<convert type="FrontendInfo">SNR</convert>
 						</widget>
-						<widget source="Frontend" render="Label" position="335,540" size="100,22" font="Regular;18" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+						<widget source="Frontend" render="Label" position="335,540" size="100,22" font="Regular;18" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 							<convert type="FrontendInfo">SNRdB</convert>
 						</widget>
-						<eLabel text="AGC:" position="440,540" size="53,22" font="Regular;18" backgroundColor="#101214" halign="left" transparent="1" zPosition="2"/>
-						<widget source="Frontend" render="Label" position="495,540" size="70,22" font="Regular;18" halign="left" backgroundColor="#101214" transparent="1" zPosition="2">
+						<eLabel text="AGC:" position="440,540" size="53,22" font="Regular;18" backgroundColor="#101214" horizontalAlignment="left" transparent="1" zPosition="2"/>
+						<widget source="Frontend" render="Label" position="495,540" size="70,22" font="Regular;18" horizontalAlignment="left" backgroundColor="#101214" transparent="1" zPosition="2">
 							<convert type="FrontendInfo">AGC</convert>
 						</widget>
 					</screen>""" % (x, y, w, h, pos1, pos2, pos3, pos4)
@@ -400,16 +400,16 @@ class ExtendedVirtualZap(Screen, HelpableScreen):
 				skin = """
 					<screen backgroundColor="transparent" flags="wfNoBorder" name="ExtendedVirtualZapNoPiP" position="0,0" size="1920,1080" title="Extended Virtual Zap">
 						<widget backgroundColor="transparent" name="video" position="%d,%d" size="%d,%d" zPosition="1"/>
-						<ePixmap alphatest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/fullhd.png" zPosition="0" position="0,820" size="1920,350"/>
-						<widget backgroundColor="#101214" font="Regular;36" halign="left" name="NowNum" position="365,880" size="100,40" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;39" halign="left" name="NowChannel" position="435,880" size="787,42" transparent="1" zPosition="1"/>
+						<ePixmap alphaTest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/fullhd.png" zPosition="0" position="0,820" size="1920,350"/>
+						<widget backgroundColor="#101214" font="Regular;36" horizontalAlignment="left" name="NowNum" position="365,880" size="100,40" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;39" horizontalAlignment="left" name="NowChannel" position="435,880" size="787,42" transparent="1" zPosition="1"/>
 						<widget foregroundColor="#0058bcff" name="nowProgress" position="365,860" size="900,15" borderWidth="2" borderColor="#cccccc" transparent="1" zPosition="2"/>
 						<widget backgroundColor="#101214" name="nowPercent" position="1300,856" size="70,27" font="Regular;25" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;36" foregroundColor="#fcc000" halign="left" name="NowEPG" position="405,925" size="800,38" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;36" halign="left" name="NextEPG" position="405,960" size="800,38" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;36" foregroundColor="#fcc000" halign="right" name="NowTime" position="%d,925" size="250,38" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;36" halign="right" name="NextTime" position="%d,960" size="250,38" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="200,120" alphatest="on" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;36" foregroundColor="#fcc000" horizontalAlignment="left" name="NowEPG" position="405,925" size="800,38" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;36" horizontalAlignment="left" name="NextEPG" position="405,960" size="800,38" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;36" foregroundColor="#fcc000" horizontalAlignment="right" name="NowTime" position="%d,925" size="250,38" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;36" horizontalAlignment="right" name="NextTime" position="%d,960" size="250,38" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="200,120" alphaTest="on" zPosition="2"/>
 					</screen>""" % (x, y, w, h, pos1, pos2, pos3, pos4)
 
 			elif sz_w >= 1280:
@@ -425,16 +425,16 @@ class ExtendedVirtualZap(Screen, HelpableScreen):
 				skin = """
 					<screen backgroundColor="transparent" flags="wfNoBorder" name="ExtendedVirtualZapNoPiP" position="0,0" size="1280,720" title="Extended Virtual Zap">
 						<widget backgroundColor="transparent" name="video" position="%d,%d" size="%d,%d" zPosition="1"/>
-						<ePixmap alphatest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/hd.png" position="0,505" size="1280,220" zPosition="0"/>
-						<widget backgroundColor="#101214" font="Regular;24" halign="left" name="NowNum" position="70,565" size="60,28" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;26" halign="left" name="NowChannel" position="140,565" size="1000,30" transparent="1" zPosition="2"/>
+						<ePixmap alphaTest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/hd.png" position="0,505" size="1280,220" zPosition="0"/>
+						<widget backgroundColor="#101214" font="Regular;24" horizontalAlignment="left" name="NowNum" position="70,565" size="60,28" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;26" horizontalAlignment="left" name="NowChannel" position="140,565" size="1000,30" transparent="1" zPosition="2"/>
 						<widget foregroundColor="#0058bcff" name="nowProgress" position="140,545" size="700,10" borderWidth="2" borderColor="#cccccc" transparent="1" zPosition="2"/>
 						<widget backgroundColor="#101214" name="nowPercent" position="875,541" size="50,20" font="Regular;18" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;24" foregroundColor="#fcc000" halign="left" name="NowEPG" position="140,610" size="760,28" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;24" halign="left" name="NextEPG" position="140,645" size="760,28" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;24" foregroundColor="#fcc000" halign="right" name="NowTime" position="%d,610" size="124,28" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;24" halign="right" name="NextTime" position="%d,645" size="124,28" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="100,60" alphatest="on" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;24" foregroundColor="#fcc000" horizontalAlignment="left" name="NowEPG" position="140,610" size="760,28" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;24" horizontalAlignment="left" name="NextEPG" position="140,645" size="760,28" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;24" foregroundColor="#fcc000" horizontalAlignment="right" name="NowTime" position="%d,610" size="124,28" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;24" horizontalAlignment="right" name="NextTime" position="%d,645" size="124,28" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="100,60" alphaTest="on" zPosition="2"/>
 					</screen>""" % (x, y, w, h, pos1, pos2, pos3, pos4)
 			else:
 				pos1 = 550
@@ -449,16 +449,16 @@ class ExtendedVirtualZap(Screen, HelpableScreen):
 				skin = """
 					<screen backgroundColor="transparent" flags="wfNoBorder" name="ExtendedVirtualZapNoPiP" position="0,0" size="720,576" title="Extended Virtual Zap">
 						<widget backgroundColor="transparent" name="video" position="%d,%d" size="%d,%d" zPosition="1"/>
-						<ePixmap alphatest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/sd.png" position="0,420" size="720,176" zPosition="0"/>
-						<widget backgroundColor="#101214" font="Regular;20" halign="left" name="NowNum" position="5,445" size="45,28" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;22" halign="left" name="NowChannel" position="60,445" size="620,30" transparent="1" zPosition="2"/>
+						<ePixmap alphaTest="off" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/sd.png" position="0,420" size="720,176" zPosition="0"/>
+						<widget backgroundColor="#101214" font="Regular;20" horizontalAlignment="left" name="NowNum" position="5,445" size="45,28" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;22" horizontalAlignment="left" name="NowChannel" position="60,445" size="620,30" transparent="1" zPosition="2"/>
 						<widget foregroundColor="#0058bcff" name="nowProgress" position="60,425" size="620,10" borderWidth="2" borderColor="#cccccc" transparent="1" zPosition="2"/>
 						<widget backgroundColor="#101214" name="nowPercent" position="715,421" size="50,20" font="Regular;18" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;18" foregroundColor="#fcc000" halign="left" name="NowEPG" position="50,475" size="450,20" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;18" halign="left" name="NextEPG" position="50,500" size="450,20" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;20" foregroundColor="#fcc000" halign="right" name="NowTime" position="%d,475" size="120,22" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" font="Regular;20" halign="right" name="NextTime" position="%d,500" size="120,22" transparent="1" zPosition="2"/>
-						<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="70,53" alphatest="on" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;18" foregroundColor="#fcc000" horizontalAlignment="left" name="NowEPG" position="50,475" size="450,20" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;18" horizontalAlignment="left" name="NextEPG" position="50,500" size="450,20" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;20" foregroundColor="#fcc000" horizontalAlignment="right" name="NowTime" position="%d,475" size="120,22" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" font="Regular;20" horizontalAlignment="right" name="NextTime" position="%d,500" size="120,22" transparent="1" zPosition="2"/>
+						<widget backgroundColor="#101214" name="servicePicon" position="%d,%d" size="70,53" alphaTest="on" zPosition="2"/>
 					</screen>""" % (x, y, w, h, pos1, pos2, pos3, pos4)
 
 	def __init__(self, session, servicelist=None, lastService=True):
@@ -1219,19 +1219,19 @@ class ExtendedVirtualZapConfig(Screen, ConfigListScreen):
 	if sz_w >= 1920:
 		skin = """
 			<screen position="center,center" size="1000,600" title="Extended virtual zap config" >
-				<ePixmap pixmap="skin_default/buttons/red.png" position="170,0" zPosition="0" size="240,80" transparent="1" alphatest="on" />
-				<ePixmap pixmap="skin_default/buttons/green.png" position="670,0" zPosition="0" size="240,80" transparent="1" alphatest="on" />
-				<widget render="Label" source="key_red" position="200,0" size="200,50" zPosition="5" valign="center" backgroundColor="red" font="Regular;34" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-				<widget render="Label" source="key_green" position="700,0" size="200,50" zPosition="5" valign="center" backgroundColor="red" font="Regular;34" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+				<ePixmap pixmap="skin_default/buttons/red.png" position="170,0" zPosition="0" size="240,80" transparent="1" alphaTest="on" />
+				<ePixmap pixmap="skin_default/buttons/green.png" position="670,0" zPosition="0" size="240,80" transparent="1" alphaTest="on" />
+				<widget render="Label" source="key_red" position="200,0" size="200,50" zPosition="5" verticalAlignment="center" backgroundColor="red" font="Regular;34" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+				<widget render="Label" source="key_green" position="700,0" size="200,50" zPosition="5" verticalAlignment="center" backgroundColor="red" font="Regular;34" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 				<widget name="config" position="10,90" size="980,500" itemHeight="36" font="Regular;34" scrollbarMode="showOnDemand" />
 			</screen>"""
 	else:
 		skin = """
 			<screen position="center,center" size="690,380" title="Extended virtual zap config" >
-				<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-				<ePixmap pixmap="skin_default/buttons/green.png" position="185,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-				<widget render="Label" source="key_red" position="0,0" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-				<widget render="Label" source="key_green" position="185,0" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+				<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" zPosition="0" size="140,40" transparent="1" alphaTest="on" />
+				<ePixmap pixmap="skin_default/buttons/green.png" position="185,0" zPosition="0" size="140,40" transparent="1" alphaTest="on" />
+				<widget render="Label" source="key_red" position="0,0" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+				<widget render="Label" source="key_green" position="185,0" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 				<widget name="config" position="20,50" size="650,320" scrollbarMode="showOnDemand" />
 			</screen>"""
 

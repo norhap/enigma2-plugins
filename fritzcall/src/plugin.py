@@ -330,8 +330,8 @@ class FritzAbout(Screen):
 			self.skin = """
 				<screen name="FritzAbout" position="center,center" size="%d,%d" title="About FritzCall" >
 					<widget name="text" position="175,%d" size="%d,%d" font="Regular;%d" />
-					<ePixmap position="5,37" size="150,110" pixmap="%s" transparent="1" alphatest="blend" />
-					<ePixmap position="%d,5" size="175,175" pixmap="%s" transparent="1" alphatest="blend" />
+					<ePixmap position="5,37" size="150,110" pixmap="%s" transparent="1" alphaTest="blend" />
+					<ePixmap position="%d,5" size="175,175" pixmap="%s" transparent="1" alphaTest="blend" />
 					<widget name="url" position="20,185" size="%d,25" font="Regular;%d" />
 				</screen>""" % (
 								width, height,  # size
@@ -350,38 +350,38 @@ class FritzAbout(Screen):
 				self.skin = """
 				<!-- SD screen -->
 				<screen name="FritzAbout" position="center,center" size="580,240" title=" ">
-					<ePixmap alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/fritz.png" position="5,50" size="150,110" />
+					<ePixmap alphaTest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/fritz.png" position="5,50" size="150,110" />
 					<widget font="Regular;18" name="text" position="175,10" size="210,160" />
-					<ePixmap alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/website.png" position="400,10" size="175,175" />
-					<widget font="Regular;18" foregroundColor="#bab329" halign="center" name="url" position="10,205" size="560,25" />
+					<ePixmap alphaTest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/website.png" position="400,10" size="175,175" />
+					<widget font="Regular;18" foregroundColor="#bab329" horizontalAlignment="center" name="url" position="10,205" size="560,25" />
 				</screen>"""
 			elif DESKTOP_WIDTH <= 1280:
 				self.skin = """
 				<!-- HD screen -->
 				<screen name="FritzAbout" position="center,center" size="780,240" title=" ">
-					<ePixmap alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/fritz.png" position="10,50" size="150,110" />
+					<ePixmap alphaTest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/fritz.png" position="10,50" size="150,110" />
 					<widget font="Regular;22" name="text" position="200,10" size="350,160" />
-					<ePixmap alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/website.png" position="580,10" size="175,175" />
-					<widget font="Regular;22" foregroundColor="#bab329" halign="center" name="url" position="10,200" size="760,40" />
+					<ePixmap alphaTest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/website.png" position="580,10" size="175,175" />
+					<widget font="Regular;22" foregroundColor="#bab329" horizontalAlignment="center" name="url" position="10,200" size="760,40" />
 				</screen>"""
 			elif DESKTOP_WIDTH <= 1920:
 				self.skin = """
 				<!-- Fullhd screen -->
 				<screen name="FritzAbout" position="center,center" size="880,300" title=" ">
-					<ePixmap alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/fritz.png" position="10,50" size="150,110" />
+					<ePixmap alphaTest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/fritz.png" position="10,50" size="150,110" />
 					<widget font="Regular;30" name="text" position="200,10" size="450,220" />
-					<ePixmap alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/website.png" position="680,30" size="175,175" />
-					<widget font="Regular;30" foregroundColor="#bab329" halign="center" name="url" position="10,250" size="860,40" />
+					<ePixmap alphaTest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/website.png" position="680,30" size="175,175" />
+					<widget font="Regular;30" foregroundColor="#bab329" horizontalAlignment="center" name="url" position="10,250" size="860,40" />
 				</screen>
 				"""
 			else:
 				self.skin = """
 				<!-- UHD screen -->
 				<screen name="FritzAbout" position="center,center" size="1880,460" title=" ">
-					<ePixmap alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/fritz.png" position="10,60" size="300,220" />
+					<ePixmap alphaTest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/fritz.png" position="10,60" size="300,220" />
 					<widget font="Regular;60" name="text" position="350,10" size="1100,360" />
-					<ePixmap alphatest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/website.png" position="1570,20" size="300,300" />
-					<widget font="Regular;58" foregroundColor="#bab329" halign="center" name="url" position="10,380" size="1860,65" />
+					<ePixmap alphaTest="blend" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/website.png" position="1570,20" size="300,300" />
+					<widget font="Regular;58" foregroundColor="#bab329" horizontalAlignment="center" name="url" position="10,380" size="1860,65" />
 				</screen>"""
 
 		Screen.__init__(self, session)
@@ -439,10 +439,10 @@ class FritzMenu(Screen, HelpableScreen):
 			if fritzbox.information[FBF_tamActive] is not None:
 				mailboxLine = """
 					<widget name="FBFMailbox" position="%d,%d" size="%d,%d" font="Regular;%d" />
-					<widget name="mailbox_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-					<widget name="mailbox_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="blend" />
-					<widget name="key_yellow" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+					<widget name="mailbox_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
+					<widget name="mailbox_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
+					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphaTest="blend" />
+					<widget name="key_yellow" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 					""" % (
 							40, 5 + 2 * fontSize + 10 + varLinePos * fontSize + 10,  # position mailbox
 							width - 40 - 20, fontSize,  # size mailbox
@@ -461,8 +461,8 @@ class FritzMenu(Screen, HelpableScreen):
 			if fritzbox.information[FBF_dectActive] is not None:
 				dectLine = """
 					<widget name="FBFDect" position="%d,%d" size="%d,%d" font="Regular;%d" />
-					<widget name="dect_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-					<widget name="dect_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
+					<widget name="dect_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
+					<widget name="dect_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
 					""" % (
 							40, 5 + 2 * fontSize + 10 + varLinePos * fontSize + 10,  # position dect
 							width - 40 - 20, fontSize,  # size dect
@@ -479,8 +479,8 @@ class FritzMenu(Screen, HelpableScreen):
 			if fritzbox.information[FBF_faxActive] is not None:
 				faxLine = """
 					<widget name="FBFFax" position="%d,%d" size="%d,%d" font="Regular;%d" />
-					<widget name="fax_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-					<widget name="fax_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
+					<widget name="fax_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
+					<widget name="fax_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
 					""" % (
 							40, 5 + 2 * fontSize + 10 + varLinePos * fontSize + 10,  # position dect
 							width - 40 - 20, fontSize,  # size dect
@@ -497,8 +497,8 @@ class FritzMenu(Screen, HelpableScreen):
 			if fritzbox.information[FBF_rufumlActive] is not None:
 				rufumlLine = """
 					<widget name="FBFRufuml" position="%d,%d" size="%d,%d" font="Regular;%d" />
-					<widget name="rufuml_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-					<widget name="rufuml_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
+					<widget name="rufuml_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
+					<widget name="rufuml_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
 					""" % (
 							40, 5 + 2 * fontSize + 10 + varLinePos * fontSize + 10,  # position dect
 							width - 40 - 20, fontSize,  # size dect
@@ -516,22 +516,22 @@ class FritzMenu(Screen, HelpableScreen):
 				<screen name="FritzMenu" position="center,center" size="%d,%d" title="FRITZ!Box Fon Status" >
 					<widget name="FBFInfo" position="%d,%d" size="%d,%d" font="Regular;%d" />
 					<widget name="FBFInternet" position="%d,%d" size="%d,%d" font="Regular;%d" />
-					<widget name="internet_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-					<widget name="internet_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
+					<widget name="internet_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
+					<widget name="internet_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
 					<widget name="FBFDsl" position="%d,%d" size="%d,%d" font="Regular;%d" />
-					<widget name="dsl_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-					<widget name="dsl_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
+					<widget name="dsl_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
+					<widget name="dsl_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
 					<widget name="FBFWlan" position="%d,%d" size="%d,%d" font="Regular;%d" />
-					<widget name="wlan_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-					<widget name="wlan_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
+					<widget name="wlan_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
+					<widget name="wlan_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
 					%s
 					%s
 					%s
 					%s
-					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-					<widget name="key_red" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-					<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+					<widget name="key_red" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+					<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 				</screen>""" % (
 							width, height,  # size
 							40, 5,  # position information
@@ -679,30 +679,30 @@ class FritzMenu(Screen, HelpableScreen):
 					<screen name="FritzMenuNew" position="center,center" size="%d,%d" title="FRITZ!Box Fon Status" >
 						<widget name="FBFInfo" position="%d,%d" size="%d,%d" font="Regular;%d" />
 						<widget name="FBFInternet" position="%d,%d" size="%d,%d" font="Regular;%d" />
-						<widget name="internet_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-						<widget name="internet_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
+						<widget name="internet_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
+						<widget name="internet_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
 						<widget name="FBFDsl" position="%d,%d" size="%d,%d" font="Regular;%d" />
-						<widget name="dsl_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-						<widget name="dsl_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
+						<widget name="dsl_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
+						<widget name="dsl_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
 						<widget name="FBFWlan" position="%d,%d" size="%d,%d" font="Regular;%d" />
-						<widget name="wlan_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-						<widget name="wlan_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
+						<widget name="wlan_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
+						<widget name="wlan_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
 						<widget name="FBFDect" position="%d,%d" size="%d,%d" font="Regular;%d" />
-						<widget name="dect_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-						<widget name="dect_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
+						<widget name="dect_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
+						<widget name="dect_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
 						<widget name="FBFFax" position="%d,%d" size="%d,%d" font="Regular;%d" />
-						<widget name="fax_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-						<widget name="fax_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
+						<widget name="fax_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
+						<widget name="fax_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
 						<widget name="FBFRufuml" position="%d,%d" size="%d,%d" font="Regular;%d" />
-						<widget name="rufuml_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-						<widget name="rufuml_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
+						<widget name="rufuml_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
+						<widget name="rufuml_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
 						<widget name="FBFGast" position="%d,%d" size="%d,%d" font="Regular;%d" />
-						<widget name="gast_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-						<widget name="gast_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphatest="blend"/>
-						<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-						<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-						<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-						<widget name="key_yellow" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;16" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+						<widget name="gast_inactive" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
+						<widget name="gast_active" pixmap="%s" position="%d,%d" size="15,16" transparent="1" alphaTest="blend"/>
+						<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+						<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+						<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+						<widget name="key_yellow" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;16" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 					</screen>""" % (
 								width, height,  # size
 								40, 5,  # position information
@@ -767,29 +767,29 @@ class FritzMenu(Screen, HelpableScreen):
 						<screen name="FritzMenuNew" position="center,center" size="600,370" title="FRITZ!Box Fon Status">
 							<widget name="FBFInfo" position="40,10" size="550,50" font="Regular;20" />
 							<widget name="FBFInternet" position="40,70" size="550,45" font="Regular;18" />
-							<widget name="internet_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,72" size="8,20" alphatest="blend"/>
-							<widget name="internet_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,72" size="8,20" alphatest="blend"/>
+							<widget name="internet_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,72" size="8,20" alphaTest="blend"/>
+							<widget name="internet_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,72" size="8,20" alphaTest="blend"/>
 							<widget name="FBFDsl" position="40,144" size="550,25" font="Regular;18" />
-							<widget name="dsl_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,140" size="8,20" alphatest="blend"/>
-							<widget name="dsl_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,140" size="8,20" alphatest="blend"/>
+							<widget name="dsl_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,140" size="8,20" alphaTest="blend"/>
+							<widget name="dsl_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,140" size="8,20" alphaTest="blend"/>
 							<widget name="FBFWlan" position="40,169" size="550,25" font="Regular;18" />
-							<widget name="wlan_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,165" size="8,20" alphatest="blend"/>
-							<widget name="wlan_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,165" size="8,20" alphatest="blend"/>
+							<widget name="wlan_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,165" size="8,20" alphaTest="blend"/>
+							<widget name="wlan_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,165" size="8,20" alphaTest="blend"/>
 							<widget name="FBFDect" position="40,194" size="550,25" font="Regular;18" />
-							<widget name="dect_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,190" size="8,20" alphatest="blend"/>
-							<widget name="dect_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,190" size="8,20" alphatest="blend"/>
+							<widget name="dect_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,190" size="8,20" alphaTest="blend"/>
+							<widget name="dect_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,190" size="8,20" alphaTest="blend"/>
 							<widget name="FBFFax" position="40,219" size="550,25" font="Regular;18" />
-							<widget name="fax_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,215" size="8,20" alphatest="blend"/>
-							<widget name="fax_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,215" size="8,20" alphatest="blend"/>
+							<widget name="fax_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,215" size="8,20" alphaTest="blend"/>
+							<widget name="fax_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,215" size="8,20" alphaTest="blend"/>
 							<widget name="FBFRufuml" position="40,244" size="550,25" font="Regular;18" />
-							<widget name="rufuml_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,240" size="8,20" alphatest="blend"/>
-							<widget name="rufuml_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,240" size="8,20" alphatest="blend"/>
+							<widget name="rufuml_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,240" size="8,20" alphaTest="blend"/>
+							<widget name="rufuml_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,240" size="8,20" alphaTest="blend"/>
 							<widget name="FBFGast" position="40,269" size="550,25" font="Regular;18" />
-							<widget name="gast_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,265" size="8,20" alphatest="blend"/>
-							<widget name="gast_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,265" size="8,20" alphatest="blend"/>
-							<widget font="Regular;18" halign="center" name="key_red" position="10,330" size="160,22" />
-							<widget font="Regular;18" halign="center" name="key_green" position="180,330" size="160,22" />
-							<widget font="Regular;18" halign="center" name="key_yellow" position="350,330" size="240,22" />
+							<widget name="gast_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,265" size="8,20" alphaTest="blend"/>
+							<widget name="gast_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,265" size="8,20" alphaTest="blend"/>
+							<widget font="Regular;18" horizontalAlignment="center" name="key_red" position="10,330" size="160,22" />
+							<widget font="Regular;18" horizontalAlignment="center" name="key_green" position="180,330" size="160,22" />
+							<widget font="Regular;18" horizontalAlignment="center" name="key_yellow" position="350,330" size="240,22" />
 							<eLabel position="10,355" size="160,10" backgroundColor="#9f1313" />
 							<eLabel position="180,355" size="160,10" backgroundColor="#1f771f" />
 							<eLabel position="350,355" size="240,10" backgroundColor="#a08500" />
@@ -800,29 +800,29 @@ class FritzMenu(Screen, HelpableScreen):
 						<screen name="FritzMenuNew" position="center,center" size="800,430" title="FRITZ!Box Fon Status">
 							<widget name="FBFInfo" position="60,10" size="730,60" font="Regular;20" />
 							<widget name="FBFInternet" position="60,80" size="730,50" font="Regular;20" />
-							<widget name="internet_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,82" size="8,25" alphatest="blend"/>
-							<widget name="internet_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,82" size="8,25" alphatest="blend"/>
+							<widget name="internet_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,82" size="8,25" alphaTest="blend"/>
+							<widget name="internet_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,82" size="8,25" alphaTest="blend"/>
 							<widget name="FBFDsl" position="60,154" size="730,30" font="Regular;20" />
-							<widget name="dsl_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,152" size="8,25" alphatest="blend"/>
-							<widget name="dsl_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,152" size="8,25" alphatest="blend"/>
+							<widget name="dsl_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,152" size="8,25" alphaTest="blend"/>
+							<widget name="dsl_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,152" size="8,25" alphaTest="blend"/>
 							<widget name="FBFWlan" position="60,184" size="730,30" font="Regular;20" />
-							<widget name="wlan_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,182" size="8,25" alphatest="blend"/>
-							<widget name="wlan_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,182" size="8,25" alphatest="blend"/>
+							<widget name="wlan_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,182" size="8,25" alphaTest="blend"/>
+							<widget name="wlan_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,182" size="8,25" alphaTest="blend"/>
 							<widget name="FBFDect" position="60,214" size="730,30" font="Regular;20" />
-							<widget name="dect_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,212" size="8,25" alphatest="blend"/>
-							<widget name="dect_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,212" size="8,25" alphatest="blend"/>
+							<widget name="dect_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,212" size="8,25" alphaTest="blend"/>
+							<widget name="dect_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,212" size="8,25" alphaTest="blend"/>
 							<widget name="FBFFax" position="60,244" size="730,30" font="Regular;20" />
-							<widget name="fax_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,242" size="8,25" alphatest="blend"/>
-							<widget name="fax_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,242" size="8,25" alphatest="blend"/>
+							<widget name="fax_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,242" size="8,25" alphaTest="blend"/>
+							<widget name="fax_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,242" size="8,25" alphaTest="blend"/>
 							<widget name="FBFRufuml" position="60,274" size="730,30" font="Regular;20" />
-							<widget name="rufuml_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,272" size="8,25" alphatest="blend"/>
-							<widget name="rufuml_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,272" size="8,25" alphatest="blend"/>
+							<widget name="rufuml_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,272" size="8,25" alphaTest="blend"/>
+							<widget name="rufuml_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,272" size="8,25" alphaTest="blend"/>
 							<widget name="FBFGast" position="60,304" size="730,30" font="Regular;20" />
-							<widget name="gast_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,302" size="8,25" alphatest="blend"/>
-							<widget name="gast_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,302" size="8,25" alphatest="blend"/>
-							<widget font="Regular;20" halign="center" name="key_red" position="10,375" size="220,30" />
-							<widget font="Regular;20" halign="center" name="key_green" position="240,375" size="220,30" />
-							<widget font="Regular;20" halign="center" name="key_yellow" position="470,375" size="320,30" />
+							<widget name="gast_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,302" size="8,25" alphaTest="blend"/>
+							<widget name="gast_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,302" size="8,25" alphaTest="blend"/>
+							<widget font="Regular;20" horizontalAlignment="center" name="key_red" position="10,375" size="220,30" />
+							<widget font="Regular;20" horizontalAlignment="center" name="key_green" position="240,375" size="220,30" />
+							<widget font="Regular;20" horizontalAlignment="center" name="key_yellow" position="470,375" size="320,30" />
 							<eLabel position="10,410" size="220,10" backgroundColor="#9f1313" />
 							<eLabel position="240,410" size="220,10" backgroundColor="#1f771f" />
 							<eLabel position="470,410" size="320,10" backgroundColor="#a08500" />
@@ -833,29 +833,29 @@ class FritzMenu(Screen, HelpableScreen):
 						<screen name="FritzMenuNew" position="center,center" size="1100,660" title="FRITZ!Box Fon Status">
 							<widget name="FBFInfo" position="60,10" size="980,105" font="Regular;30" />
 							<widget name="FBFInternet" position="60,122" size="980,80" font="Regular;28" />
-							<widget name="internet_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,125" size="10,35" alphatest="blend"/>
-							<widget name="internet_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,125" size="10,35" alphatest="blend"/>
+							<widget name="internet_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,125" size="10,35" alphaTest="blend"/>
+							<widget name="internet_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,125" size="10,35" alphaTest="blend"/>
 							<widget name="FBFDsl" position="60,233" size="980,40" font="Regular;28" />
-							<widget name="dsl_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,230" size="10,35" alphatest="blend"/>
-							<widget name="dsl_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,230" size="10,35" alphatest="blend"/>
+							<widget name="dsl_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,230" size="10,35" alphaTest="blend"/>
+							<widget name="dsl_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,230" size="10,35" alphaTest="blend"/>
 							<widget name="FBFWlan" position="60,283" size="980,40" font="Regular;28" />
-							<widget name="wlan_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,280" size="10,35" alphatest="blend"/>
-							<widget name="wlan_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,280" size="10,35" alphatest="blend"/>
+							<widget name="wlan_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,280" size="10,35" alphaTest="blend"/>
+							<widget name="wlan_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,280" size="10,35" alphaTest="blend"/>
 							<widget name="FBFDect" position="60,333" size="980,40" font="Regular;28" />
-							<widget name="dect_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,330" size="10,35" alphatest="blend"/>
-							<widget name="dect_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,330" size="10,35" alphatest="blend"/>
+							<widget name="dect_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,330" size="10,35" alphaTest="blend"/>
+							<widget name="dect_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,330" size="10,35" alphaTest="blend"/>
 							<widget name="FBFFax" position="60,383" size="980,40" font="Regular;28" />
-							<widget name="fax_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,380" size="10,35" alphatest="blend"/>
-							<widget name="fax_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,380" size="10,35" alphatest="blend"/>
+							<widget name="fax_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,380" size="10,35" alphaTest="blend"/>
+							<widget name="fax_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,380" size="10,35" alphaTest="blend"/>
 							<widget name="FBFRufuml" position="60,433" size="980,40" font="Regular;28" />
-							<widget name="rufuml_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,430" size="10,35" alphatest="blend"/>
-							<widget name="rufuml_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,430" size="10,35" alphatest="blend"/>
+							<widget name="rufuml_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,430" size="10,35" alphaTest="blend"/>
+							<widget name="rufuml_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,430" size="10,35" alphaTest="blend"/>
 							<widget name="FBFGast" position="60,483" size="980,80" font="Regular;28" />
-							<widget name="gast_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,480" size="10,35" alphatest="blend"/>
-							<widget name="gast_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,480" size="10,35" alphatest="blend"/>
-							<widget font="Regular;30" halign="center" name="key_red" position="10,590" size="300,40" />
-							<widget font="Regular;30" halign="center" name="key_green" position="330,590" size="300,40" />
-							<widget font="Regular;30" halign="center" name="key_yellow" position="650,590" size="440,40" />
+							<widget name="gast_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,480" size="10,35" alphaTest="blend"/>
+							<widget name="gast_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,480" size="10,35" alphaTest="blend"/>
+							<widget font="Regular;30" horizontalAlignment="center" name="key_red" position="10,590" size="300,40" />
+							<widget font="Regular;30" horizontalAlignment="center" name="key_green" position="330,590" size="300,40" />
+							<widget font="Regular;30" horizontalAlignment="center" name="key_yellow" position="650,590" size="440,40" />
 							<eLabel position="10,640" size="300,8" backgroundColor="#9f1313"/>
 							<eLabel position="330,640" size="300,8" backgroundColor="#1f771f" />
 							<eLabel position="650,640" size="440,8" backgroundColor="#a08500" />
@@ -866,29 +866,29 @@ class FritzMenu(Screen, HelpableScreen):
 						<screen name="FritzMenuNew" position="center,center" size="2400,1270" title="FRITZ!Box Fon Status">
 							<widget name="FBFInfo" position="80,10" size="2300,150" font="Regular;65" />
 							<widget name="FBFInternet" position="80,200" size="2100,130" font="Regular;60" />
-							<widget name="internet_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,205" size="20,70" alphatest="blend"/>
-							<widget name="internet_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,205" size="20,70" alphatest="blend"/>
+							<widget name="internet_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,205" size="20,70" alphaTest="blend"/>
+							<widget name="internet_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,205" size="20,70" alphaTest="blend"/>
 							<widget name="FBFDsl" position="80,397" size="2300,70" font="Regular;60" />
-							<widget name="dsl_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,395" size="20,70" alphatest="blend"/>
-							<widget name="dsl_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,395" size="20,70" alphatest="blend"/>
+							<widget name="dsl_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,395" size="20,70" alphaTest="blend"/>
+							<widget name="dsl_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,395" size="20,70" alphaTest="blend"/>
 							<widget name="FBFWlan" position="80,517" size="2300,70" font="Regular;60" />
-							<widget name="wlan_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,515" size="20,70" alphatest="blend"/>
-							<widget name="wlan_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,515" size="20,70" alphatest="blend"/>
+							<widget name="wlan_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,515" size="20,70" alphaTest="blend"/>
+							<widget name="wlan_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,515" size="20,70" alphaTest="blend"/>
 							<widget name="FBFDect" position="80,617" size="2300,70" font="Regular;60" />
-							<widget name="dect_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,615" size="20,70" alphatest="blend"/>
-							<widget name="dect_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,615" size="20,70" alphatest="blend"/>
+							<widget name="dect_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,615" size="20,70" alphaTest="blend"/>
+							<widget name="dect_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,615" size="20,70" alphaTest="blend"/>
 							<widget name="FBFFax" position="80,727" size="2300,70" font="Regular;60" />
-							<widget name="fax_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,725" size="20,70" alphatest="blend"/>
-							<widget name="fax_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,725" size="20,70" alphatest="blend"/>
+							<widget name="fax_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,725" size="20,70" alphaTest="blend"/>
+							<widget name="fax_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,725" size="20,70" alphaTest="blend"/>
 							<widget name="FBFRufuml" position="80,837" size="2300,70" font="Regular;60" />
-							<widget name="rufuml_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,835" size="20,70" alphatest="blend"/>
-							<widget name="rufuml_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,785" size="20,70" alphatest="blend"/>
+							<widget name="rufuml_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,835" size="20,70" alphaTest="blend"/>
+							<widget name="rufuml_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,785" size="20,70" alphaTest="blend"/>
 							<widget name="FBFGast" position="80,947" size="2300,70" font="Regular;60" />
-							<widget name="gast_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,945" size="20,70" alphatest="blend"/>
-							<widget name="gast_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,945" size="20,70" alphatest="blend"/>
-							<widget font="Regular;60" halign="center" name="key_red" position="20,1140" size="650,70" />
-							<widget font="Regular;60" halign="center" name="key_green" position="700,1140" size="650,70" />
-							<widget font="Regular;60" halign="center" name="key_yellow" position="1380,1140" size="1000,70" />
+							<widget name="gast_inactive" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/inaktiv.png" position="20,945" size="20,70" alphaTest="blend"/>
+							<widget name="gast_active" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FritzCall/images/aktiv.png" position="20,945" size="20,70" alphaTest="blend"/>
+							<widget font="Regular;60" horizontalAlignment="center" name="key_red" position="20,1140" size="650,70" />
+							<widget font="Regular;60" horizontalAlignment="center" name="key_green" position="700,1140" size="650,70" />
+							<widget font="Regular;60" horizontalAlignment="center" name="key_yellow" position="1380,1140" size="1000,70" />
 							<eLabel position="20,1230" size="650,20" backgroundColor="#9f1313" />
 							<eLabel position="700,1230" size="650,20" backgroundColor="#1f771f" />
 							<eLabel position="1380,1230" size="1000,20" backgroundColor="#a08500" />
@@ -1219,14 +1219,14 @@ class FritzDisplayCalls(Screen, HelpableScreen):
 						</convert>
 					</widget>
 					<eLabel position="0,%d" size="%d,2" backgroundColor="#aaaaaa" />
-					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-					<widget name="key_red" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-					<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-					<widget name="key_yellow" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-					<widget name="key_blue" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+					<widget name="key_red" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+					<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+					<widget name="key_yellow" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+					<widget name="key_blue" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 				</screen>""" % (
 							# scaleH(90, 75), scaleV(100, 78), # position
 							self.width, self.height,  # size
@@ -1261,7 +1261,7 @@ class FritzDisplayCalls(Screen, HelpableScreen):
 				self.skin = """
 					<!-- SD screen -->
 					<screen name="FritzDisplayCalls" position="center,center" size="620,460" title="Phone calls" >
-							<widget name="statusbar" position="10,10" halign="center" foregroundColor="#bab329" size="590,25" font="Regular;18"/>
+							<widget name="statusbar" position="10,10" horizontalAlignment="center" foregroundColor="#bab329" size="590,25" font="Regular;18"/>
 							<eLabel position="10,35" size="590,2" backgroundColor="#aaaaaa" />
 							<widget source="entries" render="Listbox" position="10,45" size="600,360" enableWrapAround="1" scrollbarMode="showOnDemand">
 								<convert type="TemplatedMultiContent">
@@ -1277,10 +1277,10 @@ class FritzDisplayCalls(Screen, HelpableScreen):
 									}
 								</convert>
 							</widget>
-							<widget name="key_red" position="10,415" size="140,20" halign="center" font="Regular;18" />
-							<widget name="key_green" position="160,415" size="140,20" halign="center" font="Regular;18" />
-							<widget name="key_yellow" position="310,415" size="140,20"  halign="center" font="Regular;18" />
-							<widget name="key_blue" position="460,415" size="140,20" halign="center" font="Regular;18" />
+							<widget name="key_red" position="10,415" size="140,20" horizontalAlignment="center" font="Regular;18" />
+							<widget name="key_green" position="160,415" size="140,20" horizontalAlignment="center" font="Regular;18" />
+							<widget name="key_yellow" position="310,415" size="140,20"  horizontalAlignment="center" font="Regular;18" />
+							<widget name="key_blue" position="460,415" size="140,20" horizontalAlignment="center" font="Regular;18" />
 							<eLabel position="10,440" size="140,10" backgroundColor="#9f1313"/>
 							<eLabel position="160,440" size="140,10" backgroundColor="#1f771f" />
 							<eLabel position="310,440" size="140,10" backgroundColor="#a08500" />
@@ -1290,7 +1290,7 @@ class FritzDisplayCalls(Screen, HelpableScreen):
 				self.skin = """
 					<!-- HD screen -->
 					<screen name="FritzDisplayCalls" position="center,center" size="850,560" title="Phone calls" >
-							<widget name="statusbar" position="10,8" halign="center" foregroundColor="#bab329" size="830,30" font="Regular;20"/>
+							<widget name="statusbar" position="10,8" horizontalAlignment="center" foregroundColor="#bab329" size="830,30" font="Regular;20"/>
 							<eLabel position="10,40" size="830,2" backgroundColor="#aaaaaa" />
 							<widget source="entries" render="Listbox" position="10,50" size="830,440" enableWrapAround="1" scrollbarMode="showOnDemand">
 								<convert type="TemplatedMultiContent">
@@ -1306,10 +1306,10 @@ class FritzDisplayCalls(Screen, HelpableScreen):
 									}
 								</convert>
 							</widget>
-							<widget name="key_red" position="10,510" size="200,25" halign="center" font="Regular;20" />
-							<widget name="key_green" position="220,510" size="200,25" halign="center" font="Regular;20" />
-							<widget name="key_yellow" position="430,510" size="200,25"  halign="center" font="Regular;20" />
-							<widget name="key_blue" position="640,510" size="200,25" halign="center" font="Regular;20" />
+							<widget name="key_red" position="10,510" size="200,25" horizontalAlignment="center" font="Regular;20" />
+							<widget name="key_green" position="220,510" size="200,25" horizontalAlignment="center" font="Regular;20" />
+							<widget name="key_yellow" position="430,510" size="200,25"  horizontalAlignment="center" font="Regular;20" />
+							<widget name="key_blue" position="640,510" size="200,25" horizontalAlignment="center" font="Regular;20" />
 							<eLabel position="10,540" size="200,10" backgroundColor="#9f1313"/>
 							<eLabel position="220,540" size="200,10" backgroundColor="#1f771f" />
 							<eLabel position="430,540" size="200,10" backgroundColor="#a08500" />
@@ -1319,7 +1319,7 @@ class FritzDisplayCalls(Screen, HelpableScreen):
 				self.skin = """
 					<!-- Fullhd screen -->
 					<screen name="FritzDisplayCalls" position="center,center" size="1450,850" title="Phone calls" >
-							<widget name="statusbar" position="10,10" halign="center" foregroundColor="#bab329" size="1430,40" font="Regular;30"/>
+							<widget name="statusbar" position="10,10" horizontalAlignment="center" foregroundColor="#bab329" size="1430,40" font="Regular;30"/>
 							<eLabel position="10,55" size="1430,2" backgroundColor="#aaaaaa" />
 							<widget source="entries" render="Listbox" position="10,65" size="1430,680" enableWrapAround="1" scrollbarMode="showOnDemand">
 								<convert type="TemplatedMultiContent">
@@ -1335,10 +1335,10 @@ class FritzDisplayCalls(Screen, HelpableScreen):
 									}
 								</convert>
 							</widget>
-							<widget name="key_red" position="10,780" size="350,40" halign="center" font="Regular;30" />
-							<widget name="key_green" position="370,780" size="350,40" halign="center" font="Regular;30" />
-							<widget name="key_yellow" position="730,780" size="350,40"  halign="center" font="Regular;30" />
-							<widget name="key_blue" position="1090,780" size="350,40" halign="center" font="Regular;30" />
+							<widget name="key_red" position="10,780" size="350,40" horizontalAlignment="center" font="Regular;30" />
+							<widget name="key_green" position="370,780" size="350,40" horizontalAlignment="center" font="Regular;30" />
+							<widget name="key_yellow" position="730,780" size="350,40"  horizontalAlignment="center" font="Regular;30" />
+							<widget name="key_blue" position="1090,780" size="350,40" horizontalAlignment="center" font="Regular;30" />
 							<eLabel position="10,830" size="350,8" backgroundColor="#9f1313"/>
 							<eLabel position="370,830" size="350,8" backgroundColor="#1f771f" />
 							<eLabel position="730,830" size="350,8" backgroundColor="#a08500" />
@@ -1348,7 +1348,7 @@ class FritzDisplayCalls(Screen, HelpableScreen):
 				self.skin = """
 					<!-- UHD screen -->
 					<screen name="FritzDisplayCalls" position="center,center" size="2560,1540" title="Phone calls" >
-							<widget name="statusbar" position="10,10" halign="center" foregroundColor="#bab329" size="2540,80" font="Regular;65"/>
+							<widget name="statusbar" position="10,10" horizontalAlignment="center" foregroundColor="#bab329" size="2540,80" font="Regular;65"/>
 							<eLabel position="10,100" size="2540,4" backgroundColor="#aaaaaa" />
 							<widget source="entries" render="Listbox" position="10,110" size="2540,1260" enableWrapAround="1" scrollbarMode="showOnDemand">
 								<convert type="TemplatedMultiContent">
@@ -1364,10 +1364,10 @@ class FritzDisplayCalls(Screen, HelpableScreen):
 									}
 								</convert>
 							</widget>
-							<widget name="key_red" position="10,1420" size="600,70" halign="center" font="Regular;60" />
-							<widget name="key_green" position="660,1420" size="600,70" halign="center" font="Regular;60" />
-							<widget name="key_yellow" position="1310,1420" size="600,70"  halign="center" font="Regular;60" />
-							<widget name="key_blue" position="1950,1420" size="600,70" halign="center" font="Regular;60" />
+							<widget name="key_red" position="10,1420" size="600,70" horizontalAlignment="center" font="Regular;60" />
+							<widget name="key_green" position="660,1420" size="600,70" horizontalAlignment="center" font="Regular;60" />
+							<widget name="key_yellow" position="1310,1420" size="600,70"  horizontalAlignment="center" font="Regular;60" />
+							<widget name="key_blue" position="1950,1420" size="600,70" horizontalAlignment="center" font="Regular;60" />
 							<eLabel position="10,1510" size="600,20" backgroundColor="#9f1313"/>
 							<eLabel position="660,1510" size="600,20" backgroundColor="#1f771f" />
 							<eLabel position="1310,1510" size="600,20" backgroundColor="#a08500" />
@@ -1513,13 +1513,13 @@ class FritzOfferAction(Screen):
 			self.skin = """
 				<screen name="FritzOfferAction" title="Do what?" >
 					<widget name="text" size="%d,%d" font="Regular;%d" />
-					<widget name="FacePixmap" size="%d,%d" alphatest="blend" />
-					<widget name="key_red_p" zPosition="4" size="%s,%s" pixmap="%s" transparent="1" alphatest="blend" />
-					<widget name="key_green_p" zPosition="4" size="%s,%s" pixmap="%s" transparent="1" alphatest="blend" />
-					<widget name="key_yellow_p" zPosition="4" size="%s,%s" pixmap="%s" transparent="1" alphatest="blend" />
-					<widget name="key_red" zPosition="5" size="%s,%s" valign="center" halign="center" font="Regular;%s" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-					<widget name="key_green" zPosition="5" size="%s,%s" valign="center" halign="center" font="Regular;%s" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-					<widget name="key_yellow" zPosition="5" size="%s,%s" valign="center" halign="center" font="Regular;%s" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+					<widget name="FacePixmap" size="%d,%d" alphaTest="blend" />
+					<widget name="key_red_p" zPosition="4" size="%s,%s" pixmap="%s" transparent="1" alphaTest="blend" />
+					<widget name="key_green_p" zPosition="4" size="%s,%s" pixmap="%s" transparent="1" alphaTest="blend" />
+					<widget name="key_yellow_p" zPosition="4" size="%s,%s" pixmap="%s" transparent="1" alphaTest="blend" />
+					<widget name="key_red" zPosition="5" size="%s,%s" verticalAlignment="center" horizontalAlignment="center" font="Regular;%s" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+					<widget name="key_green" zPosition="5" size="%s,%s" verticalAlignment="center" horizontalAlignment="center" font="Regular;%s" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+					<widget name="key_yellow" zPosition="5" size="%s,%s" verticalAlignment="center" horizontalAlignment="center" font="Regular;%s" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 				</screen>""" % (
 								DESKTOP_WIDTH, DESKTOP_HEIGHT, scaleV(25, 22),  # set maximum size
 								DESKTOP_WIDTH, DESKTOP_HEIGHT,  # set maximum size
@@ -1535,11 +1535,11 @@ class FritzOfferAction(Screen):
 				self.skin = """
 					<!-- SD screen -->
 					<screen name="FritzOfferAction" position="center,center" size="490,230" title=" ">
-						<widget name="FacePixmap" position="10,10" size="160,160" alphatest="blend" />
+						<widget name="FacePixmap" position="10,10" size="160,160" alphaTest="blend" />
 						<widget name="text" position="220,40" size="260,120" font="Regular;18"/>
-						<widget font="Regular;18" halign="center" name="key_red" position="10,190" size="150,22" />
-						<widget font="Regular;18" halign="center" name="key_green" position="170,190" size="150,22" />
-						<widget font="Regular;18" halign="center" name="key_yellow" position="330,190" size="150,22" />
+						<widget font="Regular;18" horizontalAlignment="center" name="key_red" position="10,190" size="150,22" />
+						<widget font="Regular;18" horizontalAlignment="center" name="key_green" position="170,190" size="150,22" />
+						<widget font="Regular;18" horizontalAlignment="center" name="key_yellow" position="330,190" size="150,22" />
 						<eLabel position="10,215" size="150,10" backgroundColor="#9f1313"/>
 						<eLabel position="170,215" size="150,10" backgroundColor="#1f771f" />
 						<eLabel position="330,215" size="150,10" backgroundColor="#a08500" />
@@ -1549,11 +1549,11 @@ class FritzOfferAction(Screen):
 				self.skin = """
 					<!-- HD screen -->
 					<screen name="FritzOfferAction" position="center,center" size="700,320" title=" ">
-						<widget name="FacePixmap" position="10,10" size="230,230" alphatest="blend" />
+						<widget name="FacePixmap" position="10,10" size="230,230" alphaTest="blend" />
 						<widget name="text" position="290,80" size="400,150" font="Regular;20"/>
-						<widget font="Regular;20" halign="center" name="key_red" position="10,270" size="200,25" />
-						<widget font="Regular;20" halign="center" name="key_green" position="250,270" size="200,25" />
-						<widget font="Regular;20" halign="center" name="key_yellow" position="490,270" size="200,25" />
+						<widget font="Regular;20" horizontalAlignment="center" name="key_red" position="10,270" size="200,25" />
+						<widget font="Regular;20" horizontalAlignment="center" name="key_green" position="250,270" size="200,25" />
+						<widget font="Regular;20" horizontalAlignment="center" name="key_yellow" position="490,270" size="200,25" />
 						<eLabel position="10,300" size="200,10" backgroundColor="#9f1313"/>
 						<eLabel position="250,300" size="200,10" backgroundColor="#1f771f" />
 						<eLabel position="490,300" size="200,10" backgroundColor="#a08500" />
@@ -1563,11 +1563,11 @@ class FritzOfferAction(Screen):
 				self.skin = """
 					<!-- Fullhd screen -->
 					<screen name="FritzOfferAction" position="center,center" size="1160,480" title=" ">
-						<widget name="FacePixmap" position="10,10" size="400,400" alphatest="blend" />
+						<widget name="FacePixmap" position="10,10" size="400,400" alphaTest="blend" />
 						<widget name="text" position="470,110" size="680,280" font="Regular;30"/>
-						<widget font="Regular;30" halign="center" name="key_red" position="10,420" size="300,40" />
-						<widget font="Regular;30" halign="center" name="key_green" position="430,420" size="300,40" />
-						<widget font="Regular;30" halign="center" name="key_yellow" position="850,420" size="300,40" />
+						<widget font="Regular;30" horizontalAlignment="center" name="key_red" position="10,420" size="300,40" />
+						<widget font="Regular;30" horizontalAlignment="center" name="key_green" position="430,420" size="300,40" />
+						<widget font="Regular;30" horizontalAlignment="center" name="key_yellow" position="850,420" size="300,40" />
 						<eLabel position="10,460" size="300,8" backgroundColor="#9f1313"/>
 						<eLabel position="430,460" size="300,8" backgroundColor="#1f771f" />
 						<eLabel position="850,460" size="300,8" backgroundColor="#a08500" />
@@ -1577,11 +1577,11 @@ class FritzOfferAction(Screen):
 				self.skin = """
 					<!-- UHD screen -->
 					<screen name="FritzOfferAction" position="center,center" size="2080,940" title=" ">
-						<widget name="FacePixmap" position="10,10" size="800,800" alphatest="blend" />
+						<widget name="FacePixmap" position="10,10" size="800,800" alphaTest="blend" />
 						<widget name="text" position="900,300" size="1150,500" font="Regular;60"/>
-						<widget font="Regular;60" halign="center" name="key_red" position="10,830" size="600,70" />
-						<widget font="Regular;60" halign="center" name="key_green" position="740,830" size="600,70" />
-						<widget font="Regular;60" halign="center" name="key_yellow" position="1470,830" size="600,70" />
+						<widget font="Regular;60" horizontalAlignment="center" name="key_red" position="10,830" size="600,70" />
+						<widget font="Regular;60" horizontalAlignment="center" name="key_green" position="740,830" size="600,70" />
+						<widget font="Regular;60" horizontalAlignment="center" name="key_yellow" position="1470,830" size="600,70" />
 						<eLabel position="10,910" size="600,20" backgroundColor="#9f1313"/>
 						<eLabel position="740,910" size="600,20" backgroundColor="#1f771f" />
 						<eLabel position="1470,910" size="600,20" backgroundColor="#a08500" />
@@ -2007,14 +2007,14 @@ class FritzCallPhonebook(object):
 							</convert>
 						</widget>
 						<eLabel position="0,%d" size="%d,2" backgroundColor="#aaaaaa" />
-						<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-						<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-						<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-						<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-						<widget name="key_red" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-						<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-						<widget name="key_yellow" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-						<widget name="key_blue" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+						<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+						<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+						<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+						<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+						<widget name="key_red" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+						<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+						<widget name="key_yellow" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+						<widget name="key_blue" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 					</screen>""" % (
 							# scaleH(90, 75), scaleV(100, 73), # position
 							self.entriesWidth, self.height,  # size
@@ -2052,10 +2052,10 @@ class FritzCallPhonebook(object):
 									}
 								</convert>
 							</widget>
-							<widget name="key_red" position="10,415" size="140,20" halign="center" font="Regular;18" />
-							<widget name="key_green" position="160,415" size="140,20" halign="center" font="Regular;18" />
-							<widget name="key_yellow" position="310,415" size="140,20"  halign="center" font="Regular;18" />
-							<widget name="key_blue" position="460,415" size="140,20" halign="center" font="Regular;18" />
+							<widget name="key_red" position="10,415" size="140,20" horizontalAlignment="center" font="Regular;18" />
+							<widget name="key_green" position="160,415" size="140,20" horizontalAlignment="center" font="Regular;18" />
+							<widget name="key_yellow" position="310,415" size="140,20"  horizontalAlignment="center" font="Regular;18" />
+							<widget name="key_blue" position="460,415" size="140,20" horizontalAlignment="center" font="Regular;18" />
 							<eLabel position="10,440" size="140,10" backgroundColor="#9f1313"/>
 							<eLabel position="160,440" size="140,10" backgroundColor="#1f771f" />
 							<eLabel position="310,440" size="140,10" backgroundColor="#a08500" />
@@ -2077,10 +2077,10 @@ class FritzCallPhonebook(object):
 											}
 								</convert>
 							</widget>
-							<widget name="key_red" position="10,510" size="200,25" halign="center" font="Regular;20" />
-							<widget name="key_green" position="220,510" size="200,25" halign="center" font="Regular;20" />
-							<widget name="key_yellow" position="430,510" size="200,25"  halign="center" font="Regular;20" />
-							<widget name="key_blue" position="640,510" size="200,25" halign="center" font="Regular;20" />
+							<widget name="key_red" position="10,510" size="200,25" horizontalAlignment="center" font="Regular;20" />
+							<widget name="key_green" position="220,510" size="200,25" horizontalAlignment="center" font="Regular;20" />
+							<widget name="key_yellow" position="430,510" size="200,25"  horizontalAlignment="center" font="Regular;20" />
+							<widget name="key_blue" position="640,510" size="200,25" horizontalAlignment="center" font="Regular;20" />
 							<eLabel position="10,540" size="200,10" backgroundColor="#9f1313"/>
 							<eLabel position="220,540" size="200,10" backgroundColor="#1f771f" />
 							<eLabel position="430,540" size="200,10" backgroundColor="#a08500" />
@@ -2102,10 +2102,10 @@ class FritzCallPhonebook(object):
 											}
 								</convert>
 							</widget>
-							<widget name="key_red" position="10,780" size="350,40" halign="center" font="Regular;30" />
-							<widget name="key_green" position="370,780" size="350,40" halign="center" font="Regular;30" />
-							<widget name="key_yellow" position="730,780" size="350,40"  halign="center" font="Regular;30" />
-							<widget name="key_blue" position="1090,780" size="350,40" halign="center" font="Regular;30" />
+							<widget name="key_red" position="10,780" size="350,40" horizontalAlignment="center" font="Regular;30" />
+							<widget name="key_green" position="370,780" size="350,40" horizontalAlignment="center" font="Regular;30" />
+							<widget name="key_yellow" position="730,780" size="350,40"  horizontalAlignment="center" font="Regular;30" />
+							<widget name="key_blue" position="1090,780" size="350,40" horizontalAlignment="center" font="Regular;30" />
 							<eLabel position="10,830" size="350,8" backgroundColor="#9f1313"/>
 							<eLabel position="370,830" size="350,8" backgroundColor="#1f771f" />
 							<eLabel position="730,830" size="350,8" backgroundColor="#a08500" />
@@ -2127,10 +2127,10 @@ class FritzCallPhonebook(object):
 											}
 								</convert>
 							</widget>
-							<widget name="key_red" position="10,1420" size="600,70" halign="center" font="Regular;60" />
-							<widget name="key_green" position="660,1420" size="600,70" halign="center" font="Regular;60" />
-							<widget name="key_yellow" position="1310,1420" size="600,70"  halign="center" font="Regular;60" />
-							<widget name="key_blue" position="1950,1420" size="600,70" halign="center" font="Regular;60" />
+							<widget name="key_red" position="10,1420" size="600,70" horizontalAlignment="center" font="Regular;60" />
+							<widget name="key_green" position="660,1420" size="600,70" horizontalAlignment="center" font="Regular;60" />
+							<widget name="key_yellow" position="1310,1420" size="600,70"  horizontalAlignment="center" font="Regular;60" />
+							<widget name="key_blue" position="1950,1420" size="600,70" horizontalAlignment="center" font="Regular;60" />
 							<eLabel position="10,1510" size="600,20" backgroundColor="#9f1313"/>
 							<eLabel position="660,1510" size="600,20" backgroundColor="#1f771f" />
 							<eLabel position="1310,1510" size="600,20" backgroundColor="#a08500" />
@@ -2262,10 +2262,10 @@ class FritzCallPhonebook(object):
 						self.skin = """
 							<screen position="center,center" size="%d,%d" title="Add entry to phonebook" >
 							<widget name="config" position="5,5" size="%d,%d" scrollbarMode="showOnDemand" />
-							<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-							<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-							<widget name="key_red" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-							<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+							<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+							<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+							<widget name="key_red" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+							<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 							</screen>""" % (
 											width, height,
 											width - 5 - 5, height - 5 - 40 - 5,
@@ -2280,8 +2280,8 @@ class FritzCallPhonebook(object):
 							<!-- SD screen -->
 							<screen name="AddScreen" position="center,center" size="590,140" title="Add entry to phonebook" >
 									<widget name="config" position="10,10" size="570,75" itemHeight="25" enableWrapAround="1" scrollbarMode="showOnDemand"/>
-									<widget name="key_red" position="10,95" size="150,22" halign="center" font="Regular;18" />
-									<widget name="key_green" position="430,95" size="150,22" halign="center" font="Regular;18" />
+									<widget name="key_red" position="10,95" size="150,22" horizontalAlignment="center" font="Regular;18" />
+									<widget name="key_green" position="430,95" size="150,22" horizontalAlignment="center" font="Regular;18" />
 									<eLabel position="10,120" size="150,10" backgroundColor="#9f1313" />
 									<eLabel position="430,120" size="150,10" backgroundColor="#1f771f" />
 							</screen>
@@ -2291,8 +2291,8 @@ class FritzCallPhonebook(object):
 							<!-- HD screen -->
 							<screen name="AddScreen" position="center,center" size="850,160" title="Add entry to phonebook" >
 									<widget name="config" position="10,10" size="830,90" itemHeight="30" enableWrapAround="1" scrollbarMode="showOnDemand"/>
-									<widget name="key_red" position="10,110" size="200,25" halign="center" font="Regular;20" />
-									<widget name="key_green" position="640,110" size="200,25" halign="center" font="Regular;20" />
+									<widget name="key_red" position="10,110" size="200,25" horizontalAlignment="center" font="Regular;20" />
+									<widget name="key_green" position="640,110" size="200,25" horizontalAlignment="center" font="Regular;20" />
 									<eLabel position="10,140" size="200,10" backgroundColor="#9f1313" />
 									<eLabel position="640,140" size="200,10" backgroundColor="#1f771f" />
 							</screen>
@@ -2302,8 +2302,8 @@ class FritzCallPhonebook(object):
 							<!-- Fullhd screen -->
 							<screen name="AddScreen" position="center,center" size="1250,210" title="Add entry to phonebook" >
 									<widget name="config" position="10,10" size="1230,120" itemHeight="40" enableWrapAround="1" scrollbarMode="showOnDemand"/>
-									<widget name="key_red" position="10,140" size="300,40" halign="center" font="Regular;30" />
-									<widget name="key_green" position="940,140" size="300,40" halign="center" font="Regular;30" />
+									<widget name="key_red" position="10,140" size="300,40" horizontalAlignment="center" font="Regular;30" />
+									<widget name="key_green" position="940,140" size="300,40" horizontalAlignment="center" font="Regular;30" />
 									<eLabel position="10,190" size="300,8" backgroundColor="#9f1313"/>
 									<eLabel position="940,190" size="300,8" backgroundColor="#1f771f"/>
 							</screen>
@@ -2313,8 +2313,8 @@ class FritzCallPhonebook(object):
 							<!-- UHD screen -->
 							<screen name="AddScreen" position="center,center" size="2250,350" title="Add entry to phonebook" >
 									<widget name="config" position="10,10" size="2230,210" itemHeight="70" enableWrapAround="1" scrollbarMode="showOnDemand"/>
-									<widget name="key_red" position="10,240" size="600,70" halign="center" font="Regular;60" />
-									<widget name="key_green" position="1640,240" size="600,70" halign="center" font="Regular;60" />
+									<widget name="key_red" position="10,240" size="600,70" horizontalAlignment="center" font="Regular;60" />
+									<widget name="key_green" position="1640,240" size="600,70" horizontalAlignment="center" font="Regular;60" />
 									<eLabel position="10,320" size="600,20" backgroundColor="#9f1313"/>
 									<eLabel position="1640,320" size="600,20" backgroundColor="#1f771f"/>
 							</screen>
@@ -2437,20 +2437,20 @@ class FritzCallSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.skin = """
 				<screen name="FritzCallSetup" position="center,center" size="%d,%d" title="FritzCall Setup" >
 				<eLabel position="0,0" size="%d,2" backgroundColor="#aaaaaa" />
-				<widget name="consideration" position="%d,%d" halign="center" size="%d,%d" font="Regular;%d" backgroundColor="#20040404" transparent="1" />
+				<widget name="consideration" position="%d,%d" horizontalAlignment="center" size="%d,%d" font="Regular;%d" backgroundColor="#20040404" transparent="1" />
 				<eLabel position="0,%d" size="%d,2" backgroundColor="#aaaaaa" />
 				<widget name="config" position="%d,%d" size="%d,%d" scrollbarMode="showOnDemand" backgroundColor="#20040404" transparent="1" />
 				<eLabel position="0,%d" size="%d,2" backgroundColor="#aaaaaa" />
-				<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-				<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-				<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-				<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="blend" />
-				<widget name="key_red" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-				<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-				<widget name="key_yellow" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-				<widget name="key_blue" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-				<ePixmap position="%d,%d" zPosition="4" size="35,25" pixmap="%s" transparent="1" alphatest="blend" />
-				<ePixmap position="%d,%d" zPosition="4" size="35,25" pixmap="%s" transparent="1" alphatest="blend" />
+				<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+				<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+				<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+				<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="blend" />
+				<widget name="key_red" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+				<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+				<widget name="key_yellow" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+				<widget name="key_blue" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+				<ePixmap position="%d,%d" zPosition="4" size="35,25" pixmap="%s" transparent="1" alphaTest="blend" />
+				<ePixmap position="%d,%d" zPosition="4" size="35,25" pixmap="%s" transparent="1" alphaTest="blend" />
 				</screen>""" % (
 							# (DESKTOP_WIDTH-width)/2, scaleV(100, 73), # position
 							width, scaleV(560, 430),  # size
@@ -2480,13 +2480,13 @@ class FritzCallSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.skin = """
 					<!-- SD screen -->
 					<screen name="FritzCallSetup" position="center,center" size="660,460" title="FritzCall Setup" >
-							<widget name="consideration" position="10,10" halign="center" foregroundColor="#bab329" size="640,25" font="Regular;18"/>
+							<widget name="consideration" position="10,10" horizontalAlignment="center" foregroundColor="#bab329" size="640,25" font="Regular;18"/>
 							<eLabel position="10,35" size="640,2" backgroundColor="#aaaaaa" />
 							<widget name="config" position="10,50" size="640,350" itemHeight="25" enableWrapAround="1" scrollbarMode="showOnDemand"/>
-							<widget name="key_red" position="10,415" size="130,20" halign="center" font="Regular;18" />
-							<widget name="key_green" position="150,415" size="130,20" halign="center" font="Regular;18" />
-							<widget name="key_yellow" position="290,415" size="130,20"  halign="center" font="Regular;18" />
-							<widget name="key_blue" position="430,415" size="130,20" halign="center" font="Regular;18" />
+							<widget name="key_red" position="10,415" size="130,20" horizontalAlignment="center" font="Regular;18" />
+							<widget name="key_green" position="150,415" size="130,20" horizontalAlignment="center" font="Regular;18" />
+							<widget name="key_yellow" position="290,415" size="130,20"  horizontalAlignment="center" font="Regular;18" />
+							<widget name="key_blue" position="430,415" size="130,20" horizontalAlignment="center" font="Regular;18" />
 							<eLabel position="10,440" size="130,10" backgroundColor="#9f1313"/>
 							<eLabel position="150,440" size="130,10" backgroundColor="#1f771f" />
 							<eLabel position="290,440" size="130,10" backgroundColor="#a08500" />
@@ -2499,13 +2499,13 @@ class FritzCallSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.skin = """
 					<!-- HD screen -->
 					<screen name="FritzCallSetup" position="center,center" size="1020,560" title="FritzCall Setup" >
-							<widget name="consideration" position="10,8" halign="center" foregroundColor="#bab329" size="1000,30" font="Regular;20"/>
+							<widget name="consideration" position="10,8" horizontalAlignment="center" foregroundColor="#bab329" size="1000,30" font="Regular;20"/>
 							<eLabel position="10,40" size="1000,2" backgroundColor="#aaaaaa" />
 							<widget name="config" position="10,50" size="1000,450" itemHeight="30" enableWrapAround="1" scrollbarMode="showOnDemand"/>
-							<widget name="key_red" position="10,510" size="200,25" halign="center" font="Regular;20" />
-							<widget name="key_green" position="220,510" size="200,25" halign="center" font="Regular;20" />
-							<widget name="key_yellow" position="430,510" size="200,25"  halign="center" font="Regular;20" />
-							<widget name="key_blue" position="640,510" size="200,25" halign="center" font="Regular;20" />
+							<widget name="key_red" position="10,510" size="200,25" horizontalAlignment="center" font="Regular;20" />
+							<widget name="key_green" position="220,510" size="200,25" horizontalAlignment="center" font="Regular;20" />
+							<widget name="key_yellow" position="430,510" size="200,25"  horizontalAlignment="center" font="Regular;20" />
+							<widget name="key_blue" position="640,510" size="200,25" horizontalAlignment="center" font="Regular;20" />
 							<eLabel position="10,540" size="200,10" backgroundColor="#9f1313"/>
 							<eLabel position="220,540" size="200,10" backgroundColor="#1f771f" />
 							<eLabel position="430,540" size="200,10" backgroundColor="#a08500" />
@@ -2518,13 +2518,13 @@ class FritzCallSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.skin = """
 					<!-- Fullhd screen -->
 					<screen name="FritzCallSetup" position="center,center" size="1550,850" title="FritzCall Setup" >
-						<widget name="consideration" position="10,10" halign="center" foregroundColor="#bab329" size="1530,40" font="Regular;30"/>
+						<widget name="consideration" position="10,10" horizontalAlignment="center" foregroundColor="#bab329" size="1530,40" font="Regular;30"/>
 						<eLabel position="10,55" size="1530,2" backgroundColor="#aaaaaa" />
 						<widget name="config" position="10,65" size="1530,680" itemHeight="40" enableWrapAround="1" scrollbarMode="showOnDemand"/>
-						<widget name="key_red" position="10,780" size="320,40" halign="center" font="Regular;30" />
-						<widget name="key_green" position="340,780" size="320,40" halign="center" font="Regular;30" />
-						<widget name="key_yellow" position="670,780" size="320,40"  halign="center" font="Regular;30" />
-						<widget name="key_blue" position="1000,780" size="320,40" halign="center" font="Regular;30" />
+						<widget name="key_red" position="10,780" size="320,40" horizontalAlignment="center" font="Regular;30" />
+						<widget name="key_green" position="340,780" size="320,40" horizontalAlignment="center" font="Regular;30" />
+						<widget name="key_yellow" position="670,780" size="320,40"  horizontalAlignment="center" font="Regular;30" />
+						<widget name="key_blue" position="1000,780" size="320,40" horizontalAlignment="center" font="Regular;30" />
 						<eLabel position="10,830" size="320,8" backgroundColor="#9f1313"/>
 						<eLabel position="340,830" size="320,8" backgroundColor="#1f771f" />
 						<eLabel position="670,830" size="320,8" backgroundColor="#a08500" />
@@ -2537,13 +2537,13 @@ class FritzCallSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.skin = """
 					<!-- UHD screen -->
 					<screen name="FritzCallSetup" position="center,center" size="3180,1540" title="FritzCall Setup" >
-						<widget name="consideration" position="10,10" halign="center" foregroundColor="#bab329" size="3160,80" font="Regular;65"/>
+						<widget name="consideration" position="10,10" horizontalAlignment="center" foregroundColor="#bab329" size="3160,80" font="Regular;65"/>
 						<eLabel position="10,100" size="3160,4" backgroundColor="#aaaaaa" />
 						<widget name="config" position="10,110" size="3160,1260" itemHeight="70" enableWrapAround="1" scrollbarMode="showOnDemand"/>
-						<widget name="key_red" position="10,1420" size="600,70" halign="center" font="Regular;60" />
-						<widget name="key_green" position="660,1420" size="600,70" halign="center" font="Regular;60" />
-						<widget name="key_yellow" position="1310,1420" size="600,70"  halign="center" font="Regular;60" />
-						<widget name="key_blue" position="1950,1420" size="600,70" halign="center" font="Regular;60" />
+						<widget name="key_red" position="10,1420" size="600,70" horizontalAlignment="center" font="Regular;60" />
+						<widget name="key_green" position="660,1420" size="600,70" horizontalAlignment="center" font="Regular;60" />
+						<widget name="key_yellow" position="1310,1420" size="600,70"  horizontalAlignment="center" font="Regular;60" />
+						<widget name="key_blue" position="1950,1420" size="600,70" horizontalAlignment="center" font="Regular;60" />
 						<eLabel position="10,1510" size="600,20" backgroundColor="#9f1313"/>
 						<eLabel position="660,1510" size="600,20" backgroundColor="#1f771f" />
 						<eLabel position="1310,1510" size="600,20" backgroundColor="#a08500" />
@@ -2942,7 +2942,7 @@ class MessageBoxPixmap(Screen):
 			self.skin = """
 		<screen name="MessageBoxPixmap" position="center,center" size="600,10" title="New Call">
 			<widget name="text" position="115,8" size="520,0" font="Regular;%d" />
-			<widget name="InfoPixmap" pixmap="%s" position="5,5" size="100,100" alphatest="blend" />
+			<widget name="InfoPixmap" pixmap="%s" position="5,5" size="100,100" alphaTest="blend" />
 		</screen>
 			""" % (
 				# scaleH(350, 60), scaleV(175, 245),
@@ -2954,32 +2954,32 @@ class MessageBoxPixmap(Screen):
 				self.skin = """
 				<!-- SD screen -->
 				<screen name="MessageBoxPixmap" position="center,center" size="490,200" title="New Call">
-					<widget name="InfoPixmap" position="10,10" size="160,160" alphatest="blend" />
-					<widget name="text" halign="left" valign="center" position="220,10" size="260,180" font="Regular;18"/>
+					<widget name="InfoPixmap" position="10,10" size="160,160" alphaTest="blend" />
+					<widget name="text" horizontalAlignment="left" verticalAlignment="center" position="220,10" size="260,180" font="Regular;18"/>
 				</screen>
 				"""
 			elif DESKTOP_WIDTH <= 1280:
 				self.skin = """
 				<!-- HD screen -->
 				<screen name="MessageBoxPixmap" position="center,center" size="700,270" title="New Call">
-					<widget name="InfoPixmap" position="10,10" size="230,230" alphatest="blend" />
-					<widget name="text" halign="left" valign="center" position="290,10" size="400,250" font="Regular;20"/>
+					<widget name="InfoPixmap" position="10,10" size="230,230" alphaTest="blend" />
+					<widget name="text" horizontalAlignment="left" verticalAlignment="center" position="290,10" size="400,250" font="Regular;20"/>
 				</screen>
 				"""
 			elif DESKTOP_WIDTH <= 1920:
 				self.skin = """
 				<!-- Fullhd screen -->
 				<screen name="MessageBoxPixmap" position="center,center" size="1150,420" title="New Call">
-					<widget name="InfoPixmap" position="10,10" size="400,400" alphatest="blend" />
-					<widget name="text" halign="left" valign="center" position="470,10" size="670,400" font="Regular;30"/>
+					<widget name="InfoPixmap" position="10,10" size="400,400" alphaTest="blend" />
+					<widget name="text" horizontalAlignment="left" verticalAlignment="center" position="470,10" size="670,400" font="Regular;30"/>
 				</screen>
 				"""
 			else:
 				self.skin = """
 				<!-- UHD screen -->
 				<screen name="MessageBoxPixmap" position="center,center" size="2080,820" title="New Call">
-					<widget name="InfoPixmap" position="10,10" size="800,800" alphatest="blend" />
-					<widget name="text" halign="left" valign="center" position="900,10" size="1150,800" font="Regular;60"/>
+					<widget name="InfoPixmap" position="10,10" size="800,800" alphaTest="blend" />
+					<widget name="text" horizontalAlignment="left" verticalAlignment="center" position="900,10" size="1150,800" font="Regular;60"/>
 				</screen>
 				"""
 

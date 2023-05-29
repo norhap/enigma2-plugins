@@ -418,14 +418,14 @@ class NcidClientPhonebook:
 						</convert>
 					</widget>
 					<eLabel position="0,%d" size="%d,2" backgroundColor="#aaaaaa" />
-					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="on" />
-					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="on" />
-					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="on" />
-					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="on" />
-					<widget name="key_red" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-					<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-					<widget name="key_yellow" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-					<widget name="key_blue" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="on" />
+					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="on" />
+					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="on" />
+					<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="on" />
+					<widget name="key_red" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+					<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+					<widget name="key_yellow" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+					<widget name="key_blue" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 				</screen>""" % (
 						# scaleH(90, 75), scaleV(100, 73), # position
 						self.entriesWidth, self.height, # size
@@ -573,10 +573,10 @@ class NcidClientPhonebook:
 					self.skin = """
 						<screen position="center,center" size="%d,%d" title="Add entry to phonebook" >
 						<widget name="config" position="5,5" size="%d,%d" scrollbarMode="showOnDemand" />
-						<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="on" />
-						<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="on" />
-						<widget name="key_red" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-						<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+						<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="on" />
+						<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="on" />
+						<widget name="key_red" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+						<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 						</screen>""" % (
 										width, height,
 										width - 5 - 5, height - 5 - 40 - 5,
@@ -686,10 +686,10 @@ class NcidClientSetup(Screen, ConfigListScreen):
 			<eLabel position="0,%d" size="%d,2" backgroundColor="#aaaaaa" />
 			<widget name="config" position="%d,%d" size="%d,%d" scrollbarMode="showOnDemand" backgroundColor="#20040404" transparent="1" />
 			<eLabel position="0,%d" size="%d,2" backgroundColor="#aaaaaa" />
-			<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="on" />
-			<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphatest="on" />
-			<widget name="key_red" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="on" />
+			<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="%s" transparent="1" alphaTest="on" />
+			<widget name="key_red" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget name="key_green" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 			</screen>""" % (
 						# (DESKTOP_WIDTH-width)/2, scaleV(100, 73), # position
 						width, scaleV(560, 430), # size

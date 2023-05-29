@@ -76,14 +76,14 @@ def fstabMenuListEntry(devicename, mountpoint, fstype, options, dumpfreq, passnu
 class fstabViewerScreen(Screen, HelpableScreen):
 	skin = """
 		<screen position="center,center" size="600,430" title="fstab-Editor" >
-			<widget name="entryinfo" position="500,0" size="100,30" halign="right" font="Regular;18" transparent="1" />
+			<widget name="entryinfo" position="500,0" size="100,30" horizontalAlignment="right" font="Regular;18" transparent="1" />
 			<widget name="menulist" position="0,40" size="600,220" scrollbarMode="showNever" />
-			<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/fstabEditor.png" position="70,304" size="100,40"/>
-			<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/ok.png" position="230,300" size="35,25"/>
-			<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/exit.png" position="230,325" size="35,25"/>
-			<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/green.png" position="230,350" size="35,25"/>
-			<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/blue.png" position="230,375" size="35,25"/>
-			<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/yellow.png" position="230,400" size="35,25"/>
+			<ePixmap alphaTest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/fstabEditor.png" position="70,304" size="100,40"/>
+			<ePixmap alphaTest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/ok.png" position="230,300" size="35,25"/>
+			<ePixmap alphaTest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/exit.png" position="230,325" size="35,25"/>
+			<ePixmap alphaTest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/green.png" position="230,350" size="35,25"/>
+			<ePixmap alphaTest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/blue.png" position="230,375" size="35,25"/>
+			<ePixmap alphaTest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/yellow.png" position="230,400" size="35,25"/>
 			<eLabel foregroundColor="#f0f0f0" font="Regular;18" position="275,301" size="200,25" text="Edit" transparent="1"/>
 			<eLabel foregroundColor="#f0f0f0" font="Regular;18" position="275,326" size="200,25" text="Cancel" transparent="1"/>
 			<eLabel foregroundColor="#f0f0f0" font="Regular;18" position="275,351" size="200,25" text="Add entry" transparent="1"/>
@@ -178,10 +178,10 @@ class fstabEditorScreen(Screen, ConfigListScreen, HelpableScreen):
 	skin = """
 		<screen position="center,center" size="600,380" title="fstab-Editor" >
 			<widget itemHeight="28" name="config" position="0,40" size="600,224" scrollbarMode="showOnDemand"/>
-			<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/fstabEditor.png" position="70,304" size="100,40"/>
-			<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/green.png" position="230,300" size="35,25"/>
-			<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/exit.png" position="230,325" size="35,25"/>
-			<widget name="ButtonRed" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/red.png" position="230,350" zPosition="10" size="35,25" transparent="1" alphatest="on" />
+			<ePixmap alphaTest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/fstabEditor.png" position="70,304" size="100,40"/>
+			<ePixmap alphaTest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/green.png" position="230,300" size="35,25"/>
+			<ePixmap alphaTest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/exit.png" position="230,325" size="35,25"/>
+			<widget name="ButtonRed" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/fstabEditor/red.png" position="230,350" zPosition="10" size="35,25" transparent="1" alphaTest="on" />
 			<eLabel foregroundColor="#f0f0f0" font="Regular;18" position="275,301" size="200,25" text="Save" transparent="1"/>
 			<eLabel foregroundColor="#f0f0f0" font="Regular;18" position="275,326" size="200,25" text="Cancel" transparent="1"/>
 			<widget name="ButtonRedText" position="275,351" size="200,25" zPosition="10" font="Regular;18" foregroundColor="#f0f0f0" transparent="1" />

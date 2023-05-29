@@ -314,13 +314,13 @@ class ControllerPI:
 class FanControl2Test(ConfigListScreen, Screen):
 	skin = """
 		<screen position="center,center" size="630,300" title="Fan Control 2 - Test" >
-			<widget source="TextTest1" render="Label" position="5,20" size="620,30" zPosition="10" font="Regular;20" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TextTest2" render="Label" position="5,50" size="620,30" zPosition="10" font="Regular;20" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TextTest3" render="Label" position="5,80" size="620,30" zPosition="10" font="Regular;20" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TextTest4" render="Label" position="5,130" size="620,30" zPosition="10" font="Regular;20" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TextTest5" render="Label" position="5,160" size="620,30" zPosition="10" font="Regular;20" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TextTest6" render="Label" position="5,190" size="620,30" zPosition="10" font="Regular;20" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TextTest7" render="Label" position="5,220" size="620,30" zPosition="10" font="Regular;20" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TextTest1" render="Label" position="5,20" size="620,30" zPosition="10" font="Regular;20" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TextTest2" render="Label" position="5,50" size="620,30" zPosition="10" font="Regular;20" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TextTest3" render="Label" position="5,80" size="620,30" zPosition="10" font="Regular;20" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TextTest4" render="Label" position="5,130" size="620,30" zPosition="10" font="Regular;20" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TextTest5" render="Label" position="5,160" size="620,30" zPosition="10" font="Regular;20" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TextTest6" render="Label" position="5,190" size="620,30" zPosition="10" font="Regular;20" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TextTest7" render="Label" position="5,220" size="620,30" zPosition="10" font="Regular;20" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
 		</screen>"""
 
 	def __init__(self, session, args=0):
@@ -444,19 +444,19 @@ class FanControl2Monitor(Screen, ConfigListScreen):
 	skin = """
 		<screen position="center,center" size="600,260" title="Fan Control 2 - Monitor">
 
-			<widget source="TxtTemp0" render="Label" position="5,30" size="250,25" zPosition="1" font="Regular;17" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TxtTemp1" render="Label" position="5,50" size="250,25" zPosition="1" font="Regular;17" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TxtTemp2" render="Label" position="5,70" size="250,25" zPosition="1" font="Regular;17" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TxtTemp3" render="Label" position="5,90" size="250,25" zPosition="1" font="Regular;17" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TxtTemp4" render="Label" position="5,110" size="250,25" zPosition="1" font="Regular;17" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TxtTemp5" render="Label" position="5,130" size="250,25" zPosition="1" font="Regular;17" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TxtTemp6" render="Label" position="5,150" size="250,25" zPosition="1" font="Regular;17" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TxtTemp7" render="Label" position="5,170" size="250,25" zPosition="1" font="Regular;17" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TxtHDD" render="Label" position="5,190" size="250,25" zPosition="1" font="Regular;17" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TxtFan" render="Label" position="5,210" size="250,25" zPosition="1" font="Regular;17" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget name="TxtMinTemp" position="260,20" size="50,12" zPosition="1" font="Regular;12" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TxtFC2Temp" render="Label" position="398,20" size="50,12" zPosition="1" font="Regular;17" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget name="TxtMaxTemp" position="535,20" size="50,12" zPosition="1" font="Regular;12" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TxtTemp0" render="Label" position="5,30" size="250,25" zPosition="1" font="Regular;17" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TxtTemp1" render="Label" position="5,50" size="250,25" zPosition="1" font="Regular;17" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TxtTemp2" render="Label" position="5,70" size="250,25" zPosition="1" font="Regular;17" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TxtTemp3" render="Label" position="5,90" size="250,25" zPosition="1" font="Regular;17" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TxtTemp4" render="Label" position="5,110" size="250,25" zPosition="1" font="Regular;17" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TxtTemp5" render="Label" position="5,130" size="250,25" zPosition="1" font="Regular;17" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TxtTemp6" render="Label" position="5,150" size="250,25" zPosition="1" font="Regular;17" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TxtTemp7" render="Label" position="5,170" size="250,25" zPosition="1" font="Regular;17" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TxtHDD" render="Label" position="5,190" size="250,25" zPosition="1" font="Regular;17" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TxtFan" render="Label" position="5,210" size="250,25" zPosition="1" font="Regular;17" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget name="TxtMinTemp" position="260,20" size="50,12" zPosition="1" font="Regular;12" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TxtFC2Temp" render="Label" position="398,20" size="50,12" zPosition="1" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget name="TxtMaxTemp" position="535,20" size="50,12" zPosition="1" font="Regular;12" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
 			<widget source="ProTemp0" render="Progress" position="260,40" size="325,5" borderWidth="1" />
 			<widget source="ProTemp1" render="Progress" position="260,60" size="325,5" borderWidth="1" />
 			<widget source="ProTemp2" render="Progress" position="260,80" size="325,5" borderWidth="1" />
@@ -636,35 +636,35 @@ class FanControl2SpezialSetup(Screen, ConfigListScreen):
 class FanControl2Plugin(ConfigListScreen, Screen):
 	skin = """
 		<screen position="center,center" size="600,450" title="Fan Control 2">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/key_info.png" position="560,0" zPosition="4" size="35,25"  transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/key_menu.png" position="560,20" zPosition="4" size="35,25"  transparent="1" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-			<widget source="Version" render="Label" position="5,430" size="60,20" zPosition="1" font="Regular;11" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/key_info.png" position="560,0" zPosition="4" size="35,25"  transparent="1" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/key_menu.png" position="560,20" zPosition="4" size="35,25"  transparent="1" alphaTest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#a08500" transparent="1" />
+			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#18188b" transparent="1" />
+			<widget source="Version" render="Label" position="5,430" size="60,20" zPosition="1" font="Regular;11" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
 
 			<widget name="config" position="10,50" size="580,200" scrollbarMode="showOnDemand" />
-			<ePixmap position="20,260" size="560,3" pixmap="skin_default/div-h.png" transparent="1" alphatest="on" />
-			<widget source="introduction" render="Label" position="5,262" size="580,30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-			<ePixmap position="20,290" size="560,3" pixmap="skin_default/div-h.png" transparent="1" alphatest="on" />
-			<widget source="TxtTemp" render="Label" position="5,310" size="200,25" zPosition="1" font="Regular;17" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TxtZielRPM" render="Label" position="5,330" size="200,25" zPosition="1" font="Regular;17" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TxtRPM" render="Label" position="5,350" size="200,25" zPosition="1" font="Regular;17" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TxtVLT" render="Label" position="5,370" size="200,25" zPosition="1" font="Regular;17" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="TxtPWM" render="Label" position="5,390" size="200,25" zPosition="1" font="Regular;17" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
+			<ePixmap position="20,260" size="560,3" pixmap="skin_default/div-h.png" transparent="1" alphaTest="on" />
+			<widget source="introduction" render="Label" position="5,262" size="580,30" zPosition="10" font="Regular;21" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<ePixmap position="20,290" size="560,3" pixmap="skin_default/div-h.png" transparent="1" alphaTest="on" />
+			<widget source="TxtTemp" render="Label" position="5,310" size="200,25" zPosition="1" font="Regular;17" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TxtZielRPM" render="Label" position="5,330" size="200,25" zPosition="1" font="Regular;17" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TxtRPM" render="Label" position="5,350" size="200,25" zPosition="1" font="Regular;17" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TxtVLT" render="Label" position="5,370" size="200,25" zPosition="1" font="Regular;17" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TxtPWM" render="Label" position="5,390" size="200,25" zPosition="1" font="Regular;17" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
 			<widget source="PixTemp" render="Progress" position="210,320" size="375,5" borderWidth="1" />
 			<widget source="PixZielRPM" render="Progress" position="210,340" size="375,5" borderWidth="1" />
 			<widget source="PixRPM" render="Progress" position="210,360" size="375,5" borderWidth="1" />
 			<widget source="PixVLT" render="Progress" position="210,380" size="375,5" borderWidth="1" />
 			<widget source="PixPWM" render="Progress" position="210,400" size="375,5" borderWidth="1" />
-			<widget source="TxtERR" render="Label" position="5,410" size="200,25" zPosition="1" font="Regular;17" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="TxtERR" render="Label" position="5,410" size="200,25" zPosition="1" font="Regular;17" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
 			<widget source="PixERR" render="Progress" position="210,420" size="375,5" borderWidth="1" />
-			<widget source="T10ERR" render="Label" position="570,422" size="40,20" zPosition="1" font="Regular;11" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="T10ERR" render="Label" position="570,422" size="40,20" zPosition="1" font="Regular;11" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
 		</screen>"""
 
 	def __init__(self, session, args=0):

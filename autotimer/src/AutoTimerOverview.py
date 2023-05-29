@@ -67,30 +67,30 @@ class AutoTimerOverview(Screen, HelpableScreen):
 	"""Overview of AutoTimers"""
 	if HD:
 		skin = """<screen name="AutoTimerOverview" position="center,center" size="680,480" title="AutoTimer Overview">
-				<ePixmap position="0,0" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-				<ePixmap position="160,0" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-				<ePixmap position="320,0" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-				<ePixmap position="480,0" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-				<ePixmap position="635,0" zPosition="1" size="35,25" pixmap="skin_default/buttons/key_menu.png" alphatest="on" />
-				<ePixmap position="635,20" zPosition="1" size="35,25" pixmap="skin_default/buttons/key_info.png" alphatest="on" />
-				<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;17" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-				<widget source="key_green" render="Label" position="160,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;17" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-				<widget source="key_yellow" render="Label" position="320,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;17" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-				<widget source="key_blue" render="Label" position="480,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;17" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+				<ePixmap position="0,0" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on" />
+				<ePixmap position="160,0" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on" />
+				<ePixmap position="320,0" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphaTest="on" />
+				<ePixmap position="480,0" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphaTest="on" />
+				<ePixmap position="635,0" zPosition="1" size="35,25" pixmap="skin_default/buttons/key_menu.png" alphaTest="on" />
+				<ePixmap position="635,20" zPosition="1" size="35,25" pixmap="skin_default/buttons/key_info.png" alphaTest="on" />
+				<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;17" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+				<widget source="key_green" render="Label" position="160,0" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;17" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+				<widget source="key_yellow" render="Label" position="320,0" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;17" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+				<widget source="key_blue" render="Label" position="480,0" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;17" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 				<widget name="entries" position="5,45" size="650,425" scrollbarMode="showOnDemand" />
 			</screen>"""
 	else:
 		skin = """<screen name="AutoTimerOverview" position="center,center" size="600,380" title="AutoTimer Overview">
-				<ePixmap position="0,0" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-				<ePixmap position="140,0" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-				<ePixmap position="280,0" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-				<ePixmap position="420,0" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-				<ePixmap position="565,0" zPosition="1" size="35,25" pixmap="skin_default/buttons/key_menu.png" alphatest="on" />
-				<ePixmap position="565,20" zPosition="1" size="35,25" pixmap="skin_default/buttons/key_info.png" alphatest="on" />
-				<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-				<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-				<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-				<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+				<ePixmap position="0,0" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on" />
+				<ePixmap position="140,0" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on" />
+				<ePixmap position="280,0" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphaTest="on" />
+				<ePixmap position="420,0" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphaTest="on" />
+				<ePixmap position="565,0" zPosition="1" size="35,25" pixmap="skin_default/buttons/key_menu.png" alphaTest="on" />
+				<ePixmap position="565,20" zPosition="1" size="35,25" pixmap="skin_default/buttons/key_info.png" alphaTest="on" />
+				<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+				<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+				<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+				<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 				<widget name="entries" position="5,45" size="590,325" scrollbarMode="showOnDemand" />
 			</screen>"""
 

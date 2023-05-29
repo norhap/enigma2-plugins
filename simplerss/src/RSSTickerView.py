@@ -90,17 +90,17 @@ class RSSTickerView(Screen):
 	if FULLHD:
 		skin = """
 			<screen position="0,950" size="1920,40" flags="wfNoBorder">
-				<widget name="newsLabel" position="5,5" size="1920,30" font="Regular;28" halign="left" noWrap="1"/>
+				<widget name="newsLabel" position="5,5" size="1920,30" font="Regular;28" horizontalAlignment="left" noWrap="1"/>
 			</screen>"""
 	elif HD:
 		skin = """
 			<screen position="0,660" size="1280,30" flags="wfNoBorder">
-				<widget name="newsLabel" position="5,5" size="1270,20" font="Regular;18" halign="left" noWrap="1"/>
+				<widget name="newsLabel" position="5,5" size="1270,20" font="Regular;18" horizontalAlignment="left" noWrap="1"/>
 			</screen>"""
 	else:
 		skin = """
 			<screen position="0,536" size="720,30" flags="wfNoBorder">
-				<widget name="newsLabel" position="5,5" size="710,20" font="Regular;18" halign="left" noWrap="1"/>
+				<widget name="newsLabel" position="5,5" size="710,20" font="Regular;18" horizontalAlignment="left" noWrap="1"/>
 			</screen>"""
 
 	def __init__(self, session):

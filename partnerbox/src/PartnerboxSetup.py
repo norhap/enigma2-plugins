@@ -74,22 +74,22 @@ class PartnerboxSetup(ConfigListScreen, Screen):
 	if HD:
 		skin = """ <screen position="center,center" size="700,400" title="Partnerbox Setup" >
 				<widget name="config" position="10,10" size="680,330" scrollbarMode="showOnDemand" />
-				<widget name="key_red" position="10,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="white" font="Regular;17"/>
-				<widget name="key_green" position="300,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="white" font="Regular;17"/>
-				<widget name="key_yellow" position="550,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="white" font="Regular;17"/>
-				<ePixmap name="red" pixmap="skin_default/buttons/red.png" position="10,350" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
-				<ePixmap name="green" pixmap="skin_default/buttons/green.png" position="300,350" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
-				<ePixmap name="yellow" pixmap="skin_default/buttons/yellow.png" position="550,350" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
+				<widget name="key_red" position="10,350" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="5" transparent="1" foregroundColor="white" font="Regular;17"/>
+				<widget name="key_green" position="300,350" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="5" transparent="1" foregroundColor="white" font="Regular;17"/>
+				<widget name="key_yellow" position="550,350" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="5" transparent="1" foregroundColor="white" font="Regular;17"/>
+				<ePixmap name="red" pixmap="skin_default/buttons/red.png" position="10,350" size="140,40" zPosition="4" transparent="1" alphaTest="on"/>
+				<ePixmap name="green" pixmap="skin_default/buttons/green.png" position="300,350" size="140,40" zPosition="4" transparent="1" alphaTest="on"/>
+				<ePixmap name="yellow" pixmap="skin_default/buttons/yellow.png" position="550,350" size="140,40" zPosition="4" transparent="1" alphaTest="on"/>
 			</screen>"""
 	else:
 		skin = """ <screen position="center,center" size="550,400" title="Partnerbox Setup" >
 				<widget name="config" position="20,10" size="510,330" scrollbarMode="showOnDemand" />
-				<widget name="key_red" position="0,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="white" font="Regular;18"/>
-				<widget name="key_green" position="140,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="white" font="Regular;18"/>
-				<widget name="key_yellow" position="280,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="white" font="Regular;18"/>
-				<ePixmap name="red" pixmap="skin_default/buttons/red.png" position="0,350" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
-				<ePixmap name="green" pixmap="skin_default/buttons/green.png" position="140,350" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
-				<ePixmap name="yellow" pixmap="skin_default/buttons/yellow.png" position="280,350" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
+				<widget name="key_red" position="0,350" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="5" transparent="1" foregroundColor="white" font="Regular;18"/>
+				<widget name="key_green" position="140,350" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="5" transparent="1" foregroundColor="white" font="Regular;18"/>
+				<widget name="key_yellow" position="280,350" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="5" transparent="1" foregroundColor="white" font="Regular;18"/>
+				<ePixmap name="red" pixmap="skin_default/buttons/red.png" position="0,350" size="140,40" zPosition="4" transparent="1" alphaTest="on"/>
+				<ePixmap name="green" pixmap="skin_default/buttons/green.png" position="140,350" size="140,40" zPosition="4" transparent="1" alphaTest="on"/>
+				<ePixmap name="yellow" pixmap="skin_default/buttons/yellow.png" position="280,350" size="140,40" zPosition="4" transparent="1" alphaTest="on"/>
 			</screen>"""
 
 	def __init__(self, session, args=None):
@@ -182,20 +182,20 @@ class PartnerboxSetup(ConfigListScreen, Screen):
 class PartnerboxEntriesListConfigScreen(Screen, HelpableScreen):
 	skin = """
 		<screen position="center,center" size="550,400" title="Partnerbox: List of Entries" >
-			<widget name="name" position="5,0" size="200,50" font="Regular;20" halign="left"/>
-			<widget name="ip" position="215,0" size="140,50" font="Regular;20" halign="left"/>
-			<widget name="port" position="350,0" size="80,50" font="Regular;20" halign="left"/>
-			<widget name="type" position="430,0" size="120,50" font="Regular;20" halign="left"/>
+			<widget name="name" position="5,0" size="200,50" font="Regular;20" horizontalAlignment="left"/>
+			<widget name="ip" position="215,0" size="140,50" font="Regular;20" horizontalAlignment="left"/>
+			<widget name="port" position="350,0" size="80,50" font="Regular;20" horizontalAlignment="left"/>
+			<widget name="type" position="430,0" size="120,50" font="Regular;20" horizontalAlignment="left"/>
 			<widget name="entrylist" position="0,50" size="550,300" scrollbarMode="showOnDemand"/>
 
-			<widget name="key_red" position="0,350" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="key_yellow" position="280,350" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="yellow" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="key_green" position="140,350" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="green" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="key_blue" position="420,350" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap name="red" position="0,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-			<ePixmap name="yellow" position="280,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-			<ePixmap name="green" position="140,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-			<ePixmap name="blue" position="420,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
+			<widget name="key_red" position="0,350" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget name="key_yellow" position="280,350" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="yellow" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget name="key_green" position="140,350" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="green" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget name="key_blue" position="420,350" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap name="red" position="0,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on" />
+			<ePixmap name="yellow" position="280,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphaTest="on" />
+			<ePixmap name="green" position="140,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on" />
+			<ePixmap name="blue" position="420,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphaTest="on" />
 		</screen>"""
 
 	def __init__(self, session, what=None):
@@ -518,16 +518,16 @@ class PartnerboxEntryConfigScreen(ConfigListScreen, Screen):
 	skin = """
 		<screen name="PartnerboxEntryConfigScreen" position="center,center" size="560,400" title="Partnerbox: Edit Entry">
 			<widget name="config" position="10,10" size="540,330" scrollbarMode="showOnDemand" />
-			<ePixmap name="red" position="0,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-			<ePixmap name="green" position="140,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-			<ePixmap name="yellow" position="280,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-			<ePixmap name="blue" position="420,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
+			<ePixmap name="red" position="0,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on" />
+			<ePixmap name="green" position="140,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on" />
+			<ePixmap name="yellow" position="280,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphaTest="on" />
+			<ePixmap name="blue" position="420,350" zPosition="4" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphaTest="on" />
 
-			<widget name="key_red" position="0,350" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="key_green" position="140,350" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="key_yellow" position="280,350" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="key_blue" position="420,350" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget source="VKeyIcon" render="Pixmap" pixmap="skin_default/buttons/key_text.png" position="30,325" zPosition="10" size="35,25" transparent="1" alphatest="on">
+			<widget name="key_red" position="0,350" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget name="key_green" position="140,350" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget name="key_yellow" position="280,350" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget name="key_blue" position="420,350" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget source="VKeyIcon" render="Pixmap" pixmap="skin_default/buttons/key_text.png" position="30,325" zPosition="10" size="35,25" transparent="1" alphaTest="on">
 				<convert type="ConditionalShowHide"/>
 			</widget>
 		</screen>"""

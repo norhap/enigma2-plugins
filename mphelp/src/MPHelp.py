@@ -26,16 +26,16 @@ class HelpPage:
 class MPHelp(Screen):
 	skin = """
 		<screen name="MPHelp" flags="wfNoBorder" position="0,0" size="720,576">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="75,10" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="215,10" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="355,10" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="495,10" size="140,40" alphatest="on" />
-			<widget render="Label" source="key_red" position="75,10" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget render="Label" source="key_green" position="215,10" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget render="Label" source="key_yellow" position="355,10" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-			<widget render="Label" source="key_blue" position="495,10" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-			<widget render="Label" source="title" position="60,50" size="600,50" zPosition="5" valign="center" halign="left" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="detailtext" position="60,120" size="610,370" zPosition="10" font="Regular;21" transparent="1" halign="left" valign="top"/>
+			<ePixmap pixmap="skin_default/buttons/red.png" position="75,10" size="140,40" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="215,10" size="140,40" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="355,10" size="140,40" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="495,10" size="140,40" alphaTest="on" />
+			<widget render="Label" source="key_red" position="75,10" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#9f1313" transparent="1" />
+			<widget render="Label" source="key_green" position="215,10" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#1f771f" transparent="1" />
+			<widget render="Label" source="key_yellow" position="355,10" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#a08500" transparent="1" />
+			<widget render="Label" source="key_blue" position="495,10" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#18188b" transparent="1" />
+			<widget render="Label" source="title" position="60,50" size="600,50" zPosition="5" verticalAlignment="center" horizontalAlignment="left" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget name="detailtext" position="60,120" size="610,370" zPosition="10" font="Regular;21" transparent="1" horizontalAlignment="left" verticalAlignment="top"/>
 		</screen>"""
 
 	def __init__(self, session, pages, title="", additionalSkin=""):

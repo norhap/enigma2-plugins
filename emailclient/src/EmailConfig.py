@@ -19,10 +19,10 @@ class EmailConfigOptions(ConfigListScreen, Screen):
 	skin = """
 		<screen position="%d,%d" size="%d,%d" title="Email Setup" >
 		<widget name="config" position="0,0" size="%d,%d" scrollbarMode="showOnDemand" />
-		<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-		<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-		<widget name="buttonred" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<widget name="buttongreen" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on" />
+		<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on" />
+		<widget name="buttonred" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget name="buttongreen" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>""" % (
 					(DESKTOP_WIDTH - width) / 2, (DESKTOP_HEIGHT - height) / 2, width, height,
 					width, height - 50,  # config
@@ -84,10 +84,10 @@ class EmailConfigAccount(ConfigListScreen, Screen):
 	skin = """
 		<screen position="%d,%d" size="%d,%d" title="Account Setup" >
 		<widget name="config" position="0,0" size="%d,%d" scrollbarMode="showOnDemand" />
-		<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-		<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-		<widget name="buttonred" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<widget name="buttongreen" position="%d,%d" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on" />
+		<ePixmap position="%d,%d" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on" />
+		<widget name="buttonred" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget name="buttongreen" position="%d,%d" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;%d" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>""" % (
 					(DESKTOP_WIDTH - width) / 2, (DESKTOP_HEIGHT - height) / 2, width, height,
 					width, height - 50,  # config

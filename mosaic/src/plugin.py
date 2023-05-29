@@ -73,7 +73,7 @@ class Mosaic(Screen):
 
 	skin = ""
 	skin += """<screen position="0,0" size="%d,%d" title="Mosaic" flags="wfNoBorder" backgroundColor="#ffffff" >""" % (width, height)
-	skin += """<widget name="playState" position="55,55" size="16,16" alphatest="on" />"""
+	skin += """<widget name="playState" position="55,55" size="16,16" alphaTest="on" />"""
 	skin += """<eLabel position="%d,%d" size="%d,%d" />""" % (positions[0][0] - 2, positions[0][1] - 1, windowWidth, windowHeight)
 	skin += """<eLabel position="%d,%d" size="%d,%d" />""" % (positions[1][0] - 2, positions[1][1] - 1, windowWidth, windowHeight)
 	skin += """<eLabel position="%d,%d" size="%d,%d" />""" % (positions[2][0] - 2, positions[2][1] - 1, windowWidth, windowHeight)
@@ -121,7 +121,7 @@ class Mosaic(Screen):
 	skin += """<widget name="event9" position="%d,%d" size="%d,20" zPosition="3" font="Regular;18" backgroundColor="#000000" foregroundColor="#ffffff" />""" % (positions[8][0] - 2, positions[8][1] - 1, windowWidth)
 
 	skin += """<widget name="countdown" position="80,%d" size="%d,20" font="Regular;18" backgroundColor="#ffffff" foregroundColor="#000000" />""" % (height - 50, windowWidth)
-	skin += """<widget name="count" position="%d,%d" size="%d,20" font="Regular;18" backgroundColor="#ffffff" foregroundColor="#000000" halign="right" />
+	skin += """<widget name="count" position="%d,%d" size="%d,20" font="Regular;18" backgroundColor="#ffffff" foregroundColor="#000000" horizontalAlignment="right" />
 	</screen>""" % (positions[2][0], height - 50, windowWidth)
 
 	def __init__(self, session, services):

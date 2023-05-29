@@ -107,39 +107,39 @@ SERVICENAME = 7
 
 class PrimeTimeManager(Screen, HelpableScreen):
 	skin = """<screen name="PrimeTimeManager" title="Prime Time Manager" position="center,center" size="650,545">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="45,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="185,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="325,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="465,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap position="10,10" size="35,25" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PrimeTimeManager/images/key_menu.png" alphatest="on" />
-		<ePixmap position="610,10" size="35,25" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PrimeTimeManager/images/key_help.png" alphatest="on" />
-		<widget render="Label" source="key_red" position="45,0" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="red" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<widget render="Label" source="key_green" position="185,0" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="green" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<widget render="Label" source="key_yellow" position="325,0" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="yellow" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<widget render="Label" source="key_blue" position="465,0" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="blue" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<ePixmap position="0,40" zPosition="0" size="650,480" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PrimeTimeManager/images/border.png" transparent="0" alphatest="on" />
-		<widget render="Label" source="primetime" position="0,40" size="650,21" zPosition="1" font="Regular;17" transparent="1" halign="left" foregroundColor="yellow" shadowColor="black" shadowOffset="-1,-1" />
+		<ePixmap pixmap="skin_default/buttons/red.png" position="45,0" size="140,40" transparent="1" alphaTest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="185,0" size="140,40" transparent="1" alphaTest="on" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="325,0" size="140,40" transparent="1" alphaTest="on" />
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="465,0" size="140,40" transparent="1" alphaTest="on" />
+		<ePixmap position="10,10" size="35,25" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PrimeTimeManager/images/key_menu.png" alphaTest="on" />
+		<ePixmap position="610,10" size="35,25" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PrimeTimeManager/images/key_help.png" alphaTest="on" />
+		<widget render="Label" source="key_red" position="45,0" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="red" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget render="Label" source="key_green" position="185,0" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="green" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget render="Label" source="key_yellow" position="325,0" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="yellow" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget render="Label" source="key_blue" position="465,0" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="blue" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<ePixmap position="0,40" zPosition="0" size="650,480" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PrimeTimeManager/images/border.png" transparent="0" alphaTest="on" />
+		<widget render="Label" source="primetime" position="0,40" size="650,21" zPosition="1" font="Regular;17" transparent="1" horizontalAlignment="left" foregroundColor="yellow" shadowColor="black" shadowOffset="-1,-1" />
 		<widget name="description" position="5,190" size="640,165" font="Regular;18" />
-		<widget name="infoPixmap" position="610,185" size="35,25" zPosition="1" transparent="1" alphatest="on" />
-		<widget render="Label" source="favorites" position="0,350" size="650,25" zPosition="1" font="Regular;18" transparent="1" halign="center" valign="center" foregroundColor="yellow" shadowColor="black" shadowOffset="-1,-1" />
+		<widget name="infoPixmap" position="610,185" size="35,25" zPosition="1" transparent="1" alphaTest="on" />
+		<widget render="Label" source="favorites" position="0,350" size="650,25" zPosition="1" font="Regular;18" transparent="1" horizontalAlignment="center" verticalAlignment="center" foregroundColor="yellow" shadowColor="black" shadowOffset="-1,-1" />
 		<widget name="ptList1" position="5,65" size="210,115" zPosition="1" transparent="0" foregroundColorSelected="#ffd700" backgroundColor="#255" backgroundColorSelected="#65535ff" />
 		<widget name="ptList2" position="220,65" size="210,115" zPosition="1" transparent="0" foregroundColorSelected="#ffd700" backgroundColor="#255" backgroundColorSelected="#65535ff" />
 		<widget name="ptList3" position="435,65" size="210,115" zPosition="1" transparent="0" foregroundColorSelected="#ffd700" backgroundColor="#255" backgroundColorSelected="#65535ff" />
 		<widget name="favList1" position="5,375" size="210,140" zPosition="1" transparent="0" foregroundColorSelected="#ffd700" backgroundColorSelected="#08004c00" />
 		<widget name="favList2" position="220,375" size="210,140" zPosition="1" transparent="0" foregroundColorSelected="#ffd700" backgroundColorSelected="#08004c00" />
 		<widget name="favList3" position="435,375" size="210,140" zPosition="1" transparent="0" foregroundColorSelected="#ffd700" backgroundColorSelected="#08004c00" />
-		<widget name="ptListScrollLeft" position="0,65" size="5,115" zPosition="1" transparent="0" alphatest="on" />
-		<widget name="ptListScrollRight" position="645,65" size="5,115" zPosition="1" transparent="0" alphatest="on" />
-		<widget name="favListScrollLeft" position="0,387" size="5,115" zPosition="1" transparent="0" alphatest="on" />
-		<widget name="favListScrollRight" position="645,387" size="5,115" zPosition="1" transparent="0" alphatest="on" />
-		<widget source="global.CurrentTime" render="Label" position="10,523" size="430, 21" font="Regular; 18" halign="left" foregroundColor="white" backgroundColor="background" transparent="1">
+		<widget name="ptListScrollLeft" position="0,65" size="5,115" zPosition="1" transparent="0" alphaTest="on" />
+		<widget name="ptListScrollRight" position="645,65" size="5,115" zPosition="1" transparent="0" alphaTest="on" />
+		<widget name="favListScrollLeft" position="0,387" size="5,115" zPosition="1" transparent="0" alphaTest="on" />
+		<widget name="favListScrollRight" position="645,387" size="5,115" zPosition="1" transparent="0" alphaTest="on" />
+		<widget source="global.CurrentTime" render="Label" position="10,523" size="430, 21" font="Regular; 18" horizontalAlignment="left" foregroundColor="white" backgroundColor="background" transparent="1">
 			<convert type="ClockToText">Date</convert>
 		</widget>
-		<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="540,520" size="14,14" zPosition="1" />
-		<widget font="Regular;18" halign="left" position="560,523" render="Label" size="55,20" source="global.CurrentTime" transparent="1" valign="center" zPosition="1">
+		<ePixmap alphaTest="on" pixmap="skin_default/icons/clock.png" position="540,520" size="14,14" zPosition="1" />
+		<widget font="Regular;18" horizontalAlignment="left" position="560,523" render="Label" size="55,20" source="global.CurrentTime" transparent="1" verticalAlignment="center" zPosition="1">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<widget font="Regular;15" halign="left" position="612,520" render="Label" size="27,17" source="global.CurrentTime" transparent="1" valign="center" zPosition="1">
+		<widget font="Regular;15" horizontalAlignment="left" position="612,520" render="Label" size="27,17" source="global.CurrentTime" transparent="1" verticalAlignment="center" zPosition="1">
 			<convert type="ClockToText">Format::%S</convert>
 		</widget>
 		</screen>"""
@@ -2607,49 +2607,49 @@ if getDesktop(0).size().width() >= 1280:
 class PrimeTimeSelection(EPGSelection):
 	if HD:
 		skin = """<screen name="PrimeTimeSelection" position="90,100" size="1100, 576" title="Prime Time EPG Selection Multi">
-			<widget name="date" position="880,0" size="200,28" font="Regular;24" valign="center" halign="right" foregroundColor="#ffd700" backgroundColor="transpBlack" transparent="1" />
-			<widget source="Event" render="Label" position="420,5" size="150,24" backgroundColor="background" transparent="1" foregroundColor="red" font="Regular;22" valign="top">
+			<widget name="date" position="880,0" size="200,28" font="Regular;24" verticalAlignment="center" horizontalAlignment="right" foregroundColor="#ffd700" backgroundColor="transpBlack" transparent="1" />
+			<widget source="Event" render="Label" position="420,5" size="150,24" backgroundColor="background" transparent="1" foregroundColor="red" font="Regular;22" verticalAlignment="top">
 				<convert type="EventTime">StartTime</convert>
 				<convert type="ClockToText">ShortDate</convert>
 			</widget>
-			<widget source="Event" render="Label" position="490,5" size="80,24" backgroundColor="background" transparent="1" foregroundColor="red" font="Regular;22" halign="right" valign="top">
+			<widget source="Event" render="Label" position="490,5" size="80,24" backgroundColor="background" transparent="1" foregroundColor="red" font="Regular;22" horizontalAlignment="right" verticalAlignment="top">
 				<convert type="EventTime">StartTime</convert>
 				<convert type="ClockToText" />
 			</widget>
-			<widget source="Event" render="Label" position="570,5" size="80,24" backgroundColor="background" transparent="1" foregroundColor="red" font="Regular;22" halign="left" valign="top">
+			<widget source="Event" render="Label" position="570,5" size="80,24" backgroundColor="background" transparent="1" foregroundColor="red" font="Regular;22" horizontalAlignment="left" verticalAlignment="top">
 				<convert type="EventTime">EndTime</convert>
 				<convert type="ClockToText">Format: - %H:%M</convert>
 			</widget>
-			<widget source="Event" render="Label" position="680,5" size="250,24" halign="left" foregroundColor="white" backgroundColor="background" transparent="1"  font="Regular;22" valign="top" >
+			<widget source="Event" render="Label" position="680,5" size="250,24" horizontalAlignment="left" foregroundColor="white" backgroundColor="background" transparent="1"  font="Regular;22" verticalAlignment="top" >
 				<convert type="EventTime">Remaining</convert>
 				<convert type="RemainingToText">InMinutes</convert>
 			</widget>
-			<widget source="Event" render="Label" position="20,30" size="1060,90" backgroundColor="background" foregroundColor="#00999999" halign="center" transparent="1" font="Regular;20">
+			<widget source="Event" render="Label" position="20,30" size="1060,90" backgroundColor="background" foregroundColor="#00999999" horizontalAlignment="center" transparent="1" font="Regular;20">
 				<convert type="EventName">ExtendedDescription</convert>
 			</widget>
 			<widget name="list" position="10,135" size="1080,380" itemHeight="24"  transparent="1" scrollbarMode="showOnDemand" foregroundColorSelected="#ffd700" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/PrimeTimeManager/images/sel.png" />
-			<widget position="65, 540" size="95, 20" halign="left" source="global.CurrentTime" render="Label" font="Regular;20" backgroundColor="background" transparent="1" zPosition="3">
+			<widget position="65, 540" size="95, 20" horizontalAlignment="left" source="global.CurrentTime" render="Label" font="Regular;20" backgroundColor="background" transparent="1" zPosition="3">
 				<convert type="ClockToText">Default</convert>
 			</widget>
-			<ePixmap pixmap="skin_default/icons/clock.png" position="40, 542" zPosition="3" size="14,14" alphatest="on" />
-			<widget position="190, 535" size="200,36" name="key_red" font="Regular;20" foregroundColor="red" halign="center" valign="center" backgroundColor="black" transparent="1" zPosition="3" />
-			<widget position="390, 535" size="200,36" name="key_green" font="Regular;20" foregroundColor="green" halign="center" valign="center" backgroundColor="black" transparent="1" zPosition="3" />
-			<widget position="590, 535" size="200,36" name="key_yellow" font="Regular;20" foregroundColor="yellow" halign="center" valign="center" backgroundColor="black" transparent="1" zPosition="3" />
-			<widget position="790, 535" size="200,36" name="key_blue" font="Regular;20" foregroundColor="blue" halign="center" valign="center" backgroundColor="black" transparent="1" zPosition="3" />
+			<ePixmap pixmap="skin_default/icons/clock.png" position="40, 542" zPosition="3" size="14,14" alphaTest="on" />
+			<widget position="190, 535" size="200,36" name="key_red" font="Regular;20" foregroundColor="red" horizontalAlignment="center" verticalAlignment="center" backgroundColor="black" transparent="1" zPosition="3" />
+			<widget position="390, 535" size="200,36" name="key_green" font="Regular;20" foregroundColor="green" horizontalAlignment="center" verticalAlignment="center" backgroundColor="black" transparent="1" zPosition="3" />
+			<widget position="590, 535" size="200,36" name="key_yellow" font="Regular;20" foregroundColor="yellow" horizontalAlignment="center" verticalAlignment="center" backgroundColor="black" transparent="1" zPosition="3" />
+			<widget position="790, 535" size="200,36" name="key_blue" font="Regular;20" foregroundColor="blue" horizontalAlignment="center" verticalAlignment="center" backgroundColor="black" transparent="1" zPosition="3" />
 			<eLabel name="new eLabel" position="0, 525" size="1100, 2" backgroundColor="grey" />
 		</screen>"""
 	else:
 		skin = """<screen name="PrimeTimeSelection" position="center,center" size="560,430" title="Prime Time EPG Selection Multi">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-			<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-			<ePixmap pixmap="skin_default/border_epg.png" position="5,70" size="551,361" alphatest="on" />
-			<widget name="date" position="410,35" size="140,45" font="Regular;18" valign="center" halign="right" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphaTest="on" />
+			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#a08500" transparent="1" />
+			<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#18188b" transparent="1" />
+			<ePixmap pixmap="skin_default/border_epg.png" position="5,70" size="551,361" alphaTest="on" />
+			<widget name="date" position="410,35" size="140,45" font="Regular;18" verticalAlignment="center" horizontalAlignment="right" />
 			<widget name="list" position="11,75" size="540,350" scrollbarMode="showOnDemand" />
 		</screen>"""
 

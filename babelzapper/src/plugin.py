@@ -61,11 +61,11 @@ class BabelzapperConfiguration(Screen, ConfigListScreen):
 	skin = """
 		<screen position="center,center" size="450,240" title="Babelzapper Plugin" >
 		<widget name="config" position="0,0" size="450,200" scrollbarMode="showOnDemand" />
-		<widget name="buttonred" position="10,200" size="100,40" backgroundColor="red" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-		<widget name="buttongreen" position="120,200" size="100,40" backgroundColor="green" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-		<widget name="buttonyellow" position="230,200" size="100,40" backgroundColor="yellow" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-		<widget name="buttonblue" position="340,200" size="100,40" backgroundColor="blue" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-		<ePixmap position="175,80" size="100,100" pixmap="%s/babel.png" transparent="1" alphatest="on" />
+		<widget name="buttonred" position="10,200" size="100,40" backgroundColor="red" verticalAlignment="center" horizontalAlignment="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
+		<widget name="buttongreen" position="120,200" size="100,40" backgroundColor="green" verticalAlignment="center" horizontalAlignment="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
+		<widget name="buttonyellow" position="230,200" size="100,40" backgroundColor="yellow" verticalAlignment="center" horizontalAlignment="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
+		<widget name="buttonblue" position="340,200" size="100,40" backgroundColor="blue" verticalAlignment="center" horizontalAlignment="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
+		<ePixmap position="175,80" size="100,100" pixmap="%s/babel.png" transparent="1" alphaTest="on" />
 	</screen>""" % babelzapper_plugindir
 
 	def __init__(self, session, args=0):
@@ -401,7 +401,7 @@ class BabelZapperStartup(Screen):
 class BabelZapper(Screen):
 	skin = """
 		<screen position="center,60" size="180,30" flags="wfNoBorder">
-		<widget name="babelzapper" position="1,1" size="180,30" font="Regular;26" valign="center" halign="center" backgroundColors="black,white,#00AAAAAA,red,green,yellow,blue" foregroundColors="black,white,#00AAAAAA,red,green,yellow,blue">
+		<widget name="babelzapper" position="1,1" size="180,30" font="Regular;26" verticalAlignment="center" horizontalAlignment="center" backgroundColors="black,white,#00AAAAAA,red,green,yellow,blue" foregroundColors="black,white,#00AAAAAA,red,green,yellow,blue">
 		</widget>
 		</screen>"""
 

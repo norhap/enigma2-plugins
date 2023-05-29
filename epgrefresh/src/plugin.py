@@ -196,7 +196,7 @@ except Exception as e:
 class AutoZap(Screen):
 	skin = """
 		<screen flags="wfNoBorder" position="center,25" size="500,30" title="AutoZap" backgroundColor="#64121214">
-			<widget name="wohin" position="0,0" size="500,30" font="Regular;20" foregroundColor="foreground" transparent="1" zPosition="1" halign="center" valign="center">
+			<widget name="wohin" position="0,0" size="500,30" font="Regular;20" foregroundColor="foreground" transparent="1" zPosition="1" horizontalAlignment="center" verticalAlignment="center">
 				<convert type="ConditionalShowHide">Blink</convert>
 			</widget>
 		</screen>"""

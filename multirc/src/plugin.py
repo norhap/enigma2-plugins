@@ -46,7 +46,7 @@ class MultiRCSetup(ConfigListScreen, Screen):
 	skin = """
 		<screen position="170,150" size="420,280" title="Multi RemoteControl" >
 		<widget name="config" position="10,10" size="400,40" scrollbarMode="showOnDemand" />
-		<widget name="warning" position="10,50" size="400,220" font="Regular;20" halign="center"/>
+		<widget name="warning" position="10,50" size="400,220" font="Regular;20" horizontalAlignment="center"/>
 		</screen>"""
 
 	# most of the following is black magic copied from other plugins.

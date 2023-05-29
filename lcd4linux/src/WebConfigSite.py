@@ -491,13 +491,13 @@ class LCD4linuxConfigweb(resource.Resource):
 			html += "<a href=\"/lcd4linux?file=%s\"><img style=\"color:#FFCC00\" title=\"LCD 3\" src=\"/lcd4linux/%s?%d\" border=\"1\" height=\"80\" id=\"reloader3\" onload=\"setTimeout('document.getElementById(\\'reloader3\\').src=\\'/lcd4linux/%s?\\'+new Date().getTime()', 5000)\" ></a>" % (basename(d[0]), basename(d[0]), time(), basename(d[0]))
 		html += "</p></td>\n"
 		if isfile(CrashFile):
-			html += "<td valign=\"top\" align=\"left\"  bgcolor=\"#000000\">\n"
+			html += "<td verticalAlignment=\"top\" align=\"left\"  bgcolor=\"#000000\">\n"
 			html += "<form method=\"post\"><font color=\"#FFFF00\">%s</font><br>\n" % _l(_("Crashlog"))
 			html += "<input type=\"hidden\" name=\"cmd\" value=\"\">\n"
 			html += "<input type=\"button\" value=\"%s\" style=\"font-size:8pt;background-color:yellow;\" onClick=\"fensterchen()\">\n" % _l(_("Show"))
 			html += "<input type=\"button\" value=\"%s\" style=\"font-size:8pt;background-color:yellow;\"   onclick=\"this.form.cmd.value = 'crashdel'; this.form.submit();\">\n" % _l(_("Delete"))
 			html += "</form></td>\n"
-		html += "<td valign=\"top\" align=\"right\"  bgcolor=\"#000000\">\n"
+		html += "<td verticalAlignment=\"top\" align=\"right\"  bgcolor=\"#000000\">\n"
 		html += "<form method=\"post\" enctype=\"multipart/form-data\">\n"
 		html += "<input type=\"file\" name=\"uploadName\" title=\"%s\" class=\"style1\" >\n" % _l(_("Filename"))
 		html += "<input type=\"image\" name=\"upload\" value=\"klick\" src=\"/lcd4linux/data/WEBupload.png\" height=\"25\" title=\"%s\" class=\"style1\"  >\n" % _l(_("Restore Config"))
@@ -548,7 +548,7 @@ class LCD4linuxConfigweb(resource.Resource):
 				Element = "other"
 			if str(LCD4linux.WebIfDesign.value) == "2":
 				html += "<table border=\"0\"width=\"100%\" cellspacing=\"1\">"
-				html += "<tr><td valign=\"top\" width=\"250\">"
+				html += "<tr><td verticalAlignment=\"top\" width=\"250\">"
 			html += "<form method=\"get\">"
 			html += "<fieldset style=\"width:auto\" name=\"Mode2\">"
 			html += "<legend style=\"color: #FFCC00\">%s&nbsp;</legend>\n" % _l(_("Element"))
@@ -583,7 +583,7 @@ class LCD4linuxConfigweb(resource.Resource):
 			html += "<input id=\"e%d\" name=\"Element\" type=\"radio\" value=\"%s\" %s onclick=\"this.form.submit();\"><label %s for=\"e%d\">%s&nbsp;&nbsp;</label>\n" % (0, "other", Ea, Ec, 0, _l(_("other")))
 			html += "</fieldset></form>\n"
 			if str(LCD4linux.WebIfDesign.value) == "2":
-				html += "<br></td><td valign=\"top\">"
+				html += "<br></td><td verticalAlignment=\"top\">"
 			html += "<form name=\"Eingabe\" method=\"POST\">\n"
 			if str(LCD4linux.WebIfDesign.value) == "2":
 				html += "<fieldset style=\"width:auto\" name=\"Mode3\"><legend style=\"color: #FFCC00\">%s&nbsp;</legend>" % ElementText

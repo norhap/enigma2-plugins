@@ -22,16 +22,16 @@ class TrafficInfoMain(Screen):
         <screen position="110,83" size="530,430" title="Verkehrsinfo" >
             <widget name="sectionlist" position="0,0" size="530,125" scrollbarMode="showOnDemand" />
             <widget name="itemlist" position="0,130" size="530,125" scrollbarMode="showOnDemand" />
-            <widget name="itemdetails" position="0,260" size="530,140" font="Regular;20" halign=\"center\" valign=\"center\"/>
-            <widget name="statuslabel" position="0,400" size="530,30" halign=\"left\"/>
+            <widget name="itemdetails" position="0,260" size="530,140" font="Regular;20" horizontalAlignment=\"center\" verticalAlignment=\"center\"/>
+            <widget name="statuslabel" position="0,400" size="530,30" horizontalAlignment=\"left\"/>
         </screen>
         """
     skin_HD = """
         <screen name="TrafficInfo" position="center,60" size="1030,600" title="Verkehrsinformation">
             <widget name="sectionlist" position="100,0" size="830,205" scrollbarMode="showOnDemand" />
             <widget name="itemlist" position="100,215" size="830,275" scrollbarMode="showOnDemand" />
-            <widget name="itemdetails" position="10,495" size="1010,90" font="Regular;20" halign="left" valign="center" />
-            <widget name="statuslabel" position="0,587" size="730,13" halign="left" />
+            <widget name="itemdetails" position="10,495" size="1010,90" font="Regular;20" horizontalAlignment="left" verticalAlignment="center" />
+            <widget name="statuslabel" position="0,587" size="730,13" horizontalAlignment="left" />
         </screen>
         """
 

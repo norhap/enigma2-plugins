@@ -27,10 +27,10 @@ class FilebrowserConfigScreen(ConfigListScreen, Screen):
     skin = """
         <screen position="100,100" size="550,400" title="" >
             <widget name="config" position="0,0" size="550,360" scrollbarMode="showOnDemand" />
-            <widget name="key_red" position="10,360" size="100,40" valign="center" halign="center" zPosition="1"  transparent="1" foregroundColor="white" font="Regular;18"/>
-            <widget name="key_green" position="120,360" size="100,40" valign="center" halign="center" zPosition="1"  transparent="1" foregroundColor="white" font="Regular;18"/>
-            <ePixmap name="pred" position="10,360" size="100,40" zPosition="0" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on"/>
-            <ePixmap name="pgreen" position="120,360" size="100,40" zPosition="0" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on"/>
+            <widget name="key_red" position="10,360" size="100,40" verticalAlignment="center" horizontalAlignment="center" zPosition="1"  transparent="1" foregroundColor="white" font="Regular;18"/>
+            <widget name="key_green" position="120,360" size="100,40" verticalAlignment="center" horizontalAlignment="center" zPosition="1"  transparent="1" foregroundColor="white" font="Regular;18"/>
+            <ePixmap name="pred" position="10,360" size="100,40" zPosition="0" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on"/>
+            <ePixmap name="pgreen" position="120,360" size="100,40" zPosition="0" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on"/>
         </screen>"""
 
     def __init__(self, session):
@@ -88,15 +88,15 @@ class FilebrowserScreen(Screen):
             <widget name="list_left" position="0,0" size="265,380" scrollbarMode="showOnDemand" />
             <widget name="list_right" position="265,0" size="265,380" scrollbarMode="showOnDemand" />
 
-            <widget name="key_red" position="10,390" size="120,30" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>
-            <widget name="key_green" position="140,390" size="120,30" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>
-            <widget name="key_yellow" position="270,390" size="120,30" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>
-            <widget name="key_blue" position="400,390" size="120,30" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>
+            <widget name="key_red" position="10,390" size="120,30" verticalAlignment="center" horizontalAlignment="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>
+            <widget name="key_green" position="140,390" size="120,30" verticalAlignment="center" horizontalAlignment="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>
+            <widget name="key_yellow" position="270,390" size="120,30" verticalAlignment="center" horizontalAlignment="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>
+            <widget name="key_blue" position="400,390" size="120,30" verticalAlignment="center" horizontalAlignment="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>
 
-            <ePixmap name="pred" position="10,390" size="120,30" zPosition="0" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on"/>
-            <ePixmap name="pgreen" position="140,390" size="120,30" zPosition="0" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on"/>
-            <ePixmap name="pyellow" position="270,390" size="120,30" zPosition="0" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on"/>
-            <ePixmap name="pblue" position="400,390" size="120,30" zPosition="0" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on"/>
+            <ePixmap name="pred" position="10,390" size="120,30" zPosition="0" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on"/>
+            <ePixmap name="pgreen" position="140,390" size="120,30" zPosition="0" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on"/>
+            <ePixmap name="pyellow" position="270,390" size="120,30" zPosition="0" pixmap="skin_default/buttons/yellow.png" transparent="1" alphaTest="on"/>
+            <ePixmap name="pblue" position="400,390" size="120,30" zPosition="0" pixmap="skin_default/buttons/blue.png" transparent="1" alphaTest="on"/>
         </screen>
         """
 

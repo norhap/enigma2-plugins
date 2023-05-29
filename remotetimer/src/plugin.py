@@ -72,16 +72,16 @@ class RemoteService:
 class RemoteTimerScreen(Screen):
 	skin = """
 		<screen position="center,center" size="700,500" title="Remote-Timer digest" >
-			<widget name="text" position="0,10" zPosition="1" size="700,22" font="Regular;19" halign="center" valign="center" />
+			<widget name="text" position="0,10" zPosition="1" size="700,22" font="Regular;19" horizontalAlignment="center" verticalAlignment="center" />
 			<widget name="timerlist" position="5,40" size="690,400" scrollbarMode="showOnDemand" />
-			<ePixmap name="red" position="0,460" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-			<widget name="key_red" position="0,460" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap name="green" position="200,460" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-			<widget name="key_green" position="200,460" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap name="yellow" position="370,460" zPosition="4" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-			<widget name="key_yellow" position="370,460" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap name="blue" position="560,460" zPosition="4" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-			<widget name="key_blue" position="560,460" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap name="red" position="0,460" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on" />
+			<widget name="key_red" position="0,460" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap name="green" position="200,460" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on" />
+			<widget name="key_green" position="200,460" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap name="yellow" position="370,460" zPosition="4" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphaTest="on" />
+			<widget name="key_yellow" position="370,460" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap name="blue" position="560,460" zPosition="4" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphaTest="on" />
+			<widget name="key_blue" position="560,460" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 
 	def __init__(self, session):
@@ -227,10 +227,10 @@ class RemoteTimerSetup(Screen, ConfigListScreen):
 	skin = """
 		<screen position="center,center" size="560,300" title="Remote-Timer settings" >
 			<widget name="config" position="5,10" size="550,240" scrollbarMode="showOnDemand" />
-			<ePixmap name="red" position="120,260" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-			<ePixmap name="green" position="320,260" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-			<widget name="key_red" position="120,260" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="key_green" position="320,260" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap name="red" position="120,260" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on" />
+			<ePixmap name="green" position="320,260" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on" />
+			<widget name="key_red" position="120,260" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget name="key_green" position="320,260" zPosition="5" size="140,40" verticalAlignment="center" horizontalAlignment="center" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 
 	def __init__(self, session):

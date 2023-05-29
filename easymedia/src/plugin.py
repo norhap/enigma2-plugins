@@ -156,9 +156,9 @@ class ConfigEasyMedia(ConfigListScreen, Screen):
 	skin = """
 		<screen name="ConfigEasyMedia" position="center,center" size="600,410" title="EasyMedia settings...">
 			<widget name="config" position="5,5" scrollbarMode="showOnDemand" size="590,380"/>
-			<eLabel font="Regular;20" foregroundColor="#00ff4A3C" halign="center" position="20,388" size="140,26" text="Cancel"/>
-			<eLabel font="Regular;20" foregroundColor="#0056C856" halign="center" position="165,388" size="140,26" text="Save"/>
-			<eLabel font="Regular;20" foregroundColor="#00f3ca09" halign="center" position="310,388" size="140,26" text="Plugins"/>
+			<eLabel font="Regular;20" foregroundColor="#00ff4A3C" horizontalAlignment="center" position="20,388" size="140,26" text="Cancel"/>
+			<eLabel font="Regular;20" foregroundColor="#0056C856" horizontalAlignment="center" position="165,388" size="140,26" text="Save"/>
+			<eLabel font="Regular;20" foregroundColor="#00f3ca09" horizontalAlignment="center" position="310,388" size="140,26" text="Plugins"/>
 		</screen>"""
 
 	def __init__(self, session):

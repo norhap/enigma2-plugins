@@ -117,7 +117,7 @@ class RSSEntryView(RSSBaseView):
 			<screen position="center,center" size="1760,900" title="Simple RSS Reader" >
 				<eLabel position="5,5" size="1750,1" backgroundColor="background" />
 				<eLabel position="5,55" size="1750,1" backgroundColor="background" />
-				<widget source="info" render="Label" position="10,15" size="1740,35" halign="center" font="Regular; 32" />
+				<widget source="info" render="Label" position="10,15" size="1740,35" horizontalAlignment="center" font="Regular; 32" />
 				<widget name="content" position="10,90" size="1740,800" font="Regular; 36" />
 			</screen>"""
 	elif HD:
@@ -125,13 +125,13 @@ class RSSEntryView(RSSBaseView):
 			<screen position="60,60" size="1160,600" title="Simple RSS Reader" >
 				<eLabel position="5,5" size="1150,1" backgroundColor="background" />
 				<eLabel position="5,55" size="1150,1" backgroundColor="background" />
-				<widget source="info" render="Label" position="10,15" size="1140 ,30" halign="center" font="Regular; 22" />
+				<widget source="info" render="Label" position="10,15" size="1140 ,30" horizontalAlignment="center" font="Regular; 22" />
 				<widget name="content" position="10,65" size="1140,530" font="Regular; 26" />
 			</screen>"""
 	else:
 		skin = """
 			<screen position="center,center" size="460,420" title="Simple RSS Reader" >
-				<widget source="info" render="Label" position="0,0" size="460, 20" halign="right" font="Regular; 18" />
+				<widget source="info" render="Label" position="0,0" size="460, 20" horizontalAlignment="right" font="Regular; 18" />
 				<widget name="content" position="0,20" size="460,400" font="Regular; 22" />
 			</screen>"""
 
@@ -262,7 +262,7 @@ class RSSFeedView(RSSBaseView):
 				<eLabel position="5,5" size="1750,1" backgroundColor="background" />
 				<eLabel position="5,55" size="1750,1" backgroundColor="background" />
 				<eLabel position="5,497" size="1750,1" backgroundColor="background" />
-				<widget source="info" render="Label" position="10,15" size="1740,40" halign="center" font="Regular;34" />
+				<widget source="info" render="Label" position="10,15" size="1740,40" horizontalAlignment="center" font="Regular;34" />
 				<widget source="content" render="Listbox" position="10,80" size="1740,700" scrollbarMode="showOnDemand">
 					<convert type="TemplatedMultiContent">
 						{"template": [
@@ -281,7 +281,7 @@ class RSSFeedView(RSSBaseView):
 				<eLabel position="5,5" size="1150,1" backgroundColor="background" />
 				<eLabel position="5,55" size="1150,1" backgroundColor="background" />
 				<eLabel position="5,497" size="1150,1" backgroundColor="background" />
-				<widget source="info" render="Label" position="10,15" size="1140,30" halign="center" font="Regular;24" />
+				<widget source="info" render="Label" position="10,15" size="1140,30" horizontalAlignment="center" font="Regular;24" />
 				<widget source="content" render="Listbox" position="10,65" size="1140,430" scrollbarMode="showOnDemand">
 					<convert type="TemplatedMultiContent">
 						{"template": [
@@ -297,7 +297,7 @@ class RSSFeedView(RSSBaseView):
 	else:
 		skin = """
 			<screen position="center,center" size="460,415" title="Simple RSS Reader" >
-				<widget source="info" render="Label" position="0,0" size="460,20" halign="right" font="Regular; 18" />
+				<widget source="info" render="Label" position="0,0" size="460,20" horizontalAlignment="right" font="Regular; 18" />
 				<widget source="content" render="Listbox" position="0,20" size="460,300" scrollbarMode="showOnDemand">
 					<convert type="TemplatedMultiContent">
 						{"template": [
@@ -476,9 +476,9 @@ class RSSOverview(RSSBaseView):
 				<eLabel position="5,5" size="1750,1" backgroundColor="background" />
 				<eLabel position="5,55" size="1750,1" backgroundColor="background" />
 				<eLabel position="5,437" size="1750,1" backgroundColor="background" />
-				<widget source="info" render="Label" position="10,15" size="1140,40" halign="center" font="Regular;34" />
+				<widget source="info" render="Label" position="10,15" size="1140,40" horizontalAlignment="center" font="Regular;34" />
 				<widget name="content" position="10,80" size="1740,600" font="Regular;30" itemHeight="100" scrollbarMode="showOnDemand" />
-				<widget source="summary" render="Label" position="10,390" size="1740,200" font="Regular;28" halign="center" valign="center" foregroundColor="#00bab329" />
+				<widget source="summary" render="Label" position="10,390" size="1740,200" font="Regular;28" horizontalAlignment="center" verticalAlignment="center" foregroundColor="#00bab329" />
 			</screen>"""
 	elif HD:
 		skin = """
@@ -486,14 +486,14 @@ class RSSOverview(RSSBaseView):
 				<eLabel position="5,5" size="1150,1" backgroundColor="background" />
 				<eLabel position="5,55" size="1150,1" backgroundColor="background" />
 				<eLabel position="5,437" size="1150,1" backgroundColor="background" />
-				<widget source="info" render="Label" position="10,15" size="1140,30" halign="center" font="Regular;24" />
+				<widget source="info" render="Label" position="10,15" size="1140,30" horizontalAlignment="center" font="Regular;24" />
 				<widget name="content" position="10,65" size="1140,424" itemHeight="70" scrollbarMode="showOnDemand" />
-				<widget source="summary" render="Label" position="10,505" size="1140,90" font="Regular;22" halign="center" valign="center" foregroundColor="#00bab329" />
+				<widget source="summary" render="Label" position="10,505" size="1140,90" font="Regular;22" horizontalAlignment="center" verticalAlignment="center" foregroundColor="#00bab329" />
 			</screen>"""
 	else:
 		skin = """
 			<screen position="center,center" size="460,415" title="Simple RSS Reader" >
-				<widget source="info" render="Label" position="0,0" size="460,20" halign="right" font="Regular; 18" />
+				<widget source="info" render="Label" position="0,0" size="460,20" horizontalAlignment="right" font="Regular; 18" />
 				<widget name="content" position="0,20" size="460,300" scrollbarMode="showOnDemand" />
 				<widget source="summary" render="Label" position="0,320" size="460,95" foregroundColor="#00bab329" font="Regular;16" />
 			</screen>"""

@@ -43,11 +43,11 @@ class DmmBlindscanState(Screen):
 			</convert>
 		</widget>
 		<eLabel	position="%d,%d" size="%d,%d" backgroundColor="grey"/>
-		<widget name="post_action" position="%d,%d" size="%d,%d" font="Regular;%d" halign="center"/>
+		<widget name="post_action" position="%d,%d" size="%d,%d" font="Regular;%d" horizontalAlignment="center"/>
 		<widget source="constellation" render="Canvas" position="%d-128,%d-128" size="256,256" correct_aspect="width" />
 		<eLabel	position="%d,%d" size="%d,%d" backgroundColor="grey"/>
-		<widget source="key_red" render="Label" position="%d,e-%d" size="%d,%d" backgroundColor="#0x009f1313" font="Regular;%d" foregroundColor="#0x00ffffff" halign="center" valign="center" />
-		<widget source="key_green" render="Label" position="%d,e-%d" size="%d,%d" backgroundColor="#0x001f771f" font="Regular;%d" foregroundColor="#0x00ffffff" halign="center" valign="center" />
+		<widget source="key_red" render="Label" position="%d,e-%d" size="%d,%d" backgroundColor="#0x009f1313" font="Regular;%d" foregroundColor="#0x00ffffff" horizontalAlignment="center" verticalAlignment="center" />
+		<widget source="key_green" render="Label" position="%d,e-%d" size="%d,%d" backgroundColor="#0x001f771f" font="Regular;%d" foregroundColor="#0x00ffffff" horizontalAlignment="center" verticalAlignment="center" />
 	</screen>
 	""", [
 		820, 580, # screen

@@ -150,7 +150,7 @@ class FC2webLog(resource.Resource):
 			html += "<a href=\"/fancontrol\"><img border=\"0\" src=\"/fancontrol/FC2Info.png\" width=\"100\" height=\"40\"></a></td></tr></table>\n"
 
 			html += "<table border=\"1\" width=\"500\">"
-			html += "<tr><td width=\"50%\" align=\"center\" valign=\"top\">Data Logging "
+			html += "<tr><td width=\"50%\" align=\"center\" verticalAlignment=\"top\">Data Logging "
 			if config.plugins.FanControl.EnableDataLog.value:
 				html += "<font color=\"#00FF00\">%s</font>" % _("active")
 				html += "<form method=\"GET\">"
@@ -186,7 +186,7 @@ class FC2webLog(resource.Resource):
 			else:
 				html += "<BR>" + _("File %s does not exists") % "FC2data.csv"
 
-			html += "</td><td width=\"50%\" align=\"center\" valign=\"top\">Event Logging "
+			html += "</td><td width=\"50%\" align=\"center\" verticalAlignment=\"top\">Event Logging "
 			if config.plugins.FanControl.EnableEventLog.value:
 				html += "<font color=\"#00FF00\">%s</font>" % _("active")
 				html += "<form method=\"GET\">"

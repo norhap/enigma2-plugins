@@ -358,11 +358,11 @@ def DVDBackupListEntry(file):
 class DVDBackupProgress(Screen):
 	skin = """
 	<screen position="center,center" size="560,495" title="DVD Backup Progress">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="text" position="0,45" zPosition="1" size="560,40" font="Regular;20" valign="center" halign="center" foregroundColor="yellow" transparent="1" />
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1" alphaTest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1" alphaTest="on" />
+		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" verticalAlignment="center" horizontalAlignment="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" verticalAlignment="center" horizontalAlignment="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="text" position="0,45" zPosition="1" size="560,40" font="Regular;20" verticalAlignment="center" horizontalAlignment="center" foregroundColor="yellow" transparent="1" />
 		<widget name="list" position="0,90" size="560,400" scrollbarMode="showOnDemand" />
 	</screen>"""
 
@@ -459,14 +459,14 @@ class DVDBackupProgress(Screen):
 class DVDBackupScreen(Screen, ConfigListScreen):
 	skin = """
 	<screen position="center,center" size="560,210" title="DVD Backup">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" transparent="1" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;18" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;18" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;18" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;18" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" transparent="1" alphaTest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" transparent="1" alphaTest="on" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" transparent="1" alphaTest="on" />
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" transparent="1" alphaTest="on" />
+		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;18" verticalAlignment="center" horizontalAlignment="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;18" verticalAlignment="center" horizontalAlignment="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;18" verticalAlignment="center" horizontalAlignment="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;18" verticalAlignment="center" horizontalAlignment="center" backgroundColor="#1f771f" transparent="1" />
 		<widget name="config" position="0,45" size="560,160" scrollbarMode="showOnDemand" />
 	</screen>"""
 

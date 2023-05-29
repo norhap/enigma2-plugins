@@ -126,10 +126,10 @@ class MediaDownloader(Screen):
 	for a location (see LocationBox). If doOpen is True the Plugin will try to open it after downloading."""
 
 	skin = """<screen name="MediaDownloader" position="center,center" size="540,95" >
-			<widget source="wait" render="Label" position="2,10" size="500,30" valign="center" font="Regular;23" />
+			<widget source="wait" render="Label" position="2,10" size="500,30" verticalAlignment="center" font="Regular;23" />
 			<widget source="progress" render="Progress" position="2,40" size="536,20" />
 			<widget source="eta" render="Label" position="2,65" size="200,30" font="Regular;23" />
-			<widget source="speed" render="Label" position="338,65" size="200,30" halign="right" font="Regular;23" />
+			<widget source="speed" render="Label" position="338,65" size="200,30" horizontalAlignment="right" font="Regular;23" />
 		</screen>"""
 
 	def __init__(self, session, file, askOpen=False, downloadTo=None, callback=None):

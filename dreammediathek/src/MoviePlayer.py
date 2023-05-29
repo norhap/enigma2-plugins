@@ -40,22 +40,22 @@ class dreamMediathekPlayer(Screen, InfoBarNotifications):
 
 	skin = """<screen name="dreamMediathekPlayer" flags="wfNoBorder" position="0,380" size="720,160" title="dreamMediathekPlayer" backgroundColor="transparent">
 		<ePixmap position="0,0" pixmap="skin_default/info-bg_mp.png" zPosition="-1" size="720,160" />
-		<ePixmap position="29,40" pixmap="skin_default/screws_mp.png" size="665,104" alphatest="on" />
-		<ePixmap position="48,70" pixmap="skin_default/icons/mp_buttons.png" size="108,13" alphatest="on" />
-		<ePixmap pixmap="skin_default/icons/icon_event.png" position="207,78" size="15,10" alphatest="on" />
+		<ePixmap position="29,40" pixmap="skin_default/screws_mp.png" size="665,104" alphaTest="on" />
+		<ePixmap position="48,70" pixmap="skin_default/icons/mp_buttons.png" size="108,13" alphaTest="on" />
+		<ePixmap pixmap="skin_default/icons/icon_event.png" position="207,78" size="15,10" alphaTest="on" />
 		<widget source="session.CurrentService" render="Label" position="230,73" size="360,40" font="Regular;20" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="580,73" size="90,24" font="Regular;20" halign="right" backgroundColor="#4e5a74" transparent="1">
+		<widget source="session.CurrentService" render="Label" position="580,73" size="90,24" font="Regular;20" horizontalAlignment="right" backgroundColor="#4e5a74" transparent="1">
 			<convert type="ServicePosition">Length</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="205,129" size="100,20" font="Regular;18" halign="center" valign="center" backgroundColor="#06224f" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1">
+		<widget source="session.CurrentService" render="Label" position="205,129" size="100,20" font="Regular;18" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#06224f" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1">
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 		<widget source="session.CurrentService" render="PositionGauge" position="300,133" size="270,10" zPosition="2" pointer="skin_default/position_pointer.png:540,0" transparent="1" foregroundColor="#20224f">
 			<convert type="ServicePosition">Gauge</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="576,129" size="100,20" font="Regular;18" halign="center" valign="center" backgroundColor="#06224f" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1">
+		<widget source="session.CurrentService" render="Label" position="576,129" size="100,20" font="Regular;18" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#06224f" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1">
 			<convert type="ServicePosition">Remaining</convert>
 		</widget>
 		</screen>"""

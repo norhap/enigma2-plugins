@@ -115,29 +115,29 @@ class LastFMScreenMain(Screen, HelpableScreen, LastFM):
     skin = """
         <screen name="LastFM" position="center,center" size="600,440" title="%s" >
 
-            <widget name="artist" position="0,5" size="100,30" valign=\"center\" halign=\"left\" zPosition=\"2\"  foregroundColor=\"white\" font=\"Regular;18\" />
-            <widget name="album" position="0,45" size="100,30" valign=\"center\" halign=\"left\" zPosition=\"2\"  foregroundColor=\"white\" font=\"Regular;18\" />
-            <widget name="track" position="0,85" size="100,30" valign=\"center\" halign=\"left\" zPosition=\"2\"  foregroundColor=\"white\" font=\"Regular;18\" />
+            <widget name="artist" position="0,5" size="100,30" verticalAlignment=\"center\" horizontalAlignment=\"left\" zPosition=\"2\"  foregroundColor=\"white\" font=\"Regular;18\" />
+            <widget name="album" position="0,45" size="100,30" verticalAlignment=\"center\" horizontalAlignment=\"left\" zPosition=\"2\"  foregroundColor=\"white\" font=\"Regular;18\" />
+            <widget name="track" position="0,85" size="100,30" verticalAlignment=\"center\" horizontalAlignment=\"left\" zPosition=\"2\"  foregroundColor=\"white\" font=\"Regular;18\" />
 
-            <widget name="info_artist" position="105,5" size="300,30" valign=\"center\" halign=\"left\" zPosition=\"2\"  foregroundColor=\"white\" font=\"Regular;18\" />
-            <widget name="duration" position="420,5" size="60,30" valign=\"center\" halign=\"right\" zPosition=\"2\"  foregroundColor=\"white\" font=\"Regular;18\" />
-            <widget name="info_album" position="105,45" size="370,30" valign=\"center\" halign=\"left\" zPosition=\"2\"  foregroundColor=\"white\" font=\"Regular;18\" />
-            <widget name="info_track" position="105,85" size="370,30" valign=\"center\" halign=\"left\" zPosition=\"2\"  foregroundColor=\"white\" font=\"Regular;18\" />
+            <widget name="info_artist" position="105,5" size="300,30" verticalAlignment=\"center\" horizontalAlignment=\"left\" zPosition=\"2\"  foregroundColor=\"white\" font=\"Regular;18\" />
+            <widget name="duration" position="420,5" size="60,30" verticalAlignment=\"center\" horizontalAlignment=\"right\" zPosition=\"2\"  foregroundColor=\"white\" font=\"Regular;18\" />
+            <widget name="info_album" position="105,45" size="370,30" verticalAlignment=\"center\" horizontalAlignment=\"left\" zPosition=\"2\"  foregroundColor=\"white\" font=\"Regular;18\" />
+            <widget name="info_track" position="105,85" size="370,30" verticalAlignment=\"center\" horizontalAlignment=\"left\" zPosition=\"2\"  foregroundColor=\"white\" font=\"Regular;18\" />
             <widget name="info_cover" position="484,5" size="116,116" />
 
             <widget name="tablist" position="0,140" size="210,205" scrollbarMode="showOnDemand" />
             <widget name="streamlist" position="220,140" size="380,205" scrollbarMode="showOnDemand" />
 
-            <widget name="button_red" position="0,360" size="140,40" valign=\"center\" halign=\"center\" zPosition=\"3\" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" font=\"Regular;18\" />
-            <widget name="button_green" position="140,360" size="140,40" valign=\"center\" halign=\"center\" zPosition=\"3\" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" font=\"Regular;18\"/>
-            <widget name="button_yellow" position="280,360" size="140,40" valign=\"center\" halign=\"center\" zPosition=\"3\" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" font=\"Regular;18\" />
-            <widget name="button_blue" position="420,360" size="140,40" valign=\"center\" halign=\"center\" zPosition=\"3\" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" font=\"Regular;18\" />
-            <ePixmap pixmap="skin_default/buttons/red.png" position="0,360" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-            <ePixmap pixmap="skin_default/buttons/green.png" position="140,360" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-            <ePixmap pixmap="skin_default/buttons/yellow.png" position="280,360" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-            <ePixmap pixmap="skin_default/buttons/blue.png" position="420,360" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-            <ePixmap position="570,370" size="35,25" pixmap="skin_default/buttons/key_menu.png" alphatest="on" />
-            <widget name="infolabel" position="10,410" size="500,20" valign=\"center\" halign=\"left\" zPosition=\"2\"  foregroundColor=\"white\" font=\"Regular;16\" />
+            <widget name="button_red" position="0,360" size="140,40" verticalAlignment=\"center\" horizontalAlignment=\"center\" zPosition=\"3\" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" font=\"Regular;18\" />
+            <widget name="button_green" position="140,360" size="140,40" verticalAlignment=\"center\" horizontalAlignment=\"center\" zPosition=\"3\" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" font=\"Regular;18\"/>
+            <widget name="button_yellow" position="280,360" size="140,40" verticalAlignment=\"center\" horizontalAlignment=\"center\" zPosition=\"3\" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" font=\"Regular;18\" />
+            <widget name="button_blue" position="420,360" size="140,40" verticalAlignment=\"center\" horizontalAlignment=\"center\" zPosition=\"3\" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" font=\"Regular;18\" />
+            <ePixmap pixmap="skin_default/buttons/red.png" position="0,360" zPosition="2" size="140,40" transparent="1" alphaTest="on" />
+            <ePixmap pixmap="skin_default/buttons/green.png" position="140,360" zPosition="2" size="140,40" transparent="1" alphaTest="on" />
+            <ePixmap pixmap="skin_default/buttons/yellow.png" position="280,360" zPosition="2" size="140,40" transparent="1" alphaTest="on" />
+            <ePixmap pixmap="skin_default/buttons/blue.png" position="420,360" zPosition="2" size="140,40" transparent="1" alphaTest="on" />
+            <ePixmap position="570,370" size="35,25" pixmap="skin_default/buttons/key_menu.png" alphaTest="on" />
+            <widget name="infolabel" position="10,410" size="500,20" verticalAlignment=\"center\" horizontalAlignment=\"left\" zPosition=\"2\"  foregroundColor=\"white\" font=\"Regular;16\" />
         </screen>""" % (config.plugins.LastFM.name.value + " " + _("Ver.") + " " + lastfm_pluginversion) # title
 
     noCoverArtPNG = "/usr/share/enigma2/skin_default/no_coverArt.png"
@@ -609,8 +609,8 @@ class LastFMSaveScreen(Screen):
 class lastfmLCDScreen(Screen):
 	skin = """
 	<screen name="LastFM_Summary" position="0,0" size="132,64" id="1">
-		<widget name="text1" position="2,0" size="128,25" font="Regular;12" halign="center" valign="center"/>
-		<widget name="text2" position="2,29" size="128,35" font="Regular;10" halign="center" valign="center"/>
+		<widget name="text1" position="2,0" size="128,25" font="Regular;12" horizontalAlignment="center" verticalAlignment="center"/>
+		<widget name="text2" position="2,29" size="128,35" font="Regular;10" horizontalAlignment="center" verticalAlignment="center"/>
 	</screen>"""
 
 	def __init__(self, session, parent):

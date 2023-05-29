@@ -222,10 +222,10 @@ class PictureViewer(Screen):
 		<widget name="menu" position="1,1" size="275,400"  scrollbarMode="showOnDemand" />
 		<widget name="pixmap" position="275,1" size="275,200" backgroundColor="red" />
 		<widget name="slist" position="275,200" size="275,200"  scrollbarMode="showOnDemand" />
-		<widget name="buttonred" position="6,405" size="130,40" backgroundColor="red" valign="center" halign="center" zPosition="2" foregroundColor="white" font="Regular;18" />
-		<widget name="buttongreen" position="142,405" size="130,40" backgroundColor="green" valign="center" halign="center" zPosition="2" foregroundColor="white" font="Regular;18" />
-		<widget name="buttonyellow" position="278,405" size="130,40" backgroundColor="yellow" valign="center" halign="center" zPosition="2" foregroundColor="white" font="Regular;18" />
-		<widget name="buttonblue" position="414,405" size="130,40" backgroundColor="blue" valign="center" halign="center" zPosition="2" foregroundColor="white" font="Regular;18" />
+		<widget name="buttonred" position="6,405" size="130,40" backgroundColor="red" verticalAlignment="center" horizontalAlignment="center" zPosition="2" foregroundColor="white" font="Regular;18" />
+		<widget name="buttongreen" position="142,405" size="130,40" backgroundColor="green" verticalAlignment="center" horizontalAlignment="center" zPosition="2" foregroundColor="white" font="Regular;18" />
+		<widget name="buttonyellow" position="278,405" size="130,40" backgroundColor="yellow" verticalAlignment="center" horizontalAlignment="center" zPosition="2" foregroundColor="white" font="Regular;18" />
+		<widget name="buttonblue" position="414,405" size="130,40" backgroundColor="blue" verticalAlignment="center" horizontalAlignment="center" zPosition="2" foregroundColor="white" font="Regular;18" />
 		</screen>""" % config.plugins.pictureviewer.rootdir.value
 		self.skin = skin
 		Screen.__init__(self, session)

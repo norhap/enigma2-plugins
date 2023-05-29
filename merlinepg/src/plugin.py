@@ -195,11 +195,11 @@ class Merlin_PGII(Screen):
 		skin = """
 		<screen flags="wfNoBorder" name="Merlin_PG" position="0,0" size="1280,720" title="Merlin Program Guide">
 		<!-- DO NOT CHANGE THIS LINE !!!!!!!!!!!!!!! --><widget enableWrapAround="0" itemHeight="25" name="prg_list" position="-200,-200" size="50,125"/>
-			<widget font="Regular;18" halign="center" valign="center" name="currCh1" position="60,40" size="231,24" transparent="1" zPosition="2"/>
-			<widget font="Regular;18" halign="center" valign="center" name="currCh2" position="291,40" size="231,24" transparent="1" zPosition="2"/>
-			<widget font="Regular;18" halign="center" valign="center" name="currCh3" position="522,40" size="231,24" transparent="1" zPosition="2"/>
-			<widget font="Regular;18" halign="center" valign="center" name="currCh4" position="753,40" size="231,24" transparent="1" zPosition="2"/>
-			<widget font="Regular;18" halign="center" valign="center" name="currCh5" position="984,40" size="231,24" transparent="1" zPosition="2"/>
+			<widget font="Regular;18" horizontalAlignment="center" verticalAlignment="center" name="currCh1" position="60,40" size="231,24" transparent="1" zPosition="2"/>
+			<widget font="Regular;18" horizontalAlignment="center" verticalAlignment="center" name="currCh2" position="291,40" size="231,24" transparent="1" zPosition="2"/>
+			<widget font="Regular;18" horizontalAlignment="center" verticalAlignment="center" name="currCh3" position="522,40" size="231,24" transparent="1" zPosition="2"/>
+			<widget font="Regular;18" horizontalAlignment="center" verticalAlignment="center" name="currCh4" position="753,40" size="231,24" transparent="1" zPosition="2"/>
+			<widget font="Regular;18" horizontalAlignment="center" verticalAlignment="center" name="currCh5" position="984,40" size="231,24" transparent="1" zPosition="2"/>
 			<widget backgroundColor="#10444649" name="Active1" position="60,80" size="225,560" transparent="0" zPosition="3"/>
 			<widget backgroundColor="#10444649" name="Active2" position="291,80" size="225,560" transparent="0" zPosition="3"/>
 			<widget backgroundColor="#10444649" name="Active3" position="522,80" size="225,560" transparent="0" zPosition="3"/>
@@ -211,7 +211,7 @@ class Merlin_PGII(Screen):
 			<widget itemHeight="70" name="epg_list4" position="753,80" scrollbarMode="showOnDemand" size="225,560" transparent="1" zPosition="4"/>
 			<widget itemHeight="70" name="epg_list5" position="984,80" scrollbarMode="showOnDemand" size="225,560" transparent="1" zPosition="4"/>
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/buttons.png" position="60,655" size="430,24"/>
-			<widget backgroundColor="background" font="Regular;18" foregroundColor="#ffc000" position="500,655" render="Label" size="200,24" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
+			<widget backgroundColor="background" font="Regular;18" foregroundColor="#ffc000" position="500,655" render="Label" size="200,24" source="global.CurrentTime" transparent="1" verticalAlignment="center" zPosition="3">
 				<convert type="ClockToText">Format:%H:%M  %a %d. %b</convert>
 			</widget>
 		</screen>"""
@@ -219,10 +219,10 @@ class Merlin_PGII(Screen):
 		skin = """
 		<screen flags="wfNoBorder" name="Merlin_PG" position="0,0" size="1024,576" title="Merlin Program Guide">
 		<!-- DO NOT CHANGE THIS LINE !!!!!!!!!!!!!!! --><widget enableWrapAround="0" itemHeight="25" name="prg_list" position="-200,-200" size="50,100"/>
-			<widget font="Regular;18" halign="center" valign="center" name="currCh1" position="50,40" size="231,24" transparent="1" zPosition="2"/>
-			<widget font="Regular;18" halign="center" valign="center" name="currCh2" position="281,40" size="231,24" transparent="1" zPosition="2"/>
-			<widget font="Regular;18" halign="center" valign="center" name="currCh3" position="512,40" size="231,24" transparent="1" zPosition="2"/>
-			<widget font="Regular;18" halign="center" valign="center" name="currCh4" position="743,40" size="231,24" transparent="1" zPosition="2"/>
+			<widget font="Regular;18" horizontalAlignment="center" verticalAlignment="center" name="currCh1" position="50,40" size="231,24" transparent="1" zPosition="2"/>
+			<widget font="Regular;18" horizontalAlignment="center" verticalAlignment="center" name="currCh2" position="281,40" size="231,24" transparent="1" zPosition="2"/>
+			<widget font="Regular;18" horizontalAlignment="center" verticalAlignment="center" name="currCh3" position="512,40" size="231,24" transparent="1" zPosition="2"/>
+			<widget font="Regular;18" horizontalAlignment="center" verticalAlignment="center" name="currCh4" position="743,40" size="231,24" transparent="1" zPosition="2"/>
 			<widget backgroundColor="#10444649" name="Active1" position="50,80" size="225,420" transparent="0" zPosition="3"/>
 			<widget backgroundColor="#10444649" name="Active2" position="281,80" size="225,420" transparent="0" zPosition="3"/>
 			<widget backgroundColor="#10444649" name="Active3" position="512,80" size="225,420" transparent="0" zPosition="3"/>
@@ -232,7 +232,7 @@ class Merlin_PGII(Screen):
 			<widget itemHeight="70" name="epg_list3" position="512,80" scrollbarMode="showOnDemand" size="225,420" transparent="1" zPosition="4"/>
 			<widget itemHeight="70" name="epg_list4" position="743,80" scrollbarMode="showOnDemand" size="225,420" transparent="1" zPosition="4"/>
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/buttons.png" position="50,518" size="430,24"/>
-			<widget backgroundColor="background" font="Regular;18" foregroundColor="#ffc000" position="490,518" render="Label" size="200,24" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
+			<widget backgroundColor="background" font="Regular;18" foregroundColor="#ffc000" position="490,518" render="Label" size="200,24" source="global.CurrentTime" transparent="1" verticalAlignment="center" zPosition="3">
 				<convert type="ClockToText">Format:%H:%M  %a %d. %b</convert>
 			</widget>
 			<!-- <widget font="Regular;18" name="fullEventInfo" position="300,200" size="300,200" transparent="0" zPosition="12"/> -->
@@ -241,10 +241,10 @@ class Merlin_PGII(Screen):
 		skin = """
 		<screen flags="wfNoBorder" name="Merlin_PG" position="0,0" size="720,576" title="Merlin Program Guide">
 		<!-- DO NOT CHANGE THIS LINE !!!!!!!!!!!!!!! --><widget enableWrapAround="0" itemHeight="25" name="prg_list" position="-200,-200" size="50,100"/>
-			<widget font="Regular;18" halign="center" valign="center" name="currCh1" position="50,35" size="155,36" transparent="1" zPosition="2"/>
-			<widget font="Regular;18" halign="center" valign="center" name="currCh2" position="205,35" size="155,36" transparent="1" zPosition="2"/>
-			<widget font="Regular;18" halign="center" valign="center" name="currCh3" position="360,35" size="155,36" transparent="1" zPosition="2"/>
-			<widget font="Regular;18" halign="center" valign="center" name="currCh4" position="515,35" size="155,36" transparent="1" zPosition="2"/>
+			<widget font="Regular;18" horizontalAlignment="center" verticalAlignment="center" name="currCh1" position="50,35" size="155,36" transparent="1" zPosition="2"/>
+			<widget font="Regular;18" horizontalAlignment="center" verticalAlignment="center" name="currCh2" position="205,35" size="155,36" transparent="1" zPosition="2"/>
+			<widget font="Regular;18" horizontalAlignment="center" verticalAlignment="center" name="currCh3" position="360,35" size="155,36" transparent="1" zPosition="2"/>
+			<widget font="Regular;18" horizontalAlignment="center" verticalAlignment="center" name="currCh4" position="515,35" size="155,36" transparent="1" zPosition="2"/>
 			<widget backgroundColor="#10444649" name="Active1" position="50,90" size="155,420" transparent="0" zPosition="3"/>
 			<widget backgroundColor="#10444649" name="Active2" position="205,90" size="155,420" transparent="0" zPosition="3"/>
 			<widget backgroundColor="#10444649" name="Active3" position="360,90" size="155,420" transparent="0" zPosition="3"/>
@@ -254,7 +254,7 @@ class Merlin_PGII(Screen):
 			<widget itemHeight="70" name="epg_list3" position="360,90" scrollbarMode="showOnDemand" size="155,420" transparent="1" zPosition="4"/>
 			<widget itemHeight="70" name="epg_list4" position="515,90" scrollbarMode="showOnDemand" size="155,420" transparent="1" zPosition="4"/>
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/buttons.png" position="50,518" size="430,24"/>
-			<widget backgroundColor="background" font="Regular;18" foregroundColor="#ffc000" position="490,518" render="Label" size="200,24" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
+			<widget backgroundColor="background" font="Regular;18" foregroundColor="#ffc000" position="490,518" render="Label" size="200,24" source="global.CurrentTime" transparent="1" verticalAlignment="center" zPosition="3">
 				<convert type="ClockToText">Format:%H:%M  %a %d. %b</convert>
 			</widget>
 		</screen>"""
@@ -685,15 +685,15 @@ class Merlin_PGd(Screen):
 			<widget backgroundColor="#ffffffff" position="0,0" render="Pig" size="520,292" source="session.VideoPicture" zPosition="-1"/>
 			<eLabel backgroundColor="#00111112" position="0,292" size="520,450" zPosition="1"/>
 			<eLabel backgroundColor="#00111112" position="520,0" size="760,720" zPosition="1"/>
-			<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/epg.png" position="1136,105" size="85,77" zPosition="5"/>
-			<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/channels.png" position="395,306" size="80,80" zPosition="5"/>
-			<ePixmap alphatest="on" name="red" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/red.png" position="70,635" size="35,25" zPosition="2"/>
-			<ePixmap alphatest="on" name="green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/green.png" position="275,635" size="35,25" zPosition="2"/>
+			<ePixmap alphaTest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/epg.png" position="1136,105" size="85,77" zPosition="5"/>
+			<ePixmap alphaTest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/channels.png" position="395,306" size="80,80" zPosition="5"/>
+			<ePixmap alphaTest="on" name="red" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/red.png" position="70,635" size="35,25" zPosition="2"/>
+			<ePixmap alphaTest="on" name="green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/green.png" position="275,635" size="35,25" zPosition="2"/>
 			<eLabel backgroundColor="#00111112" font="Regular;18" position="110,635" size="131,24" text="ZAP" transparent="1" zPosition="2"/>
 			<eLabel backgroundColor="#00111112" font="Regular;18" position="315,635" size="191,24" text="TIMERS" transparent="1" zPosition="2"/>
 			<widget itemHeight="25" name="prg_list" position="75,306" scrollbarMode="showNever" size="400,300" transparent="1" zPosition="4"/>
 			<widget itemHeight="27" name="epg_list" position="570,105" scrollbarMode="showNever" size="651,540" transparent="1" zPosition="4"/>
-			<widget backgroundColor="#00111112" font="Regular;22" foregroundColor="#fcc000" halign="center" name="currCh" position="555,55" size="651,24" transparent="1" valign="center" zPosition="2"/>
+			<widget backgroundColor="#00111112" font="Regular;22" foregroundColor="#fcc000" horizontalAlignment="center" name="currCh" position="555,55" size="651,24" transparent="1" verticalAlignment="center" zPosition="2"/>
 		</screen>"""
 	elif sz_w == 1024:
 		skin = """
@@ -701,28 +701,28 @@ class Merlin_PGd(Screen):
 			<widget backgroundColor="#ffffffff" position="0,0" render="Pig" size="384,216" source="session.VideoPicture" zPosition="-1"/>
 			<eLabel backgroundColor="#00111112" position="0,216" size="384,366" zPosition="1"/>
 			<eLabel backgroundColor="#00111112" position="384,0" size="720,576" zPosition="1"/>
-			<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/epg.png" position="900,80" size="85,77" zPosition="5"/>
-			<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/channels.png" position="292,228" size="80,80" zPosition="5"/>
-			<ePixmap alphatest="on" name="red" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/red.png" position="40,520" size="35,25" zPosition="3"/>
-			<ePixmap alphatest="on" name="green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/green.png" position="185,520" size="35,25" zPosition="3"/>
+			<ePixmap alphaTest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/epg.png" position="900,80" size="85,77" zPosition="5"/>
+			<ePixmap alphaTest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/channels.png" position="292,228" size="80,80" zPosition="5"/>
+			<ePixmap alphaTest="on" name="red" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/red.png" position="40,520" size="35,25" zPosition="3"/>
+			<ePixmap alphaTest="on" name="green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/green.png" position="185,520" size="35,25" zPosition="3"/>
 			<eLabel backgroundColor="#00111112" font="Regular;18" position="80,520" size="92,24" text="ZAP" transparent="1" zPosition="2"/>
 			<eLabel backgroundColor="#00111112" font="Regular;18" position="230,520" size="141,24" text="TIMERS" transparent="1" zPosition="2"/>
 			<widget itemHeight="25" name="prg_list" position="40,228" scrollbarMode="showNever" size="332,275" transparent="1" zPosition="4"/>
 			<widget itemHeight="28" name="epg_list" position="395,80" scrollbarMode="showNever" size="590,448" transparent="1" zPosition="4"/>
-			<widget backgroundColor="#00111112" font="Regular;21" foregroundColor="#fcc000" halign="center" name="currCh" position="395,40" size="590,24" transparent="1" valign="center" zPosition="4"/>
+			<widget backgroundColor="#00111112" font="Regular;21" foregroundColor="#fcc000" horizontalAlignment="center" name="currCh" position="395,40" size="590,24" transparent="1" verticalAlignment="center" zPosition="4"/>
 		</screen>"""
 	else:
 		skin = """
 		<screen flags="wfNoBorder" name="Merlin_PG" position="0,0" size="720,576" title="Merlin Program Guide">
-			<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/mpgbgSD-fs8.png" position="0,0" size="720,576" zPosition="1"/>
-			<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/red.png" position="165,90" size="35,25" zPosition="2"/>
-			<ePixmap alphatest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/green.png" position="165,110" size="35,25" zPosition="2"/>
+			<ePixmap alphaTest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/mpgbgSD-fs8.png" position="0,0" size="720,576" zPosition="1"/>
+			<ePixmap alphaTest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/red.png" position="165,90" size="35,25" zPosition="2"/>
+			<ePixmap alphaTest="on" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/green.png" position="165,110" size="35,25" zPosition="2"/>
 			<eLabel backgroundColor="#1f1f1f" font="Regular;15" foregroundColor="#f0f0f0" position="205,93" size="70,20" text="ZAP" transparent="1" zPosition="2"/>
 			<eLabel backgroundColor="#1f1f1f" font="Regular;15" foregroundColor="#f0f0f0" position="205,113" size="70,20" text="TIMERS" transparent="1" zPosition="2"/>
 			<widget name="prg_list" position="342,63" scrollbarMode="showOnDemand" size="327,150" zPosition="2" itemHeight="25"/>
 			<widget name="epg_list" position="57,238" scrollbarMode="showOnDemand" size="612,270" zPosition="2" itemHeight="27"/>
-			<widget font="Regular;22" foregroundColor="#ffc000" halign="center" name="currCh" position="57,133" size="252,66" transparent="1" valign="center" zPosition="2"/>
-			<widget font="LCD;28" halign="left" position="60,95" render="Label" size="91,32" source="global.CurrentTime" transparent="1" zPosition="3">
+			<widget font="Regular;22" foregroundColor="#ffc000" horizontalAlignment="center" name="currCh" position="57,133" size="252,66" transparent="1" verticalAlignment="center" zPosition="2"/>
+			<widget font="LCD;28" horizontalAlignment="left" position="60,95" render="Label" size="91,32" source="global.CurrentTime" transparent="1" zPosition="3">
 				<convert type="ClockToText">Default</convert>
 			</widget>
 			<widget font="Regular;16" position="60,65" render="Label" size="276,26" source="global.CurrentTime" transparent="1" zPosition="3">

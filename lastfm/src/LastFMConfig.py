@@ -18,10 +18,10 @@ class LastFMConfigScreen(ConfigListScreen, Screen):
 
         <widget name="config" position="10,0" size="580,400" scrollbarMode="showOnDemand" />
 
-        <widget name="buttonred" position="10,430" size="140,40" valign=\"center\" halign=\"center\" zPosition=\"2\" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" font=\"Regular;18\" />
-        <widget name="buttongreen" position="150,430" size="140,40" valign=\"center\" halign=\"center\" zPosition=\"2\" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" font=\"Regular;18\"/>
-        <ePixmap pixmap="skin_default/buttons/red.png" position="10,430" zPosition="1" size="140,40" transparent="1" alphatest="on" />
-        <ePixmap pixmap="skin_default/buttons/green.png" position="150,430" zPosition="1" size="140,40" transparent="1" alphatest="on" />
+        <widget name="buttonred" position="10,430" size="140,40" verticalAlignment=\"center\" horizontalAlignment=\"center\" zPosition=\"2\" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" font=\"Regular;18\" />
+        <widget name="buttongreen" position="150,430" size="140,40" verticalAlignment=\"center\" horizontalAlignment=\"center\" zPosition=\"2\" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" font=\"Regular;18\"/>
+        <ePixmap pixmap="skin_default/buttons/red.png" position="10,430" zPosition="1" size="140,40" transparent="1" alphaTest="on" />
+        <ePixmap pixmap="skin_default/buttons/green.png" position="150,430" zPosition="1" size="140,40" transparent="1" alphaTest="on" />
 
         </screen>""" % (
             config.plugins.LastFM.name.value + " " + _("Setup")  # title

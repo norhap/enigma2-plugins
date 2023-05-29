@@ -89,15 +89,15 @@ class ShowClockSetup(Screen, ConfigListScreen): # config
 
 	skin = """
 		<screen name="ShowClock" position="center,center" size="600,290" title="Show Clock Setup" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="5,5" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="155,5" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="305,5" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="455,5" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="5,5" zPosition="0" size="140,40" transparent="1" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="155,5" zPosition="0" size="140,40" transparent="1" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="305,5" zPosition="0" size="140,40" transparent="1" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="455,5" zPosition="0" size="140,40" transparent="1" alphaTest="on" />
 
-			<widget render="Label" source="key_red" position="5,5" size="140,40" zPosition="2" valign="center" halign="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget render="Label" source="key_green" position="155,5" size="140,40" zPosition="2" valign="center" halign="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget render="Label" source="key_yellow" position="305,5" size="140,40" zPosition="2" valign="center" halign="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget render="Label" source="key_blue" position="455,5" size="140,40" zPosition="2" valign="center" halign="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget render="Label" source="key_red" position="5,5" size="140,40" zPosition="2" verticalAlignment="center" horizontalAlignment="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget render="Label" source="key_green" position="155,5" size="140,40" zPosition="2" verticalAlignment="center" horizontalAlignment="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget render="Label" source="key_yellow" position="305,5" size="140,40" zPosition="2" verticalAlignment="center" horizontalAlignment="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget render="Label" source="key_blue" position="455,5" size="140,40" zPosition="2" verticalAlignment="center" horizontalAlignment="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 
 			<widget name="config" position="5,60" size="590,105" scrollbarMode="showOnDemand" />
 
@@ -326,39 +326,39 @@ def clockSkin():
 		if width < 1024: # SD
 			currentSkin = """
 				<screen name="ShowClock" size="190,60" zPosition="10" backgroundColor="#50202020" flags="wfNoBorder">
-					<widget source="global.CurrentTime" render="Label" position="55,12" size="58,17" font="Regular;21" halign="left" valign="center" transparent="1">
+					<widget source="global.CurrentTime" render="Label" position="55,12" size="58,17" font="Regular;21" horizontalAlignment="left" verticalAlignment="center" transparent="1">
 						<convert type="ClockToText">Default</convert>
 					</widget>
-					<widget source="global.CurrentTime" render="Label" position="111,15" size="30,15" font="Regular;16" halign="left" valign="center" transparent="1">
+					<widget source="global.CurrentTime" render="Label" position="111,15" size="30,15" font="Regular;16" horizontalAlignment="left" verticalAlignment="center" transparent="1">
 						<convert type="ClockToText">Format::%S</convert>
 					</widget>
-					<widget source="global.CurrentTime" render="Label" position="0,37" size="190,13" font="Regular;15" halign="center" valign="center" foregroundColor="#999999" transparent="1">
+					<widget source="global.CurrentTime" render="Label" position="0,37" size="190,13" font="Regular;15" horizontalAlignment="center" verticalAlignment="center" foregroundColor="#999999" transparent="1">
 						<convert type="ClockToText">Format:%A, %d.%m.%Y</convert>
 					</widget>
 				</screen>"""
 		else: # XD
 			currentSkin = """
 				<screen name="ShowClock" size="250,70" zPosition="10" backgroundColor="#50202020" flags="wfNoBorder">
-					<widget source="global.CurrentTime" render="Label" position="80,10" size="80,25" font="Regular;24" halign="left" valign="center" transparent="1">
+					<widget source="global.CurrentTime" render="Label" position="80,10" size="80,25" font="Regular;24" horizontalAlignment="left" verticalAlignment="center" transparent="1">
 						<convert type="ClockToText">Default</convert>
 					</widget>
-					<widget source="global.CurrentTime" render="Label" position="142,15" size="40,18" font="Regular;20" halign="left" valign="center" transparent="1">
+					<widget source="global.CurrentTime" render="Label" position="142,15" size="40,18" font="Regular;20" horizontalAlignment="left" verticalAlignment="center" transparent="1">
 						<convert type="ClockToText">Format::%S</convert>
 					</widget>
-					<widget source="global.CurrentTime" render="Label" position="0,40" size="250,25" font="Regular;19" halign="center" valign="center" foregroundColor="#999999" transparent="1">
+					<widget source="global.CurrentTime" render="Label" position="0,40" size="250,25" font="Regular;19" horizontalAlignment="center" verticalAlignment="center" foregroundColor="#999999" transparent="1">
 						<convert type="ClockToText">Format:%A, %d.%m.%Y</convert>
 					</widget>
 				</screen>"""
 	else: # HD
 		currentSkin = """
 				<screen name="ShowClock" size="280,80" zPosition="10" backgroundColor="#50202020" flags="wfNoBorder">
-					<widget source="global.CurrentTime" render="Label" position="85,15" size="80,25" font="Regular;30" halign="left" valign="center" transparent="1">
+					<widget source="global.CurrentTime" render="Label" position="85,15" size="80,25" font="Regular;30" horizontalAlignment="left" verticalAlignment="center" transparent="1">
 						<convert type="ClockToText">Default</convert>
 					</widget>
-					<widget source="global.CurrentTime" render="Label" position="162,20" size="40,18" font="Regular;24" halign="left" valign="center" transparent="1">
+					<widget source="global.CurrentTime" render="Label" position="162,20" size="40,18" font="Regular;24" horizontalAlignment="left" verticalAlignment="center" transparent="1">
 						<convert type="ClockToText">Format::%S</convert>
 					</widget>
-					<widget source="global.CurrentTime" render="Label" position="0,45" size="280,30" font="Regular;23" halign="center" valign="center" foregroundColor="#999999" transparent="1">
+					<widget source="global.CurrentTime" render="Label" position="0,45" size="280,30" font="Regular;23" horizontalAlignment="center" verticalAlignment="center" foregroundColor="#999999" transparent="1">
 						<convert type="ClockToText">Format:%A, %d.%m.%Y</convert>
 					</widget>
 				</screen>"""

@@ -80,7 +80,7 @@ config.plugins.RecInfobar.tuner_recording_priority = ConfigSelection(default="-2
 class RecIndicator(Screen):
 	skin = """
 		<screen name="RecIndicator" title="Records Indicator" flags="wfNoBorder" position="60,60" size="36,36" zPosition="-1" backgroundColor="transparent" >
-			<widget source="session.RecordState" render="Pixmap" pixmap="skin_default/icons/icon_rec.png" position="0,0" size="36,36" alphatest="on">
+			<widget source="session.RecordState" render="Pixmap" pixmap="skin_default/icons/icon_rec.png" position="0,0" size="36,36" alphaTest="on">
 				<convert type="ConditionalShowHide">Blink,3000</convert>
 			</widget>
 		</screen>"""
@@ -108,41 +108,41 @@ class RecInfoBar(Screen):
 	if FULLHD == 1:
 		skin = """
 			<screen name="RecInfoBar" position="0,80" size="1280,40" zPosition="%s" backgroundColor="%s" title="Records Info" flags="wfNoBorder" >
-				<widget name="chTuner" position="0,2" size="180,18" zPosition="1" font="Regular;18" halign="left" transparent="1" noWrap="1" foregroundColor="#00879ce1" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="chProv" position="190,2" size="250,18" zPosition="1" font="Regular;18" halign="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="chBouq" position="450,2" size="300,18" zPosition="1" font="Regular;18" halign="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="chNum" position="760,2"  size="50,18" zPosition="1" font="Regular;18" halign="right" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="black" borderColor="black" borderWidth="3" />
-				<widget name="chName" position="820,2" size="300,18" zPosition="1" font="Regular;18" halign="left"  transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="timelen" position="1130,2" size="150,18" zPosition="1" font="Regular;18" halign="center" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="chSnr" position="10,20" size="150,18" zPosition="1" font="Regular;18" halign="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="remaining" position="160,20" size="480,18" zPosition="1" font="Regular;18" halign="right" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="recName" position="650,20" size="630,18" zPosition="1" font="Regular;18" halign="left" transparent="1" noWrap="1" foregroundColor="#00aaaaaa" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="chTuner" position="0,2" size="180,18" zPosition="1" font="Regular;18" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="#00879ce1" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="chProv" position="190,2" size="250,18" zPosition="1" font="Regular;18" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="chBouq" position="450,2" size="300,18" zPosition="1" font="Regular;18" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="chNum" position="760,2"  size="50,18" zPosition="1" font="Regular;18" horizontalAlignment="right" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="black" borderColor="black" borderWidth="3" />
+				<widget name="chName" position="820,2" size="300,18" zPosition="1" font="Regular;18" horizontalAlignment="left"  transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="timelen" position="1130,2" size="150,18" zPosition="1" font="Regular;18" horizontalAlignment="center" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="chSnr" position="10,20" size="150,18" zPosition="1" font="Regular;18" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="remaining" position="160,20" size="480,18" zPosition="1" font="Regular;18" horizontalAlignment="right" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="recName" position="650,20" size="630,18" zPosition="1" font="Regular;18" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="#00aaaaaa" backgroundColor="transparent" borderColor="black" borderWidth="3" />
 			</screen>""" % (config.plugins.RecInfobar.z.value, config.plugins.RecInfobar.background.value)
 	elif FULLHD == 2:
 		skin = """
 			<screen name="RecInfoBar" position="0,80" size="1920,60" zPosition="%s" backgroundColor="%s" title="Records Info" flags="wfNoBorder" >
-				<widget name="chTuner" position="0,2" size="270,27" zPosition="1" font="Regular;27" halign="left" transparent="1" noWrap="1" foregroundColor="#00879ce1" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="chProv" position="280,2" size="375,27" zPosition="1" font="Regular;27" halign="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="chBouq" position="675,2" size="450,27" zPosition="1" font="Regular;27" halign="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="chNum" position="1135,2"  size="75,27" zPosition="1" font="Regular;27" halign="right" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="black" borderColor="black" borderWidth="3" />
-				<widget name="chName" position="1220,2" size="450,27" zPosition="1" font="Regular;27" halign="left"  transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="timelen" position="1680,2" size="225,27" zPosition="1" font="Regular;27" halign="center" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="chSnr" position="10,30" size="225,27" zPosition="1" font="Regular;27" halign="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="remaining" position="245,30" size="720,27" zPosition="1" font="Regular;27" halign="right" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="recName" position="975,30" size="945,27" zPosition="1" font="Regular;27" halign="left" transparent="1" noWrap="1" foregroundColor="#00aaaaaa" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="chTuner" position="0,2" size="270,27" zPosition="1" font="Regular;27" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="#00879ce1" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="chProv" position="280,2" size="375,27" zPosition="1" font="Regular;27" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="chBouq" position="675,2" size="450,27" zPosition="1" font="Regular;27" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="chNum" position="1135,2"  size="75,27" zPosition="1" font="Regular;27" horizontalAlignment="right" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="black" borderColor="black" borderWidth="3" />
+				<widget name="chName" position="1220,2" size="450,27" zPosition="1" font="Regular;27" horizontalAlignment="left"  transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="timelen" position="1680,2" size="225,27" zPosition="1" font="Regular;27" horizontalAlignment="center" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="chSnr" position="10,30" size="225,27" zPosition="1" font="Regular;27" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="remaining" position="245,30" size="720,27" zPosition="1" font="Regular;27" horizontalAlignment="right" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="recName" position="975,30" size="945,27" zPosition="1" font="Regular;27" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="#00aaaaaa" backgroundColor="transparent" borderColor="black" borderWidth="3" />
 			</screen>""" % (config.plugins.RecInfobar.z.value, config.plugins.RecInfobar.background.value)
 	else:
 		skin = """
 			<screen name="RecInfoBar" position="0,80" size="720,40" zPosition="%s" backgroundColor="%s" title="Records Info" flags="wfNoBorder" >
-				<widget name="chTuner" position="0,2" size="180,18" zPosition="1" font="Regular;17" halign="left" transparent="1" noWrap="1" foregroundColor="#00879ce1" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="chProv" position="190,2" size="190,18" zPosition="1" font="Regular;17" halign="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="chBouq" position="390,2" size="200,18" zPosition="1" font="Regular;17" halign="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="chNum" position="600,2"  size="30,18" zPosition="1" font="Regular;17" halign="left" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="black" borderColor="black" borderWidth="3" />
-				<widget name="chName" position="640,2" size="80,18" zPosition="1" font="Regular;17" halign="left" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="chSnr" position="0,20" size="80,18" zPosition="1" font="Regular;17" halign="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="timelen" position="90,20" size="130,18" zPosition="1" font="Regular;17" halign="right" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="remaining" position="230,20" size="240,18" zPosition="1" font="Regular;17" halign="right" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
-				<widget name="recName" position="480,20" size="240,18" zPosition="1" font="Regular;17" halign="left" transparent="1" noWrap="1" foregroundColor="#00aaaaaa" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="chTuner" position="0,2" size="180,18" zPosition="1" font="Regular;17" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="#00879ce1" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="chProv" position="190,2" size="190,18" zPosition="1" font="Regular;17" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="chBouq" position="390,2" size="200,18" zPosition="1" font="Regular;17" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="chNum" position="600,2"  size="30,18" zPosition="1" font="Regular;17" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="black" borderColor="black" borderWidth="3" />
+				<widget name="chName" position="640,2" size="80,18" zPosition="1" font="Regular;17" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="chSnr" position="0,20" size="80,18" zPosition="1" font="Regular;17" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="#00ffc000" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="timelen" position="90,20" size="130,18" zPosition="1" font="Regular;17" horizontalAlignment="right" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="remaining" position="230,20" size="240,18" zPosition="1" font="Regular;17" horizontalAlignment="right" transparent="1" noWrap="1" foregroundColor="white" backgroundColor="transparent" borderColor="black" borderWidth="3" />
+				<widget name="recName" position="480,20" size="240,18" zPosition="1" font="Regular;17" horizontalAlignment="left" transparent="1" noWrap="1" foregroundColor="#00aaaaaa" backgroundColor="transparent" borderColor="black" borderWidth="3" />
 			</screen>""" % (config.plugins.RecInfobar.z.value, config.plugins.RecInfobar.background.value)
 
 	def __init__(self, session, alt_bouquet_count):

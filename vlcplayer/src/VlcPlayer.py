@@ -207,13 +207,13 @@ class VlcService(Source, iPlayableServicePtr, iSeekableService):
 class VlcPlayerSummary(Screen):
 	skin = """
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="132,64">
-		<widget source="session.CurrentService" render="Label" position="6,0" size="120,25" font="Regular;14" halign="center" valign="center" >
+		<widget source="session.CurrentService" render="Label" position="6,0" size="120,25" font="Regular;14" horizontalAlignment="center" verticalAlignment="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Progress" position="16,27" size="100,5" borderWidth="1">
 			<convert type="ServicePosition">Position</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="6,32" size="120,32" font="Regular;32" halign="center" valign="center">
+		<widget source="global.CurrentTime" render="Label" position="6,32" size="120,32" font="Regular;32" horizontalAlignment="center" verticalAlignment="center">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" text=" " position="6,32" zPosition="1" size="120,32">

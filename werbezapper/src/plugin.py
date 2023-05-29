@@ -82,9 +82,9 @@ def cleanup():
 class WerbeZapperSilder(ConfigListScreen, Screen):
 	skin = """
 		<screen name="WerbeZapperSilder" position="center,center" size="560,250" title="Add Zap Timer" backgroundColor="transparent" flags="wfNoBorder" >
-			<widget source="header" render="Label" position="0,0" zPosition="1" size="560,80" halign="center" valign="center" noWrap="1" font="Regular;26" foregroundColor="red" backgroundColor="background" shadowColor="black" shadowOffset="-2,-2" transparent="1"/>
+			<widget source="header" render="Label" position="0,0" zPosition="1" size="560,80" horizontalAlignment="center" verticalAlignment="center" noWrap="1" font="Regular;26" foregroundColor="red" backgroundColor="background" shadowColor="black" shadowOffset="-2,-2" transparent="1"/>
 			<widget name="config" position="0,100" size="560,25" scrollbarMode="showOnDemand" zPosition="1" foregroundColor="white" backgroundColor="transparent" />
-			<widget source="time" render="Label" position="0,130" zPosition="1" size="560,120" noWrap="1" halign="center" font="Regular;19" foregroundColor="#00389416" backgroundColor="background" shadowColor="black" shadowOffset="-2,-2" transparent="1"/>
+			<widget source="time" render="Label" position="0,130" zPosition="1" size="560,120" noWrap="1" horizontalAlignment="center" font="Regular;19" foregroundColor="#00389416" backgroundColor="background" shadowColor="black" shadowOffset="-2,-2" transparent="1"/>
 		</screen>"""
 
 	def __init__(self, session, servicelist=None, remaining=0):

@@ -108,11 +108,11 @@ Check_PDC = VPS_check_PDC()
 class VPS_check(Screen):
 	if getDesktop(0).size().width() <= 1280:
 		skin = """<screen name="vpsCheck" position="center,center" size="540,110" title="VPS-Plugin">
-			<widget source="infotext" render="Label" position="10,10" size="520,90" font="Regular;21" valign="center" halign="center" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget source="infotext" render="Label" position="10,10" size="520,90" font="Regular;21" verticalAlignment="center" horizontalAlignment="center" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 	else:
 		skin = """<screen name="vpsCheck" position="center,center" size="900,200" title="VPS-Plugin">
-			<widget source="infotext" render="Label" position="15,15" size="870,170" font="Regular;32" valign="center" halign="center" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget source="infotext" render="Label" position="15,15" size="870,170" font="Regular;32" verticalAlignment="center" horizontalAlignment="center" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 
 	def __init__(self, session, service):

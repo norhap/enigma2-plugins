@@ -28,30 +28,30 @@ EXTDESC = 6
 SERVICENAME = 7
 
 skinPTMhdfull = """<screen title="%s" position="center,center" size="630,650">
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PrimeTimeManager/images/red.png" position="35,20" size="140,2" transparent="1" alphatest="on" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PrimeTimeManager/images/green.png" position="175,20" size="140,2" transparent="1" alphatest="on" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PrimeTimeManager/images/yellow.png" position="315,20" size="140,2" transparent="1" alphatest="on" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PrimeTimeManager/images/blue.png" position="455,20" size="140,2" transparent="1" alphatest="on" />
-		<widget render="Label" source="key_red" position="35,0" size="140,19" zPosition="5" valign="center" halign="center" backgroundColor="red" font="Regular;17" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<widget render="Label" source="key_green" position="175,0" size="140,19" zPosition="5" valign="center" halign="center" backgroundColor="green" font="Regular;17" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<widget render="Label" source="key_yellow" position="315,0" size="140,19" zPosition="5" valign="center" halign="center" backgroundColor="yellow" font="Regular;17" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<widget render="Label" source="key_blue" position="455,0" size="140,19" zPosition="5" valign="center" halign="center" backgroundColor="blue" font="Regular;17" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<widget render="Label" source="text_left" position="57,25" size="210,20" zPosition="5" valign="center" halign="center" font="Regular;18" transparent="1" foregroundColor="white" />
-		<widget render="Label" source="text_right" position="332,25" size="210,20" zPosition="5" valign="center" halign="center" font="Regular;18" transparent="1" foregroundColor="white" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PrimeTimeManager/images/red.png" position="35,20" size="140,2" transparent="1" alphaTest="on" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PrimeTimeManager/images/green.png" position="175,20" size="140,2" transparent="1" alphaTest="on" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PrimeTimeManager/images/yellow.png" position="315,20" size="140,2" transparent="1" alphaTest="on" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PrimeTimeManager/images/blue.png" position="455,20" size="140,2" transparent="1" alphaTest="on" />
+		<widget render="Label" source="key_red" position="35,0" size="140,19" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="red" font="Regular;17" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget render="Label" source="key_green" position="175,0" size="140,19" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="green" font="Regular;17" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget render="Label" source="key_yellow" position="315,0" size="140,19" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="yellow" font="Regular;17" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget render="Label" source="key_blue" position="455,0" size="140,19" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="blue" font="Regular;17" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget render="Label" source="text_left" position="57,25" size="210,20" zPosition="5" verticalAlignment="center" horizontalAlignment="center" font="Regular;18" transparent="1" foregroundColor="white" />
+		<widget render="Label" source="text_right" position="332,25" size="210,20" zPosition="5" verticalAlignment="center" horizontalAlignment="center" font="Regular;18" transparent="1" foregroundColor="white" />
 		<widget name="list" position="57,50" scrollbarMode="showAlways" foregroundColorSelected="#00ffffff" backgroundColorSelected="#65535ff" size="516,600"/>
 	</screen>""" % _("Prime Time Manager Conflict Results")
 #############################################################################################
 skinPTMsd = """<screen title="%s" position="center,center" size="630,520">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="35,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="175,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="315,0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="455,0" size="140,40" transparent="1" alphatest="on" />
-		<widget render="Label" source="key_red" position="35,0" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="red" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<widget render="Label" source="key_green" position="175,0" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="green" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<widget render="Label" source="key_yellow" position="315,0" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="yellow" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<widget render="Label" source="key_blue" position="455,0" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="blue" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-		<widget render="Label" source="text_left" position="57,40" size="210,25" zPosition="5" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" />
-		<widget render="Label" source="text_right" position="332,40" size="210,25" zPosition="5" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" />
+		<ePixmap pixmap="skin_default/buttons/red.png" position="35,0" size="140,40" transparent="1" alphaTest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="175,0" size="140,40" transparent="1" alphaTest="on" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="315,0" size="140,40" transparent="1" alphaTest="on" />
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="455,0" size="140,40" transparent="1" alphaTest="on" />
+		<widget render="Label" source="key_red" position="35,0" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="red" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget render="Label" source="key_green" position="175,0" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="green" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget render="Label" source="key_yellow" position="315,0" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="yellow" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget render="Label" source="key_blue" position="455,0" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" backgroundColor="blue" font="Regular;19" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+		<widget render="Label" source="text_left" position="57,40" size="210,25" zPosition="5" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" />
+		<widget render="Label" source="text_right" position="332,40" size="210,25" zPosition="5" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" />
 		<widget name="list" position="57,65" scrollbarMode="showAlways" foregroundColorSelected="#00ffffff" backgroundColorSelected="#65535ff" size="516,450"/>
 	</screen>""" % _("Prime Time Manager Conflict Results")
 #############################################################################################

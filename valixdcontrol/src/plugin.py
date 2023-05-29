@@ -89,10 +89,10 @@ def Plugins(**kwargs):
 class XDsetup(ConfigListScreen, Screen):
 	skin = """
 		<screen name="XDsetup" position="center,center" size="600,340" title="Vali-XD-Skin Control">
-			<eLabel font="Regular;20" foregroundColor="#00ff4A3C" halign="center" position="20,308" size="120,26" text="Cancel"/>
-			<eLabel font="Regular;20" foregroundColor="#0056C856" halign="center" position="165,308" size="120,26" text="Save"/>
-			<eLabel font="Regular;20" foregroundColor="#00ffc000" halign="center" position="300,308" size="140,26" text="Test colors"/>
-			<eLabel font="Regular;20" foregroundColor="#00879ce1" halign="center" position="455,308" size="120,26" text="ToolBox"/>
+			<eLabel font="Regular;20" foregroundColor="#00ff4A3C" horizontalAlignment="center" position="20,308" size="120,26" text="Cancel"/>
+			<eLabel font="Regular;20" foregroundColor="#0056C856" horizontalAlignment="center" position="165,308" size="120,26" text="Save"/>
+			<eLabel font="Regular;20" foregroundColor="#00ffc000" horizontalAlignment="center" position="300,308" size="140,26" text="Test colors"/>
+			<eLabel font="Regular;20" foregroundColor="#00879ce1" horizontalAlignment="center" position="455,308" size="120,26" text="ToolBox"/>
 			<widget name="config" position="5,5" scrollbarMode="showOnDemand" size="590,300"/>
 			<widget name="myTestLabel" position="1000,1000" size="2,2"/>
 		</screen>"""
@@ -301,13 +301,13 @@ class XDsetup(ConfigListScreen, Screen):
 	def colortest(self):
 		if self.checkUserColors():
 			PreviewString = '<screen backgroundColor="#' + config.plugins.valiXDsetup.BG.value + '" flags="wfNoBorder" position="0,433" size="1024,176" title="Preview">\n'
-			PreviewString = PreviewString + '<ePixmap alphatest="off" pixmap="Vali-XD/border/up-shadow.png" position="0,0" size="1024,8" zPosition="0"/>\n'
+			PreviewString = PreviewString + '<ePixmap alphaTest="off" pixmap="Vali-XD/border/up-shadow.png" position="0,0" size="1024,8" zPosition="0"/>\n'
 			PreviewString = PreviewString + '<eLabel backgroundColor="#' + config.plugins.valiXDsetup.secondBG.value + '" font="Regular;22" foregroundColor="#' + config.plugins.valiXDsetup.secondFG.value
-			PreviewString = PreviewString + '" halign="center" position="0,8" size="152,168" text="Second foreground" valign="center" zPosition="1"/>\n<eLabel backgroundColor="#' + config.plugins.valiXDsetup.secondBG.value
-			PreviewString = PreviewString + '" font="Regular;22" foregroundColor="#' + config.plugins.valiXDsetup.secondFG.value + '" halign="center" position="872,8" size="152,168" text="Second foreground" valign="center" zPosition="1"/>\n'
-			PreviewString = PreviewString + '<eLabel font="Regular;22" foregroundColor="#' + '00f0f0f0' + '" halign="center" position="275,45" size="457,30" text="Main element" valign="center" transparent="1" zPosition="2"/>\n'
+			PreviewString = PreviewString + '" horizontalAlignment="center" position="0,8" size="152,168" text="Second foreground" verticalAlignment="center" zPosition="1"/>\n<eLabel backgroundColor="#' + config.plugins.valiXDsetup.secondBG.value
+			PreviewString = PreviewString + '" font="Regular;22" foregroundColor="#' + config.plugins.valiXDsetup.secondFG.value + '" horizontalAlignment="center" position="872,8" size="152,168" text="Second foreground" verticalAlignment="center" zPosition="1"/>\n'
+			PreviewString = PreviewString + '<eLabel font="Regular;22" foregroundColor="#' + '00f0f0f0' + '" horizontalAlignment="center" position="275,45" size="457,30" text="Main element" verticalAlignment="center" transparent="1" zPosition="2"/>\n'
 			PreviewString = PreviewString + '<eLabel backgroundColor="#' + config.plugins.valiXDsetup.selBG.value + '" font="Regular;22" foregroundColor="#' + config.plugins.valiXDsetup.selFG.value
-			PreviewString = PreviewString + '" halign="center" position="275,80" size="457,30" text="Selected element" valign="center" zPosition="2"/>\n</screen>'
+			PreviewString = PreviewString + '" horizontalAlignment="center" position="275,80" size="457,30" text="Selected element" verticalAlignment="center" zPosition="2"/>\n</screen>'
 			self.session.open(UserStylePreview, PreviewString)
 
 

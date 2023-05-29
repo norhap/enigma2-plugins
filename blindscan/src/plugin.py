@@ -130,11 +130,11 @@ class BlindscanState(Screen, ConfigListScreen):
 		<eLabel position="10,95" size="800,1" backgroundColor="grey"/>
 		<widget name="config" position="10,102" size="524,425" />
 		<eLabel position="544,95" size="1,440" backgroundColor="grey"/>
-		<widget name="post_action" position="554,102" size="256,480" font="Regular;18" halign="center"/>
-		<widget source="key_red" render="Label" position="10,530" size="100,30" font="Regular;19" halign="center" backgroundColor="red" foregroundColor="white"/>
-		<widget source="key_green" render="Label" position="120,530" size="100,30" font="Regular;19" halign="center" backgroundColor="green" foregroundColor="white"/>
-		<widget source="key_yellow" render="Label" position="230,530" size="100,30" font="Regular;19" halign="center" backgroundColor="yellow" foregroundColor="white"/>
-		<widget source="key_blue" render="Label" position="340,530" size="100,30" font="Regular;19" halign="center" foregroundColor="white" backgroundColor="blue"/>
+		<widget name="post_action" position="554,102" size="256,480" font="Regular;18" horizontalAlignment="center"/>
+		<widget source="key_red" render="Label" position="10,530" size="100,30" font="Regular;19" horizontalAlignment="center" backgroundColor="red" foregroundColor="white"/>
+		<widget source="key_green" render="Label" position="120,530" size="100,30" font="Regular;19" horizontalAlignment="center" backgroundColor="green" foregroundColor="white"/>
+		<widget source="key_yellow" render="Label" position="230,530" size="100,30" font="Regular;19" horizontalAlignment="center" backgroundColor="yellow" foregroundColor="white"/>
+		<widget source="key_blue" render="Label" position="340,530" size="100,30" font="Regular;19" horizontalAlignment="center" foregroundColor="white" backgroundColor="blue"/>
 	</screen>
 	"""
 

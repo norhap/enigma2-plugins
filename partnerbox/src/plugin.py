@@ -229,7 +229,7 @@ def FillLocationList(xmlstring):
 class CurrentRemoteTV(Screen):
 	skin = """
 		<screen name="CurrentRemoteTV" position="center,center" size="300,240" title="Remote Player">
-		<widget name="text" position="10,10" zPosition="1" size="290,225" font="Regular;20" halign="center" valign="center" />
+		<widget name="text" position="10,10" zPosition="1" size="290,225" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" />
 	</screen>"""
 
 	def __init__(self, session, partnerboxentry):
@@ -308,31 +308,31 @@ class RemoteTimer(Screen):
 	if HD:
 		skin = """
 			<screen name="RemoteTimer" position="center,center" size="560,455" title="RemoteTimer Timerlist">
-				<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on"/>
-				<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on"/>
-				<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphatest="on"/>
-				<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphatest="on"/>
-				<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#9f1313" transparent="1"/>
-				<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#1f771f" transparent="1"/>
-				<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#a08500" transparent="1"/>
-				<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#18188b" transparent="1"/>
-				<widget name="text" position="0,60" zPosition="1" size="560,350" font="Regular;20" halign="center" valign="center" />
-				<widget name="textok" position="0,430" zPosition="1" size="560,25" font="Regular;20" halign="center" valign="center" />
+				<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphaTest="on"/>
+				<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphaTest="on"/>
+				<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphaTest="on"/>
+				<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphaTest="on"/>
+				<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#9f1313" transparent="1"/>
+				<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#1f771f" transparent="1"/>
+				<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#a08500" transparent="1"/>
+				<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#18188b" transparent="1"/>
+				<widget name="text" position="0,60" zPosition="1" size="560,350" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" />
+				<widget name="textok" position="0,430" zPosition="1" size="560,25" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" />
 				<widget name="timerlist" position="0,60" zPosition="2" size="560,350" scrollbarMode="showOnDemand" foregroundColorSelected="#ffd700" />
 			</screen>"""
 	else:
 		skin = """
 			<screen name="RemoteTimer" position="center,center" size="560,455" title="RemoteTimer Timerlist">
-				<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on"/>
-				<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on"/>
-				<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphatest="on"/>
-				<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphatest="on"/>
-				<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#9f1313" transparent="1"/>
-				<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#1f771f" transparent="1"/>
-				<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#a08500" transparent="1"/>
-				<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#18188b" transparent="1"/>
-				<widget name="text" position="0,60" zPosition="1" size="560,350" font="Regular;20" halign="center" valign="center" />
-				<widget name="textok" position="0,430" zPosition="1" size="560,25" font="Regular;20" halign="center" valign="center" />
+				<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphaTest="on"/>
+				<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphaTest="on"/>
+				<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphaTest="on"/>
+				<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphaTest="on"/>
+				<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#9f1313" transparent="1"/>
+				<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#1f771f" transparent="1"/>
+				<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#a08500" transparent="1"/>
+				<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#18188b" transparent="1"/>
+				<widget name="text" position="0,60" zPosition="1" size="560,350" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" />
+				<widget name="textok" position="0,430" zPosition="1" size="560,25" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" />
 				<widget name="timerlist" position="0,60" zPosition="2" size="560,350" scrollbarMode="showOnDemand" />
 			</screen>"""
 	timerlist = []
@@ -550,7 +550,7 @@ class RemoteTimer(Screen):
 class RemoteTimerBouquetList(Screen):
 	skin = """
 		<screen name="RemoteTimerBouquetList" position="center,center" size="300,240" title="Choose bouquet">
-		<widget name="text" position="10,10" zPosition="1" size="290,225" font="Regular;20" halign="center" valign="center" />
+		<widget name="text" position="10,10" zPosition="1" size="290,225" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" />
 		<widget name="bouquetlist" position="10,10" zPosition="2" size="290,225" scrollbarMode="showOnDemand" />
 	</screen>"""
 
@@ -649,29 +649,29 @@ class RemoteTimerChannelList(Screen):
 	if HD:
 		skin = """
 			<screen name="RemoteTimerChannelList" position="center,center" size="560,430" title ="Bouquet List">
-				<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-				<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-				<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-				<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-				<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-				<widget name="text" position="0,40" zPosition="1" size="560,375" font="Regular;20" halign="center" valign="center" />
+				<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphaTest="on" />
+				<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphaTest="on" />
+				<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphaTest="on" />
+				<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphaTest="on" />
+				<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#9f1313" transparent="1" />
+				<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#1f771f" transparent="1" />
+				<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#a08500" transparent="1" />
+				<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#18188b" transparent="1" />
+				<widget name="text" position="0,40" zPosition="1" size="560,375" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" />
 				<widget name="channellist" position="0,40" zPosition="2" size="560,375" scrollbarMode="showOnDemand" foregroundColorSelected="#ffd700" />
 			</screen>"""
 	else:
 		skin = """
 			<screen name="RemoteTimerChannelList" position="center,center" size="560,430" title ="Bouquet List">
-				<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-				<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-				<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-				<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-				<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-				<widget name="text" position="0,40" zPosition="1" size="560,375" font="Regular;20" halign="center" valign="center" />
+				<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphaTest="on" />
+				<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphaTest="on" />
+				<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphaTest="on" />
+				<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphaTest="on" />
+				<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#9f1313" transparent="1" />
+				<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#1f771f" transparent="1" />
+				<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#a08500" transparent="1" />
+				<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#18188b" transparent="1" />
+				<widget name="text" position="0,40" zPosition="1" size="560,375" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" />
 				<widget name="channellist" position="0,40" zPosition="2" size="560,375" scrollbarMode="showOnDemand" />
 			</screen>"""
 
@@ -984,18 +984,18 @@ class RemotePlayer(Screen, InfoBarAudioSelection):
 	if HD:
 		skin = """
 			<screen name="RemotePlayer" flags="wfNoBorder" position="283,102" size="720,576" title="Partnerbox - RemotePlayer" backgroundColor="#FFFFFFFF">
-				<ePixmap position="41,388" zPosition="-1" size="630,130" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/Partnerbox/ExPlayer.png" alphatest="off" transparent="1"/>
-				<widget name="ServiceName" zPosition="1" position="50,404" size="610,59" valign="center" halign="center" font="Regular;21" foregroundColor="#F0F0F0" backgroundColor="#302C2C39" />
-				<widget name="DateTime" zPosition="1" position="52,473" size="500,30" halign="left" font="Regular;16" foregroundColor="#F0F0F0" backgroundColor="#302C2C39" transparent="1" />
-				<widget name="IP" zPosition="2" position="361,473" size="300,30" halign="right" font="Regular;16" foregroundColor="#F0F0F0" backgroundColor="#302C2C39" transparent="1" />
+				<ePixmap position="41,388" zPosition="-1" size="630,130" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/Partnerbox/ExPlayer.png" alphaTest="off" transparent="1"/>
+				<widget name="ServiceName" zPosition="1" position="50,404" size="610,59" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" foregroundColor="#F0F0F0" backgroundColor="#302C2C39" />
+				<widget name="DateTime" zPosition="1" position="52,473" size="500,30" horizontalAlignment="left" font="Regular;16" foregroundColor="#F0F0F0" backgroundColor="#302C2C39" transparent="1" />
+				<widget name="IP" zPosition="2" position="361,473" size="300,30" horizontalAlignment="right" font="Regular;16" foregroundColor="#F0F0F0" backgroundColor="#302C2C39" transparent="1" />
 			</screen>"""
 	else:
 		skin = """
 			<screen name="RemotePlayer" flags="wfNoBorder" position="3,30" size="720,576" title="Partnerbox - RemotePlayer" backgroundColor="#FFFFFFFF">
-				<ePixmap position="41,388" zPosition="-1" size="630,130" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/Partnerbox/ExPlayer.png" alphatest="off" transparent="1"/>
-				<widget name="ServiceName" zPosition="1" position="50,404" size="610,59" valign="center" halign="center" font="Regular;21" foregroundColor="#F0F0F0" backgroundColor="#302C2C39" />
-				<widget name="DateTime" zPosition="1" position="52,473" size="500,30" halign="left" font="Regular;16" foregroundColor="#F0F0F0" backgroundColor="#302C2C39" transparent="1" />
-				<widget name="IP" zPosition="2" position="361,473" size="300,30" halign="right" font="Regular;16" foregroundColor="#F0F0F0" backgroundColor="#302C2C39" transparent="1" />
+				<ePixmap position="41,388" zPosition="-1" size="630,130" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/Partnerbox/ExPlayer.png" alphaTest="off" transparent="1"/>
+				<widget name="ServiceName" zPosition="1" position="50,404" size="610,59" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" foregroundColor="#F0F0F0" backgroundColor="#302C2C39" />
+				<widget name="DateTime" zPosition="1" position="52,473" size="500,30" horizontalAlignment="left" font="Regular;16" foregroundColor="#F0F0F0" backgroundColor="#302C2C39" transparent="1" />
+				<widget name="IP" zPosition="2" position="361,473" size="300,30" horizontalAlignment="right" font="Regular;16" foregroundColor="#F0F0F0" backgroundColor="#302C2C39" transparent="1" />
 			</screen>"""
 
 	def __init__(self, session, ServiceName, EventTitle, eventstart, eventduration, partnerboxentry, servicereference, parent=None):
@@ -1303,29 +1303,29 @@ class RemoteTimerEPGList(Screen):
 	if HD:
 		skin = """
 			<screen name="RemoteTimerEPGList" position="center,center" size="760,540" title ="EPG Selection">
-				<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="buttons/green.png" position="190,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="buttons/yellow.png" position="370,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="buttons/blue.png" position="520,0" size="140,40" alphatest="on" />
-				<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-				<widget name="key_green" position="190,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-				<widget name="key_yellow" position="370,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-				<widget name="key_blue" position="520,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-				<widget name="text" position="0,40" zPosition="1" size="560,375" font="Regular;22" halign="center" valign="center" />
+				<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphaTest="on" />
+				<ePixmap pixmap="buttons/green.png" position="190,0" size="140,40" alphaTest="on" />
+				<ePixmap pixmap="buttons/yellow.png" position="370,0" size="140,40" alphaTest="on" />
+				<ePixmap pixmap="buttons/blue.png" position="520,0" size="140,40" alphaTest="on" />
+				<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;18" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#9f1313" transparent="1" />
+				<widget name="key_green" position="190,0" zPosition="1" size="140,40" font="Regular;18" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#1f771f" transparent="1" />
+				<widget name="key_yellow" position="370,0" zPosition="1" size="140,40" font="Regular;18" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#a08500" transparent="1" />
+				<widget name="key_blue" position="520,0" zPosition="1" size="140,40" font="Regular;18" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#18188b" transparent="1" />
+				<widget name="text" position="0,40" zPosition="1" size="560,375" font="Regular;22" horizontalAlignment="center" verticalAlignment="center" />
 				<widget name="epglist" position="0,40" zPosition="2" size="760,480" foregroundColorSelected="#ffd700" scrollbarMode="showOnDemand" />
 			</screen>"""
 	else:
 		skin = """
 			<screen name="RemoteTimerEPGList" position="center,center" size="560,440" title ="EPG Selection">
-				<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-				<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-				<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-				<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-				<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-				<widget name="text" position="0,40" zPosition="1" size="560,375" font="Regular;20" halign="center" valign="center" />
+				<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphaTest="on" />
+				<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphaTest="on" />
+				<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphaTest="on" />
+				<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphaTest="on" />
+				<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#9f1313" transparent="1" />
+				<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#1f771f" transparent="1" />
+				<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#a08500" transparent="1" />
+				<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#18188b" transparent="1" />
+				<widget name="text" position="0,40" zPosition="1" size="560,375" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" />
 				<widget name="epglist" position="0,40" zPosition="2" size="560,380" scrollbarMode="showOnDemand" />
 			</screen>"""
 
@@ -2122,18 +2122,18 @@ class RemoteTimerEventView(Screen):
 	REMOVE_TIMER = 2
 	skin = """
 		<screen name="RemoteTimerEventView" position="center,center" size="560,430" title="Eventview">
-			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-			<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphaTest="on" />
+			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphaTest="on" />
+			<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphaTest="on" />
+			<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphaTest="on" />
+			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#a08500" transparent="1" />
+			<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#18188b" transparent="1" />
 			<widget name="epg_description" position="10,50" size="540,330" font="Regular;22" />
 			<widget name="datetime" position="10,395" size="130,25" font="Regular;20" />
 			<widget name="duration" position="140,395" size="100,25" font="Regular;20" />
-			<widget name="channel" position="240,395" size="305,25" font="Regular;20" halign="right" />
+			<widget name="channel" position="240,395" size="305,25" font="Regular;20" horizontalAlignment="right" />
 		</screen>"""
 
 	def __init__(self, session, E2Timerlist, epgdata, partnerboxentry):

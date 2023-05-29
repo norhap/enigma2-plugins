@@ -44,26 +44,26 @@ class SystemTimeSetupScreen(Screen, ConfigListScreen):
 
 	skin = """
 		<screen position="center,center" size="700,400" title="System time setup">
-			<widget name="key_red" position="0,0" size="175,33" font="Regular;17" halign="center" valign="center" transparent="1" />
-			<widget name="key_green" position="175,0" size="175,33" font="Regular;17" halign="center" valign="center" transparent="1" />
-			<widget name="key_yellow" position="350,0" size="175,33" font="Regular;17" halign="center" valign="center" transparent="1" />
-			<widget name="key_blue" position="525,0" size="175,33" font="Regular;17" halign="center" valign="center" transparent="1" />
-			<ePixmap position="0,33" size="175,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/SystemTime/images/red.png" alphatest="blend" />
-			<ePixmap position="175,33" size="175,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/SystemTime/images/green.png" alphatest="blend" />
-			<ePixmap position="350,33" size="175,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/SystemTime/images/yellow.png" alphatest="blend" />
-			<ePixmap position="525,33" size="175,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/SystemTime/images/blue.png" alphatest="blend" />
+			<widget name="key_red" position="0,0" size="175,33" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" transparent="1" />
+			<widget name="key_green" position="175,0" size="175,33" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" transparent="1" />
+			<widget name="key_yellow" position="350,0" size="175,33" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" transparent="1" />
+			<widget name="key_blue" position="525,0" size="175,33" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" transparent="1" />
+			<ePixmap position="0,33" size="175,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/SystemTime/images/red.png" alphaTest="blend" />
+			<ePixmap position="175,33" size="175,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/SystemTime/images/green.png" alphaTest="blend" />
+			<ePixmap position="350,33" size="175,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/SystemTime/images/yellow.png" alphaTest="blend" />
+			<ePixmap position="525,33" size="175,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/SystemTime/images/blue.png" alphaTest="blend" />
 			<widget name="config" scrollbarMode="showOnDemand" position="0,45" size="700,225" />
 			<widget name="description" position="5,290" size="690,75" font="Regular;17" />
 			<ePixmap pixmap="skin_default/div-h.png" position="0,280" size="700,2" />
 			<ePixmap pixmap="skin_default/div-h.png" position="0,362" size="700,2" />
-			<widget source="global.CurrentTime" render="Label" position="150,370" size="430,25" font="Regular;20" halign="left" transparent="1">
+			<widget source="global.CurrentTime" render="Label" position="150,370" size="430,25" font="Regular;20" horizontalAlignment="left" transparent="1">
 				<convert type="ClockToText">Date</convert>
 			</widget>
-			<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="590,375" size="14,14" />
-			<widget source="global.CurrentTime" render="Label" position="610,370" size="55,25" font="Regular;20" halign="left" transparent="1">
+			<ePixmap alphaTest="on" pixmap="skin_default/icons/clock.png" position="590,375" size="14,14" />
+			<widget source="global.CurrentTime" render="Label" position="610,370" size="55,25" font="Regular;20" horizontalAlignment="left" transparent="1">
 				<convert type="ClockToText">Default</convert>
 			</widget>
-			<widget source="global.CurrentTime" render="Label" position="662,373" size="27,20" font="Regular;15" halign="left" transparent="1">
+			<widget source="global.CurrentTime" render="Label" position="662,373" size="27,20" font="Regular;15" horizontalAlignment="left" transparent="1">
 				<convert type="ClockToText">Format::%S</convert>
 			</widget>
 		</screen>"""
