@@ -191,7 +191,7 @@ class EPGRefresh:
 			myref = eServiceReference(bouquet.sref)
 			list = serviceHandler.list(myref)
 			if list is not None:
-				while 1:
+				while True:
 					s = list.getNext()
 					if s and s.valid() and s.type == eServiceReference.idDVB:
 						additionalServices.append(EPGRefreshService(s.toString(), None))
