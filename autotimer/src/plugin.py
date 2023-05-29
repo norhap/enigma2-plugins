@@ -534,7 +534,7 @@ def Plugins(**kwargs):
 		PluginDescriptor(name=_("AutoTimer"), description=_("Edit Timers and scan for new Events"), where=PluginDescriptor.WHERE_PLUGINMENU, icon="plugin.png", fnc=main, needsRestart=False),
 		PluginDescriptor(name=_("Add AutoTimer"), description=_("add AutoTimer"), where=PluginDescriptor.WHERE_MOVIELIST, fnc=movielist, needsRestart=False),
 		PluginDescriptor(name=_("add AutoTimer..."), where=PluginDescriptor.WHERE_EVENTINFO, fnc=eventinfo, needsRestart=False),
-		PluginDescriptor(name=_("Auto Timers"), description= _("Edit Timers and scan for new Events"), where=PluginDescriptor.WHERE_MENU, fnc=timermenu),
+		PluginDescriptor(name=_("Auto Timers"), description=_("Edit Timers and scan for new Events"), where=PluginDescriptor.WHERE_MENU, fnc=timermenu),
 	]
 	if hasSeriesPlugin:
 		l.append(PluginDescriptor(name=_("add to AutoTimer filterList"), description=_("add to AutoTimer filterList"), where=PluginDescriptor.WHERE_MOVIELIST, fnc=add_to_filterList, needsRestart=False))
