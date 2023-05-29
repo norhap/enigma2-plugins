@@ -19,7 +19,7 @@ def _(txt):
 	if t == txt:
 		t = gettext.gettext(txt)
 	return t
-	
+
 
 def removeBad(val):
 	return val.replace('\x86', '').replace('\x87', '')
