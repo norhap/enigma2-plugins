@@ -545,6 +545,7 @@ def Plugins(**kwargs):
 		l.append(extDescriptor_scan)
 	return l
 
+
 def timermenu(menuid):
 	if menuid == "timermenu":
 		return [(_("Auto Timers"), main, "autotimer_setup", None)]
