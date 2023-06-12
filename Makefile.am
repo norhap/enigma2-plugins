@@ -78,6 +78,7 @@ SUBDIRS = \
 	vlcplayer \
 	vps \
 	vfdcontrol \
+	vuplusremotecontrolcode \
 	weathercomponent \
 	weathercomponenthandler \
 	weatherplugin \

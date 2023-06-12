@@ -1,0 +1,66 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-16 19:01+0430\n"
+"PO-Revision-Date: 2016-05-07 14:21+0200\n"
+"Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
+"Language-Team: \n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#, python-format
+msgid " in %d seconds."
+msgstr " w %d sekundy."
+
+#
+msgid "Cancel"
+msgstr "Anuluj"
+
+msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
+msgstr "PLIK NIE ISTNIEJE : /proc/stb/fp/remote_code"
+
+msgid "Keep"
+msgstr "Zachować"
+
+msgid "Please change your remote mode"
+msgstr "Zmień swój tryb pilota"
+
+msgid "Press and hold '2' & '7' until red LED is solid, then press 'Help', then press '000"
+msgstr "Nacisnij i przytrzymaj '2' & '7' aż czerwona dioda LED zacznie świecić, a następnie naciśnij 'Help', a następnie '000'"
+
+#, fuzzy
+msgid "Press and hold <OK> and <STB> until red LED is solid, then press '0000"
+msgstr "Nacisnij i przytrzymaj <OK> i <STB> aż czerwona dioda LED zacznie świecić, a następnie naciśnij '0000'"
+
+msgid "Remote Control Code"
+msgstr "Kod Pilota"
+
+msgid "Remote Control System Code"
+msgstr "Kod Systemu Pilota"
+
+msgid "Remote Control Type"
+msgstr "Typ Pilota"
+
+#
+msgid "Restore"
+msgstr "Przywróć"
+
+#
+msgid "Save"
+msgstr "Zapisz"
+
+#, python-format
+msgid "Sorry, but %s is not supported."
+msgstr "Przepraszamy, ale %s nie jest obsługiwany."
+
+msgid "Text support"
+msgstr "Obsługa tekstu"
+
+msgid "Then choose 'Keep' within seconds"
+msgstr "Następnie wybierz 'Zachowaj' w ciągu kilku sekund"

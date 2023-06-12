@@ -1,0 +1,69 @@
+# Greek translation for OpenPli.
+# dimfil.sat@gmail.com, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: enigma2_v2.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-30 19:14+0200\n"
+"PO-Revision-Date: 2016-05-07 14:20+0200\n"
+"Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
+"Language-Team: \n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#, python-format
+msgid " in %d seconds."
+msgstr ""
+
+#
+#
+msgid "Cancel"
+msgstr "Άκυρο "
+
+msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
+msgstr ""
+
+msgid "Keep"
+msgstr ""
+
+msgid "Please change your remote mode"
+msgstr ""
+
+msgid "Press and hold '2' & '7' until red LED is solid, then press 'Help', then press '000"
+msgstr ""
+
+msgid "Press and hold <OK> and <STB> until red LED is solid, then press '0000"
+msgstr ""
+
+msgid "Remote Control Code"
+msgstr ""
+
+msgid "Remote Control System Code"
+msgstr ""
+
+msgid "Remote Control Type"
+msgstr ""
+
+#
+#
+msgid "Restore"
+msgstr "Αποκατάσταση"
+
+#
+#
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#, python-format
+msgid "Sorry, but %s is not supported."
+msgstr ""
+
+msgid "Text support"
+msgstr ""
+
+msgid "Then choose 'Keep' within seconds"
+msgstr ""

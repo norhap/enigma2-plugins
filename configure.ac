@@ -480,6 +480,11 @@ vfdcontrol/meta/Makefile
 vfdcontrol/po/Makefile
 vfdcontrol/src/Makefile
 
+vuplusremotecontrolcode/Makefile
+vuplusremotecontrolcode/src/Makefile
+vuplusremotecontrolcode/meta/Makefile
+vuplusremotecontrolcode/po/Makefile
+
 weathercomponent/Makefile
 weathercomponent/src/Makefile
 

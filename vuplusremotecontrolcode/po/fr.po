@@ -1,0 +1,62 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: enigma2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-30 19:14+0200\n"
+"PO-Revision-Date: 2018-07-31 11:24+0200\n"
+"Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.1.1\n"
+"X-Poedit-SourceCharset: iso-8859-15\n"
+
+#, python-format
+msgid " in %d seconds."
+msgstr " dans %d secondes."
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
+msgstr "Ce fichier n'existe pas: /proc/stb/fp/remote_code"
+
+msgid "Keep"
+msgstr "Garder"
+
+msgid "Please change your remote mode"
+msgstr "Veuillez changer le mode télécommande"
+
+msgid "Press and hold '2' & '7' until red LED is solid, then press 'Help', then press '000"
+msgstr "Appuyer et tenir '2' & '7' jusqu’à ce que la LED soit rouge fixe, puis appuyez 'Help', ensuite appuyez '000"
+
+msgid "Press and hold <OK> and <STB> until red LED is solid, then press '0000"
+msgstr "Appuyez et maintenez <OK> et <STB> jusqu'à ce que la LED rouge soit fixe, puis appuyez sur ‘0000"
+
+msgid "Remote Control Code"
+msgstr "Code contrôle télécommande"
+
+msgid "Remote Control System Code"
+msgstr "Code contrôle système télécommande"
+
+msgid "Remote Control Type"
+msgstr "Type de télécommande"
+
+msgid "Restore"
+msgstr "Restaurer"
+
+msgid "Save"
+msgstr "Sauver"
+
+#, python-format
+msgid "Sorry, but %s is not supported."
+msgstr "Désolé, mais %s n'est pas supporté."
+
+msgid "Text support"
+msgstr "Support text"
+
+msgid "Then choose 'Keep' within seconds"
+msgstr "Ensuite, choisissez 'Garder' en quelques secondes"

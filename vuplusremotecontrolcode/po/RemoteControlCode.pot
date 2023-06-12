@@ -1,0 +1,65 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-03 14:50+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#, python-format
+msgid " in %d seconds."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "FILE NOT EXIST : /proc/stb/fp/remote_code"
+msgstr ""
+
+msgid "Keep"
+msgstr ""
+
+msgid "Please change your remote mode"
+msgstr ""
+
+msgid "Press and hold '2' & '7' until red LED is solid, then press 'Help', then press '000"
+msgstr ""
+
+msgid "Press and hold <OK> and <STB> until red LED is solid, then press '0000"
+msgstr ""
+
+msgid "Remote Control Code"
+msgstr ""
+
+msgid "Remote Control System Code"
+msgstr ""
+
+msgid "Remote Control Type"
+msgstr ""
+
+msgid "Restore"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+#, python-format
+msgid "Sorry, but %s is not supported."
+msgstr ""
+
+msgid "Text support"
+msgstr ""
+
+msgid "Then choose 'Keep' within seconds"
+msgstr ""
