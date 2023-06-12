@@ -62,30 +62,30 @@ class MSNWeatherPlugin(Screen):
 	skin = """
 		<screen name="MSNWeatherPlugin" position="center,center" size="664,340" title="Weather Plugin">
 			<widget render="Label" source="caption" position="10,20" zPosition="1" size="600,28" font="Regular;24" transparent="1"/>
-			<widget render="Label" source="observationtime" position="374,45" zPosition="1" size="280,20" font="Regular;14" transparent="1" horizontalAlignment="right" />
-			<widget render="Label" source="observationpoint" position="204,65" zPosition="1" size="450,40" font="Regular;14" transparent="1" horizontalAlignment="right" />
-			<widget name="currenticon" position="10,95" zPosition="1" size="55,45" alphaTest="blend"/>
+			<widget render="Label" source="observationtime" position="374,45" zPosition="1" size="280,20" font="Regular;14" transparent="1" halign="right" />
+			<widget render="Label" source="observationpoint" position="204,65" zPosition="1" size="450,40" font="Regular;14" transparent="1" halign="right" />
+			<widget name="currenticon" position="10,95" zPosition="1" size="55,45" alphatest="blend"/>
 			<widget render="Label" source="currentTemp" position="90,95" zPosition="1" size="100,23" font="Regular;22" transparent="1"/>
 			<widget render="Label" source="feelsliketemp" position="90,120" zPosition="1" size="155,40" font="Regular;14" transparent="1"/>
 			<widget render="Label" source="condition" position="270,95" zPosition="1" size="300,20" font="Regular;18" transparent="1"/>
 			<widget render="Label" source="wind_condition" position="270,115" zPosition="1" size="300,20" font="Regular;18" transparent="1"/>
-			<widget render="Label" source="humidity" position="270,135" zPosition="1" size="300,20" font="Regular;18" verticalAlignment="bottom" transparent="1"/>
-			<widget render="Label" source="weekday1" position="35,170" zPosition="1" size="105,40" horizontalAlignment="center" verticalAlignment="center" font="Regular;18" transparent="1"/>
-			<widget name="weekday1_icon" position="60,215" zPosition="1" size="55,45" alphaTest="blend"/>
-			<widget render="Label" source="weekday1_temp" position="35,270" zPosition="1" size="105,60" horizontalAlignment="center" verticalAlignment="bottom" font="Regular;16" transparent="1"/>
-			<widget render="Label" source="weekday2" position="155,170" zPosition="1" size="105,40" horizontalAlignment="center" verticalAlignment="center" font="Regular;18" transparent="1"/>
-			<widget name="weekday2_icon" position="180,215" zPosition="1" size="55,45" alphaTest="blend"/>
-			<widget render="Label" source="weekday2_temp" position="155,270" zPosition="1" size="105,60" horizontalAlignment="center" verticalAlignment="bottom" font="Regular;16" transparent="1"/>
-			<widget render="Label" source="weekday3" position="275,170" zPosition="1" size="105,40" horizontalAlignment="center" verticalAlignment="center" font="Regular;18" transparent="1"/>
-			<widget name="weekday3_icon" position="300,215" zPosition="1" size="55,45" alphaTest="blend"/>
-			<widget render="Label" source="weekday3_temp" position="275,270" zPosition="1" size="105,60" horizontalAlignment="center" verticalAlignment="bottom" font="Regular;16" transparent="1"/>
-			<widget render="Label" source="weekday4" position="395,170" zPosition="1" size="105,40" horizontalAlignment="center" verticalAlignment="center" font="Regular;18" transparent="1"/>
-			<widget name="weekday4_icon" position="420,215" zPosition="1" size="55,45" alphaTest="blend"/>
-			<widget render="Label" source="weekday4_temp" position="395,270" zPosition="1" size="105,60" horizontalAlignment="center" verticalAlignment="bottom" font="Regular;16" transparent="1"/>
-			<widget render="Label" source="weekday5" position="515,170" zPosition="1" size="105,40" horizontalAlignment="center" verticalAlignment="center" font="Regular;18" transparent="1"/>
-			<widget name="weekday5_icon" position="540,215" zPosition="1" size="55,45" alphaTest="blend"/>
-			<widget render="Label" source="weekday5_temp" position="515,270" zPosition="1" size="105,60" horizontalAlignment="center" verticalAlignment="bottom" font="Regular;16" transparent="1"/>
-			<widget render="Label" source="statustext" position="0,0" zPosition="1" size="664,340" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" transparent="1"/>
+			<widget render="Label" source="humidity" position="270,135" zPosition="1" size="300,20" font="Regular;18" valign="bottom" transparent="1"/>
+			<widget render="Label" source="weekday1" position="35,170" zPosition="1" size="105,40" halign="center" valign="center" font="Regular;18" transparent="1"/>
+			<widget name="weekday1_icon" position="60,215" zPosition="1" size="55,45" alphatest="blend"/>
+			<widget render="Label" source="weekday1_temp" position="35,270" zPosition="1" size="105,60" halign="center" valign="bottom" font="Regular;16" transparent="1"/>
+			<widget render="Label" source="weekday2" position="155,170" zPosition="1" size="105,40" halign="center" valign="center" font="Regular;18" transparent="1"/>
+			<widget name="weekday2_icon" position="180,215" zPosition="1" size="55,45" alphatest="blend"/>
+			<widget render="Label" source="weekday2_temp" position="155,270" zPosition="1" size="105,60" halign="center" valign="bottom" font="Regular;16" transparent="1"/>
+			<widget render="Label" source="weekday3" position="275,170" zPosition="1" size="105,40" halign="center" valign="center" font="Regular;18" transparent="1"/>
+			<widget name="weekday3_icon" position="300,215" zPosition="1" size="55,45" alphatest="blend"/>
+			<widget render="Label" source="weekday3_temp" position="275,270" zPosition="1" size="105,60" halign="center" valign="bottom" font="Regular;16" transparent="1"/>
+			<widget render="Label" source="weekday4" position="395,170" zPosition="1" size="105,40" halign="center" valign="center" font="Regular;18" transparent="1"/>
+			<widget name="weekday4_icon" position="420,215" zPosition="1" size="55,45" alphatest="blend"/>
+			<widget render="Label" source="weekday4_temp" position="395,270" zPosition="1" size="105,60" halign="center" valign="bottom" font="Regular;16" transparent="1"/>
+			<widget render="Label" source="weekday5" position="515,170" zPosition="1" size="105,40" halign="center" valign="center" font="Regular;18" transparent="1"/>
+			<widget name="weekday5_icon" position="540,215" zPosition="1" size="55,45" alphatest="blend"/>
+			<widget render="Label" source="weekday5_temp" position="515,270" zPosition="1" size="105,60" halign="center" valign="bottom" font="Regular;16" transparent="1"/>
+			<widget render="Label" source="statustext" position="0,0" zPosition="1" size="664,340" font="Regular;20" halign="center" valign="center" transparent="1"/>
 		</screen>"""
 
 	def __init__(self, session):
@@ -204,7 +204,7 @@ class MSNWeatherPlugin(Screen):
 			self.webSite = self.weatherData.url
 			for weatherData in list(self.weatherData.weatherItems.items()):
 				item = weatherData[1]
-				if weatherData[0] == "-1": # current
+				if weatherData[0] == "-1":  # current
 					self["currentTemp"].text = "%s°%s" % (item.temperature, self.weatherData.degreetype)
 					self["condition"].text = item.skytext
 					self["humidity"].text = _("Humidity: %s %%") % item.humidity
@@ -253,7 +253,7 @@ class MSNWeatherPlugin(Screen):
 			if self.webSite:
 				self.session.open(Browser, config.plugins.WebBrowser.fullscreen.value, self.webSite, False)
 		except:
-			pass # I dont care if browser is installed or not...
+			pass  # I dont care if browser is installed or not...
 
 
 class WeatherIcon(Pixmap):
