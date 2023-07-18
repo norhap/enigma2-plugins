@@ -38,12 +38,12 @@ WerbeZapperIcon1 = """
 
 WerbeZapperIconHD = """
 		<screen name="WerbeZapperIndicator" title="WerbeZapper Icon" flags="wfNoBorder" position="550,50" size="200,36" zPosition="%s" backgroundColor="#31000000" >
-			<widget name="icon_text" font="Regular;22" position="0,0" zPosition="1" valign="center" halign="center" size="200,36" backgroundColor="#31000000" transparent="1" />
+			<widget name="icon_text" font="Regular;22" position="0,0" zPosition="1" verticalAlignment="center" horizontalAlignment="center" size="200,36" backgroundColor="#31000000" transparent="1" />
 		</screen>""" % (config.werbezapper.z.value)
 
 WerbeZapperIconHD1 = """
 		<screen name="WerbeZapperIndicator" title="WerbeZapper Icon" flags="wfNoBorder" position="550,50" size="280,54" zPosition="%s" backgroundColor="#31000000" >
-			<widget name="icon_text" font="Regular;22" position="0,0" zPosition="1" valign="center" halign="center" size="280,54" backgroundColor="#31000000" transparent="1" />
+			<widget name="icon_text" font="Regular;22" position="0,0" zPosition="1" verticalAlignment="center" horizontalAlignment="center" size="280,54" backgroundColor="#31000000" transparent="1" />
 		</screen>""" % (config.werbezapper.z.value)
 
 WerbeZapperIconFullHD = """
@@ -570,18 +570,18 @@ class WerbezapperSettings(Screen, ConfigListScreen):
 	if sz_w < 1920:
 		skin = """<screen position="center,center" size="610,364" title="WerbezapperSettings" backgroundColor="#31000000" >
 			<widget name="config" position="10,10" size="595,314" zPosition="1" transparent="0" backgroundColor="#31000000" font="Regular;18" scrollbarMode="showOnDemand" />
-			<widget name="key_red" position="10,328" zPosition="2" size="250,25" halign="center" font="Regular;20" transparent="1" foregroundColor="red" />
-			<widget name="key_green" position="355,328" zPosition="2" size="250,25" halign="center" font="Regular;20" transparent="1" foregroundColor="green" />
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/red.png" position="10,320" size="250,42" zPosition="1" alphatest="on" />
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/green.png" position="350,320" size="250,42" zPosition="1" alphatest="on" />
+			<widget name="key_red" position="10,328" zPosition="2" size="250,25" horizontalAlignment="center" font="Regular;20" transparent="1" foregroundColor="red" />
+			<widget name="key_green" position="355,328" zPosition="2" size="250,25" horizontalAlignment="center" font="Regular;20" transparent="1" foregroundColor="green" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/red.png" position="10,320" size="250,42" zPosition="1" alphaTest="on" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/green.png" position="350,320" size="250,42" zPosition="1" alphaTest="on" />
 		</screen>"""
 	else:
 		skin = """<screen position="center,center" size="900,525" title="WerbezapperSettings" backgroundColor="#31000000" >
 			<widget name="config" position="10,10" size="880,465" zPosition="1" transparent="0" backgroundColor="#31000000" itemHeight="37" font="Regular;27" scrollbarMode="showOnDemand" />
-			<widget name="key_red" position="10,486" zPosition="2" size="250,28" halign="center" font="Regular;25" transparent="1" foregroundColor="red" />
-			<widget name="key_green" position="272,486" zPosition="2" size="250,28" halign="center" font="Regular;25" transparent="1" foregroundColor="green" />
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/red.png" position="10,480" size="250,42" zPosition="1" alphatest="on" />
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/green.png" position="272,480" size="250,42" zPosition="1" alphatest="on" />
+			<widget name="key_red" position="10,486" zPosition="2" size="250,28" horizontalAlignment="center" font="Regular;25" transparent="1" foregroundColor="red" />
+			<widget name="key_green" position="272,486" zPosition="2" size="250,28" horizontalAlignment="center" font="Regular;25" transparent="1" foregroundColor="green" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/red.png" position="10,480" size="250,42" zPosition="1" alphaTest="on" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/green.png" position="272,480" size="250,42" zPosition="1" alphaTest="on" />
 		</screen>"""
 
 	def __init__(self, session, args=None):

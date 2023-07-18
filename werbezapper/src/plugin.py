@@ -84,15 +84,15 @@ def cleanup():
 class WerbeZapperSilder(ConfigListScreen, Screen):
 	if sz_w < 1920:
 		skin = """<screen name="WerbeZapperSilder" position="center,center" size="600,200" title="Add Zap Timer" backgroundColor="#31000000" flags="wfNoBorder" >
-			<widget source="header" render="Label" position="0,0" zPosition="1" size="600,78" halign="center" valign="center" noWrap="1" font="Regular;22" foregroundColor="yellow" backgroundColor="background" shadowColor="black" shadowOffset="-2,-2" transparent="1"/>
+			<widget source="header" render="Label" position="0,0" zPosition="1" size="600,78" horizontalAlignment="center" verticalAlignment="center" noWrap="1" font="Regular;22" foregroundColor="yellow" backgroundColor="background" shadowColor="black" shadowOffset="-2,-2" transparent="1"/>
 			<widget name="config" position="25,80" size="550,25" scrollbarMode="showOnDemand" zPosition="1" foregroundColor="white" backgroundColor="background" />
-			<widget source="time" render="Label" position="0,125" zPosition="1" size="600,75" noWrap="1" halign="center" font="Regular;20" foregroundColor="#00E0E0D0" backgroundColor="background" shadowColor="black" shadowOffset="-2,-2" transparent="1"/>
+			<widget source="time" render="Label" position="0,125" zPosition="1" size="600,75" noWrap="1" horizontalAlignment="center" font="Regular;20" foregroundColor="#00E0E0D0" backgroundColor="background" shadowColor="black" shadowOffset="-2,-2" transparent="1"/>
 		</screen>"""
 	else:
 		skin = """<screen name="WerbeZapperSilder" position="center,center" size="680,250" title="Add Zap Timer" backgroundColor="#31000000" flags="wfNoBorder" >
-			<widget source="header" render="Label" position="0,0" zPosition="1" size="680,98" halign="center" valign="center" noWrap="1" font="Regular;26" foregroundColor="yellow" backgroundColor="background" shadowColor="black" shadowOffset="-2,-2" transparent="1"/>
+			<widget source="header" render="Label" position="0,0" zPosition="1" size="680,98" horizontalAlignment="center" verticalAlignment="center" noWrap="1" font="Regular;26" foregroundColor="yellow" backgroundColor="background" shadowColor="black" shadowOffset="-2,-2" transparent="1"/>
 			<widget name="config" position="40,100" size="600,25" scrollbarMode="showOnDemand" zPosition="1" foregroundColor="white" backgroundColor="background" />
-			<widget source="time" render="Label" position="0,155" zPosition="1" size="680,95" noWrap="1" halign="center" font="Regular;26" foregroundColor="#00E0E0D0" backgroundColor="background" shadowColor="black" shadowOffset="-2,-2" transparent="1"/>
+			<widget source="time" render="Label" position="0,155" zPosition="1" size="680,95" noWrap="1" horizontalAlignment="center" font="Regular;26" foregroundColor="#00E0E0D0" backgroundColor="background" shadowColor="black" shadowOffset="-2,-2" transparent="1"/>
 		</screen>"""
 
 	def __init__(self, session, servicelist=None, remaining=0):
