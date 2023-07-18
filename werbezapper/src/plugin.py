@@ -95,7 +95,6 @@ class WerbeZapperSilder(ConfigListScreen, Screen):
 			<widget source="time" render="Label" position="0,155" zPosition="1" size="680,95" noWrap="1" halign="center" font="Regular;26" foregroundColor="#00E0E0D0" backgroundColor="background" shadowColor="black" shadowOffset="-2,-2" transparent="1"/>
 		</screen>"""
 
-
 	def __init__(self, session, servicelist=None, remaining=0):
 		self.servicelist = servicelist
 		self.remaining = remaining
