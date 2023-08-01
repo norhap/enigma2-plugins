@@ -442,11 +442,11 @@ class IMDB(Screen, HelpableScreen):
 
 	def contextMenuPressed(self):
 		self.hideBigPoster()
-
+		keys = []
 		list = [
 			(_("Enter search"), self.openVirtualKeyBoard),
-			(_("Setup"), self.setup),
 		]
+		keys += ["1"]
 
 		if self.saving:
 			if self.savingpath is not None and self.titleId:
@@ -455,12 +455,17 @@ class IMDB(Screen, HelpableScreen):
 					(_("Save current Details as .txt"), self.saveTxtDetails),
 					(_("Save current Poster and Details as .txt"), self.savePosterTxtDetails),
 				))
+				keys += ["2", "3", "4"]
+
+		list.append((_("Setup"), self.setup))
+		keys += ["menu"]
 
 		self.session.openWithCallback(
 			self.menuCallback,
 			ChoiceBox,
 			title=_("IMDb Menu"),
 			list=list,
+			keys=["dummy" if key == "" else key for key in keys]
 		)
 
 	def menuCallback(self, ret=None):
@@ -821,7 +826,10 @@ class IMDB(Screen, HelpableScreen):
 
 			# Format a date using the full format.
 			def makedate(date):
-				return strftime('%x', (date['year'], date['month'], date['day'], 0, 0, 0, 0, 0, 0))
+				if 'month' in date and date['month'] is not None and 'day' in date and date['day'] is not None:
+					return strftime('%x', (date['year'], date['month'], date['day'], 0, 0, 0, 0, 0, 0))
+				else:
+					return strftime('%Y', (date['year'], 0, 0, 0, 0, 0, 0, 0, 0))
 
 			categories_i18n = {
 				'director': get(main, ('directors', 'category', 'text')),
@@ -1194,19 +1202,19 @@ class IMDbLCDScreen(Screen):
 
 
 class IMDbSetup(Screen, ConfigListScreen):
-	skin = """<screen name="EPGSearchSetup" position="center,center" size="565,370">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphaTest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphaTest="on" />
-		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#9f1313" transparent="1" />
-		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#1f771f" transparent="1" />
+	skin = """<screen name="IMDbSetup" position="center,center" size="565,370">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		<widget name="config" position="5,50" size="555,250" scrollbarMode="showOnDemand" />
 		<ePixmap pixmap="skin_default/div-h.png" position="0,301" zPosition="1" size="565,2" />
-		<widget source="help" render="Label" position="5,305" size="555,63" font="Regular;21" />
+		<widget name="description" position="5,305" size="555,63" font="Regular;21" />
 	</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skinName = ["Setup"]
+		self.skinName = ["IMDbSetup", "Setup"]
 
 		self['footnote'] = Label(_("* = Restart Required"))
 		self["HelpWindow"] = Pixmap()
@@ -1317,10 +1325,8 @@ class IMDbSetup(Screen, ConfigListScreen):
 		return self["config"].getCurrent() and self["config"].getCurrent()[0] or ""
 
 	def getCurrentValue(self):
+		self["description"].text = self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
 		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
-
-	def getCurrentDescription(self):
-		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
 
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
