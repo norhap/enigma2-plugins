@@ -5408,12 +5408,12 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 			<widget source="LibUSB" render="Label" position="%d,%d" size="100,20" zPosition="1" font="Regular;11" horizontalAlignment="right" verticalAlignment="center" foregroundColor="red" backgroundColor="#25062748" transparent="1" />
 			<widget source="About" render="Label" position="%d,%d" size="100,20" zPosition="1" font="Regular;10" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
 
-			<widget name="LCD1" position="%d,%d" zPosition="1" size="%d,%d" transparent="1" alphatest="on" />
-			<widget name="LCD2" position="%d,%d" zPosition="1" size="%d,%d" transparent="1" alphatest="on" />
-			<widget name="LCD3" position="%d,%d" zPosition="1" size="%d,%d" transparent="1" alphatest="on" />
-			<widget source="LCD1text" render="Label" position="%d,%d" size="200,20" zPosition="1" font="Regular;11" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="LCD2text" render="Label" position="%d,%d" size="200,20" zPosition="1" font="Regular;11" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="LCD3text" render="Label" position="%d,%d" size="200,20" zPosition="1" font="Regular;11" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
+			<widget name="LCD1" position="%d,%d" zPosition="1" size="%d,%d" transparent="1" alphaTest="on" />
+			<widget name="LCD2" position="%d,%d" zPosition="1" size="%d,%d" transparent="1" alphaTest="on" />
+			<widget name="LCD3" position="%d,%d" zPosition="1" size="%d,%d" transparent="1" alphaTest="on" />
+			<widget source="LCD1text" render="Label" position="%d,%d" size="200,20" zPosition="1" font="Regular;11" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="LCD2text" render="Label" position="%d,%d" size="200,20" zPosition="1" font="Regular;11" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="LCD3text" render="Label" position="%d,%d" size="200,20" zPosition="1" font="Regular;11" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
 			</screen>""" % (75, size_w, size_h, conf_w, conf_h, int_y, conf_w - 10, 0, key_y, key_x, key_x, key_y, key_x, 2 * key_x, key_y, key_x, 3 * key_x, key_y, key_x, 0, key_y, key_x, key_x, key_y, key_x, 2 * key_x, key_y, key_x, 3 * key_x, key_y, key_x,
 			4 * key_x, key_y + 15, conf_w - 100, key_y - 10, conf_w - 100, key_y - 30, conf_w - 100, key_y - 30, conf_w, 0, pic_w, pic_h, conf_w, pic_h, pic_w, pic_h, conf_w, pic_h2, pic_w, pic_h, conf_w, 5, conf_w, pic_h + 5, conf_w, pic_h2 + 5)
 		self.skin = skin
