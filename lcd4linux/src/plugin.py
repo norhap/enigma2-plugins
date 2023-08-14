@@ -2378,6 +2378,7 @@ def Code_utf8(wert):
 	wert = "" if wert is None else _unescape(wert)
 	return wert.replace('\x86', '').replace('\x87', '') if PY3 else wert.replace('\xc2\x86', '').replace('\xc2\x87', '').decode("utf-8", "ignore")
 
+
 def L4log(nfo, wert=""):
 	if str(LCD4linux.EnableEventLog.value) != "0":
 		print("[LCD4linux] %s %s" % (nfo, wert))
@@ -4684,6 +4685,8 @@ class GrabOSD:
 		pass
 
 # Grab
+
+
 def doGrab(i, ConfigFast, ConfigSize):
 	if getFB2(True):
 		setFB2("0")
@@ -5210,6 +5213,7 @@ class L4LWorker(Thread):
 				open(CrashFile, "w").write(format_exc())
 			except Exception:
 				pass
+
 
 class LCDdisplayMenu(Screen):
 	skin = """
