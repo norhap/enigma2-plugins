@@ -154,7 +154,7 @@ class EPGRefreshTimer(timer.Timer):
 
 	def add(self, entry):
 		entry.timeChanged()
-		print("[EPGRefresh] Timer added " + str(entry))
+		print("[EPGRefresh] Timer added " + str([config.plugins.epgrefresh.begin.value])[1:-1].replace('[', '').replace(']', '').replace(',', ':').replace(' ', '') + " minutes")
 		self.addTimerEntry(entry)
 
 	def clear(self):
