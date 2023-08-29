@@ -2651,7 +2651,7 @@ def getFB2(check):
 
 def BRI(w1, w2):
 	gb = L4LElist.getBrightness(w2, False)
-	return w1 if gb == -1 else gb
+	return int(w1) if gb == -1 else gb
 
 
 def virtBRI(LCD):
