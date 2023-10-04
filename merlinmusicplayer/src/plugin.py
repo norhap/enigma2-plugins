@@ -292,9 +292,9 @@ class myHTTPClientFactory(HTTPClientFactory):
 	def __init__(self, url, method='GET', postdata=None, headers=None,
 	agent="SHOUTcast", timeout=0, cookies=None,
 	followRedirect=1, lastModified=None, etag=None):
-		if type(url) is str:
+		if isinstance(url, str):
 			url = bytes(url, 'utf-8')
-		if type(method) is str:
+		if isinstance(method, str):
 			method = bytes(method, 'utf-8')
 		HTTPClientFactory.__init__(self, url, method=method, postdata=postdata,
 		headers=headers, agent=agent, timeout=timeout, cookies=cookies, followRedirect=followRedirect)
@@ -1553,7 +1553,7 @@ class MerlinMusicPlayerLyrics(Screen):
 		except:
 			audio = None
 		text = getEncodedString(self.getLyricsFromID3Tag(audio))
-		if type(text) is bytes:
+		if isinstance(text, bytes):
 			text = text.decode('utf-8')
 		text = text.replace("\r\n", "\n").replace("\r", "\n")
 		self["lyric_text"].setText(text)
