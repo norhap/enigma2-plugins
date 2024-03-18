@@ -23,6 +23,7 @@ from .Logger import doLog
 
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 
+
 class AutoTimerWizard(WizardLanguage, AutoTimerEditorBase, ShowRemoteControl):
 	STEP_ID_BASIC = 2
 	STEP_ID_TIMESPAN = 5
