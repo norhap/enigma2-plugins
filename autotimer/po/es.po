@@ -1287,6 +1287,20 @@ msgstr "Cuando esta opción está habilitada, la descripción breve equivale a l
 msgid "When this option is enabled the AutoTimer won't match events where another timer with the same description already exists in the timer list."
 msgstr "Cuando esta opción está activada, el AutoTimer no coincidirá con los eventos en los que ya existe otro temporizador con la misma descripción en la lista de temporizadores."
 
+msgid ""
+"\n"
+"With 'Info' can be edited existing text from \"Description\" and inserted to \"Match title\"."
+msgstr ""
+"\n"
+"Con 'Info' se puede editar el texto existente desde \"Descripción\" e insertarlo en \"Coincidir título\"."
+
+msgid ""
+"\n"
+"With 'Info' can be edited existing text from \"Match title\" and inserted to \"Description\"."
+msgstr ""
+"\n"
+"Con 'Info' se puede editar el texto existente desde \"Coincidir título\" e insertarlo en \"Descripción\"."
+
 msgid "With this option enabled the channel to record on can be changed to a alternative service it is restricted to."
 msgstr "Con esta opción habilitada, el canal para grabar puede cambiarse a un canal alternativo al que está restringido."
 
@@ -1323,9 +1337,13 @@ msgstr "Puede controlar cuántos días en el futuro se agregarán temporizadores
 msgid ""
 "You can set the basic properties of an AutoTimer here.\n"
 "While 'Name' is just a human-readable name displayed in the Overview, 'Match in title' is what is looked for in the EPG."
+"\n"
+"Note: with 'Insert' button on 'Description' or 'Match title' you can copy and edit text from one item to current item."
 msgstr ""
 "Puede establecer las propiedades básicas de un temporizador automático aquí.\n"
 "Mientras que 'Nombre' es solo un nombre legible por humanos que se muestra en la Descripción general, 'Coincidencia en título' es lo que se busca en la EPG."
+"\n"
+"Nota: con el botón 'Insertar' en 'Descripción' o 'Coincidir título' puede copiar y editar texto de un elemento al elemento actual."
 
 msgid ""
 "You did not provide a valid 'Match in title' Attribute for your new AutoTimer.\n"
