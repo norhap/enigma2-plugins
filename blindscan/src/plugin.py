@@ -291,6 +291,7 @@ class Blindscan(ConfigListScreen, Screen):
 		self["actions3"].setEnabled(False)
 
 		self["key_red"] = StaticText(_("Exit"))
+		self["key_green"] = StaticText("")		
 		self["key_yellow"] = StaticText("")
 		self["key_blue"] = StaticText(_("Restore defaults"))
 
@@ -333,12 +334,12 @@ class Blindscan(ConfigListScreen, Screen):
 			if line.startswith('NIM Socket'):
 				sNo, sName, sI2C = -1, '', -1
 				try:
-					sNo = int(line.split()[2][:-1])
+					sNo = line.split()[2][:-1]
 				except:
 					sNo = -1
 			elif line.startswith('I2C_Device:'):
 				try:
-					sI2C = int(line.split()[1])
+					sI2C = line.split()[1]
 				except:
 					sI2C = -1
 			elif line.startswith('Name:'):
@@ -350,7 +351,7 @@ class Blindscan(ConfigListScreen, Screen):
 						sName = splitLines[3][4:-1]
 				except:
 					sName = ""
-			print("sNo, sName, sI2C", sNo, sName, sI2C)
+			print("[Blindscan] sNo, sName, sI2C", sNo, sName, sI2C)
 			if sNo != -1 and sName != "":
 				if sName.startswith('BCM'):
 					sI2C = sNo
@@ -531,6 +532,8 @@ class Blindscan(ConfigListScreen, Screen):
 				root_id = nimmanager.sec.getRoot(n.slot_id, int(nimconfig.connectedTo.value))
 				if n.type == nimmanager.nim_slots[root_id].type: # check if connected from a DVB-S to DVB-S2 Nim or vice versa
 					continue
+			if n.description.startswith("SAT>IP"):
+				continue
 			nim_list.append((str(n.slot), n.friendly_full_description))
 		self.scan_nims = ConfigSelection(choices=nim_list)
 
@@ -1270,7 +1273,6 @@ class Blindscan(ConfigListScreen, Screen):
 						p.Modulation_8PSK: "8PSK",
 						p.Modulation_16APSK: "16APSK",
 						p.Modulation_32APSK: "32APSK"}
-					tp_str = "%g%s %d FEC %s %s %s" % (p.frequency / 1000.0, pol[p.polarisation], p.symbol_rate // 1000, fec[p.fec], sys[p.system], qam[p.modulation])
 					tp_str = "%g%s %d FEC %s %s %s" % (p.frequency / 1000.0, pol.get(p.polarisation, ""), p.symbol_rate // 1000, fec.get(p.fec, ""), sys.get(p.system, ""), qam.get(p.modulation, ""))
 					if p.is_id > eDVBFrontendParametersSatellite.No_Stream_Id_Filter:
 						tp_str += " MIS %d" % p.is_id
@@ -1598,6 +1600,8 @@ class Blindscan(ConfigListScreen, Screen):
 
 	def SatBandCheck(self):
 		# search for LNB type in Universal, C band, or user defined.
+		if self.scan_nims.value is None or self.scan_nims.value == "":
+			return False
 		cur_orb_pos = self.getOrbPos()
 		self.is_c_band_scan = False
 		self.is_Ku_band_scan = False
