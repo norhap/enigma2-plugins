@@ -33,7 +33,7 @@
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
 	</screen>
-	<screen name="ChannelSelection_summary" position="0,0" size="132,64">
+	<screen name="ChannelSelectionSummary" position="0,0" size="132,64">
 		<widget source="parent.ServiceEvent" render="Label" position="1,0" size="130,38" font="OLED;16" horizontalAlignment="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>

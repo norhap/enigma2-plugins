@@ -8,7 +8,7 @@
 		</widget>
 	</screen>
 	
-	<screen name="ChannelSelection_summary" position="0,0" size="132,64">
+	<screen name="ChannelSelectionSummary" position="0,0" size="132,64">
 		<widget font="Regular;24" horizontalAlignment="center" position="0,0" render="Label" size="132,64" source="parent.ServiceEvent" verticalAlignment="center">
 			<convert type="ServiceName">Name</convert>
 		</widget>

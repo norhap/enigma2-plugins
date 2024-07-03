@@ -1547,7 +1547,7 @@ self.instance.move(ePoint((1024-wsizex)/2, (576-wsizey)/2))
       <convert type="ServiceName">Reference</convert>
     </widget> -->
   </screen>
-  <screen name="ChannelSelection_summary" position="0,0" size="96,64" id="2">
+  <screen name="ChannelSelectionSummary" position="0,0" size="96,64" id="2">
     <widget font="Regular;18" horizontalAlignment="center" position="0,0" render="Label" size="96,64" source="parent.ServiceEvent" verticalAlignment="center">
       <convert type="ServiceName">Name</convert>
     </widget>

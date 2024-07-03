@@ -8,8 +8,8 @@
 	<screen name="InfoBarSummary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-<!--ChannelSelection_summary-->
-	<screen name="ChannelSelection_summary" position="fill">
+<!--ChannelSelectionSummary-->
+	<screen name="ChannelSelectionSummary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
 <!--MenuSummary-->
@@ -32,8 +32,8 @@
 	<screen name="InfoBarSummary" position="fill" id="3">
 		<panel name="SummaryTemplate" />
 	</screen>
-<!--ChannelSelection_summary-->
-	<screen name="ChannelSelection_summary" position="fill" id="3">
+<!--ChannelSelectionSummary-->
+	<screen name="ChannelSelectionSummary" position="fill" id="3">
 		<panel name="SummaryTemplate" />
 	</screen>
 <!--MenuSummary-->
@@ -133,8 +133,8 @@
 <!--L4L03-->
 ######################################################################
 
-<!--AdvancedChannelSelection_summary-->
-	<screen name="AdvancedChannelSelection_summary" position="fill">
+<!--AdvancedChannelSelectionSummary-->
+	<screen name="AdvancedChannelSelectionSummary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
 
