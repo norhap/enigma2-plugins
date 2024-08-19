@@ -488,7 +488,7 @@ class AutoMount():
 				if sharedata['active'] == True or sharedata['active'] == 'True':
 					out = open('/etc/fstab', 'a')
 					if sharedata['mounttype'] == 'nfs':
-						line = sharedata['ip'] + ':/' + sharedata['sharedir'] + '\t' + path + '\tnfs\t_netdev,' + self.sanitizeOptions(sharedata['options'], fstab=True) + '\t0 0\n'
+						line = sharedata['ip'] + ':/' + sharedata['sharedir'] + ' ' + path + ' ' + 'nfs nolock,rsize=8192,wsize=8192\n'
 					elif sharedata['mounttype'] == 'cifs':
 						line = '//' + sharedata['ip'] + '/' + sharedata['sharedir'] + '\t' + path + '\tcifs\tuser=' + sharedata['username'] + ',pass=' + sharedata['password'] + ',_netdev,' + self.sanitizeOptions(sharedata['options'], cifs=True, fstab=True) + '\t0 0\n'
 					out.write(line)
