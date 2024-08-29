@@ -596,7 +596,7 @@ class AutoTimerEditor(Screen, ConfigListScreen, AutoTimerEditorBase):
 	def renameServiceButton(self):
 		if self.isIPTV:
 			self["key_blue"].text = ""
-		elif self.serviceRestriction:
+		if self.serviceRestriction:
 			self["key_blue"].text = _("Edit services")
 		else:
 			self["key_blue"].text = _("Add services")
@@ -794,7 +794,7 @@ class AutoTimerEditor(Screen, ConfigListScreen, AutoTimerEditorBase):
 			list.append(getConfigListEntry(_("Restriction to certain services (edit in services menu)"), self.isActive_services))
 			list.append(getConfigListEntry(_("Restriction to certain bouquets (edit in services menu)"), self.isActive_bouquets))
 		else:
-			list.append(getConfigListEntry(_("IPTV stream use only this service for search"), self.isActive_services))
+			list.append(getConfigListEntry(_("Using IPTV channels for search"), self.isActive_services))
 		list.append(getConfigListEntry(_("Restriction to certain days of week (edit in filter menu)"), self.isActive_dayofweek))
 		list.append(getConfigListEntry(_("Other filters (edit in filter menu)"), self.isActive_otherfilters))
 
@@ -822,14 +822,13 @@ class AutoTimerEditor(Screen, ConfigListScreen, AutoTimerEditorBase):
 			self.renameFilterButton()
 
 	def editServices(self):
-		if not self.isIPTV:
-			self.session.openWithCallback(
-				self.editServicesCallback,
-				AutoTimerServiceEditor,
-				self.serviceRestriction,
-				self.services,
-				self.bouquets
-			)
+		self.session.openWithCallback(
+			self.editServicesCallback,
+			AutoTimerServiceEditor,
+			self.serviceRestriction,
+			self.services,
+			self.bouquets
+		)
 
 	def editServicesCallback(self, ret):
 		if ret:

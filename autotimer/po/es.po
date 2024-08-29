@@ -557,6 +557,9 @@ msgstr "Incluir 'Temporizador Automático' en las etiquetas"
 msgid "Include AutoTimer name in tags"
 msgstr "Incluir el nombre del Temporizador Automático en las etiquetas"
 
+msgid "Using IPTV channels for search"
+msgstr "Usando canales IPTV para búsqueda"
+
 msgid ""
 "It's possible to restrict an AutoTimer to certain Services or Bouquets or to deny specific ones.\n"
 "An Event will only match this AutoTimer if it's on a specific and not denied Service (inside a Bouquet).\n"
