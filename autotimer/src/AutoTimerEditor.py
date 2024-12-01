@@ -183,7 +183,7 @@ class AutoTimerEditorBase:
 		else:
 			self.serviceRestriction = False
 
-		self.isIPTV = bool([service for service in timer.services if ":http" in service])
+		self.isIPTV = bool([service for service in timer.services if "%3a//" in service])
 
 		self.createSetup(timer)
 
@@ -347,7 +347,7 @@ class AutoTimerEditorBase:
 		self.searchForDuplicateDescription = NoSave(ConfigSelection([
 				("0", _("Title")),
 				("1", _("Title and Short description")),
-				("2", _("Title and all descriptions")),
+				("2", _("Title and all descriptions") + _(" (Short and Extended)")),
 			],
 			default=str(timer.searchForDuplicateDescription)
 		))
@@ -690,7 +690,6 @@ class AutoTimerEditor(Screen, ConfigListScreen, AutoTimerEditorBase):
 			))
 
 		list.extend((
-			getConfigListEntry(_("EPG encoding"), self.encoding),
 			getConfigListEntry(_("Search type"), self.searchType),
 			getConfigListEntry(_("Search strictness"), self.searchCase),
 			getConfigListEntry(_("Timer type"), self.justplay),
@@ -1447,7 +1446,7 @@ class AutoTimerServiceEditor(Screen, ConfigListScreen):
 				if pos != -1:
 					if sname[pos - 1] == ':':
 						pos -= 1
-					sname = sname[:pos + 1]
+						sname = sname[:pos + 1]
 
 			list.append(getConfigListEntry(_("Record on"), NoSave(ConfigSelection(choices=[(sname, ServiceReference(args[0]).getServiceName().replace('\xc2\x86', '').replace('\xc2\x87', ''))]))))
 			self["config"].setList(list)
@@ -1523,7 +1522,8 @@ def addAutotimerFromEvent(session, evt=None, service=None, importer_Callback=imp
 			if pos != -1:
 				if service[pos - 1] == ':':
 					pos -= 1
-				service = service[:pos + 1]
+					service = service[:pos + 1]
+					myref = eServiceReference(service)
 
 		sref = ServiceReference(myref)
 	if evt:
@@ -1577,7 +1577,7 @@ def addAutotimerFromService(session, service=None, importer_Callback=importerCal
 		if pos != -1:
 			if sref[pos - 1] == ':':
 				pos -= 1
-			sref = sref[:pos + 1]
+				sref = sref[:pos + 1]
 
 		sref = ServiceReference(sref)
 	if info:
