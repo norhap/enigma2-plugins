@@ -122,7 +122,7 @@ def Partnerbox_SingleEntry(self, service, eventId, beginTime, duration, EventNam
 					count_len = len(str(remaining))
 					if count_len > 3:
 						times += count_len * 4
-						
+
 				Time = _("%s%d min") % (prefix, remaining)
 		res = [
 			None,
