@@ -4,8 +4,8 @@ from . import _
 from Plugins.Plugin import PluginDescriptor
 from enigma import ePicLoad, eServiceCenter
 from Screens.Screen import Screen
-from Screens.HelpMenu import HelpableScreen
-from Screens.ChoiceBox import ChoiceBox
+from Screens.ChannelSelection import SimpleChannelSelection
+from Screens.EpgSelection import EPGSelection
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Pixmap import Pixmap
@@ -319,6 +319,10 @@ class IMDB(Screen, HelpableScreen):
 		self["titellabel"].setText("")
 		self["extralabel"].setText("")
 		self.ratingstars = -1
+		self.reviews = []
+		self.reviewsJSON = None
+		self.spoilers = False
+		self.originalName = ""
 
 	def pageUp(self):
 		if self.hideBigPoster():
@@ -397,6 +401,53 @@ class IMDB(Screen, HelpableScreen):
 		download = getPage(fetchurl, cookies=self.cookie)
 		download.addCallback(self.IMDBquery2).addErrback(self.http_failed)
 
+	def gotReviews(self, response):
+		self["statusbar"].setText(_("Parsing reviews..."))
+		self.reviewsJSON = response.content.decode("utf8")
+
+		try:
+			reviews = json.loads(self.reviewsJSON)['data']['title']['reviews']['edges']
+		except Exception as e:
+			self["statusbar"].setText(_("IMDb Reviews failed"))
+			print("[IMDB] reviews failed:", str(e))
+			self.reviewsJSON = None
+			return
+
+		for review in reviews:
+			if 'node' not in review:
+				continue
+			review = review['node']
+			try:
+				helpful = review['helpfulness']['upVotes']
+				total = helpful + review['helpfulness']['downVotes']
+				if total:
+					helpful = _("%d out of %d found this helpful.") % (helpful, total)
+				else:
+					helpful = ""
+			except:
+				helpful = ""
+			self.reviews.append({
+				'rating': str(get(review, 'authorRating')),
+				'title': html2text(get(review, ('summary', 'originalText'))),
+				'author': html2text(get(review, ('author', 'nickName'))),
+				'date': get(review, 'submissionDate'),
+				'spoiler': get(review, 'spoiler') and self.spoiler_i18n,
+				'review': html2text(get(review, ('text', 'originalText', 'plaidHtml'))),
+				'helpful': helpful
+			})
+		self["statusbar"].setText(_("IMDb Reviews parsed"))
+		self.showExtras(reviews=True)
+
+	def downloadReviews(self):
+		self["statusbar"].setText(_("Downloading reviews..."))
+		params = {
+			"operationName": 'TitleReviewsRefine',
+			"variables": '{"const":"%s","first":25}' % self.titleId,
+			"extensions": '{"persistedQuery":{"sha256Hash":"89aff4cd7503e060ff1dd5aba91885d8bac0f7a21aa1e1f781848a786a5bdc19","version":1}}'
+		}
+		download = getPage("https://caching.graphql.imdb.com/", params=params, headers={"content-type": "application/json"}, cookies=self.cookie)
+		download.addCallback(self.gotReviews).addErrback(self.http_failed)
+
 	def showDetails(self):
 		self.hideBigPoster()
 
@@ -430,9 +481,41 @@ class IMDB(Screen, HelpableScreen):
 			self["extralabel"].show()
 			self["detailslabel"].hide()
 			self["castlabel"].hide()
-			self["poster"].hide()
-		self["extralabel"].setText(self.synopsis if synopsis else self.extra)
-		self.Page = synopsis and 3 or 2
+			if "Pig.Pig" in str(self.renderer):
+				self["poster"].hide()
+			self["stars"].hide()
+			self["starsbg"].hide()
+			self["ratinglabel"].hide()
+		if reviews:
+			if self.Page == 4:
+				self.spoilers = not self.spoilers
+				pos = self["extralabel"].curPos
+			else:
+				pos = 0
+			reviews = []
+			for review in self.reviews:
+				reviews.append((review['rating'] and review['rating'] + "/10 | " or "") + review['date'])
+				reviews.append(review['title'] + " [" + review['author'] + "]")
+				reviews.append("")
+				if review['spoiler']:
+					reviews.append("** " + review['spoiler'] + " **")
+					reviews.append("")
+				if self.spoilers or not review['spoiler']:
+					reviews.append(review['review'])
+					reviews.append("")
+				if review['helpful']:
+					reviews.append(review['helpful'])
+					reviews.append("")
+				reviews.append("-" * 72)
+				reviews.append("")
+			self.reviewsTxt = "\n".join(reviews[:-3])
+			self["extralabel"].setText(text2label(self.reviewsTxt))
+			self["extralabel"].setPos(pos)
+			self["extralabel"].updateScrollbar()
+			self.Page = 4
+		else:
+			self["extralabel"].setText(self.synopsis if synopsis else self.extra)
+			self.Page = synopsis and 3 or 2
 
 	def showSynopsis(self):
 		self.hideBigPoster()
@@ -443,10 +526,11 @@ class IMDB(Screen, HelpableScreen):
 	def contextMenuPressed(self):
 		self.hideBigPoster()
 		keys = []
-		list = [
-			(_("Enter search"), self.openVirtualKeyBoard),
-		]
+		list = [(_("Enter search"), self.openVirtualKeyBoard),]
 		keys += ["1"]
+
+		list.append((_("Import from EPG"), self.importFromEPG))
+		keys += ["2"]
 
 		if self.saving:
 			if self.savingpath is not None and self.titleId:
@@ -455,7 +539,7 @@ class IMDB(Screen, HelpableScreen):
 					(_("Save current Details as .txt"), self.saveTxtDetails),
 					(_("Save current Poster and Details as .txt"), self.savePosterTxtDetails),
 				))
-				keys += ["2", "3", "4"]
+				keys += ["3", "4", "5"]
 
 		list.append((_("Setup"), self.setup))
 		keys += ["menu"]
@@ -469,7 +553,16 @@ class IMDB(Screen, HelpableScreen):
 		)
 
 	def menuCallback(self, ret=None):
-		ret and ret[1]()
+		if ret:
+			ret[1]() if len(ret) == 2 else ret[1](ret[2], ret[3])
+
+	def importFromEPG(self):
+		self.session.openWithCallback(self.gotSearchString, IMDbChannelSelection)
+
+	def playVideo(self, name, url):
+		ref = eServiceReference(4097, 0, url)
+		ref.setName(name)
+		self.session.open(IMDbPlayer, ref)
 
 	def saveHtmlDetails(self):
 		try:
@@ -478,6 +571,11 @@ class IMDB(Screen, HelpableScreen):
 				open(isave + ".html", 'w').write(self.html)
 				if self.json:
 					open(isave + ".json", 'w').write(self.json)
+				try:
+					if self.reviewsJSON:
+						open(isave + "-reviews.json", 'w').write(self.reviewsJSON)
+				except:
+					pass
 				try:
 					copy("/tmp/poster.jpg", isave + ".jpg")
 				except:
@@ -860,6 +958,7 @@ class IMDB(Screen, HelpableScreen):
 				'sound': get(i18n, 'title_main_techspec_soundmix'),
 				'aspect': get(i18n, 'title_main_techspec_aspectratio'),
 			}
+			self.spoiler_i18n = get(i18n, 'common_label_spoiler', _("Spoiler"))
 
 			self.generalinfos = {
 				'director': ", ".join(get(name, ('name', 'nameText', 'text')) for name in get(main, ('directors', 'credits'))),
@@ -1189,6 +1288,56 @@ class IMDB(Screen, HelpableScreen):
 
 	def createSummary(self):
 		return IMDbLCDScreen
+
+
+class IMDbPlayer(MoviePlayer):
+	def __init__(self, session, service):
+		MoviePlayer.__init__(self, session, service)
+		self.skinName = "MoviePlayer"
+
+	def leavePlayer(self):
+		self.close()
+
+	def doEofInternal(self, playing):
+		self.close()
+
+	def showMovies(self):
+		pass
+
+
+class IMDbChannelSelection(SimpleChannelSelection):
+	def __init__(self, session):
+		SimpleChannelSelection.__init__(self, session, _("Channel Selection"))
+		self.skinName = ["IMDbChannelSelection", "SimpleChannelSelection"]
+
+		self["ChannelSelectEPGActions"] = ActionMap(["ChannelSelectEPGActions"],
+		{
+				"showEPGList": self.channelSelected
+		})
+
+	def channelSelected(self):
+		ref = self.getCurrentSelection()
+		if ref:
+			if (ref.flags & 7) == 7:
+				self.enterPath(ref)
+			elif not (ref.flags & (eServiceReference.isMarker | eServiceReference.isDirectory | eServiceReference.isNumberedMarker)):
+				self.session.openWithCallback(self.epgClosed, IMDbEPGSelection, ref)
+
+	def epgClosed(self, ret=None):
+		if ret:
+			self.close(ret)
+
+
+class IMDbEPGSelection(EPGSelection):
+	def __init__(self, session, ref):
+		EPGSelection.__init__(self, session, ref)
+		self.skinName = ["IMDbEPGSelection", "EPGSelection"]
+
+	def eventSelected(self):
+		cur = self["list"].getCurrent()
+		evt = cur and cur[0]
+		if evt:
+			self.close(evt.getEventName())
 
 
 class IMDbLCDScreen(Screen):
