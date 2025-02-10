@@ -307,33 +307,35 @@ class RemoteTimer(Screen):
 	global CurrentParnerBoxName
 	if HD:
 		skin = """
-			<screen name="RemoteTimer" position="center,center" size="560,455" title="RemoteTimer Timerlist">
-				<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphaTest="on"/>
-				<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphaTest="on"/>
-				<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphaTest="on"/>
-				<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphaTest="on"/>
-				<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#9f1313" transparent="1"/>
-				<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#1f771f" transparent="1"/>
-				<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#a08500" transparent="1"/>
-				<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#18188b" transparent="1"/>
-				<widget name="text" position="0,60" zPosition="1" size="560,350" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" />
-				<widget name="textok" position="0,430" zPosition="1" size="560,25" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" />
-				<widget name="timerlist" position="0,60" zPosition="2" size="560,350" scrollbarMode="showOnDemand" foregroundColorSelected="#ffd700" />
+			<screen name="RemoteTimer" position="center,center" size="560,510" title="RemoteTimer Timerlist">
+				<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on"/>
+				<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on"/>
+				<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on"/>
+				<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on"/>
+				<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#9f1313" transparent="1"/>
+				<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#1f771f" transparent="1"/>
+				<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#a08500" transparent="1"/>
+				<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#18188b" transparent="1"/>
+				<widget name="text" position="0,60" zPosition="1" size="560,350" font="Regular;20" halign="center" valign="center" />
+				<widget name="textok" position="0,480" zPosition="1" size="560,25" font="Regular;20" halign="center" valign="center" />
+				<widget name="timerlist" position="0,60" zPosition="2" size="560,342" scrollbarMode="showOnDemand" foregroundColorSelected="#ffd700" />
+				<widget name="description" position="0,406" zPosition="1" size="560,69" font="Regular;20" halign="left" valign="top"/>
 			</screen>"""
 	else:
 		skin = """
-			<screen name="RemoteTimer" position="center,center" size="560,455" title="RemoteTimer Timerlist">
-				<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphaTest="on"/>
-				<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphaTest="on"/>
-				<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphaTest="on"/>
-				<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphaTest="on"/>
-				<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#9f1313" transparent="1"/>
-				<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#1f771f" transparent="1"/>
-				<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#a08500" transparent="1"/>
-				<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;17" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#18188b" transparent="1"/>
-				<widget name="text" position="0,60" zPosition="1" size="560,350" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" />
-				<widget name="textok" position="0,430" zPosition="1" size="560,25" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" />
-				<widget name="timerlist" position="0,60" zPosition="2" size="560,350" scrollbarMode="showOnDemand" />
+			<screen name="RemoteTimer" position="center,center" size="560,505" title="RemoteTimer Timerlist">
+				<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on"/>
+				<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on"/>
+				<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on"/>
+				<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on"/>
+				<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#9f1313" transparent="1"/>
+				<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#1f771f" transparent="1"/>
+				<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#a08500" transparent="1"/>
+				<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;17" halign="center" valign="center" backgroundColor="#18188b" transparent="1"/>
+				<widget name="text" position="0,60" zPosition="1" size="560,350" font="Regular;20" halign="center" valign="center" />
+				<widget name="textok" position="0,470" zPosition="1" size="560,25" font="Regular;20" halign="center" valign="center" />
+				<widget name="timerlist" position="0,60" zPosition="2" size="560,342" scrollbarMode="showOnDemand" />
+				<widget name="description" position="0,405" zPosition="1" size="560,60" font="Regular;17" halign="left" valign="top"/>
 			</screen>"""
 	timerlist = []
 
@@ -347,6 +349,7 @@ class RemoteTimer(Screen):
 		self["key_blue"] = Label()
 		self["text"] = Label(_("Getting Partnerbox Information..."))
 		self["textok"] = Label()
+		self["description"] = Label()
 		self.onLayoutFinish.append(self.startRun)
 		self.E2TimerList = []
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions", "ColorActions", "EPGSelectActions"],
@@ -373,7 +376,12 @@ class RemoteTimer(Screen):
 		self.oldtype = 0
 		self.Locations = []
 		self["timerlist"] = E2TimerMenu(self.enigma_type)
+		self["timerlist"].onSelectionChanged.append(self.selectionChanged)
 		self.toggleButtonState()
+
+	def selectionChanged(self, event):
+		if event:
+			self["description"].setText(event.description)
 
 	def toggleButtonState(self):
 		if self["timerlist"].currentSelection is not None:
@@ -1641,13 +1649,19 @@ class E2TimerMenu(GUIComponent, object):
 		self.l.setItemHeight(font[2])
 		font = skin.fonts.get("PartnerBoxE2TimerMenu1", ("Regular", 18))
 		self.l.setFont(1, gFont(font[0], font[1]))
-		self.iconWait = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_wait.png"))
-		self.iconRecording = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_rec.png"))
-		self.iconPrepared = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_prep.png"))
-		self.iconDone = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_done.png"))
-		self.iconRepeat = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_rep.png"))
-		self.iconZapped = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_zap.png"))
-		self.iconDisabled = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_off.png"))
+		self.iconWait = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_wait.svg"))
+		self.iconRecording = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_rec.svg"))
+		self.iconPrepared = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_prep.svg"))
+		self.iconDone = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_done.svg"))
+		self.iconRepeat = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_rep.svg"))
+		self.iconZapped = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_zap.svg"))
+		self.iconDisabled = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_off.svg"))
+		self.onSelectionChanged = []
+
+	def _selectionChanged(self):
+		current = self.getCurrent()
+		for callback in self.onSelectionChanged:
+			callback(current)
 
 	def buildEntry(self, timer):
 		width = self.l.getItemSize().width()
@@ -1810,6 +1824,7 @@ class E2TimerMenu(GUIComponent, object):
 
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
+		instance.selectionChanged.get().append(self._selectionChanged)
 
 	def preWidgetRemove(self, instance):
 		instance.setContent(None)
