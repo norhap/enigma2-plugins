@@ -1274,7 +1274,7 @@ class EPGSearchHistory(Screen):
 					index = self["history"].getSelectedIndex()
 					del self["history"].list[index]
 					config.plugins.epgsearch.history.value = self["history"].list
-					self.close(False)
+					self.session.openWithCallback(self.close, EPGSearchHistory, config.plugins.epgsearch.history.value)
 			text = "\n" + _("Delete") + "\n\n" + f"{item}"
 			self.session.openWithCallback(delete_item, MessageBox, text, type=MessageBox.TYPE_YESNO, default=False)
 
