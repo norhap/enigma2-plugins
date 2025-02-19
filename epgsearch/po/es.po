@@ -20,32 +20,29 @@ msgstr ""
 
 #, python-format
 msgid " (%d min)"
-msgstr ""
+msgstr " (%d min)"
 
 #, python-format
 msgid " (%s%d min)"
-msgstr ""
+msgstr " (%s%d min)"
 
 msgid "Add \"Search event in EPG\" to channel menu"
-msgstr ""
+msgstr "Añadir \"Buscar evento en EPG\" al menú de canales"
 
 msgid "Add \"Search event in EPG\" to event menu"
-msgstr ""
+msgstr "Añadir \"Buscar evento en EPG\" al menú de eventos"
 
 msgid "Add \"Search\" Button to EPG"
-msgstr ""
+msgstr "Añadir botón \"Buscar\" a EPG"
 
 msgid "Add timer"
-msgstr ""
+msgstr "Añadir temporizador"
 
-msgid ""
-"Adds \"Search event in EPG\" item into the channel selection context menu "
-"(needs restart GUI)"
-msgstr ""
+msgid "Adds \"Search event in EPG\" item into the channel selection context menu (needs restart GUI)"
+msgstr "Añadir \"Buscar evento en EPG\" al menú contextual de selección de canal (requiere reiniciar la GUI)"
 
-msgid ""
-"Adds \"Search event in EPG\" item into the event menu (needs restart GUI)"
-msgstr ""
+msgid "Adds \"Search event in EPG\" item into the event menu (needs restart GUI)"
+msgstr "Añadir \"Buscar evento en EPG\" al menú de eventos (requiere reiniciar la GUI)"
 
 msgid "Cancel"
 msgstr "Cancelar"
@@ -54,30 +51,26 @@ msgid "Channel Selection"
 msgstr "Selección canal"
 
 msgid "Choice list"
-msgstr ""
+msgstr "Lista de opciones"
 
 msgid "Choice list EPGSearch"
-msgstr ""
+msgstr "Elige lista Buscar EPG"
 
 msgid "Choice list RED Button"
-msgstr ""
+msgstr "Elige lista botón ROJO"
 
-msgid "Choosing an encoding. \"UTF-8\" to search for EPG cyrillic."
-msgstr ""
-
-#, fuzzy
 msgid "Clear history"
 msgstr "Limpiar Historia"
 
 #, python-format
 msgid "Could not read AutoTimer timer list: %s"
-msgstr ""
+msgstr "No se pudo leer la lista de temporizadores de AutoTimer: %s"
 
 msgid "Custom search"
-msgstr ""
+msgstr "Busca personalizada"
 
 msgid "Display name service as in bouquets"
-msgstr ""
+msgstr "Nombre de canal para mostrar en bouquets"
 
 msgid "Edit & search"
 msgstr "Editar & buscar"
@@ -92,41 +85,31 @@ msgid "EPGSearch - History"
 msgstr "Buscar EPG - Historia"
 
 msgid "EPGSearch Setup"
-msgstr ""
-
-msgid "Encoding Search to EPG"
-msgstr "Buscar EPG"
+msgstr "Ajustes Buscar EPG"
 
 msgid "Enter text to search for"
 msgstr "Introduzca texto a buscar"
 
 msgid "Export selected as AutoTimer"
-msgstr ""
+msgstr "Exportar seleccionado como temporizador automático"
 
 msgid "History"
 msgstr "Historia"
 
-msgid ""
-"How many entries to keep in the search history at most. 0 disables history "
-"entirely!"
-msgstr ""
+msgid "How many entries to keep in the search history at most. 0 disables history entirely!"
+msgstr "¿Cuántas entradas se deben mantener en el historial de búsqueda como máximo? ¡0 deshabilita el historial por completo!"
 
-msgid ""
-"If 'Search only bouquets' is enabled, show service name as in bouquets for "
-"renamed services."
-msgstr ""
+msgid "If 'Search only bouquets' is enabled, show service name as in bouquets for renamed services."
+msgstr "Si está habilitado \"Buscar solo bouquets\", se muestra el nombre del canal como bouquet para canales renombrados."
 
-msgid ""
-"If this setting is enabled, searching EPG in only services in user bouquets."
-msgstr ""
+msgid "If this setting is enabled, searching EPG in only services in user bouquets."
+msgstr "Si esta configuración está habilitada, la búsqueda de EPG se realiza solo en los canales de los bouquets."
 
-msgid ""
-"If this setting is enabled, the plugin adds a \"Search\" Button to the "
-"regular EPG."
-msgstr ""
+msgid "If this setting is enabled, the plugin adds a \"Search\" Button to the regular EPG."
+msgstr "Si esta configuración está habilitada, el plugin añade un botón \"Buscar\" a la EPG normal."
 
 msgid "If this setting is enabled, the plugin adds picons."
-msgstr ""
+msgstr "Si esta configuración está habilitada, el plugin añade picons."
 
 msgid "Import from AutoTimer"
 msgstr "Importar desde la Programación"
@@ -140,22 +123,20 @@ msgstr "Importar desde la Programación"
 msgid "Include IPTV services"
 msgstr "Incluir canales IPTV"
 
-msgid ""
-"Include IPTV services in search, in some cases slows down the searching."
-msgstr ""
-"Incluir canales IPTV en la búsqueda, en algunos casos ralentiza la búsqueda."
+msgid "Include IPTV services in search, in some cases slows down the searching."
+msgstr "Incluir canales IPTV en la búsqueda, en algunos casos ralentiza la búsqueda."
 
 msgid "Length of History"
-msgstr ""
+msgstr "Longitud de la historia"
 
 msgid "List of history is cleared !"
-msgstr ""
+msgstr "¡Se elimina la lista del historial!"
 
 msgid "Lookup in TMBD"
-msgstr ""
+msgstr "Búsqueda en TMBD"
 
 msgid "Modify searched text"
-msgstr ""
+msgstr "Modificar el texto buscado"
 
 msgid "New Search"
 msgstr "Nueva búsqueda"
@@ -167,107 +148,97 @@ msgid "OK"
 msgstr "OK"
 
 msgid "Open selected in IMDb"
-msgstr ""
+msgstr "Abrir seleccionado en IMDb"
 
 msgid "Partnerbox Entries"
-msgstr ""
+msgstr "Entradas Partnerbox"
 
 msgid "Save search as AutoTimer"
-msgstr ""
+msgstr "Guarda búsqueda como AutoTimer"
 
 msgid "Search event"
 msgstr "Buscar evento"
 
 msgid "Search EPG by title event"
-msgstr ""
+msgstr "Buscar EPG por título del evento"
 
 msgid "Search event in EPG"
-msgstr "Buscar EPG"
+msgstr "Buscar evento en EPG"
 
 msgid "Search for TMDb info"
-msgstr ""
+msgstr "Buscar info para TMDb"
 
 msgid "Search only bouquets"
-msgstr ""
+msgstr "Buscar solo bouquets"
 
 msgid "Search strictness"
-msgstr ""
+msgstr "Búsqueda de rigor"
 
 msgid "Search type"
-msgstr "Buscar"
+msgstr "Tipo de búsqueda"
 
 msgid "Search type for filter"
-msgstr ""
+msgstr "Tipode búsqueda para filtro"
 
 msgid "Select a timer to search"
 msgstr "Seleccionar una programación a buscar"
 
 msgid "Select action:"
-msgstr ""
+msgstr "Seleccione acción:"
 
 msgid "Select channel"
-msgstr ""
+msgstr "Seleccione canal"
 
-msgid ""
-"Select item for search and press 'OK' or edit item with YELLOW button or "
-"delete item with BLUE button."
-msgstr ""
-"Seleccione el elemento a buscar y pulse “Aceptar” o edite el elemento con "
-"el botón AMARILLO o elimine el elemento con el botón AZUL."
+msgid "Select item for search and press 'OK' or edit item with YELLOW button or delete item with BLUE button."
+msgstr "Seleccione evento a buscar y pulse \"Aceptar\" o edite el evento con botón AMARILLO o elimine el evento con botón AZUL."
 
-msgid ""
-"Select type for filter search. Press button P +/- for show/hide filter in "
-"description after search."
-msgstr ""
+msgid "Select type for filter search. Press button P +/- for show/hide filter in description after search."
+msgstr "Seleccione el tipo de filtro de búsqueda. Pulse botón P +/- para mostrar u ocultar el filtro en la descripción después de la búsqueda."
 
-msgid ""
-"Select type for search, \"partial match\" for the most extensive search, "
-"\"partial description\" for the most description search."
-msgstr ""
-"Seleccione el tipo de búsqueda, \"coincidencia parcial\" para la búsqueda "
-"más extensa, \"descripción parcial\" para la búsqueda con más descripción."
+msgid "Select type for search, \"partial match\" for the most extensive search, \"partial description\" for the most description search."
+msgstr "Seleccione el tipo de búsqueda, \"coincidencia parcial\" para la búsqueda más extensa, \"descripción parcial\" para la búsqueda con más descripción."
 
 msgid "Select type: 'Search and Select channel' or 'Search'."
-msgstr ""
+msgstr "Seleccionar tipo: ‘Buscar y seleccionar canal’ o ‘Buscar’."
 
 msgid "Select whether or not you want to enforce case correctness."
-msgstr ""
+msgstr "Seleccione si desea o no aplicar la corrección de mayúsculas y minúsculas."
 
 msgid "Setup"
-msgstr ""
+msgstr "Ajustes"
 
 msgid "Timers list"
-msgstr ""
+msgstr "Lista temporizadores"
 
 msgid "Type blue Button"
-msgstr ""
+msgstr "Tipo botón AZUL"
 
 msgid "Use Picons"
-msgstr ""
+msgstr "Usa Picons"
 
 msgid "Zap to selected service"
-msgstr ""
+msgstr "Zapear al canal seleccionado"
 
 msgid "case-insensitive search"
-msgstr ""
+msgstr "búsqueda sin distinción mayúsculas y minúsculas"
 
 msgid "case-sensitive search"
-msgstr ""
+msgstr "búsqueda con distinción mayúsculas y minúsculas"
 
 msgid "choice (Search and standard)"
-msgstr ""
+msgstr "elección (Búsqueda y estándar)"
 
 msgid "exact match"
-msgstr ""
+msgstr "búsqueda exacta"
 
 msgid "only Search"
-msgstr "Buscar"
+msgstr "solo Buscar"
 
 msgid "partial description"
 msgstr "descripción parcial"
 
 msgid "partial match"
-msgstr ""
+msgstr "búsqueda parcial"
 
 msgid "Search EPG"
 msgstr "Buscar EPG"
@@ -276,4 +247,4 @@ msgid "Search EPG..."
 msgstr "Buscar EPG..."
 
 msgid "title starts with"
-msgstr ""
+msgstr "el título comienza con"
