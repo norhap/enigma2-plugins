@@ -178,13 +178,13 @@ def Plugins(**kwargs):
 			needsRestart=False,
 		),
 		PluginDescriptor(
-			name=_("search EPG..."),
+			name=_("Search EPG..."),
 			where=PluginDescriptor.WHERE_EVENTINFO,
 			fnc=eventinfo,
 			needsRestart=False,
 		),
 		PluginDescriptor(
-			description=_("search EPG"),
+			description=_("Search EPG"),
 			where=PluginDescriptor.WHERE_MOVIELIST,
 			fnc=movielist,
 			needsRestart=False,

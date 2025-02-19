@@ -19,6 +19,8 @@ from Components.EpgList import EPGList, EPG_TYPE_SINGLE, EPG_TYPE_MULTI, Rect
 from Components.TimerList import TimerList
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.Event import Event
+from Components.Label import Label
+from Components.Sources.List import List
 
 from Components.GUIComponent import GUIComponent
 from skin import parseFont
@@ -851,14 +853,8 @@ class EPGSearch(EPGSelection):
 		else:
 			# Fetch match strings
 			# XXX: we could use the timer title as description
-			options = [(x.match, x.match) for x in autotimer.getTimerList()]
-
-			self.session.openWithCallback(
-				self.searchEPGWrapper,
-				ChoiceBox,
-				title=_("Select text to search for"),
-				list=options
-			)
+			options = [x.match for x in autotimer.getTimerList()]
+			self.session.openWithCallback(self.searchEPGWrapper, EPGSearchHistory, options)
 		finally:
 			# Remove instance if there wasn't one before
 			if removeInstance:
@@ -929,15 +925,9 @@ class EPGSearch(EPGSelection):
 		self.session.open(EPGSearchSetup)
 
 	def blueButtonPressed(self):
-		options = [(x, x) for x in config.plugins.epgsearch.history.value]
-
-		if options:
-			self.session.openWithCallback(
-				self.searchEPGWrapper,
-				ChoiceBox,
-				title=_("Select text to search for"),
-				list=options
-			)
+		if len(config.plugins.epgsearch.history.value):
+			history = [x for x in config.plugins.epgsearch.history.value]
+			self.session.openWithCallback(self.searchEPGWrapper, EPGSearchHistory, history)
 		else:
 			self.session.open(
 				MessageBox,
@@ -960,25 +950,15 @@ class EPGSearch(EPGSelection):
 				l.list = []
 				l.l.setList(l.list)
 			self.currSearch = searchString
-			if searchSave:
-				# Maintain history
-				history = config.plugins.epgsearch.history.value
-				if searchString not in history:
-					history.insert(0, searchString)
-					maxLen = config.plugins.epgsearch.history_length.value
-					if len(history) > maxLen:
-						del history[maxLen:]
-				else:
-					history.remove(searchString)
-					history.insert(0, searchString)
-
-			# Workaround to allow search for umlauts if we know the encoding (pretty bad, I know...)
-			encoding = config.plugins.epgsearch.encoding.value
-			if encoding != 'UTF-8':
-				try:
-					searchString = searchString.decode('UTF-8', 'replace').encode(encoding, 'replace')
-				except (UnicodeDecodeError, UnicodeEncodeError):
-					pass
+			history = config.plugins.epgsearch.history.value
+			if searchString not in history:
+				history.insert(0, searchString)
+				maxLen = config.plugins.epgsearch.history_length.value
+				if len(history) > maxLen:
+					del history[maxLen:]
+			else:
+				history.remove(searchString)
+				history.insert(0, searchString)
 
 			# Search EPG, default to empty list
 			epgcache = eEPGCache.getInstance()  # XXX: the EPGList also keeps an instance of the cache but we better make sure that we get what we want :-)
@@ -1223,3 +1203,80 @@ class EPGSearchEPGSelection(EPGSelection):
 			)
 		else:
 			self.close(evt.getEventName())
+
+
+class EPGSearchHistory(Screen):
+	skin = """
+	<screen name="EPGSearchHistory" position="center,center" size="565,415" title="EPGSearch - History">
+		<ePixmap name="red"    position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on"/>
+		<ePixmap name="green"  position="140,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on"/>
+		<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphaTest="on"/>
+		<widget name="key_red" position="0,0" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2"/>
+		<widget name="key_green" position="140,0" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2"/>
+		<widget name="key_yellow" position="280,0" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2"/>
+		<widget source="history" render="Listbox" position="5,47" size="550,300" scrollbarMode="showOnDemand">
+			<convert type="StringList"/>
+		</widget>
+		<ePixmap pixmap="skin_default/div-h.png" position="5,355" zPosition="2" size="560,2"/>
+		<widget name="help" position="5,360" zPosition="2" size="560,50" verticalAlignment="center" horizontalAlignment="left" font="Regular;22" foregroundColor="white"/>
+	</screen>
+	"""
+
+	def __init__(self, session, data):
+		Screen.__init__(self, session)
+		self.session = session
+		self.skinName = ["EPGSearchHistory"]
+		self.setTitle(_("EPGSearch - History"))
+
+		self.list = List([])
+		self["history"] = self.list
+		self["history"].setList(data)
+
+		self["OkCancelActions"] = ActionMap(["OkCancelActions"],
+			{
+			"cancel": self.exit,
+			"ok": self.select,
+		})
+		self["EPGSearchHistoryActions"] = ActionMap(["ColorActions"],
+			{
+			"red": self.exit,
+			"green": self.select,
+			"yellow": self.edit,
+			"blue": self.remove,
+		}, -2)
+
+		self["key_red"] = Button(_("Cancel"))
+		self["key_green"] = Button(_("OK"))
+		self["key_yellow"] = Button(_("Edit & search"))
+		self["key_blue"] = Button(_("Delete"))
+		self["help"] = Label(_("Select item for search and press 'OK' or edit item with YELLOW button or delete item with BLUE button."))
+
+	def select(self):
+		try:
+			self.session.open(EPGSearch, self['history'].getCurrent())
+		except:
+			pass
+
+	def edit(self):
+		item = self["history"].getCurrent()
+		if item:
+			def result(text):
+				if not text:
+					text = item
+				self.session.open(EPGSearch, item)
+			self.session.openWithCallback(result, VirtualKeyBoard, title=_("Modify searched text"), text=item)
+
+	def remove(self):
+		item = self["history"].getCurrent()
+		if item:
+			def delete_item(answer=False):
+				if answer:
+					index = self["history"].getSelectedIndex()
+					del self["history"].list[index]
+					config.plugins.epgsearch.history.value = self["history"].list
+					self.close(False)
+			text = "\n" + _("Delete") + "\n\n" + f"{item}"
+			self.session.openWithCallback(delete_item, MessageBox, text, type=MessageBox.TYPE_YESNO, default=False)
+
+	def exit(self):
+		self.close(False)

@@ -8,14 +8,15 @@ msgstr ""
 "Project-Id-Version: enigma2-plugins 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-13 18:34+0200\n"
-"PO-Revision-Date: 2014-11-22 20:45+0100\n"
+"PO-Revision-Date: 2025-02-19 02:38+0100\n"
 "Last-Translator: José Juan Zapater <josej@zapater.fdns.net>\n"
 "Language-Team: none\n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
 
 #, python-format
 msgid " (%d min)"
@@ -37,10 +38,13 @@ msgstr ""
 msgid "Add timer"
 msgstr ""
 
-msgid "Adds \"Search event in EPG\" item into the channel selection context menu (needs restart GUI)"
+msgid ""
+"Adds \"Search event in EPG\" item into the channel selection context menu "
+"(needs restart GUI)"
 msgstr ""
 
-msgid "Adds \"Search event in EPG\" item into the event menu (needs restart GUI)"
+msgid ""
+"Adds \"Search event in EPG\" item into the event menu (needs restart GUI)"
 msgstr ""
 
 msgid "Cancel"
@@ -63,7 +67,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Clear history"
-msgstr "Historia"
+msgstr "Limpiar Historia"
 
 #, python-format
 msgid "Could not read AutoTimer timer list: %s"
@@ -75,26 +79,21 @@ msgstr ""
 msgid "Display name service as in bouquets"
 msgstr ""
 
-#, fuzzy
+msgid "Edit & search"
+msgstr "Editar & buscar"
+
 msgid "EPG Search"
 msgstr "Buscar"
 
-#, fuzzy
 msgid "EPGSearch"
 msgstr "Buscar"
 
-#, fuzzy
 msgid "EPGSearch - History"
-msgstr "Buscar"
+msgstr "Buscar EPG - Historia"
 
 msgid "EPGSearch Setup"
 msgstr ""
 
-#, fuzzy
-msgid "Edit & search"
-msgstr "Buscar"
-
-#, fuzzy
 msgid "Encoding Search to EPG"
 msgstr "Buscar EPG"
 
@@ -107,22 +106,28 @@ msgstr ""
 msgid "History"
 msgstr "Historia"
 
-msgid "How many entries to keep in the search history at most. 0 disables history entirely!"
+msgid ""
+"How many entries to keep in the search history at most. 0 disables history "
+"entirely!"
 msgstr ""
 
-msgid "If 'Search only bouquets' is enabled, show service name as in bouquets for renamed services."
+msgid ""
+"If 'Search only bouquets' is enabled, show service name as in bouquets for "
+"renamed services."
 msgstr ""
 
-msgid "If this setting is enabled, searching EPG in only services in user bouquets."
+msgid ""
+"If this setting is enabled, searching EPG in only services in user bouquets."
 msgstr ""
 
-msgid "If this setting is enabled, the plugin adds a \"Search\" Button to the regular EPG."
+msgid ""
+"If this setting is enabled, the plugin adds a \"Search\" Button to the "
+"regular EPG."
 msgstr ""
 
 msgid "If this setting is enabled, the plugin adds picons."
 msgstr ""
 
-#, fuzzy
 msgid "Import from AutoTimer"
 msgstr "Importar desde la Programación"
 
@@ -135,8 +140,10 @@ msgstr "Importar desde la Programación"
 msgid "Include IPTV services"
 msgstr "Incluir canales IPTV"
 
-msgid "Include IPTV services in search, in some cases slows down the searching."
-msgstr "Incluir canales IPTV en la búsqueda, en algunos casos ralentiza la búsqueda."
+msgid ""
+"Include IPTV services in search, in some cases slows down the searching."
+msgstr ""
+"Incluir canales IPTV en la búsqueda, en algunos casos ralentiza la búsqueda."
 
 msgid "Length of History"
 msgstr ""
@@ -153,9 +160,8 @@ msgstr ""
 msgid "New Search"
 msgstr "Nueva búsqueda"
 
-#, fuzzy
 msgid "No history !"
-msgstr "Historia"
+msgstr "¡No hay historia!"
 
 msgid "OK"
 msgstr "OK"
@@ -175,7 +181,6 @@ msgstr "Buscar evento"
 msgid "Search EPG by title event"
 msgstr ""
 
-#, fuzzy
 msgid "Search event in EPG"
 msgstr "Buscar EPG"
 
@@ -188,7 +193,6 @@ msgstr ""
 msgid "Search strictness"
 msgstr ""
 
-#, fuzzy
 msgid "Search type"
 msgstr "Buscar"
 
@@ -204,14 +208,24 @@ msgstr ""
 msgid "Select channel"
 msgstr ""
 
-msgid "Select item for search and press 'OK' or edit item with yellow button."
+msgid ""
+"Select item for search and press 'OK' or edit item with YELLOW button or "
+"delete item with BLUE button."
+msgstr ""
+"Seleccione el elemento a buscar y pulse “Aceptar” o edite el elemento con "
+"el botón AMARILLO o elimine el elemento con el botón AZUL."
+
+msgid ""
+"Select type for filter search. Press button P +/- for show/hide filter in "
+"description after search."
 msgstr ""
 
-msgid "Select type for filter search. Press button P +/- for show/hide filter in description after search."
+msgid ""
+"Select type for search, \"partial match\" for the most extensive search, "
+"\"partial description\" for the most description search."
 msgstr ""
-
-msgid "Select type for search, \"partial match\" for the most extensive search, \"partial description\" for the most description search."
-msgstr ""
+"Seleccione el tipo de búsqueda, \"coincidencia parcial\" para la búsqueda "
+"más extensa, \"descripción parcial\" para la búsqueda con más descripción."
 
 msgid "Select type: 'Search and Select channel' or 'Search'."
 msgstr ""
@@ -246,20 +260,19 @@ msgstr ""
 msgid "exact match"
 msgstr ""
 
-#, fuzzy
 msgid "only Search"
 msgstr "Buscar"
 
 msgid "partial description"
-msgstr ""
+msgstr "descripción parcial"
 
 msgid "partial match"
 msgstr ""
 
-msgid "search EPG"
+msgid "Search EPG"
 msgstr "Buscar EPG"
 
-msgid "search EPG..."
+msgid "Search EPG..."
 msgstr "Buscar EPG..."
 
 msgid "title starts with"
