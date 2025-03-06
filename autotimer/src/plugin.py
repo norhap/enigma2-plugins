@@ -120,7 +120,7 @@ def sessionstart(reason, **kwargs):
 			from twisted.python import util
 			from WebChilds.UploadResource import UploadResource
 
-			from . AutoTimerResource import AutoTimerDoParseResource, \
+			from .AutoTimerResource import AutoTimerDoParseResource, \
 				AutoTimerListAutoTimerResource, AutoTimerAddOrEditAutoTimerResource, \
 				AutoTimerRemoveAutoTimerResource, AutoTimerChangeSettingsResource, \
 				AutoTimerSettingsResource, AutoTimerSimulateResource, AutoTimerTestResource, \
@@ -134,26 +134,52 @@ def sessionstart(reason, **kwargs):
 						return self.render_GET(request)
 			else:
 				File = static.File
+
 			# webapi
 			root = AutoTimerListAutoTimerResource()
-			root.putChild('parse', AutoTimerDoParseResource())
-			root.putChild('remove', AutoTimerRemoveAutoTimerResource())
-			root.putChild('upload_xmlconfiguration', AutoTimerUploadXMLConfigurationAutoTimerResource())
-			root.putChild('add_xmltimer', AutoTimerAddXMLAutoTimerResource())
-			root.putChild('edit', AutoTimerAddOrEditAutoTimerResource())
-			root.putChild('get', AutoTimerSettingsResource())
-			root.putChild('set', AutoTimerChangeSettingsResource())
-			root.putChild('simulate', AutoTimerSimulateResource())
-			root.putChild('test', AutoTimerTestResource())
+			root.putChild(b'parse', AutoTimerDoParseResource())
+			root.putChild(b'remove', AutoTimerRemoveAutoTimerResource())
+			root.putChild(b'upload_xmlconfiguration', AutoTimerUploadXMLConfigurationAutoTimerResource())
+			root.putChild(b'add_xmltimer', AutoTimerAddXMLAutoTimerResource())
+			root.putChild(b'edit', AutoTimerAddOrEditAutoTimerResource())
+			root.putChild(b'get', AutoTimerSettingsResource())
+			root.putChild(b'set', AutoTimerChangeSettingsResource())
+			root.putChild(b'simulate', AutoTimerSimulateResource())
+			root.putChild(b'test', AutoTimerTestResource())
 			addExternalChild(("autotimer", root, "AutoTimer-Plugin", API_VERSION, False))
 
 			# webgui
 			session = kwargs["session"]
 			root = File(util.sibpath(__file__, "web-data"))
-			root.putChild("web", ScreenPage(session, util.sibpath(__file__, "web"), True))
-			root.putChild('tmp', File('/tmp'))
-			root.putChild("uploadfile", UploadResource(session))
+			root.putChild(b'web', ScreenPage(session, util.sibpath(__file__, "web"), True))
+			root.putChild(b'tmp', File('/tmp'))
+			root.putChild(b'uploadfile', UploadResource(session))
 			addExternalChild(("autotimereditor", root, "AutoTimer", "1", True))
+			doLog("[AutoTimer] Use WebInterface")
+	else:
+		if isOpenWebifInstalled():
+			try:
+				from Plugins.Extensions.WebInterface.WebChilds.Toplevel import addExternalChild
+				from .AutoTimerResource import AutoTimerDoParseResource, \
+					AutoTimerListAutoTimerResource, AutoTimerAddOrEditAutoTimerResource, \
+					AutoTimerRemoveAutoTimerResource, AutoTimerChangeSettingsResource, \
+					AutoTimerSettingsResource, AutoTimerSimulateResource, AutoTimerTestResource, \
+					AutoTimerUploadXMLConfigurationAutoTimerResource, AutoTimerAddXMLAutoTimerResource, API_VERSION
+			except ImportError as ie:
+				pass
+			else:
+				root = AutoTimerListAutoTimerResource()
+				root.putChild(b'parse', AutoTimerDoParseResource())
+				root.putChild(b'remove', AutoTimerRemoveAutoTimerResource())
+				root.putChild(b'upload_xmlconfiguration', AutoTimerUploadXMLConfigurationAutoTimerResource())
+				root.putChild(b'add_xmltimer', AutoTimerAddXMLAutoTimerResource())
+				root.putChild(b'edit', AutoTimerAddOrEditAutoTimerResource())
+				root.putChild(b'get', AutoTimerSettingsResource())
+				root.putChild(b'set', AutoTimerChangeSettingsResource())
+				root.putChild(b'simulate', AutoTimerSimulateResource())
+				root.putChild(b'test', AutoTimerTestResource())
+				addExternalChild(("autotimer", root, "AutoTimer-Plugin", API_VERSION))
+				doLog("[AutoTimer] Use OpenWebif")
 
 
 base_furtherOptions = None
