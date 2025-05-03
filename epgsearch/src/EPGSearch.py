@@ -562,6 +562,8 @@ class EPGSearch(EPGSelection):
 		self["key_green"] = Button(_("Add timer"))
 		self.key_green_choice = self.ADD_TIMER
 		self.key_red_choice = self.EMPTY
+		self.original_cfg_filter_start = config.epg.filter_start.value[:]
+		self.original_cfg_filter_end = config.epg.filter_end.value[:]
 		self["list"] = EPGSearchList(type=self.type, selChangedCB=self.onSelectionChanged, timer=session.nav.RecordTimer)
 		self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions", "MenuActions"],
 			{
