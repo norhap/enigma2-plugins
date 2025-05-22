@@ -4,6 +4,7 @@ from enigma import eEPGCache, eServiceReference, eServiceCenter, RT_HALIGN_LEFT,
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN, fileExists, isPluginInstalled
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Alternatives import GetWithAlternative
+from Tools.FallbackTimer import FallbackTimerList
 from ServiceReference import ServiceReference
 from .EPGSearchSetup import EPGSearchSetup
 from Screens.ChannelSelection import SimpleChannelSelection
@@ -581,6 +582,7 @@ class EPGSearch(EPGSelection):
 
 		self["actions"].csel = self
 		self.onLayoutFinish.append(self.onCreate)
+		self.fallbackTimer = FallbackTimerList(self, self.onSelectionChanged)
 		# end stripped copy of EPGSelection.__init__
 		self.select = False
 		self.do_filter = None
