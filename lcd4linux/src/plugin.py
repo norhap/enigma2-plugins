@@ -5272,6 +5272,7 @@ class LCDdisplayMenu(Screen):
 		self.list = []
 		self.SetList()
 		self["menu"] = MenuList(self.list)
+		self["key_red"] = StaticText(_("Delete"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
 			"ok": self.keyOK,
@@ -5358,6 +5359,7 @@ class LCDdisplayFile(Screen):
 			FileName = "/%s" % FileName
 		self["File"] = StaticText(_("currently set : %s") % FileName)
 		self["LCDfile"] = myFileList(FileName, showDirectories=True, showFiles=showFiles, useServiceRef=False, matchingPattern=matchingPattern)
+		self["key_green"] = StaticText(_("Select"))
 		self["actions"] = ActionMap(["WizardActions", "ColorActions"],
 		{
 			"ok": self.OneDescent,
@@ -5496,7 +5498,6 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 		self.picload2.PictureData.get().append(self.setPictureCB2)
 		sc = AVSwitch().getFramebufferScale()
 		self.picload2.setPara((pic_w, pic_h, sc[0], sc[1], False, 1, '#00000000'))
-
 		self.picload3 = ePicLoad()
 		self.picload3.PictureData.get().append(self.setPictureCB3)
 		sc = AVSwitch().getFramebufferScale()
@@ -5514,6 +5515,7 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 		self["LCD1text"] = StaticText()
 		self["LCD2text"] = StaticText()
 		self["LCD3text"] = StaticText()
+		self["key_menu"] = StaticText(_("Menu"))
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Save"))
 		self["key_yellow"] = Button(_("Restart Displays"))
