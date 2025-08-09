@@ -162,7 +162,6 @@ epgrefresh/Makefile
 epgrefresh/meta/Makefile
 epgrefresh/po/Makefile
 epgrefresh/src/Makefile
-epgrefresh/src/webinterface/Makefile
 
 epgsearch/Makefile
 epgsearch/meta/Makefile

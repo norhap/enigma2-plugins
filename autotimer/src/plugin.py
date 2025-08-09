@@ -48,27 +48,6 @@ except Exception as e:
 	autotimerHelp = None
 
 
-def isOriginalWebifInstalled():
-	try:
-		from Tools.Directories import fileExists
-	except:
-		return False
-	pluginpath = eEnv.resolve('${libdir}/enigma2/python/Plugins/Extensions/WebInterface/plugin.py')
-	if fileExists(pluginpath) or fileExists(pluginpath + "o") or fileExists(pluginpath + "c"):
-		return True
-	return False
-
-
-def isOpenWebifInstalled():
-	try:
-		from Tools.Directories import fileExists
-	except:
-		return False
-	pluginpath = eEnv.resolve('${libdir}/enigma2/python/Plugins/Extensions/OpenWebif/plugin.py')
-	if fileExists(pluginpath) or fileExists(pluginpath + "o") or fileExists(pluginpath + "c"):
-		return True
-	return False
-
 # Autostart
 
 
@@ -113,73 +92,6 @@ def sessionstart(reason, **kwargs):
 			AutoTimerEPGSelectionInit()
 		except:
 			pass
-		try:
-			from Plugins.Extensions.WebInterface.WebChilds.Toplevel import addExternalChild
-			from Plugins.Extensions.WebInterface.WebChilds.Screenpage import ScreenPage
-			from twisted.web import static
-			from twisted.python import util
-			from WebChilds.UploadResource import UploadResource
-
-			from .AutoTimerResource import AutoTimerDoParseResource, \
-				AutoTimerListAutoTimerResource, AutoTimerAddOrEditAutoTimerResource, \
-				AutoTimerRemoveAutoTimerResource, AutoTimerChangeSettingsResource, \
-				AutoTimerSettingsResource, AutoTimerSimulateResource, AutoTimerTestResource, \
-				AutoTimerUploadXMLConfigurationAutoTimerResource, AutoTimerAddXMLAutoTimerResource, API_VERSION
-		except ImportError as ie:
-			pass
-		else:
-			if hasattr(static.File, 'render_GET'):
-				class File(static.File):
-					def render_POST(self, request):
-						return self.render_GET(request)
-			else:
-				File = static.File
-
-			# webapi
-			root = AutoTimerListAutoTimerResource()
-			root.putChild(b'parse', AutoTimerDoParseResource())
-			root.putChild(b'remove', AutoTimerRemoveAutoTimerResource())
-			root.putChild(b'upload_xmlconfiguration', AutoTimerUploadXMLConfigurationAutoTimerResource())
-			root.putChild(b'add_xmltimer', AutoTimerAddXMLAutoTimerResource())
-			root.putChild(b'edit', AutoTimerAddOrEditAutoTimerResource())
-			root.putChild(b'get', AutoTimerSettingsResource())
-			root.putChild(b'set', AutoTimerChangeSettingsResource())
-			root.putChild(b'simulate', AutoTimerSimulateResource())
-			root.putChild(b'test', AutoTimerTestResource())
-			addExternalChild(("autotimer", root, "AutoTimer-Plugin", API_VERSION, False))
-
-			# webgui
-			session = kwargs["session"]
-			root = File(util.sibpath(__file__, "web-data"))
-			root.putChild(b'web', ScreenPage(session, util.sibpath(__file__, "web"), True))
-			root.putChild(b'tmp', File('/tmp'))
-			root.putChild(b'uploadfile', UploadResource(session))
-			addExternalChild(("autotimereditor", root, "AutoTimer", "1", True))
-			doLog("[AutoTimer] Use WebInterface")
-	else:
-		if isOpenWebifInstalled():
-			try:
-				from Plugins.Extensions.WebInterface.WebChilds.Toplevel import addExternalChild
-				from .AutoTimerResource import AutoTimerDoParseResource, \
-					AutoTimerListAutoTimerResource, AutoTimerAddOrEditAutoTimerResource, \
-					AutoTimerRemoveAutoTimerResource, AutoTimerChangeSettingsResource, \
-					AutoTimerSettingsResource, AutoTimerSimulateResource, AutoTimerTestResource, \
-					AutoTimerUploadXMLConfigurationAutoTimerResource, AutoTimerAddXMLAutoTimerResource, API_VERSION
-			except ImportError as ie:
-				pass
-			else:
-				root = AutoTimerListAutoTimerResource()
-				root.putChild(b'parse', AutoTimerDoParseResource())
-				root.putChild(b'remove', AutoTimerRemoveAutoTimerResource())
-				root.putChild(b'upload_xmlconfiguration', AutoTimerUploadXMLConfigurationAutoTimerResource())
-				root.putChild(b'add_xmltimer', AutoTimerAddXMLAutoTimerResource())
-				root.putChild(b'edit', AutoTimerAddOrEditAutoTimerResource())
-				root.putChild(b'get', AutoTimerSettingsResource())
-				root.putChild(b'set', AutoTimerChangeSettingsResource())
-				root.putChild(b'simulate', AutoTimerSimulateResource())
-				root.putChild(b'test', AutoTimerTestResource())
-				addExternalChild(("autotimer", root, "AutoTimer-Plugin", API_VERSION))
-				doLog("[AutoTimer] Use OpenWebif")
 
 
 base_furtherOptions = None
