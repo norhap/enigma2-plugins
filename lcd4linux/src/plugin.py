@@ -18,12 +18,11 @@
 #  Advertise with this Plugin is not allowed.
 #  For other uses, permission from the author is necessary.
 
-# PYTHON IMPORTS
 from __future__ import print_function, absolute_import, division
-from .__init__ import _
+
+# PYTHON IMPORTS
 from base64 import b64encode
 from calendar import Calendar, mdays, weekday, weekheader, month_name
-from codecs import decode
 from colorsys import rgb_to_hls, hls_to_rgb
 from ctypes.util import find_library
 from datetime import datetime, timedelta, date
@@ -36,7 +35,7 @@ from glob import glob, iglob
 from icalendar import vDatetime, Calendar as iCalendar
 from imaplib import IMAP4_SSL, IMAP4
 from math import pi, floor, cos
-from mutagen.id3 import ID3
+from mutagen.id3 import ID3  # type: ignore
 from mutagen.mp3 import MP3
 from mutagen.flac import FLAC
 from mutagen.easyid3 import EasyID3
@@ -49,12 +48,12 @@ from random import shuffle, choice
 from re import findall, sub
 from requests import post, get, exceptions
 from simplejson import loads
+from six import BytesIO, ensure_binary, ensure_str, PY3
 from six.moves.queue import Queue
 from six.moves.socketserver import ThreadingMixIn
 from six.moves.urllib.parse import quote, urlparse, urlunparse
 from six.moves.urllib.request import urlopen, Request, urlretrieve
 from six.moves.BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
-from six import BytesIO, ensure_binary, ensure_str, PY3
 from socket import setdefaulttimeout
 from struct import unpack
 from textwrap import TextWrapper, wrap
@@ -83,6 +82,7 @@ from Components.Language import language
 from Components.Lcd import LCD
 from Components.MenuList import MenuList
 from Components.NimManager import nimmanager
+from Components.Network import iNetwork
 from Components.Pixmap import Pixmap
 from Components.Renderer.Picon import getPiconName
 from Components.ServiceEventTracker import ServiceEventTracker
@@ -94,9 +94,21 @@ from Screens.InfoBar import InfoBar
 from Screens.InputBox import InputBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from Screens.Standby import TryQuitMainloop
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import SCOPE_PLUGINS, SCOPE_CONFIG, SCOPE_FONTS, SCOPE_LIBDIR, SCOPE_SYSETC, resolveFilename
+
+
+try:
+	from Components.SystemInfo import BoxInfo
+	IMAGEDISTRO = BoxInfo.getItem("distro")
+	MODEL = BoxInfo.getItem("machinebuild")
+	ARCH = BoxInfo.getItem("architecture")
+except:
+	from boxbranding import getImageDistro, getBoxType, getImageArch
+	IMAGEDISTRO = getImageDistro()
+	MODEL = getBoxType()
+	ARCH = getImageArch()
+
 
 # PLUGIN IMPORTS
 from . import Photoframe, dpf, _  # for localized messages
@@ -115,18 +127,11 @@ except AttributeError:
 else:
 	ssl._create_default_https_context = _create_unverified_https_context
 
-if not PY3:
+if PY3:
+	from html import unescape as _unescape
+else:
 	from HTMLParser import HTMLParser
 	_unescape = HTMLParser().unescape
-else:
-	from html import unescape as _unescape
-
-try:
-	DPKG = True
-	from Components.Network import iNetworkInfo
-except Exception:
-	DPKG = False
-	from Components.Network import iNetwork
 
 try:
 	from enigma import iDVBFrontend
@@ -167,7 +172,7 @@ USBok = False
 if find_library("usb-0.1") is not None or find_library("usb-1.0") is not None:
 	print("[LCD4linux] libusb found :-)", getEnigmaVersionString())
 	USBok = True
-Version = "V5.0-r15"
+Version = "V5.0-r29"
 L4LElist = L4Lelement()
 L4LdoThread = True
 LCD4enigma2config = resolveFilename(SCOPE_CONFIG)  # /etc/enigma2/
@@ -177,7 +182,7 @@ LCD4etc = resolveFilename(SCOPE_SYSETC)  # /etc/
 LCD4bin = "%s/" % eEnv.resolve("${bindir}")  # /usr/bin/
 LCD4python = "%s/" % eEnv.resolve("${PYTHONPATH}")  # /usr/lib/enigma2/python/
 LCD4share = "%s/" % eEnv.resolve("${datarootdir}")  # /usr/share/
-LCD4picon = join(LCD4share, "senigma2/picon/")  # /usr/share/enigma2/picon/
+LCD4picon = join(LCD4share, "enigma2/picon/")  # /usr/share/enigma2/picon/
 LCD4fonts = resolveFilename(SCOPE_FONTS)  # /usr/share/fonts/
 LCD4config = join(LCD4enigma2config, "lcd4config")  # /etc/enigma2/lcd4config
 LCD4plugin = join(LCD4enigma2plugin, "Extensions/LCD4linux/")  # /usr/lib/enigma2/python/Plugins/Extensions/LCD4linux/
@@ -206,7 +211,7 @@ PIC2tmp = join(TMPL, "dpf2tmp")
 PIC3 = join(TMPL, "dpf3")
 PIC3tmp = join(TMPL, "dpf3tmp")
 PICcal = None
-PICwetter = [False, False]
+PICwetter = [None, None]
 PICmeteo = join(TMPL, "dpfmeteo.png")
 PICfritz = join(TMPL, "dpffritz.png")
 HTTPpic = "%sdpfhttp%%d.jpg" % TMPL
@@ -222,10 +227,10 @@ ShellRunning = False
 OSDon = 0
 OSDtimer = -5
 OSDdontshow = ["LCD4linux Settings", "Virtual Zap", "InfoBar", "Infobar", "SecondInfoBar", "FanControl2", "Mute", "LCD Text", "UnhandledKey", "QuickZap", "Volume", "PVRState"]
-OSDdontskin = ["LCDdisplayFile", "VirtualZap", "InfoBar", "Infobar", "InfoBarSummary", "PictureInPicture", "SimpleSummary", "TimeshiftState", "InfoScreen", "Standby", "EMCMediaCenter", "InfoBarMoviePlayerSummary", "PVRState", "ResolutionLabel", "WidgetBackground", "camodogFSScreen2", "camodogFSmini"]
+OSDdontskin = ["LCDdisplayFile", "VirtualZap", "InfoBar", "Infobar", "InfoBarSummary", "PictureInPicture", "SimpleSummary", "ScreenSummary", "TimeshiftState", "InfoScreen", "Standby", "EMCMediaCenter", "InfoBarMoviePlayerSummary", "PVRState", "ResolutionLabel", "WidgetBackground", "camodogFSScreen2", "camodogFSmini"]
 wwwWetter = ["", ""]
-WetterTypeX = ["", ""]
-WetterZoomX = [0, 0]
+WetterType = ""
+WetterZoom = 0
 OldTemp_c = -88
 OldFeel = -88
 OldHum = -88
@@ -305,7 +310,7 @@ OnOffSelect = [("0", _("off")), ("1", _("on"))]
 TimeSelect = [("1", _("5s")), ("2", _("10s")), ("3", _("15s")), ("4", _("20s")), ("6", _("30s")), ("8", _("40s")), ("10", _("50s")), ("12", _("1min")), ("24", _("2min")), ("36", _("3min")), ("48", _("4min")), ("60", _("5min")), ("120", _("10min")), ("240", _("20min")), ("360", _("30min")), ("720", _("60min")), ("1440", _("2h")), ("2160", _("3h")), ("3600", _("5h"))]
 LCDSelect = [("1", _("LCD 1")), ("2", _("LCD 2")), ("12", _("LCD 1+2")), ("3", _("LCD 3")), ("13", _("LCD 1+3")), ("23", _("LCD 2+3")), ("123", _("LCD 1+2+3"))]
 LCDSwitchSelect = [("0", _("LCD 1-3")), ("1", _("LCD 1")), ("2", _("LCD 2")), ("3", _("LCD 3"))]
-LCDType = [("11", _("Pearl (or compatible LCD) 320x240")), ("12", _("Pearl (or compatible LCD) 240x320")), ("121", _("Corby@Pearl 128x128")), ("122", _("Pearl (or compatible LCD) 480x320")), ("123", _("Pearl (or compatible LCD) 800x480")),
+LCDType = [("11", _("Pearl (or compatible LCD) 320x240")), ("12", _("Pearl (or compatible LCD) 240x320")), ("121", _("Corby@Pearl 128x128")), ("122", _("AX206 (or compatible LCD) 480x320")), ("123", _("AX206 (or compatible LCD) 800x480")),
  ("210", _("Samsung SPF-72H 800x480")), ("23", _("Samsung SPF-75H/76H 800x480")), ("24", _("Samsung SPF-87H 800x480")), ("25", _("Samsung SPF-87H old 800x480")), ("26", _("Samsung SPF-83H 800x600")),
  ("29", _("Samsung SPF-85H/86H 800x600")), ("212", _("Samsung SPF-85P/86P 800x600")), ("28", _("Samsung SPF-105P 1024x600")), ("27", _("Samsung SPF-107H 1024x600")), ("213", _("Samsung SPF-107H old 1024x600")),
  ("211", _("Samsung SPF-700T 800x600")), ("215", _("Samsung SPF-800P 800x480")), ("214", _("Samsung SPF-1000P 1024x600")), ("430", _("Internal TFT-LCD 400x240")), ("50", _("Internal Box-Skin-LCD")),
@@ -338,6 +343,7 @@ MailKonto = [("1", _("1")), ("2", _("1-2")), ("3", _("1-3")), ("4", _("1-4")), (
 MailConnect = [("0", _("Pop3-SSL")), ("1", _("Pop3")), ("2", _("IMAP-SSL")), ("3", _("IMAP"))]
 RBoxType = [("PCT", _("Picon+Channel+Title")), ("PC", _("Picon+Channel")), ("P", _("Picon")), ("CT", _("Channel+Title")), ("C", _("Channel"))]
 OffFarbe = [("0", _("same color"))] + Farbe
+TpzFarbe = [("0", _("transparent"))] + Farbe
 Split = [("false", _("no")), ("true", _("yes")), ("true25", _("yes +25%"))]
 DirType = [("0", _("horizontally")), ("2", _("vertically"))]
 FontType = [("0", _("Global")), ("1", _("1")), ("2", _("2")), ("3", _("3")), ("4", _("4")), ("5", _("5"))]
@@ -368,17 +374,18 @@ LCD4linux.FastMode = ConfigSelection(choices=[("5", _("Normal (5s)")), ("2", _("
 LCD4linux.SwitchToFB2 = ConfigYesNo(default=True)
 LCD4linux.ScreenActive = ConfigSelection(choices=ScreenSet, default="1")
 LCD4linux.ScreenSwitch = ConfigSelection(choices=ScreenSet, default="2")
+LCD4linux.ScreenDefault = ConfigSelection(choices=[("0", _("last Screen"))] + ScreenSet, default="1")
 LCD4linux.ScreenSwitchLCD = ConfigSelection(choices=LCDSwitchSelect, default="0")
 LCD4linux.ScreenMax = ConfigSelection(choices=ScreenUse, default="1")
 LCD4linux.ScreenTime = ConfigSelection(choices=[("0", _("off"))] + TimeSelect, default="0")
-LCD4linux.ScreenTime2 = ConfigSelection(choices=TimeSelect, default="1")
-LCD4linux.ScreenTime3 = ConfigSelection(choices=TimeSelect, default="1")
-LCD4linux.ScreenTime4 = ConfigSelection(choices=TimeSelect, default="1")
-LCD4linux.ScreenTime5 = ConfigSelection(choices=TimeSelect, default="1")
-LCD4linux.ScreenTime6 = ConfigSelection(choices=TimeSelect, default="1")
-LCD4linux.ScreenTime7 = ConfigSelection(choices=TimeSelect, default="1")
-LCD4linux.ScreenTime8 = ConfigSelection(choices=TimeSelect, default="1")
-LCD4linux.ScreenTime9 = ConfigSelection(choices=TimeSelect, default="1")
+LCD4linux.ScreenTime2 = ConfigSelection(choices=[("0", _("off"))] + TimeSelect, default="1")
+LCD4linux.ScreenTime3 = ConfigSelection(choices=[("0", _("off"))] + TimeSelect, default="1")
+LCD4linux.ScreenTime4 = ConfigSelection(choices=[("0", _("off"))] + TimeSelect, default="1")
+LCD4linux.ScreenTime5 = ConfigSelection(choices=[("0", _("off"))] + TimeSelect, default="1")
+LCD4linux.ScreenTime6 = ConfigSelection(choices=[("0", _("off"))] + TimeSelect, default="1")
+LCD4linux.ScreenTime7 = ConfigSelection(choices=[("0", _("off"))] + TimeSelect, default="1")
+LCD4linux.ScreenTime8 = ConfigSelection(choices=[("0", _("off"))] + TimeSelect, default="1")
+LCD4linux.ScreenTime9 = ConfigSelection(choices=[("0", _("off"))] + TimeSelect, default="1")
 LCD4linux.BilderTime = ConfigSelection(choices=[("0", _("off"))] + TimeSelect, default="0")
 LCD4linux.BilderSort = ConfigSelection(choices=[("0", _("off")), ("1", _("alphabetic")), ("2", _("random"))], default="1")
 LCD4linux.BilderQuality = ConfigSelection(choices=[("0", _("low/fast (all)")), ("1", _("low/fast (Picture only)")), ("2", _("better/slow"))], default="1")
@@ -410,7 +417,7 @@ LCD4linux.DVBTCorrection = ConfigSelection(choices=[("0", _("no")), ("reverse", 
 LCD4linux.ServiceSearch = ConfigSelection(choices=[("0", _("Now/Next")), ("1", _("EPG"))], default="0")
 LCD4linux.ShowNoMsg = ConfigYesNo(default=True)
 LCD4linux.SavePicture = ConfigSelection(choices=[("0", _("no"))] + LCDSelect, default="123")
-LCD4linux.NETworkCheckEnable = ConfigYesNo(default=True)
+LCD4linux.NETworkCheckEnable = ConfigYesNo(default=False)
 LCD4linux.MJPEGenable1 = ConfigYesNo(default=False)
 LCD4linux.MJPEGenable2 = ConfigYesNo(default=False)
 LCD4linux.MJPEGenable3 = ConfigYesNo(default=False)
@@ -424,6 +431,7 @@ LCD4linux.MJPEGMode = ConfigSelection(choices=[("001", "001"), ("011", "011"), (
 LCD4linux.MJPEGHeader = ConfigSelection(choices=[("0", _("normal")), ("1", _("reduced"))], default="1")
 LCD4linux.MJPEGCycle = ConfigSelectionNumber(1, 10, 1, default=2)
 LCD4linux.MJPEGRestart = ConfigYesNo(default=True)
+LCD4linux.Streaming = ConfigSelection(choices=[("0", _("Auto")), ("1", _("On")), ("2", _("Media"))], default="0")
 LCD4linux.WebIfRefresh = ConfigSelectionNumber(1, 60, 1, default=3)
 LCD4linux.WebIfType = ConfigSelection(choices=[("0", _("Javascript")), ("01", _("Javascript no Refresh")), ("1", _("Reload"))], default="0")
 LCD4linux.WebIfInitDelay = ConfigYesNo(default=False)
@@ -447,6 +455,7 @@ LCD4linux.WetterRainZoom = ConfigSlider(default=100, increment=1, limits=(90, 20
 LCD4linux.WetterRainColor = ConfigSelection(choices=Farbe, default="silver")
 LCD4linux.WetterRainColor2use = ConfigSelectionNumber(10, 100, 10, default=80)
 LCD4linux.WetterRainColor2 = ConfigSelection(choices=Farbe, default="cyan")
+LCD4linux.WetterHumColor = ConfigSelection(choices=Farbe, default="cyan")
 LCD4linux.WetterLine = ConfigSelection(choices=[("false", _("no")), ("true", _("yes, short")), ("trueLong", _("yes, long"))], default="trueLong")
 LCD4linux.WetterTrendArrows = ConfigYesNo(default=True)
 LCD4linux.WetterExtra = ConfigYesNo(default=True)
@@ -801,6 +810,7 @@ LCD4linux.ProgressAlign = ConfigSelection(choices=[("5", _("half left")), ("6", 
 LCD4linux.ProgressPos = ConfigSlider(default=120, increment=2, limits=(0, 1024))
 LCD4linux.ProgressColor = ConfigSelection(choices=Farbe, default="white")
 LCD4linux.ProgressColorText = ConfigSelection(choices=Farbe, default="white")
+LCD4linux.ProgressColorBG = ConfigSelection(choices=TpzFarbe, default="0")
 LCD4linux.ProgressMinutes = ConfigYesNo(default=True)
 LCD4linux.ProgressBorder = ConfigSelection(choices=[("off", _("no Bar")), ("true", _("Frame")), ("true2", _("Frame x2")), ("false", _("no Frame")), ("line", _("Line"))], default="true")
 LCD4linux.ProgressShadow = ConfigYesNo(default=False)
@@ -1244,6 +1254,24 @@ LCD4linux.Bild4Pos = ConfigSlider(default=0, increment=2, limits=(0, 1024))
 LCD4linux.Bild4Align = ConfigSelection(choices=AlignType + [("9", _("full Screen"))], default="0")
 LCD4linux.Bild4Quick = ConfigYesNo(default=False)
 LCD4linux.Bild4Transp = ConfigYesNo(default=False)
+LCD4linux.Bild5 = ConfigSelection(choices=ScreenSelect, default="0")
+LCD4linux.Bild5LCD = ConfigSelection(choices=LCDSelect, default="1")
+LCD4linux.Bild5File = ConfigText(default="/tmp/lcd4linux.jpg", fixed_size=False, visible_width=50)
+LCD4linux.Bild5Size = ConfigSlider(default=240, increment=10, limits=(10, 1024))
+LCD4linux.Bild5SizeH = ConfigSlider(default=0, increment=10, limits=(0, 800))
+LCD4linux.Bild5Pos = ConfigSlider(default=0, increment=2, limits=(0, 1024))
+LCD4linux.Bild5Align = ConfigSelection(choices=AlignType + [("9", _("full Screen"))], default="0")
+LCD4linux.Bild5Quick = ConfigYesNo(default=False)
+LCD4linux.Bild5Transp = ConfigYesNo(default=False)
+LCD4linux.Bild6 = ConfigSelection(choices=ScreenSelect, default="0")
+LCD4linux.Bild6LCD = ConfigSelection(choices=LCDSelect, default="1")
+LCD4linux.Bild6File = ConfigText(default="/tmp/lcd4linux.jpg", fixed_size=False, visible_width=50)
+LCD4linux.Bild6Size = ConfigSlider(default=240, increment=10, limits=(10, 1024))
+LCD4linux.Bild6SizeH = ConfigSlider(default=0, increment=10, limits=(0, 800))
+LCD4linux.Bild6Pos = ConfigSlider(default=0, increment=2, limits=(0, 1024))
+LCD4linux.Bild6Align = ConfigSelection(choices=AlignType + [("9", _("full Screen"))], default="0")
+LCD4linux.Bild6Quick = ConfigYesNo(default=False)
+LCD4linux.Bild6Transp = ConfigYesNo(default=False)
 LCD4linux.TV = ConfigSelection(choices=ScreenSelect, default="0")
 LCD4linux.TVLCD = ConfigSelection(choices=LCDSelect, default="1")
 LCD4linux.TVType = ConfigSelection(choices=[("0", _("TV")), ("1", _("TV+OSD"))], default="0")
@@ -1360,6 +1388,7 @@ LCD4linux.MPProgressPos = ConfigSlider(default=120, increment=2, limits=(0, 1024
 LCD4linux.MPProgressAlign = ConfigSelection(choices=[("5", _("half left")), ("6", _("half right"))] + AlignType, default="1")
 LCD4linux.MPProgressColor = ConfigSelection(choices=Farbe, default="white")
 LCD4linux.MPProgressColorText = ConfigSelection(choices=Farbe, default="white")
+LCD4linux.MPProgressColorBG = ConfigSelection(choices=TpzFarbe, default="0")
 LCD4linux.MPProgressMinutes = ConfigYesNo(default=True)
 LCD4linux.MPProgressBorder = ConfigSelection(choices=[("off", _("no Bar")), ("true", _("Frame")), ("true2", _("Frame x2")), ("false", _("no Frame")), ("line", _("Line"))], default="true")
 LCD4linux.MPProgressShadow = ConfigYesNo(default=False)
@@ -1713,7 +1742,7 @@ LCD4linux.MPText2BackColor = ConfigSelection(choices=[("0", _("off"))] + Farbe, 
 LCD4linux.MPCover = ConfigSelection(choices=ScreenSelect, default="0")
 LCD4linux.MPCoverLCD = ConfigSelection(choices=LCDSelect, default="1")
 LCD4linux.MPCoverPath1 = ConfigText(default="/tmp", fixed_size=False, visible_width=50)
-LCD4linux.MPCoverPath2 = ConfigText(default="/tmp", fixed_size=False, visible_width=50)
+LCD4linux.MPCoverPath2 = ConfigText(default="/media/hdd/movie/", fixed_size=False, visible_width=50)
 LCD4linux.MPCoverFile = ConfigText(default="/tmp/lcd4linux.jpg", fixed_size=False, visible_width=50)
 LCD4linux.MPCoverFile2 = ConfigText(default="/tmp/lcd4linux.jpg", fixed_size=False, visible_width=50)
 LCD4linux.MPCoverSize = ConfigSlider(default=240, increment=10, limits=(10, 1024))
@@ -2231,6 +2260,24 @@ LCD4linux.StandbyBild4Pos = ConfigSlider(default=0, increment=2, limits=(0, 1024
 LCD4linux.StandbyBild4Align = ConfigSelection(choices=AlignType + [("9", _("full Screen"))], default="0")
 LCD4linux.StandbyBild4Quick = ConfigYesNo(default=False)
 LCD4linux.StandbyBild4Transp = ConfigYesNo(default=False)
+LCD4linux.StandbyBild5 = ConfigSelection(choices=ScreenSelect, default="0")
+LCD4linux.StandbyBild5LCD = ConfigSelection(choices=LCDSelect, default="1")
+LCD4linux.StandbyBild5File = ConfigText(default="/tmp/lcd4linux.jpg", fixed_size=False, visible_width=50)
+LCD4linux.StandbyBild5Size = ConfigSlider(default=240, increment=10, limits=(10, 1024))
+LCD4linux.StandbyBild5SizeH = ConfigSlider(default=0, increment=10, limits=(0, 800))
+LCD4linux.StandbyBild5Pos = ConfigSlider(default=0, increment=2, limits=(0, 1024))
+LCD4linux.StandbyBild5Align = ConfigSelection(choices=AlignType + [("9", _("full Screen"))], default="0")
+LCD4linux.StandbyBild5Quick = ConfigYesNo(default=False)
+LCD4linux.StandbyBild5Transp = ConfigYesNo(default=False)
+LCD4linux.StandbyBild6 = ConfigSelection(choices=ScreenSelect, default="0")
+LCD4linux.StandbyBild6LCD = ConfigSelection(choices=LCDSelect, default="1")
+LCD4linux.StandbyBild6File = ConfigText(default="/tmp/lcd4linux.jpg", fixed_size=False, visible_width=50)
+LCD4linux.StandbyBild6Size = ConfigSlider(default=240, increment=10, limits=(10, 1024))
+LCD4linux.StandbyBild6SizeH = ConfigSlider(default=0, increment=10, limits=(0, 800))
+LCD4linux.StandbyBild6Pos = ConfigSlider(default=0, increment=2, limits=(0, 1024))
+LCD4linux.StandbyBild6Align = ConfigSelection(choices=AlignType + [("9", _("full Screen"))], default="0")
+LCD4linux.StandbyBild6Quick = ConfigYesNo(default=False)
+LCD4linux.StandbyBild6Transp = ConfigYesNo(default=False)
 LCD4linux.StandbyMail = ConfigSelection(choices=ScreenSelect, default="0")
 LCD4linux.StandbyMailLCD = ConfigSelection(choices=LCDSelect, default="1")
 LCD4linux.StandbyMailSize = ConfigSlider(default=12, increment=1, limits=(5, 150))
@@ -2382,7 +2429,7 @@ def Code_utf8(wert):
 def L4log(nfo, wert=""):
 	if str(LCD4linux.EnableEventLog.value) != "0":
 		print("[LCD4linux] %s %s" % (nfo, wert))
-		if str(LCD4linux.EnableEventLog.value) != "3":
+		if nfo and str(LCD4linux.EnableEventLog.value) != "3":
 			try:
 				with open("/tmp/L4log.txt", "a") as f:
 					f.write("%s %s %s\r\n" % (strftime("%H:%M:%S"), nfo, wert))
@@ -2505,15 +2552,11 @@ def setPopText(w):
 	PopText[1] = Code_utf8(w)
 
 
-def resetWetter(wetter):
+def resetWetter():
 	global wwwWetter
 	global PICwetter
-	if wetter is None:
-		wwwWetter = ["", ""]
-		PICwetter = [False, False]
-	else:
-		wwwWetter[wetter] = ""
-		PICwetter[wetter] = False
+	wwwWetter = ["", ""]
+	PICwetter = [None, None]
 
 
 def resetCal():
@@ -2530,6 +2573,8 @@ def L4LoadNewConfig(cfg):
 	if isfile(LCD4default):
 		LCD4linux.loadFromFile(LCD4default)
 	L4log("Config-Load", cfg)
+	if MODEL == 'vuduo2':  # due to 2 displays, LCD4linux is integrated in this boximage
+		LCD4linux.loadFromFile("%sdefault.vuduo2" % LCD4data)
 	L4log("Config-Load for 'Vu+ duo²'", cfg)
 	LCD4linux.loadFromFile(cfg)
 	LCD4linux.load()
@@ -2650,13 +2695,13 @@ def getFB2(check):
 
 
 def BRI(w1, w2):
-	gb = L4LElist.getBrightness(w2, False)
+	gb = int(L4LElist.getBrightness(w2, False)[0])
 	return int(w1) if gb == -1 else gb
 
 
 def virtBRI(LCD):
 	global AktNight
-	vb = BRI(L4LElist.getBrightness(LCD), LCD)
+	vb = BRI(L4LElist.getBrightness(LCD)[0], LCD)
 	if vb < 1:
 		return 0
 	elif vb == 10:
@@ -2796,7 +2841,7 @@ def ICSdownloads():
 					nextmonth = today + timedelta(mdays[today.month])  # 2012-01-23
 					nextmonth2 = today + timedelta(mdays[today.month] - 3)  # save Month+1 if days to long
 					DTstart = str(Icomp.decoded("dtstart"))
-					if strftime("%Y-%m") == DTstart[:7] or nextmonth.strftime("%Y-%m") == DTstart[:7] or nextmonth2.strftime("%Y-%m") == DTstart[:7]:
+					if DTstart.startswith(strftime("%Y-%m")) or DTstart.startswith(nextmonth.strftime("%Y-%m")) or DTstart.startswith(nextmonth2.strftime("%Y-%m")):
 						D = DTstart[:10]
 						inew = [Code_utf8(Icomp.get('summary')), Icomp.decoded("dtstart"), name[1]]
 						Doppel = False
@@ -2832,12 +2877,13 @@ def ICSdownloads():
 
 def getResolution(t, r):
 	MAX_H, MAX_W = (0, 0)
-	if t[:1] == "5":
+	if t.startswith("5"):
 		ttt = LCD4linux.xmlLCDType.value.split("x")
 		MAX_W, MAX_H = int(ttt[0]), int(ttt[1])
 		if int(LCD4linux.xmlOffset.value) != 0:
 			MAX_W -= (int(LCD4linux.xmlOffset.value) * 2)
 			MAX_H -= (int(LCD4linux.xmlOffset.value) * 2)
+	# ATTENTION: must not be changed to 'endswith()' under any circumstances
 	elif t[1:] == "1":
 		MAX_W, MAX_H = 320, 240
 	elif t[1:] == "2":
@@ -2865,7 +2911,7 @@ def getResolution(t, r):
 	elif t[1:] == "21":
 		MAX_W, MAX_H = 128, 128
 	else:
-		MAX_W, MAX_H = 100, 100
+		MAX_W, MAX_H = 132, 64
 	if r in ["90", "270"]:
 		MAX_W, MAX_H = MAX_H, MAX_W
 	return MAX_W, MAX_H
@@ -2974,18 +3020,17 @@ def getpiconres(x, y, full, picon, channelname, channelname2, P2, P2A, P2C):
 			PD = ""
 			PIC = []
 			PIC.append(join(P2, picon))
-			if not PY3:
+			if PY3:
+				name2 = "%s.png" % channelname.encode("latin-1", "ignore").decode("utf-8")
+				name4 = "%s.png" % channelname.encode("utf-8", "ignore").decode("utf-8")
+				name3 = "%s.png" % channelname2.replace('\x87', '').replace('\x86', '')
+				name = normalize('NFKD', channelname)
+			else:
 				name2 = "%s.png" % channelname.decode("utf-8").encode("latin-1", "ignore")
 				name4 = "%s.png" % channelname.decode("utf-8").encode("utf-8", "ignore")
-			else:
-				name2 = "%s.png" % channelname
-				name4 = "%s.png" % channelname
-			name = normalize('NFKD', channelname)
-			name = sub(r'[^a-z0-9]', '', "%s.png" % str(name).replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
-			if not PY3:
 				name3 = "%s.png" % channelname2.replace('\xc2\x87', '').replace('\xc2\x86', '').decode("utf-8").encode("utf-8")
-			else:
-				name3 = "%s.png" % channelname2.replace('\x87', '').replace('\x86', '')
+				name = normalize('NFKD', channelname.decode('unicode-escape'))
+			name = "%s.png" % sub(r'[^a-z0-9]', '', str(name).replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 			PIC.append(join(P2, name3))
 			PIC.append(join(P2, name2))
 			PIC.append(join(P2, name))
@@ -3100,11 +3145,11 @@ def writeHelligkeit(hell, night, STOP):
 	if h3 == 0:
 		R += "3"
 	AktNight = night
-	if AktHelligkeit == [h1, h2, h3] + [L4LElist.getBrightness(0, False) and OSDtimer >= 0]:
+	if AktHelligkeit == [h1, h2, h3] + L4LElist.getBrightness(0, False) and OSDtimer >= 0:
 		return R
-	AktHelligkeit = "%s %s" % ([h1, h2, h3], L4LElist.getBrightness(0, False))
+	AktHelligkeit = [h1, h2, h3] + L4LElist.getBrightness(0, False)
 	L4LElist.resetBrightness([h1, h2, h3])
-	L4log("write Bright", AktHelligkeit)
+	L4log("write Bright: %s" % AktHelligkeit)
 	if SamsungDevice is not None and LCD4linux.LCDType1.value[0] == "1":
 		if dpf.setBacklight(SamsungDevice, h1 if h1 < 8 else 7) == False:
 			dpf.close(SamsungDevice)
@@ -3161,8 +3206,8 @@ def writeHelligkeit(hell, night, STOP):
 			try:
 				with open("/dev/lcd2", 'w') as led_fd:
 					ioctl(led_fd, 0x10, H)
-			except Exception:
-				L4log("Error LCD Communication")
+			except Exception as err:
+				L4log("Error LCD Communication: %s" % str(err))
 	return R
 
 
@@ -3207,8 +3252,8 @@ def writeLCD1(s, im, quality, SAVE=True):
 				s.im[im].save(bild, "PNG" if LCD4linux.BilderTyp.value == "png" else "JPEG")
 				if isfile(bild):
 					rename(bild, "%s.png" % PIC)
-			except Exception:
-				L4log("Error write Picture")
+			except Exception as err:
+				L4log("Error write Picture: %s" % str(err))
 	elif LCD4linux.LCDType1.value[0] == "3":
 		L4log("writing Picture")
 		try:
@@ -3216,8 +3261,8 @@ def writeLCD1(s, im, quality, SAVE=True):
 			s.im[im].save(datei, "PNG" if LCD4linux.BilderTyp.value == "png" else "JPEG")
 			if isfile(datei):
 				rename(datei, "%s.%s" % (PIC, LCD4linux.BilderTyp.value))
-		except Exception:
-			L4log("Error write Picture")
+		except Exception as err:
+			L4log("Error write Picture: %s" % str(err))
 	elif LCD4linux.LCDType1.value[0] == "4":
 		L4log("writing TFT-LCD")
 		try:
@@ -3228,8 +3273,8 @@ def writeLCD1(s, im, quality, SAVE=True):
 				s.im[im].save(bild, "PNG" if LCD4linux.BilderTyp.value == "png" else "JPEG")
 				if isfile(bild):
 					rename(bild, "%s.png" % PIC)
-		except Exception:
-			L4log("Error write Picture")
+		except Exception as err:
+			L4log("Error write Picture: %s" % str(err))
 	elif LCD4linux.LCDType1.value[0] == "5":
 		L4log("writing Internal-LCD")
 		try:
@@ -3256,16 +3301,16 @@ def writeLCD1(s, im, quality, SAVE=True):
 					s.im[im].save(xmlPICtmp, "PNG")
 			if isfile(xmlPICtmp):
 				rename(xmlPICtmp, xmlPIC)
-		except Exception:
-			L4log("Error write Picture")
+		except Exception as err:
+			L4log("Error write Picture: %s" % str(err))
 	elif LCD4linux.LCDType1.value[0] == "9":
 		L4log("writing to Vu+ LCD")
 		try:
 			s.im[im].save(bild, "PNG")
 			if isfile(bild):
 				rename(bild, "%s.png" % PIC)
-		except Exception:
-			L4log("Error write Picture")
+		except Exception as err:
+			L4log("Error write Picture: %s" % str(err))
 		if pngutil and pngutilconnect != 0:
 			pngutil.send("%s.png" % PIC)
 		else:
@@ -3279,9 +3324,9 @@ def writeLCD1(s, im, quality, SAVE=True):
 			output.close()
 			try:
 				Photoframe.write_jpg2frame(SamsungDevice, pic)
-			except Exception:
+			except Exception as err:
 				SamsungDevice = None
-				L4log("Samsung 1 write Error")
+				L4log("Samsung 1 write Error: %s" % str(err))
 		if "1" in LCD4linux.SavePicture.value and SAVE == True:
 			try:
 				datei = "%s.jpg" % PICtmp
@@ -3292,8 +3337,8 @@ def writeLCD1(s, im, quality, SAVE=True):
 					open(datei, "wb").write(pic)
 				if isfile(datei):
 					rename(datei, "%s.jpg" % PIC)
-			except Exception:
-				L4log("Error write Picture")
+			except Exception as err:
+				L4log("Error write Picture: %s" % str(err))
 	if LCD4linux.MJPEGenable1.value == True:
 		if MJPEG[0][1] == "a":
 			MJPEG_stop(1)
@@ -3327,8 +3372,8 @@ def writeLCD2(s, im, quality, SAVE=True):
 				s.im[im].save(bild, "PNG" if LCD4linux.BilderTyp.value == "png" else "JPEG")
 				if isfile(bild):
 					rename(bild, "%s.png" % PIC2)
-			except Exception:
-				L4log("Error write Picture2")
+			except Exception as err:
+				L4log("Error write Picture2: %s" % str(err))
 	elif LCD4linux.LCDType2.value[0] == "3":
 		L4log("writing Picture2")
 		try:
@@ -3336,8 +3381,8 @@ def writeLCD2(s, im, quality, SAVE=True):
 			s.im[im].save(datei, "PNG" if LCD4linux.BilderTyp.value == "png" else "JPEG")
 			if isfile(datei):
 				rename(datei, "%s.%s" % (PIC2, LCD4linux.BilderTyp.value))
-		except Exception:
-			L4log("Error write Picture2")
+		except Exception as err:
+			L4log("Error write Picture2: %s" % str(err))
 	elif LCD4linux.LCDType2.value[0] == "4":
 		L4log("writing TFT-LCD2")
 		try:
@@ -3348,8 +3393,8 @@ def writeLCD2(s, im, quality, SAVE=True):
 				s.im[im].save(bild, "PNG" if LCD4linux.BilderTyp.value == "png" else "JPEG")
 				if isfile(bild):
 					rename(bild, "%s.png" % PIC2)
-		except Exception:
-			L4log("Error write Picture2")
+		except Exception as err:
+			L4log("Error write Picture2: %s" % str(err))
 	elif LCD4linux.LCDType2.value[0] == "5":
 		L4log("writing Internal-LCD2")
 		try:
@@ -3376,16 +3421,16 @@ def writeLCD2(s, im, quality, SAVE=True):
 					s.im[im].save(xmlPICtmp, "PNG")
 			if isfile(xmlPICtmp):
 				rename(xmlPICtmp, xmlPIC)
-		except Exception:
-			L4log("Error write Picture2")
+		except Exception as err:
+			L4log("Error write Picture2: %s" % str(err))
 	elif LCD4linux.LCDType2.value[0] == "9":
 		L4log("writing to Vu+ LCD2")
 		try:
 			s.im[im].save(bild, "PNG")
 			if isfile(bild):
 				rename(bild, "%s.png" % PIC2)
-		except Exception:
-			L4log("Error write Picture2")
+		except Exception as err:
+			L4log("Error write Picture2: %s" % str(err))
 		if pngutil and pngutilconnect != 0:
 			pngutil.send("%s.png" % PIC2)
 		else:
@@ -3412,8 +3457,8 @@ def writeLCD2(s, im, quality, SAVE=True):
 					open(datei, "wb").write(pic)
 				if isfile(datei):
 					rename(datei, "%s.jpg" % PIC2)
-			except Exception:
-				L4log("Error write Picture2")
+			except Exception as err:
+				L4log("Error write Picture2: %s" % str(err))
 	if LCD4linux.MJPEGenable2.value == True:
 		if MJPEG[0][1] == "b":
 			MJPEG_stop(2)
@@ -3447,8 +3492,8 @@ def writeLCD3(s, im, quality, SAVE=True):
 				s.im[im].save(bild, "PNG" if LCD4linux.BilderTyp.value == "png" else "JPEG")
 				if isfile(bild):
 					rename(bild, "%s.png" % PIC3)
-			except Exception:
-				L4log("Error write Picture3")
+			except Exception as err:
+				L4log("Error write Picture3: %s" % str(err))
 	elif LCD4linux.LCDType3.value[0] == "3":
 		L4log("writing Picture3")
 		try:
@@ -3456,8 +3501,8 @@ def writeLCD3(s, im, quality, SAVE=True):
 			s.im[im].save(datei, "PNG" if LCD4linux.BilderTyp.value == "png" else "JPEG")
 			if isfile(datei):
 				rename(datei, "%s.%s" % (PIC3, LCD4linux.BilderTyp.value))
-		except Exception:
-			L4log("Error write Picture3")
+		except Exception as err:
+			L4log("Error write Picture3: %s" % str(err))
 	elif LCD4linux.LCDType3.value[0] == "4":
 		L4log("writing TFT-LCD3")
 		try:
@@ -3468,8 +3513,8 @@ def writeLCD3(s, im, quality, SAVE=True):
 				s.im[im].save(bild, "PNG" if LCD4linux.BilderTyp.value == "png" else "JPEG")
 				if isfile(bild):
 					rename(bild, "%s.png" % PIC3)
-		except Exception:
-			L4log("Error write Picture3")
+		except Exception as err:
+			L4log("Error write Picture3: %s" % str(err))
 	elif LCD4linux.LCDType3.value[0] == "5":
 		L4log("writing Internal-LCD3")
 		try:
@@ -3496,16 +3541,16 @@ def writeLCD3(s, im, quality, SAVE=True):
 					s.im[im].save(xmlPICtmp, "PNG")
 			if isfile(xmlPICtmp):
 				rename(xmlPICtmp, xmlPIC)
-		except Exception:
-			L4log("Error write Picture3")
+		except Exception as err:
+			L4log("Error write Picture3: %s" % str(err))
 	elif LCD4linux.LCDType3.value[0] == "9":
 		L4log("writing to Vu+ LCD3")
 		try:
 			s.im[im].save(bild, "PNG")
 			if isfile(bild):
 				rename(bild, "%s.png" % PIC3)
-		except Exception:
-			L4log("Error write Picture3")
+		except Exception as err:
+			L4log("Error write Picture3: %s" % str(err))
 		if pngutil and pngutilconnect != 0:
 			pngutil.send("%s.png" % PIC3)
 		else:
@@ -3532,8 +3577,8 @@ def writeLCD3(s, im, quality, SAVE=True):
 					open(datei, "wb").write(pic)
 				if isfile(datei):
 					rename(datei, "%s.jpg" % PIC3)
-			except Exception:
-				L4log("Error write Picture3")
+			except Exception as err:
+				L4log("Error write Picture3: %s" % str(err))
 	if LCD4linux.MJPEGenable3.value == True:
 		if MJPEG[0][1] == "c":
 			MJPEG_stop(3)
@@ -4170,8 +4215,9 @@ def xmlClear():
 def xmlRead():
 	global xmlList
 	xmlList = []
-	if isfile(join(LCD4enigma2config, "skin_user.xml")):
-		for i in open(LCD4enigma2config + "skin_user.xml").read().splitlines():
+	xmlfile = join(LCD4enigma2config, "skin_user.xml")
+	if isfile(xmlfile):
+		for i in open(xmlfile).read().splitlines():
 			xmlList.append(i)
 		if len(xmlList) > 1:
 			while len(xmlList[-1]) < 2 and len(xmlList) > 1:
@@ -4255,12 +4301,12 @@ class RunShell:
 		system(cmd + " >/dev/null 2>&1")
 		ShellRunning = False
 
-	def cmdFinished(self, data):
+	def cmdFinished(self):
 		global ShellRunning
 		ShellRunning = False
 		L4log("Shell Stop")
 
-	def dataAvail(self, data):
+	def dataAvail(self):
 		global ShellRunning
 		ShellRunning = False
 		L4log("Shell Data")
@@ -4424,10 +4470,10 @@ def getDpfDevice():
 	if USBok == False:
 		return
 	if LCD4linux.LCDType1.value[0] == "1" and SamsungDevice is None:
-		L4log("get DPF Device...")
+		L4log("get DPF1 Device...")
 		if find_dev(1, 0x1908, 0x0102) == True:
 			try:
-				L4log("open DPF Device0...")
+				L4log("open DPF1 Device0...")
 				SamsungDevice = dpf.open("usb0")
 			except Exception:
 				L4log("open Error DPF1 Device0")
@@ -4469,7 +4515,7 @@ def getDpfDevice():
 					L4log("open Error DPF3 Device1")
 					SamsungDevice3 = None
 			else:
-				L4log("DPF2 Device1 not found")
+				L4log("DPF3 Device1 not found")
 		else:
 			if find_dev(1, 0x1908, 0x0102) == True:
 				try:
@@ -4609,7 +4655,7 @@ try:
 	from Plugins.Extensions.Netatmo.NetatmoCore import NetatmoUnit
 	NetatmoOK = True
 	L4log("Register Netatmo ok")
-	L4log("Error:", format_exc())
+	L4log("Error:", format_exc().strip())
 except Exception:
 	NetatmoOK = False
 	L4log("Netatmo not registered")
@@ -4672,16 +4718,15 @@ class GrabOSD:
 		global GrabRunning
 		GrabRunning = True
 		L4logE("Grab Run")
-
 		system(cmd + " >/dev/null 2>&1")
-		self.cmdFinished("")
+		self.cmdFinished()
 
-	def cmdFinished(self, data):
+	def cmdFinished(self):
 		global GrabRunning
 		L4logE("Grab Stop")
 		GrabRunning = False
 
-	def dataAvail(self, data):
+	def dataAvail(self):
 		pass
 
 # Grab
@@ -5056,11 +5101,11 @@ class L4LWorker(Thread):
 								Date = ""
 								for R in mailserver.retr(M)[1]:
 									if str(R).upper().startswith("FROM:"):
-										From = R[R.find(" "):].strip()
+										From = R[str(R).find(" "):].strip()
 									elif str(R).upper().startswith("SUBJECT:"):
-										Subj = R[R.find(" "):].strip()
+										Subj = R[str(R).find(" "):].strip()
 									elif str(R).upper().startswith("DATE:") and LCD4linux.MailShowDate.value == True:
-										Date = R[R.find(" "):].strip()
+										Date = R[str(R).find(" "):].strip()
 										Date = "- %s" % str(Date).split("+")[0].split(",")[-1].strip()
 									if From != "" and Subj != "":
 										break
@@ -5299,11 +5344,11 @@ class LCDdisplayMenu(Screen):
 class LCDdisplayFile(Screen):
 	skin = """
 		<screen position="center,center" size="620,460" title="Select File/Dir...">
-			<widget source="File" render="Label" font="Regular;20" horizontalAlignment="center" position="5,0" size="610,100" transparent="1" verticalAlignment="center" zPosition="4"/>
+			<widget source="File" render="Label" font="Regular;20" halign="center" position="5,0" size="610,100" transparent="1" valign="center" zPosition="4"/>
 			<widget name="LCDfile" position="5,100" scrollbarMode="showOnDemand" size="610,312" zPosition="4"/>
 			<eLabel backgroundColor="#555555" position="5,420" size="610,2" zPosition="5"/>
-			<ePixmap alphaTest="on" pixmap="skin_default/buttons/green.png" position="0,425" size="140,40" zPosition="5"/>
-			<eLabel font="Regular;18" horizontalAlignment="center" position="0,425" size="140,40" text="Select" transparent="1" verticalAlignment="center" zPosition="6"/>
+			<ePixmap alphatest="on" pixmap="skin_default/buttons/green.png" position="0,425" size="140,40" zPosition="5"/>
+			<eLabel font="Regular;18" halign="center" position="0,425" size="140,40" text="Select" transparent="1" valign="center" zPosition="6"/>
 		</screen>"""
 
 	def __init__(self, session, FileName="/tmp/none", showFiles=True, text="Text", matchingPattern=None):
@@ -5391,29 +5436,29 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 		skin = """
 			<screen position="center,%d" size="%d,%d" title="LCD4linux Settings" >
 			<widget name="config" position="0,0" size="%d,%d" scrollbarMode="showOnDemand" enableWrapAround="1" />
-			<widget source="introduction" render="Label" position="5,%d" size="%d,30" zPosition="10" font="Regular;21" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="introduction" render="Label" position="5,%d" size="%d,30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 
-			<widget name="key_red" position="%d,%d" size="%d,40" verticalAlignment="center" horizontalAlignment="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
-			<widget name="key_green" position="%d,%d" size="%d,40" verticalAlignment="center" horizontalAlignment="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
-			<widget name="key_yellow" position="%d,%d" size="%d,40" verticalAlignment="center" horizontalAlignment="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
-			<widget name="key_blue" position="%d,%d" size="%d,40" verticalAlignment="center" horizontalAlignment="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
+			<widget name="key_red" position="%d,%d" size="%d,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
+			<widget name="key_green" position="%d,%d" size="%d,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
+			<widget name="key_yellow" position="%d,%d" size="%d,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
+			<widget name="key_blue" position="%d,%d" size="%d,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
 
-			<ePixmap name="red"    position="%d,%d"   zPosition="2" size="%d,40" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on" />
-			<ePixmap name="green"  position="%d,%d" zPosition="2" size="%d,40" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on" />
-			<ePixmap name="yellow" position="%d,%d" zPosition="2" size="%d,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphaTest="on" />
-			<ePixmap name="blue"   position="%d,%d" zPosition="2" size="%d,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphaTest="on" />
-			<ePixmap pixmap="skin_default/buttons/key_menu.png" position="%d,%d" zPosition="4" size="35,25"  transparent="1" alphaTest="on" />
+			<ePixmap name="red"    position="%d,%d"   zPosition="2" size="%d,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+			<ePixmap name="green"  position="%d,%d" zPosition="2" size="%d,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+			<ePixmap name="yellow" position="%d,%d" zPosition="2" size="%d,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+			<ePixmap name="blue"   position="%d,%d" zPosition="2" size="%d,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/key_menu.png" position="%d,%d" zPosition="4" size="35,25"  transparent="1" alphatest="on" />
 
-			<widget source="Version" render="Label" position="%d,%d" size="100,20" zPosition="1" font="Regular;11" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="LibUSB" render="Label" position="%d,%d" size="100,20" zPosition="1" font="Regular;11" horizontalAlignment="right" verticalAlignment="center" foregroundColor="red" backgroundColor="#25062748" transparent="1" />
-			<widget source="About" render="Label" position="%d,%d" size="100,20" zPosition="1" font="Regular;10" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="Version" render="Label" position="%d,%d" size="100,20" zPosition="1" font="Regular;11" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="LibUSB" render="Label" position="%d,%d" size="100,20" zPosition="1" font="Regular;11" halign="right" valign="center" foregroundColor="red" backgroundColor="#25062748" transparent="1" />
+			<widget source="About" render="Label" position="%d,%d" size="100,20" zPosition="1" font="Regular;10" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
 
-			<widget name="LCD1" position="%d,%d" zPosition="1" size="%d,%d" transparent="1" alphaTest="on" />
-			<widget name="LCD2" position="%d,%d" zPosition="1" size="%d,%d" transparent="1" alphaTest="on" />
-			<widget name="LCD3" position="%d,%d" zPosition="1" size="%d,%d" transparent="1" alphaTest="on" />
-			<widget source="LCD1text" render="Label" position="%d,%d" size="200,20" zPosition="1" font="Regular;11" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="LCD2text" render="Label" position="%d,%d" size="200,20" zPosition="1" font="Regular;11" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="LCD3text" render="Label" position="%d,%d" size="200,20" zPosition="1" font="Regular;11" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget name="LCD1" position="%d,%d" zPosition="1" size="%d,%d" transparent="1" alphatest="on" />
+			<widget name="LCD2" position="%d,%d" zPosition="1" size="%d,%d" transparent="1" alphatest="on" />
+			<widget name="LCD3" position="%d,%d" zPosition="1" size="%d,%d" transparent="1" alphatest="on" />
+			<widget source="LCD1text" render="Label" position="%d,%d" size="200,20" zPosition="1" font="Regular;11" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="LCD2text" render="Label" position="%d,%d" size="200,20" zPosition="1" font="Regular;11" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="LCD3text" render="Label" position="%d,%d" size="200,20" zPosition="1" font="Regular;11" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
 			</screen>""" % (75, size_w, size_h, conf_w, conf_h, int_y, conf_w - 10, 0, key_y, key_x, key_x, key_y, key_x, 2 * key_x, key_y, key_x, 3 * key_x, key_y, key_x, 0, key_y, key_x, key_x, key_y, key_x, 2 * key_x, key_y, key_x, 3 * key_x, key_y, key_x,
 			4 * key_x, key_y + 15, conf_w - 100, key_y - 10, conf_w - 100, key_y - 30, conf_w - 100, key_y - 30, conf_w, 0, pic_w, pic_h, conf_w, pic_h, pic_w, pic_h, conf_w, pic_h2, pic_w, pic_h, conf_w, 5, conf_w, pic_h + 5, conf_w, pic_h2 + 5)
 		self.skin = skin
@@ -5444,34 +5489,21 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 		self.mtime3 = 0.0
 		self.toggle = time() - 0.5  # delay in order to avoid GUI-start in mode 'idle'
 		self.picload = ePicLoad()
-		if DPKG:
-			self.picload_conn = self.picload.PictureData.connect(self.setPictureCB)
-		else:
-			self.picload.PictureData.get().append(self.setPictureCB)
+		self.picload.PictureData.get().append(self.setPictureCB)
 		sc = AVSwitch().getFramebufferScale()
 		self.picload.setPara((pic_w, pic_h, sc[0], sc[1], False, 1, '#00000000'))
 		self.picload2 = ePicLoad()
-		if DPKG:
-			self.picload2_conn = self.picload2.PictureData.connect(self.setPictureCB2)
-		else:
-			self.picload2.PictureData.get().append(self.setPictureCB2)
+		self.picload2.PictureData.get().append(self.setPictureCB2)
 		sc = AVSwitch().getFramebufferScale()
 		self.picload2.setPara((pic_w, pic_h, sc[0], sc[1], False, 1, '#00000000'))
 
 		self.picload3 = ePicLoad()
-		if DPKG:
-			self.picload3_conn = self.picload3.PictureData.connect(self.setPictureCB3)
-		else:
-			self.picload3.PictureData.get().append(self.setPictureCB3)
+		self.picload3.PictureData.get().append(self.setPictureCB3)
 		sc = AVSwitch().getFramebufferScale()
 		self.picload3.setPara((pic_w, pic_h, sc[0], sc[1], False, 1, '#00000000'))
 		ConfigListScreen.__init__(self, self.list, on_change=self.selectionChanged)
 		self.PicTimer = eTimer()
-		if DPKG:
-			self.PicTimer_conn = self.PicTimer.timeout.connect(self.showpic)
-		else:
-			self.PicTimer.callback.append(self.showpic)
-
+		self.PicTimer.callback.append(self.showpic)
 		self["introduction"] = StaticText()
 		self["Version"] = StaticText((Version if L4LElist.getVersion() == True else Version + "") + " (" + _("Mode") + ": Py" + ("3" if PY3 else "2") + ")")
 		self["LibUSB"] = StaticText()
@@ -5482,7 +5514,6 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 		self["LCD1text"] = StaticText()
 		self["LCD2text"] = StaticText()
 		self["LCD3text"] = StaticText()
-
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Save"))
 		self["key_yellow"] = Button(_("Restart Displays"))
@@ -5493,14 +5524,11 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 			"green": self.save,
 			"yellow": self.LCDrestart,
 			"blue": self.Page,
-			"nextBouquet": self.KeyUp,
-			"prevBouquet": self.KeyDown,
  			"save": self.save,
 			"cancel": self.cancel,
 			"menu": self.SetupMenu,
 			"displayHelp": self.Exchange,
 			"ok": self.keyOK,
-			"seekFwd": self.NextScreenKey,
 			"info": self.ResetInfos
 		}, -1)
 		self.mode = _("On")
@@ -5573,31 +5601,32 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 			self["LCD1"].hide()
 		else:
 			self["LCD1text"].setText("")
-		ff = False
-		fn = "%s.jpg" % PIC2
-		try:
-			if isfile(fn):
-				ft = stat(fn).st_mtime
-				ff = True
-				if ft != self.mtime2:
-					self.picload2.startDecode(fn)
-					self.mtime2 = ft
-			else:
-				fn = "%s.png" % PIC2
-				ft = 0.0
+		if LCD4linux.LCDType2.value != "00":
+			ff = False
+			fn = "%s.jpg" % PIC2
+			try:
 				if isfile(fn):
 					ft = stat(fn).st_mtime
 					ff = True
 					if ft != self.mtime2:
 						self.picload2.startDecode(fn)
 						self.mtime2 = ft
-		except Exception:
-			L4log("Error Pic2 not found")
-		if ff == False:
-			self["LCD2text"].setText(_("no LCD2 Picture-File"))
-			self["LCD2"].hide()
-		else:
-			self["LCD2text"].setText("")
+				else:
+					fn = "%s.png" % PIC2
+					ft = 0.0
+					if isfile(fn):
+						ft = stat(fn).st_mtime
+						ff = True
+						if ft != self.mtime2:
+							self.picload2.startDecode(fn)
+							self.mtime2 = ft
+			except Exception:
+				L4log("Error Pic2 not found")
+			if ff is False:
+				self["LCD2text"].setText(_("no LCD2 Picture-File"))
+				self["LCD2"].hide()
+			else:
+				self["LCD2text"].setText("")
 		if LCD4linux.LCDType3.value != "00":
 			ff = False
 			fn = "%s.jpg" % PIC3
@@ -5710,6 +5739,7 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 #				self.list1.append(getConfigListEntry(_("Internal TFT Active"), LCD4linux.LCDTFT))
 			self.list1.append(getConfigListEntry(_("Active Screen"), LCD4linux.ScreenActive))
 			self.list1.append(getConfigListEntry(_("Screen Switch Select - Screen"), LCD4linux.ScreenSwitch))
+			self.list1.append(getConfigListEntry(_("Screen Default after mode change - Screen"), LCD4linux.ScreenDefault))
 			self.list1.append(getConfigListEntry(_("Screen Switch Select - LCD"), LCD4linux.ScreenSwitchLCD))
 			self.list1.append(getConfigListEntry(_("Screens used for Changing"), LCD4linux.ScreenMax))
 			self.list1.append(getConfigListEntry(_("Screen 1 Changing Time"), LCD4linux.ScreenTime))
@@ -5749,10 +5779,11 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 				self.list1.append(getConfigListEntry(_("- Rain Color"), LCD4linux.WetterRainColor))
 				self.list1.append(getConfigListEntry(_("- Rain use Color 2 from"), LCD4linux.WetterRainColor2use))
 				self.list1.append(getConfigListEntry(_("- Rain Color 2"), LCD4linux.WetterRainColor2))
+			self.list1.append(getConfigListEntry(_("Weather Humidity Color"), LCD4linux.WetterHumColor))
 			self.list1.append(getConfigListEntry(_("Weather Lines"), LCD4linux.WetterLine))
 			self.list1.append(getConfigListEntry(_("Weather Trendarrows"), LCD4linux.WetterTrendArrows))
 			self.list1.append(getConfigListEntry(_("Weather Extra Infos"), LCD4linux.WetterExtra))
-			if LCD4linux.WetterExtra.value == True:
+			if LCD4linux.WetterExtra.value:
 				self.list1.append(getConfigListEntry(_("- Extra Zoom"), LCD4linux.WetterExtraZoom))
 				self.list1.append(getConfigListEntry(_("- Show chill temperature from difference"), LCD4linux.WetterExtraFeel))
 				self.list1.append(getConfigListEntry(_("- Extra Color City"), LCD4linux.WetterExtraColorCity))
@@ -5862,6 +5893,7 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 			self.list1.append(getConfigListEntry(_("MJPEG Cycle"), LCD4linux.MJPEGCycle))
 			self.list1.append(getConfigListEntry(_("MJPEG Restart on Error"), LCD4linux.MJPEGRestart))
 			self.list1.append(getConfigListEntry(_("MJPEG Header Mode"), LCD4linux.MJPEGHeader))
+			self.list1.append(getConfigListEntry(_("Show Streams '4097; 5001...5003' in Mode"), LCD4linux.Streaming))
 			self.list1.append(getConfigListEntry(_("Sonos IP"), LCD4linux.SonosIP))
 			self.list1.append(getConfigListEntry(_("Sonos Ping Timeout [ms]"), LCD4linux.SonosPingTimeout))
 			self.list1.append(getConfigListEntry(_("Sonos Play Check"), LCD4linux.SonosCheckTimer))
@@ -6049,6 +6081,7 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 				self.list2.append(getConfigListEntry(_("- Length"), LCD4linux.ProgressLen))
 				self.list2.append(getConfigListEntry(_("- Color"), LCD4linux.ProgressColor))
 				self.list2.append(getConfigListEntry(_("- Color Text"), LCD4linux.ProgressColorText))
+				self.list2.append(getConfigListEntry(_("- Color Background"), LCD4linux.ProgressColorBG))
 				self.list2.append(getConfigListEntry(_("- Border"), LCD4linux.ProgressBorder))
 				self.list2.append(getConfigListEntry(_("- Shaded"), LCD4linux.ProgressShadow))
 				self.list2.append(getConfigListEntry(_("- Unit min"), LCD4linux.ProgressMinutes))
@@ -6473,6 +6506,26 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 				self.list2.append(getConfigListEntry(_("- Alignment"), LCD4linux.Bild4Align))
 				self.list2.append(getConfigListEntry(_("- Quick Update"), LCD4linux.Bild4Quick))
 				self.list2.append(getConfigListEntry(_("- Transparency"), LCD4linux.Bild4Transp))
+			self.list2.append(getConfigListEntry(_("Show Picture 5"), LCD4linux.Bild5))
+			if LCD4linux.Bild5.value != "0":
+				self.list2.append(getConfigListEntry(_("- which LCD"), LCD4linux.Bild5LCD))
+				self.list2.append(getConfigListEntry(_("- File [ok]>"), LCD4linux.Bild5File))
+				self.list2.append(getConfigListEntry(_("- Size"), LCD4linux.Bild5Size))
+				self.list2.append(getConfigListEntry(_("- Size max Height"), LCD4linux.Bild5SizeH))
+				self.list2.append(getConfigListEntry(_("- Position"), LCD4linux.Bild5Pos))
+				self.list2.append(getConfigListEntry(_("- Alignment"), LCD4linux.Bild5Align))
+				self.list2.append(getConfigListEntry(_("- Quick Update"), LCD4linux.Bild5Quick))
+				self.list2.append(getConfigListEntry(_("- Transparency"), LCD4linux.Bild5Transp))
+			self.list2.append(getConfigListEntry(_("Show Picture 6"), LCD4linux.Bild6))
+			if LCD4linux.Bild6.value != "0":
+				self.list2.append(getConfigListEntry(_("- which LCD"), LCD4linux.Bild6LCD))
+				self.list2.append(getConfigListEntry(_("- File [ok]>"), LCD4linux.Bild6File))
+				self.list2.append(getConfigListEntry(_("- Size"), LCD4linux.Bild6Size))
+				self.list2.append(getConfigListEntry(_("- Size max Height"), LCD4linux.Bild6SizeH))
+				self.list2.append(getConfigListEntry(_("- Position"), LCD4linux.Bild6Pos))
+				self.list2.append(getConfigListEntry(_("- Alignment"), LCD4linux.Bild6Align))
+				self.list2.append(getConfigListEntry(_("- Quick Update"), LCD4linux.Bild6Quick))
+				self.list2.append(getConfigListEntry(_("- Transparency"), LCD4linux.Bild6Transp))
 			self.list2.append(getConfigListEntry(_("Mail"), LCD4linux.Mail))
 			if LCD4linux.Mail.value != "0":
 				self.list2.append(getConfigListEntry(_("- which LCD"), LCD4linux.MailLCD))
@@ -6732,6 +6785,7 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 				self.list3.append(getConfigListEntry(_("- Length"), LCD4linux.MPProgressLen))
 				self.list3.append(getConfigListEntry(_("- Color"), LCD4linux.MPProgressColor))
 				self.list3.append(getConfigListEntry(_("- Color Text"), LCD4linux.MPProgressColorText))
+				self.list3.append(getConfigListEntry(_("- Color Background"), LCD4linux.MPProgressColorBG))
 				self.list3.append(getConfigListEntry(_("- Border"), LCD4linux.MPProgressBorder))
 				self.list3.append(getConfigListEntry(_("- Shaded"), LCD4linux.MPProgressShadow))
 				self.list3.append(getConfigListEntry(_("- Unit min"), LCD4linux.MPProgressMinutes))
@@ -7645,6 +7699,26 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 				self.list4.append(getConfigListEntry(_("- Alignment"), LCD4linux.StandbyBild4Align))
 				self.list4.append(getConfigListEntry(_("- Quick Update"), LCD4linux.StandbyBild4Quick))
 				self.list4.append(getConfigListEntry(_("- Transparency"), LCD4linux.StandbyBild4Transp))
+			self.list4.append(getConfigListEntry(_("Show Picture 5"), LCD4linux.StandbyBild5))
+			if LCD4linux.StandbyBild5.value != "0":
+				self.list4.append(getConfigListEntry(_("- which LCD"), LCD4linux.StandbyBild5LCD))
+				self.list4.append(getConfigListEntry(_("- File [ok]>"), LCD4linux.StandbyBild5File))
+				self.list4.append(getConfigListEntry(_("- Size"), LCD4linux.StandbyBild5Size))
+				self.list4.append(getConfigListEntry(_("- Size max Height"), LCD4linux.StandbyBild5SizeH))
+				self.list4.append(getConfigListEntry(_("- Position"), LCD4linux.StandbyBild5Pos))
+				self.list4.append(getConfigListEntry(_("- Alignment"), LCD4linux.StandbyBild5Align))
+				self.list4.append(getConfigListEntry(_("- Quick Update"), LCD4linux.StandbyBild5Quick))
+				self.list4.append(getConfigListEntry(_("- Transparency"), LCD4linux.StandbyBild5Transp))
+			self.list4.append(getConfigListEntry(_("Show Picture 6"), LCD4linux.StandbyBild6))
+			if LCD4linux.StandbyBild6.value != "0":
+				self.list4.append(getConfigListEntry(_("- which LCD"), LCD4linux.StandbyBild6LCD))
+				self.list4.append(getConfigListEntry(_("- File [ok]>"), LCD4linux.StandbyBild6File))
+				self.list4.append(getConfigListEntry(_("- Size"), LCD4linux.StandbyBild6Size))
+				self.list4.append(getConfigListEntry(_("- Size max Height"), LCD4linux.StandbyBild6SizeH))
+				self.list4.append(getConfigListEntry(_("- Position"), LCD4linux.StandbyBild6Pos))
+				self.list4.append(getConfigListEntry(_("- Alignment"), LCD4linux.StandbyBild6Align))
+				self.list4.append(getConfigListEntry(_("- Quick Update"), LCD4linux.StandbyBild6Quick))
+				self.list4.append(getConfigListEntry(_("- Transparency"), LCD4linux.StandbyBild6Transp))
 			self.list4.append(getConfigListEntry(_("Mail"), LCD4linux.StandbyMail))
 			if LCD4linux.StandbyMail.value != "0":
 				self.list4.append(getConfigListEntry(_("- which LCD"), LCD4linux.StandbyMailLCD))
@@ -7835,27 +7909,27 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 			elif sel in [LCD4linux.LCDBild1, LCD4linux.LCDBild2, LCD4linux.MPLCDBild1, LCD4linux.MPLCDBild2, LCD4linux.StandbyLCDBild1, LCD4linux.StandbyLCDBild2, LCD4linux.FritzFrame]:
 				L4log("select File 1")
 				self.session.openWithCallback(self.fileSelected, LCDdisplayFile, text=_("Choose file"), FileName=self["config"].getCurrent()[1].value, showFiles=True)
-			elif sel in [LCD4linux.OSCAMFile, LCD4linux.TextFile, LCD4linux.Text2File, LCD4linux.Text3File, LCD4linux.MPTextFile, LCD4linux.MPCoverFile, LCD4linux.MPCoverFile2, LCD4linux.BildFile, LCD4linux.Bild2File, LCD4linux.Bild3File, LCD4linux.Bild4File, LCD4linux.RecordingPath]:
+			elif sel in [LCD4linux.OSCAMFile, LCD4linux.TextFile, LCD4linux.Text2File, LCD4linux.Text3File, LCD4linux.MPTextFile, LCD4linux.MPCoverFile, LCD4linux.MPCoverFile2, LCD4linux.BildFile, LCD4linux.Bild2File, LCD4linux.Bild3File, LCD4linux.Bild4File, LCD4linux.Bild5File, LCD4linux.Bild6File, LCD4linux.RecordingPath]:
 				L4log("select File 2")
 				self.session.openWithCallback(self.fileSelected, LCDdisplayFile, text=_("Choose file"), FileName=self["config"].getCurrent()[1].value, showFiles=True)
 			elif sel in [LCD4linux.Font, LCD4linux.Font1, LCD4linux.Font2, LCD4linux.Font3, LCD4linux.Font4, LCD4linux.Font5]:
 				L4log("select File 3")
 				self.session.openWithCallback(self.fileSelected, LCDdisplayFile, matchingPattern="ttf", text=_("Choose font"), FileName=self["config"].getCurrent()[1].value, showFiles=True)
-			elif sel in [LCD4linux.MPBildFile, LCD4linux.MPBild2File, LCD4linux.StandbyBildFile, LCD4linux.StandbyBild2File, LCD4linux.StandbyBild3File, LCD4linux.StandbyBild4File, LCD4linux.StandbyTextFile, LCD4linux.StandbyText2File, LCD4linux.StandbyText3File]:
+			elif sel in [LCD4linux.MPBildFile, LCD4linux.MPBild2File, LCD4linux.StandbyBildFile, LCD4linux.StandbyBild2File, LCD4linux.StandbyBild3File, LCD4linux.StandbyBild4File, LCD4linux.StandbyBild5File, LCD4linux.StandbyBild6File, LCD4linux.StandbyTextFile, LCD4linux.StandbyText2File, LCD4linux.StandbyText3File]:
 				L4log("select File 4")
 				self.session.openWithCallback(self.fileSelected, LCDdisplayFile, text=_("Choose file"), FileName=self["config"].getCurrent()[1].value, showFiles=True)
 			elif sel in [LCD4linux.Background1Bild, LCD4linux.LCD4linux.MPBackground1Bild, LCD4linux.StandbyBackground1Bild]:
 				L4log("select File 5")
 				self.session.openWithCallback(self.fileSelected, LCDdisplayFile, text=_("Choose file"), FileName=self["config"].getCurrent()[1].value, showFiles=True)
 		except Exception as err:
-			L4log("Key-OK Config Fehler: %s" % err)
+			L4log("Key-OK Config Fehler: %s" % str(err))
 
 	def dirSelected(self, dir, dir1):
 		if dir is None or dir1 is None:
 			return
 		if dir + dir1 != "" and dir1.endswith("/"):
 			sel = self["config"].getCurrent()[1]
-			if dir1[-1:] != "/":
+			if not dir1.endswith("/"):
 				dir1 += "/"
 			if sel == LCD4linux.PiconPath:
 				LCD4linux.PiconPath.value = dir1
@@ -7928,6 +8002,10 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 				LCD4linux.Bild3File.value = dirdir
 			elif sel == LCD4linux.Bild4File:
 				LCD4linux.Bild4File.value = dirdir
+			elif sel == LCD4linux.Bild5File:
+				LCD4linux.Bild5File.value = dirdir
+			elif sel == LCD4linux.Bild6File:
+				LCD4linux.Bild6File.value = dirdir
 			elif sel == LCD4linux.MPBildFile:
 				LCD4linux.MPBildFile.value = dirdir
 			elif sel == LCD4linux.MPBild2File:
@@ -7940,6 +8018,10 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 				LCD4linux.StandbyBild3File.value = dirdir
 			elif sel == LCD4linux.StandbyBild4File:
 				LCD4linux.StandbyBild4File.value = dirdir
+			elif sel == LCD4linux.StandbyBild5File:
+				LCD4linux.StandbyBild5File.value = dirdir
+			elif sel == LCD4linux.StandbyBild6File:
+				LCD4linux.StandbyBild6File.value = dirdir
 			elif sel == LCD4linux.StandbyTextFile:
 				LCD4linux.StandbyTextFile.value = dirdir
 			elif sel == LCD4linux.StandbyText2File:
@@ -8028,25 +8110,25 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 				rmFiles(join(LCD4linux.Picon2Cache.value, "*.png"))
 		if LCD4linux.WetterApi.isChanged():
 			L4log("Weather API was changed to %s" % LCD4linux.WetterApi.value)
-			resetWetter(None)
+			resetWetter()
 		if self.SaveWetter != LCD4linux.WetterCity.value:
 			self.SaveWetter = LCD4linux.WetterCity.value
 			LCD4linux.WetterCoords.value = "0,0"
 			LCD4linux.WetterCoords.save()
 			L4log("Weather city was changed from '%s' to '%s'" % (self.SaveWetter, LCD4linux.WetterCity.value))
-			resetWetter(0)
+			resetWetter()
 		if self.SaveWetter2 != LCD4linux.Wetter2City.value:
 			self.SaveWetter2 = LCD4linux.Wetter2City.value
 			LCD4linux.Wetter2Coords.value = "0,0"
 			LCD4linux.Wetter2Coords.save()
 			L4log("Weather2 city was changed from '%s' to '%s'" % (self.SaveWetter2, LCD4linux.Wetter2City.value))
-			resetWetter(1)
-		if LCD4linux.WetterIconZoom.isChanged() or LCD4linux.WetterRain.isChanged() or LCD4linux.WetterRainZoom.isChanged() or LCD4linux.WetterRainColor.isChanged() or LCD4linux.WetterRainColor2.isChanged() or LCD4linux.WetterRainColor2use.isChanged() or LCD4linux.WetterLine.isChanged() or LCD4linux.WetterTrendArrows.isChanged() or LCD4linux.WetterExtra.isChanged() or LCD4linux.WetterExtraColorFeel.isChanged() or LCD4linux.WetterExtraColorCity.isChanged() or LCD4linux.WetterExtraZoom.isChanged() or LCD4linux.WetterExtraFeel.isChanged() or LCD4linux.WetterWind.isChanged() or LCD4linux.WetterWindLines.isChanged() or LCD4linux.WetterLowColor.isChanged() or LCD4linux.WetterHighColor.isChanged() or LCD4linux.WetterTransparenz.isChanged():
-			PICwetter = [False, False]
+			resetWetter()
+		if LCD4linux.WetterIconZoom.isChanged() or LCD4linux.WetterRain.isChanged() or LCD4linux.WetterRainZoom.isChanged() or LCD4linux.WetterRainColor.isChanged() or LCD4linux.WetterRainColor2.isChanged() or LCD4linux.WetterRainColor2use.isChanged() or LCD4linux.WetterLine.isChanged() or LCD4linux.WetterTrendArrows.isChanged() or LCD4linux.WetterExtra.isChanged() or LCD4linux.WetterExtraColorFeel.isChanged() or LCD4linux.WetterExtraColorCity.isChanged() or LCD4linux.WetterExtraZoom.isChanged() or LCD4linux.WetterExtraFeel.isChanged() or LCD4linux.WetterWind.isChanged() or LCD4linux.WetterWindLines.isChanged() or LCD4linux.WetterLowColor.isChanged() or LCD4linux.WetterHighColor.isChanged() or LCD4linux.WetterTransparenz.isChanged() or LCD4linux.WetterHumColor.isChanged() or LCD4linux.WetterExtra.isChanged():
+			PICwetter = [None, None]
 		if LCD4linux.WetterZoom.isChanged() or LCD4linux.StandbyWetterZoom.isChanged() or LCD4linux.MPWetterZoom.isChanged() or LCD4linux.WetterType.isChanged() or LCD4linux.StandbyWetterType.isChanged() or LCD4linux.MPWetterType.isChanged() or LCD4linux.WetterColor.isChanged() or LCD4linux.StandbyWetterColor.isChanged() or LCD4linux.MPWetterColor.isChanged() or LCD4linux.WetterFont.isChanged() or LCD4linux.MPWetterFont.isChanged() or LCD4linux.StandbyWetterFont.isChanged() or LCD4linux.WetterShadow.isChanged() or LCD4linux.StandbyWetterShadow.isChanged() or LCD4linux.MPWetterShadow.isChanged():
-			PICwetter[0] = False
+			PICwetter[0] = None
 		if LCD4linux.Wetter2Zoom.isChanged() or LCD4linux.StandbyWetter2Zoom.isChanged() or LCD4linux.MPWetter2Zoom.isChanged() or LCD4linux.Wetter2Type.isChanged() or LCD4linux.StandbyWetter2Type.isChanged() or LCD4linux.MPWetter2Type.isChanged() or LCD4linux.Wetter2Color.isChanged() or LCD4linux.StandbyWetter2Color.isChanged() or LCD4linux.MPWetterColor.isChanged() or LCD4linux.Wetter2Font.isChanged() or LCD4linux.MPWetter2Font.isChanged() or LCD4linux.StandbyWetter2Font.isChanged() or LCD4linux.Wetter2Shadow.isChanged() or LCD4linux.StandbyWetter2Shadow.isChanged() or LCD4linux.MPWetter2Shadow.isChanged():
-			PICwetter[1] = False
+			PICwetter[1] = None
 		if self.SaveMeteo != LCD4linux.MeteoURL.value:
 			self.SaveMeteo = LCD4linux.MeteoURL.value
 			wwwMeteo = ""
@@ -8102,6 +8184,7 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 		getSamsungDevice()
 		TFTCheck(True)
 		rmFile(CrashFile)
+		PICwetter = [None, None]
 		rmFile("%stft.bmp" % TMPL)
 		rmFiles(PIC + "*.*")
 		if Briefkasten.qsize() <= 3:
@@ -8189,26 +8272,10 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 		ConfigListScreen.keyRight(self)
 		self.SetList()
 
-	def KeyUp(self):
-		self.LastSelect = str(self["config"].getCurrentIndex())
-		L4logE("key U")
-		if self["config"].getCurrentIndex() - self.ConfLines > 0:
-			self["config"].setCurrentIndex(self["config"].getCurrentIndex() - self.ConfLines)
-		else:
-			self["config"].setCurrentIndex(0)
-
-	def KeyDown(self):
-		self.LastSelect = str(self["config"].getCurrentIndex())
-		L4logE("key D")
-		if self["config"].getCurrentIndex() + self.ConfLines <= (len(self["config"].getList()) - 1):
-			self["config"].setCurrentIndex(self["config"].getCurrentIndex() + self.ConfLines)
-		else:
-			self["config"].setCurrentIndex((len(self["config"].getList()) - 1))
-
 	def restartGUI(self, answer):
-		if answer is True:
+		if answer:
 			L4log("GUI Restart")
-			self.session.open(TryQuitMainloop, 3)
+			self.session.open(Standby.TryQuitMainloop, 3)
 		else:
 			self.close(True, self.session)
 
@@ -8218,7 +8285,6 @@ class UpdateStatus(Screen):
 	def __init__(self, session):
 		global ScreenActive
 		Screen.__init__(self, session)
-
 		ScreenActive[0] = LCD4linux.ScreenActive.value
 		self.NetatmoOK = NetatmoOK
 		self.ServiceChangeRunning = False
@@ -8365,10 +8431,7 @@ class UpdateStatus(Screen):
 		self.NetworkConnectionAvailable = False
 		try:
 			if LCD4linux.NETworkCheckEnable.value == True:
-				if DPKG:
-					self.NetworkConnectionAvailable = iNetworkInfo.isConnected()
-				else:
-					iNetwork.checkNetworkState(self.checkNetworkCB)
+				iNetwork.checkNetworkState(self.checkNetworkCB)
 			else:
 				self.NetworkConnectionAvailable = None
 		except Exception:
@@ -8384,38 +8447,22 @@ class UpdateStatus(Screen):
 		self.SonosTimer = eTimer()
 		self.YMCastTimer = eTimer()
 		self.BlueTimer = eTimer()
-		if DPKG:
-			self.StatusTimer_conn = self.StatusTimer.timeout.connect(self.updateStatus)
-			self.ServiceTimer_conn = self.ServiceTimer.timeout.connect(self.ServiceChange)
-			self.SamsungTimer_conn = self.SamsungTimer.timeout.connect(self.SamsungStart)
-			self.DpfTimer_conn = self.DpfTimer.timeout.connect(self.DpfStart)
-			self.QuickTimer_conn = self.QuickTimer.timeout.connect(self.QuickBildTimer)
-			self.CheckRefresh_conn = self.CheckRefresh.timeout.connect(self.CallCheckRefresh)
-			self.Later6Timer_conn = self.Later6Timer.timeout.connect(self.CallLater6)
-			self.SonosTimer_conn = self.SonosTimer.timeout.connect(self.getSonos)
-			self.YMCastTimer_conn = self.YMCastTimer.timeout.connect(self.getYMCast)
-			self.BlueTimer_conn = self.BlueTimer.timeout.connect(self.getBlue)
-		else:
-			self.StatusTimer.callback.append(self.updateStatus)
-			self.ServiceTimer.callback.append(self.ServiceChange)
-			self.SamsungTimer.callback.append(self.SamsungStart)
-			self.DpfTimer.callback.append(self.DpfStart)
-			self.QuickTimer.callback.append(self.QuickBildTimer)
-			self.CheckRefresh.callback.append(self.CallCheckRefresh)
-			self.Later6Timer.callback.append(self.CallLater6)
-			self.SonosTimer.callback.append(self.getSonos)
-			self.YMCastTimer.callback.append(self.getYMCast)
-			self.BlueTimer.callback.append(self.getBlue)
+		self.StatusTimer.callback.append(self.updateStatus)
+		self.ServiceTimer.callback.append(self.ServiceChange)
+		self.SamsungTimer.callback.append(self.SamsungStart)
+		self.DpfTimer.callback.append(self.DpfStart)
+		self.QuickTimer.callback.append(self.QuickBildTimer)
+		self.CheckRefresh.callback.append(self.CallCheckRefresh)
+		self.Later6Timer.callback.append(self.CallLater6)
+		self.SonosTimer.callback.append(self.getSonos)
+		self.YMCastTimer.callback.append(self.getYMCast)
+		self.BlueTimer.callback.append(self.getBlue)
 		if GPjukeboxOK == True:
 			CjukeboxEventNotifier.append(self.BPPlayerEvent)
 		if BitrateRegistred == True:
 			self.BitrateTimer = eTimer()
-			if DPKG:
-				self.BitrateTimer_conn = self.BitrateTimer.timeout.connect(self.runBitrateTimer)
-			else:
-				self.BitrateTimer.callback.append(self.runBitrateTimer)
+			self.BitrateTimer.callback.append(self.runBitrateTimer)
 			self.BitrateTimer.startLongTimer(30)
-
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evUpdatedInfo: self.restartTimer,
 				iPlayableService.evUpdatedEventInfo: self.restartTimer,
@@ -8427,13 +8474,13 @@ class UpdateStatus(Screen):
 		self.InstanceKeyPressed = eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.rcKeyPressed)
 		self.recordtimer = session.nav.RecordTimer
 		self.LastTimerlistUpdate = 0
-		if str(LCD4linux.StandbyWetter.value) != "0" or str(LCD4linux.Wetter.value) != "0" or str(LCD4linux.MPWetter.value) != "0":
+		if (LCD4linux.StandbyWetter.value != "0" or LCD4linux.Wetter.value != "0" or LCD4linux.MPWetter.value != "0"):
 			self.downloadWetter(LCD4linux.WetterCity.value, 0)
-		if str(LCD4linux.StandbyWetter2.value) != "0" or str(LCD4linux.Wetter2.value) != "0" or str(LCD4linux.MPWetter2.value) != "0":
+		if LCD4linux.StandbyWetter2.value != "0" or LCD4linux.Wetter2.value != "0" or LCD4linux.MPWetter2.value != "0":
 			self.downloadWetter(LCD4linux.Wetter2City.value, 1)
-		if str(LCD4linux.StandbyMeteo.value) != "0" or str(LCD4linux.Meteo.value) != "0":
+		if LCD4linux.StandbyMeteo.value != "0" or LCD4linux.Meteo.value != "0":
 			self.downloadMeteo()
-		if str(LCD4linux.ExternalIp.value) != "0" or str(LCD4linux.MPExternalIp.value) != "0" or str(LCD4linux.StandbyExternalIp.value) != "0":
+		if LCD4linux.ExternalIp.value != "0" or LCD4linux.MPExternalIp.value != "0" or LCD4linux.StandbyExternalIp.value != "0":
 			self.ExternalIP = getExternalIP()
 		self.timerlist = ""
 		self.pluginlist = ""
@@ -8486,10 +8533,7 @@ class UpdateStatus(Screen):
 		res_mgr = eDVBResourceManager.getInstance()
 		if res_mgr:
 			self.TunerCallBack = True
-			if DPKG:
-				self.frontendUseMaskChanged_conn = res_mgr.frontendUseMaskChanged.connect(self.tunerUseMaskChanged)
-			else:
-				res_mgr.frontendUseMaskChanged.get().append(self.tunerUseMaskChanged)
+			res_mgr.frontendUseMaskChanged.get().append(self.tunerUseMaskChanged)
 		else:
 			print("[ERROR]no res_mgr!!")
 
@@ -8498,10 +8542,7 @@ class UpdateStatus(Screen):
 			res_mgr = eDVBResourceManager.getInstance()
 			if res_mgr:
 				self.TunerCallBack = False
-				if DPKG:
-					self.frontendUseMaskChanged_conn = None
-				else:
-					res_mgr.frontendUseMaskChanged.get().remove(self.tunerUseMaskChanged)
+				res_mgr.frontendUseMaskChanged.get().remove(self.tunerUseMaskChanged)
 			else:
 				print("[ERROR]no res_mgr!!")
 
@@ -8990,10 +9031,10 @@ class UpdateStatus(Screen):
 					self.SonosSoCo = None
 					self.YMCastSoCo = None
 					self.BlueSoCo = None
-				if str(LCD4linux.StandbyWetter.value) != "0" or str(LCD4linux.Wetter.value) != "0" or str(LCD4linux.MPWetter.value) != "0":
+				if LCD4linux.StandbyWetter.value != "0" or LCD4linux.Wetter.value != "0" or LCD4linux.MPWetter.value != "0":
 					if strftime("%M") in ("35", "40", "55") or wwwWetter[0] == "":
 						self.downloadWetter(LCD4linux.WetterCity.value, 0)
-				if str(LCD4linux.StandbyWetter2.value) != "0" or str(LCD4linux.Wetter2.value) != "0" or str(LCD4linux.MPWetter2.value) != "0":
+				if LCD4linux.StandbyWetter2.value != "0" or LCD4linux.Wetter2.value != "0" or LCD4linux.MPWetter2.value != "0":
 					if strftime("%M") in ("35", "40", "55") or wwwWetter[1] == "":
 						self.downloadWetter(LCD4linux.Wetter2City.value, 1)
 				if strftime("%M") in LCD4linux.MailTime.value:
@@ -9024,10 +9065,7 @@ class UpdateStatus(Screen):
 						L4log("Error: Remove FritzCall", "%s" % FritzList)
 					if self.NetworkConnectionAvailable is not None:
 						L4log("check Network...")
-						if DPKG:
-							self.NetworkConnectionAvailable = iNetworkInfo.isConnected()
-						else:
-							iNetwork.checkNetworkState(self.checkNetworkCB)
+						iNetwork.checkNetworkState(self.checkNetworkCB)
 				if str(LCD4linux.StandbyMeteo.value) != "0" or str(LCD4linux.Meteo.value) != "0":
 					if divmod(int(strftime("%M")), 5)[1] == 0 or wwwMeteo.find("current_conditions") < 1:
 						self.downloadMeteo()
@@ -9126,10 +9164,10 @@ class UpdateStatus(Screen):
 			self.LsreftoString = sref.toString()
 			if self.LsreftoString is not None:
 				self.LsrefFile = self.LsreftoString[self.LsreftoString.rfind(":") + 1:]
-				if self.LsrefFile[:1] != "/":
+				if self.LsrefFile.startswith("/"):
 					tsref = self.LsreftoString[:-len(self.LsrefFile) - 1]
 					tsref = tsref[tsref.rfind(":") + 1:]
-					if tsref[:1] == "/":
+					if tsref.startswith("/"):
 						self.LsrefFile = tsref
 			else:
 				self.LsrefFile = ""
@@ -9145,7 +9183,7 @@ class UpdateStatus(Screen):
 				self.Lchannel_name = info and Code_utf8(info.getName(ref))
 				self.Lchannel_name2 = info and info.getName(ref)
 			self.Lcommand = ""
-			if self.LsrefFile[:1] == "/" and isfile("%s.meta" % self.LsrefFile):
+			if self.LsrefFile.startswith("/") and isfile("%s.meta" % self.LsrefFile):
 				try:
 					with open("%s.meta" % self.LsrefFile, "r") as f:
 						service_name = f.readline().strip()
@@ -9390,16 +9428,10 @@ class UpdateStatus(Screen):
 	def stopBitrateData(self, TYP):
 		L4logE("Bitrate Stop", TYP)
 		if "V" in TYP and self.videoBitrate is not None:
-			if DPKG:
-				self.videoBitrate_conn = None
-			else:
-				self.videoBitrate.callback.remove(self.getVideoBitrateData)
+			self.videoBitrate.callback.remove(self.getVideoBitrateData)
 			self.videoBitrate = None
 		if "A" in TYP and self.audioBitrate is not None:
-			if DPKG:
-				self.audioBitrate_conn = None
-			else:
-				self.audioBitrate.callback.remove(self.getAudioBitrateData)
+			self.audioBitrate.callback.remove(self.getAudioBitrateData)
 			self.audioBitrate = None
 
 	def startBitrateData(self):
@@ -9421,18 +9453,12 @@ class UpdateStatus(Screen):
 					apid = info.getInfo(iServiceInformation.sAudioPID)
 					if vpid:
 						self.videoBitrate = eBitrateCalculator(vpid, ref, 3000, 1024 * 1024)
-						if DPKG:
-							self.videoBitrate.callback = self.getVideoBitrateData
-						else:
-							self.videoBitrate.callback.append(self.getVideoBitrateData)
+						self.videoBitrate.callback.append(self.getVideoBitrateData)
 					else:
 						self.LvideoBitrate = ""
 					if apid:
 						self.audioBitrate = eBitrateCalculator(apid, ref, 3000, 64 * 1024)
-						if DPKG:
-							self.audioBitrate.callback = self.getVideoBitrateData
-						else:
-							self.audioBitrate.callback.append(self.getAudioBitrateData)
+						self.audioBitrate.callback.append(self.getAudioBitrateData)
 					else:
 						self.LaudioBitrate = ""
 				else:
@@ -9513,14 +9539,14 @@ class UpdateStatus(Screen):
 					self.KeyDoppel = 0
 					if LCD4linux.KeyOff.value[-1:] != "1" and key == self.ko:  # PREVIOUS
 						LCDon = True if LCDon == False else False
-						L4logE("Restart at Off-doublekey", key)
+						L4logE("Restart at Off-doublekey %s" % key)
 						self.Refresh = "1"
 						self.restartTimer()
 					elif LCD4linux.KeyScreen.value[-1:] != "1" and key == self.k:  # FORWARD / INFO
 						ScreenTime = 9999
 						NextScreen(True)
 						LCD4linux.ScreenActive.value = ScreenActive[0]
-						L4logE("Restart at Scr-doublekey", key)
+						L4logE("Restart at Scr-doublekey %s" % key)
 						self.Refresh = "1"
 						self.restartTimer()
 				elif flag == 0:
@@ -9616,9 +9642,7 @@ class UpdateStatus(Screen):
 					if len(Auth) > 1 and len(Auth[0].split(":", 1)[-1].split(":")) == 2:
 						username, password = Auth[0].split(":", 1)[-1].split(":")
 						up = "%s:%s" % (username, password)
-						basicAuth = b64encode(ensure_binary(up))
-						if PY3:
-							basicAuth = basicAuth.decode()
+						basicAuth = b64encode(ensure_binary(up)).decode() if PY3 else b64encode(ensure_binary(up))
 						Header = {"Authorization": "Basic %s" % basicAuth}
 					if wwwURL[1] == 0:
 						feedurl = "http://%s/web/subservices" % URL
@@ -9671,9 +9695,7 @@ class UpdateStatus(Screen):
 					if len(Auth) > 1 and len(Auth[0].split(":", 1)[-1].split(":")) == 2:
 						username, password = Auth[0].split(":", 1)[-1].split(":")
 						up = "%s:%s" % (username, password)
-						basicAuth = b64encode(ensure_binary(up))
-						if PY3:
-							basicAuth = basicAuth.decode()
+						basicAuth = b64encode(ensure_binary(up)).decode() if PY3 else b64encode(ensure_binary(up))
 						Header = {"Authorization": "Basic %s" % basicAuth}
 					feedurl = "http://%s/web/timerlist" % URL
 					L4log("wwwBoxTimer %d" % i, feedurl)
@@ -9783,32 +9805,37 @@ class UpdateStatus(Screen):
 					callInThread(getPage, self.feedurl, boundFunction(self.downloadOMcallback, wetter), self.downloadListError)
 
 			elif LCD4linux.WetterApi.value == "OPENWEATHER":
-				apkey = "&appid=%s" % LCD4linux.WetterApiKeyOpenWeatherMap.value if len(LCD4linux.WetterApiKeyOpenWeatherMap.value) > 5 else ""
-				city = "id=%s" % quote(ort[3:]) if ort.startswith("wc:") else "q=%s" % quote(ort)
-				self.feedurl = "http://api.openweathermap.org/data/2.5/weather?%s&lang=%s&units=metric%s" % (city, la[:2], apkey)
-				L4logE("OWM-getcurrentweather%s: %s" % (wetter, self.feedurl))
-				callInThread(getPage, self.feedurl, boundFunction(self.downloadOWMcallback, wetter), self.downloadListError)
-				self.feedurl = "https://api.openweathermap.org/data/2.5/onecall?&lon=%s&lat=%s&units=metric&exclude=hourly,minutely,current&lang=%s%s" % (self.Long[wetter], self.Lat[wetter], la[:2], apkey)
-				L4logE("OWM-getforecastweather%s: %s" % (wetter, self.feedurl))
-				callInThread(getPage, self.feedurl, boundFunction(self.downloadOWMcallback, wetter), self.downloadListError)
+				if float(self.Long[wetter]) == 0 and float(self.Lat[wetter]) == 0:
+					self.feedurl = "https://geocoding-api.open-meteo.com/v1/search?language=%s&count=10&name=%s" % (la[:2], city)
+					L4logE("OWM-citysearch%s: %s" % (wetter, self.feedurl))
+					callInThread(getPage, self.feedurl, boundFunction(self.getCityCoords, wetter), self.downloadListError)
+				else:
+					apkey = LCD4linux.WetterApiKeyOpenWeatherMap.value if len(LCD4linux.WetterApiKeyOpenWeatherMap.value) > 5 else ""
+					self.feedurl = "https://api.openweathermap.org/data/3.0/onecall?&lon=%s&lat=%s&units=metric&exclude=hourly,minutely,current&lang=%s&appid=%s" % (self.Long[wetter], self.Lat[wetter], la[:2], apkey)
+					L4logE("OWM-getOneCallWeather%s: %s" % (wetter, self.feedurl))
+					callInThread(getPage, self.feedurl, boundFunction(self.downloadOWMcallback, wetter), self.downloadListError)
 
 			elif LCD4linux.WetterApi.value == "WEATHERUNLOCKED":
 				apkey = "?app_id=%s&app_key=%s" % (LCD4linux.WetterApiKeyWeatherUnlocked.value.split()[0], LCD4linux.WetterApiKeyWeatherUnlocked.value.split()[1]) if len(LCD4linux.WetterApiKeyWeatherUnlocked.value.split()) == 2 else ""
 				lang = "&lang=%s" % ort.split(".")[0] if "." in ort else ""
-				self.feedurl = "http://api.weatherunlocked.com/api/current/%s%s%s" % (city, apkey, lang)
-				L4logE("WU-getcurrentweather%s: %s" % (wetter, self.feedurl))
-				callInThread(getPage, self.feedurl, boundFunction(self.downloadWUcallback, wetter), self.downloadListError)
-				self.feedurl = "http://api.weatherunlocked.com/api/forecast/%s%s%s" % (city, apkey, lang)
-				L4logE("WU-getforecastweather%s: %s" % (wetter, self.feedurl))
-				callInThread(getPage, self.feedurl, boundFunction(self.downloadWUcallback, wetter), self.downloadListError)
+				city = LCD4linux.WetterCity.value if wetter == 0 else LCD4linux.Wetter2City.value
+				if "." in city:  # e.g. 'de.ZIPccode'
+					feedurl = "http://api.weatherunlocked.com/api/current/%s" % city
+				else:
+					feedurl = "http://api.weatherunlocked.com/api/current/%s,%s" % (self.Long[wetter], self.Lat[wetter])
+				L4logE("WU-getcurrentweather%s: %s" % (wetter, feedurl))
+				callInThread(boundFunction(getPage, feedurl, params=params), boundFunction(self.downloadWUcallback, wetter), self.downloadListError)
+				if "." in ort:  #  e.g. 'de.ZIPcode'
+					feedurl = "http://api.weatherunlocked.com/api/forecast/%s" % city
+				else:
+					feedurl = "http://api.weatherunlocked.com/api/forecast/%s,%s" % (self.Long[wetter], self.Lat[wetter])
+				L4logE("WU-getforecastweather%s: %s" % (wetter, feedurl))
+				callInThread(boundFunction(getPage, feedurl, params=params), boundFunction(self.downloadWUcallback, wetter), self.downloadListError)
 			L4log("Wetter%s: downloadstart %s:%s %s %s" % (wetter, LCD4linux.WetterApi.value, ort, language.getLanguage(), la))
 		else:
 			if self.NetworkConnectionAvailable is not None:
 				L4log("Wetter%s: check Network..." % wetter)
-				if DPKG:
-					self.NetworkConnectionAvailable = iNetworkInfo.isConnected()
-				else:
-					iNetwork.checkNetworkState(self.checkNetworkCB)
+				iNetwork.checkNetworkState(self.checkNetworkCB)
 
 	def downloadListError(self, error=""):
 		L4log("Wetterdownload Error: %s" % error)
@@ -9838,7 +9865,7 @@ class UpdateStatus(Screen):
 			results = loads(jsonData).get("results", [None])[0]
 		except Exception as err:
 			self.WetterOK = False
-			L4log("Wetter%s-citysearch: invalid json data from MSN-server: %s" % (ConfigWWW, err))
+			L4log("Wetter%s-citysearch: invalid json data from MSN-server: %s" % (ConfigWWW, str(err)))
 			return
 		if results:
 			cityname = results["name"] if "name" in results else ""
@@ -9853,7 +9880,7 @@ class UpdateStatus(Screen):
 
 	def downloadMSNcallback(self, ConfigWWW, jsonData):
 		iconmap = {"d000": "32", "d100": "34", "d200": "30", "d210": "12", "d211": "5", "d212": "14", "d220": "11", "d221": "42",
-	     			"d222": "16", "d240": "4", "d300": "28", "d310": "11", "d311": "5", "d312": "14", "d320": "39", "d321": "5",
+		 			"d222": "16", "d240": "4", "d300": "28", "d310": "11", "d311": "5", "d312": "14", "d320": "39", "d321": "5",
 					"d322": "16", "d340": "4", "d400": "26", "d410": "9", "d411": "5", "d412": "14", "d420": "9", "d421": "5",
 					"d422": "16", "d430": "12", "d431": "5", "d432": "15", "d440": "4", "d500": "28", "d600": "20", "d603": "10",
 					"d605": "17", "d705": "17", "d900": "21", "d905": "17", "d907": "21", "n000": "31", "n100": "33", "n200": "29",
@@ -9871,7 +9898,7 @@ class UpdateStatus(Screen):
 		try:
 			r = loads(jsonData).get("responses", [None])[0]
 		except Exception as err:
-			L4log("MSN-weather%s: json-download Error: %s" % (ConfigWWW, err))
+			L4log("MSN-weather%s: json-download Error: %s" % (ConfigWWW, str(err)))
 			return
 		L4log("MSN-weather%s data ready" % ConfigWWW)
 		L4logE("MSN-weather%s data: {placeholder for a large json-string}" % ConfigWWW)
@@ -9893,7 +9920,7 @@ class UpdateStatus(Screen):
 			else:
 				self.WDay[ConfigWWW]["Wind"] = "%.1f m/s %s" % (current.get("windSpd", 0) / 3.6, getDirection(current.get("windDir", "na")))
 			self.WDay[ConfigWWW]["Cond"] = current.get("pvdrCap", "")
-			self.WDay[ConfigWWW]["Icon"] = "%s.png" % iconmap.get(current.get("symbol", "")[:-1], "NA")  # reduce MSN-code by 'windy'-flag
+			self.WDay[ConfigWWW]["Icon"] = "%s.png" % iconmap.get(current.get("symbol", "")[:4], "NA")  # remove 'windy-flag' if present
 			self.WDay[ConfigWWW]["Feel"] = "%.0f" % current.get("feels", 0)
 			self.WDay[ConfigWWW]["Rain"] = "%.0f" % forecast[0].get("daily", {}).get("day", {}).get("precip", 0)
 			self.WWeek[ConfigWWW] = []
@@ -9902,13 +9929,13 @@ class UpdateStatus(Screen):
 				Low = "%.0f" % forecast[idx].get("daily", {}).get("tempLo", 0)
 				date = (currdate + timedelta(days=idx)).strftime("%Y-%m-%d")
 				Day = datetime(int(date[:4]), int(date[5:7]), int(date[8:])).strftime("%a")
-				Icon = "%s.png" % iconmap.get(forecast[idx].get("daily", {}).get("symbol", "")[:-1], "NA")  # reduce MSN-code by 'windy'-flag
+				Icon = "%s.png" % iconmap.get(forecast[idx].get("daily", {}).get("symbol", "")[:4], "NA")  # remove 'windy-flag' if present
 				Cond = forecast[idx].get("daily", {}).get("pvdrCap", "")
 				Regen = "%.0f" % forecast[idx].get("daily", {}).get("day", {}).get("precip", 0)
 				self.WWeek[ConfigWWW].append({"High": High, "Low": Low, "Day": Day, "Icon": Icon, "Cond": Cond, "Regen": Regen})
 			L4log("MSN-weather%s: completed!" % ConfigWWW)
 			self.downloadSunrise()
-			PICwetter[ConfigWWW] = False
+			PICwetter[ConfigWWW] = None
 		else:
 			L4log("MSN-weather%s download Error: no data found." % ConfigWWW)
 
@@ -9925,7 +9952,7 @@ class UpdateStatus(Screen):
 		try:
 			r = loads(jsonData)
 		except Exception as err:
-			L4log("OM-weather%s: json-download Error: %s" % (ConfigWWW, err))
+			L4log("OM-weather%s: json-download Error: %s" % (ConfigWWW, str(err)))
 			return
 		L4log("OM-weather%s data ready" % ConfigWWW)
 		L4logE("OM-weather%s data: %s" % (ConfigWWW, r))
@@ -9965,7 +9992,7 @@ class UpdateStatus(Screen):
 				self.WWeek[ConfigWWW].append({"High": High, "Low": Low, "Day": Day, "Icon": Icon, "Cond": Cond, "Regen": Regen})
 			L4log("OM-weather%s: completed!" % ConfigWWW)
 			self.downloadSunrise()
-			PICwetter[ConfigWWW] = False
+			PICwetter[ConfigWWW] = None
 		else:
 			L4log("OM-weather%s download Error: no data found." % ConfigWWW)
 
@@ -9985,7 +10012,7 @@ class UpdateStatus(Screen):
 		try:
 			r = loads(jsonData)
 		except Exception as err:
-			L4log("OWM-weather%s: json-download Error: %s" % (ConfigWWW, err))
+			L4log("OWM-weather%s: json-download Error: %s" % (ConfigWWW, str(err)))
 			return
 		L4log("OMW-weather%s data ready" % ConfigWWW)
 		L4logE("OMW-weather%s data: %s" % (ConfigWWW, r))
@@ -10007,7 +10034,7 @@ class UpdateStatus(Screen):
 			self.WDay[ConfigWWW]["Feel"] = "%.0f" % r.get("main", {}).get("feels_like", 0)
 			self.WDay[ConfigWWW]["Rain"] = "%.0f" % (r.get("pop", 0) * 100)
 			self.WDay[ConfigWWW]["Wtime"] = strftime("%H:%M"), localtime(r.get("dt", time()))
-			PICwetter[ConfigWWW] = False
+			PICwetter[ConfigWWW] = None
 		elif r.get("daily", None) is not None:
 			self.WetterOK = True
 			L4log("OWM-weather%s: analysing forecasts..." % ConfigWWW)
@@ -10021,7 +10048,7 @@ class UpdateStatus(Screen):
 				Cond = current.get("weather", [{}])[0].get("description", "")
 				Regen = "%.0f" % (current.get("pop", 0) * 100)
 				self.WWeek[ConfigWWW].append({"High": High, "Low": Low, "Day": Day, "Icon": Icon, "Cond": Cond, "Regen": Regen})
-			PICwetter[ConfigWWW] = False
+			PICwetter[ConfigWWW] = None
 			L4log("OWM-weather%s: completed!" % ConfigWWW)
 			self.downloadSunrise()
 		else:
@@ -10065,7 +10092,7 @@ class UpdateStatus(Screen):
 			rain = "%.0f" % r.get("prob_precip_pct", 0)
 			self.WDay[ConfigWWW]["Rain"] = rain if rain.isdigit() else "0"  # could be: "< 1"
 			self.WDay[ConfigWWW]["Wtime"] = strftime("%H:%M", localtime())
-			PICwetter[ConfigWWW] = False
+			PICwetter[ConfigWWW] = None
 		elif r.get("Days", None) is not None:
 			self.WetterOK = True
 			L4log("WU-weather%s: analysing forecasts..." % ConfigWWW)
@@ -10088,7 +10115,7 @@ class UpdateStatus(Screen):
 				self.WWeek[ConfigWWW].append({"High": High, "Low": Low, "Day": Day, "Icon": Icon, "Cond": Cond, "Regen": Regen})
 			L4log("WU-weather%s: completed!" % ConfigWWW)
 			self.downloadSunrise()
-			PICwetter[ConfigWWW] = False
+			PICwetter[ConfigWWW] = None
 		else:
 			wwwWetter[ConfigWWW] = ""
 			L4log("WU-weather%s download Error: no data found" % ConfigWWW)
@@ -10334,10 +10361,9 @@ def LCD4linuxPICThread(self, session):
 	ThreadRunning = 0
 
 
-def getNumber(actservice):
-	# actservice must be an instance of eServiceReference
+def getNumber(actservice):  # actservice must be an instance of eServiceReference
 	Servicelist = None
-	if InfoBar and InfoBar.instance:
+	if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:
 		Servicelist = InfoBar.instance.servicelist
 	mask = (eServiceReference.isMarker | eServiceReference.isDirectory)
 	number = 0
@@ -10355,7 +10381,7 @@ def getNumber(actservice):
 						service = servicelist.getNext()
 						if not service.valid():  # check end of list
 							break
-						playable = not (service.flags & mask) or (service.flags & eServiceReference.isNumberedMarker)
+						playable = not (service.flags & mask)
 						if playable:
 							number += 1
 #						L4logE(" ",service.getPath())
@@ -10441,10 +10467,7 @@ def getSplit(ConfigSplit, ConfigAlign, MAX_W, w):
 
 def getFont(num):
 	ff = [FONT, LCD4linux.Font1.value, LCD4linux.Font2.value, LCD4linux.Font3.value, LCD4linux.Font4.value, LCD4linux.Font5.value]
-	if ff[int(num)].endswith(".ttf") and isfile(ff[int(num)]):
-		return ff[int(num)]
-	else:
-		return FONT
+	return ff[int(num)] if ff[int(num)].endswith(".ttf") and isfile(ff[int(num)]) else FONT
 
 
 def getMem():
@@ -10572,8 +10595,7 @@ def MoonPosition(now=None):
 
 
 def MoonPhase(pos):
-	index = (pos * float(8)) + float("0.5")
-	index = floor(index)
+	index = int(floor(pos * 8 + 0.5))
 	return {
 		0: _("New Moon"),
 		1: _("First Quarter"),
@@ -10632,10 +10654,7 @@ def LCD4linuxPIC(self, session):
 			tx0 = tx - D
 			ty1 = ty + D
 			ty0 = ty - D
-			if tCol[0] == '#':
-				COL = tCol
-			else:
-				COL = ImageColor.colormap[tCol]
+			COL = tCol if tCol[0] == '#' else ImageColor.colormap[tCol]
 			if isinstance(COL, tuple):
 				RGB = COL
 			else:
@@ -10875,20 +10894,23 @@ def LCD4linuxPIC(self, session):
 					P2A = LCD4linux.PiconPathAlt.value
 					PIC = []
 					PIC.append(join(P2, picon))
-					name = normalize('NFKD', self.Lchannel_name)
-					name = sub(r'[^a-z0-9]', '', "%s.png" % str(name).replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
-					if not PY3:
+					if PY3:
+						name2 = "%s.png" % self.Lchannel_name.encode("latin-1", "ignore").decode("utf-8")
+						name4 = "%s.png" % self.Lchannel_name.encode("utf-8", "ignore").decode("utf-8")
+						name3 = "%s.png" % self.Lchannel_name2.replace('\x87', '').replace('\x86', '')
+						name = normalize('NFKD', self.Lchannel_name)
+					else:
 						name2 = "%s.png" % self.Lchannel_name.decode("utf-8").encode("latin-1", "ignore")
 						name4 = "%s.png" % self.Lchannel_name.decode("utf-8").encode("utf-8", "ignore")
 						name3 = "%s.png" % self.Lchannel_name2.replace('\xc2\x87', '').replace('\xc2\x86', '').decode("utf-8").encode("utf-8")
-					else:
-						name2 = "%s.png" % self.Lchannel_name
-						name4 = "%s.png" % self.Lchannel_name
-						name3 = "%s.png" % self.Lchannel_name2.replace('\x87', '').replace('\x86', '')
+						name = normalize('NFKD', self.Lchannel_name.decode('unicode-escape'))
+					name = "%s.png" % sub(r'[^a-z0-9]', '', str(name).replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
+					name5 = getPiconName(self.LsreftoString)
 					PIC.append(join(P2, name3))
 					PIC.append(join(P2, name2))
 					PIC.append(join(P2, name))
 					PIC.append(join(P2, name4))
+					PIC.append(join(P2, name5))
 					fields = picon.split("_", 3)
 					if fields[0] in ("4097", "5001", "5002", "5003"):
 						fields[0] = "1"
@@ -10981,23 +11003,26 @@ def LCD4linuxPIC(self, session):
 		global OldFeel
 		global OldHum
 		global OldWind
-		MAX_W, MAX_H = (0, 0)
+		MAX_W, MAX_H, MAX_Wc = 0, 0, 0
 		MAX_Wi, MAX_Hi = self.im[im].size
 		if ConfigSplit == True:
 			MAX_Wi = int(MAX_Wi / 2)
 		Wim = 5 + int(ConfigWWW)
-		if PICwetter[ConfigWWW] is False or ConfigType != WetterTypeX[ConfigWWW] or ConfigZoom != WetterZoomX[ConfigWWW]:
-			PICwetter[ConfigWWW] = True
+		if PICwetter[ConfigWWW] is None or ConfigType != WetterType or ConfigZoom != WetterZoom:
+			PICwetter[ConfigWWW] = "wait"
 			UseWetterPath = WetterPath
 			if len(LCD4linux.WetterPath.value) > 2 and isfile(join(LCD4linux.WetterPath.value, "0.png")):
 				UseWetterPath = LCD4linux.WetterPath.value
-			WetterTypeX[ConfigWWW] = ConfigType
-			WetterZoomX[ConfigWWW] = ConfigZoom
+			WetterType = ConfigType
+			WetterZoom = ConfigZoom
 			POSX, POSY = 1, 0
 			Wmulti = ConfigZoom / 10.0
-			if ConfigType[0] == "2":
+			largesize = not ConfigType.startswith("3")
+			trendarrows = LCD4linux.WetterTrendArrows.value
+			MAX_Wr = 0 if trendarrows else int(12 * Wmulti)  # reduce width of current weather frame when trendarrows are missing
+			if ConfigType.startswith("2"):
 				MAX_H = int(175 * Wmulti)
-			elif ConfigType[0] == "4":
+			elif ConfigType.startswith("4"):
 				MAX_H = int(25 * Wmulti)
 			elif ConfigType == "5":
 				MAX_H = int(54 * 6 * Wmulti)
@@ -11007,37 +11032,47 @@ def LCD4linuxPIC(self, session):
 				MAX_H = int(80 * Wmulti)
 			MAX_H += 2
 			if ConfigType == "1":
-				MAX_W = int(60 * 4 * Wmulti) + int(48 * 2 * Wmulti)
+				MAX_W = int(54 * 4 * Wmulti) + int(50 * 2 * Wmulti) - MAX_Wr
+				MAX_Wc = MAX_W
 			elif ConfigType == "11":
-				MAX_W = int(60 * 5 * Wmulti) + int(48 * 2 * Wmulti)
+				MAX_W = int(54 * 5 * Wmulti) + int(50 * 2 * Wmulti) - MAX_Wr
+				MAX_Wc = MAX_W
 			elif ConfigType == "12":
-				MAX_W = int(60 * 2 * Wmulti) + int(48 * 2 * Wmulti)
-			elif ConfigType == "22":
-				MAX_W = int(60 * 2 * Wmulti)
+				MAX_W = int(54 * 2 * Wmulti) + int(50 * 2 * Wmulti) - MAX_Wr
+				MAX_Wc = MAX_W
 			elif ConfigType == "2":
-				MAX_W = int(60 * 4 * Wmulti)
+				MAX_W = int(55 * 4 * Wmulti)
+				MAX_Wc = int(50 * 2 * Wmulti) - MAX_Wr
 			elif ConfigType == "21":
-				MAX_W = int(60 * 5 * Wmulti)
+				MAX_W = int(55 * 5 * Wmulti)
+				MAX_Wc = int(50 * 2 * Wmulti) - MAX_Wr
+			elif ConfigType == "22":
+				MAX_W = int(55 * 2 * Wmulti)
+				MAX_Wc = int(50 * 2 * Wmulti) - MAX_Wr
 			elif ConfigType == "3":
-				MAX_W = int(60 * 2 * Wmulti)
-			elif ConfigType[0] == "4":
-				MAX_W = int(60 * Wmulti)
-			elif ConfigType[0] == "41":
-				MAX_W = int(60 * Wmulti)
-			elif ConfigType[0] == "5":
-				MAX_W = int(60 * 3 * Wmulti)
+				MAX_W = int(48 * 2 * Wmulti) - MAX_Wr
+				MAX_Wc = MAX_W
+			elif ConfigType.startswith("4"):
+				MAX_W = int(55 * Wmulti)
+				MAX_Wc = MAX_W
+			elif ConfigType.startswith("5"):
+				MAX_W = int(54 * 3 * Wmulti)
+				MAX_Wc = MAX_W
 				POSX = int(54 * 2 * Wmulti)
-				POSY = int(54 * 2 * Wmulti)
-			imageMode = "RGBA" if LCD4linux.WetterTransparenz.value == "true" else "RGB"
-			self.im[Wim] = Image.new(imageMode, (MAX_W, MAX_H), (0, 0, 0, 0))
-			if LCD4linux.WetterTransparenz.value == "crop":
-				POSXs = getSplit(ConfigSplit, ConfigAlign, MAX_Wi, MAX_W)
-				image_Back = self.im[im].crop((POSXs, ConfigPos, POSXs + MAX_W, ConfigPos + MAX_H))
-				self.im[Wim].paste(image_Back, (0, 0))
+				POSY = int(40 * 2 * Wmulti)
+			if LCD4linux.WetterTransparenz.value == "true":
+				self.im[Wim] = Image.new('RGBA', (MAX_W, MAX_H), (0, 0, 0, 0))
+			else:
+				self.im[Wim] = Image.new('RGB', (MAX_W, MAX_H), (0, 0, 0, 0))
+				if LCD4linux.WetterTransparenz.value == "crop":
+					POSXs = getSplit(ConfigSplit, ConfigAlign, MAX_Wi, MAX_W)
+					image_Back = self.im[im].crop((POSXs, ConfigPos, POSXs + MAX_W, ConfigPos + MAX_H))
+					self.im[Wim].paste(image_Back, (0, 0))
 			self.draw[Wim] = ImageDraw.Draw(self.im[Wim])
-			if ConfigType != "3" and ConfigType[0] != "4":
+			if ConfigType != "3" and not ConfigType.startswith("4"):
 				i = 0
 				for curr in self.WWeek[ConfigWWW]:
+					L4logE(str(curr))
 					if (i < 4 and ConfigType in ["1", "2", "5"]) or (i < 5 and ConfigType in ["11", "21", "51"]) or (i < 2 and ConfigType in ["12", "22"]):
 						i += 1
 						High = curr.get("High", "0")
@@ -11045,12 +11080,12 @@ def LCD4linuxPIC(self, session):
 						Day = curr.get("Day", "")
 						Icon = curr.get("Icon", "0")
 						Cond = curr.get("Cond", "")
-						Regen = curr.get("Regen", "0") or "0"
+						Regen = curr.get("Regen", "0")
 						if "." in Regen:
 							Regen += "mm" if LCD4linux.WetterRain.value == "true2" else ""
 						else:
 							Regen += "%" if LCD4linux.WetterRain.value == "true2" else ""
-						if ConfigType[0] == "5":
+						if ConfigType.startswith("5"):
 							font = ImageFont.truetype(ConfigFont, int(14 * Wmulti), encoding='unic')
 							fontD = ImageFont.truetype(ConfigFont, int(14 * Wmulti), encoding='unic')
 						else:
@@ -11068,17 +11103,14 @@ def LCD4linuxPIC(self, session):
 								pil_image = pil_image.resize((int(int(LCD4linux.WetterIconZoom.value) * Wmulti), y))
 							else:
 								pil_image = pil_image.resize((int(int(LCD4linux.WetterIconZoom.value) * Wmulti), y), Image.LANCZOS if PY3 else Image.ANTIALIAS)
-							if ConfigType[0] == "5":
-								PY = POSY - int(20 * Wmulti)
-							else:
-								PY = int(POSY + (int(40 * Wmulti) - y) / 2)
+							PY = POSY - int(20 * Wmulti) if ConfigType.startswith("5") else int(POSY + (int(40 * Wmulti) - y) / 2)
 							PX = POSX + int((27 * Wmulti) - int(int(LCD4linux.WetterIconZoom.value) * Wmulti) / 2)
 							self.im[Wim].paste(pil_image, (PX, PY + int(20 * Wmulti)))
-						if ConfigType[0] == "5":
-							Dayw, h = getFsize(Day, fontD)
+						if ConfigType.startswith("5"):
 							if LCD4linux.WetterLine.value.startswith("true"):
 								self.draw[Wim].line((10, POSY, MAX_W - 10, POSY), fill=ConfigColor)
-							PX = int(POSX - Dayw - (3 * Wmulti))
+							w, h = getFsize(Day, fontD)
+							PX = int(POSX - w - (3 * Wmulti))
 							ShadowText(Wim, PX, POSY, Day, fontD, ConfigColor, ConfigShadow)
 							w, h = getFsize("%s°" % High, font)
 							PX = int(POSX - w - (3 * Wmulti))
@@ -11129,18 +11161,18 @@ def LCD4linuxPIC(self, session):
 								self.draw[Wim].line((POSX, 1, POSX, POSY + int(60 * Wmulti)), fill=ConfigColor)
 							elif LCD4linux.WetterLine.value == "trueLong":
 								self.draw[Wim].line((POSX, 1, POSX, POSY + int(80 * Wmulti)), fill=ConfigColor)
-						if ConfigType[0] == "5":
+						if ConfigType.startswith("5"):
 							POSX = int(54 * 2 * Wmulti)
 							POSY += int(54 * Wmulti)
 						else:
 							POSX += int(54 * Wmulti)
-				if ConfigType[0] != "5":
+				if not ConfigType.startswith("5"):
 					if LCD4linux.WetterLine.value == "true":
 						self.draw[Wim].line((POSX, 1, POSX, POSY + int(60 * Wmulti)), fill=ConfigColor)
 					elif LCD4linux.WetterLine.value == "trueLong":
 						self.draw[Wim].line((POSX, 1, POSX, POSY + int(80 * Wmulti)), fill=ConfigColor)
 					POSX += 1
-				if ConfigType[0] == "2":
+				if ConfigType.startswith("2"):
 					POSX = 1
 					POSY += int(80 * Wmulti)
 			Hum = "?"
@@ -11152,14 +11184,14 @@ def LCD4linuxPIC(self, session):
 			Wtime = ""
 			if ConfigType == "3":
 				POSY = int(-19 * Wmulti)
-			elif ConfigType[0] == "5":
+			elif ConfigType.startswith("5"):
 				POSX, POSY = (int(54 * Wmulti), 1)
 			if len(self.WDay[ConfigWWW]) != 0 and LCD4linux.WetterExtra.value == True:
 				Locname = self.WDay[ConfigWWW].get("Locname", "")
 			if len(self.WDay[ConfigWWW]) != 0:
 				Temp_c = self.WDay[ConfigWWW].get("Temp_c", "0")
 				cleanTemp_c = Temp_c
-				Hum = self.WDay[ConfigWWW].get("Hum", "0")
+				Hum = self.WDay[ConfigWWW].get("Hum", "0%")
 				cleanHum = Hum.replace("%", "").strip()
 				Feel = self.WDay[ConfigWWW].get("Feel", "0")
 				cleanFeel = Feel
@@ -11172,26 +11204,26 @@ def LCD4linuxPIC(self, session):
 				if Feel == "" or abs(int(round(float(Feel), 0) or "0") - int(round(float(Temp_c), 0) or "0")) < int(LCD4linux.WetterExtraFeel.value) or LCD4linux.WetterExtra.value == False:
 					Feel = ""
 				else:
-					Feelarrow = ""
-					if LCD4linux.WetterTrendArrows.value:
-						if OldFeel != -88:
-							Feelarrow = "▲" if OldFeel < float(Feel) else "▼"
-						else:
+					if trendarrows:
+						if OldFeel == -88:
 							Feelarrow = "●"
-					OldFeel = float(cleanFeel)
-					Feel = "%s%s°" % (Feelarrow, Feel)
-				Temparrow = ""
-				if LCD4linux.WetterTrendArrows.value:
-					if OldTemp_c != -88:
-						Temparrow = "▲" if OldTemp_c < float(Temp_c) else "▼"
-					else:
+						else:
+							Feelarrow = "▲" if OldFeel < float(Feel) else "▼"
+						OldFeel = float(cleanFeel)
+						Feel = "%s%s" % (Feelarrow, Feel)
+					Feel += "°"
+				if trendarrows:
+					if OldTemp_c == -88:
 						Temparrow = "●"
-				OldTemp_c = float(cleanTemp_c)
-				Temp_c = "%s%s°" % (Temparrow, Temp_c)
-				if ConfigType[0] == "4":
+					else:
+						Temparrow = "▲" if OldTemp_c < float(Temp_c) else "▼"
+					OldTemp_c = float(cleanTemp_c)
+					Temp_c = "%s%s" % (Temparrow, Temp_c)
+				Temp_c += "°"
+				if ConfigType.startswith("4"):
 					if ConfigType == "4":
 						Temp_c += "C"
-					TextSize = int((20 if LCD4linux.WetterTrendArrows.value else 25) * Wmulti)
+					TextSize = int(25 * Wmulti)
 					font = ImageFont.truetype(ConfigFont, TextSize, encoding='unic')
 					w, h = getFsize(Temp_c, font)
 					while w > MAX_W:
@@ -11202,91 +11234,100 @@ def LCD4linuxPIC(self, session):
 				else:
 					xx = yy = 20
 					if isfile(join(UseWetterPath, Icon)):
-						pil_image = Image.open(join(UseWetterPath, Icon)).convert(imageMode)
+						pil_image = Image.open(join(UseWetterPath, Icon)).convert("RGBA" if LCD4linux.WetterTransparenz.value == "true" else "RGB")
 						xx, yy = pil_image.size
-						if ConfigType[0] == "5":
-							y = int(float((int(LCD4linux.WetterIconZoom.value) + 30) * Wmulti) / xx * yy)
+						if ConfigType.startswith("5"):
+							y = int((int(LCD4linux.WetterIconZoom.value) + 5) * Wmulti / xx * yy)
+							x = int((int(LCD4linux.WetterIconZoom.value) + 5) * Wmulti)
 							if str(LCD4linux.BilderQuality.value) == "0":
-								pil_image = pil_image.resize((int((int(LCD4linux.WetterIconZoom.value) + 30) * Wmulti), y))
+								pil_image = pil_image.resize((x, y))
 							else:
-								pil_image = pil_image.resize((int((int(LCD4linux.WetterIconZoom.value) + 30) * Wmulti), y), Image.LANCZOS if PY3 else Image.ANTIALIAS)
+								pil_image = pil_image.resize((x, y), Image.LANCZOS if PY3 else Image.ANTIALIAS)
 							xx, yy = pil_image.size
-							PY = 1 - int(20 * Wmulti)
-							POSX = MAX_W - xx
+							PY = 1 - int(10 * Wmulti)
 						else:
-							y = int(float(int(LCD4linux.WetterIconZoom.value) * Wmulti) / xx * yy)
+							y = int((int(LCD4linux.WetterIconZoom.value) * Wmulti) / xx * yy)
+							x = int(int(LCD4linux.WetterIconZoom.value) * Wmulti)
 							if str(LCD4linux.BilderQuality.value) == "0":
-								pil_image = pil_image.resize((int(int(LCD4linux.WetterIconZoom.value) * Wmulti) + 2, y))
+								pil_image = pil_image.resize((x, y))
 							else:
-								pil_image = pil_image.resize((int(int(LCD4linux.WetterIconZoom.value) * Wmulti) + 2, y), Image.LANCZOS if PY3 else Image.ANTIALIAS)
-							PY = int(POSY + (int(40 * Wmulti) - y) / 2)
-							self.im[Wim].paste(pil_image, (POSX, PY + int(20 * Wmulti)))
-					POSXs, POSYs = (POSX, POSY + int(79 * Wmulti)) if ConfigType == "3" else (POSX, POSY)
+								pil_image = pil_image.resize((x, y), Image.LANCZOS if PY3 else Image.ANTIALIAS)
+							PY = int(POSY + (int(34 * Wmulti) - y) / 2)
+						self.im[Wim].paste(pil_image, (POSX, PY + int(20 * Wmulti)))
+					POSYs = POSY + {"2": 79, "1": 67}.get(LCD4linux.WetterWindLines.value, 56) * Wmulti if ConfigType.startswith("3") else POSY
 					minus5 = -3
 					font = ImageFont.truetype(ConfigFont, int(((int(LCD4linux.WetterExtraZoom.value) - 100) / 20.0 + 8) * Wmulti), encoding='unic')
-					ShadowText(Wim, POSXs - minus5, POSYs, "%s %s" % (Locname, Wtime), font, LCD4linux.WetterExtraColorCity.value, ConfigShadow)
-					HumColor = LCD4linux.WetterRainColor.value if float(cleanHum) < int(LCD4linux.WetterRainColor2use.value) else LCD4linux.WetterRainColor2.value
-					Humarrow = ""
-					if LCD4linux.WetterTrendArrows.value:
-						if OldHum != -88:
-							Humarrow = "▲" if OldHum < float(cleanHum) else "▼"
-						else:
+					ShadowText(Wim, POSX - minus5, POSYs, "%s %s" % (Locname, Wtime), font, LCD4linux.WetterExtraColorCity.value, ConfigShadow)
+					if trendarrows:
+						if OldHum == -88:
 							Humarrow = "●"
-					OldHum = float(cleanHum)
-					Hum = "%s%s" % (Humarrow, Hum)
-					Windarrow = ""
-					if LCD4linux.WetterTrendArrows.value:
-						if OldWind != -88:
-							Windarrow = "▲" if OldWind < float(cleanWind[0]) else "▼"
 						else:
+							Humarrow = "▲" if OldHum < float(cleanHum) else "▼"
+						OldHum = float(cleanHum)
+						Hum = "%s%s" % (Humarrow, Hum)
+					if trendarrows:
+						if OldWind == -88:
 							Windarrow = "●"
-					OldWind = float(cleanWind[0])
-					Wind = "%s%s" % (Windarrow, Wind)
-					if ConfigType[0] == "5":
-						font = ImageFont.truetype(ConfigFont, int(15 * Wmulti), encoding='unic')
-						w, h = getFsize(Cond, font)
-						PX = max(MAX_W - w - int(3 * Wmulti), 0)
-						ShadowText(Wim, PX, int(70 * Wmulti), Cond, font, ConfigColor, ConfigShadow)
-						w, h = getFsize(Wind, font)
-						ShadowText(Wim, MAX_W - w - int(3 * Wmulti), int(70 * Wmulti) + h, Wind, font, ConfigColor, ConfigShadow)
-						font = ImageFont.truetype(ConfigFont, int(35 * Wmulti), encoding='unic')
-						w, h = getFsize(Temp_c, font)
-						if not PY3:  # for equal results, w needs an correction under Python 2
-							w = int(w * 0.65)
-						ShadowText(Wim, POSX - w - int(3 * Wmulti), POSY, Temp_c, font, LCD4linux.WetterHighColor.value, ConfigShadow)
-						w, h = getFsize(Temp_c[-1:], font)
-						font = ImageFont.truetype(ConfigFont, int((int(LCD4linux.WetterExtraZoom.value) / (8 if LCD4linux.WetterTrendArrows.value else 10) + 4) * Wmulti), encoding='unic')
-						wF, hF = getFsize(Feel, font)
-						ShadowText(Wim, POSX - w - int(3 * Wmulti), POSY + h - int(hF * 0.8), Feel, font, LCD4linux.WetterExtraColorFeel.value, ConfigShadow)
-						font = ImageFont.truetype(ConfigFont, int(15 * Wmulti), encoding='unic')
-						wH, hH = getFsize(Hum, font)
-						ShadowText(Wim, POSX - wH - int(3 * Wmulti), POSY + h + int(hF / 2), Hum, font, ConfigColor, ConfigShadow)
-					else:
-						font = ImageFont.truetype(ConfigFont, int(13 * Wmulti), encoding='unic')
-						if LCD4linux.WetterWindLines.value == "2":
-							Wind = (Wind.split(" ", 2))
-							for i in range(len(Wind), 3):
-								Wind.append("na")
-							ShadowText(Wim, POSX - minus5, POSY + int(56 * Wmulti), "%s %s" % (Wind[0], Wind[1]), font, ConfigColor, ConfigShadow)
-							ShadowText(Wim, POSX - minus5, POSY + int(67 * Wmulti), Wind[2], font, ConfigColor, ConfigShadow)
-						elif LCD4linux.WetterWindLines.value != "off":
-							ShadowText(Wim, POSX - minus5, POSY + int(62 * Wmulti), Wind, font, ConfigColor, ConfigShadow)
-						font = ImageFont.truetype(ConfigFont, int((20 if LCD4linux.WetterTrendArrows.value else 25) * Wmulti), encoding='unic')
-						w, h = getFsize(Temp_c, font)
-						TempPosX = POSX + int(45 * Wmulti)
-						TempPosY = POSY + int((10 if LCD4linux.WetterWindLines.value == "2" and ConfigType[0] != "3" else 16) * Wmulti)
-						ShadowText(Wim, TempPosX, TempPosY, Temp_c, font, LCD4linux.WetterHighColor.value, ConfigShadow)
-						font = ImageFont.truetype(ConfigFont, int((14 if LCD4linux.WetterTrendArrows.value else 16) * Wmulti), encoding='unic')
-						wH, hH = getFsize(Hum, font)
-						HumPosY = POSY + int((12 if LCD4linux.WetterWindLines.value == "2" and ConfigType[0] != "3" else 20) * Wmulti) + h
-						ShadowText(Wim, TempPosX, HumPosY, Hum, font, HumColor, ConfigShadow)
-						if not PY3:  # for equal results, wH needs an correction under Python 2
-							wH = int(wH * 0.8)
-						font = ImageFont.truetype(ConfigFont, int(int(LCD4linux.WetterExtraZoom.value) / (16.0 if LCD4linux.WetterTrendArrows.value else 13.0) * Wmulti), encoding='unic')
-						ShadowText(Wim, TempPosX + int(wH * 0.8), HumPosY - int(hH * (0.57 if ConfigType[0] == "3" else 0.5)), Feel, font, LCD4linux.WetterExtraColorFeel.value, ConfigShadow)
-			PICwetter[ConfigWWW] = False
+						else:
+							Windarrow = "▲" if OldWind < float(cleanWind[0]) else "▼"
+						OldWind = float(cleanWind[0])
+						Wind = "%s%s" % (Windarrow, Wind)
+					font = ImageFont.truetype(ConfigFont, int(13 * Wmulti), encoding='unic')
+					if LCD4linux.WetterWindLines.value == "2":
+						Wind = (Wind.split(" ", 2))
+						for i in range(len(Wind), 3):
+							Wind.append("na")
+						ShadowText(Wim, POSX - minus5, POSY + int(56 * Wmulti), "%s %s" % (Wind[0], Wind[1]), font, ConfigColor, ConfigShadow)
+						ShadowText(Wim, POSX - minus5, POSY + int(67 * Wmulti), Wind[2], font, ConfigColor, ConfigShadow)
+					elif LCD4linux.WetterWindLines.value != "off":
+						ShadowText(Wim, POSX - minus5, POSY + int(56 * Wmulti), Wind, font, ConfigColor, ConfigShadow)
+					font = ImageFont.truetype(ConfigFont, int((24 if largesize else 20) * Wmulti), encoding='unic')
+					w, h = getFsize(Temp_c, font)
+					if not PY3:  # for equal results, 'w' needs an correction under Python 2
+						w = int(w * (0.57 if trendarrows else 0.66))
+					PX = MAX_Wc - int(w)
+					PY = POSY + int((8 if largesize else 16) * Wmulti)
+					ShadowText(Wim, PX, PY, Temp_c, font, LCD4linux.WetterHighColor.value, ConfigShadow)
+
+					if LCD4linux.WetterRain.value != "false" and LCD4linux.WetterExtra.value:
+						if not ConfigType.startswith("4") and len(self.WWeek[ConfigWWW]) > 0:
+							Regen = self.WWeek[ConfigWWW][0].get("Regen", "0")
+							RColor = LCD4linux.WetterRainColor.value
+							if "." in Regen:
+								if float(Regen) * 10 >= int(LCD4linux.WetterRainColor2use.value):
+									RColor = LCD4linux.WetterRainColor2.value
+								Regen += "mm" if LCD4linux.WetterRain.value == "true2" else ""
+							else:
+								if int(Regen) >= int(LCD4linux.WetterRainColor2use.value):
+									RColor = LCD4linux.WetterRainColor2.value
+								Regen += "%" if LCD4linux.WetterRain.value == "true2" else ""
+							if float(Regen.replace("m", "").replace("%", "")) > 0:
+								font = ImageFont.truetype(ConfigFont, int(12 * Wmulti), encoding='unic')
+								PX = MAX_Wc - int(int(44 if trendarrows else 32) * Wmulti) - (0 if ConfigType.startswith("3") else int(8 * Wmulti))
+								PY = POSY + int((34 if ConfigType.startswith("3") else 31) * Wmulti)
+								ShadowText(Wim, PX, PY, Regen, font, RColor, ConfigShadow)
+
+						font = ImageFont.truetype(ConfigFont, int((15 if largesize else 12) * Wmulti), encoding='unic')
+						w, h = getFsize(Feel, font)
+						if not PY3:  # for equal results, 'w' needs an correction under Python 2
+							w = int(w * (0.58 if trendarrows else 0.67))
+						PX = MAX_Wc - int(w)
+						PY = POSY + int((28 if largesize else 34) * Wmulti)
+						ShadowText(Wim, PX, PY, Feel, font, LCD4linux.WetterExtraColorFeel.value, ConfigShadow)
+
+					font = ImageFont.truetype(ConfigFont, int((18 if largesize else 14) * Wmulti), encoding='unic')
+					w, h = getFsize(Hum, font)
+					if not PY3:  # for equal results, 'w' needs an correction under Python 2
+						if largesize:
+							w = int(w * (0.72 if trendarrows else 0.98))
+						else:
+							w = int(w * (0.72 if trendarrows else 0.98))
+					PX = MAX_Wc - int(w)
+					PY = POSY + int((40 if largesize else 44) * Wmulti)
+					ShadowText(Wim, PX, PY, Hum, font, LCD4linux.WetterHumColor.value, ConfigShadow)
+			PICwetter[ConfigWWW] = 1
 		counter = 20
-		while PICwetter[ConfigWWW] is True and counter > 0:
+		while PICwetter[ConfigWWW] == "wait" and counter > 0:
 			L4logE("Weatherwait")
 			sleep(0.03)
 			counter -= 1
@@ -11428,25 +11469,23 @@ def LCD4linuxPIC(self, session):
 			INFOS = ""
 			if ConfigInfo[2] == "1":
 				MoonDist = MoonDistance()
-				MoonDistarrow = ""
 				if ConfigTrends:
-					if OldMoonDist != -88:
-						MoonDistarrow = "▲" if OldMoonDist < MoonDist else "▼"
-					else:
+					if OldMoonDist == -88:
 						MoonDistarrow = "●"
-				OldMoonDist = MoonDist
-				INFOS += "%s%s km" % (MoonDistarrow, round(MoonDist))
+					else:
+						MoonDistarrow = "▲" if OldMoonDist < MoonDist else "▼"
+					OldMoonDist = MoonDist
+					INFOS += "%s%s km" % (MoonDistarrow, round(MoonDist))
 			if ConfigInfo[1] == "1":
 				illum = 100 - abs((cos(pi * POS) + 0j) ** 1.7 * 100)
 				illum = abs(illum - 1) / .99 if illum - 1 > 0 else 0.0
-				illumarrow = ""
 				if ConfigTrends:
-					if Oldillum != -88:
-						illumarrow = "▲" if float(Oldillum) < illum else "▼"
-					else:
+					if Oldillum in [-88, 0]:
 						illumarrow = "●"
-				Oldillum = illum
-				INFOS += "- %s%s %%" % (illumarrow, round(illum, 1))
+					else:
+						illumarrow = "▲" if float(Oldillum) < illum else "▼"
+					Oldillum = illum
+					INFOS += "- %s%s %%" % (illumarrow, round(illum, 1))
 			if INFOS != "":
 				w, h = getFsize(Code_utf8(INFOS), font)
 				if w > ConfigSize:
@@ -11586,7 +11625,7 @@ def LCD4linuxPIC(self, session):
 		if ConfigSplit == True:
 			MAX_W = int(MAX_W / 2)
 		pp = ConfigPos
-		if ConfigType[0] == "4":
+		if ConfigType.startswith("4"):
 			y = int(ConfigSize * 1.8)
 			y271 = int(y / 2.71)
 			if isfile(ClockBack) == True:
@@ -11625,7 +11664,7 @@ def LCD4linuxPIC(self, session):
 					ShadowText(draw, POSX + lx, ConfigPos + int((y / 1.14) - (h / 2)), now, font, ConfigColor, ConfigShadow)
 				except Exception:
 					pass
-		elif ConfigType[0] == "5":
+		elif ConfigType[0].startswith("5"):
 			y = int(ConfigSize * 1.8)
 			POSX = getSplit(ConfigSplit, ConfigAlign, MAX_W, y)
 			pil_image = Clock + str(ConfigAnalog) + "/Clock.png"
@@ -11644,7 +11683,7 @@ def LCD4linuxPIC(self, session):
 						self.ClockName[ConfigNum] = [int(ConfigAnalog), y]
 					self.im[im].paste(self.ClockIm[ConfigNum], (POSX, ConfigPos), self.ClockIm[ConfigNum])
 					# Weekday in or underneath clockface
-					if ConfigType[:3] == "521":
+					if ConfigType.startswith("521"):
 						if "+" in ConfigType:  # means weekday in combination with date
 							now = Code_utf8(_(strftime("%A")))
 							font = ImageFont.truetype(ConfigFont, int(y / 6), encoding='unic')
@@ -11686,7 +11725,7 @@ def LCD4linuxPIC(self, session):
 					self.im[im].paste(pil_image, (POSX + int((x - x1) / 2), ConfigPos + int((y - y1) / 2)), pil_image)
 					# Seconds: Due to the bad refresh rates, the second hand was deliberately not programmed!
 					# Date underneath clockface
-					if ConfigType[:2] == "52":
+					if ConfigType.startswith("52"):
 						now = strftime(_("%d.%m.%Y"))
 						font = ImageFont.truetype(ConfigFont, int(y / 6), encoding='unic')
 						w, h = getFsize(now, font)
@@ -11699,7 +11738,7 @@ def LCD4linuxPIC(self, session):
 						ShadowText(draw, x1, y1, now, font, ConfigColor, ConfigShadow)
 				except Exception:
 					pass
-		elif ConfigType[0] == "1":
+		elif ConfigType.startswith("1"):
 			now = ""
 			font = ImageFont.truetype(ConfigFont, ConfigSize, encoding='unic')
 			ww, hS = getFsize(strftime("%H:%M"), font)
@@ -11720,7 +11759,6 @@ def LCD4linuxPIC(self, session):
 				elif tt == "3":
 					font = ImageFont.truetype(ConfigFont, int(ConfigSize / 2.5), encoding='unic')
 					now = Code_utf8(_(strftime("%A")))
-
 				w, h = getFsize(now, font)
 				lx = getSplit(ConfigSplit, ConfigAlign, MAX_W, w)
 				if (ll + w / 2) < MAX_W and (ll - w / 2) > 0:
@@ -11903,14 +11941,14 @@ def LCD4linuxPIC(self, session):
 			GrabTVRunning = True
 			L4logE("GrabTV Run")
 			system(cmd + " >/dev/null 2>&1")
-			self.cmdFinished("")
+			self.cmdFinished()
 
-		def cmdFinished(self, data):
+		def cmdFinished(self):
 			global GrabTVRunning
 			L4logE("GrabTV Stop")
 			GrabTVRunning = False
 
-		def dataAvail(self, data):
+		def dataAvail(self):
 			pass
 
 	def doGrabTVthread(x, y, lcd, vidosd):
@@ -12013,7 +12051,7 @@ def LCD4linuxPIC(self, session):
 		TL = self.Ltimer_list if ConfigBox == 0 else self.wwwBoxTimer
 		TL = sorted(TL, key=lambda x: x.begin, reverse=False)
 		for timerlist in TL:
-			if timerlist.disabled == 0 and timerlist.justplay == 0 and str(timerlist.service_ref)[:3] != "-1:":
+			if timerlist.disabled == 0 and timerlist.justplay == 0 and not str(timerlist.service_ref).startswith("-1:"):
 				if timercount < int(ConfigLines):
 					a = int(config.recording.margin_before.value) * 60 if ConfigType == "0" else 0
 					b = int(config.recording.margin_after.value) * 60 if ConfigType == "0" else 0
@@ -12091,16 +12129,17 @@ def LCD4linuxPIC(self, session):
 				useCache = False
 				PIC = []
 				PIC.append(join(P2, picon))
-				name = normalize('NFKD', self.Lchannel_name if PY3 else self.Lchannel_name.decode('unicode-escape'))
-				name = sub(r'[^a-z0-9]', '', "%s.png" % str(name).replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
-				if not PY3:
+				if PY3:
+					name2 = "%s.png" % self.Lchannel_name.encode("latin-1", "ignore").decode("utf-8", "ignore")
+					name4 = "%s.png" % self.Lchannel_name.encode("utf-8", "ignore").decode("utf-8", "ignore")
+					name3 = "%s.png" % self.Lchannel_name2.replace('\x87', '').replace('\x86', '')
+					name = normalize('NFKD', self.Lchannel_name)
+				else:
 					name2 = "%s.png" % self.Lchannel_name.decode("utf-8").encode("latin-1", "ignore")
 					name4 = "%s.png" % self.Lchannel_name.decode("utf-8").encode("latin-1", "ignore")
 					name3 = "%s.png" % self.Lchannel_name2.replace('\xc2\x87', '').replace('\xc2\x86', '').decode("utf-8").encode("utf-8")
-				else:
-					name2 = "%s.png" % self.Lchannel_name
-					name4 = "%s.png" % self.Lchannel_name
-					name3 = "%s.png" % self.Lchannel_name2.replace('\x87', '').replace('\x86', '')
+					name = normalize('NFKD', self.Lchannel_name.decode('unicode-escape'))
+				name = "%s.png" % sub(r'[^a-z0-9]', '', str(name).replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 				name5 = getPiconName(self.LsreftoString)
 				PIC.append(join(P2, name3))
 				PIC.append(join(P2, name2))
@@ -12226,10 +12265,7 @@ def LCD4linuxPIC(self, session):
 		channel_name = ""
 		Progress = getProgess(MAX_W, ConfigProzent)
 		if self.Lchannel_name is not None:
-			if not PY3:
-				channel_name = self.Lchannel_name
-			else:
-				channel_name = self.Lchannel_name.replace('\x87', '').replace('\x86', '')
+			channel_name = self.Lchannel_name.replace('\x87', '').replace('\x86', '') if PY3 else self.Lchannel_name
 			ch = self.LsreftoString.split("::")
 			if len(ch) > 1:
 				channel_name = Code_utf8(ch[1])
@@ -12249,7 +12285,7 @@ def LCD4linuxPIC(self, session):
 
 # Progress Bar
 	def putProgress(workaround, draw, im):
-		(ConfigPos, ConfigSize, ConfigProzent, ConfigType, ConfigColor, ConfigColorText, ConfigAlign, ConfigMinutes, ConfigBorder, ConfigShadow, ConfigShadowBar, ConfigFont) = workaround
+		(ConfigPos, ConfigSize, ConfigProzent, ConfigType, ConfigColor, ConfigColorText, ConfigColorBG, ConfigAlign, ConfigMinutes, ConfigBorder, ConfigShadow, ConfigShadowBar, ConfigFont) = workaround
 		ConfigPos = int(ConfigPos)
 		ConfigSize = int(ConfigSize)
 		global isVideoPlaying
@@ -12273,12 +12309,7 @@ def LCD4linuxPIC(self, session):
 			ProgressBar -= getSplit(ConfigSplit, ConfigAlign, MAX_W, ProgressBar)
 		POSX = getSplit(ConfigSplit, ConfigAlign, MAX_W, ProgressBar)
 		if self.LsreftoString is not None:
-			if ConfigMinutes:
-				Minutes = " min"
-				Prozent = " %"
-			else:
-				Minutes = ""
-				Prozent = ""
+			Minutes, Prozent = (" min", " %") if ConfigMinutes else ("", "")
 			if ConfigType[1:] == "1":
 				ms = 1.5
 			elif ConfigType[1:] == "2":
@@ -12286,13 +12317,13 @@ def LCD4linuxPIC(self, session):
 			else:
 				ms = 1
 			font = ImageFont.truetype(ConfigFont, int(ConfigSize * ms) + 8, encoding='unic')  # 5
-#			if self.Lpath and ":0:" not in self.Lpath and "//" not in self.Lpath:
-			if self.Llength is not None and self.Llength[0] != -1:  # Movie
+#			if self.Lpath and ":0:" not in self.Lpath and "//" not in self.Lpath:  # Movie
+			if self.Llength is not None and self.Llength[0] != -1:
 				isVideoPlaying = 1
 				try:
 					length = self.Llength
 					position = self.Lposition
-					if (length and position) and (length[1] > 0):
+					if length and (length[1] > 0 and position):
 						if ConfigType[0] in ["2", "4", "6", "8", "9", "A"]:
 							if ConfigType[0] in ["8", "9", "A"] or length[0] == 1:
 								dur = int(position[1] / 90000)
@@ -12318,11 +12349,11 @@ def LCD4linuxPIC(self, session):
 						elif ConfigType[0] in ["3", "5", "7"]:
 							remaining = "%d%s" % (int(position[1] * 100 / length[1]), Prozent)
 							w, h = getFsize(remaining, font)
-							if ConfigType[0] == "3":
+							if ConfigType.startswith("3"):
 								ProgressBar -= (w + 10)
 								Minus = 0
 								MinusProgress = 0
-							elif ConfigType[0] == "7":
+							elif ConfigType.startswith("7"):
 								Minus = -(ConfigSize - 2 + int((h - ConfigSize) / 2))
 								MinusProgress = (w + 10)
 							else:
@@ -12400,11 +12431,11 @@ def LCD4linuxPIC(self, session):
 					elif ConfigType[0] in ["3", "5", "7"]:
 						remaining = "%d%s" % (int(event_run * 100 / duration), Prozent)
 						w, h = getFsize(remaining, font)
-						if ConfigType[0] == "3":
+						if ConfigType.startswith("3"):
 							ProgressBar -= (w + 10)
 							Minus = 0
 							MinusProgress = 0
-						elif ConfigType[0] == "7":
+						elif ConfigType.startswith("7"):
 							Minus = -(ConfigSize - 2 + int((h - ConfigSize) / 2))
 							MinusProgress = (w + 10)
 						else:
@@ -12462,10 +12493,18 @@ def LCD4linuxPIC(self, session):
 					isData = True
 			if isData == True and ConfigBorder != "off":
 				event_run = min(max(event_run, 0), ProgressBar)
-				if ConfigBorder[:4] == "true":
-					self.draw[draw].rectangle((POSX + 9, ConfigPos, POSX + ProgressBar + 11, ConfigPos + ConfigSize), outline=ConfigColor)
+				if ConfigBorder.startswith("true"):
+					if ConfigColorBG == "0":  # don't fill (=transparency)
+						self.draw[draw].rectangle((POSX + 9, ConfigPos, POSX + ProgressBar + 11, ConfigPos + ConfigSize), outline=ConfigColor)
+					else:
+						self.draw[draw].rectangle((POSX + 9, ConfigPos, POSX + ProgressBar + 11, ConfigPos + ConfigSize), outline=ConfigColor, fill=ConfigColorBG)
 					if ConfigBorder == "true2":
-						self.draw[draw].rectangle((POSX + 10, ConfigPos + 1, POSX + ProgressBar + 10, ConfigPos + ConfigSize - 1), outline=ConfigColor)
+						if ConfigColorBG == "0":  # don't fill (=transparency)
+							self.draw[draw].rectangle((POSX + 10, ConfigPos + 1, POSX + ProgressBar + 10, ConfigPos + ConfigSize - 1), outline=ConfigColor)
+						else:
+							self.draw[draw].rectangle((POSX + 10, ConfigPos + 1, POSX + ProgressBar + 10, ConfigPos + ConfigSize - 1), outline=ConfigColor, fill=ConfigColorBG)
+				elif ConfigBorder.startswith("false") and ConfigColorBG != "0":  # no border, but show background (if not transparent)
+						self.draw[draw].rectangle((POSX + 10, ConfigPos, POSX + ProgressBar + 10, ConfigPos + ConfigSize), fill=ConfigColorBG)
 				elif ConfigBorder == "line":
 					self.draw[draw].rectangle((POSX + 10, ConfigPos + int(ConfigSize / 2) - 1, POSX + ProgressBar + 10, ConfigPos + int(ConfigSize / 2) + 1), outline=ConfigColor, fill=ConfigColor)
 				self.draw[draw].rectangle((POSX + 10, ConfigPos, POSX + event_run + 10, ConfigPos + ConfigSize), fill=ConfigColor)
@@ -12633,7 +12672,7 @@ def LCD4linuxPIC(self, session):
 				font = ImageFont.truetype(ConfigFont, ConfigSize, encoding='unic')
 				w, h = getFsize(Code_utf8(orbital), font)
 				piconfile = join(LCD4linux.SatPath.value, "%s.png" % str(orbital).replace(".", ""))
-				if ConfigType[0] == "2" and isfile(piconfile):
+				if ConfigType.startswith("2") and isfile(piconfile):
 					try:
 						imW = Image.open(piconfile)
 						xx, yy = imW.size
@@ -12649,7 +12688,7 @@ def LCD4linuxPIC(self, session):
 							self.im[im].paste(imW, (POSX, ConfigPos), imW)
 						else:
 							self.im[im].paste(imW, (POSX, ConfigPos))
-						if not PY3:  # no correction for PY3
+						if not PY3:  # correction for Python 2
 							POSX += x
 						if ConfigType[1:] == "C":
 							ShadowText(draw, POSX, ConfigPos + int(ConfigSize / 4), Code_utf8(orbital), font, ConfigColor, ConfigShadow)
@@ -12788,20 +12827,20 @@ def LCD4linuxPIC(self, session):
 		event_name = ""
 		if self.LEventsDesc is not None and len(self.LEventsDesc) > 0:
 			if self.LEventsDesc[0][4]:
-				if self.LEventsDesc[0][5] != "" and (ConfigType[0] == "1" or (ConfigType[0] == "2" and self.LEventsDesc[0][6] == "")):
+				if self.LEventsDesc[0][5] != "" and (ConfigType.startswith("1") or (ConfigType.startswith("2") and self.LEventsDesc[0][6] == "")):
 					event_name += self.LEventsDesc[0][5] + "\n"
 				if self.LEventsDesc[0][6] != "" and (ConfigType[1] == "1" or (ConfigType[1] == "2" and self.LEventsDesc[0][5] == "")):
 					event_name += self.LEventsDesc[0][6]
 		if event_name == "":
 			if self.LShortDescription is not None and self.LExtendedDescription is not None:
-					if self.LShortDescription != "" and (ConfigType[0] == "1" or (ConfigType[0] == "2" and self.LExtendedDescription == "")):
+					if self.LShortDescription != "" and (ConfigType.startswith("1") or (ConfigType.startswith("2") and self.LExtendedDescription == "")):
 						event_name += self.LShortDescription + "\n"
 					if self.LExtendedDescription != "" and (ConfigType[1] == "1" or (ConfigType[1] == "2" and self.LShortDescription == "")):
 						event_name += self.LExtendedDescription
 		if self.LsreftoString is not None and event_name == "":
 			sreffile = self.LsrefFile
 			datei = "%s.txt" % splitext(sreffile)[0]
-			if sreffile[:1] == "/" and isfile(datei):
+			if sreffile.startswith("/") and isfile(datei):
 				try:
 					event_name = open(datei, "r").readline().strip()
 				except Exception:
@@ -12826,7 +12865,6 @@ def LCD4linuxPIC(self, session):
 		number = -1
 		if self.Ltuner_number is not None:
 			number = self.Ltuner_number
-		i = ""
 		Tcount = 0
 		font = ImageFont.truetype(ConfigFont, ConfigSize, encoding='unic')
 		w, h = getFsize("A ", font)
@@ -12855,10 +12893,7 @@ def LCD4linuxPIC(self, session):
 		for x in range(TunerCount):
 			isON = True
 			if TunerMask & count != 0:
-				if x == number:
-					c = LCD4linux.TunerColorActive.value
-				else:
-					c = LCD4linux.TunerColorOn.value
+				c = LCD4linux.TunerColorActive.value if x == number else LCD4linux.TunerColorOn.value
 			else:
 				c = LCD4linux.TunerColor.value
 				isON = False
@@ -12885,7 +12920,6 @@ def LCD4linuxPIC(self, session):
 
 		def NL(count):
 			return "\n" if int(count) > 2 else ""
-
 		global CPUtotal
 		global CPUidle
 		MAX_W, MAX_H = self.im[im].size
@@ -13136,10 +13170,10 @@ def LCD4linuxPIC(self, session):
 		lx = getSplit(ConfigSplit, ConfigAlign, MAX_W, (w + 20) * co)
 		Bproz = 0
 		for l in ConfigList:
-			if l not in DeviceRemove and (isdir(l) == True or l[:3] == "RAM"):
+			if l not in DeviceRemove and (isdir(l) == True or l.startswith("RAM")):
 				L4logE("Device", l)
 				G = F = B = B1pixel = B2pixel = 0
-				if l[:3] == "RAM":
+				if l.startswith("RAM"):
 					G, F, B = getMem()
 					Bproz = int(F * 100 / G) if F > 0 else 0
 					B1pixel = ((2 * h) * Bproz / 100)
@@ -13179,13 +13213,16 @@ def LCD4linuxPIC(self, session):
 						Einh = "T"
 					ShadowText(draw, lx + 20, ly, "%.1f" % Fe, font, ConfigColor, ConfigShadow)
 					ShadowText(draw, lx + 20, ly + h, "%sB" % Einh, font, ConfigColor, ConfigShadow)
-					self.draw[draw].rectangle((lx + 8, ly, lx + 18, ly + (2 * h)), outline=LCD4linux.DevBarColor.value, fill=LCD4linux.DevFullColor.value if (Fproz < int(ConfigWarning) and l[:3] != "RAM") else LCD4linux.DevBarColor.value)
-					if l[:3] == "RAM":
+					self.draw[draw].rectangle((lx + 8, ly, lx + 18, ly + (2 * h)), outline=LCD4linux.DevBarColor.value, fill=LCD4linux.DevFullColor.value if (Fproz < int(ConfigWarning) and not l.startswith("RAM")) else LCD4linux.DevBarColor.value)
+					if l.startswith("RAM"):
 						self.draw[draw].rectangle((lx + 8, ly, lx + 18, ly + B1pixel), outline=LCD4linux.DevBackColor.value, fill=LCD4linux.DevBackColor.value)
 						self.draw[draw].rectangle((lx + 8, ly + B1pixel, lx + 14, ly + B1pixel + B2pixel), outline=LCD4linux.DevBackColor.value, fill=LCD4linux.DevBackColor.value)
 					else:
 						self.draw[draw].rectangle((lx + 8, ly, lx + 18, ly + Fpixel), outline=LCD4linux.DevBackColor.value, fill=LCD4linux.DevBackColor.value)
-					lx += w + 20 if ConfigType == "0" else 2 * h + 3
+					if ConfigType == "0":
+						lx += w + 20
+					else:
+						ly += 2 * h + 3
 				else:
 					L4log("remove Device", l)
 					DeviceRemove.append(l)
@@ -13667,7 +13704,7 @@ def LCD4linuxPIC(self, session):
 				PopCheck = CP
 				if len(PopMail[CP]) > 0:
 					PopCheck = PopMail[CP][0][2]
-				if ConfigType[:1] == "A" or (ConfigType[:1] == "B" and PopCheck != PopMailUid[CP][0]):
+				if ConfigType.startswith("A") or (ConfigType.startswith("B") and PopCheck != PopMailUid[CP][0]):
 					NM = 0
 					for e in PopMail[CP]:
 						if e[2] != PopMailUid[CP][0]:
@@ -14060,7 +14097,7 @@ def LCD4linuxPIC(self, session):
 			staerkeValOrg = staerkeVal2
 			staerke = staerkeVal2
 			dis_reason = Code_utf8(self.dis_reason[ConfigStation])
-		if ConfigType[0] == "0":
+		if ConfigType.startswith("0"):
 			if ConfigType[1:] == "9":
 				S = 1.5 if ConfigSize <= 10 else 1.0
 				ZW = str(staerkeValOrg)  # Value
@@ -14077,7 +14114,7 @@ def LCD4linuxPIC(self, session):
 				except Exception:
 					pass
 			self.draw[draw].rectangle((POSX, ConfigPos, POSX + ConfigLen, ConfigPos + ConfigSize), outline="yellow")
-		elif ConfigType[0] == "1":
+		elif ConfigType.startswith("1"):
 			if isfile(join(LCD4data, "pointmask.png")):
 				try:
 					imM = Image.open(join(LCD4data, "pointmask.png"))
@@ -14113,27 +14150,24 @@ def LCD4linuxPIC(self, session):
 		if ConfigSplit == True:
 			MAX_Wi = int(MAX_Wi / 2)
 		if PICcal is not None and [ConfigType, ConfigTypeE, LCD4linux.CalDays.value] == CalType and ConfigZoom == CalZoom and [ConfigColor, ConfigBackColor, ConfigCaptionColor] == CalColor:
-			try:
-				x, y = self.im[4].size
-				POSX = getSplit(ConfigSplit, ConfigAlign, MAX_Wi, x)
-				if LCD4linux.CalTransparenz.value == "true":
-					self.im[im].paste(self.im[4], (POSX, ConfigPos), self.im[4])
-				else:
-					self.im[im].paste(self.im[4], (POSX, ConfigPos))
-			except Exception:
-				pass
+			x, y = self.im[4].size
+			POSX = getSplit(ConfigSplit, ConfigAlign, MAX_Wi, x)
+			if LCD4linux.CalTransparenz.value == "true":
+				self.im[im].paste(self.im[4], (POSX, ConfigPos), self.im[4])
+			else:
+				self.im[im].paste(self.im[4], (POSX, ConfigPos))
 		else:
 			POSX = 0
 			POSY = 0
 			ConfigSize = int(20 * ConfigZoom / 10)
 			MAX_H = ConfigSize
 			MAX_W = ConfigSize * 16
-			if ConfigType[0] == "0":
+			if ConfigType.startswith("0"):
 				MAX_H = ConfigSize * 9
-			elif ConfigType[0] == "1":
+			elif ConfigType.startswith("1"):
 				MAX_H = ConfigSize * 4
 			if ConfigTypeE[0] in ["C", "D"]:
-				if ConfigType[0] == "9":
+				if ConfigType.startswith("9"):
 					MAX_W = ConfigSize * 25
 				MAX_H += ConfigSize * int(int(ConfigTypeE[1]) * 0.8)
 			MAX_H += int(ConfigSize * 0.4)
@@ -14171,7 +14205,7 @@ def LCD4linuxPIC(self, session):
 						dd = 1 if day[0] == 0 else day[0]
 						Week = date(datetime.now().year, datetime.now().month, dd).isocalendar()[1]
 						PutWeek = False
-						if ConfigType[0] == "0" or (ConfigType[0] == "1" and ThisWeek == Week):
+						if ConfigType.startswith("0") or (ConfigType.startswith("1") and ThisWeek == Week):
 							PutWeek = True
 							Week = str(Week)
 							w, h = getFsize(Week, font)
@@ -14190,7 +14224,8 @@ def LCD4linuxPIC(self, session):
 							if ConfigLayout in ["0", "2"]:
 								if datetime.now().day == day[0]:
 									self.draw[4].rectangle((PX1 - w1, POSY, PX1 + w1, POSY + h), fill=ConfigBackColor)
-								ShadowText(4, PX, POSY, Tag, font, ConfigColor if day[1] < 5 else LCD4linux.CalSaColor.value, ConfigShadow)
+								CalSaSuColor = LCD4linux.CalSaColor.value if day[1] == 5 else LCD4linux.CalSuColor.value
+								ShadowText(4, PX, POSY, Tag, font, ConfigColor if day[1] < 5 else CalSaSuColor, ConfigShadow)
 							if ConfigLayout in ["0"] and ICS.get(ICStag, None) is not None:
 								self.draw[4].rectangle((PX1 - w1, POSY, PX1 + w1, POSY + h), outline=CC[int(ICS[ICStag][0][2])])
 								if int(LCD4linux.CalLine.value) > 1:
@@ -14203,7 +14238,8 @@ def LCD4linuxPIC(self, session):
 									if int(LCD4linux.CalLine.value) > 1:
 										self.draw[4].rectangle((PX1 - w1, POSY + h, PX1 + w1, POSY + h), outline=ConfigBackColor)
 								else:
-									ShadowText(4, PX, POSY, Tag, font, ConfigColor if day[1] < 5 else LCD4linux.CalSaColor.value, ConfigShadow)
+									CalSaSuColor = LCD4linux.CalSaColor.value if day[1] == 5 else LCD4linux.CalSuColor.value
+									ShadowText(4, PX, POSY, Tag, font, ConfigColor if day[1] < 5 else CalSaSuColor, ConfigShadow)
 							if ConfigLayout in ["1", "2"] and ICS.get(ICStag, None) is not None:
 								self.draw[4].rectangle((PX1 - w1, POSY + h, PX1 + w1, POSY + h), outline=CC[int(ICS[ICStag][0][2])])
 								if int(LCD4linux.CalLine.value) > 1:
@@ -14361,7 +14397,7 @@ def LCD4linuxPIC(self, session):
 		MAX_W, MAX_H = self.im[im].size
 		POSX = None
 		if self.LisRecording or ConfigMode == True:
-			if ConfigType[0] == "1":
+			if ConfigType.startswith("1"):
 				self.draw[draw].ellipse((MAX_W - ConfigSize, -ConfigSize, MAX_W + ConfigSize, ConfigSize), fill="red")
 			else:
 				try:
@@ -14380,7 +14416,7 @@ def LCD4linuxPIC(self, session):
 				except Exception:
 					L4log("Error Recording Pic")
 		if self.LisTimeshift and "t" in ConfigType:
-			if ConfigType[0] == "1":
+			if ConfigType.startswith("1"):
 				for i in range(-1, 3):
 					self.draw[draw].ellipse((MAX_W - ConfigSize - i, -ConfigSize - i, MAX_W + ConfigSize + i, ConfigSize + i), outline="yellow")
 			else:
@@ -14499,7 +14535,7 @@ def LCD4linuxPIC(self, session):
 	if not LCD4linux.Enable.value:
 		return
 	tt = time()
-#	L4logE("MP-Mode",isMediaPlayer)
+#	L4logE("MP-Mode", isMediaPlayer)
 	L4log("creating LCD-Picture: %s" % ScreenActive)
 	if isdir("%slcd4linux" % TMP) == False:
 		try:
@@ -14519,8 +14555,9 @@ def LCD4linuxPIC(self, session):
 		if self.ref != sref or (self.SaveisMediaPlayer != isMediaPlayer and not ConfigMode):
 			L4log("Service changed")
 			self.ref = sref
-			if SaveEventListChanged == False:
-				ScreenActive[0] = "1"
+			if SaveEventListChanged is False:
+				if LCD4linux.ScreenDefault.value != "0":
+					ScreenActive[0] = LCD4linux.ScreenDefault.value
 				LCD4linux.ScreenActive.value = ScreenActive[0]
 				ScreenTime = 0
 			self.SaveisMediaPlayer = isMediaPlayer
@@ -14528,31 +14565,33 @@ def LCD4linuxPIC(self, session):
 			rmFile(MP3tmp)
 #			rmFile(GoogleCover)
 			if self.SonosRunning:
-				L4log("detected Sonos")
-				isMediaPlayer = "sonos"
+				isMediaPlayer, logtext = ("sonos", "detected Sonos")
 			elif self.YMCastRunning:
-				L4log("detected YMC")
-				isMediaPlayer = "ymc"
+				isMediaPlayer, logtext = ("ymc", "detected YMC")
 			elif self.BlueRunning:
-				L4log("detected BlueSound")
-				isMediaPlayer = "blue"
-			elif sref.startswith("1:0:2") is True:
-				L4log("detected Radio")
-				isMediaPlayer = "radio"
+				isMediaPlayer, logtext = ("blue", "detected BlueSound")
+			elif sref.startswith("1:0:2"):
+				isMediaPlayer, logtext = ("radio", "detected Radio")
 				self.CoverIm = None
 				self.CoverName = ["-", "-"]
 			elif sref.startswith(("4097:0", "5001:0", "5002:0", "5003:0")):
 				if self.Lpath and self.Lpath.startswith("http") and self.Llength and self.Llength[0] == -1:
-					L4log("detected IPTV")
+					if LCD4linux.Streaming.value == "0":  # autodetect mode?
+						if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:  # current E2 mode: 0=TV, 1=Radio
+							isMediaPlayer, logtext = ("", "detected IPTV") if InfoBar.instance.servicelist.mode == 0 else ("mp3", "detected AudioMedia")
+						else:
+							isMediaPlayer, logtext = ("", "detection error: 'InfoBar.instance.servicelist.mode' is not available")
+					else:
+						isMediaPlayer, logtext = ("", "forced IPTV by setting") if LCD4linux.Streaming.value == "1" else ("mp3", "forced AudioMedia by setting")
 				else:
-					L4log("detected VOD Media")
-					isMediaPlayer = "mp3"
+					isMediaPlayer, logtext = ("mp3", "detected VOD Media")
 			elif "0:0:0:0:0:0:0:0:0:" in sref:
-				L4log("detected Video")
-				isMediaPlayer = "record"
+				isMediaPlayer, logtext = ("record", "detected Video")
 			else:
 				self.CoverIm = None
 				self.CoverName = ["-", "-"]
+				logtext = ""
+			L4log(logtext)
 			if isMediaPlayer != "mp3" and isMediaPlayer != "record":
 				rmFile("/tmp/.cover")
 				rmFile("/tmp/.wbrfs_pic")
@@ -14782,6 +14821,17 @@ def LCD4linuxPIC(self, session):
 					ShowPicture = getShowPicture(LCD4linux.StandbyBild4File.value, 0)
 					Para = LCD4linux.StandbyBild4Pos.value, LCD4linux.StandbyBild4Size.value, LCD4linux.StandbyBild4SizeH.value, LCD4linux.StandbyBild4Align.value, LCD4linux.StandbyBild4Quick.value, LCD4linux.StandbyBild4Transp.value, 0, ShowPicture, LCD4linux.StandbyBild4File.value
 					Lput4(LCD4linux.StandbyBild4LCD.value, LCD4linux.StandbyBild4.value, putBild, Para)
+# Bild 5
+				if LCD4linux.StandbyBild5.value != "0" and (ScreenActive[0] in LCD4linux.StandbyBild5.value or ScreenActive[-3:] != ["", "", ""]):
+					ShowPicture = getShowPicture(LCD4linux.StandbyBild5File.value, 0)
+					Para = LCD4linux.StandbyBild5Pos.value, LCD4linux.StandbyBild5Size.value, LCD4linux.StandbyBild5SizeH.value, LCD4linux.StandbyBild5Align.value, LCD4linux.StandbyBild5Quick.value, LCD4linux.StandbyBild5Transp.value, 0, ShowPicture, LCD4linux.StandbyBild5File.value
+					Lput4(LCD4linux.StandbyBild5LCD.value, LCD4linux.StandbyBild5.value, putBild, Para)
+# Bild 6
+				if LCD4linux.StandbyBild6.value != "0" and (ScreenActive[0] in LCD4linux.StandbyBild6.value or ScreenActive[-3:] != ["", "", ""]):
+					ShowPicture = getShowPicture(LCD4linux.StandbyBild6File.value, 0)
+					Para = LCD4linux.StandbyBild6Pos.value, LCD4linux.StandbyBild6Size.value, LCD4linux.StandbyBild6SizeH.value, LCD4linux.StandbyBild6Align.value, LCD4linux.StandbyBild6Quick.value, LCD4linux.StandbyBild6Transp.value, 0, ShowPicture, LCD4linux.StandbyBild6File.value
+					Lput4(LCD4linux.StandbyBild6LCD.value, LCD4linux.StandbyBild6.value, putBild, Para)
+
 				Brief1.join()
 				Brief2.join()
 				Brief3.join()
@@ -14985,7 +15035,7 @@ def LCD4linuxPIC(self, session):
 			Para = LCD4linux.MPBox2x1.value, LCD4linux.MPBox2y1.value, LCD4linux.MPBox2x2.value, LCD4linux.MPBox2y2.value, LCD4linux.MPBox2Color.value, LCD4linux.MPBox2BackColor.value
 			Lput(LCD4linux.MPBox2LCD.value, LCD4linux.MPBox2.value, putBox, Para)
 # Progress Bar
-			Para = LCD4linux.MPProgressPos.value, LCD4linux.MPProgressSize.value, LCD4linux.MPProgressLen.value, LCD4linux.MPProgressType.value, LCD4linux.MPProgressColor.value, LCD4linux.MPProgressColorText.value, LCD4linux.MPProgressAlign.value, LCD4linux.MPProgressMinutes.value, LCD4linux.MPProgressBorder.value, LCD4linux.MPProgressShadow.value, LCD4linux.MPProgressShadow2.value, getFont(LCD4linux.MPProgressFont.value)
+			Para = LCD4linux.MPProgressPos.value, LCD4linux.MPProgressSize.value, LCD4linux.MPProgressLen.value, LCD4linux.MPProgressType.value, LCD4linux.MPProgressColor.value, LCD4linux.MPProgressColorText.value, LCD4linux.MPProgressColorBG.value, LCD4linux.MPProgressAlign.value, LCD4linux.MPProgressMinutes.value, LCD4linux.MPProgressBorder.value, LCD4linux.MPProgressShadow.value, LCD4linux.MPProgressShadow2.value, getFont(LCD4linux.MPProgressFont.value)
 			Lput(LCD4linux.MPProgressLCD.value, LCD4linux.MPProgress.value, putProgress, Para)
 # Volume
 			Para = LCD4linux.MPVolPos.value, LCD4linux.MPVolSize.value, LCD4linux.MPVolLen.value, LCD4linux.MPVolAlign.value, LCD4linux.MPVolSplit.value, LCD4linux.MPVolColor.value, LCD4linux.MPVolShadow.value
@@ -15140,6 +15190,16 @@ def LCD4linuxPIC(self, session):
 				ShowPicture = getShowPicture(LCD4linux.Bild4File.value, 0)
 				Para = LCD4linux.Bild4Pos.value, LCD4linux.Bild4Size.value, LCD4linux.Bild4SizeH.value, LCD4linux.Bild4Align.value, LCD4linux.Bild4Quick.value, LCD4linux.Bild4Transp.value, 0, ShowPicture, LCD4linux.Bild4File.value
 				Lput4(LCD4linux.Bild4LCD.value, LCD4linux.Bild4.value, putBild, Para)
+# Bild 5
+			if LCD4linux.Bild5.value != "0" and (ScreenActive[0] in LCD4linux.Bild5.value or ScreenActive[-3:] != ["", "", ""]):
+				ShowPicture = getShowPicture(LCD4linux.Bild5File.value, 0)
+				Para = LCD4linux.Bild5Pos.value, LCD4linux.Bild5Size.value, LCD4linux.Bild5SizeH.value, LCD4linux.Bild5Align.value, LCD4linux.Bild5Quick.value, LCD4linux.Bild5Transp.value, 0, ShowPicture, LCD4linux.Bild5File.value
+				Lput4(LCD4linux.Bild5LCD.value, LCD4linux.Bild5.value, putBild, Para)
+# Bild 6
+			if LCD4linux.Bild6.value != "0" and (ScreenActive[0] in LCD4linux.Bild6.value or ScreenActive[-3:] != ["", "", ""]):
+				ShowPicture = getShowPicture(LCD4linux.Bild6File.value, 0)
+				Para = LCD4linux.Bild6Pos.value, LCD4linux.Bild6Size.value, LCD4linux.Bild6SizeH.value, LCD4linux.Bild6Align.value, LCD4linux.Bild6Quick.value, LCD4linux.Bild6Transp.value, 0, ShowPicture, LCD4linux.Bild6File.value
+				Lput4(LCD4linux.Bild6LCD.value, LCD4linux.Bild6.value, putBild, Para)
 # HTTP WWW Site
 			Para = 1, LCD4linux.WWW1Pos.value, LCD4linux.WWW1Size.value, LCD4linux.WWW1Align.value, LCD4linux.WWW1CutX.value, LCD4linux.WWW1CutY.value, LCD4linux.WWW1CutW.value, LCD4linux.WWW1CutH.value
 			Lput(LCD4linux.WWW1LCD.value, LCD4linux.WWW1.value, putWWW, Para)
@@ -15219,7 +15279,7 @@ def LCD4linuxPIC(self, session):
 			Para = LCD4linux.ChannelPos.value, LCD4linux.ChannelSize.value, LCD4linux.ChannelLen.value, LCD4linux.ChannelLines.value, LCD4linux.ChannelAlign.value, LCD4linux.ChannelSplit.value, LCD4linux.ChannelColor.value, LCD4linux.ChannelShadow.value, getFont(LCD4linux.ChannelFont.value)
 			Lput(LCD4linux.ChannelLCD.value, LCD4linux.Channel.value, putChannel, Para)
 # Progress Bar
-			Para = LCD4linux.ProgressPos.value, LCD4linux.ProgressSize.value, LCD4linux.ProgressLen.value, LCD4linux.ProgressType.value, LCD4linux.ProgressColor.value, LCD4linux.ProgressColorText.value, LCD4linux.ProgressAlign.value, LCD4linux.ProgressMinutes.value, LCD4linux.ProgressBorder.value, LCD4linux.ProgressShadow.value, LCD4linux.ProgressShadow2.value, getFont(LCD4linux.ProgressFont.value)
+			Para = LCD4linux.ProgressPos.value, LCD4linux.ProgressSize.value, LCD4linux.ProgressLen.value, LCD4linux.ProgressType.value, LCD4linux.ProgressColor.value, LCD4linux.ProgressColorText.value, LCD4linux.ProgressColorBG.value, LCD4linux.ProgressAlign.value, LCD4linux.ProgressMinutes.value, LCD4linux.ProgressBorder.value, LCD4linux.ProgressShadow.value, LCD4linux.ProgressShadow2.value, getFont(LCD4linux.ProgressFont.value)
 			Lput(LCD4linux.ProgressLCD.value, LCD4linux.Progress.value, putProgress, Para)
 # Volume
 			Para = LCD4linux.VolPos.value, LCD4linux.VolSize.value, LCD4linux.VolLen.value, LCD4linux.VolAlign.value, LCD4linux.VolSplit.value, LCD4linux.VolColor.value, LCD4linux.VolShadow.value
@@ -15431,7 +15491,7 @@ def autostart(reason, **kwargs):
 			LCD4linux.Crash.value = True
 		CheckFstab()
 		TFTCheck(False)
-		if isfile(LCD4enigma2config + "skin_user.xml"):
+		if isfile(join(LCD4enigma2config, "skin_user.xml")):
 			xmlRead()
 			LCD4linux.xmlType01.value = False if xmlFind(1) == -1 else True
 			LCD4linux.xmlType02.value = False if xmlFind(2) == -1 else True
@@ -15519,6 +15579,14 @@ def autostart(reason, **kwargs):
 
 
 def setup(menuid, **kwargs):
+	if IMAGEDISTRO in ("openvix", "openatv", "egami", "openhdf", "openbh", "openspa", "opendroid"):
+		if menuid == "display" and SystemInfo["Display"]:
+			return [("LCD4Linux", main, "lcd4linux", None)]
+		elif menuid == "system" and not SystemInfo["Display"]:
+			return [("LCD4Linux", main, "lcd4linux", None)]
+		else:
+			return []
+	else:
 		return [("LCD4Linux", main, "lcd4linux", None)] if menuid == "setup" else []
 
 
