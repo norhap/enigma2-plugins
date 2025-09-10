@@ -8273,25 +8273,6 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 		isMediaPlayer = self.SaveisMediaPlayer
 		TFTCheck(False)
 
-	def keyLeft(self):
-		L4logE("key L")
-		self.LastSelect = str(self["config"].getCurrentIndex()) + self.getCurrentValue()[:3]
-		ConfigListScreen.keyLeft(self)
-		self.SetList()
-
-	def keyRight(self):
-		L4logE("key R")
-		self.LastSelect = str(self["config"].getCurrentIndex()) + self.getCurrentValue()[:3]
-		ConfigListScreen.keyRight(self)
-		self.SetList()
-
-	def restartGUI(self, answer):
-		if answer:
-			L4log("GUI Restart")
-			self.session.open(Standby.TryQuitMainloop, 3)
-		else:
-			self.close(True, self.session)
-
 
 class UpdateStatus(Screen):
 
