@@ -90,7 +90,7 @@ class MSNWeatherPlugin(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.title = _("Weather Plugin")
+		self.title = _("Weather Report")
 		self["actions"] = ActionMap(["MenuActions", "NavigationActions", "OkCancelActions", "InfoActions"],
 		{
 			"cancel": self.close,
@@ -219,7 +219,9 @@ class MSNWeatherPlugin(Screen):
 					self["weekday%s" % index].text = "%s\n%s" % (item.day, time.strftime("%d. %b", c))
 					lowTemp = item.low
 					highTemp = item.high
-					self["weekday%s_temp" % index].text = "%s°%s|%s°%s\n%s" % (highTemp, self.weatherData.degreetype, lowTemp, self.weatherData.degreetype, item.skytextday)
+					maxima = _("Maxima")
+					minimum = _("Minimum")
+					self["weekday%s_temp" % index].text = " %s: %s°%s\n%s: %s°%s\n%s" % (maxima, highTemp, self.weatherData.degreetype, minimum, lowTemp, self.weatherData.degreetype, item.skytextday)
 
 		if self.weatherPluginEntryIndex == 1 and WeatherMSNComp is not None:
 			WeatherMSNComp.updateWeather(self.weatherData, result, errortext)
