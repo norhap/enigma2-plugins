@@ -71,7 +71,7 @@ msgid "Minimum"
 msgstr "Mínima"
 
 msgid "No locations defined...\nPress 'Menu' to do that."
-msgstr "No hay ubicaciones definidas...\nPresione 'Menú' para hacerlo."
+msgstr "No hay ubicaciones definidas...\nPulse 'Menú' para hacerlo."
 
 msgid "Observation time: %s"
 msgstr "Hora observación: %s"
