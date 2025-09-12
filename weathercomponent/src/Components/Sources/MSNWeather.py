@@ -113,14 +113,14 @@ class MSNWeather(Source):
 	def getFeelslike(self):
 		skey = "-1"
 		if skey in weathermsn.weatherData.weatherItems:
-			return weathermsn.weatherData.weatherItems[skey].feelslike
+			return "%s°%s" % (weathermsn.weatherData.weatherItems[skey].feelslike, weathermsn.weatherData.degreetype)
 		else:
 			return _("n/a")
 
 	def getHumidity(self):
 		skey = "-1"
 		if skey in weathermsn.weatherData.weatherItems:
-			return weathermsn.weatherData.weatherItems[skey].humidity
+			return "%s %%" % weathermsn.weatherData.weatherItems[skey].humidity
 		else:
 			return _("n/a")
 
