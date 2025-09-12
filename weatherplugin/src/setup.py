@@ -30,6 +30,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.MenuList import MenuList
 from Components.Sources.StaticText import StaticText
+from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.config import ConfigSubsection, ConfigText, ConfigSelection, \
@@ -188,8 +189,9 @@ class WeatherPluginEntryList(MenuList):
 
 class MSNWeatherPluginEntryConfigScreen(ConfigListScreen, Screen):
 	skin = """
-		<screen name="MSNWeatherPluginEntryConfigScreen" position="center,center" size="550,400">
+		<screen name="MSNWeatherPluginEntryConfigScreen" position="center,center" size="550,500">
 			<widget name="config" position="20,60" size="520,300" scrollbarMode="showOnDemand" />
+			<widget source="description" render="Label" position="20,380" zPosition="5" size="530,100" font="Regular;21" transparent="1" />
 			<ePixmap position="0,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on" />
 			<ePixmap position="140,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on" />
 			<ePixmap position="420,10" zPosition="4" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphaTest="on" />
@@ -218,6 +220,7 @@ class MSNWeatherPluginEntryConfigScreen(ConfigListScreen, Screen):
 		self["key_green"] = StaticText(_("OK"))
 		self["key_blue"] = StaticText(_("Delete"))
 		self["key_yellow"] = StaticText(_("Search Code"))
+		self["description"] = Label(_("1. Press TEXT to enter your location.\n2. Press YELLOW to find your code.\n3. Press GREEN twice until finished."))
 
 		if entry is None:
 			self.newmode = 1

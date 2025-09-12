@@ -111,3 +111,6 @@ msgstr "WeatherPlugin: Editar entrada"
 
 msgid "WeatherPlugin: List of Entries"
 msgstr "WeatherPlugin: Lista de entradas"
+
+msgid "1. Press TEXT to enter your location.\n2. Press YELLOW to find your code.\n3. Press GREEN twice until finished."
+msgstr "1. Pulse TEXT para escribir su localidad.\n2. Pulse AMARILLO para encontrar su código.\n3. Pulse VERDE dos veces hasta finalizar."
