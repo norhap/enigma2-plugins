@@ -247,6 +247,10 @@ class MSNWeatherPlugin(Screen):
 
 	def error(self, errortext):
 		self.clearFields()
+		if "User timeout" in str(errortext):
+			errortext = _("User timeout caused connection failure.")
+		elif "DNS lookup" in str(errortext):
+			errortext = _("DNS lookup failed: weather.service.msn.com.")
 		self["statustext"].text = errortext
 
 	def showWebsite(self):

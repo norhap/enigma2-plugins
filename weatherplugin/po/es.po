@@ -40,6 +40,9 @@ msgstr "Actual: %s"
 msgid "Delete"
 msgstr "Eliminar"
 
+msgid "DNS lookup failed: weather.service.msn.com."
+msgstr "Error en la búsqueda de DNS: weather.service.msn.com."
+
 msgid "Edit"
 msgstr "Editar"
 
@@ -93,6 +96,9 @@ msgstr "Buscar Código"
 
 msgid "System"
 msgstr "Sistema"
+
+msgid "User timeout caused connection failure."
+msgstr "El tiempo de espera del usuario provocó un error en la conexión."
 
 msgid "Weather Plugin"
 msgstr "Weather Plugin"
