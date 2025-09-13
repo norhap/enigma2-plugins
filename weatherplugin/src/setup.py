@@ -83,7 +83,7 @@ class MSNWeatherPluginEntriesListConfigScreen(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.title = _("WeatherPlugin: List of Entries")
+		self.title = _("List of Localities")
 		self["city"] = StaticText(_("City"))
 		self["degreetype"] = StaticText(_("System"))
 		self["key_red"] = StaticText(_("Back"))
@@ -204,7 +204,7 @@ class MSNWeatherPluginEntryConfigScreen(ConfigListScreen, Screen):
 
 	def __init__(self, session, entry):
 		Screen.__init__(self, session)
-		self.title = _("WeatherPlugin: Edit Entry")
+		self.title = _("Edit Locality")
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 
 		{

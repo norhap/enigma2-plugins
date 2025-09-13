@@ -53,7 +53,7 @@ def main(session, **kwargs):
 
 
 def Plugins(**kwargs):
-	list = [PluginDescriptor(name=_("Weather Plugin"), description=_("Show Weather Forecast"), where=[PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU], icon="weather.png", fnc=main)]
+	list = [PluginDescriptor(name=_("Weather Report"), description=_("Show Weather Forecast"), where=[PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU], icon="weather.png", fnc=main)]
 	return list
 
 
