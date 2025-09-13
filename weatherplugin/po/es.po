@@ -79,6 +79,9 @@ msgstr "sistema métrico"
 msgid "Minimum"
 msgstr "Mínima"
 
+msgid "Location search result"
+msgstr "Resultado de la búsqueda de ubicación"
+
 msgid "No locations defined...\nPress 'Menu' to do that."
 msgstr "No hay ubicaciones definidas...\nPulse 'Menú' para hacerlo."
 
@@ -91,8 +94,14 @@ msgstr "Punto observación: %s"
 msgid "OK"
 msgstr "OK"
 
-msgid "Really delete this WeatherPlugin Entry?"
-msgstr "¿Quieres eliminar esta entrada de WeatherPlugin?"
+msgid "Please enter a valid city name."
+msgstr "Ingrese un nombre de ciudad válido."
+
+msgid "Please enter a valid location code for the city."
+msgstr "Ingrese un código de ubicación válido para la ciudad."
+
+msgid "Really delete this locality?"
+msgstr "¿Quieres eliminar esta localidad?"
 
 msgid "Show Weather Forecast"
 msgstr "Mostrar pronóstico del tiempo"
@@ -111,6 +120,9 @@ msgstr "Weather Plugin"
 
 msgid "Weather Report"
 msgstr "Informe Meteorológico"
+
+msgid "You need to enter a valid city name before you can search for the location code."
+msgstr "Debe ingresar un nombre de ciudad válido antes de poder buscar el código de ubicación."
 
 msgid "1. Press TEXT to enter your location.\n2. Press YELLOW to find your code.\n3. Press GREEN twice until finished."
 msgstr "1. Pulse TEXT para escribir su localidad.\n2. Pulse AMARILLO para encontrar su código.\n3. Pulse VERDE dos veces hasta finalizar."

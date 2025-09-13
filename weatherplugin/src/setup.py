@@ -134,7 +134,7 @@ class MSNWeatherPluginEntriesListConfigScreen(Screen):
 			sel = None
 		if sel is None:
 			return
-		self.session.openWithCallback(self.deleteConfirm, MessageBox, _("Really delete this WeatherPlugin Entry?"))
+		self.session.openWithCallback(self.deleteConfirm, MessageBox, _("Really delete this locality?"))
 
 	def deleteConfirm(self, result):
 		if not result:
@@ -293,7 +293,7 @@ class MSNWeatherPluginEntryConfigScreen(ConfigListScreen, Screen):
 		if self.newmode == 1:
 			self.keyCancel()
 		else:
-			self.session.openWithCallback(self.deleteConfirm, MessageBox, _("Really delete this WeatherPlugin Entry?"))
+			self.session.openWithCallback(self.deleteConfirm, MessageBox, _("Really delete this locality?"))
 
 	def deleteConfirm(self, result):
 		if not result:
@@ -343,7 +343,7 @@ class MSNWeatherPluginSearch(Screen):
 
 	def __init__(self, session, xmlstring):
 		Screen.__init__(self, session)
-		self.title = _("MSN location search result")
+		self.title = _("Location search result")
 		self["key_red"] = StaticText(_("Back"))
 		self["key_green"] = StaticText(_("OK"))
 		self["entrylist"] = MSNWeatherPluginSearchResultList([])
