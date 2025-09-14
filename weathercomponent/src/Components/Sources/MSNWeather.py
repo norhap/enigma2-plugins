@@ -91,7 +91,7 @@ class MSNWeather(Source):
 			highTemp = item.high
 			high = "%s°%s" % (highTemp, weathermsn.weatherData.degreetype)
 			low = self.getTemperature_Low(key)
-			return "%s - %s" % (high, low)
+			return "Max: %s   Min: %s" % (high, low)
 		else:
 			return ""
 
