@@ -93,13 +93,13 @@ class MSNWeatherPluginEntriesListConfigScreen(Screen):
 		self["entrylist"] = WeatherPluginEntryList([])
 		self["actions"] = ActionMap(["WizardActions", "MenuActions", "ShortcutActions"],
 			{
-			 "ok": self.keyOK,
-			 "back": self.keyClose,
-			 "red": self.keyClose,
-			 "green": self.keyGreen,
-			 "yellow": self.keyYellow,
-			 "blue": self.keyDelete,
-			 }, -1)
+			"ok": self.keyOK,
+			"back": self.keyClose,
+			"red": self.keyClose,
+			"green": self.keyGreen,
+			"yellow": self.keyYellow,
+			"blue": self.keyDelete,
+		}, -1)
 		self.updateList()
 
 	def updateList(self):
@@ -206,8 +206,7 @@ class MSNWeatherPluginEntryConfigScreen(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 		self.title = _("Edit Locality")
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
-
-		{
+			{
 			"green": self.keySave,
 			"red": self.keyCancel,
 			"blue": self.keyDelete,
@@ -349,11 +348,11 @@ class MSNWeatherPluginSearch(Screen):
 		self["entrylist"] = MSNWeatherPluginSearchResultList([])
 		self["actions"] = ActionMap(["WizardActions", "MenuActions", "ShortcutActions"],
 			{
-			 "ok": self.keyOK,
-			 "green": self.keyOK,
-			 "back": self.keyClose,
-			 "red": self.keyClose,
-			 }, -1)
+			"ok": self.keyOK,
+			"green": self.keyOK,
+			"back": self.keyClose,
+			"red": self.keyClose,
+		}, -1)
 		self.updateList(xmlstring)
 
 	def updateList(self, xmlstring):
