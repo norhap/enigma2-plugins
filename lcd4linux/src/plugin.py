@@ -172,7 +172,7 @@ USBok = False
 if find_library("usb-0.1") is not None or find_library("usb-1.0") is not None:
 	print("[LCD4linux] libusb found :-)", getEnigmaVersionString())
 	USBok = True
-Version = "V5.0-r31"
+Version = "V5.0-r32"
 L4LElist = L4Lelement()
 L4LdoThread = True
 LCD4enigma2config = resolveFilename(SCOPE_CONFIG)  # /etc/enigma2/
@@ -5555,8 +5555,6 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 		self.mode = _("Global")
 		self.LastSelect = "4"
 		self.SetList()
-		if self.selectionChanged not in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.selectionChanged)
 		if LCD4linux.LCDType3.value == "00":
 			self["LCD3"].hide()
 		if getDesktop(0).size().width() < 1000:
