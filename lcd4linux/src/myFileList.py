@@ -208,13 +208,9 @@ class FileList(MenuList):
 
 	def descent(self):
 		if self.getSelection() != "":
-<<<<<<< HEAD:lcd4linux/src/myFileList.py
-			se = (self.current_directory if self.current_directory.endswith("/") else os_path.basename(self.current_directory)) if self.current_directory is not None else ""
-=======
 			se = ""
 			if self.current_directory is not None:
 				se = self.current_directory if self.current_directory.endswith("/") else os_path.basename(self.current_directory)
->>>>>>> e8afd925 ([LCD4linux] V5.0-r32 bugfix: duplicate call removed (#920)):LCD4linux/src/myFileList.py
 			self.changeDir(self.getSelection()[0], select=se)
 
 	def getFilename(self):
