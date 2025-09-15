@@ -127,13 +127,6 @@ class MSNWeather(Source):
 		else:
 			return ""
 
-	def getCondition(self):
-		skey = "-1"
-		if skey in weathermsn.weatherData.weatherItems:
-			return weathermsn.weatherData.weatherItems[skey].skytext
-		else:
-			return ""
-
 	def getWinddisplay(self):
 		skey = "-1"
 		if skey in weathermsn.weatherData.weatherItems:

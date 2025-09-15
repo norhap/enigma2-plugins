@@ -49,7 +49,6 @@ class MSNWeather(Converter, object):
 	TEMPERATURE_HEIGH_LOW = 19
 	CODE = 20
 	PATH = 21
-	CONDITION = 22
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -71,8 +70,6 @@ class MSNWeather(Converter, object):
 				self.mode = self.HUMIDITY
 		elif type == "winddisplay":
 				self.mode = self.WINDDISPLAY
-		elif type == "condition":
-				self.mode = self.CONDITION
 		else:
 			if type.find("weathericon") != -1:
 				self.mode = self.ICON
@@ -130,8 +127,6 @@ class MSNWeather(Converter, object):
 			return self.source.getHumidity()
 		elif self.mode == self.WINDDISPLAY:
 			return self.source.getWinddisplay()
-		elif self.mode == self.CONDITION:
-			return self.source.getCondition()
 		elif self.mode == self.TEMPERATURE_HEIGH and self.index is not None:
 			return self.source.getTemperature_Heigh(self.index)
 		elif self.mode == self.TEMPERATURE_LOW and self.index is not None:
