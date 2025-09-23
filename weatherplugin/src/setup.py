@@ -21,7 +21,6 @@
 #
 
 # for localized messages
-from __future__ import print_function
 from . import _
 
 from enigma import eListboxPythonMultiContent, getDesktop, gFont, RT_HALIGN_LEFT, \
