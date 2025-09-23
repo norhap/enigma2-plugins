@@ -23,6 +23,7 @@
 import time
 from Components.Sources.Source import Source
 from Components.WeatherMSN import weathermsn
+from Tools.Directories import fileContains
 
 
 class MSNWeather(Source):
@@ -39,7 +40,7 @@ class MSNWeather(Source):
 		if weathermsn.weatherData.city:
 			return weathermsn.weatherData.city
 		else:
-			return _("Weather Report") + " " + _("Not configured")
+			return _("Weather Report") + " " + _("Not configured") if fileContains("/etc/enigma2/settings", "xtraEvent.onoff=True") and fileContains("/etc/enigma2/settings", "xtraEvent.poster=True") else _("Weather Report") + " " + _("Not configured") + "\n" + _("Posters") + " " + _("Not configured") + " (xtraEvent)"
 
 	def getObservationPoint(self):
 		skey = "-1"
