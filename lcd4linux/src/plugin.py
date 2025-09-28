@@ -5265,7 +5265,7 @@ class LCDdisplayMenu(Screen):
 		<screen position="center,center" size="600,380" title="LCD4linux - Config" >
 			<widget name="menu" position="10,20" size="580,350" scrollbarMode="showOnDemand" />
 			<eLabel name="button_red" position="10,340" size="6,36" backgroundColor="#00fe0000" zPosition="1" />
-			<widget source="key_red" render="Label" position="24,346" size="230,26" font="Regular;18" valign="center" halign="left" zPosition="1" />
+			<widget source="key_red" render="Label" position="24,346" size="230,26" font="Regular;18" verticalAlignment="center" horizontalAlignment="left" zPosition="1" />
 		</screen>"""
 
 	def __init__(self, session, args=None):
