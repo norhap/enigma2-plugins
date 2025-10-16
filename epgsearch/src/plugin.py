@@ -45,8 +45,8 @@ def EPGSearchSelection__init__(self, session, service, zapFunc=None, eventid=Non
 				dlg = self.session.openWithCallback(self.CallbackChoiceAction, ChoiceBox, title=_("Select action:"), list=slist)
 				dlg.setTitle(_("Choice list EPGSearch"))
 
-		def goToTmbd():
-			EPGSelection.goToTmbd(self)
+		def goToIMDb():
+			EPGSelection.goToIMDb(self)
 
 		def timerAdd():
 			EPGSelection.timerAdd(self)
@@ -61,7 +61,7 @@ def EPGSearchSelection__init__(self, session, service, zapFunc=None, eventid=Non
 			EPGSelection.furtherOptions(self)
 
 		self["epgsearch_actions"] = ActionMap(["EPGSelectActions"], {
-			"red": goToTmbd,
+			"red": goToIMDb,
 			"timerAdd": timerAdd,
 			"blue": bluePressed,
 			"yellow": yellowButtonPressed,
