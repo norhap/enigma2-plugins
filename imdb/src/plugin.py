@@ -53,6 +53,7 @@ config.plugins.imdb.showlongmenuinfo = ConfigYesNo(default=False)
 config.plugins.imdb.showepisoderesults = ConfigYesNo(default=False)
 config.plugins.imdb.showepisodeinfo = ConfigYesNo(default=False)
 
+
 def getPage(url, params=None, data=None, headers=None, cookies=None):
 	headers = headers or {}
 	headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0'
@@ -687,7 +688,6 @@ class IMDB(Screen, HelpableScreen):
 
 		for video in self.videos:
 			list.append((video[0], self.playVideo, video[1], video[2]))
-
 
 		self.session.openWithCallback(
 			self.menuCallback,
