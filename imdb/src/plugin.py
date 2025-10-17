@@ -312,7 +312,7 @@ class IMDB(Screen, HelpableScreen):
 	def exit(self):
 		global movietitle
 		if isPluginInstalled("xtraEvent"):
-			movielistposter = config.plugins.xtraEvent.loc.value + "xtraEvent/poster"
+			movielistposter = config.plugins.xtraEvent.loc.value + "xtraEvent/poster" if config.plugins.xtraEvent.loc.value else None
 			if fileExists(str(movielistposter)) and fileExists(str(self.savingpath + movietitle + ".jpg")) and not fileExists(str(movielistposter + "/" + movietitle + ".jpg")):
 				try:
 					copy(self.savingpath + movietitle + ".jpg", movielistposter + "/" + movietitle.replace(":", "") + ".jpg")
