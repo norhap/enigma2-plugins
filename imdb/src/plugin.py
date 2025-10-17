@@ -53,6 +53,8 @@ config.plugins.imdb.showlongmenuinfo = ConfigYesNo(default=False)
 config.plugins.imdb.showepisoderesults = ConfigYesNo(default=False)
 config.plugins.imdb.showepisodeinfo = ConfigYesNo(default=False)
 
+movietitle = None
+
 
 def getPage(url, params=None, data=None, headers=None, cookies=None):
 	headers = headers or {}
@@ -311,7 +313,7 @@ class IMDB(Screen, HelpableScreen):
 
 	def exit(self):
 		global movietitle
-		if isPluginInstalled("xtraEvent"):
+		if isPluginInstalled("xtraEvent") and movietitle:
 			movielistposter = config.plugins.xtraEvent.loc.value + "xtraEvent/poster" if config.plugins.xtraEvent.loc.value else None
 			if fileExists(str(movielistposter)) and fileExists(str(self.savingpath + movietitle + ".jpg")) and not fileExists(str(movielistposter + "/" + movietitle + ".jpg")):
 				try:
