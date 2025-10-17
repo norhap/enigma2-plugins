@@ -28,7 +28,7 @@ from shutil import copy
 from six.moves.urllib.parse import quote_plus
 from time import strftime
 from twisted.internet.threads import deferToThread
-from os import path as os_path, remove as os_remove
+from os import path as os_path, remove as os_remove, makedirs
 
 import json
 import re
@@ -224,7 +224,9 @@ class IMDB(Screen, HelpableScreen):
 		# Always enable saving.
 		# self.saving = save
 		self.saving = True
-		self.savingpath = savepath or "/home/root/logs/imdb"
+		if not fileExists(config.usage.default_path.value + "IMDB") and fileExists(config.usage.default_path.value):
+			makedirs(config.usage.default_path.value + "IMDB")
+		self.savingpath = config.usage.default_path.value + "IMDB/"
 		self.localpath = localpath
 
 		self.imdbId = imdbId
@@ -308,6 +310,14 @@ class IMDB(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.getIMDB)
 
 	def exit(self):
+		global movietitle
+		if isPluginInstalled("xtraEvent"):
+			movielistposter = config.plugins.xtraEvent.loc.value + "xtraEvent/poster"
+			if fileExists(str(movielistposter)) and fileExists(str(self.savingpath + movietitle + ".jpg")) and not fileExists(str(movielistposter + "/" + movietitle + ".jpg")):
+				try:
+					copy(self.savingpath + movietitle + ".jpg", movielistposter + "/" + movietitle.replace(":", "") + ".jpg")
+				except Exception:
+					pass
 		if self.hideBigPoster():
 			return
 
@@ -710,9 +720,10 @@ class IMDB(Screen, HelpableScreen):
 		self.session.open(IMDbPlayer, ref)
 
 	def saveHtmlDetails(self):
+		global movietitle
 		try:
 			if self.savingpath is not None:
-				isave = self.savingpath + "-" + self.titleId
+				isave = self.savingpath + movietitle
 				open(isave + ".html", 'w').write(self.html)
 				if self.json:
 					open(isave + ".json", 'w').write(self.json)
@@ -730,14 +741,12 @@ class IMDB(Screen, HelpableScreen):
 			print('[IMDb] saveHtmlDetails exception failure:', str(e))
 
 	def saveTxtDetails(self, poster=False):
+		global movietitle
 		try:
 			if self.savingpath is not None:
 				getTXT = self.IMDBsavetxt(poster)
-				if getTXT is not None:
-					open(self.savingpath + "-" + self.titleId + ".txt", 'w').write(getTXT)
-				else:
-					from Screens.MessageBox import MessageBox
-					self.session.open(MessageBox, (_('IMDb can not get Movie Information to write to .txt file!')), MessageBox.TYPE_INFO, 10)
+				if getTXT is not None and not fileExists(str(self.savingpath + movietitle + ".txt")):
+					open(self.savingpath + movietitle + ".txt", 'w').write(getTXT)
 		except Exception as e:
 			print('[IMDb] saveTxtDetails exception failure:', str(e))
 
@@ -745,19 +754,20 @@ class IMDB(Screen, HelpableScreen):
 		self.saveTxtDetails(True)
 
 	def IMDBsavetxt(self, poster=False):
+		global movietitle
 		if not self.generalinfos:
 			return None
-
 		# save the poster.jpg (big poster if we have it, otherwise get full size)
 		if poster:
 			posterurl = self.generalinfos["poster"]
 			if posterurl:
-				postersave = self.savingpath + "-" + self.titleId + ".jpg"
+				postersave = self.savingpath + movietitle + ".jpg"
 				if fileExists("/tmp/poster-big.jpg"):
 					copy("/tmp/poster-big.jpg", postersave)
 				else:
 					# print("[IMDB] downloading poster " + posterurl + " to " + postersave)
-					download = downloadPage(posterurl, postersave)
+					if not fileExists(str(postersave)):
+						download = downloadPage(posterurl, postersave)
 					download.addErrback(self.http_failed)
 
 		return (
@@ -1726,13 +1736,19 @@ def setup(session, **kwargs):
 
 
 def movielistSearch(session, serviceref, **kwargs):
+	global movietitle
 	KNOWN_EXTENSIONS2 = frozenset(('x264', '720p', '1080p', '1080i', 'PAL', 'GERMAN', 'ENGLiSH', 'WS', 'DVDRiP', 'UNRATED', 'RETAIL', 'Web-DL', 'DL', 'LD', 'MiC', 'MD', 'DVDR', 'BDRiP', 'BLURAY', 'DTS', 'UNCUT', 'ANiME', 'AC3MD', 'AC3', 'AC3D', 'TS', 'DVDSCR', 'COMPLETE', 'INTERNAL', 'DTSD', 'XViD', 'DIVX', 'DUBBED', 'LINE.DUBBED', 'DD51', 'DVDR9', 'DVDR5', 'h264', 'AVC', 'WEBHDTVRiP', 'WEBHDRiP', 'WEBRiP', 'WEBHDTV', 'WebHD', 'HDTVRiP', 'HDRiP', 'HDTV', 'ITUNESHD', 'REPACK', 'SYNC'))
 	serviceHandler = eServiceCenter.getInstance()
 	info = serviceHandler.info(serviceref)
 	eventName = info and info.getName(serviceref) or ''
+	movietitle = eventName
 	(root, ext) = os_path.splitext(eventName)
 	if ext in KNOWN_EXTENSIONS or ext in KNOWN_EXTENSIONS2:
 		eventName = re.sub(r"[\W_]+", ' ', root, 0)
+	# if isPluginInstalled("xtraEvent"):
+	# 	movielistposter = config.plugins.xtraEvent.loc.value + "xtraEvent/poster"
+	# 	if fileExists(str(movielistposter)) and fileExists(str(config.usage.default_path.value + eventName + ".jpg")) and not fileExists(str(movielistposter + "/" + eventName + ".jpg")):
+	# 		copy(config.usage.default_path.value + eventName + ".jpg", movielistposter + "/" + eventName.replace(":", "") + ".jpg")
 	session.open(IMDB, eventName)
 
 

@@ -20,288 +20,288 @@ msgstr ""
 
 #, python-format
 msgid "%d out of %d found this helpful."
-msgstr ""
+msgstr "%d de %d encontraron esto útil."
 
 msgid "* = Restart Required"
-msgstr ""
+msgstr "* = Se requiere reiniciar"
 
 #, python-format
 msgid ": %d total"
-msgstr ""
+msgstr ": %d total"
 
 msgid "Ambiguous results"
-msgstr ""
+msgstr "Resultados ambiguos"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 msgid "Channel Selection"
-msgstr ""
+msgstr "Selección de canal"
 
 msgid "Couldn't get event name"
-msgstr ""
+msgstr "No se pudo obtener el nombre del evento"
 
 msgid "Details"
-msgstr ""
+msgstr "Detalles"
 
 msgid "Downloading Movie Poster..."
-msgstr ""
+msgstr "Descargando poster de película..."
 
 msgid "Downloading reviews..."
-msgstr ""
+msgstr "Descargando reseñas..."
 
 msgid "E"
-msgstr ""
+msgstr "E"
 
 msgid "Enable this to be able to access IMDb search setup from within the plugin browser."
-msgstr ""
+msgstr "Habilite esta opción para poder acceder a la configuración de búsqueda de IMDB desde el navegador del complemento."
 
 msgid "Enable this to be able to access IMDb searches from within the channel context menu."
-msgstr ""
+msgstr "Habilite esta opción para poder acceder a las búsquedas de IMDB desde el menú contextual del canal."
 
 msgid "Enable this to be able to access IMDb searches from within the movie list."
-msgstr ""
+msgstr "Habilite esta opción para poder acceder a las búsquedas de IMDB desde la lista de películas."
 
 msgid "Enable this to be able to access IMDb searches from within the multi-channel EPG menu."
-msgstr ""
+msgstr "Habilite esta opción para poder acceder a las búsquedas de IMDB desde el menú EPG multicanal."
 
 msgid "Enable this to be able to access IMDb searches from within the plugin browser."
-msgstr ""
+msgstr "Habilite esta opción para poder acceder a las búsquedas de IMDB desde el navegador del complemento."
 
 msgid "Enter search"
-msgstr ""
+msgstr "Introducir búsqueda"
 
 msgid "Enter text to search for"
-msgstr ""
+msgstr "Introduzca el texto a buscar"
 
 msgid "Exit"
-msgstr ""
+msgstr "Salir"
 
 msgid "Exit IMDb search"
-msgstr ""
+msgstr "Salir de la búsqueda de IMDB"
 
 msgid "Extra Info"
-msgstr ""
+msgstr "Info Extra"
 
 msgid "IMDB Exception"
-msgstr ""
+msgstr "Excepción IMDB"
 
 msgid "IMDb Details parsed"
-msgstr ""
+msgstr "Detalles IMDB analizados"
 
 msgid "IMDb Download completed"
-msgstr ""
+msgstr "Descarga IMDB completa"
 
 msgid "IMDb Download failed"
-msgstr ""
+msgstr "Descarga IMDB fallida"
 
 msgid "IMDb Menu"
-msgstr ""
+msgstr "Menú IMDB"
 
 msgid "IMDb Plugin"
-msgstr ""
+msgstr "Plugin IMDB"
 
 msgid "IMDb Re-Download completed"
-msgstr ""
+msgstr "Se completó la re-descarga IMDB"
 
 msgid "IMDb Reviews failed"
-msgstr ""
+msgstr "Reseñas IMDB fallidas"
 
 msgid "IMDb Reviews parsed"
-msgstr ""
+msgstr "Reseñas IMDB analizadas"
 
 msgid "IMDb Setup"
-msgstr ""
+msgstr "Ajustes IMDB"
 
 msgid "IMDb can not get Movie Information to write to .txt file!"
-msgstr ""
+msgstr "¡IMDB no puede obtener la información de la película para escribirla en el archivo .txt!"
 
 msgid "IMDb query failed!"
-msgstr ""
+msgstr "¡La consulta IMDB falló!"
 
 msgid "IMDb save completed"
-msgstr ""
+msgstr "Guardado IMDB completado"
 
 msgid "IMDb search"
 msgstr "Búsqueda IMDB"
 
 msgid "IMDb setup"
-msgstr ""
+msgstr "Ajustes IMDB"
 
 #, python-format
 msgid "Ignoring invalid imdbId: %s"
-msgstr ""
+msgstr "Ignorando inválido ID IMDB: %s"
 
 msgid "Import from EPG"
-msgstr ""
+msgstr "Importar desde EPG"
 
 msgid "Include episodes in the results. Takes effect after the next search of IMDb for a show name."
-msgstr ""
+msgstr "Incluir episodios en los resultados. Se aplica tras la siguiente búsqueda del nombre de un programa en IMDB."
 
 #, python-format
 msgid "Local file does not exist: %s"
-msgstr ""
+msgstr "El archivo local no existe: %s"
 
 msgid "Menu"
-msgstr ""
+msgstr "Menú"
 
 msgid "No IMDb match."
-msgstr ""
+msgstr "No hay coincidencia en IMDB."
 
 msgid "No IMDb match:"
-msgstr ""
+msgstr "No hay coincidencia en IMDB:"
 
 msgid "No cast list found in the database."
-msgstr ""
+msgstr "No se encontró ninguna lista de reparto en la BD."
 
 msgid "No details found."
-msgstr ""
+msgstr "No se encontraron detalles."
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "Page down"
-msgstr ""
+msgstr "Página abajo"
 
 msgid "Page up"
-msgstr ""
+msgstr "Página arriba"
 
 msgid "Parsing reviews..."
-msgstr ""
+msgstr "Analizando reseñas..."
 
 msgid "Play YT trailer"
-msgstr ""
+msgstr "Reproducir el tráiler de YouTube"
 
 msgid "Please select the matching entry"
-msgstr ""
+msgstr "Por favor seleccione la entrada correspondiente"
 
 #, python-format
 msgid "Query IMDb: %s"
-msgstr ""
+msgstr "Consulta IMDB: %s"
 
 #, python-format
 msgid "Re-Query IMDb: %s..."
-msgstr ""
+msgstr "Volver a consultar IMDB: %s..."
 
 msgid "S"
-msgstr ""
+msgstr "S"
 
 msgid "Save current Details as .html for offline use"
-msgstr ""
+msgstr "Guardar los detalles actuales como .html para uso sin conexión"
 
 msgid "Save current Details as .txt"
-msgstr ""
+msgstr "Guardar los detalles actuales como .txt"
 
 msgid "Save current Poster and Details as .txt"
-msgstr ""
+msgstr "Guardar el póster y los detalles en la lista de películas"
 
 msgid "Search YT trailer"
-msgstr ""
+msgstr "Buscar tráiler de YouTube"
 
 msgid "Search event in IMDb"
 msgstr "Buscar evento en IMDB"
 
 msgid "Search for details from the Internet Movie Database"
-msgstr ""
+msgstr "Busque detalles en la base de datos de películas de Internet"
 
 msgid "Settings for Internet Movie Database searches"
-msgstr ""
+msgstr "Ajustes para búsquedas en bases de datos de películas de Internet"
 
 msgid "Setup"
-msgstr ""
+msgstr "Ajustes"
 
 msgid "Show a bigger poster"
-msgstr ""
+msgstr "Mostrar un poster más grande"
 
 msgid "Show episode and year information for cast when available. Takes effect after the next fetch of show details."
-msgstr ""
+msgstr "Muestra la información del episodio y el año del elenco cuando esté disponible. Se activa tras la siguiente búsqueda de detalles del programa."
 
 msgid "Show episode and year information in cast list"
-msgstr ""
+msgstr "Mostrar información del episodio y año en la lista de reparto"
 
 msgid "Show episodes in title menu"
-msgstr ""
+msgstr "Mostrar episodios en el menú de título"
 
 msgid "Show first page of user reviews"
-msgstr ""
+msgstr "Mostrar la primera página de reseñas de usuarios"
 
 msgid "Show full movie or series name in title menu"
-msgstr ""
+msgstr "Mostrar el nombre completo de la película o serie en el menú de título"
 
 msgid "Show in channel context menu"
-msgstr ""
+msgstr "Mostrar en el menú contextual del canal"
 
 msgid "Show in movie list"
-msgstr ""
+msgstr "Mostrar en la lista de películas"
 
 msgid "Show in multi-channel EPG menu"
-msgstr ""
+msgstr "Mostrar en el menú EPG multicanal"
 
 msgid "Show list of matched movies and series"
-msgstr ""
+msgstr "Mostrar lista de películas y series coincidentes"
 
 msgid "Show movie and series basic details"
-msgstr ""
+msgstr "Mostrar detalles básicos de películas y series"
 
 msgid "Show movie and series extra details"
-msgstr ""
+msgstr "Mostrar detalles extras de películas y series"
 
 msgid "Show movie and series synopsis"
-msgstr ""
+msgstr "Mostrar sinopsis de películas y series"
 
 msgid "Show search in plugin browser"
-msgstr ""
+msgstr "Mostrar búsqueda en el navegador de plugins"
 
 msgid "Show setup in plugin browser"
-msgstr ""
+msgstr "Mostrar configuración en el navegador de plugins"
 
 msgid "Show the whole IMDb title information for a movie or series, including, for example, alternative names and whether it's a series. Takes effect after the next search of IMDb for a show name."
-msgstr ""
+msgstr "Muestra toda la información del título de una película o serie en IMDB, incluyendo, por ejemplo, nombres alternativos y si se trata de una serie. Esta función se activa tras la siguiente búsqueda del nombre de una serie en IMDb."
 
 msgid "Spoiler"
-msgstr ""
+msgstr "Spoiler"
 
 msgid "SubsSupport import failed"
-msgstr ""
+msgstr "Error en la importación de SubsSupport"
 
 msgid "SubsSupport search"
-msgstr ""
+msgstr "Búsqueda de SubsSupport"
 
 msgid "SubsSupport search failed"
-msgstr ""
+msgstr "Error en la búsqueda de SubsSupport"
 
 msgid "Synopsis"
-msgstr ""
+msgstr "Sinopsis"
 
 msgid "The Internet Movie Database"
-msgstr ""
+msgstr "Base de datos de películas de Internet"
 
 msgid "This option allows you add words/phrases for IMDb to ignore when searching. Please separate the words/phrases with commas."
-msgstr ""
+msgstr "Esta opción permite agregar palabras o frases para que IMDB las ignore al realizar búsquedas. Separe las palabras o frases con comas."
 
 msgid "Title Menu"
-msgstr ""
+msgstr "Menú de título"
 
 msgid "User reviews"
-msgstr ""
+msgstr "Reseñas de usuarios"
 
 msgid "Words / phrases to ignore "
-msgstr ""
+msgstr "Palabras/frases que debes ignorar "
 
 msgid "YT trailer import failed"
-msgstr ""
+msgstr "Error en la importación del tráiler de YouTube"
 
 msgid "YT trailer play failed"
-msgstr ""
+msgstr "Error al reproducir el tráiler de YouTube"
 
 msgid "YT trailer search failed"
-msgstr ""
+msgstr "Error en la búsqueda del tráiler de YouTube"
 
 msgid "connection error"
-msgstr ""
+msgstr "error de conexión"
 
 msgid "no user rating yet"
-msgstr ""
+msgstr "no hay calificación de usuario"
 
 msgid "timeout"
-msgstr ""
+msgstr "se acabó el tiempo"
