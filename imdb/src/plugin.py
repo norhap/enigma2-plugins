@@ -314,10 +314,10 @@ class IMDB(Screen, HelpableScreen):
 	def exit(self):
 		global movietitle
 		if isPluginInstalled("xtraEvent") and movietitle:
-			movielistposter = config.plugins.xtraEvent.loc.value + "xtraEvent/poster" if config.plugins.xtraEvent.loc.value else None
-			if fileExists(str(movielistposter)) and fileExists(str(self.savingpath + movietitle + ".jpg")) and not fileExists(str(movielistposter + "/" + movietitle + ".jpg")):
+			xtraposter = config.plugins.xtraEvent.loc.value + "xtraEvent/poster" if config.plugins.xtraEvent.loc.value else None
+			if fileExists(str(xtraposter)) and fileExists(str(self.savingpath + movietitle + ".jpg")) and not fileExists(str(xtraposter + "/" + movietitle + ".jpg")):
 				try:
-					copy(self.savingpath + movietitle + ".jpg", movielistposter + "/" + movietitle.replace(":", "") + ".jpg")
+					copy(self.savingpath + movietitle + ".jpg", xtraposter + "/" + movietitle.replace(":", "").replace(".ts", "").replace(".stream", "") + ".jpg")
 				except Exception:
 					pass
 		if self.hideBigPoster():
@@ -1748,9 +1748,9 @@ def movielistSearch(session, serviceref, **kwargs):
 	if ext in KNOWN_EXTENSIONS or ext in KNOWN_EXTENSIONS2:
 		eventName = re.sub(r"[\W_]+", ' ', root, 0)
 	# if isPluginInstalled("xtraEvent"):
-	# 	movielistposter = config.plugins.xtraEvent.loc.value + "xtraEvent/poster"
-	# 	if fileExists(str(movielistposter)) and fileExists(str(config.usage.default_path.value + eventName + ".jpg")) and not fileExists(str(movielistposter + "/" + eventName + ".jpg")):
-	# 		copy(config.usage.default_path.value + eventName + ".jpg", movielistposter + "/" + eventName.replace(":", "") + ".jpg")
+	# 	xtraposter = config.plugins.xtraEvent.loc.value + "xtraEvent/poster"
+	# 	if fileExists(str(xtraposter)) and fileExists(str(config.usage.default_path.value + eventName + ".jpg")) and not fileExists(str(xtraposter + "/" + eventName + ".jpg")):
+	# 		copy(config.usage.default_path.value + eventName + ".jpg", xtraposter + "/" + eventName.replace(":", "") + ".jpg")
 	session.open(IMDB, eventName)
 
 
