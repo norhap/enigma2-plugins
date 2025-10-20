@@ -747,8 +747,12 @@ class IMDB(Screen, HelpableScreen):
 		try:
 			if self.savingpath is not None:
 				getTXT = self.IMDBsavetxt(poster)
-				if getTXT is not None and not fileExists(str(self.savingpath + movietitle + ".txt")):
-					open(self.savingpath + movietitle + ".txt", 'w').write(getTXT)
+				if movietitle:
+					if getTXT is not None and not fileExists(str(self.savingpath + movietitle + ".txt")):
+						open(self.savingpath + movietitle + ".txt", 'w').write(getTXT)
+				elif self.eventName:
+					if getTXT is not None and not fileExists(str(self.savingpath + self.eventName + ".txt")):
+						open(self.savingpath + self.eventName + ".txt", 'w').write(getTXT)
 		except Exception as e:
 			print('[IMDb] saveTxtDetails exception failure:', str(e))
 
@@ -762,8 +766,11 @@ class IMDB(Screen, HelpableScreen):
 		# save the poster.jpg (big poster if we have it, otherwise get full size)
 		if poster:
 			posterurl = self.generalinfos["poster"]
-			if posterurl:
-				postersave = self.savingpath + movietitle + ".jpg"
+			if posterurl and movietitle:
+				postersave = self.savingpath + movietitle.upper() + ".jpg"
+			elif posterurl and self.eventName:
+				postersave = self.savingpath + self.eventName.upper() + ".jpg"
+			if postersave:
 				if fileExists("/tmp/poster-big.jpg"):
 					copy("/tmp/poster-big.jpg", postersave)
 				else:
@@ -1764,6 +1771,8 @@ def channelSearch(session, service=None, **kwargs):
 
 
 def furtherSearch(session, selectedevent, **kwargs):
+	global movietitle
+	movietitle = selectedevent[0].getEventName()
 	session.open(IMDB, selectedevent[0].getEventName())
 
 
