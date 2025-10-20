@@ -766,10 +766,12 @@ class IMDB(Screen, HelpableScreen):
 		# save the poster.jpg (big poster if we have it, otherwise get full size)
 		if poster:
 			posterurl = self.generalinfos["poster"]
-			if posterurl and movietitle:
-				postersave = self.savingpath + movietitle.upper() + ".jpg"
-			elif posterurl and self.eventName:
-				postersave = self.savingpath + self.eventName.upper() + ".jpg"
+			if posterurl and movietitle:  # from the title name in the movie list
+				postername = movietitle if not config.usage.show_eit_nownext.value else movietitle.upper()
+				postersave = self.savingpath + postername + ".jpg"
+			elif posterurl and self.eventName:  # from EPG Event Info or context channel menu
+				postername = self.eventName if not config.usage.show_eit_nownext.value else self.eventName.upper()
+				postersave = self.savingpath + postername + ".jpg"
 			if postersave:
 				if fileExists("/tmp/poster-big.jpg"):
 					copy("/tmp/poster-big.jpg", postersave)
