@@ -3,4 +3,3 @@ Version: 1.0-r0
 Description: this is bt devices manger to pair e.x keyboard or mouse
 Maintainer: a4tech
 Depends: python3-pexpect, bluez5, btinit
-
