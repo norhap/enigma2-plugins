@@ -1407,7 +1407,7 @@ msgid "add AutoTimer..."
 msgstr "añadir Temporizador Automático..."
 
 msgid "Auto Timers"
-msgstr "AutoTemporizadores"
+msgstr "Temporizadores Automáticos"
 
 msgid "add filters"
 msgstr "añadir Filtros"
