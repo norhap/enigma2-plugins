@@ -115,17 +115,17 @@ class BirthdayStore:
 class BirthdayReminder(Screen, HelpableScreen):
 	skin = """
 		<screen position="center,center" size="560,320" title="%s" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<widget render="Label" source="key_red" position="0,0" size="140,40" zPosition="5" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget render="Label" source="key_green" position="140,0" size="140,40" zPosition="5" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget render="Label" source="key_yellow" position="280,0" size="140,40" zPosition="5" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget render="Label" source="key_blue" position="420,0" size="140,40" zPosition="5" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="name" position="5,45" size="170,25" zPosition="5" valign="center" halign="left" font="Regular;21" transparent="1" foregroundColor="white" />
-			<widget name="birthday" position="305,45" size="165,25" zPosition="5" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="white" />
-			<widget name="age" position="475,45" size="50,25" zPosition="5" valign="center" halign="right" font="Regular;21" transparent="1" foregroundColor="white" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" zPosition="0" size="140,40" transparent="1" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" zPosition="0" size="140,40" transparent="1" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" zPosition="0" size="140,40" transparent="1" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" zPosition="0" size="140,40" transparent="1" alphaTest="on" />
+			<widget render="Label" source="key_red" position="0,0" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget render="Label" source="key_green" position="140,0" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget render="Label" source="key_yellow" position="280,0" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget render="Label" source="key_blue" position="420,0" size="140,40" zPosition="5" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+			<widget name="name" position="5,45" size="170,25" zPosition="5" verticalAlignment="center" horizontalAlignment="left" font="Regular;21" transparent="1" foregroundColor="white" />
+			<widget name="birthday" position="305,45" size="165,25" zPosition="5" verticalAlignment="center" horizontalAlignment="center" font="Regular;21" transparent="1" foregroundColor="white" />
+			<widget name="age" position="475,45" size="50,25" zPosition="5" verticalAlignment="center" horizontalAlignment="right" font="Regular;21" transparent="1" foregroundColor="white" />
 			<widget source="list" render="Listbox" position="5,75" size="550,225" scrollbarMode="showOnDemand">
 				<convert type="TemplatedMultiContent">
 					{"template": [
