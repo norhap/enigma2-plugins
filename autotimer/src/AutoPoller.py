@@ -168,5 +168,5 @@ class AutoPoller:
 	def stop(self):
 		self.thread.stop()
 		# NOTE: while we don't need to join the thread, we should do so in case it's currently parsing
-		# self.thread.join() problem in fnc function to plugins to callable.
+		# self.thread.join() error cannot join thread before it is started (It was closed before -> self.thread.stop()
 		self.thread = None
