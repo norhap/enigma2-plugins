@@ -115,8 +115,8 @@ class AutoTimerWizard(WizardLanguage, AutoTimerEditorBase, ShowRemoteControl):
 		if self.currStep == AutoTimerWizard.STEP_ID_BASIC: # Basic
 			return [
 				getConfigListEntry(_("Enabled"), self.enabled),
-				getConfigListEntry(_("Description"), self.name),
 				getConfigListEntry(_("Match title"), self.match),
+				getConfigListEntry(_("Description"), self.name),
 				getConfigListEntry(_("Timer type"), self.justplay),
 			]
 		elif self.currStep == AutoTimerWizard.STEP_ID_TIMESPAN: # Timespan
