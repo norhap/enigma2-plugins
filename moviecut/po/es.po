@@ -42,23 +42,18 @@ msgstr "Elija la carpeta de destino"
 msgid "Couldn't open input .ap file"
 msgstr "No se pudo abrir la entrada del archivo .ap"
 
-#, fuzzy
 msgid "Couldn't open input .cuts file"
 msgstr "No se pudo abrir la entrada del archivo .cuts"
 
-#, fuzzy
 msgid "Couldn't open input .ts file"
 msgstr "No se pudo abrir la entrada del archivo .ts"
 
-#, fuzzy
 msgid "Couldn't open output .ap file"
 msgstr "No se pudo abrir la salida del archivo .ap"
 
-#, fuzzy
 msgid "Couldn't open output .cuts file"
 msgstr "No se pudo abrir la salida del archivo .cuts"
 
-#, fuzzy
 msgid "Couldn't open output .ts file"
 msgstr "No se pudo abrir la entrada del archivo .ts"
 
@@ -74,7 +69,6 @@ msgstr "Lista de corte"
 msgid "Cuts (an IN OUT IN OUT ... sequence of hour:min:sec)"
 msgstr "Cortes (una ENTRADA HACIA FUERA...secuencia de la hora:min:seg)"
 
-#, fuzzy, python-format
 msgid "Cutting failed for movie \"%s\""
 msgstr "Corte fallido para película\"%s\""
 
@@ -85,7 +79,6 @@ msgstr "Corte abortado para película \"%s\""
 msgid "Don't cut"
 msgstr "No cortar"
 
-#, fuzzy
 msgid "Empty .ap file"
 msgstr "Archivo .ap vacío"
 
@@ -123,10 +116,8 @@ msgstr "OK"
 msgid "Place the cut movie in a new file ending with \" cut\""
 msgstr "Coloque la película cortada en nuevo archivo que termine con \"cortar\""
 
-#, fuzzy
 msgid "Read/write error (disk full?)"
 msgstr "Error de lectura/escritura ¿El disco está lleno?"
-
 
 msgid "Replace original:"
 msgstr "Reemplazar original:"
