@@ -774,7 +774,7 @@ class EPGSearch(EPGSelection):
 			self.searchEPG,
 			VirtualKeyBoard,
 			title=_("Enter text to search for"),
-			text = searchText,
+			text=searchText,
 			style=VKB_SEARCH_ICON
 		)
 
