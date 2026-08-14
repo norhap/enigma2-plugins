@@ -120,7 +120,7 @@ def get(json, path, default=""):
 		# It's possible UTF-8 has itself been converted to UTF-8
 		# (e.g. the storyline of "As You Want Me" / "Come mi vuoi",
 		# although it seems that one's been fixed)...
-		try:
+	try:
 			json = json.encode("latin1").decode("utf8")
 		except Exception:
 			pass
@@ -1525,7 +1525,7 @@ query TitleReviewsRefine {
 		self.spoilers = False
 		safeRemove("/tmp/poster.jpg", "/tmp/poster-big.jpg")
 		if not isinstance(self.eventName, str)
-			self["statusbar"].setText("")
+		self["statusbar"].setText("")
 			return
 		if not self.eventName:
 			s = self.session.nav.getCurrentService()
