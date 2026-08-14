@@ -1815,8 +1815,8 @@ def movielistSearch(session, serviceref, **kwargs):
 	if ext in KNOWN_EXTENSIONS or ext in KNOWN_EXTENSIONS2:
 		eventName = re.sub(r"[\W_]+", ' ', root, 0)
 	session.open(IMDB, eventName)
-    
-    
+
+
 pluginlist = (
 	(
 		config.plugins.imdb.showinplugins,
