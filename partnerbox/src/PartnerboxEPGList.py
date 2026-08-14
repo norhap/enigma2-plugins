@@ -352,6 +352,7 @@ def detectCatchupAvailable(self, stime, service):
 			return True
 	return False
 
+
 def isInTimer(self, eventid, begin, duration, service, disabledTimers=False):
 	returnValue = None
 	type = 0
