@@ -479,7 +479,7 @@ class AutoTimer:
 				continue
 
 			# Set short description to equal extended description if it is empty.
-			if not shortdesc  and extdesc and (not timer.avoidDuplicateDescription or timer.descShortEqualExt):
+			if not shortdesc and extdesc and (not timer.avoidDuplicateDescription or timer.descShortEqualExt):
 				shortdesc = extdesc
 
 			# Convert begin time
