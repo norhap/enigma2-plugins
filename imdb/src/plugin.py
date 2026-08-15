@@ -1,5 +1,6 @@
 # for localized messages
-from . import _, ngettext
+from . import _
+from gettext import ngettext
 from Plugins.Plugin import PluginDescriptor
 from enigma import ePicLoad, eServiceCenter, eServiceReference
 from Screens.Screen import Screen
@@ -39,6 +40,7 @@ config.plugins.imdb = ConfigSubsection()
 config.plugins.imdb.showinplugins = ConfigYesNo(default=False)
 config.plugins.imdb.showsetupinplugins = ConfigYesNo(default=True)
 config.plugins.imdb.showinmovielist = ConfigYesNo(default=True)
+config.plugins.imdb.showinchannelcontext = ConfigYesNo(default=True)  # [norhap]
 config.plugins.imdb.force_english = ConfigYesNo(default=False)
 config.plugins.imdb.ignore_tags = ConfigText(visible_width=50, fixed_size=False)
 config.plugins.imdb.showlongmenuinfo = ConfigYesNo(default=False)
@@ -46,7 +48,7 @@ config.plugins.imdb.showepisoderesults = ConfigYesNo(default=False)
 config.plugins.imdb.showepisodeinfo = ConfigYesNo(default=False)
 config.plugins.imdb.translate_texts = ConfigYesNo(default=False)
 
-movietitle = None
+movietitle = None  # [norhap]
 
 
 def getPage(url, params=None, data=None, headers=None):
@@ -116,15 +118,15 @@ def get(json, path, default=""):
 		if key not in json:
 			return default
 		json = json[key]
-	if isinstance(json, str)
+	if isinstance(json, str):
 		# It's possible UTF-8 has itself been converted to UTF-8
 		# (e.g. the storyline of "As You Want Me" / "Come mi vuoi",
 		# although it seems that one's been fixed)...
-	try:
+		try:
 			json = json.encode("latin1").decode("utf8")
 		except Exception:
 			pass
-		# ...or CP1252 (a review of Blunt Talk by drinkdrunkthedifferencei).
+			# ...or CP1252 (a review of Blunt Talk by drinkdrunkthedifferencei).
 		try:
 			json = json.encode("latin1").decode("cp1252")
 		except Exception:
@@ -160,7 +162,7 @@ def imdb_translate(text, lang):
 
 class IMDB(Screen, HelpableScreen):
 	skin = """
-		<screen name="IMDB" position="center,center" size="600,420" title="Internet Movie Database Details Plugin" >
+		<screen name="IMDB" position="center,center" size="600,420" title="Search for details from the Internet Movie Database" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" zPosition="0" size="140,40" transparent="1" alphaTest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" zPosition="0" size="140,40" transparent="1" alphaTest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" zPosition="0" size="140,40" transparent="1" alphaTest="on" />
@@ -224,6 +226,7 @@ class IMDB(Screen, HelpableScreen):
 		def setText(txt):
 			StaticText.setText(self["title"], txt)
 			self["titellabel"].setText(txt)
+		self.setTitle(_("Search for details from the Internet Movie Database"))  # [norhap]
 		self["title"].setText = setText
 		self["titellabel"] = Label()
 		self["detailslabel"] = ScrollLabel("")
@@ -287,7 +290,7 @@ class IMDB(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.getIMDB)
 
 	def exit(self):
-		global movietitle
+		global movietitle  # [norhap]
 		if isPluginInstalled("xtraEvent") and movietitle:
 			xtraposter = config.plugins.xtraEvent.loc.value + "xtraEvent/poster" if config.plugins.xtraEvent.loc.value else None
 			if fileExists(str(xtraposter)) and fileExists(str(self.savingpath + movietitle + ".jpg")) and not fileExists(str(xtraposter + "/" + movietitle + ".jpg")):
@@ -379,94 +382,94 @@ class IMDB(Screen, HelpableScreen):
 		types += "]"
 		return """
 query Search {
-  mainSearch(
-    first: 25
-    options: {
-      searchTerm: %s
-      type: TITLE
-      includeAdult: true
-      isExactMatch: false
-      titleSearchOptions: {
-        type: %s
-      }
-    }
-  ) {
-    edges {
-      node {
-        entity {
-          ... on Title {
-            id
-            titleText {
-              text
-            }
-            originalTitleText {
-              text
-            }
-            titleType {
-              text
-            }
-            releaseYear {
-              year
-              endYear
-            }
-            primaryImage {
-              url
-              width
-              height
-            }
-            series {
-              episodeNumber {
-                episodeNumber
-                seasonNumber
-              }
-              series {
-                id
-                titleText {
-                  text
-                }
-                releaseYear {
-                  year
-                  endYear
-                }
-                plot {
-                  plotText {
-                    plainText
-                  }
-                }
-                countriesOfOrigin {
-                  countries(limit: 1) {
-                    id
-                  }
-                }
-              }
-            }
-            plot {
-              plotText {
-                plainText
-              }
-            }
-            runtime {
-              displayableProperty {
-                value {
-                  plainText
-                }
-              }
-            }
-            genres {
-              genres {
-                text
-              }
-            }
-            countriesOfOrigin {
-              countries(limit: 1) {
-                id
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+	mainSearch(
+		first: 25
+		options: {
+			searchTerm: %s
+			type: TITLE
+			includeAdult: true
+			isExactMatch: false
+			titleSearchOptions: {
+				type: %s
+			}
+		}
+	) {
+		edges {
+			node {
+				entity {
+					... on Title {
+						id
+						titleText {
+							text
+						}
+						originalTitleText {
+							text
+						}
+						titleType {
+							text
+						}
+						releaseYear {
+							year
+							endYear
+						}
+						primaryImage {
+							url
+							width
+							height
+						}
+						series {
+							episodeNumber {
+								episodeNumber
+								seasonNumber
+							}
+							series {
+								id
+								titleText {
+									text
+								}
+								releaseYear {
+									year
+									endYear
+								}
+								plot {
+									plotText {
+										plainText
+									}
+								}
+								countriesOfOrigin {
+									countries(limit: 1) {
+										id
+									}
+								}
+							}
+						}
+						plot {
+							plotText {
+								plainText
+							}
+						}
+						runtime {
+							displayableProperty {
+								value {
+									plainText
+								}
+							}
+						}
+						genres {
+							genres {
+								text
+							}
+						}
+						countriesOfOrigin {
+							countries(limit: 1) {
+								id
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
 """ % (search_term, types)
 
@@ -474,365 +477,365 @@ query Search {
 		title_id = json.dumps(title_id)
 		return """
 query TitleStoryline {
-  title(id: %s) {
-    id
-    titleText {
-      text
-    }
-    originalTitleText {
-      text
-    }
-    titleType {
-      text
-    }
-    releaseYear {
-      year
-      endYear
-    }
-    releaseDate {
-      displayableProperty {
-        value {
-          plainText
-        }
-      }
-      day
-      month
-      year
-      country {
-        text
-      }
-    }
-    episodes {
-      episodes(first: 0) {
-        total
-      }
-      displayableSeasons(first: 0) {
-        total
-      }
-    }
-    ratingsSummary {
-      aggregateRating
-      voteCount
-    }
-    primaryImage {
-      url
-      width
-      height
-    }
-    plot {
-      plotText {
-        plainText
-      }
-    }
-    genres {
-      genres {
-        text
-      }
-    }
-    countriesOfOrigin {
-      countries {
-        id
-        text
-      }
-    }
-    spokenLanguages {
-      spokenLanguages {
-        id
-        text
-      }
-    }
-    runtime {
-      displayableProperty {
-        value {
-          plainText
-        }
-      }
-    }
-    certificate {
-      rating
-      ratingReason
-      ratingsBody {
-        id
-      }
-    }
-    wins: awardNominations(first: 0, filter: { wins: WINS_ONLY }) {
-      total
-    }
-    nominationsExcludeWins: awardNominations(first: 0, filter: { wins: EXCLUDE_WINS }) {
-      total
-    }
-    prestigiousAwardSummary {
-      nominations
-      wins
-      award {
-        text
-      }
-    }
-    castV2: principalCreditsV2(
-      filter: { mode: "TOP_CAST" }
-      useEntitlement: false
-    ) {
-      grouping {
-        groupingId
-        text
-      }
-      totalCredits
-      credits(limit: 18) {
-        name {
-          id
-          nameText {
-            text
-          }
-          primaryImage {
-            url
-            width
-            height
-          }
-        }
-        creditedRoles(first: 1) {
-          edges {
-            node {
-              category {
-                categoryId
-                text
-              }
-              attributes {
-                text
-              }
-              characters(first: 3) {
-                edges {
-                  node {
-                    name
-                  }
-                }
-              }
-            }
-          }
-        }
-        episodeCredits(first: 0) {
-          total
-          yearRange {
-            year
-            endYear
-          }
-        }
-      }
-    }
-    crewV2: principalCreditsV2(
-      filter: { mode: "DEFAULT", includeAppearances: false }
-      useEntitlement: false
-    ) {
-      totalCredits
-      grouping {
-        groupingId
-        text
-      }
-      credits(limit: 3) {
-        name {
-          id
-          nameText {
-            text
-          }
-        }
-      }
-    }
-    summaries: plots(first: 1, filter: {type: SUMMARY}) {
-      edges {
-        node {
-          author
-          plotText {
-            plainText
-          }
-        }
-      }
-    }
-    outlines: plots(first: 1, filter: {type: OUTLINE}) {
-      edges {
-        node {
-          plotText {
-            plainText
-          }
-        }
-      }
-    }
-    synopses: plots(first: 1, filter: {type: SYNOPSIS}) {
-      edges {
-        node {
-          plotText {
-            plainText
-          }
-        }
-      }
-    }
-    storylineKeywords: keywords(first: 5) {
-      edges {
-        node {
-          text
-        }
-      }
-      total
-    }
-    taglines(first: 1) {
-      edges {
-        node {
-          text
-        }
-      }
-    }
-    technicalSpecifications {
-      soundMixes {
-        items {
-          text
-        }
-      }
-      colorations {
-        items {
-          text
-        }
-      }
-      aspectRatios {
-        items {
-          aspectRatio
-        }
-      }
-    }
-    trivia(first: 1, filter: { spoilers: EXCLUDE_SPOILERS }) {
-      edges {
-        node {
-          text {
-            plainText
-          }
-        }
-      }
-    }
-    goofs(first: 1, filter: { spoilers: EXCLUDE_SPOILERS }) {
-      edges {
-        node {
-          text {
-            plainText
-          }
-        }
-      }
-    }
-    quotes(first: 1, filter: { spoilers: EXCLUDE_SPOILERS }) {
-      edges {
-        node {
-          displayableArticle {
-            body {
-              plainText
-            }
-          }
-        }
-      }
-    }
-    connections(first: 1) {
-      edges {
-        node {
-          associatedTitle {
-            id
-            releaseYear {
-              year
-            }
-            titleText {
-              text
-            }
-            originalTitleText {
-              text
-            }
-            series {
-              series {
-                titleText {
-                  text
-                }
-                originalTitleText {
-                  text
-                }
-              }
-            }
-          }
-          category {
-            text
-          }
-        }
-      }
-    }
-    filmingLocations(first: 1) {
-      edges {
-        node {
-          text
-        }
-      }
-    }
-    production: companyCredits(
-      first: 3
-      filter: { categories: ["production"] }
-    ) {
-      edges {
-        node {
-          company {
-            companyText {
-              text
-            }
-          }
-        }
-      }
-    }
-    featuredReviews(first: 5) {
-      edges {
-        node {
-          authorRating
-          summary {
-            originalText
-          }
-          author {
-            username {
-              text
-            }
-          }
-          text {
-            originalText {
-              plainText
-            }
-          }
-          submissionDate
-        }
-      }
-    }
-    reviews(first: 0) {
-      total
-    }
-    primaryVideos {
-      edges {
-        node {
-          contentType {
-            displayName {
-              value
-            }
-          }
-          description {
-            value
-          }
-          name {
-            value
-          }
-          runtime {
-            value
-          }
-          playbackURLs {
-            url
-          }
-          timedTextTracks {
-            displayName {
-              value
-              language
-            }
-            language
-            url
-          }
-        }
-      }
-    }
-  }
+	title(id: %s) {
+		id
+		titleText {
+			text
+		}
+		originalTitleText {
+			text
+		}
+		titleType {
+			text
+		}
+		releaseYear {
+			year
+			endYear
+		}
+		releaseDate {
+			displayableProperty {
+				value {
+					plainText
+				}
+			}
+			day
+			month
+			year
+			country {
+				text
+			}
+		}
+		episodes {
+			episodes(first: 0) {
+				total
+			}
+			displayableSeasons(first: 0) {
+				total
+			}
+		}
+		ratingsSummary {
+			aggregateRating
+			voteCount
+		}
+		primaryImage {
+			url
+			width
+			height
+		}
+		plot {
+			plotText {
+				plainText
+			}
+		}
+		genres {
+			genres {
+				text
+			}
+		}
+		countriesOfOrigin {
+			countries {
+				id
+				text
+			}
+		}
+		spokenLanguages {
+			spokenLanguages {
+				id
+				text
+			}
+		}
+		runtime {
+			displayableProperty {
+				value {
+					plainText
+				}
+			}
+		}
+		certificate {
+			rating
+			ratingReason
+			ratingsBody {
+				id
+			}
+		}
+		wins: awardNominations(first: 0, filter: { wins: WINS_ONLY }) {
+			total
+		}
+		nominationsExcludeWins: awardNominations(first: 0, filter: { wins: EXCLUDE_WINS }) {
+			total
+		}
+		prestigiousAwardSummary {
+			nominations
+			wins
+			award {
+				text
+			}
+		}
+		castV2: principalCreditsV2(
+			filter: { mode: "TOP_CAST" }
+			useEntitlement: false
+		) {
+			grouping {
+				groupingId
+				text
+			}
+			totalCredits
+			credits(limit: 18) {
+				name {
+					id
+					nameText {
+						text
+					}
+					primaryImage {
+						url
+						width
+						height
+					}
+				}
+				creditedRoles(first: 1) {
+					edges {
+						node {
+							category {
+								categoryId
+								text
+							}
+							attributes {
+								text
+							}
+							characters(first: 3) {
+								edges {
+									node {
+										name
+									}
+								}
+							}
+						}
+					}
+				}
+				episodeCredits(first: 0) {
+					total
+					yearRange {
+						year
+						endYear
+					}
+				}
+			}
+		}
+		crewV2: principalCreditsV2(
+			filter: { mode: "DEFAULT", includeAppearances: false }
+			useEntitlement: false
+		) {
+			totalCredits
+			grouping {
+				groupingId
+				text
+			}
+			credits(limit: 3) {
+				name {
+					id
+					nameText {
+						text
+					}
+				}
+			}
+		}
+		summaries: plots(first: 1, filter: {type: SUMMARY}) {
+			edges {
+				node {
+					author
+					plotText {
+						plainText
+					}
+				}
+			}
+		}
+		outlines: plots(first: 1, filter: {type: OUTLINE}) {
+			edges {
+				node {
+					plotText {
+						plainText
+					}
+				}
+			}
+		}
+		synopses: plots(first: 1, filter: {type: SYNOPSIS}) {
+			edges {
+				node {
+					plotText {
+						plainText
+					}
+				}
+			}
+		}
+		storylineKeywords: keywords(first: 5) {
+			edges {
+				node {
+					text
+				}
+			}
+			total
+		}
+		taglines(first: 1) {
+			edges {
+				node {
+					text
+				}
+			}
+		}
+		technicalSpecifications {
+			soundMixes {
+				items {
+					text
+				}
+			}
+			colorations {
+				items {
+					text
+				}
+			}
+			aspectRatios {
+				items {
+					aspectRatio
+				}
+			}
+		}
+		trivia(first: 1, filter: { spoilers: EXCLUDE_SPOILERS }) {
+			edges {
+				node {
+					text {
+						plainText
+					}
+				}
+			}
+		}
+		goofs(first: 1, filter: { spoilers: EXCLUDE_SPOILERS }) {
+			edges {
+				node {
+					text {
+						plainText
+					}
+				}
+			}
+		}
+		quotes(first: 1, filter: { spoilers: EXCLUDE_SPOILERS }) {
+			edges {
+				node {
+					displayableArticle {
+						body {
+							plainText
+						}
+					}
+				}
+			}
+		}
+		connections(first: 1) {
+			edges {
+				node {
+					associatedTitle {
+						id
+						releaseYear {
+							year
+						}
+						titleText {
+							text
+						}
+						originalTitleText {
+							text
+						}
+						series {
+							series {
+								titleText {
+									text
+								}
+								originalTitleText {
+									text
+								}
+							}
+						}
+					}
+					category {
+						text
+					}
+				}
+			}
+		}
+		filmingLocations(first: 1) {
+			edges {
+				node {
+					text
+				}
+			}
+		}
+		production: companyCredits(
+			first: 3
+			filter: { categories: ["production"] }
+		) {
+			edges {
+				node {
+					company {
+						companyText {
+							text
+						}
+					}
+				}
+			}
+		}
+		featuredReviews(first: 5) {
+			edges {
+				node {
+					authorRating
+					summary {
+						originalText
+					}
+					author {
+						username {
+							text
+						}
+					}
+					text {
+						originalText {
+							plainText
+						}
+					}
+					submissionDate
+				}
+			}
+		}
+		reviews(first: 0) {
+			total
+		}
+		primaryVideos {
+			edges {
+				node {
+					contentType {
+						displayName {
+							value
+						}
+					}
+					description {
+						value
+					}
+					name {
+						value
+					}
+					runtime {
+						value
+					}
+					playbackURLs {
+						url
+					}
+					timedTextTracks {
+						displayName {
+							value
+							language
+						}
+						language
+						url
+					}
+				}
+			}
+		}
+	}
 }
 """ % title_id
 
@@ -840,34 +843,34 @@ query TitleStoryline {
 		title_id = json.dumps(title_id)
 		return """
 query TitleReviewsRefine {
-  title(id: %s) {
-    reviews(first: 25) {
-      edges {
-        node {
-          authorRating
-          summary {
-            originalText
-          }
-          author {
-            username {
-              text
-            }
-          }
-          submissionDate
-          spoiler
-          text {
-            originalText {
-              plainText
-            }
-          }
-          helpfulness {
-            upVotes
-            downVotes
-          }
-        }
-      }
-    }
-  }
+	title(id: %s) {
+		reviews(first: 25) {
+			edges {
+				node {
+					authorRating
+					summary {
+						originalText
+					}
+					author {
+						username {
+							text
+						}
+					}
+					submissionDate
+					spoiler
+					text {
+						originalText {
+							plainText
+						}
+					}
+					helpfulness {
+						upVotes
+						downVotes
+					}
+				}
+			}
+		}
+	}
 }
 """ % title_id
 
@@ -1384,22 +1387,28 @@ query TitleReviewsRefine {
 		self.session.open(IMDbPlayer, ref)
 
 	def saveJsonDetails(self):
+		global movietitle  # [norhap]
 		try:
 			if self.savingpath is not None:
-				isave = self.savingpath + "-" + self.titleId
-				open(isave + ".json", 'w').write(self.json)
-				if self.reviewsJSON:
-					open(isave + "-reviews.json", 'w').write(self.reviewsJSON)
+				isave = self.savingpath + movietitle
+				open(isave + ".html", 'w').write(self.html)
+				if self.json:
+					open(isave + ".json", 'w').write(self.json)
+				try:
+					if self.reviewsJSON:
+						open(isave + "-reviews.json", 'w').write(self.reviewsJSON)
+				except:
+					pass
 				try:
 					copy("/tmp/poster.jpg", isave + ".jpg")
-				except OSError:
+				except:
 					pass
 			self["statusbar"].setText(_("IMDb save completed"))
 		except Exception as e:
 			print('[IMDb] saveJsonDetails exception failure:', str(e))
 
 	def saveTxtDetails(self, poster=False):
-		global movietitle
+		global movietitle  # [norhap]
 		try:
 			if self.savingpath is not None:
 				getTXT = self.IMDBsavetxt(poster)
@@ -1416,13 +1425,14 @@ query TitleReviewsRefine {
 		self.saveTxtDetails(True)
 
 	def IMDBsavetxt(self, poster=False):
-		if not self.titleId or not self.generalinfos:
+		global movietitle  # [norhap]
+		if not self.titleId:
 			return None
 		# save the poster.jpg (big poster if we have it, otherwise get full size)
 		if poster:
-			posterurl = self.generalinfos["poster"]
+			posterurl = self.posterurl
 			if posterurl and movietitle:  # from the title name in the movie list
-				postername = movietitle if not config.usage.show_eit_nownext.value else movietitle.upper()
+				postername = movietitle
 				postersave = self.savingpath + postername + ".jpg"
 			elif posterurl and self.eventName:  # from EPG Event Info or context channel menu
 				postername = self.eventName if not config.usage.show_eit_nownext.value else self.eventName.upper()
@@ -1524,8 +1534,8 @@ query TitleReviewsRefine {
 		self.reviews = []
 		self.spoilers = False
 		safeRemove("/tmp/poster.jpg", "/tmp/poster-big.jpg")
-		if not isinstance(self.eventName, str)
-		self["statusbar"].setText("")
+		if not isinstance(self.eventName, str):
+			self["statusbar"].setText("")
 			return
 		if not self.eventName:
 			s = self.session.nav.getCurrentService()
@@ -1805,15 +1815,32 @@ def setup(session, **kwargs):
 	session.open(IMDbSetup)
 
 
-def movielistSearch(session, serviceref, **kwargs):
+def channelSearch(session, service=None, **kwargs):  # [norhap]
+	global movietitle
+	serviceHandler = eServiceCenter.getInstance()
+	info = serviceHandler.info(service)
+	event = info.getEvent(service)
+	if event:
+		name = info and event.getEventName() or ""
+		if name:
+			movietitle = name
+		session.open(IMDB, name)
+
+
+def movielistSearch(session, serviceref, **kwargs):  # [norhap]
 	global movietitle
 	KNOWN_EXTENSIONS2 = frozenset(('x264', '720p', '1080p', '1080i', 'PAL', 'GERMAN', 'ENGLiSH', 'WS', 'DVDRiP', 'UNRATED', 'RETAIL', 'Web-DL', 'DL', 'LD', 'MiC', 'MD', 'DVDR', 'BDRiP', 'BLURAY', 'DTS', 'UNCUT', 'ANiME', 'AC3MD', 'AC3', 'AC3D', 'TS', 'DVDSCR', 'COMPLETE', 'INTERNAL', 'DTSD', 'XViD', 'DIVX', 'DUBBED', 'LINE.DUBBED', 'DD51', 'DVDR9', 'DVDR5', 'h264', 'AVC', 'WEBHDTVRiP', 'WEBHDRiP', 'WEBRiP', 'WEBHDTV', 'WebHD', 'HDTVRiP', 'HDRiP', 'HDTV', 'ITUNESHD', 'REPACK', 'SYNC'))
 	serviceHandler = eServiceCenter.getInstance()
 	info = serviceHandler.info(serviceref)
 	eventName = info and info.getName(serviceref) or ''
+	movietitle = eventName
 	(root, ext) = os.path.splitext(eventName)
 	if ext in KNOWN_EXTENSIONS or ext in KNOWN_EXTENSIONS2:
 		eventName = re.sub(r"[\W_]+", ' ', root, 0)
+	# if isPluginInstalled("xtraEvent"):
+	# 	xtraposter = config.plugins.xtraEvent.loc.value + "xtraEvent/poster"
+	# 	if fileExists(str(xtraposter)) and fileExists(str(config.usage.default_path.value + eventName + ".jpg")) and not fileExists(str(xtraposter + "/" + eventName + ".jpg")):
+	# 		copy(config.usage.default_path.value + eventName + ".jpg", xtraposter + "/" + eventName.replace(":", "") + ".jpg")
 	session.open(IMDB, eventName)
 
 
@@ -1847,6 +1874,16 @@ pluginlist = (
 			description=_("IMDb search"),
 			where=PluginDescriptor.WHERE_MOVIELIST,
 			fnc=movielistSearch,
+			needsRestart=False,
+		)
+	),
+	(
+		config.plugins.imdb.showinchannelcontext,  # [norhap]
+		PluginDescriptor(
+			name=_("IMDb search"),
+			description=_("IMDb search"),
+			where=PluginDescriptor.WHERE_CHANNEL_CONTEXT_MENU,
+			fnc=channelSearch,
 			needsRestart=False,
 		)
 	),

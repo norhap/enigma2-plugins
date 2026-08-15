@@ -56,8 +56,8 @@ msgstr "E"
 msgid "Enable this to be able to access IMDb search setup from within the plugin browser."
 msgstr "Habilite esta opción para poder acceder a la configuración de búsqueda de IMDB desde el navegador del complemento."
 
-msgid "Enable this to be able to access IMDb searches from within the channel context menu."
-msgstr "Habilite esta opción para poder acceder a las búsquedas de IMDB desde el menú contextual del canal."
+msgid "Enable this to be able to access IMDb searches from within the channel list."
+msgstr "Habilite esto para poder acceder a las búsquedas de IMDB desde la lista de canales."
 
 msgid "Enable this to be able to access IMDb searches from within the movie list."
 msgstr "Habilite esta opción para poder acceder a las búsquedas de IMDB desde la lista de películas."
@@ -186,8 +186,8 @@ msgstr "Volver a consultar IMDB: %s..."
 msgid "S"
 msgstr "S"
 
-msgid "Save current Details as .html for offline use"
-msgstr "Guardar los detalles actuales como .html para uso sin conexión"
+msgid "Save current Details as .json for offline use"
+msgstr "Guardar los detalles actuales como .json para uso sin conexión"
 
 msgid "Save current Details as .txt"
 msgstr "Guardar los detalles actuales como .txt"
@@ -202,7 +202,7 @@ msgid "Search event in IMDb"
 msgstr "Buscar evento en IMDB"
 
 msgid "Search for details from the Internet Movie Database"
-msgstr "Busque detalles en la base de datos de películas de Internet"
+msgstr "Búsqueda detalles en la base de datos de películas de Internet"
 
 msgid "Settings for Internet Movie Database searches"
 msgstr "Ajustes para búsquedas en bases de datos de películas de Internet"
@@ -222,14 +222,17 @@ msgstr "Mostrar información del episodio y año en la lista de reparto"
 msgid "Show episodes in title menu"
 msgstr "Mostrar episodios en el menú de título"
 
+msgid "Show extra information in title menu"
+msgstr "Mostrar información adicional en el menú de título"
+
 msgid "Show first page of user reviews"
 msgstr "Mostrar la primera página de reseñas de usuarios"
 
 msgid "Show full movie or series name in title menu"
 msgstr "Mostrar el nombre completo de la película o serie en el menú de título"
 
-msgid "Show in channel context menu"
-msgstr "Mostrar en el menú contextual del canal"
+msgid "Show in channel context menu (channel list)"
+msgstr "Mostrar en el menú contextual del canal (lista de canales)"
 
 msgid "Show in movie list"
 msgstr "Mostrar en la lista de películas"
@@ -254,6 +257,9 @@ msgstr "Mostrar búsqueda en el navegador de plugins"
 
 msgid "Show setup in plugin browser"
 msgstr "Mostrar configuración en el navegador de plugins"
+
+msgid "Show the runtime, type and genres. Takes effect after the next search of IMDb for a show name."
+msgstr "Muestra el tiempo de ejecución, el tipo y los géneros. Entra en vigor después de la siguiente búsqueda en IMDB del nombre de un programa."
 
 msgid "Show the whole IMDb title information for a movie or series, including, for example, alternative names and whether it's a series. Takes effect after the next search of IMDb for a show name."
 msgstr "Muestra toda la información del título de una película o serie en IMDB, incluyendo, por ejemplo, nombres alternativos y si se trata de una serie. Esta función se activa tras la siguiente búsqueda del nombre de una serie en IMDb."
@@ -282,11 +288,17 @@ msgstr "Esta opción permite agregar palabras o frases para que IMDB las ignore 
 msgid "Title Menu"
 msgstr "Menú de título"
 
+msgid "Translate IMDb texts to the user interface language."
+msgstr "Traduce textos de IMDB al idioma de la interfaz de usuario."
+
+msgid "Translate texts"
+msgstr "Traducir textos"
+
 msgid "User reviews"
 msgstr "Reseñas de usuarios"
 
-msgid "Words / phrases to ignore "
-msgstr "Palabras/frases que debes ignorar "
+msgid "Words / phrases to ignore"
+msgstr "Palabras/frases que debes ignorar"
 
 msgid "YT trailer import failed"
 msgstr "Error en la importación del tráiler de YouTube"
