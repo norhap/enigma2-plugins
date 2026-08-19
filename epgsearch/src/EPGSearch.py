@@ -770,6 +770,8 @@ class EPGSearch(EPGSelection):
 			event = self["list"].getCurrent()[0]
 			if event:
 				searchText = event.getEventName()
+			elif self.currSearch != "":
+				searchText = self.currSearch
 		self.session.openWithCallback(
 			self.searchEPG,
 			VirtualKeyBoard,
@@ -958,15 +960,18 @@ class EPGSearch(EPGSelection):
 				l.list = []
 				l.l.setList(l.list)
 			self.currSearch = searchString
-			history = config.plugins.epgsearch.history.value
-			if searchString not in history:
-				history.insert(0, searchString)
-				maxLen = config.plugins.epgsearch.history_length.value
-				if len(history) > maxLen:
-					del history[maxLen:]
-			else:
-				history.remove(searchString)
-				history.insert(0, searchString)
+			self.setTitle("%s:  %s" % (_("EPG Search"), searchString))
+			if searchSave:
+				# Maintain history
+				history = config.plugins.epgsearch.history.value
+				if searchString not in history:
+					history.insert(0, searchString)
+					maxLen = config.plugins.epgsearch.history_length.value
+					if len(history) > maxLen:
+						del history[maxLen:]
+				else:
+					history.remove(searchString)
+					history.insert(0, searchString)
 
 			# Search EPG, default to empty list
 			epgcache = eEPGCache.getInstance()  # XXX: the EPGList also keeps an instance of the cache but we better make sure that we get what we want :-)
