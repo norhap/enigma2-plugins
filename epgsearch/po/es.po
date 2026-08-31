@@ -153,6 +153,9 @@ msgstr "Abrir seleccionado en IMDb"
 msgid "Partnerbox Entries"
 msgstr "Entradas Partnerbox"
 
+msgid "Result filter"
+msgstr "Resultados de filtro"
+
 msgid "Save search as AutoTimer"
 msgstr "Guarda búsqueda como AutoTimer"
 
@@ -176,9 +179,6 @@ msgstr "Búsqueda de rigor"
 
 msgid "Search type"
 msgstr "Tipo de búsqueda"
-
-msgid "Search type for filter"
-msgstr "Tipode búsqueda para filtro"
 
 msgid "Select a timer to search"
 msgstr "Seleccionar una programación a buscar"
@@ -248,3 +248,6 @@ msgstr "Buscar EPG..."
 
 msgid "title starts with"
 msgstr "el título comienza con"
+
+msgid "Use P+/- to filter result by short description or extended (only if short is missing). Partial: only items whose description is contained in selected event. Exact: only items with matching description. Full: identical whole description."
+msgstr "Utilice P+/- para filtrar los resultados por descripción breve o extendida (solo si falta la breve). Parcial: solo elementos cuya descripción se encuentra en el evento seleccionado. Exacto: solo elementos con descripción coincidente. Completo: descripción completa idéntica."
