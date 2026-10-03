@@ -68,7 +68,7 @@ def EPGSearchSelection__init__(self, session, service, zapFunc=None, eventid=Non
 			"yellow": yellowButtonPressed,
 			"info": infoKeyPressed,
 			"menu": furtherOptions
-		}, -1)
+		}, -2)
 		if config.plugins.epgsearch.type_button_blue.value == "0":
 			self["key_blue"].text = _("Search event")
 		elif config.plugins.epgsearch.type_button_blue.value == "1":
