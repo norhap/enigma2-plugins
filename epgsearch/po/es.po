@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2-plugins 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-13 18:34+0200\n"
-"PO-Revision-Date: 2025-02-19 02:38+0100\n"
+"POT-Creation-Date: 2026-09-29 07:32+0200\n"
+"PO-Revision-Date: 2014-11-22 20:45+0100\n"
 "Last-Translator: José Juan Zapater <josej@zapater.fdns.net>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -92,6 +92,12 @@ msgstr "Introduzca texto a buscar"
 
 msgid "Export selected as AutoTimer"
 msgstr "Exportar seleccionado como temporizador automático"
+
+msgid "Exclude Last Scanned"
+msgstr "Excluir bouquet Último Escaneado"
+
+msgid "Exclude the Last Scanned bouquet when searching only in bouquets."
+msgstr "Excluir el último bouquet escaneado al buscar únicamente en bouquets."
 
 msgid "History"
 msgstr "Historia"
@@ -180,6 +186,12 @@ msgstr "Búsqueda de rigor"
 msgid "Search type"
 msgstr "Tipo de búsqueda"
 
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Search"
+msgstr "Buscar"
+
 msgid "Select a timer to search"
 msgstr "Seleccionar una programación a buscar"
 
@@ -191,9 +203,6 @@ msgstr "Seleccione canal"
 
 msgid "Select item for search and press 'OK' or edit item with YELLOW button or delete item with BLUE button."
 msgstr "Seleccione evento a buscar y pulse \"Aceptar\" o edite el evento con botón AMARILLO o elimine el evento con botón AZUL."
-
-msgid "Select type for filter search. Press button P +/- for show/hide filter in description after search."
-msgstr "Seleccione el tipo de filtro de búsqueda. Pulse botón P +/- para mostrar u ocultar el filtro en la descripción después de la búsqueda."
 
 msgid "Select type for search, \"partial match\" for the most extensive search, \"partial description\" for the most description search."
 msgstr "Seleccione el tipo de búsqueda, \"coincidencia parcial\" para la búsqueda más extensa, \"descripción parcial\" para la búsqueda con más descripción."
@@ -216,6 +225,12 @@ msgstr "Tipo botón AZUL"
 msgid "Use Picons"
 msgstr "Usa Picons"
 
+msgid "Use event name for yellow button search"
+msgstr "Utilice el nombre del evento para la búsqueda del botón AMARILLO"
+
+msgid "Use the current event name as the initial search text. An empty search field is used otherwise."
+msgstr "Utilice el nombre del evento actual como texto de búsqueda inicial. De lo contrario, se utiliza un campo de búsqueda vacío."
+
 msgid "Zap to selected service"
 msgstr "Zapear al canal seleccionado"
 
@@ -230,6 +245,9 @@ msgstr "elección (Búsqueda y estándar)"
 
 msgid "exact match"
 msgstr "búsqueda exacta"
+
+msgid "full match (short + extended)"
+msgstr "filtro completo (corto + extendido)"
 
 msgid "only Search"
 msgstr "solo Buscar"
