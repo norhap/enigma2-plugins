@@ -93,10 +93,21 @@ class PartnerboxAutoTimer(object):
 		password = partnerboxentry.password.value
 		sCommand = "http://%s:%d/autotimer?webif=false" % (ip, port)
 		print(sCommand)
-		sendPartnerBoxWebCommand(sCommand, None, 10, username, password).addCallback(self.getPartnerboxAutoTimerListCallback, partnerboxentry).addErrback(self.downloadError)
+		sendPartnerBoxWebCommand(sCommand, None, 10, username, password).addCallback(self.getPartnerboxAutoTimerListCallback, partnerboxentry).addErrback(self.getPartnerboxAutoTimerListError)
+
+	def getPartnerboxAutoTimerListError(self, error):
+		self.session.openWithCallback(self.returnToPartnerboxList, MessageBox, str(error.getErrorMessage()), MessageBox.TYPE_INFO)
+
+	def returnToPartnerboxList(self, result):
+		if config.plugins.Partnerbox.entriescount.value > 1:
+			self.session.openWithCallback(self.getPartnerboxAutoTimerList, PartnerboxEntriesListConfigScreen, 1)
 
 	def getPartnerboxAutoTimerListCallback(self, result, partnerboxentry):
 		if result is not None:
+			root = cet_fromstring(result)
+			if root.tag != "autotimer" or not root.get("version"):
+				self.session.openWithCallback(self.returnToPartnerboxList, MessageBox, _("AutoTimer plugin is probably not installed on Partnerbox '%s'.") % partnerboxentry.name.value, MessageBox.TYPE_INFO)
+				return
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			autotimer = AutoTimer()
 			autotimer.readXml(xml_string=result)
@@ -111,7 +122,7 @@ class PartnerboxAutoTimer(object):
 			password = partnerboxentry.password.value
 			sCommand = "http://%s:%d/autotimer/upload_xmlconfiguration" % (ip, port)
 			sendPartnerBoxWebCommand(sCommand, None, 10, username, password, parameter=parameter).addCallback(self.downloadCallback).addErrback(self.downloadError)
-
+		self.returnToPartnerboxList(None)
 
 class PartnerboxAutoTimerEPGSelection(AutoTimerEPGSelection):
 	def __init__(self, *args):
