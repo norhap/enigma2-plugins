@@ -124,6 +124,7 @@ class PartnerboxAutoTimer(object):
 			sendPartnerBoxWebCommand(sCommand, None, 10, username, password, parameter=parameter).addCallback(self.downloadCallback).addErrback(self.downloadError)
 		self.returnToPartnerboxList(None)
 
+
 class PartnerboxAutoTimerEPGSelection(AutoTimerEPGSelection):
 	def __init__(self, *args):
 		AutoTimerEPGSelection.__init__(self, *args)
