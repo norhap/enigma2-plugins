@@ -96,8 +96,8 @@ class FileList(MenuList):
 		return self.l.getCurrentSelection()[0]
 
 	def getCurrentEvent(self):
-		l = self.l.getCurrentSelection()
-		return None if not l or l[0][1] == True else self.serviceHandler.info(l[0][0]).getEvent(l[0][0])
+		curr = self.l.getCurrentSelection()
+		return None if not curr or curr[0][1] is True else self.serviceHandler.info(curr[0][0]).getEvent(curr[0][0])
 
 	def getFileList(self):
 		return self.list
@@ -272,7 +272,7 @@ class FileList(MenuList):
 			return "%d:%02d" % (tslen / 60, tslen % 60) if tslen > 0 else ""
 
 	def byNameFunc(self, a, b):
-		return cmp(b[0][1], a[0][1]) or cmp(a[1][7], b[1][7])
+		return (b[0][1] > a[0][1]) - (b[0][1] < a[0][1]) or (a[1][7] > b[1][7]) - (a[1][7] < b[1][7])
 
 	def sortName(self):
 		self.list.sort(self.byNameFunc)
@@ -285,7 +285,8 @@ class FileList(MenuList):
 			stat2 = os_stat(self.current_directory + b[0][0])
 		except Exception:
 			return 0
-		return cmp(b[0][1], a[0][1]) or cmp(stat2.st_ctime, stat1.st_ctime)
+		return (b[0][1] > a[0][1]) - (b[0][1] < a[0][1]) or (stat2.st_birthtime > stat1.st_birthtime) - (stat2.st_birthtime < stat1.st_birthtime)
+		return
 
 	def sortDate(self):
 		self.list.sort(self.byDateFunc)

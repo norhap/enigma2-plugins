@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from six import PY2
 try:
 	from . import dpflib
 except Exception:
@@ -24,10 +22,7 @@ def showImage(dev, image):
 	try:
 		ir = image.convert("RGBA")
 		x, y = image.size
-		if PY2:
-			dev.showRGBAImage(0, 0, x, y, ir.tostring())
-		else:
-			dev.showRGBAImage(0, 0, x, y, ir.tobytes())
+		dev.showRGBAImage(0, 0, x, y, ir.tobytes())
 		return True
 	except Exception:
 		print("[LCD4linux] Error writing DPF Device")
@@ -36,12 +31,11 @@ def showImage(dev, image):
 
 def open(usb):
 	try:
-		d = dpflib.open(usb)
-#		d.setProperty(PROPERTY_ORIENTATION, 1)
-		print("[LCD4linux] open %s" % usb)
+		d = dpflib.open(usb)  # d.setProperty(PROPERTY_ORIENTATION, 1)
+		print(f"[LCD4linux] open {usb}")
 	except Exception:
 		d = None
-		print("[LCD4linux] open Error: %s" % usb)
+		print(f"[LCD4linux] open Error: {usb}")
 	return d
 
 

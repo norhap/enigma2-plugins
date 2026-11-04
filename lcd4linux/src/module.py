@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-# external interface for LCD4linux
 # by joergm6 @ IHAD
 # for documentation look at IHAD Support Thread
 
-from __future__ import print_function
-from os import popen
+from subprocess import getstatusoutput
 from os.path import isfile, exists
 
 
@@ -26,16 +23,16 @@ class L4Lelement:
 		self.session = None
 
 	def add(self, element, para):
-		print("[LCD4linuxE] Add: %s %s" % (element, para))
+		print(f"[LCD4linuxE] Add: {element} {para}")
 		if "%" in para.get("Align", ""):
 			para["Align"] = ("0000" + para["Align"].replace("%", "00"))[-4:]
-		if para.get("Value", None) is not None:
+		if para.get("Value") is not None:
 			para["Value"] = min(max(int(para["Value"]), 0), 100)
 		L4Lelement.List[element] = para
 
 	def delete(self, element):
-		print("[LCD4linuxE] Del: %s" % element)
-		if L4Lelement.List.get(element, None) is not None:
+		print(f"[LCD4linuxE] Del: {element}")
+		if L4Lelement.List.get(element) is not None:
 			del L4Lelement.List[element]
 		else:
 			for x in list(L4Lelement.List):
@@ -46,14 +43,12 @@ class L4Lelement:
 		print(L4Lelement.List)
 
 	def get(self, element=None):
-		if element == None:
-			return L4Lelement.List
-		else:
-			return L4Lelement.List.get(element, {})
+		return L4Lelement.List if element is None else L4Lelement.List.get(element, {})
 
 	def web(self, EX):
 		try:
-			exec("self.add('%s)" % EX.replace(",", "',", 1))
+			args = EX.replace(",", "',", 1)
+			exec(f"self.add('{args})")
 		except Exception:
 			print("[LCD4linuxE] Error: L4L Web-Elements")
 
@@ -79,14 +74,14 @@ class L4Lelement:
 		return L4Lelement.Hold
 
 	def setHold(self, H):
-		print("[LCD4linuxE] hold: %s" % H)
+		print(f"[LCD4linuxE] hold: {H}")
 		L4Lelement.Hold = H
 
 	def getHoldKey(self):
 		return L4Lelement.HoldKey
 
 	def setHoldKey(self, H=False):
-		print("[LCD4linuxE] holdkey: %s" % H)
+		print(f"[LCD4linuxE] holdkey: {H}")
 		L4Lelement.HoldKey = H
 
 	def getFont(self, F="0"):
@@ -136,42 +131,32 @@ class L4Lelement:
 		return L4Lelement.Version
 
 
-def getstatusoutput(cmd):
+def getStatusOutput(cmd):
 	try:
-		pipe = popen('{ ' + cmd + '; } 2>&1', 'r')
-		text = pipe.read()
-		sts = pipe.close()
-		if sts is None:
-			sts = 0
-		if text.endswith == '\n':
-			text = text[:-1]
-	except Exception:
-		sts = 1
-		text = "- -"
-		print("[LCD4linux] Error on os-call")
-	return sts, text
+		return getstatusoutput(cmd)
+	except Exception as exc:
+		print(f"[LCD4linux] Error on system call: {exc}")
+		return 1, "- -"
 
 
 def L4LVtest(VV):
 	L4Linfo = "/%s/lib/%s/info/enigma2-plugin-extensions-lcd4linux.control"
-	O = ""
+	OX = ""
 	OO = False
 	P = "opkg"
 	if exists(L4Linfo % ("var", "opkg")):
-		O = "var"
+		OX = "var"
 	elif exists(L4Linfo % ("var", "dpkg")):
-		O = "var"
+		OX = "var"
 		P = "dpkg"
 	elif exists("/var/lib/dpkg/status"):
-		(r1, r2) = getstatusoutput("dpkg -s enigma2-plugin-extensions-lcd4linux | grep Version")
+		(r1, r2) = getStatusOutput("dpkg -s enigma2-plugin-extensions-lcd4linux | grep Version")
 		if r1 == 0:
 			OO = r2.strip().split()[1].startswith(VV[1:])
-	if O != "":
+	if OX != "":
 		try:
-			f = open(L4Linfo % (O, P))
-			B = f.readline()
-			OO = f.readline().strip().split()[1].startswith(VV[1:])
-			f.close()
+			with open(L4Linfo % (OX, P)) as file:
+				OO = file.readline().strip().split()[1].startswith(VV[1:])
 		except Exception:
 			pass
 	return OO

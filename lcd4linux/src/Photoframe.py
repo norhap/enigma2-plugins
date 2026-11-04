@@ -1,11 +1,9 @@
-# -*- coding: UTF-8 -*-
-
 from time import time, sleep
 from usb.core import find
 from usb.util import get_string
 from PIL import Image
 from struct import pack
-from six.moves import cStringIO as StringIO
+from io import BytesIO
 
 
 def write_jpg2frame(dev, pic):
@@ -20,85 +18,83 @@ def write_jpg2frame(dev, pic):
 	endpoint = 0x02
 	# send to device in packages of = 2^16
 	psize = 65536
-	for p in range(int(len(tdata) / psize)):
+	for p in range(len(tdata) // psize):
 		pdata = tdata[p * psize:(p + 1) * psize]
 		dev.write(endpoint, pdata)
 
 
 def get_known_devices():
-	# Return a dict of photo frames
-	dlist = []
-	# listed as: Name, idVendor, idProduct, [width , height - in pixel if applicable]
+	# Return a list of supported photo frames.
+	# Each entry lists: Name, idVendor, idProduct, [width, height].
+	return [
+		# 0,1 Samsung SPF-75H/76H (23)
+		{'name': "SPF75H/76H Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x200f, 'width': 800, 'height': 480},
+		{'name': "SPF75H/76H Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x200e},
 
-	# 0,1 Samsung SPF-75H/76H (23)
-	dlist.append({'name': "SPF75H/76H Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x200f, 'width': 800, 'height': 480})
-	dlist.append({'name': "SPF75H/76H Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x200e})
+		# 2,3 Samsung SPF-87H (24)
+		{'name': "SPF87H Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2034, 'width': 800, 'height': 480},
+		{'name': "SPF87H Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x2033},
 
-	# 2,3 Samsung SPF-87H (24)
-	dlist.append({'name': "SPF87H Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2034, 'width': 800, 'height': 480})
-	dlist.append({'name': "SPF87H Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x2033})
+		# 4,5 Samsung SPF-87Hold (25)
+		{'name': "SPF87Hold Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2026, 'width': 800, 'height': 480},
+		{'name': "SPF87Hold Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x2025},
 
-	# 4,5 Samsung SPF-87Hold (25)
-	dlist.append({'name': "SPF87Hold Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2026, 'width': 800, 'height': 480})
-	dlist.append({'name': "SPF87Hold Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x2025})
+		# 6,7 Samsung SPF-83H (26)
+		{'name': "SPF83H Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x200d, 'width': 800, 'height': 600},
+		{'name': "SPF83H Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x200c},
 
-	# 6,7 Samsung SPF-83H (26)
-	dlist.append({'name': "SPF83H Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x200d, 'width': 800, 'height': 600})
-	dlist.append({'name': "SPF83H Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x200c})
+		# 8,9 Samsung SPF-107H (27)
+		{'name': "SPF107H Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2036, 'width': 1024, 'height': 600},
+		{'name': "SPF107H Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x2035},
 
-	# 8,9 Samsung SPF-107H (27)
-	dlist.append({'name': "SPF107H Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2036, 'width': 1024, 'height': 600})
-	dlist.append({'name': "SPF107H Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x2035})
+		# 10,11 Samsung SPF-105P (28)
+		{'name': "SPF105P Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x201b, 'width': 1024, 'height': 600},
+		{'name': "SPF105P Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x201c},
 
-	# 10,11 Samsung SPF-105P (28)
-	dlist.append({'name': "SPF105P Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x201b, 'width': 1024, 'height': 600})
-	dlist.append({'name': "SPF105P Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x201c})
+		# 12,13 Samsung SPF-85H/86H (29)
+		{'name': "SPF85H/86H Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2013, 'width': 800, 'height': 600},
+		{'name': "SPF85H/86H Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x2012},
 
-	# 12,13 Samsung SPF-85H/86H (29)
-	dlist.append({'name': "SPF85H/86H Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2013, 'width': 800, 'height': 600})
-	dlist.append({'name': "SPF85H/86H Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x2012})
+		# 14,15 Samsung SPF-72H (210)
+		{'name': "SPF72H Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x200b, 'width': 800, 'height': 480},
+		{'name': "SPF72H Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x200a},
 
-	# 14,15 Samsung SPF-72H (210)
-	dlist.append({'name': "SPF72H Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x200b, 'width': 800, 'height': 480})
-	dlist.append({'name': "SPF72H Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x200a})
+		# 16,17 Samsung SPF-700T (211)
+		{'name': "SPF700T Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2050, 'width': 800, 'height': 600},
+		{'name': "SPF700T Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x204f},
 
-	# 16,17 Samsung SPF-700T (211)
-	dlist.append({'name': "SPF700T Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2050, 'width': 800, 'height': 600})
-	dlist.append({'name': "SPF700T Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x204f})
+		# 18,19 Samsung SPF-85P/86P (212)
+		{'name': "SPF85P/86P Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2017, 'width': 800, 'height': 600},
+		{'name': "SPF85P/86P Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x2016},
 
-	# 18,19 Samsung SPF-85P/86P (212)
-	dlist.append({'name': "SPF85P/86P Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2017, 'width': 800, 'height': 600})
-	dlist.append({'name': "SPF85P/86P Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x2016})
+		# 20,21 Samsung SPF-107Hold (213)
+		{'name': "SPF107Hold Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2028, 'width': 1024, 'height': 600},
+		{'name': "SPF107Hold Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x2027},
 
-	# 20,21 Samsung SPF-107Hold (213)
-	dlist.append({'name': "SPF107Hold Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2028, 'width': 1024, 'height': 600})
-	dlist.append({'name': "SPF107Hold Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x2027})
+		# 22,23 Samsung SPF-1000P (214)
+		{'name': "SPF1000P Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2040, 'width': 1024, 'height': 600},
+		{'name': "SPF1000P Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x2039},
 
-	# 22,23 Samsung SPF-1000P (214)
-	dlist.append({'name': "SPF1000P Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2040, 'width': 1024, 'height': 600})
-	dlist.append({'name': "SPF1000P Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x2039})
+		# 24,25 Samsung SPF-800P (215)
+		{'name': "SPF800P Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2038, 'width': 800, 'height': 480},
+		{'name': "SPF800P Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x2037},
 
-	# 24,25 Samsung SPF-800P (215)
-	dlist.append({'name': "SPF800P Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x2038, 'width': 800, 'height': 480})
-	dlist.append({'name': "SPF800P Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x2037})
+		# 26,27 Samsung SPF-800W (216)
+		{'name': "SPF800W Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x204c, 'width': 800, 'height': 600},
+		{'name': "SPF800W Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x204b},
 
-	# 26,27 Samsung SPF-800W (216)
-	dlist.append({'name': "SPF800W Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x204c, 'width': 800, 'height': 600})
-	dlist.append({'name': "SPF800W Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x204b})
+		# 28,29 Samsung SPF-1000W (217)
+		{'name': "SPF1000W Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x204e, 'width': 1024, 'height': 768},
+		{'name': "SPF1000W Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x204d},
 
-	# 28,29 Samsung SPF-1000W (217)
-	dlist.append({'name': "SPF1000W Mini Monitor", 'idVendor': 0x04e8, 'idProduct': 0x204e, 'width': 1024, 'height': 768})
-	dlist.append({'name': "SPF1000W Mass Storage", 'idVendor': 0x04e8, 'idProduct': 0x204d})
+		# 30, 31 Amazon Fire 7 (9th Generation 2019)
+		{'name': "Amazon Fire 7 Mini Monitor", 'idVendor': 0x1949, 'idProduct': 0x03C3, 'width': 1024, 'height': 600},
+		{'name': "Amazon Fire 7 Mass Storage", 'idVendor': 0x1949, 'idProduct': 0x03C1},
 
-	# Amazon Fire 7 (9th Generation 2019)
-	dlist.append({'name': "Amazon Fire 7 Mini Monitor", 'idVendor': 0x1949, 'idProduct': 0x03C3, 'width': 1024, 'height': 600})
-	dlist.append({'name': "Amazon Fire 7 Mass Storage", 'idVendor': 0x1949, 'idProduct': 0x03C1})
-
-	# Pearl DPF for Testing
-	dlist.append({'name': "Pearl DPF", 'idVendor': 0x1908, 'idProduct': 0x0102, 'width': 320, 'height': 240})
-	dlist.append({'name': "Pearl DPF", 'idVendor': 0x1908, 'idProduct': 0x0102, 'width': 320, 'height': 240})
-
-	return dlist
+		# 32, 33 Pearl DPF for Testing
+		{'name': "Pearl DPF", 'idVendor': 0x1908, 'idProduct': 0x0102, 'width': 320, 'height': 240},
+		{'name': "Pearl DPF", 'idVendor': 0x1908, 'idProduct': 0x0102, 'width': 320, 'height': 240},
+	]
 
 
 def find_device(anzahl, device, device2):
@@ -116,7 +112,7 @@ def find_device(anzahl, device, device2):
 	except Exception:
 		from traceback import format_exc
 		print("[LCD4linux] find exception")
-		print("Error: %s" % format_exc())
+		print(f"Error: {format_exc()}")
 		d = None
 	return d
 
@@ -127,7 +123,7 @@ def init_device(anzahl, device0, device1):
 
 	if dev is not None:
 		# found it, trying to init it
-		print("[LCD4linux] Find frame device: %s" % dev)
+		print(f"[LCD4linux] Find frame device: {dev}")
 		if dev.idProduct == device0["idProduct"]:
 			print("[LCD4linux] init Device")
 			frame_init(dev)
@@ -162,12 +158,12 @@ def frame_init(dev):
 
 def frame_switch(dev):
 	# Switch device from Mass Storage to Mini Monitor
-	CTRL_TYPE_VENDOR = (2 << 5)
-	CTRL_IN = 0x80
-	CTRL_RECIPIENT_DEVICE = 0
+# CTRL_TYPE_VENDOR = (2 << 5)
+# CTRL_IN = 0x80
+# CTRL_RECIPIENT_DEVICE = 0
 	try:
 		sleep(0.5)
-		s = "\x00" * 251
+		# s = "\x00" * 251
 		dev.ctrl_transfer(0x00 | 0x80, 0x06, 0xfe, 0xfe, 0xfe)
 		# dev.ctrl_transfer(0x00 | 0x80,  0x06, 0xfe, 0xfe, s, 0xfe )
 		# dev.ctrl_transfer(CTRL_TYPE_VENDOR | CTRL_IN | CTRL_RECIPIENT_DEVICE, 0x04, 0x00, 0x00, 1)
@@ -212,7 +208,7 @@ def main():
 	#  rotate
 	#  crop
 	image = image.resize((800, 480))
-	output = StringIO.StringIO()
+	output = BytesIO()
 	image.save(output, "JPEG", quality=94)
 	pic = output.getvalue()
 	output.close()

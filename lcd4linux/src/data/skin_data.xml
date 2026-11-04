@@ -1,6 +1,6 @@
 <skin>
 	<screen name="SummaryTemplate">
-		<widget source="global.CurrentTime" render="PixmapLcd4linux" position="fill" size="$w$,$h$" alphaTest="blend" />
+		<widget source="global.CurrentTime" render="PixmapLcd4linux" position="fill" size="$w$,$h$" alphatest="blend" />
 	</screen>
 
 <!--L4L01 On-->
@@ -8,8 +8,8 @@
 	<screen name="InfoBarSummary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-<!--ChannelSelectionSummary-->
-	<screen name="ChannelSelectionSummary" position="fill">
+<!--ChannelSelection_summary-->
+	<screen name="ChannelSelection_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
 <!--MenuSummary-->
@@ -24,16 +24,16 @@
 	<screen name="SimpleSummary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-<!--ChannelSelectionRadioSummary-->
-	<screen name="ChannelSelectionRadioSummary" position="fill">
+<!--ChannelSelectionRadio_summary-->
+	<screen name="ChannelSelectionRadio_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
 <!--InfoBarSummary-->
 	<screen name="InfoBarSummary" position="fill" id="3">
 		<panel name="SummaryTemplate" />
 	</screen>
-<!--ChannelSelectionSummary-->
-	<screen name="ChannelSelectionSummary" position="fill" id="3">
+<!--ChannelSelection_summary-->
+	<screen name="ChannelSelection_summary" position="fill" id="3">
 		<panel name="SummaryTemplate" />
 	</screen>
 <!--MenuSummary-->
@@ -48,8 +48,12 @@
 	<screen name="SimpleSummary" position="fill" id="3">
 		<panel name="SummaryTemplate" />
 	</screen>
-<!--ChannelSelectionRadioSummary-->
-	<screen name="ChannelSelectionRadioSummary" position="fill" id="3">
+<!--ScreenSummary-->
+	<screen name="ScreenSummary" position="fill" id="3">
+		<panel name="SummaryTemplate" />
+	</screen>
+<!--ChannelSelectionRadio_summary-->
+	<screen name="ChannelSelectionRadio_summary" position="fill" id="3">
 		<panel name="SummaryTemplate" />
 	</screen>
 <!--L4L01-->
@@ -59,8 +63,8 @@
 	<screen name="InfoBarMoviePlayerSummary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-<!--MovieSelectionSummary-->
-	<screen name="MovieSelectionSummary" position="fill">
+<!--MovieSelection_summary-->
+	<screen name="MovieSelection_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
 <!--MediaPlayerLCDScreen-->
@@ -68,7 +72,7 @@
 		<panel name="SummaryTemplate" />
 	</screen>
 <!--MediaPlayer-->
-	<screen name="MediaPlayerSummary" position="fill">
+	<screen name="MediaPlayer_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
 <!--EMCMoviePlayerSummary-->
@@ -91,8 +95,8 @@
 	<screen name="InfoBarMoviePlayerSummary" position="fill" id="3">
 		<panel name="SummaryTemplate" />
 	</screen>
-<!--MovieSelectionSummary-->
-	<screen name="MovieSelectionSummary" position="fill" id="3">
+<!--MovieSelection_summary-->
+	<screen name="MovieSelection_summary" position="fill" id="3">
 		<panel name="SummaryTemplate" />
 	</screen>
 <!--MediaPlayerLCDScreen-->
@@ -100,7 +104,7 @@
 		<panel name="SummaryTemplate" />
 	</screen>
 <!--MediaPlayer-->
-	<screen name="MediaPlayerSummary" position="fill" id="3">
+	<screen name="MediaPlayer_summary" position="fill" id="3">
 		<panel name="SummaryTemplate" />
 	</screen>
 <!--EMCMoviePlayerSummary-->
@@ -133,8 +137,8 @@
 <!--L4L03-->
 ######################################################################
 
-<!--AdvancedChannelSelectionSummary-->
-	<screen name="AdvancedChannelSelectionSummary" position="fill">
+<!--AdvancedChannelSelection_summary-->
+	<screen name="AdvancedChannelSelection_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
 
@@ -163,13 +167,13 @@
 		<panel name="SummaryTemplate" />
 	</screen>
 
-<!--AdvancedMovieSelectionSummary-->
-	<screen name="AdvancedMovieSelectionSummary" position="fill">
+<!--AdvancedMovieSelection_summary-->
+	<screen name="AdvancedMovieSelection_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
 
-<!--MoviePlayerExtendedSummary-->
-	<screen name="MoviePlayerExtendedSummary" position="fill">
+<!--MoviePlayerExtended_summary-->
+	<screen name="MoviePlayerExtended_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
 
@@ -193,13 +197,13 @@
 		<panel name="SummaryTemplate" />
 	</screen>
 
-<!--ChoiceBoxSummary-->
-	<screen name="ChoiceBoxSummary" position="fill">
+<!--ChoiceBox_summary-->
+	<screen name="ChoiceBox_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
 
-<!--MessageBoxSummary-->
-	<screen name="MessageBoxSummary" position="fill">
+<!--MessageBox_summary-->
+	<screen name="MessageBox_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
 
@@ -228,8 +232,8 @@
 		<panel name="SummaryTemplate" />
 	</screen>
 
-<!--BrowserSummary-->
-	<screen name="BrowserSummary" position="fill">
+<!--Browser_summary-->
+	<screen name="Browser_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
 
@@ -238,8 +242,8 @@
 		<panel name="SummaryTemplate" />
 	</screen>
 
-<!--EMCSelectionSummary-->
-	<screen name="EMCSelectionSummary" position="fill">
+<!--EMCSelection_summary-->
+	<screen name="EMCSelection_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
 
@@ -252,49 +256,49 @@
 	</screen>
 
 <!--CoolTV-->
-	<screen name="CoolTVGuideSummary" position="fill">
+	<screen name="CoolTVGuide_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-	<screen name="CoolMultiGuideSummary" position="fill">
+	<screen name="CoolMultiGuide_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-	<screen name="CoolTinyGuideSummary" position="fill">
+	<screen name="CoolTinyGuide_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-	<screen name="CoolNiceGuideSummary" position="fill">
+	<screen name="CoolNiceGuide_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-	<screen name="CoolChannelGuideSummary" position="fill">
+	<screen name="CoolChannelGuide_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-	<screen name="CoolChannelGuide2Summary" position="fill">
+	<screen name="CoolChannelGuide2_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-	<screen name="CoolChannelGuide3Summary" position="fill">
+	<screen name="CoolChannelGuide3_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-	<screen name="CoolInfoGuideSummary" position="fill">
+	<screen name="CoolInfoGuide_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-	<screen name="CoolSingleGuideSummary" position="fill">
+	<screen name="CoolSingleGuide_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-	<screen name="CoolSingleGuide2Summary" position="fill">
+	<screen name="CoolSingleGuide2_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-	<screen name="CoolSingleGuide3Summary" position="fill">
+	<screen name="CoolSingleGuide3_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-	<screen name="CoolEasyGuideSummary" position="fill">
+	<screen name="CoolEasyGuide_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-	<screen name="CoolEasyGuide2Summary" position="fill">
+	<screen name="CoolEasyGuide2_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-	<screen name="CoolEasyGuide3Summary" position="fill">
+	<screen name="CoolEasyGuide3_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
-	<screen name="CoolSearchSummary" position="fill">
+	<screen name="CoolSearch_summary" position="fill">
 		<panel name="SummaryTemplate" />
 	</screen>
 

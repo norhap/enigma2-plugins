@@ -1,12 +1,7 @@
-from Components.Renderer.Renderer import Renderer
+from os import stat, symlink
+from os.path import isfile
 from enigma import ePixmap, eTimer
-from Tools.BoundFunction import boundFunction
-import os
-try:
-	from enigma import eMediaDatabase
-	DPKG = True
-except:
-	DPKG = False
+from Components.Renderer.Renderer import Renderer
 
 
 class PixmapLcd4linux(Renderer):
@@ -15,34 +10,39 @@ class PixmapLcd4linux(Renderer):
 		self.mTime = 0
 		self.swap = False
 		self.L4Ltimer = eTimer()
-		if DPKG:
-			self.L4Ltimer_conn = self.L4Ltimer.timeout.connect(self.changed)
-		else:
-			self.L4Ltimer.callback.append(self.changed)
+		self.L4Ltimer.callback.append(self.changed)
 
 	GUI_WIDGET = ePixmap
 
 	def postWidgetCreate(self, instance):
 		self.changed((self.CHANGED_DEFAULT,))
 
-	def changed(*s):
-		sel = s[0]
-		sel.L4Ltimer.stop()
-		if os.path.isfile("/tmp/l4ldisplay.png"):
+	def onShow(self):
+		Renderer.onShow(self)
+		self.changed((self.CHANGED_DEFAULT,))
+
+	def onHide(self):
+		Renderer.onHide(self)
+		self.L4Ltimer.stop()
+
+	def changed(self, *args):
+		self.L4Ltimer.stop()
+		if isfile("/tmp/l4ldisplay.png"):
 			try:
-				mtime = os.stat("/tmp/l4ldisplay.png").st_mtime
-				if sel.mTime != mtime:
-					if sel.instance:
-						if sel.swap:
-							if not os.path.isfile("/tmp/l4ldisplaycp.png"):
-								os.symlink("/tmp/l4ldisplay.png", "/tmp/l4ldisplaycp.png")
-							sel.instance.setPixmapFromFile("/tmp/l4ldisplaycp.png")
+				mtime = stat("/tmp/l4ldisplay.png").st_mtime
+				if self.mTime != mtime:
+					if self.instance:
+						if self.swap:
+							if not isfile("/tmp/l4ldisplaycp.png"):
+								symlink("/tmp/l4ldisplay.png", "/tmp/l4ldisplaycp.png")
+							self.instance.setPixmapFromFile("/tmp/l4ldisplaycp.png")
 						else:
-							sel.instance.setPixmapFromFile("/tmp/l4ldisplay.png")
-						sel.mTime = mtime
-						sel.swap = not sel.swap
+							self.instance.setPixmapFromFile("/tmp/l4ldisplay.png")
+						self.mTime = mtime
+						self.swap = not self.swap
 					else:
-						sel.mTime = 0
-			except:
+						self.mTime = 0
+			except OSError:
 				pass
-			sel.L4Ltimer.start(200, True)
+		if not self.suspended:  # Keep polling while visible, even if the picture does not exist yet.
+			self.L4Ltimer.start(200, True)

@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-#
-
 def getIPTVProvider(url):
-#	This function determines the name of the IPTV provider by
-#	the unique value of the substring in the broadcast url-link
-#	:param url: the url from serviceref
-#	:param type: url
-#	:ret: IPTV provider name
-#	:ret type: String limited to 12 characters
+# This function determines the name of the IPTV provider by
+# the unique value of the substring in the broadcast url-link
+# :param url: the url from serviceref
+# :param type: url
+# :ret: IPTV provider name
+# :ret type: String limited to 12 characters
 	providers = {
 			'tvshka.net': 'ShuraTV',      # shura.tv
 			'1ott.': '1ott',         # my.1ott.net
@@ -51,11 +49,11 @@ def getIPTVProvider(url):
 
 def getAudio(description):
 
-#	Returns the picon file for the corresponding audio track
-#	:param description: audio track description
-#	:param type: str
-#	:ret: picon file for audiotrack
-#	:ret type: str
+# Returns the picon file for the corresponding audio track
+# :param description: audio track description
+# :param type: str
+# :ret: picon file for audiotrack
+# :ret type: str
 
 	if "Dolby Digital" in description:
 		return "audio/dolbydigital.png"

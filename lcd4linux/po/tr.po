@@ -1,467 +1,468 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: LCD4linux\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-03 15:37+0200\n"
-"PO-Revision-Date: 2023-02-27 18:10+0100\n"
-"Last-Translator: Mr.Servo <mrservo via GitHub.com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-10-16 10:00+0300\n"
+"Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
+"Language-Team: Turkish\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "%"
 msgstr "%"
 
 msgid "% + BER"
-msgstr ""
+msgstr "% + BER"
 
-#, python-format
+#, no-python-format
 msgid "% + Load@1min"
-msgstr ""
+msgstr "% + Yük@1dk"
 
-#, python-format
+#, no-python-format
 msgid "% + Load@5min"
-msgstr ""
+msgstr "% + Yük@5dk"
 
 #, python-format
 msgid "%d Mails  %d New  %s"
-msgstr ""
+msgstr "%d ileti  %d yeni  %s"
 
 msgid "%d-%b-%Y"
-msgstr ""
+msgstr "%d-%b-%Y"
 
 msgid "%d.%m.%Y"
-msgstr ""
+msgstr "%d.%m.%Y"
 
 msgid "%d.%m.%Y - %H:%M"
-msgstr ""
+msgstr "%d.%m.%Y - %H:%M"
 
 msgid "%d.%m.%y %H:%M:%S"
-msgstr ""
+msgstr "%d.%m.%y %H:%M:%S"
 
 #, python-format
 msgid "%s - Current value: %s"
-msgstr ""
+msgstr "%s - Mevcut değer: %s"
 
 msgid "-  Type"
-msgstr "- tipi"
+msgstr "-  Tür"
 
 msgid "- Alignment"
-msgstr ""
+msgstr "- Hizalama"
 
 msgid "- Analog Clock"
-msgstr "- analog saat"
+msgstr "- Analog saat"
 
 msgid "- Background Color"
-msgstr "- arkaplan rengi"
+msgstr "- Arka plan rengi"
 
 msgid "- Background/Transparency"
-msgstr "- arkaplan/saydam"
+msgstr "- Arka plan/saydamlık"
 
 msgid "- Backlight Off [disable set Off=On]"
-msgstr ""
+msgstr "- Arka ışık kapanışı [devre dışı: kapanış=açılış]"
 
 msgid "- Backlight On"
-msgstr ""
+msgstr "- Arka ışık açılışı"
 
 msgid "- Backlight Weekend Off [disable set Off=On]"
-msgstr ""
+msgstr "- Hafta sonu arka ışık kapanışı [devre dışı: kapanış=açılış]"
 
 msgid "- Backlight Weekend On"
-msgstr ""
+msgstr "- Hafta sonu arka ışık açılışı"
 
 msgid "- Bar Range Max"
-msgstr ""
+msgstr "- Çubuk aralığı üst sınırı"
 
 msgid "- Bar Range Min"
-msgstr ""
+msgstr "- Çubuk aralığı alt sınırı"
 
 msgid "- Base"
-msgstr ""
+msgstr "- Taban"
 
 msgid "- Border"
-msgstr ""
+msgstr "- Kenarlık"
 
 msgid "- CPU"
-msgstr ""
+msgstr "- İşlemci"
 
 msgid "- Caption Color"
-msgstr ""
+msgstr "- Başlık rengi"
 
 msgid "- Clear Key"
-msgstr ""
+msgstr "- Anahtarı temizle"
 
 msgid "- Color"
-msgstr "- renk"
+msgstr "- Renk"
 
 msgid "- Color 1"
-msgstr "- renk 1"
+msgstr "- Renk 1"
 
 msgid "- Color 2"
-msgstr "- renk 2"
+msgstr "- Renk 2"
 
 msgid "- Color 3"
-msgstr "- renk 3"
+msgstr "- Renk 3"
 
 msgid "- Color 4"
-msgstr "- renk 4"
+msgstr "- Renk 4"
 
 msgid "- Color 5"
-msgstr "- renk 5"
+msgstr "- Renk 5"
 
 msgid "- Color 6"
-msgstr "- renk 6"
+msgstr "- Renk 6"
 
 msgid "- Color Text"
-msgstr "- renk Metin"
+msgstr "- Metin rengi"
 
 msgid "- Current Day Background Color"
-msgstr ""
+msgstr "- Bugünün arka plan rengi"
 
 msgid "- Cut Height [disable = 0]"
-msgstr ""
+msgstr "- Kırpma yüksekliği [0 = kapalı]"
 
 msgid "- Cut Width [disable = 0]"
-msgstr ""
+msgstr "- Kırpma genişliği [0 = kapalı]"
 
 msgid "- Cut from X"
-msgstr ""
+msgstr "- X konumundan kırp"
 
 msgid "- Cut from Y"
-msgstr ""
+msgstr "- Y konumundan kırp"
 
 msgid "- Default Cover [ok]>"
-msgstr ""
+msgstr "- Varsayılan kapak [OK]>"
 
 msgid "- Device Name"
-msgstr "- aygıt adı"
+msgstr "- Cihaz adı"
 
 msgid "- Download Cover"
-msgstr "- İndirmek Örtmek"
+msgstr "- Kapağı indir"
 
 msgid "- Download Type"
-msgstr "- İndirmek tipi"
+msgstr "- İndirme türü"
 
 msgid "- Extra Color Chill"
-msgstr ""
+msgstr "- Hissedilen sıcaklık ek rengi"
 
 msgid "- Extra Color City"
-msgstr ""
+msgstr "- Şehir ek rengi"
 
 msgid "- Extra Zoom"
-msgstr ""
+msgstr "- Ek yakınlaştırma"
 
 msgid "- Fast Grab lower quality"
-msgstr ""
+msgstr "- Hızlı görüntü yakalama, düşük kalite"
 
 msgid "- File [ok]>"
-msgstr ""
+msgstr "- Dosya [OK]>"
 
 msgid "- File or Path [ok]>"
-msgstr ""
+msgstr "- Dosya veya yol [OK]>"
 
 msgid "- Find Cover File [ok]>"
-msgstr ""
+msgstr "- Kapak dosyası bul [OK]>"
 
 msgid "- Font"
-msgstr "- yazı tipi"
+msgstr "- Yazı tipi"
 
 msgid "- Font Size"
-msgstr "- yazı tipi boyutu"
+msgstr "- Yazı boyutu"
 
 msgid "- Full Screen"
-msgstr "- tam Ekran"
+msgstr "- Tam ekran"
 
 msgid "- Google API-Key console.developers.google.com/apis"
-msgstr ""
+msgstr "- Google API anahtarı console.developers.google.com/apis"
 
 msgid "- Gradient"
-msgstr ""
+msgstr "- Renk geçişi"
 
 msgid "- HTTP Height"
-msgstr ""
+msgstr "- HTTP yüksekliği"
 
 msgid "- HTTP Width"
-msgstr ""
+msgstr "- HTTP genişliği"
 
 msgid "- Infolines"
-msgstr ""
+msgstr "- Bilgi satırları"
 
 msgid "- LCD 1 Background Color"
-msgstr "- LCD 1 arkaplan rengi"
+msgstr "- LCD 1 arka plan rengi"
 
 msgid "- LCD 1 Background-Picture [ok]>"
-msgstr "- LCD 1 arkaplan resmi [ok]>"
+msgstr "- LCD 1 arka plan resmi [OK]>"
 
 msgid "- LCD 1 Brightness"
-msgstr "- LCD 1 parlaklık"
+msgstr "- LCD 1 parlaklığı"
 
 msgid "- LCD 1 Night Reduction"
-msgstr ""
+msgstr "- LCD 1 gece azaltması"
 
 msgid "- LCD 1 Refresh"
-msgstr ""
+msgstr "- LCD 1 yenileme"
 
 msgid "- LCD 1 Rotate"
-msgstr ""
+msgstr "- LCD 1 döndürme"
 
 msgid "- LCD 2 Background Color"
-msgstr "- LCD 2 arkaplan rengi"
+msgstr "- LCD 2 arka plan rengi"
 
 msgid "- LCD 2 Background-Picture [ok]>"
-msgstr "- LCD 2 arkaplan resmi [ok]>"
+msgstr "- LCD 2 arka plan resmi [OK]>"
 
 msgid "- LCD 2 Brightness"
-msgstr "- LCD 2 parlaklık"
+msgstr "- LCD 2 parlaklığı"
 
 msgid "- LCD 2 Night Reduction"
-msgstr ""
+msgstr "- LCD 2 gece azaltması"
 
 msgid "- LCD 2 Refresh"
-msgstr ""
+msgstr "- LCD 2 yenileme"
 
 msgid "- LCD 2 Rotate"
-msgstr ""
+msgstr "- LCD 2 döndürme"
 
 msgid "- LCD 3 Background Color"
-msgstr "- LCD 3 arkaplan rengi"
+msgstr "- LCD 3 arka plan rengi"
 
 msgid "- LCD 3 Background-Picture [ok]>"
-msgstr "- LCD 3 arkaplan resmi [ok]>"
+msgstr "- LCD 3 arka plan resmi [OK]>"
 
 msgid "- LCD 3 Brightness"
-msgstr "- LCD 3 parlaklık"
+msgstr "- LCD 3 parlaklığı"
 
 msgid "- LCD 3 Night Reduction"
-msgstr ""
+msgstr "- LCD 3 gece azaltması"
 
 msgid "- LCD 3 Refresh"
-msgstr ""
+msgstr "- LCD 3 yenileme"
 
 msgid "- LCD 3 Rotate"
-msgstr ""
+msgstr "- LCD 3 döndürme"
 
 msgid "- LCD Auto-OFF"
-msgstr ""
+msgstr "- LCD otomatik kapatma"
 
 msgid "- Layout"
-msgstr ""
+msgstr "- Düzen"
 
 msgid "- Length"
-msgstr ""
+msgstr "- Uzunluk"
 
 msgid "- Length [Bar]"
-msgstr ""
+msgstr "- Uzunluk [çubuk]"
 
 msgid "- Lines"
-msgstr ""
+msgstr "- Satırlar"
 
 msgid "- Mail Konto"
-msgstr ""
+msgstr "- E-posta hesabı"
 
 msgid "- Module"
-msgstr ""
+msgstr "- Modül"
 
 msgid "- Module userdefined"
-msgstr ""
+msgstr "- Kullanıcı tanımlı modül"
 
 msgid "- Name"
-msgstr ""
+msgstr "- Ad"
 
 msgid "- OSD Size"
-msgstr ""
+msgstr "- OSD boyutu"
 
 msgid "- Online Name:Address"
-msgstr ""
+msgstr "- Çevrimiçi ad:adres"
 
 msgid "- Picon Cache Path [ok]>"
-msgstr ""
+msgstr "- Kanal logosu önbellek yolu [OK]>"
 
 msgid "- Picon First"
-msgstr ""
+msgstr "- Kanal logosuna öncelik ver"
 
 msgid "- Picon Path 2 [ok]>"
-msgstr ""
+msgstr "- Kanal logosu yolu 2 [OK]>"
 
 msgid "- Picon Path [ok]>"
-msgstr ""
+msgstr "- Kanal logosu yolu [OK]>"
 
 msgid "- Picon Size"
-msgstr ""
+msgstr "- Kanal logosu boyutu"
 
 msgid "- Picture Alignment"
-msgstr ""
+msgstr "- Resim hizalaması"
 
 msgid "- Picture Position"
-msgstr ""
+msgstr "- Resim konumu"
 
 msgid "- Picture Size"
-msgstr ""
+msgstr "- Resim boyutu"
 
 msgid "- Picture [ok]>"
-msgstr ""
+msgstr "- Resim [OK]>"
 
 msgid "- Popup LCD"
-msgstr ""
+msgstr "- Bildirim LCD'si"
 
 msgid "- Popup Screen"
-msgstr ""
+msgstr "- Bildirim ekranı"
 
 msgid "- Position"
-msgstr ""
+msgstr "- Konum"
 
 msgid "- Position x"
-msgstr ""
+msgstr "- X konumu"
 
 msgid "- Position y"
-msgstr ""
+msgstr "- Y konumu"
 
 msgid "- Quick Update"
-msgstr ""
+msgstr "- Hızlı güncelleme"
 
 msgid "- Rain Color"
-msgstr ""
+msgstr "- Yağmur rengi"
 
 msgid "- Rain Color 2"
-msgstr ""
+msgstr "- Yağmur rengi 2"
 
 msgid "- Rain Zoom"
-msgstr ""
+msgstr "- Yağmur yakınlaştırması"
 
 msgid "- Rain use Color 2 from"
-msgstr ""
+msgstr "- Yağmur için 2. rengin başlangıcı"
 
 msgid "- Screen 2 Changing Time"
-msgstr ""
+msgstr "- 2. ekran geçiş süresi"
 
 msgid "- Screen 3 Changing Time"
-msgstr ""
+msgstr "- 3. ekran geçiş süresi"
 
 msgid "- Screen 4 Changing Time"
-msgstr ""
+msgstr "- 4. ekran geçiş süresi"
 
 msgid "- Screen 5 Changing Time"
-msgstr ""
+msgstr "- 5. ekran geçiş süresi"
 
 msgid "- Screen 6 Changing Time"
-msgstr ""
+msgstr "- 6. ekran geçiş süresi"
 
 msgid "- Screen 7 Changing Time"
-msgstr ""
+msgstr "- 7. ekran geçiş süresi"
 
 msgid "- Screen 8 Changing Time"
-msgstr ""
+msgstr "- 8. ekran geçiş süresi"
 
 msgid "- Screen 9 Changing Time"
-msgstr ""
+msgstr "- 9. ekran geçiş süresi"
 
 msgid "- Screens used for Changing"
-msgstr ""
+msgstr "- Geçişte kullanılacak ekranlar"
 
 msgid "- Search Path [ok]>"
-msgstr ""
+msgstr "- Arama yolu [OK]>"
 
 msgid "- Sensors"
-msgstr ""
+msgstr "- Sensörler"
 
 msgid "- Shaded"
-msgstr ""
+msgstr "- Gölgeli"
 
 msgid "- Shadow Edges"
-msgstr ""
+msgstr "- Gölge kenarları"
 
 msgid "- Show State"
-msgstr ""
+msgstr "- Durumu göster"
 
 msgid "- Show chill temperature from difference"
-msgstr ""
+msgstr "- Sıcaklık farkında hissedilen sıcaklığı göster"
 
 msgid "- Show in Mode"
-msgstr ""
+msgstr "- Gösterileceği mod"
 
 msgid "- Size"
-msgstr ""
+msgstr "- Boyut"
 
 msgid "- Size max Height"
-msgstr ""
+msgstr "- En yüksek boyut"
 
 msgid "- Size x"
-msgstr ""
+msgstr "- X boyutu"
 
 msgid "- Size y"
-msgstr ""
+msgstr "- Y boyutu"
 
 msgid "- Spacing"
-msgstr ""
+msgstr "- Aralık"
 
 msgid "- Split Screen"
-msgstr ""
+msgstr "- Bölünmüş ekran"
 
 msgid "- Station"
-msgstr ""
+msgstr "- İstasyon"
 
 msgid "- Text"
-msgstr ""
+msgstr "- Metin"
 
 msgid "- Text Size"
-msgstr ""
+msgstr "- Metin boyutu"
 
 msgid "- Timeout [ms]"
-msgstr ""
+msgstr "- Zaman aşımı [ms]"
 
 msgid "- Transparency"
-msgstr "- saydam"
+msgstr "- Saydamlık"
 
 msgid "- Trendarrows"
-msgstr ""
+msgstr "- Eğilim okları"
 
 msgid "- Trimmed"
-msgstr ""
+msgstr "- Kırpılmış"
 
 msgid "- Tunerinfo"
-msgstr ""
+msgstr "- Tuner bilgisi"
 
 msgid "- Type"
-msgstr "- tipi"
+msgstr "- Tür"
 
 msgid "- URL"
-msgstr ""
+msgstr "- URL"
 
 msgid "- Unit min"
-msgstr ""
+msgstr "- En küçük birim"
 
 msgid "- Weather Type"
-msgstr ""
+msgstr "- Hava durumu türü"
 
 msgid "- Zoom"
-msgstr ""
+msgstr "- Yakınlaştırma"
 
 msgid "- external IP URL"
-msgstr ""
+msgstr "- Harici IP URL'si"
 
 msgid "- extra Info"
-msgstr ""
+msgstr "- Ek bilgi"
 
 msgid "- free Warning"
-msgstr ""
+msgstr "- Boş alan uyarısı"
 
 msgid "- max Width"
-msgstr ""
+msgstr "- En fazla genişlik"
 
 msgid "- maximum Lines"
-msgstr ""
+msgstr "- En fazla satır"
 
 msgid "- only active Tuner"
-msgstr ""
+msgstr "- Yalnızca etkin tuner"
 
 msgid "- use Info when empty"
-msgstr ""
+msgstr "- Boşsa bilgiyi kullan"
 
 msgid "- which LCD"
-msgstr ""
+msgstr "- Kullanılacak LCD"
 
 msgid "0"
 msgstr "0"
@@ -470,7 +471,7 @@ msgid "0.5"
 msgstr "0.5"
 
 msgid "1"
-msgstr ""
+msgstr "1"
 
 msgid "1 - normal"
 msgstr "1 - normal"
@@ -491,13 +492,13 @@ msgid "1-5"
 msgstr "1-5"
 
 msgid "10"
-msgstr ""
+msgstr "10"
 
 msgid "10%"
-msgstr "%10"
+msgstr "10%"
 
 msgid "100%"
-msgstr "%100"
+msgstr "100%"
 
 msgid "10min"
 msgstr "10 dk"
@@ -518,7 +519,7 @@ msgid "14"
 msgstr "14"
 
 msgid "15%"
-msgstr "%15"
+msgstr "15%"
 
 msgid "15min"
 msgstr "15 dk"
@@ -533,43 +534,43 @@ msgid "1min"
 msgstr "1 dk"
 
 msgid "2"
-msgstr ""
+msgstr "2"
 
 msgid "2 - side by side"
-msgstr "2- yan yana"
+msgstr "2 - yan yana"
 
 msgid "2 Days 1 Line"
-msgstr ""
+msgstr "2 gün, 1 satır"
 
 msgid "2 Days 2 Line"
-msgstr ""
+msgstr "2 gün, 2 satır"
 
 msgid "2 x FastBackwardKey"
-msgstr ""
+msgstr "Geri sarma tuşuna 2 kez"
 
 msgid "2 x FastBackwardKey Type 2"
-msgstr ""
+msgstr "Geri sarma tuşuna 2 kez, tür 2"
 
 msgid "2 x FastForwardKey"
-msgstr ""
+msgstr "İleri sarma tuşuna 2 kez"
 
 msgid "2 x FastForwardKey Type 2"
-msgstr ""
+msgstr "İleri sarma tuşuna 2 kez, tür 2"
 
 msgid "2 x InfoKey"
-msgstr ""
+msgstr "INFO tuşuna 2 kez"
 
 msgid "2 x Mute"
-msgstr ""
+msgstr "Sessiz tuşuna 2 kez"
 
 msgid "2%"
-msgstr "%2"
+msgstr "2%"
 
 msgid "20"
-msgstr ""
+msgstr "20"
 
 msgid "20%"
-msgstr "%20"
+msgstr "20%"
 
 msgid "20min"
 msgstr "20 dk"
@@ -581,7 +582,7 @@ msgid "220x176"
 msgstr "220x176"
 
 msgid "25%"
-msgstr "%25"
+msgstr "25%"
 
 msgid "255x64"
 msgstr "255x64"
@@ -590,22 +591,22 @@ msgid "270"
 msgstr "270"
 
 msgid "2h"
-msgstr ""
+msgstr "2 saat"
 
 msgid "2min"
 msgstr "2 dk"
 
 msgid "3"
-msgstr ""
+msgstr "3"
 
 msgid "3%"
-msgstr "%3"
+msgstr "3%"
 
 msgid "30"
-msgstr ""
+msgstr "30"
 
 msgid "30%"
-msgstr "%30"
+msgstr "30%"
 
 msgid "30min"
 msgstr "30 dk"
@@ -614,31 +615,31 @@ msgid "30s"
 msgstr "30 sn"
 
 msgid "32bit - color"
-msgstr "32bit - renk"
+msgstr "32 bit - renkli"
 
 msgid "35%"
-msgstr "%35"
+msgstr "35%"
 
 msgid "3h"
-msgstr ""
+msgstr "3 saat"
 
 msgid "3min"
 msgstr "3 dk"
 
 msgid "4"
-msgstr ""
+msgstr "4"
 
 msgid "4 Days 1 Line"
-msgstr ""
+msgstr "4 gün, 1 satır"
 
 msgid "4 Days 2 Lines"
-msgstr ""
+msgstr "4 gün, 2 satır"
 
 msgid "4 Days Vertical View"
-msgstr ""
+msgstr "4 gün, dikey görünüm"
 
 msgid "40%"
-msgstr "%40"
+msgstr "40%"
 
 msgid "400x240"
 msgstr "400x240"
@@ -647,40 +648,40 @@ msgid "40s"
 msgstr "40 sn"
 
 msgid "45%"
-msgstr "%45"
+msgstr "45%"
 
 msgid "480x320"
-msgstr ""
+msgstr "480x320"
 
 msgid "4min"
 msgstr "4 dk"
 
 msgid "5"
-msgstr ""
+msgstr "5"
 
 msgid "5 Days 1 Line"
-msgstr ""
+msgstr "5 gün, 1 satır"
 
 msgid "5 Days 2 Lines"
-msgstr ""
+msgstr "5 gün, 2 satır"
 
 msgid "5 Days Vertical View"
-msgstr ""
+msgstr "5 gün, dikey görünüm"
 
 msgid "5%"
-msgstr "%5"
+msgstr "5%"
 
 msgid "50%"
-msgstr "%50"
+msgstr "50%"
 
 msgid "50s"
 msgstr "50 sn"
 
 msgid "55%"
-msgstr "%55"
+msgstr "55%"
 
 msgid "5h"
-msgstr ""
+msgstr "5 saat"
 
 msgid "5min"
 msgstr "5 dk"
@@ -688,205 +689,203 @@ msgstr "5 dk"
 msgid "5s"
 msgstr "5 sn"
 
-#, fuzzy
 msgid "60"
-msgstr "%60"
+msgstr "60"
 
 msgid "60%"
-msgstr "%60"
+msgstr "60%"
 
 msgid "60min"
 msgstr "60 dk"
 
 msgid "65%"
-msgstr "%65"
+msgstr "65%"
 
 msgid "7"
 msgstr "7"
 
 msgid "70%"
-msgstr "%70"
+msgstr "70%"
 
 msgid "720x405"
-msgstr ""
+msgstr "720x405"
 
 msgid "75%"
-msgstr "%75"
+msgstr "75%"
 
 msgid "80%"
-msgstr "%80"
+msgstr "80%"
 
 msgid "800x480"
-msgstr ""
+msgstr "800x480"
 
 msgid "85%"
-msgstr "%85"
+msgstr "85%"
 
 msgid "8bit - grayscale/color"
-msgstr ""
+msgstr "8 bit - gri tonlama/renkli"
 
 msgid "90"
-msgstr ""
+msgstr "90"
 
 msgid "90%"
-msgstr "%90"
+msgstr "90%"
 
 msgid "95%"
-msgstr "%95"
+msgstr "95%"
 
 msgid "96x64"
 msgstr "96x64"
 
 msgid "97%"
-msgstr "%97"
+msgstr "97%"
 
 msgid "98%"
-msgstr "%98"
+msgstr "98%"
 
 msgid "Active Screen"
-msgstr ""
+msgstr "Etkin ekran"
 
 msgid "All"
-msgstr "Hepsi"
+msgstr "Tümü"
 
 msgid "All Informations"
-msgstr ""
+msgstr "Tüm bilgiler"
 
 msgid "Always All"
-msgstr ""
+msgstr "Her zaman tümü"
 
 msgid "Always New"
-msgstr ""
+msgstr "Her zaman yeniler"
 
 msgid "Analog"
-msgstr ""
+msgstr "Analog"
 
 msgid "Analog+Date"
-msgstr ""
+msgstr "Analog+tarih"
 
 msgid "Analog+Date+Weekday"
-msgstr ""
+msgstr "Analog+tarih+gün"
 
 msgid "Analog+Date+Weekday 2"
-msgstr ""
+msgstr "Analog+tarih+gün 2"
 
 msgid "Audio/Video"
-msgstr ""
+msgstr "Ses/video"
 
 msgid "Background"
-msgstr ""
+msgstr "Arka plan"
 
 msgid "Background-Picture Type"
-msgstr "Arkaplan resim tipi"
+msgstr "Arka plan resmi türü"
 
 msgid "Backup Config"
-msgstr ""
+msgstr "Ayarları yedekle"
 
 msgid "Bar"
-msgstr ""
+msgstr "Çubuk"
 
 msgid "Bar+Value"
-msgstr ""
+msgstr "Çubuk+değer"
 
 msgid "Bitrate"
-msgstr ""
+msgstr "Bit hızı"
 
 msgid "BlueSound"
-msgstr ""
+msgstr "BlueSound"
 
 msgid "BlueSound IP"
-msgstr ""
+msgstr "BlueSound IP adresi"
 
 msgid "BlueSound Ping Timeout [ms]"
-msgstr ""
+msgstr "BlueSound ping zaman aşımı [ms]"
 
 msgid "BlueSound Play Check"
-msgstr ""
+msgstr "BlueSound oynatma denetimi"
 
 msgid "BlueSound Refresh [s]"
-msgstr ""
+msgstr "BlueSound yenileme [sn]"
 
-#, fuzzy
 msgid "Box-Skin-LCD"
-msgstr "Box-Skin-LCD Telafi etmek"
+msgstr "Cihaz teması LCD'si"
 
 msgid "Box-Skin-LCD Color"
-msgstr ""
+msgstr "Cihaz teması LCD rengi"
 
 msgid "Box-Skin-LCD Dimension"
-msgstr ""
+msgstr "Cihaz teması LCD boyutu"
 
 msgid "Box-Skin-LCD Enable Idle-Mode"
-msgstr ""
+msgstr "Cihaz teması LCD'sinde bekleme modunu etkinleştir"
 
 msgid "Box-Skin-LCD Enable Media-Mode"
-msgstr ""
+msgstr "Cihaz teması LCD'sinde medya modunu etkinleştir"
 
 msgid "Box-Skin-LCD Enable On-Mode"
-msgstr ""
+msgstr "Cihaz teması LCD'sinde açık modunu etkinleştir"
 
 msgid "Box-Skin-LCD Offset"
-msgstr "Box-Skin-LCD Telafi etmek"
+msgstr "Cihaz teması LCD kaydırması"
 
 msgid "C"
 msgstr "C"
 
 msgid "C + rpm"
-msgstr ""
+msgstr "C + dev/dk"
 
 msgid "C + rpm/2"
-msgstr ""
+msgstr "C + dev/dk/2"
 
 msgid "Calendar"
 msgstr "Takvim"
 
 msgid "Calendar Day Event Preview"
-msgstr ""
+msgstr "Takvimde günlük etkinlik önizlemesi"
 
 msgid "Calendar Line Thickness"
-msgstr ""
+msgstr "Takvim çizgi kalınlığı"
 
 msgid "Calendar Poll Interval"
-msgstr ""
+msgstr "Takvim denetleme aralığı"
 
 msgid "Calendar Saturday Color"
-msgstr ""
+msgstr "Takvim cumartesi rengi"
 
 msgid "Calendar Sunday Color"
-msgstr ""
+msgstr "Takvim pazar rengi"
 
 msgid "Calendar Timezone Correction"
-msgstr ""
+msgstr "Takvim saat dilimi düzeltmesi"
 
 msgid "Calendar Transparency"
-msgstr ""
+msgstr "Takvim saydamlığı"
 
 msgid "Calendar ics-Path [ok]>"
-msgstr ""
+msgstr "Takvim ICS yolu [OK]>"
 
 msgid "Calendar ics-URL"
-msgstr ""
+msgstr "Takvim ICS URL'si"
 
 msgid "Calendar planerFS"
-msgstr ""
+msgstr "planerFS takvimi"
 
 msgid "Cancel"
-msgstr "Iptal"
+msgstr "İptal"
 
 msgid "Channel"
-msgstr ""
+msgstr "Kanal"
 
 msgid "Channel+Title"
-msgstr ""
+msgstr "Kanal+başlık"
 
 msgid "Choose dir"
-msgstr ""
+msgstr "Dizin seçin"
 
 msgid "Choose file"
-msgstr ""
+msgstr "Dosya seçin"
 
 msgid "Choose font"
-msgstr "Yazo tipi seç"
+msgstr "Yazı tipi seçin"
 
 msgid "Clock"
 msgstr "Saat"
@@ -895,259 +894,257 @@ msgid "Clock 2"
 msgstr "Saat 2"
 
 msgid "Config Backup Path [ok]>"
-msgstr ""
+msgstr "Ayar yedeği yolu [OK]>"
 
 msgid "Config Restore All Settings"
-msgstr ""
+msgstr "Tüm ayarları geri yükle"
 
 msgid "Console normal"
-msgstr ""
+msgstr "Normal konsol"
 
 msgid "Corby@Pearl 128x128"
 msgstr "Corby@Pearl 128x128"
 
 msgid "Corner"
-msgstr ""
+msgstr "Köşe"
 
 msgid "Corner+Timeshift"
-msgstr ""
+msgstr "Köşe+zaman kaydırma"
 
 msgid "Coversearch"
-msgstr ""
+msgstr "Kapak araması"
 
 msgid "Crashlog"
-msgstr ""
+msgstr "Çökme günlüğü"
 
 msgid "Current"
-msgstr ""
+msgstr "Mevcut"
 
 msgid "Current Temperature"
-msgstr "şuanki sıcaklık"
+msgstr "Mevcut sıcaklık"
 
 msgid "Current Temperature (+C)"
-msgstr ""
+msgstr "Mevcut sıcaklık (+C)"
 
 msgid "Current Temperature (-C)"
-msgstr "şuanki sıcaklık (-C)"
+msgstr "Mevcut sıcaklık (-C)"
 
 msgid "DVB-T Signal-Quality Correction"
-msgstr ""
+msgstr "DVB-T sinyal kalitesi düzeltmesi"
 
 msgid "Date"
 msgstr "Tarih"
 
 msgid "Date+Time"
-msgstr "Tarih+Saat"
+msgstr "Tarih+saat"
 
 msgid "Date+Time+Weekday"
-msgstr "Tarih+Saat+Gün"
+msgstr "Tarih+saat+gün"
 
 msgid "Dates"
-msgstr ""
+msgstr "Etkinlikler"
 
 msgid "Dates 1 Line"
-msgstr ""
+msgstr "Etkinlikler, 1 satır"
 
 msgid "Dates 3 Lines"
-msgstr ""
+msgstr "Etkinlikler, 3 satır"
 
 msgid "Dates 5 Lines"
-msgstr ""
+msgstr "Etkinlikler, 5 satır"
 
 msgid "Dates 9 Lines"
-msgstr ""
+msgstr "Etkinlikler, 9 satır"
 
 msgid "Dates List"
-msgstr ""
+msgstr "Etkinlik listesi"
 
 msgid "Dates compact"
-msgstr ""
+msgstr "Kompakt etkinlikler"
 
 msgid "Dates compact 2 Lines"
-msgstr ""
+msgstr "Kompakt etkinlikler, 2 satır"
 
 msgid "Dates compact 3 Lines"
-msgstr ""
+msgstr "Kompakt etkinlikler, 3 satır"
 
 msgid "Dates compact no Icon"
-msgstr ""
+msgstr "Kompakt etkinlikler, simgesiz"
 
 msgid "Dates no Icon"
-msgstr ""
+msgstr "Simgesiz etkinlikler"
 
 msgid "Debug-Logging > /tmp/L4log.txt"
-msgstr ""
+msgstr "Hata ayıklama günlüğü > /tmp/L4log.txt"
 
 msgid "Delete"
 msgstr "Sil"
 
 msgid "Delete File?"
-msgstr "Dosya silinsin mi ?"
+msgstr "Dosya silinsin mi?"
 
-#, fuzzy
 msgid "Delete Logfile"
-msgstr "Dosya silinsin mi ?"
+msgstr "Günlük dosyasını sil"
 
 msgid "Display Delay [ms]"
-msgstr ""
+msgstr "Görüntüleme gecikmesi [ms]"
 
 msgid "Distance only"
-msgstr ""
+msgstr "Yalnızca uzaklık"
 
 msgid "Distance+Illumination"
-msgstr ""
+msgstr "Uzaklık+aydınlanma"
 
 msgid "Distance+Moonphase"
-msgstr ""
+msgstr "Uzaklık+Ay evresi"
 
 msgid "Double-button switches"
-msgstr ""
+msgstr "Çift basışla geçiş"
 
-#, fuzzy
 msgid "Download Logfile"
-msgstr "- İndirmek Örtmek"
+msgstr "Günlük dosyasını indir"
 
 msgid "E"
-msgstr ""
+msgstr "D"
 
 msgid "ENE"
-msgstr ""
+msgstr "DKD"
 
 msgid "EPG"
 msgstr "EPG"
 
 msgid "ESE"
-msgstr ""
+msgstr "DGD"
 
 msgid "Element"
-msgstr "Eleman"
+msgstr "Öğe"
 
 msgid "Event Icon Bar"
-msgstr ""
+msgstr "Program simge çubuğu"
 
 msgid "Exec"
-msgstr ""
+msgstr "Çalıştır"
 
 msgid "Extended"
-msgstr "Genişletilmiş"
+msgstr "Ayrıntılı"
 
 msgid "Extended (Short)"
-msgstr ""
+msgstr "Ayrıntılı (kısa)"
 
 msgid "Extended Description"
-msgstr ""
+msgstr "Ayrıntılı açıklama"
 
 msgid "External IP Address"
-msgstr ""
+msgstr "Harici IP adresi"
 
 msgid "Fastmode (2s)"
-msgstr "Hızlı (2sn)"
+msgstr "Hızlı mod (2 sn)"
 
 msgid "Filename"
 msgstr "Dosya adı"
 
 msgid "First Quarter"
-msgstr "Ilk çeyrek"
+msgstr "İlk dördün"
 
 msgid "Flaps Design Date"
-msgstr ""
+msgstr "Çevirmeli tarih tasarımı"
 
 msgid "Flaps Design Weekday"
-msgstr ""
+msgstr "Çevirmeli gün tasarımı"
 
 msgid "Font"
 msgstr "Yazı tipi"
 
 msgid "Font 1 [ok]>"
-msgstr "Yazı tipi 1 [ok]>"
+msgstr "Yazı tipi 1 [OK]>"
 
 msgid "Font 2 [ok]>"
-msgstr "Yazı tipi 2 [ok]>"
+msgstr "Yazı tipi 2 [OK]>"
 
 msgid "Font 3 [ok]>"
-msgstr "Yazı tipi 3 [ok]>"
+msgstr "Yazı tipi 3 [OK]>"
 
 msgid "Font 4 [ok]>"
-msgstr "Yazı tipi 4 [ok]>"
+msgstr "Yazı tipi 4 [OK]>"
 
 msgid "Font 5 [ok]>"
-msgstr "Yazı tipi 5 [ok]>"
+msgstr "Yazı tipi 5 [OK]>"
 
 msgid "Font global [ok]>"
-msgstr "Yazı tipi genel [ok]>"
+msgstr "Genel yazı tipi [OK]>"
 
 msgid "Frame"
-msgstr ""
+msgstr "Çerçeve"
 
 msgid "Frame x2"
-msgstr ""
+msgstr "Çerçeve x2"
 
 msgid "Fri"
-msgstr ""
+msgstr "Cum"
 
 msgid "FritzCall"
-msgstr ""
+msgstr "FritzCall"
 
 msgid "FritzCall Frame Picture [ok]>"
-msgstr ""
+msgstr "FritzCall çerçeve resmi [OK]>"
 
 msgid "FritzCall Number of Lines per Entry"
-msgstr ""
+msgstr "FritzCall girdi başına satır sayısı"
 
 msgid "FritzCall Number of List Entries"
-msgstr ""
+msgstr "FritzCall liste girdisi sayısı"
 
 msgid "FritzCall Number of Pictures"
-msgstr ""
+msgstr "FritzCall resim sayısı"
 
 msgid "FritzCall Picture Orientation"
-msgstr ""
+msgstr "FritzCall resim yönü"
 
 msgid "FritzCall Picture Path [ok]>"
-msgstr ""
+msgstr "FritzCall resim yolu [OK]>"
 
 msgid "FritzCall Picture Transparency"
-msgstr ""
+msgstr "FritzCall resim saydamlığı"
 
 msgid "FritzCall Pictures Search"
-msgstr ""
+msgstr "FritzCall resim araması"
 
 msgid "FritzCall Popup Color"
-msgstr ""
+msgstr "FritzCall bildirim rengi"
 
 msgid "FritzCall Popup LCD"
-msgstr ""
+msgstr "FritzCall bildirim LCD'si"
 
 msgid "FritzCall Popup-Time"
-msgstr ""
+msgstr "FritzCall bildirim süresi"
 
 msgid "FritzCall remove Calls after hours"
-msgstr ""
+msgstr "FritzCall aramalarını silme süresi (saat)"
 
 msgid "Full Moon"
-msgstr ""
+msgstr "Dolunay"
 
 msgid "GUI Restart is required"
-msgstr "Sistemin yeniden başlatılması gerekiyor"
+msgstr "Arayüzün yeniden başlatılması gerekiyor"
 
 msgid ""
 "GUI needs a restart to apply the changes.\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
-"Değişikliklerin etkili olması için sistemi yeniden başlatmalısınız.\n"
-"sistemi şimdi teniden başlatmak istiyor musunuz ?"
+"Değişikliklerin uygulanması için arayüzün yeniden başlatılması gerekiyor.\n"
+"Şimdi yeniden başlatılsın mı?"
 
 msgid "Global"
-msgstr ""
+msgstr "Genel"
 
 msgid "Google API"
-msgstr ""
+msgstr "Google API"
 
 msgid "Gradient"
-msgstr ""
+msgstr "Renk geçişi"
 
 msgid "HDD"
-msgstr ""
+msgstr "HDD"
 
 msgid "IMAP"
 msgstr "IMAP"
@@ -1156,70 +1153,70 @@ msgid "IMAP-SSL"
 msgstr "IMAP-SSL"
 
 msgid "IP seurity not supported by Box"
-msgstr ""
+msgstr "Alıcı IP güvenliğini desteklemiyor"
 
 msgid "Idle"
-msgstr ""
+msgstr "Bekleme"
 
 msgid "Illumination only"
-msgstr ""
+msgstr "Yalnızca aydınlanma"
 
 msgid "Illumination+Moonphase"
-msgstr ""
+msgstr "Aydınlanma+Ay evresi"
 
 msgid "Indoor"
-msgstr ""
+msgstr "İç ortam"
 
 msgid "Info"
-msgstr ""
+msgstr "Bilgi"
 
 msgid "Informations"
-msgstr ""
+msgstr "Bilgiler"
 
 msgid "Informations 2"
-msgstr ""
+msgstr "Bilgiler 2"
 
 msgid "Infos"
-msgstr ""
+msgstr "Bilgiler"
 
 msgid "Internal Box-Skin-LCD"
-msgstr "Internal Box-Skin-LCD"
+msgstr "Dahili cihaz teması LCD'si"
 
 msgid "Internal TFT-LCD 400x240"
-msgstr "Internal TFT-LCD 400x240"
+msgstr "Dahili TFT-LCD 400x240"
 
 msgid "Internal Vu+ Duo2 LCD 400x240"
-msgstr ""
+msgstr "Dahili Vu+ Duo2 LCD 400x240"
 
 msgid "JPG"
 msgstr "JPG"
 
 msgid "Javascript"
-msgstr ""
+msgstr "JavaScript"
 
 msgid "Javascript no Refresh"
-msgstr ""
+msgstr "JavaScript, yenilemesiz"
 
 msgid "Key"
-msgstr ""
+msgstr "Tuş"
 
 msgid "Key for Screen Change"
-msgstr ""
+msgstr "Ekran değiştirme tuşu"
 
 msgid "Key for Screen On/Off"
-msgstr ""
+msgstr "Ekranı açma/kapatma tuşu"
 
 msgid "Knob"
-msgstr ""
+msgstr "Kadran"
 
 msgid "Knob+Value"
-msgstr ""
+msgstr "Kadran+değer"
 
 msgid "LCD 1"
 msgstr "LCD 1"
 
 msgid "LCD 1 Type"
-msgstr ""
+msgstr "LCD 1 türü"
 
 msgid "LCD 1+2"
 msgstr "LCD 1+2"
@@ -1231,13 +1228,13 @@ msgid "LCD 1+3"
 msgstr "LCD 1+3"
 
 msgid "LCD 1-3"
-msgstr ""
+msgstr "LCD 1-3"
 
 msgid "LCD 2"
 msgstr "LCD 2"
 
 msgid "LCD 2 Type"
-msgstr ""
+msgstr "LCD 2 türü"
 
 msgid "LCD 2+3"
 msgstr "LCD 2+3"
@@ -1246,240 +1243,239 @@ msgid "LCD 3"
 msgstr "LCD 3"
 
 msgid "LCD 3 Type"
-msgstr ""
+msgstr "LCD 3 türü"
 
 msgid "LCD Custom Height"
-msgstr ""
+msgstr "LCD özel yüksekliği"
 
 msgid "LCD Custom Height 2"
-msgstr ""
+msgstr "LCD özel yüksekliği 2"
 
 msgid "LCD Custom Width"
-msgstr ""
+msgstr "LCD özel genişliği"
 
 msgid "LCD Custom Width 2"
-msgstr ""
+msgstr "LCD özel genişliği 2"
 
 msgid "LCD Display"
-msgstr ""
+msgstr "LCD ekran"
 
 msgid "LCD Off when shutdown"
-msgstr ""
+msgstr "Kapanışta LCD'yi kapat"
 
 msgid "LCD4Linux"
-msgstr ""
+msgstr "LCD4Linux"
 
 msgid "LCD4linux"
-msgstr ""
+msgstr "LCD4linux"
 
 msgid "LCD4linux Display-Mode Idle"
-msgstr ""
+msgstr "LCD4linux bekleme ekranı modu"
 
 msgid "LCD4linux Display-Mode MediaPlayer"
-msgstr ""
+msgstr "LCD4linux medya oynatıcı ekranı modu"
 
 msgid "LCD4linux Display-Mode On"
-msgstr ""
+msgstr "LCD4linux açık ekran modu"
 
 msgid "LCD4linux Screen Switch"
-msgstr ""
+msgstr "LCD4linux ekran geçişi"
 
 msgid "LCD4linux Settings"
-msgstr ""
+msgstr "LCD4linux ayarları"
 
 msgid "LCD4linux enabled"
-msgstr ""
+msgstr "LCD4linux etkin"
 
 msgid "Last Quarter"
-msgstr "Son çeyrek"
+msgstr "Son dördün"
 
 msgid "Line"
-msgstr ""
+msgstr "Çizgi"
 
 msgid "List of Storage Devices"
-msgstr "Depolama Aygıtlarının Listesi"
+msgstr "Depolama cihazlarının listesi"
 
 msgid "Load Active Config-File"
-msgstr ""
+msgstr "Etkin yapılandırma dosyasını yükle"
 
-#, fuzzy
 msgid "Load Defaults / Empty Config"
-msgstr "varsayılanları tükle"
+msgstr "Varsayılanları / boş yapılandırmayı yükle"
 
 #, python-format
 msgid "Load File : %s"
-msgstr "Dosya yükle : %s"
+msgstr "Dosyayı yükle: %s"
 
 msgid "Load@1min"
-msgstr ""
+msgstr "Yük@1dk"
 
 msgid "Load@5min"
-msgstr ""
+msgstr "Yük@5dk"
 
 msgid "Logfile extensive"
-msgstr ""
+msgstr "Ayrıntılı günlük"
 
 msgid "Logfile normal"
-msgstr ""
+msgstr "Normal günlük"
 
 msgid "Long FastBackwardKey"
-msgstr ""
+msgstr "Geri sarma tuşuna uzun basış"
 
 msgid "Long FastBackwardKey Type 2"
-msgstr ""
+msgstr "Geri sarma tuşuna uzun basış, tür 2"
 
 msgid "Long FastForwardKey"
-msgstr ""
+msgstr "İleri sarma tuşuna uzun basış"
 
 msgid "Long FastForwardKey Type 2"
-msgstr ""
+msgstr "İleri sarma tuşuna uzun basış, tür 2"
 
 msgid "Long InfoKey"
-msgstr ""
+msgstr "INFO tuşuna uzun basış"
 
 msgid "MJPEG Cycle"
-msgstr ""
+msgstr "MJPEG döngüsü"
 
 msgid "MJPEG Header Mode"
-msgstr ""
+msgstr "MJPEG başlık modu"
 
 msgid "MJPEG Restart on Error"
-msgstr ""
+msgstr "Hatada MJPEG'yi yeniden başlat"
 
 msgid "MJPEG Stream"
-msgstr ""
+msgstr "MJPEG akışı"
 
 msgid "MJPEG Stream LCD 1 Port"
-msgstr ""
+msgstr "MJPEG akışı LCD 1 bağlantı noktası"
 
 msgid "MJPEG Stream LCD 1 Virtual Brightness"
-msgstr "- LCD 1 Sanal Parlaklık"
+msgstr "MJPEG akışı LCD 1 sanal parlaklığı"
 
 msgid "MJPEG Stream LCD 1 enable"
-msgstr ""
+msgstr "MJPEG akışını LCD 1 için etkinleştir"
 
 msgid "MJPEG Stream LCD 2 Port"
-msgstr ""
+msgstr "MJPEG akışı LCD 2 bağlantı noktası"
 
 msgid "MJPEG Stream LCD 2 Virtual Brightness"
-msgstr "- LCD 2 Sanal Parlaklık"
+msgstr "MJPEG akışı LCD 2 sanal parlaklığı"
 
 msgid "MJPEG Stream LCD 2 enable"
-msgstr ""
+msgstr "MJPEG akışını LCD 2 için etkinleştir"
 
 msgid "MJPEG Stream LCD 3 Port"
-msgstr ""
+msgstr "MJPEG akışı LCD 3 bağlantı noktası"
 
 msgid "MJPEG Stream LCD 3 Virtual Brightness"
-msgstr "- LCD 3 Sanal Parlaklık"
+msgstr "MJPEG akışı LCD 3 sanal parlaklığı"
 
 msgid "MJPEG Stream LCD 3 enable"
-msgstr ""
+msgstr "MJPEG akışını LCD 3 için etkinleştir"
 
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 msgid "MUTE or defined Keys"
-msgstr ""
+msgstr "Sessiz veya atanmış tuşlar"
 
 msgid "Mail"
-msgstr ""
+msgstr "E-posta"
 
 msgid "Mail 1 Connect"
-msgstr ""
+msgstr "E-posta 1 bağlantısı"
 
 msgid "Mail 1 Password"
-msgstr ""
+msgstr "E-posta 1 parolası"
 
 msgid "Mail 1 Server"
-msgstr ""
+msgstr "E-posta 1 sunucusu"
 
 msgid "Mail 1 [Displayname:]Username"
-msgstr ""
+msgstr "E-posta 1 [görünen ad:]kullanıcı adı"
 
 msgid "Mail 2 Connect"
-msgstr ""
+msgstr "E-posta 2 bağlantısı"
 
 msgid "Mail 2 Password"
-msgstr ""
+msgstr "E-posta 2 parolası"
 
 msgid "Mail 2 Server"
-msgstr ""
+msgstr "E-posta 2 sunucusu"
 
 msgid "Mail 2 [Displayname:]Username"
-msgstr ""
+msgstr "E-posta 2 [görünen ad:]kullanıcı adı"
 
 msgid "Mail 3 Connect"
-msgstr ""
+msgstr "E-posta 3 bağlantısı"
 
 msgid "Mail 3 Password"
-msgstr ""
+msgstr "E-posta 3 parolası"
 
 msgid "Mail 3 Server"
-msgstr ""
+msgstr "E-posta 3 sunucusu"
 
 msgid "Mail 3 [Displayname:]Username"
-msgstr ""
+msgstr "E-posta 3 [görünen ad:]kullanıcı adı"
 
 msgid "Mail 4 Connect"
-msgstr ""
+msgstr "E-posta 4 bağlantısı"
 
 msgid "Mail 4 Password"
-msgstr ""
+msgstr "E-posta 4 parolası"
 
 msgid "Mail 4 Server"
-msgstr ""
+msgstr "E-posta 4 sunucusu"
 
 msgid "Mail 4 [Displayname:]Username"
-msgstr ""
+msgstr "E-posta 4 [görünen ad:]kullanıcı adı"
 
 msgid "Mail 5 Connect"
-msgstr ""
+msgstr "E-posta 5 bağlantısı"
 
 msgid "Mail 5 Password"
-msgstr ""
+msgstr "E-posta 5 parolası"
 
 msgid "Mail 5 Server"
-msgstr ""
+msgstr "E-posta 5 sunucusu"
 
 msgid "Mail 5 [Displayname:]Username"
-msgstr ""
+msgstr "E-posta 5 [görünen ad:]kullanıcı adı"
 
 msgid "Mail Hide Mailadress"
-msgstr ""
+msgstr "E-posta adresini gizle"
 
 msgid "Mail IMAP limit to last days"
-msgstr ""
+msgstr "IMAP e-postalarını son günlerle sınırla"
 
 msgid "Mail Poll Interval"
-msgstr ""
+msgstr "E-posta denetleme aralığı"
 
 msgid "Mail Show Date"
-msgstr ""
+msgstr "E-posta tarihini göster"
 
 msgid "Mail Show Empty Mailboxes"
-msgstr ""
+msgstr "Boş posta kutularını göster"
 
 msgid "Media"
-msgstr ""
+msgstr "Medya"
 
 msgid "Memory available"
-msgstr "Kullanılabilir hafıza"
+msgstr "Kullanılabilir bellek"
 
 msgid "Memory free"
-msgstr "Boş hafıza"
+msgstr "Boş bellek"
 
 msgid "Meteo URL"
-msgstr ""
+msgstr "Meteo URL'si"
 
 msgid "Meteo-Weather Station"
-msgstr ""
+msgstr "Meteo hava istasyonu"
 
 msgid "Mini-EPG"
-msgstr ""
+msgstr "Mini EPG"
 
 msgid "Mode"
-msgstr "mod"
+msgstr "Mod"
 
 msgid "Module 1"
 msgstr "Modül 1"
@@ -1539,7 +1535,7 @@ msgid "Module 4"
 msgstr "Modül 4"
 
 msgid "Module 4-6"
-msgstr "Modül4-6"
+msgstr "Modül 4-6"
 
 msgid "Module 5"
 msgstr "Modül 5"
@@ -1551,217 +1547,215 @@ msgid "Module 6"
 msgstr "Modül 6"
 
 msgid "Mon"
-msgstr ""
+msgstr "Pzt"
 
 msgid "Month"
 msgstr "Ay"
 
 msgid "Month+Header"
-msgstr ""
+msgstr "Ay+başlık"
 
 msgid "Moon-Icon-Path [ok]>"
-msgstr ""
+msgstr "Ay simgesi yolu [OK]>"
 
 msgid "Moonphase"
-msgstr ""
+msgstr "Ay evresi"
 
 msgid "Moonphase only"
-msgstr ""
+msgstr "Yalnızca Ay evresi"
 
 msgid "MusicCast"
-msgstr ""
+msgstr "MusicCast"
 
 msgid "MusicCast Cover"
-msgstr ""
+msgstr "MusicCast kapak resmi"
 
 msgid "MusicCast IP"
-msgstr ""
+msgstr "MusicCast IP adresi"
 
 msgid "MusicCast Ping Timeout [ms]"
-msgstr ""
+msgstr "MusicCast ping zaman aşımı [ms]"
 
 msgid "MusicCast Play Check"
-msgstr ""
+msgstr "MusicCast oynatma denetimi"
 
 msgid "MusicCast Refresh [s]"
-msgstr ""
+msgstr "MusicCast yenileme [sn]"
 
 msgid "MusicCast Server IP [optional]"
-msgstr ""
+msgstr "MusicCast sunucu IP adresi [isteğe bağlı]"
 
 msgid "Mute"
-msgstr ""
+msgstr "Sessiz"
 
 msgid "N"
-msgstr ""
+msgstr "K"
 
 msgid "NE"
-msgstr ""
+msgstr "KD"
 
 msgid "NNE"
-msgstr ""
+msgstr "KKD"
 
 msgid "NNW"
-msgstr ""
+msgstr "KKB"
 
 msgid "NW"
-msgstr ""
+msgstr "KB"
 
 msgid "Name"
-msgstr ""
+msgstr "Ad"
 
 msgid "Netatmo"
-msgstr ""
+msgstr "Netatmo"
 
 msgid "Netatmo 2"
-msgstr ""
+msgstr "Netatmo 2"
 
 msgid "Netatmo CO2 Indicator"
-msgstr ""
+msgstr "Netatmo CO2 göstergesi"
 
 msgid "Netatmo CO2 Max Range"
-msgstr ""
+msgstr "Netatmo CO2 üst sınırı"
 
 msgid "Netatmo CO2 Min Range"
-msgstr ""
+msgstr "Netatmo CO2 alt sınırı"
 
 msgid "Netatmo Comfort Indicator"
-msgstr ""
+msgstr "Netatmo konfor göstergesi"
 
 msgid "Network Check active"
-msgstr ""
+msgstr "Ağ denetimi etkin"
 
 msgid "New Moon"
 msgstr "Yeni ay"
 
 msgid "Next Program Info"
-msgstr ""
+msgstr "Sonraki program bilgisi"
 
 msgid "Next Timer Event"
-msgstr ""
+msgstr "Sonraki zamanlayıcı programı"
 
 msgid "No or wrong File selected, try a correct File first !"
 msgstr ""
+"Dosya seçilmedi veya yanlış dosya seçildi. Önce geçerli bir dosya seçin!"
 
 msgid "Normal"
 msgstr "Normal"
 
 msgid "Normal (5s)"
-msgstr "Normal (5sn)"
+msgstr "Normal (5 sn)"
 
 msgid "Now/Next"
-msgstr "şimdiki/sonraki"
+msgstr "Şimdi/sonra"
 
 msgid "OSCAM not running"
 msgstr "OSCAM çalışmıyor"
 
-#, fuzzy
 msgid "OSD"
-msgstr "TV+OSD"
+msgstr "OSD"
 
 msgid "OSD [display time]"
-msgstr ""
+msgstr "OSD [görüntüleme süresi]"
 
 msgid "Offline"
-msgstr "çevrimdışı"
+msgstr "Çevrimdışı"
 
 msgid "On"
-msgstr ""
+msgstr "Açık"
 
 msgid "On+Media+Standby"
-msgstr ""
+msgstr "Açık+medya+bekleme"
 
 msgid "Online"
-msgstr "çevrimiçi"
+msgstr "Çevrimiçi"
 
 msgid "Online [Ping]"
-msgstr ""
+msgstr "Çevrimiçi [ping]"
 
 msgid "Online+Offline"
-msgstr "çevrimiçi+çevrimdışı"
+msgstr "Çevrimiçi+çevrimdışı"
 
 msgid "Only New"
-msgstr ""
+msgstr "Yalnızca yeniler"
 
 msgid "Open-Meteo"
-msgstr ""
+msgstr "Open-Meteo"
 
 msgid "OpenWeatherMap"
-msgstr ""
+msgstr "OpenWeatherMap"
 
 msgid "Outdoor"
-msgstr ""
+msgstr "Dış ortam"
 
 msgid "PNG"
 msgstr "PNG"
 
 msgid "Parent Directory"
-msgstr ""
+msgstr "Üst dizin"
 
 msgid "Pearl (or compatible LCD) 240x320"
-msgstr "Pearl (or compatible LCD) 240x320"
+msgstr "Pearl (veya uyumlu LCD) 240x320"
 
 msgid "Pearl (or compatible LCD) 320x240"
-msgstr "Pearl (or compatible LCD) 320x240"
+msgstr "Pearl (veya uyumlu LCD) 320x240"
 
 msgid "Pearl (or compatible LCD) 480x320"
-msgstr "Pearl (or compatible LCD) 480x320"
+msgstr "Pearl (veya uyumlu LCD) 480x320"
 
-#, fuzzy
 msgid "Pearl (or compatible LCD) 800x480"
-msgstr "Pearl (or compatible LCD) 320x240"
+msgstr "Pearl (veya uyumlu LCD) 800x480"
 
 msgid "Picon"
-msgstr ""
+msgstr "Kanal logosu"
 
 msgid "Picon 2"
-msgstr ""
+msgstr "Kanal logosu 2"
 
 msgid "Picon+Channel"
-msgstr ""
+msgstr "Logo+kanal"
 
 msgid "Picon+Channel+Title"
-msgstr ""
+msgstr "Logo+kanal+başlık"
 
 msgid "Picon+Position below"
-msgstr ""
+msgstr "Logo+alt konum"
 
 msgid "Picon+Position left"
-msgstr ""
+msgstr "Logo+sol konum"
 
 msgid "Picon+Position right"
-msgstr ""
+msgstr "Logo+sağ konum"
 
 msgid "Picon+Timeshift"
-msgstr ""
+msgstr "Logo+zaman kaydırma"
 
 msgid "Picture"
-msgstr ""
+msgstr "Resim"
 
 msgid "Picture Changing Time"
-msgstr ""
+msgstr "Resim değiştirme süresi"
 
 msgid "Picture Directory Recursive"
-msgstr ""
+msgstr "Resim alt dizinlerini de tara"
 
 msgid "Picture Quality for Resizing"
-msgstr ""
+msgstr "Yeniden boyutlandırmada resim kalitesi"
 
 msgid "Picture Quick Update Time [s]"
-msgstr ""
+msgstr "Resim hızlı güncelleme süresi [sn]"
 
 msgid "Picture Sort"
-msgstr ""
+msgstr "Resim sıralaması"
 
 msgid "Picture Type [only Picture]"
-msgstr ""
+msgstr "Resim türü [yalnızca resim]"
 
-#, fuzzy
 msgid "Picture not available"
-msgstr "kullanılabilir hafıza"
+msgstr "Resim kullanılamıyor"
 
 msgid "Plug Tuner"
-msgstr ""
+msgstr "Takılı tuner"
 
 msgid "Pop3"
 msgstr "POP3"
@@ -1770,31 +1764,31 @@ msgid "Pop3-SSL"
 msgstr "POP3-SSL"
 
 msgid "Popup Text"
-msgstr ""
+msgstr "Bildirim metni"
 
 msgid "Popup-Text"
-msgstr ""
+msgstr "Bildirim metni"
 
 msgid "Position"
-msgstr ""
+msgstr "Konum"
 
 msgid "Program Info"
-msgstr ""
+msgstr "Program bilgisi"
 
 msgid "Program Info 2"
-msgstr ""
+msgstr "Program bilgisi 2"
 
 msgid "Program Name"
-msgstr ""
+msgstr "Program adı"
 
 msgid "Program Number"
-msgstr ""
+msgstr "Program numarası"
 
 msgid "Progress Bar"
-msgstr ""
+msgstr "İlerleme çubuğu"
 
 msgid "Provider"
-msgstr "Yayıncı"
+msgstr "Sağlayıcı"
 
 msgid "Radio"
 msgstr "Radyo"
@@ -1803,80 +1797,79 @@ msgid "Radio+Media"
 msgstr "Radyo+medya"
 
 msgid "Rain"
-msgstr ""
+msgstr "Yağmur"
 
 msgid "Recording"
-msgstr ""
+msgstr "Kayıt"
 
 msgid "Recording Picture [ok]>"
-msgstr ""
+msgstr "Kayıt resmi [OK]>"
 
 msgid "Rectangle 1"
-msgstr ""
+msgstr "Dikdörtgen 1"
 
 msgid "Rectangle 2"
-msgstr ""
+msgstr "Dikdörtgen 2"
 
 msgid "Reload"
-msgstr ""
+msgstr "Yeniden yükle"
 
 msgid "Remote Box"
-msgstr ""
+msgstr "Uzak alıcı"
 
 msgid "Remote Box 1 [Displayname:]IP/Name"
-msgstr ""
+msgstr "Uzak alıcı 1 [görünen ad:]IP/ad"
 
 msgid "Remote Box 2 [Displayname:]IP/Name"
-msgstr ""
+msgstr "Uzak alıcı 2 [görünen ad:]IP/ad"
 
 msgid "Remote Box 3 [Displayname:]IP/Name"
-msgstr ""
+msgstr "Uzak alıcı 3 [görünen ad:]IP/ad"
 
 msgid "Remote Box 4 [Displayname:]IP/Name"
-msgstr ""
+msgstr "Uzak alıcı 4 [görünen ad:]IP/ad"
 
 msgid "Remote Box 5 [Displayname:]IP/Name"
-msgstr ""
+msgstr "Uzak alıcı 5 [görünen ad:]IP/ad"
 
 msgid "Remote Box Poll every Minutes"
-msgstr ""
+msgstr "Uzak alıcı denetleme aralığı (dakika)"
 
 msgid "Remote Box Timer"
-msgstr ""
+msgstr "Uzak alıcı zamanlayıcısı"
 
 msgid "Remote Box Timer Poll every Minutes"
-msgstr ""
+msgstr "Uzak alıcı zamanlayıcı denetleme aralığı (dakika)"
 
 msgid "Remote Box Timer [Displayname:]IP/Name"
-msgstr ""
+msgstr "Uzak alıcı zamanlayıcısı [görünen ad:]IP/ad"
 
 msgid "Restart Displays"
-msgstr ""
+msgstr "Ekranları yeniden başlat"
 
 msgid "Restart GUI now?"
-msgstr "şimdi sistemi yeniden başlat ?"
+msgstr "Arayüz şimdi yeniden başlatılsın mı?"
 
 msgid "Restore Config"
-msgstr ""
+msgstr "Ayarları geri yükle"
 
 msgid "S"
-msgstr ""
+msgstr "G"
 
 msgid "SE"
-msgstr ""
+msgstr "GD"
 
 msgid "SSE"
-msgstr ""
+msgstr "GGD"
 
 msgid "SSW"
-msgstr ""
+msgstr "GGB"
 
 msgid "SW"
-msgstr ""
+msgstr "GB"
 
-#, fuzzy
 msgid "Samsung SPF-1000P 1024x600"
-msgstr "Samsung SPF-105P 1024x600 "
+msgstr "Samsung SPF-1000P 1024x600"
 
 msgid "Samsung SPF-105P 1024x600"
 msgstr "Samsung SPF-105P 1024x600"
@@ -1885,7 +1878,7 @@ msgid "Samsung SPF-107H 1024x600"
 msgstr "Samsung SPF-107H 1024x600"
 
 msgid "Samsung SPF-107H old 1024x600"
-msgstr "Samsung SPF-107H old 1024x600"
+msgstr "Samsung SPF-107H eski 1024x600"
 
 msgid "Samsung SPF-700T 800x600"
 msgstr "Samsung SPF-700T 800x600"
@@ -1896,9 +1889,8 @@ msgstr "Samsung SPF-72H 800x480"
 msgid "Samsung SPF-75H/76H 800x480"
 msgstr "Samsung SPF-75H/76H 800x480"
 
-#, fuzzy
 msgid "Samsung SPF-800P 800x480"
-msgstr "Samsung SPF-87H 800x480"
+msgstr "Samsung SPF-800P 800x480"
 
 msgid "Samsung SPF-83H 800x600"
 msgstr "Samsung SPF-83H 800x600"
@@ -1913,10 +1905,10 @@ msgid "Samsung SPF-87H 800x480"
 msgstr "Samsung SPF-87H 800x480"
 
 msgid "Samsung SPF-87H old 800x480"
-msgstr "Samsung SPF-87H old 800x480"
+msgstr "Samsung SPF-87H eski 800x480"
 
 msgid "Sat"
-msgstr ""
+msgstr "Cmt"
 
 msgid "Satellite"
 msgstr "Uydu"
@@ -1925,14 +1917,14 @@ msgid "Save"
 msgstr "Kaydet"
 
 msgid "Save Config"
-msgstr ""
+msgstr "Ayarları kaydet"
 
 #, python-format
 msgid "Save Config to File... (%s)"
-msgstr ""
+msgstr "Ayarları dosyaya kaydet... (%s)"
 
 msgid "Save as Picture for WebIF"
-msgstr ""
+msgstr "WebIF için resim olarak kaydet"
 
 msgid "Screen"
 msgstr "Ekran"
@@ -1941,7 +1933,7 @@ msgid "Screen 1"
 msgstr "Ekran 1"
 
 msgid "Screen 1 Changing Time"
-msgstr ""
+msgstr "1. ekran geçiş süresi"
 
 msgid "Screen 1+2"
 msgstr "Ekran 1+2"
@@ -2004,7 +1996,7 @@ msgid "Screen 2+4"
 msgstr "Ekran 2+4"
 
 msgid "Screen 2+4+6+8"
-msgstr "Ekran 2+4+6+"
+msgstr "Ekran 2+4+6+8"
 
 msgid "Screen 3"
 msgstr "Ekran 3"
@@ -2018,9 +2010,8 @@ msgstr "Ekran 4"
 msgid "Screen 5"
 msgstr "Ekran 5"
 
-#, fuzzy
 msgid "Screen 5-8"
-msgstr "Ekran 5-9"
+msgstr "Ekran 5-8"
 
 msgid "Screen 5-9"
 msgstr "Ekran 5-9"
@@ -2038,266 +2029,262 @@ msgid "Screen 9"
 msgstr "Ekran 9"
 
 msgid "Screen Switch Select - LCD"
-msgstr ""
+msgstr "Geçiş seçimi - LCD"
 
 msgid "Screen Switch Select - Screen"
-msgstr ""
+msgstr "Geçiş seçimi - ekran"
 
 msgid "Screens used for Changing"
-msgstr ""
+msgstr "Geçişte kullanılacak ekranlar"
 
 msgid "Service search first"
-msgstr ""
+msgstr "Önce kanal ara"
 
-#, fuzzy
 msgid "Set Global >>"
-msgstr "yazı tipi genel [ok]>"
+msgstr "Genel ayarlar >>"
 
 msgid "Set Idle >>"
-msgstr ""
+msgstr "Bekleme ayarları >>"
 
 msgid "Set Media >>"
-msgstr ""
+msgstr "Medya ayarları >>"
 
 msgid "Set On >>"
-msgstr ""
+msgstr "Açık mod ayarları >>"
 
 msgid "Shadow Edges"
-msgstr ""
+msgstr "Gölge kenarları"
 
 msgid "Short"
-msgstr "Küçük"
+msgstr "Kısa"
 
 msgid "Short (Extended)"
-msgstr ""
+msgstr "Kısa (ayrıntılı)"
 
 msgid "Short+Extended"
-msgstr ""
+msgstr "Kısa+ayrıntılı"
 
 msgid "Show"
 msgstr "Göster"
 
 msgid "Show 'no ....' Messages"
-msgstr ""
+msgstr "\"... yok\" mesajlarını göster"
 
 msgid "Show Cover"
-msgstr ""
+msgstr "Kapağı göster"
 
 msgid "Show Crash Corner"
-msgstr ""
+msgstr "Çökme göstergesini köşede göster"
 
 msgid "Show Externals"
-msgstr ""
+msgstr "Harici öğeleri göster"
 
 msgid "Show HTTP Text"
-msgstr ""
+msgstr "HTTP metnini göster"
 
 msgid "Show Picture"
-msgstr ""
+msgstr "Resim göster"
 
 msgid "Show Picture 2"
-msgstr ""
+msgstr "Resim 2'yi göster"
 
 msgid "Show Picture 3"
-msgstr ""
+msgstr "Resim 3'ü göster"
 
 msgid "Show Picture 4"
-msgstr ""
+msgstr "Resim 4'ü göster"
 
 msgid "Show Text 1"
-msgstr ""
+msgstr "Metin 1'i göster"
 
 msgid "Show Text 2"
-msgstr ""
+msgstr "Metin 2'yi göster"
 
 msgid "Show Textfile"
-msgstr ""
+msgstr "Metin dosyasını göster"
 
 msgid "Show Textfile 2"
-msgstr ""
+msgstr "Metin dosyası 2'yi göster"
 
 msgid "Show Textfile 3"
-msgstr ""
+msgstr "Metin dosyası 3'ü göster"
 
 msgid "Show ecm.info"
-msgstr "ecm.info 'yu göster"
+msgstr "ecm.info dosyasını göster"
 
 msgid "Show oscam.lcd"
-msgstr "oscam.lcd 'yi göster"
+msgstr "oscam.lcd dosyasını göster"
 
 msgid "Signal Quality Bar"
-msgstr ""
+msgstr "Sinyal kalitesi çubuğu"
 
 msgid "Sonos"
-msgstr ""
+msgstr "Sonos"
 
 msgid "Sonos IP"
-msgstr ""
+msgstr "Sonos IP adresi"
 
 msgid "Sonos Ping Timeout [ms]"
-msgstr ""
+msgstr "Sonos ping zaman aşımı [ms]"
 
 msgid "Sonos Play Check"
-msgstr ""
+msgstr "Sonos oynatma denetimi"
 
 msgid "Sonos Refresh [s]"
-msgstr ""
+msgstr "Sonos yenileme [sn]"
 
 msgid "Standby"
-msgstr ""
+msgstr "Bekleme"
 
 msgid "Storage-Devices"
-msgstr "Depolama aygıtları"
+msgstr "Depolama cihazları"
 
-#, fuzzy
 msgid "Storage-Devices: Color Back"
-msgstr "depolama aygıtları"
+msgstr "Depolama cihazları: arka plan rengi"
 
-#, fuzzy
 msgid "Storage-Devices: Color Bar"
-msgstr "depolama aygıtları"
+msgstr "Depolama cihazları: çubuk rengi"
 
-#, fuzzy
 msgid "Storage-Devices: Color Full"
-msgstr "depolama aygıtları"
+msgstr "Depolama cihazları: dolu alan rengi"
 
 msgid "Storage-Devices: Force Read"
-msgstr ""
+msgstr "Depolama cihazları: okumayı zorla"
 
 msgid "Stutter TV"
-msgstr ""
+msgstr "TV görüntüsünde takılma"
 
 msgid "Sun"
-msgstr ""
+msgstr "Paz"
 
 msgid "Sunrise"
-msgstr ""
+msgstr "Gün doğumu"
 
 msgid "Switch FrameBuffer [if possible]"
-msgstr ""
+msgstr "Kare arabelleğini değiştir [mümkünse]"
 
 msgid "TV"
 msgstr "TV"
 
 msgid "TV (full)"
-msgstr ""
+msgstr "TV (tam)"
 
 msgid "TV+OSD"
 msgstr "TV+OSD"
 
 msgid "TV+Radio"
-msgstr "TV+Radyo"
+msgstr "TV+radyo"
 
 msgid "TV+Radio+Media"
-msgstr "TV+Radyo+Medya"
+msgstr "TV+radyo+medya"
 
 msgid "Temperature"
 msgstr "Sıcaklık"
 
 msgid "Temperature+Co2"
-msgstr ""
+msgstr "Sıcaklık+CO2"
 
 msgid "Temperature+Co2+Pressure"
-msgstr ""
+msgstr "Sıcaklık+CO2+basınç"
 
 msgid "Temperature+Humidity"
-msgstr "Sıcaklık+Nem"
+msgstr "Sıcaklık+nem"
 
 msgid "Threads per LCD"
-msgstr ""
+msgstr "LCD başına iş parçacığı"
 
 msgid "Thur"
-msgstr ""
+msgstr "Per"
 
 msgid "Time"
 msgstr "Saat"
 
 msgid "Time+Duration+Info"
-msgstr ""
+msgstr "Saat+süre+bilgi"
 
 msgid "Time+Info"
-msgstr ""
+msgstr "Saat+bilgi"
 
 msgid "Time+Length+Info"
-msgstr ""
+msgstr "Saat+uzunluk+bilgi"
 
 msgid "Time+Weekday"
-msgstr "Saat+Gün"
+msgstr "Saat+gün"
 
 msgid "Timing ! calc all Times to Time/5*2 in Fastmode"
-msgstr ""
+msgstr "Zamanlama! Hızlı modda tüm süreler süre/5*2 olarak hesaplanır"
 
 msgid "Title"
-msgstr ""
+msgstr "Başlık"
 
 msgid "Tue"
-msgstr ""
+msgstr "Sal"
 
 msgid "Tuner"
-msgstr ""
+msgstr "Tuner"
 
 msgid "Tuner Color"
-msgstr ""
+msgstr "Tuner rengi"
 
 msgid "Tuner Color Active"
-msgstr ""
+msgstr "Etkin tuner rengi"
 
 msgid "Tuner Color On"
-msgstr ""
+msgstr "Açık tuner rengi"
 
 msgid "USB Tuner"
-msgstr ""
+msgstr "USB tuner"
 
 msgid "Underline"
-msgstr ""
+msgstr "Alt çizgi"
 
 msgid "Underline 2"
-msgstr ""
+msgstr "Alt çizgi 2"
 
 msgid "Used Tuner"
-msgstr ""
+msgstr "Kullanılan tuner"
 
 msgid "Volume"
-msgstr ""
+msgstr "Ses düzeyi"
 
 msgid "W"
-msgstr ""
+msgstr "B"
 
 msgid "WNW"
-msgstr ""
+msgstr "BKB"
 
 msgid "WSW"
-msgstr ""
+msgstr "BGB"
 
 msgid "WWW ApiKey from cloudconvert.org"
-msgstr ""
+msgstr "cloudconvert.org WWW API anahtarı"
 
 msgid "WWW ApiKey from convertapi.com"
-msgstr ""
+msgstr "convertapi.com WWW API anahtarı"
 
 msgid "WWW Converter"
-msgstr ""
+msgstr "WWW dönüştürücü"
 
 msgid "WWW Converter Poll Interval"
-msgstr ""
+msgstr "WWW dönüştürücü denetleme aralığı"
 
 msgid "WWW Converter Usage"
-msgstr ""
+msgstr "WWW dönüştürücü kullanımı"
 
 msgid "WWW-Internet Converter"
-msgstr ""
+msgstr "WWW internet dönüştürücüsü"
 
 msgid "Waning Crescent"
-msgstr ""
+msgstr "Küçülen hilal"
 
 msgid "Waning Moon"
-msgstr ""
+msgstr "Küçülen ay"
 
 msgid "Waxing Crescent"
-msgstr ""
+msgstr "Büyüyen hilal"
 
 msgid "Waxing Moon"
-msgstr ""
+msgstr "Büyüyen ay"
 
 msgid "Weather"
 msgstr "Hava durumu"
@@ -2306,91 +2293,91 @@ msgid "Weather 2"
 msgstr "Hava durumu 2"
 
 msgid "Weather API"
-msgstr ""
+msgstr "Hava durumu API'si"
 
 msgid "Weather API-ID Key WeatherUnlocked"
-msgstr ""
+msgstr "WeatherUnlocked API kimliği ve anahtarı"
 
 msgid "Weather API-Key OpenWeatherMap"
-msgstr ""
+msgstr "OpenWeatherMap API anahtarı"
 
 msgid "Weather City"
-msgstr ""
+msgstr "Hava durumu şehri"
 
 msgid "Weather City 2"
-msgstr ""
+msgstr "Hava durumu şehri 2"
 
 msgid "Weather Extra Infos"
-msgstr ""
+msgstr "Hava durumu ek bilgileri"
 
 msgid "Weather High Temperature Color"
-msgstr ""
+msgstr "Yüksek sıcaklık rengi"
 
 msgid "Weather Lines"
-msgstr ""
+msgstr "Hava durumu satırları"
 
 msgid "Weather Low Temperature Color"
-msgstr ""
+msgstr "Düşük sıcaklık rengi"
 
 msgid "Weather Rain Chance"
-msgstr ""
+msgstr "Yağış olasılığı"
 
 msgid "Weather Transparency"
-msgstr ""
+msgstr "Hava durumu saydamlığı"
 
 msgid "Weather Trendarrows"
-msgstr ""
+msgstr "Hava durumu eğilim okları"
 
 msgid "Weather Wind Info Lines"
-msgstr ""
+msgstr "Rüzgâr bilgisi satırları"
 
 msgid "Weather Wind speed unit"
-msgstr ""
+msgstr "Rüzgâr hızı birimi"
 
 msgid "Weather-Icon Zoom"
-msgstr ""
+msgstr "Hava durumu simgesi yakınlaştırması"
 
 msgid "Weather-Icon-Path [ok]>"
-msgstr ""
+msgstr "Hava durumu simgesi yolu [OK]>"
 
 msgid "WeatherUnlocked"
 msgstr "WeatherUnlocked"
 
 msgid "WebIF"
-msgstr ""
+msgstr "WebIF"
 
 msgid "WebIF Design"
-msgstr ""
+msgstr "WebIF tasarımı"
 
 msgid "WebIF IP Allow"
-msgstr ""
+msgstr "WebIF izin verilen IP adresleri"
 
 msgid "WebIF IP Deny"
-msgstr ""
+msgstr "WebIF engellenen IP adresleri"
 
 msgid "WebIF Init Delay"
-msgstr ""
+msgstr "WebIF başlatma gecikmesi"
 
 msgid "WebIF Refresh Type"
-msgstr ""
+msgstr "WebIF yenileme türü"
 
 msgid "WebIF Refresh [s]"
-msgstr ""
+msgstr "WebIF yenileme [sn]"
 
 msgid "Wed"
-msgstr ""
+msgstr "Çar"
 
 msgid "Week"
 msgstr "Hafta"
 
 msgid "Week+Header"
-msgstr ""
+msgstr "Hafta+başlık"
 
 msgid "Weekday"
-msgstr "Gün"
+msgstr "Haftanın günü"
 
 msgid "Wind"
-msgstr ""
+msgstr "Rüzgâr"
 
 msgid "all"
 msgstr "tümü"
@@ -2399,19 +2386,19 @@ msgid "alphabetic"
 msgstr "alfabetik"
 
 msgid "alternative Copy-Mode/DM800hd (24bit)"
-msgstr ""
+msgstr "alternatif kopyalama modu/DM800hd (24 bit)"
 
 msgid "always"
-msgstr ""
+msgstr "her zaman"
 
 msgid "any Key"
-msgstr ""
+msgstr "herhangi bir tuş"
 
 msgid "aquamarine"
-msgstr "deniz yeşili"
+msgstr "akuamarin"
 
 msgid "better/slow"
-msgstr ""
+msgstr "yüksek kalite/yavaş"
 
 msgid "black"
 msgstr "siyah"
@@ -2420,44 +2407,44 @@ msgid "blue"
 msgstr "mavi"
 
 msgid "blueviolet"
-msgstr ""
+msgstr "mavi-mor"
 
 msgid "brown"
 msgstr "kahverengi"
 
 msgid "cache + adjustment (high quality, slow)"
-msgstr ""
+msgstr "önbellek + uyarlama (yüksek kalite, yavaş)"
 
 msgid "cache + adjustment (low quality, fast)"
-msgstr ""
+msgstr "önbellek + uyarlama (düşük kalite, hızlı)"
 
 msgid "cadetblue"
-msgstr ""
+msgstr "gri-mavi"
 
 msgid "center"
 msgstr "orta"
 
 msgid "cloudconvert.org"
-msgstr ""
+msgstr "cloudconvert.org"
 
 msgid "convertapi.com"
-msgstr ""
+msgstr "convertapi.com"
 
 msgid "copy to Idle"
-msgstr ""
+msgstr "bekleme moduna kopyala"
 
 msgid "copy to Media"
-msgstr ""
+msgstr "medya moduna kopyala"
 
 msgid "copy to On"
-msgstr ""
+msgstr "açık moda kopyala"
 
 msgid "cornflowerblue"
-msgstr ""
+msgstr "peygamberçiçeği mavisi"
 
 #, python-format
 msgid "currently set : %s"
-msgstr ""
+msgstr "mevcut ayar: %s"
 
 msgid "cyan"
 msgstr "camgöbeği"
@@ -2478,16 +2465,16 @@ msgid "darkred"
 msgstr "koyu kırmızı"
 
 msgid "db"
-msgstr ""
+msgstr "dB"
 
 msgid "db + %"
-msgstr ""
+msgstr "dB + %"
 
 msgid "db + % + BER"
-msgstr ""
+msgstr "dB + % + BER"
 
 msgid "db + BER"
-msgstr ""
+msgstr "dB + BER"
 
 msgid "deeppink"
 msgstr "koyu pembe"
@@ -2496,13 +2483,13 @@ msgid "deleted"
 msgstr "silindi"
 
 msgid "disabled"
-msgstr ""
+msgstr "devre dışı"
 
 msgid "full Screen"
-msgstr "tam Ekran"
+msgstr "tam ekran"
 
 msgid "gold"
-msgstr "altın rengi"
+msgstr "altın"
 
 msgid "gray"
 msgstr "gri"
@@ -2511,28 +2498,28 @@ msgid "green"
 msgstr "yeşil"
 
 msgid "greenyellow"
-msgstr "yeşil sarı"
+msgstr "yeşil-sarı"
 
 msgid "half left"
-msgstr ""
+msgstr "sol yarı"
 
 msgid "half right"
-msgstr ""
+msgstr "sağ yarı"
 
 msgid "horizontally"
 msgstr "yatay"
 
 msgid "indianred"
-msgstr "hint kırmızısı"
+msgstr "Hint kırmızısı"
 
 msgid "indigo"
-msgstr "lacivert"
+msgstr "çivit mavisi"
 
 msgid "km/h"
-msgstr ""
+msgstr "km/sa"
 
 msgid "lawngreen"
-msgstr "çim yeşili"
+msgstr "çimen yeşili"
 
 msgid "left"
 msgstr "sol"
@@ -2544,308 +2531,307 @@ msgid "lightgreen"
 msgstr "açık yeşil"
 
 msgid "lime"
-msgstr ""
+msgstr "parlak yeşil"
 
 msgid "low/fast (Picture only)"
-msgstr ""
+msgstr "düşük kalite/hızlı (yalnızca resim)"
 
 msgid "low/fast (all)"
-msgstr ""
+msgstr "düşük kalite/hızlı (tümü)"
 
 msgid "m/s"
-msgstr ""
+msgstr "m/sn"
 
 msgid "magenta"
-msgstr "eflatun"
+msgstr "macenta"
 
 msgid "moccasin"
-msgstr ""
+msgstr "açık şeftali"
 
 msgid "no"
-msgstr ""
+msgstr "hayır"
 
 msgid "no Bar"
-msgstr ""
+msgstr "çubuk yok"
 
 msgid "no Calendar"
-msgstr ""
+msgstr "takvim yok"
 
 msgid "no Calls"
-msgstr ""
+msgstr "arama yok"
 
 msgid "no Dates"
-msgstr ""
+msgstr "etkinlik yok"
 
 msgid "no Frame"
-msgstr ""
+msgstr "çerçeve yok"
 
 msgid "no Icon"
-msgstr ""
+msgstr "simge yok"
 
 msgid "no Icon, with Targetnumber"
-msgstr ""
+msgstr "simgesiz, hedef numarayla"
 
 msgid "no LCD1 Picture-File"
-msgstr ""
+msgstr "LCD1 resim dosyası yok"
 
 msgid "no LCD2 Picture-File"
-msgstr ""
+msgstr "LCD2 resim dosyası yok"
 
 msgid "no LCD3 Picture-File"
-msgstr ""
+msgstr "LCD3 resim dosyası yok"
 
 msgid "no Netatmo-Plugin installed"
-msgstr ""
+msgstr "Netatmo eklentisi kurulu değil"
 
 msgid "no Timer"
-msgstr ""
+msgstr "zamanlayıcı yok"
 
 msgid "no cache + no adjustment"
-msgstr ""
+msgstr "önbellek yok + uyarlama yok"
 
 msgid "no total Timer"
-msgstr ""
+msgstr "toplam zamanlayıcı yok"
 
 msgid "normal"
 msgstr "normal"
 
 msgid "normal (full)"
-msgstr ""
+msgstr "normal (tam)"
 
 msgid "off"
 msgstr "kapalı"
 
 msgid "olive"
-msgstr "zeytinrengi"
+msgstr "zeytin yeşili"
 
 msgid "on"
-msgstr ""
+msgstr "açık"
 
 msgid "one line"
-msgstr ""
+msgstr "tek satır"
 
 msgid "only Picture 1024x600"
-msgstr ""
+msgstr "yalnızca resim 1024x600"
 
 msgid "only Picture 320x240"
-msgstr ""
+msgstr "yalnızca resim 320x240"
 
 msgid "only Picture 800x480"
-msgstr ""
+msgstr "yalnızca resim 800x480"
 
 msgid "only Picture 800x600"
-msgstr ""
+msgstr "yalnızca resim 800x600"
 
 msgid "only Picture Custom Size"
-msgstr ""
+msgstr "yalnızca resim, özel boyut"
 
 msgid "only Picture Custom Size 2"
-msgstr ""
+msgstr "yalnızca resim, özel boyut 2"
 
 msgid "only Progress Bar"
-msgstr ""
+msgstr "yalnızca ilerleme çubuğu"
 
 msgid "only use Timer"
-msgstr ""
+msgstr "yalnızca kullanılan zamanlayıcı"
 
 msgid "orange"
 msgstr "turuncu"
 
 msgid "orangered"
-msgstr "turuncukırmızı"
+msgstr "turuncu-kırmızı"
 
-#, fuzzy
 msgid "other"
-msgstr "Hava durumu"
+msgstr "diğer"
 
 msgid "random"
-msgstr "rasgele"
+msgstr "rastgele"
 
 msgid "red"
 msgstr "kırmızı"
 
 msgid "reduced"
-msgstr ""
+msgstr "azaltılmış"
 
 msgid "right"
 msgstr "sağ"
 
 msgid "rosybrown"
-msgstr ""
+msgstr "gül kahverengisi"
 
 msgid "rpm"
-msgstr ""
+msgstr "dev/dk"
 
 msgid "rpm/2"
-msgstr ""
+msgstr "dev/dk/2"
 
 msgid "same color"
-msgstr ""
+msgstr "aynı renk"
 
 msgid "sandybrown"
-msgstr ""
+msgstr "kum kahverengisi"
 
 msgid "set Settings"
-msgstr ""
+msgstr "ayarları uygula"
 
 msgid "show run"
-msgstr ""
+msgstr "çalışanları göster"
 
 msgid "show run+sleep"
-msgstr ""
+msgstr "çalışanları+bekleyenleri göster"
 
 msgid "show total Timer"
-msgstr ""
+msgstr "toplam zamanlayıcıları göster"
 
 msgid "silver"
 msgstr "gümüş"
 
 msgid "slategray"
-msgstr "füme"
+msgstr "arduvaz grisi"
 
 msgid "stop Screencycle"
-msgstr ""
+msgstr "ekran döngüsünü durdur"
 
 msgid "tomato"
-msgstr ""
+msgstr "domates kırmızısı"
 
 msgid "trimmed (black)"
-msgstr ""
+msgstr "kırpılmış (siyah)"
 
 msgid "trimmed (transparent)"
-msgstr ""
+msgstr "kırpılmış (saydam)"
 
 msgid "two lines"
-msgstr ""
+msgstr "iki satır"
 
 msgid "use lead-time"
-msgstr ""
+msgstr "ön süreyi kullan"
 
 msgid "userdefined"
-msgstr ""
+msgstr "kullanıcı tanımlı"
 
 msgid "vertically"
 msgstr "dikey"
 
 msgid "violet"
-msgstr "mor"
+msgstr "menekşe"
 
 msgid "white"
 msgstr "beyaz"
 
 msgid "with Current 00:00"
-msgstr ""
+msgstr "geçen süre 00:00 ile"
 
 msgid "with Current 00:00 (Size 1.5)"
-msgstr ""
+msgstr "geçen süre 00:00 ile (boyut 1.5)"
 
 msgid "with Current 00:00 (Size 2)"
-msgstr ""
+msgstr "geçen süre 00:00 ile (boyut 2)"
 
 msgid "with Current 00:00 (above)"
-msgstr ""
+msgstr "geçen süre 00:00 ile (üstte)"
 
 msgid "with Current 00:00 (above/Size 1.5)"
-msgstr ""
+msgstr "geçen süre 00:00 ile (üstte/boyut 1.5)"
 
 msgid "with Current 00:00 (above/Size 2)"
-msgstr ""
+msgstr "geçen süre 00:00 ile (üstte/boyut 2)"
 
 msgid "with Current 00:00 (below)"
-msgstr ""
+msgstr "geçen süre 00:00 ile (altta)"
 
 msgid "with Current 00:00 (below/Size 1.5)"
-msgstr ""
+msgstr "geçen süre 00:00 ile (altta/boyut 1.5)"
 
 msgid "with Current 00:00 (below/Size 2)"
-msgstr ""
+msgstr "geçen süre 00:00 ile (altta/boyut 2)"
 
 msgid "with Icon"
-msgstr ""
+msgstr "simgeli"
 
 msgid "with Icon & Targetnumber"
-msgstr ""
+msgstr "simge ve hedef numarayla"
 
 msgid "with Minutes Total / Endtime (above)"
-msgstr ""
+msgstr "toplam dakika / bitiş saati ile (üstte)"
 
 msgid "with Minutes Total / Endtime (above/Size 1.5)"
-msgstr ""
+msgstr "toplam dakika / bitiş saati ile (üstte/boyut 1.5)"
 
 msgid "with Minutes Total / Endtime (above/Size 2)"
-msgstr ""
+msgstr "toplam dakika / bitiş saati ile (üstte/boyut 2)"
 
 msgid "with Percent"
-msgstr ""
+msgstr "yüzde ile"
 
 msgid "with Percent (Size 1.5)"
-msgstr ""
+msgstr "yüzde ile (boyut 1.5)"
 
 msgid "with Percent (Size 2)"
-msgstr ""
+msgstr "yüzde ile (boyut 2)"
 
 msgid "with Percent (above)"
-msgstr ""
+msgstr "yüzde ile (üstte)"
 
 msgid "with Percent (above/Size 1.5)"
-msgstr ""
+msgstr "yüzde ile (üstte/boyut 1.5)"
 
 msgid "with Percent (above/Size 2)"
-msgstr ""
+msgstr "yüzde ile (üstte/boyut 2)"
 
 msgid "with Percent (below)"
-msgstr ""
+msgstr "yüzde ile (altta)"
 
 msgid "with Percent (below/Size 1.5)"
-msgstr ""
+msgstr "yüzde ile (altta/boyut 1.5)"
 
 msgid "with Percent (below/Size 2)"
-msgstr ""
+msgstr "yüzde ile (altta/boyut 2)"
 
 msgid "with Percent Minutes / Total (above)"
-msgstr ""
+msgstr "yüzde, dakika / toplam ile (üstte)"
 
 msgid "with Percent Minutes / Total (above/Size 1.5)"
-msgstr ""
+msgstr "yüzde, dakika / toplam ile (üstte/boyut 1.5)"
 
 msgid "with Percent Minutes / Total (above/Size 2)"
-msgstr ""
+msgstr "yüzde, dakika / toplam ile (üstte/boyut 2)"
 
 msgid "with Remaining Minutes"
-msgstr ""
+msgstr "kalan dakika ile"
 
 msgid "with Remaining Minutes (Size 1.5)"
-msgstr ""
+msgstr "kalan dakika ile (boyut 1.5)"
 
 msgid "with Remaining Minutes (Size 2)"
-msgstr ""
+msgstr "kalan dakika ile (boyut 2)"
 
 msgid "with Remaining Minutes (above)"
-msgstr ""
+msgstr "kalan dakika ile (üstte)"
 
 msgid "with Remaining Minutes (above/Size 1.5)"
-msgstr ""
+msgstr "kalan dakika ile (üstte/boyut 1.5)"
 
 msgid "with Remaining Minutes (above/Size 2)"
-msgstr ""
+msgstr "kalan dakika ile (üstte/boyut 2)"
 
 msgid "with Remaining Minutes (below)"
-msgstr ""
+msgstr "kalan dakika ile (altta)"
 
 msgid "with Remaining Minutes (below/Size 1.5)"
-msgstr ""
+msgstr "kalan dakika ile (altta/boyut 1.5)"
 
 msgid "with Remaining Minutes (below/Size 2)"
-msgstr ""
+msgstr "kalan dakika ile (altta/boyut 2)"
 
 msgid "with absolute Endtime"
-msgstr ""
+msgstr "kesin bitiş saati ile"
 
 msgid "with absolute Endtime (Size 1.5)"
-msgstr ""
+msgstr "kesin bitiş saati ile (boyut 1.5)"
 
 msgid "with absolute Endtime (Size 2)"
-msgstr ""
+msgstr "kesin bitiş saati ile (boyut 2)"
 
 msgid "yellow"
 msgstr "sarı"
@@ -2860,10 +2846,10 @@ msgid "yes +25%"
 msgstr "evet +%25"
 
 msgid "yes except records"
-msgstr ""
+msgstr "evet, kayıtlar hariç"
 
 msgid "yes, extended"
-msgstr ""
+msgstr "evet, ayrıntılı"
 
 msgid "yes, long"
 msgstr "evet, uzun"
