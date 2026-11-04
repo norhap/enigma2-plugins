@@ -5418,7 +5418,7 @@ class LCDdisplayMenu(Screen):
 		<screen position="center,center" size="600,380" title="LCD4linux - Config" >
 			<widget name="menu" position="10,20" size="580,350" scrollbarMode="showOnDemand" />
 			<eLabel name="button_red" position="10,340" size="6,36" backgroundColor="#00fe0000" zPosition="1" />
-			<widget source="key_red" render="Label" position="24,346" size="230,26" font="Regular;18" valign="center" halign="left" zPosition="1" />
+			<widget source="key_red" render="Label" position="24,346" size="230,26" font="Regular;18" verticalAlignment="center" horizontalAlignment="left" zPosition="1" />
 		</screen>"""
 
 	def __init__(self, session, args=None):
@@ -5508,11 +5508,11 @@ class LCDdisplayMenu(Screen):
 class LCDdisplayFile(Screen):
 	skin = """
 		<screen position="center,center" size="620,460" title="Select File/Dir...">
-			<widget source="File" render="Label" font="Regular;20" halign="center" position="5,0" size="610,100" transparent="1" valign="center" zPosition="4"/>
+			<widget source="File" render="Label" font="Regular;20" horizontalAlignment="center" position="5,0" size="610,100" transparent="1" verticalAlignment="center" zPosition="4"/>
 			<widget name="LCDfile" position="5,100" scrollbarMode="showOnDemand" size="610,312" zPosition="4"/>
 			<eLabel backgroundColor="#555555" position="5,420" size="610,2" zPosition="5"/>
-			<ePixmap alphatest="on" pixmap="skin_default/buttons/green.png" position="0,425" size="140,40" zPosition="5"/>
-			<eLabel font="Regular;18" halign="center" position="0,425" size="140,40" text="Select" transparent="1" valign="center" zPosition="6"/>
+			<ePixmap alphaTest="on" pixmap="skin_default/buttons/green.png" position="0,425" size="140,40" zPosition="5"/>
+			<eLabel font="Regular;18" horizontalAlignment="center" position="0,425" size="140,40" text="Select" transparent="1" verticalAlignment="center" zPosition="6"/>
 		</screen>"""
 
 	def __init__(self, session, FileName="/tmp/none", showFiles=True, text="Text", matchingPattern=None):
@@ -5615,25 +5615,25 @@ class LCDdisplayConfig(ConfigListScreen, Screen):
 		skin = f"""
 			<screen position="center,{75}" size="{size_w},{size_h}" title="LCD4linux Settings" >
 			<widget name="config" position="0,0" size="{conf_w},{conf_h}" scrollbarMode="showOnDemand" enableWrapAround="1" />
-			<widget source="introduction" render="Label" position="5,{int_y}" size="{conf_w - 10},30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget name="key_red" position="{0},{key_y}" size="{key_x},40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
-			<widget name="key_green" position="{key_x},{key_y}" size="{key_x},40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
-			<widget name="key_yellow" position="{2 * key_x},{key_y}" size="{key_x},40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
-			<widget name="key_blue" position="{3 * key_x},{key_y}" size="{key_x},40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
-			<ePixmap name="red"    position="{0},{key_y}"   zPosition="2" size="{key_x},40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-			<ePixmap name="green"  position="{key_x},{key_y}" zPosition="2" size="{key_x},40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-			<ePixmap name="yellow" position="{2 * key_x},{key_y}" zPosition="2" size="{key_x},40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-			<ePixmap name="blue"   position="{3 * key_x},{key_y}" zPosition="2" size="{key_x},40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/key_menu.png" position="{4 * key_x},{key_y + 15}" zPosition="4" size="35,25"  transparent="1" alphatest="on" />
-			<widget source="Version" render="Label" position="{conf_w - 100},{key_y - 10}" size="100,20" zPosition="1" font="Regular;11" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="LibUSB" render="Label" position="{conf_w - 100},{key_y - 30}" size="100,20" zPosition="1" font="Regular;11" halign="right" valign="center" foregroundColor="red" backgroundColor="#25062748" transparent="1" />
-			<widget source="About" render="Label" position="{conf_w - 100},{key_y - 30}" size="100,20" zPosition="1" font="Regular;10" halign="right" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget name="LCD1" position="{conf_w},{0}" zPosition="1" size="{pic_w},{pic_h}" transparent="1" alphatest="on" />
-			<widget name="LCD2" position="{conf_w},{pic_h}" zPosition="1" size="{pic_w},{pic_h}" transparent="1" alphatest="on" />
-			<widget name="LCD3" position="{conf_w},{pic_h2}" zPosition="1" size="{pic_w},{pic_h}" transparent="1" alphatest="on" />
-			<widget source="LCD1text" render="Label" position="{conf_w},{5}" size="200,20" zPosition="1" font="Regular;11" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="LCD2text" render="Label" position="{conf_w},{pic_h + 5}" size="200,20" zPosition="1" font="Regular;11" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="LCD3text" render="Label" position="{conf_w},{pic_h2 + 5}" size="200,20" zPosition="1" font="Regular;11" halign="left" valign="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="introduction" render="Label" position="5,{int_y}" size="{conf_w - 10},30" zPosition="10" font="Regular;21" horizontalAlignment="center" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget name="key_red" position="{0},{key_y}" size="{key_x},40" verticalAlignment="center" horizontalAlignment="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
+			<widget name="key_green" position="{key_x},{key_y}" size="{key_x},40" verticalAlignment="center" horizontalAlignment="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
+			<widget name="key_yellow" position="{2 * key_x},{key_y}" size="{key_x},40" verticalAlignment="center" horizontalAlignment="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
+			<widget name="key_blue" position="{3 * key_x},{key_y}" size="{key_x},40" verticalAlignment="center" horizontalAlignment="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/>
+			<ePixmap name="red"    position="{0},{key_y}"   zPosition="2" size="{key_x},40" pixmap="skin_default/buttons/red.png" transparent="1" alphaTest="on" />
+			<ePixmap name="green"  position="{key_x},{key_y}" zPosition="2" size="{key_x},40" pixmap="skin_default/buttons/green.png" transparent="1" alphaTest="on" />
+			<ePixmap name="yellow" position="{2 * key_x},{key_y}" zPosition="2" size="{key_x},40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphaTest="on" />
+			<ePixmap name="blue"   position="{3 * key_x},{key_y}" zPosition="2" size="{key_x},40" pixmap="skin_default/buttons/blue.png" transparent="1" alphaTest="on" />
+			<ePixmap pixmap="skin_default/buttons/key_menu.png" position="{4 * key_x},{key_y + 15}" zPosition="4" size="35,25"  transparent="1" alphaTest="on" />
+			<widget source="Version" render="Label" position="{conf_w - 100},{key_y - 10}" size="100,20" zPosition="1" font="Regular;11" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="LibUSB" render="Label" position="{conf_w - 100},{key_y - 30}" size="100,20" zPosition="1" font="Regular;11" horizontalAlignment="right" verticalAlignment="center" foregroundColor="red" backgroundColor="#25062748" transparent="1" />
+			<widget source="About" render="Label" position="{conf_w - 100},{key_y - 30}" size="100,20" zPosition="1" font="Regular;10" horizontalAlignment="right" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget name="LCD1" position="{conf_w},{0}" zPosition="1" size="{pic_w},{pic_h}" transparent="1" alphaTest="on" />
+			<widget name="LCD2" position="{conf_w},{pic_h}" zPosition="1" size="{pic_w},{pic_h}" transparent="1" alphaTest="on" />
+			<widget name="LCD3" position="{conf_w},{pic_h2}" zPosition="1" size="{pic_w},{pic_h}" transparent="1" alphaTest="on" />
+			<widget source="LCD1text" render="Label" position="{conf_w},{5}" size="200,20" zPosition="1" font="Regular;11" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="LCD2text" render="Label" position="{conf_w},{pic_h + 5}" size="200,20" zPosition="1" font="Regular;11" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="LCD3text" render="Label" position="{conf_w},{pic_h2 + 5}" size="200,20" zPosition="1" font="Regular;11" horizontalAlignment="left" verticalAlignment="center" backgroundColor="#25062748" transparent="1" />
 			</screen>"""
 		self.skin = skin
 		self.session = session
