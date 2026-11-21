@@ -77,6 +77,7 @@ def postGraphQL(query, operation_name=None, variables=None, headers=None):
 		"query": query,
 	}
 	headers = headers or {}
+
 	def checkResponse(response):
 		response.raise_for_status()
 		return response
@@ -904,9 +905,11 @@ query TitleReviewsRefine {
 
 	def attachRequest(self, deferred, callback, errback, *errorArgs):
 		serial = self.requestSerial
+
 		def complete(response):
 			if serial == self.requestSerial:
 				return callback(response)
+
 		def failed(failure):
 			if serial == self.requestSerial:
 				return errback(failure, *errorArgs)
@@ -916,6 +919,7 @@ query TitleReviewsRefine {
 		params = dict(params or {})
 		params["language"] = "en-US" if config.plugins.imdb.force_english.value else self.lang
 		headers = {"Authorization": "Bearer " + config.plugins.imdb.tmdb_token.value.strip()}
+
 		def parse(response):
 			response.raise_for_status()
 			data = response.json()
