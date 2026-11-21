@@ -1878,7 +1878,7 @@ query TitleReviewsRefine {
 class TmdbCredits(Screen):
 	skin = """
 		<screen position="center,center" size="700,220" title="TMDB">
-			<widget name="logo" position="30,25" size="220,29" alphatest="on" />
+			<widget name="logo" position="30,25" size="220,29" alphaTest="on" />
 			<widget name="notice" position="30,80" size="640,110" font="Regular;24" />
 		</screen>"""
 
