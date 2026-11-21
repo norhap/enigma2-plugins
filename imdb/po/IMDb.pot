@@ -17,6 +17,59 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+msgid "Use TMDB when IMDb is unavailable"
+msgstr ""
+
+msgid "Use TMDB as an alternative when an IMDb request fails. Requires a TMDB API read access token."
+msgstr ""
+
+msgid "TMDB API read access token"
+msgstr ""
+
+msgid "Enter your TMDB API Read Access Token. The token is stored in the receiver settings."
+msgstr ""
+
+msgid "IMDb unavailable; searching TMDB..."
+msgstr ""
+
+msgid "IMDb unavailable; configure the TMDB API read access token."
+msgstr ""
+
+#, python-format
+msgid "IMDb unavailable (HTTP %s)"
+msgstr ""
+
+msgid "TMDB query failed!"
+msgstr ""
+
+#, python-format
+msgid "TMDB unavailable (HTTP %s)"
+msgstr ""
+
+msgid "TMDB Download failed"
+msgstr ""
+
+msgid "No TMDB match."
+msgstr ""
+
+msgid "Results from TMDB"
+msgstr ""
+
+msgid "Downloading TMDB details..."
+msgstr ""
+
+msgid "TMDB details loaded"
+msgstr ""
+
+msgid "TMDB rating"
+msgstr ""
+
+msgid "TMDB credits"
+msgstr ""
+
+msgid "This application uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB."
+msgstr ""
+
 #, python-format
 msgid "%d out of %d found this helpful."
 msgstr ""

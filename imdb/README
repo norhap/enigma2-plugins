@@ -1,0 +1,19 @@
+IMDb normally uses IMDb's GraphQL service. If that service rejects or fails a
+request, the optional TMDB fallback can search for films and TV series and show
+their details, cast, poster and first page of reviews.
+
+To enable it, obtain an API Read Access Token from your own TMDB account at
+https://www.themoviedb.org/settings/api, then enable "Use TMDB when IMDb is
+unavailable" and enter the token in IMDb Setup. The token is masked on screen
+but stored in the receiver's Enigma2 settings; do not share that settings file.
+Search terms and IMDb identifiers are sent to TMDB when the fallback is used.
+The source and rating are labelled TMDB: these ratings are not IMDb ratings.
+TMDB searches do not include individual episodes. Some IMDb-specific details
+are not available from TMDB. Local saving is disabled for TMDB results.
+
+The TMDB credits screen is available from the plugin menu when the fallback is
+enabled. TMDB API use is subject to its terms, including attribution and
+non-commercial-use requirements: https://www.themoviedb.org/api-terms-of-use
+The included tmdb-logo.svg is the approved TMDB logo from
+https://www.themoviedb.org/about/logos-attribution. Its gradient is specified
+on the path instead of through a CSS class for the Enigma2 SVG renderer.

@@ -1,5 +1,6 @@
 # for localized messages
 from . import _
+from .tmdb import search_results as tmdb_search_results, title_data as tmdb_title_data
 from gettext import ngettext
 from Plugins.Plugin import PluginDescriptor
 from enigma import ePicLoad, eServiceCenter, eServiceReference
@@ -9,7 +10,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.InfoBar import MoviePlayer
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-from Components.ActionMap import HelpableActionMap
+from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
@@ -26,13 +27,14 @@ import os
 import re
 import requests
 from time import strftime, strptime
+from types import SimpleNamespace
 from twisted.internet.threads import deferToThread
 from shutil import copy
 
 from urllib.parse import quote_plus
 
 # Configuration
-from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigText
+from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigText, ConfigPassword
 from Components.PluginComponent import plugins
 
 
@@ -47,6 +49,8 @@ config.plugins.imdb.showlongmenuinfo = ConfigYesNo(default=False)
 config.plugins.imdb.showepisoderesults = ConfigYesNo(default=False)
 config.plugins.imdb.showepisodeinfo = ConfigYesNo(default=False)
 config.plugins.imdb.translate_texts = ConfigYesNo(default=False)
+config.plugins.imdb.tmdb_fallback = ConfigYesNo(default=False)
+config.plugins.imdb.tmdb_token = ConfigPassword(default="", fixed_size=False, visible_width=50)
 
 movietitle = None  # [norhap]
 
@@ -57,14 +61,12 @@ def getPage(url, params=None, data=None, headers=None):
 
 def savePage(response, filename):
 	response.raise_for_status()
-	try:
-		open(filename, "wb").write(response.content)
-	except Exception as e:
-		return e
+	with open(filename, "wb") as file:
+		file.write(response.content)
 
 
 def downloadPage(url, filename, params=None, headers=None):
-	return getPage(url, params, headers).addCallback(savePage, filename)
+	return getPage(url, params=params, headers=headers).addCallback(savePage, filename)
 
 
 def postGraphQL(query, operation_name=None, variables=None, headers=None):
@@ -75,7 +77,10 @@ def postGraphQL(query, operation_name=None, variables=None, headers=None):
 		"query": query,
 	}
 	headers = headers or {}
-	return getPage("https://caching.graphql.imdb.com/", data=json.dumps(payload), headers=headers)
+	def checkResponse(response):
+		response.raise_for_status()
+		return response
+	return getPage("https://caching.graphql.imdb.com/", data=json.dumps(payload), headers=headers).addCallback(checkResponse)
 
 
 def safeRemove(*names):
@@ -208,6 +213,8 @@ class IMDB(Screen, HelpableScreen):
 		self.localpath = localpath
 
 		self.imdbId = imdbId
+		self.dataSource = "IMDb"
+		self.requestSerial = 0
 
 		self["poster"] = Pixmap()
 		self.picload = ePicLoad()
@@ -291,7 +298,7 @@ class IMDB(Screen, HelpableScreen):
 
 	def exit(self):
 		global movietitle  # [norhap]
-		if isPluginInstalled("xtraEvent") and movietitle:
+		if self.dataSource != "TMDB" and isPluginInstalled("xtraEvent") and movietitle:
 			xtraposter = config.plugins.xtraEvent.loc.value + "xtraEvent/poster" if config.plugins.xtraEvent.loc.value else None
 			if fileExists(str(xtraposter)) and fileExists(str(self.savingpath + movietitle + ".jpg")) and not fileExists(str(xtraposter + "/" + movietitle + ".jpg")):
 				try:
@@ -301,6 +308,7 @@ class IMDB(Screen, HelpableScreen):
 		if self.hideBigPoster():
 			return
 
+		self.requestSerial += 1
 		safeRemove("/tmp/poster.jpg", "/tmp/poster-big.jpg")
 		if self.callbackNeeded:
 			self.close([self.callbackData, self.callbackGenre])
@@ -367,6 +375,7 @@ class IMDB(Screen, HelpableScreen):
 		headers = {
 			"content-type": "application/json",
 			"referer": "https://www.imdb.com/",
+			"x-imdb-client-name": "imdb-web-next",
 		}
 		if self.lang:
 			headers["X-Imdb-User-Language"] = self.lang
@@ -884,9 +893,114 @@ query TitleReviewsRefine {
 		return postGraphQL(self.reviewsQueryGraphQL(titleId), "TitleReviews", headers=self.imdbGraphQLHeaders())
 
 	def downloadTitle(self, title, titleId):
+		self.requestSerial += 1
+		if titleId.startswith("tmdb:"):
+			self.downloadTmdbTitle(titleId)
+			return
+		self.dataSource = "IMDb"
 		self["statusbar"].setText(_("Re-Query IMDb: %s...") % (title or titleId))
 		download = self.imdbGraphQLTitle(titleId)
-		download.addCallback(self.IMDBparse).addErrback(self.http_failed)
+		self.attachRequest(download, self.IMDBparse, self.imdbRequestFailed, titleId)
+
+	def attachRequest(self, deferred, callback, errback, *errorArgs):
+		serial = self.requestSerial
+		def complete(response):
+			if serial == self.requestSerial:
+				return callback(response)
+		def failed(failure):
+			if serial == self.requestSerial:
+				return errback(failure, *errorArgs)
+		deferred.addCallback(complete).addErrback(failed)
+
+	def tmdbRequest(self, path, params=None):
+		params = dict(params or {})
+		params["language"] = "en-US" if config.plugins.imdb.force_english.value else self.lang
+		headers = {"Authorization": "Bearer " + config.plugins.imdb.tmdb_token.value.strip()}
+		def parse(response):
+			response.raise_for_status()
+			data = response.json()
+			if not isinstance(data, dict):
+				raise ValueError("Invalid TMDB response")
+			return data
+		return getPage("https://api.themoviedb.org/3/" + path, params=params, headers=headers).addCallback(parse)
+
+	def imdbRequestFailed(self, failure, titleId=None):
+		response = getattr(failure.value, "response", None)
+		code = getattr(response, "status_code", None)
+		print("[IMDb] Request failed:", "HTTP %s" % code if code else type(failure.value).__name__)
+		if config.plugins.imdb.tmdb_fallback.value and config.plugins.imdb.tmdb_token.value.strip():
+			self["statusbar"].setText(_("IMDb unavailable; searching TMDB..."))
+			if titleId:
+				self.attachRequest(self.tmdbRequest("find/" + titleId, {"external_source": "imdb_id"}),
+					self.tmdbFoundTitle, self.tmdbRequestFailed)
+			else:
+				self.attachRequest(self.tmdbRequest("search/multi", {"query": self.eventName, "include_adult": "true"}),
+					self.tmdbSearchComplete, self.tmdbRequestFailed)
+		else:
+			self["detailslabel"].setText(_("IMDb query failed!"))
+			if config.plugins.imdb.tmdb_fallback.value:
+				self["statusbar"].setText(_("IMDb unavailable; configure the TMDB API read access token."))
+			else:
+				self["statusbar"].setText(_("IMDb unavailable (HTTP %s)") % code if code else _("IMDb Download failed"))
+
+	def tmdbRequestFailed(self, failure):
+		response = getattr(failure.value, "response", None)
+		code = getattr(response, "status_code", None)
+		print("[IMDb] TMDB request failed:", "HTTP %s" % code if code else type(failure.value).__name__)
+		self["detailslabel"].setText(_("TMDB query failed!"))
+		self["statusbar"].setText(_("TMDB unavailable (HTTP %s)") % code if code else _("TMDB Download failed"))
+
+	def tmdbFoundTitle(self, data):
+		if not all(isinstance(data.get(key), list) for key in ("movie_results", "tv_results")):
+			raise ValueError("Invalid TMDB find response")
+		for kind, key in (("movie", "movie_results"), ("tv", "tv_results")):
+			for item in data.get(key, []):
+				if isinstance(item.get("id"), int):
+					self.downloadTmdbTitle("tmdb:%s:%d" % (kind, item["id"]))
+					return
+		self["detailslabel"].setText(_("No TMDB match."))
+		self["statusbar"].setText(_("No TMDB match."))
+
+	def tmdbSearchComplete(self, data):
+		if not isinstance(data.get("results"), list):
+			raise ValueError("Invalid TMDB search response")
+		self.resultlist = tmdb_search_results(data)
+		self["menu"].l.setList(self.resultlist)
+		if len(self.resultlist) == 1:
+			self.downloadTitle(self.resultlist[0][0], self.resultlist[0][1])
+		elif self.resultlist:
+			self.Page = 1
+			self.showMenu()
+			self["statusbar"].setText(_("Results from TMDB"))
+		else:
+			self["detailslabel"].setText(_("No TMDB match."))
+			self["statusbar"].setText(_("No TMDB match."))
+
+	def downloadTmdbTitle(self, titleId):
+		parts = titleId.split(":")
+		if len(parts) != 3 or parts[1] not in ("movie", "tv") or not parts[2].isdigit():
+			raise ValueError("Invalid TMDB title identifier")
+		kind, ident = parts[1], int(parts[2])
+		self["statusbar"].setText(_("Downloading TMDB details..."))
+		self.attachRequest(self.tmdbRequest("%s/%d" % (kind, ident), {"append_to_response": "credits,reviews"}),
+			lambda data: self.tmdbTitleComplete(data, kind, ident), self.tmdbRequestFailed)
+
+	def tmdbTitleComplete(self, data, kind, ident):
+		title = tmdb_title_data(data, kind, ident)
+		self.dataSource = "TMDB"
+		response = SimpleNamespace(content=json.dumps({"data": {"title": title}}).encode("utf8"))
+		self.IMDBparse(response)
+		self.json = json.dumps(data, ensure_ascii=False)
+		self.reviews = []
+		for review in (data.get("reviews") or {}).get("results", []):
+			author = review.get("author") or ""
+			rating = (review.get("author_details") or {}).get("rating")
+			self.reviews.append({
+				"rating": rating, "title": "", "author": author,
+				"date": (review.get("created_at") or "")[:10], "spoiler": False,
+				"review": review.get("content") or "", "helpful": ""
+			})
+		self.morereviews = bool(self.reviews)
 
 	def gotReviews(self, response):
 		self["statusbar"].setText(_("Parsing reviews..."))
@@ -936,9 +1050,8 @@ query TitleReviewsRefine {
 		self["statusbar"].setText(_("IMDb Re-Download completed"))
 		self.json = response.content.decode("utf8")
 		if self.json.startswith('{"errors'):
-			self["detailslabel"].setText(_("IMDb title failed!"))
 			print("[IMDb] error getting title", self.json)
-			return
+			raise ValueError("IMDb returned GraphQL errors")
 
 		Detailstext = _("No details found.")
 		try:
@@ -948,9 +1061,7 @@ query TitleReviewsRefine {
 			title = {}
 
 		if not title:
-			self["detailslabel"].setText(Detailstext)
-			self["statusbar"].setText(_("IMDb details unavailable"))
-			return
+			raise ValueError("IMDb returned no title details")
 
 		self.Page = 1
 		self.eventName = get(title, ("titleText", "text")) or self.eventName
@@ -1031,13 +1142,15 @@ query TitleReviewsRefine {
 			details.append(ngettext("Language", "Languages", len(langblock)) + ": " + languages)
 
 		self.callbackData = "\n".join(details) if details else Detailstext
+		if self.dataSource == "TMDB":
+			self.callbackData = "TMDB\n" + self.callbackData
 
 		self["detailslabel"].setText(text2label(self.callbackData))
 
 		rating = get(title, ("ratingsSummary", "aggregateRating"))
 		if rating:
 			self.ratingstars = int(10 * round(rating, 1))
-			self["ratinglabel"].setText("%s: %.1f / 10" % (_("IMDb rating"), rating))
+			self["ratinglabel"].setText("%s: %.1f / 10" % (_("TMDB rating") if self.dataSource == "TMDB" else _("IMDb rating"), rating))
 			self["stars"].show()
 			self["stars"].setValue(self.ratingstars)
 			self["starsbg"].show()
@@ -1135,7 +1248,7 @@ query TitleReviewsRefine {
 		def safe_translate(text, lang):
 			return imdb_translate(text, lang) if text else text
 
-		if lang != "en" and config.plugins.imdb.translate_texts.value:
+		if self.dataSource != "TMDB" and lang != "en" and config.plugins.imdb.translate_texts.value:
 			outline = safe_translate(outline, lang)
 			summary = safe_translate(summary, lang)
 			synopsis = safe_translate(synopsis, lang)
@@ -1171,6 +1284,8 @@ query TitleReviewsRefine {
 		specs = "\n".join(specs)
 
 		Extralist = []
+		if self.dataSource == "TMDB":
+			Extralist.extend([_("This application uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB."), ""])
 		for label, value, multiline in (
 				("", awards, True),
 				(_("Plot"), outline, True),
@@ -1254,7 +1369,7 @@ query TitleReviewsRefine {
 		self.synopsisTxt = synopsis
 		self.synopsis = text2label(self.synopsisTxt)
 		self["VKeyIcon"].boolean = True if self.synopsis else False
-		self["statusbar"].setText(_("IMDb Details parsed"))
+		self["statusbar"].setText(_("TMDB details loaded") if self.dataSource == "TMDB" else _("IMDb Details parsed"))
 
 	def showDetails(self):
 		self.hideBigPoster()
@@ -1349,8 +1464,10 @@ query TitleReviewsRefine {
 			(_("Enter search"), self.openVirtualKeyBoard),
 			(_("Setup"), self.setup),
 		]
+		if self.dataSource == "TMDB" or config.plugins.imdb.tmdb_fallback.value:
+			list.append((_("TMDB credits"), self.showTmdbCredits))
 
-		if self.saving:
+		if self.saving and self.dataSource != "TMDB":
 			if self.savingpath is not None and self.titleId:
 				list.extend((
 					(_("Save current Details as .json for offline use"), self.saveJsonDetails),
@@ -1525,7 +1642,9 @@ query TitleReviewsRefine {
 			self.getIMDB(search=True)
 
 	def getIMDB(self, search=False):
+		self.requestSerial += 1
 		self.titleId = None
+		self.dataSource = "IMDb"
 		self.json = self.posterurl = None
 		self.castTxt = self.extraTxt = self.synopsisTxt = self.reviewsTxt = ""
 		self.extra = self.synopsis = ""
@@ -1570,7 +1689,7 @@ query TitleReviewsRefine {
 		if self.eventName:
 			self["statusbar"].setText(_("Query IMDb: %s") % self.eventName)
 			download = self.imdbGraphQLSearch()
-			download.addCallback(self.IMDBqueryGraphQL).addErrback(self.http_failed)
+			self.attachRequest(download, self.IMDBqueryGraphQL, self.imdbRequestFailed)
 
 		else:
 			self["statusbar"].setText(_("Couldn't get event name"))
@@ -1580,10 +1699,10 @@ query TitleReviewsRefine {
 		try:
 			data = json.loads(response.content.decode("utf8"))
 			searchresults = data["data"]["mainSearch"]["edges"]
-		except Exception as e:
-			self["detailslabel"].setText(_("IMDb query failed!"))
-			print("[IMDB] GraphQL search parse failed:", str(e), "payload=", response.content[:500])
-			return
+			if not isinstance(searchresults, list):
+				raise ValueError("Invalid IMDb search results")
+		except (ValueError, KeyError, TypeError) as e:
+			raise ValueError("Invalid IMDb search response: %s" % e)
 
 		self.resultlist = []
 		titles = {}
@@ -1670,7 +1789,7 @@ query TitleReviewsRefine {
 		cur = self["menu"].getCurrent()
 		if cur:
 			plot_text = cur[2]  # original text
-			if config.plugins.imdb.translate_texts.value:
+			if not cur[1].startswith("tmdb:") and config.plugins.imdb.translate_texts.value:
 				lang = language.getLanguage().split("_")[0]  # UI language
 				if lang != "en":
 					if plot_text:
@@ -1693,7 +1812,7 @@ query TitleReviewsRefine {
 		return failure
 
 	def IMDBPoster(self, failed, big=False):
-		self["statusbar"].setText(_("IMDb Details parsed"))
+		self["statusbar"].setText(_("TMDB details loaded") if self.dataSource == "TMDB" else _("IMDb Details parsed"))
 		if failed:
 			filename = resolveFilename(SCOPE_PLUGINS, "Extensions/IMDb/no_poster.png")
 		else:
@@ -1724,7 +1843,7 @@ query TitleReviewsRefine {
 		if failed:
 			self["statusbar"].setText(str(failed))
 			return
-		self["statusbar"].setText(_("IMDb Details parsed"))
+		self["statusbar"].setText(_("TMDB details loaded") if self.dataSource == "TMDB" else _("IMDb Details parsed"))
 		self.poster_pos = (self["poster"].getPosition(), self["poster"].getSize())
 		self["poster"].setZPosition(99)
 		self["poster"].move(0, 0)
@@ -1745,8 +1864,40 @@ query TitleReviewsRefine {
 	def setup(self):
 		self.session.open(IMDbSetup)
 
+	def showTmdbCredits(self):
+		self.session.open(TmdbCredits)
+
 	def createSummary(self):
 		return IMDbLCDScreen
+
+
+class TmdbCredits(Screen):
+	skin = """
+		<screen position="center,center" size="700,220" title="TMDB">
+			<widget name="logo" position="30,25" size="220,29" alphatest="on" />
+			<widget name="notice" position="30,80" size="640,110" font="Regular;24" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self["logo"] = Pixmap()
+		self["notice"] = Label(_("This application uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB."))
+		self["actions"] = ActionMap(["OkCancelActions"], {
+			"ok": self.close,
+			"cancel": self.close,
+		})
+		self.picload = ePicLoad()
+		self.picload.PictureData.get().append(self.showLogo)
+		self.onLayoutFinish.append(self.loadLogo)
+
+	def loadLogo(self):
+		self.picload.setPara((220, 29, 1, 1, False, 1, "#00000000"))
+		self.picload.startDecode(resolveFilename(SCOPE_PLUGINS, "Extensions/IMDb/tmdb-logo.svg"))
+
+	def showLogo(self, *args):
+		pixmap = self.picload.getData()
+		if pixmap:
+			self["logo"].instance.setPixmap(pixmap)
 
 
 class IMDbPlayer(MoviePlayer):
