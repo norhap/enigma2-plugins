@@ -180,10 +180,10 @@ def partnerboxAutoTimerEventInfo(session, event=None, service=None, **kwargs):
 	if ref:
 		session.open(PartnerboxAutoTimerEPGSelection, ref)
 
+
 def partnerboxAutoTimerSelectedEvent(session, selectedevent=None, **kwargs):
 	if selectedevent is not None:
 		partnerboxAutoTimerEventInfo(session, event=selectedevent[0], service=selectedevent[1])
-
 
 
 def openPartnerboxAutoTimersOverview(session, **kwargs):
